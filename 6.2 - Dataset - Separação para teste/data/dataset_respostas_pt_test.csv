@@ -1,0 +1,91 @@
+Conteudo_Comentario,sentiment
+Estou com o mesmo problema. Ligando na Dell o suporte disse que foi porque atualizei o windows de fábrica por um windows pro. A solução que me ofereceram foi fazer um downgrade voltando pro windows de fábrica.,Negative
+"O G7 é um excelente notebook, eu tenho a versão anterior com a gtx 1050 ti e ele é ultra rápido, só a ventoinha que é ruim pq faz muito ruído (coloquei um pouco de wd40 pra diminuir). No meu eu coloquei um hd de 2TB e um m2 de 128 como cache, ativei o intel rst. Sem o rst ele fica lento precisa esperar um tempo pra ele ficar pronto e depois fica rápido. Com o rst ativado fica pronto rápido. Se o seu ta instalado no ssd e mesmo assim tiver lento aí pode ter algum defeito no ssd pq ele deve ser rápido. Mesmo assim recomendo acionar a garantia ou pensar na possibilidade de devolução caso não resolva. Na minha experiência com maquinas Dell o Inspirion Gaming é o melhor custo benefício em se tratando de rodar programas pesados e jogos gastando o mínimo. Tem mais modelos robustos só que o custo é muito acima do orçamento da maioria das pessoas",Negative
+"@Rodrigo Kern Pior que não, achei que também era no começo.
+	Mas das minhas 05 máquinas, nem todas ainda tinha atualizado para última versão da BIOS, quando os problemas começaram.
+
+	Então descartei retroceder.",Positive
+"@Jean Carlo Pereira  Meu Wind. era o 11 e fiz uma Formatação limpa instalando o wind 10 achando que iria resolver, então não acho que você atualizando para o 11 vai mudar.  atualizei o drive da placa da Intel gráficas 630.  e não resolveu.  desativei a mesma, e o sketchup não abre,  logo desativei a da NVIDIA como o @Rodrigo Kern indicou acima, o SketchUp abre dando uma seguinte mensagem.....(foto) e até agora sem tela azul mas ainda não abri o enscape,  (duas horas de teste).
+	 
+
+
+	 
+
+
+	Obs.  comprei minha maquina no final de 2018, deve ser do mesmo lote",Negative
+"@Jean Carlo Pereira Verdade! Ambos meus casos estavam desatualizado, bem lembrado.",Positive
+"Tenta entrar em contato com o suporte via chat ou telefone, não é normal o g7 ser lento, ele tem um excelente processador e placa de vídeo",Positive
+"O Enscape ( renderizador) não abriu com a placa desabilitada,  
+
+	trabalhei o Fim de Semana todo e o Problema não voltou.
+	espero que resolva seu problema. 
+
+	Desisti de NVIDIA e DELL.  Comprei peças da ASUS e AMD pra montar um Computador de Mesa.  (essa vai ficar como suporte).
+	espero que",Negative
+"@lorenagmss Opa, boa notícia!
+	eu cheguei a fazer o downgrade do driver também, mas para uma versão de dezembro de 2021, mas continuou dando erro, por isso nem tentei uma versão mais antiga ainda.
+
+	Mas se está dando certo com seu amigo, é um bom sinal, se amanhã eu conseguir, também vou fazer esse teste.",Positive
+"Por experiência própria e orientação dos técnicos da Dell você pode trocar as peças desde que não danifique nenhum componente ao fazer a troca (nem precisa falar isso, mas...) e caso o ssd/memória que você coloque dê algum problema no note que seja comprovado isto pode invalidar sua garantia.
+Mas é tranquilo até onde eu sei.",Positive
+"Opa, @Bruno Florentino! Puxa uma cadeira, pega uma cerveja e vem chorar com a gente!  
+	Tá convidado pro mêsversário da tela azul, dos meus cinco Dell G7 no próximo dia 23! kkkk
+	Um mês quase nessa labuta, 1000 tentativas, mas estamos ai na tentativa com o pessoal.
+
+	Pra mim o que funcionou até agora:
+
+- Ir no gerenciador de dispositivos, e ""desabilitar"" a placa de vídeo da Nvidia.
+	O note vai trabalhar só com a placa da Intel, mas pelo menos vai funcionar!
+
+	Hoje vou testar mais alguns drivers da Nvidia antigos pra ver como se comporta, e vou informando aqui.
+
+
+
+
+
+
+
+
+
+
+
+
+
+								1",Positive
+"@Jean Carlo Pereira Ontem as 20h desativei a placa de vídeo da NVIDIA para tentar trabalhar de forma continua, sem bug. Trabalhei até as 4h da manhã sem reiniciar o computador.  pra renderizar pelo enscape, precisei ativar novamente, e até agora as 18h do dia seguinte sem bug. fiz vídeos e imagens pelo enscape, não sei se pelo fato que desativar e ativar a placa da Nvídea parou de dar bug.
+
+	Se voltar a aparecer o problema retorno aqui pra notificar. (Deus queira que não, pois também já estou apelando por uma intervenção divina)
+
+	obs. eu não posso mas fazer recuperação de fabrica no Dell recovery, pois em 2020 eu toquei meu HD por um SSD e formatei todo o HD M2 pra usar como Pendrive. ai eu faço recuperação com imagem do wind. gravado em um pendrive .",Positive
+"Boa tarde. O valor de uma doca assusta qualquer um, se souber as especificações técnicas do adaptador, é certeza que funciona. Também não vai comprar da marca XL, certo !!
+Comprei o adaptador da própria Dell, portanto, funciona sim.
+Abs.",Negative
+aqui os dois notebooks estão resolvidos! removi o driver realtek e coloquei um driver de vídeo antigo! irei refazer alguns testes de colocar o driver de vídeo mais recente para validar! mas até então me parece que é algum bug com o driver de audio.,Positive
+"@lorenagmss Realmente!
+	Fiz o teste hoje desativando a placa da Nvidia em 2 notebooks e rodaram sem travar ou tela azul o dia todo.
+	Claro, o desempenho foi lá em baixo, mas antes isso, do que ficar praticamente inutilizável.
+
+	Agora é buscar o que está causando isso.",Positive
+"Pessoal!
+	Vamos as atualizações:
+
+Teste com driver de vídeo antigo (27.21.14.5771, A03)
+	Não rolou. Instalei na sexta, funcionou bem durante 1 dia, mas no sábado, já voltou os travamentos e tela azul. Então desconsiderem esse teste que ele não vai adiantar.
+
+
+
+	Agora, sobre o que o @Sektor_Infogames falou, eu ainda não tinha testado também.
+	Em todas que formatei, reinstalei os driver usando o site da Dell também, ou seja os mais recentes.
+
+	Vou fazer esse teste também hoje, desinstalando o driver de áudio, e deixando ele instalar o automático do Windows Update. Vamos ver...",Positive
+@Jean Carlo Pereira excelente! partimos do mesmo pretexto ! próxima analise é tentar o driver de vídeo atual e driver de audio antigo.,Positive
+"@lorenagmss Realmente!
+	Fiz o teste hoje desativando a placa da Nvidia em 2 notebooks e rodaram sem travar ou tela azul o dia todo.
+	Claro, o desempenho foi lá em baixo, mas antes isso, do que ficar praticamente inutilizável.
+
+	Agora é buscar o que está causando isso.",Neutral
+"Tem 3 motivos que fazem travar:
+Primeiro e principal: hd
+Segundo: Um ou mais programas ocupando muito o processador, memória ou disco (ver no ctrl alt del)
+Terceiro: Drivers ou windows desatualizado
+Solução: Deixe só o essencial, mantenha os drivers e o windows atualizados, escolha um bom ssd",Positive

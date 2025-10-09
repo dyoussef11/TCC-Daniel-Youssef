@@ -1,0 +1,237 @@
+ID_Post,Titulo_Post,URL_Post,Conteudo_Post
+0,Question unreal power limit throttling on dell g7 with an i7-8750h,https://forums.tomshardware.com/threads/unreal-power-limit-throttling-on-dell-g7-with-an-i7-8750h.3762688/,"i have a dell g7 7588 that i purchased back in 7588 and it ran fine for the most part until late 2019, after which it would constantly thermal and power limit throttle. I cleaned the internals and repasted the cpu and then it ran fine for another 6 months after which i had  to do the same again as the i7- 8750h would drop down to 0.798 clock speeds and stay there for a solid couple minutes. I kept on repeating the process everytime i faced this problem until last week.
+
+i have repasted and undervolted the cpu and the temps usually range from 47 on idle to 71 when im playing valorant and even then power limit throttling occurs and the cpu speeds suffer and as a result my fps drops to 15 from 160-170. I feel like i have tried and tested every fix or tweak out there but nothing helps and this ""gaming"" laptop has been reduced to an internet machine.
+
+has anyone else here faced power throttling at such low temps? if so, were u able to fix it?"
+1,[SOLVED] Laptop component compatibility to a new desktop tower,https://forums.tomshardware.com/threads/laptop-component-compatibility-to-a-new-desktop-tower.3695919/,"Hey folks! Wanted to start this by saying how you all have helped me out many times in the past, but I'm making an account to ask a question myself this time.
+Essentially, I currently run a gaming laptop (Dell G7 15 7588) which uses:
+-Intel(R) Core(TM) i5-8300H CPU @ 2.30GHz[Cores 4] [Logical processors 8]
+-gtx 1050
+Upon request (and with a little help, I'm new to this sorry) I can produce the exact specs of the graphics card.  I've been told not to bother with RAM and hard drive because they're always incompatible so I'm assuming the processor and graphics card are the only ones possible to be reused. So, would it be possible to take these parts out and use it in a new build? Thanks for any and all responses guys."
+2,[SOLVED] Laptop keyboard malfunctioning,https://forums.tomshardware.com/threads/laptop-keyboard-malfunctioning.3677424/,"My Dell G7 15 7588 laptop's built-in keyboard is having an error. I woke up this morning and the keyboard is functioning as if filter keys or slow keys were engaged. I have to hold the key for about .5 seconds before it begins to type.
+The filter keys setting is not on, I tried to install 2 other keyboard drivers that were on my pc and both responded the same way. When I use an external keyboard I do not have this problem.  I ended up reinstalling windows (I choose the option to reinstall while not deleting my files.) This did not work.
+I am beginning to think that It is a hardware issue and I will have to replace the keyboard. (only about $30 but seems like a hassle)
+
+Any thoughts?
+Thanks"
+3,[SOLVED] Laptop component compatibility to a new desktop tower,https://forums.tomshardware.com/threads/laptop-component-compatibility-to-a-new-desktop-tower.3695919/post-22268516,"Hey folks! Wanted to start this by saying how you all have helped me out many times in the past, but I'm making an account to ask a question myself this time.
+Essentially, I currently run a gaming laptop (Dell G7 15 7588) which uses:
+-Intel(R) Core(TM) i5-8300H CPU @ 2.30GHz[Cores 4] [Logical processors 8]
+-gtx 1050
+Upon request (and with a little help, I'm new to this sorry) I can produce the exact specs of the graphics card.  I've been told not to bother with RAM and hard drive because they're always incompatible so I'm assuming the processor and graphics card are the only ones possible to be reused. So, would it be possible to take these parts out and use it in a new build? Thanks for any and all responses guys."
+4,"[SOLVED] WD SN850 Black speed issue, Trying to find if its a faulty drive or PCIe 3.0 issue.",https://forums.tomshardware.com/threads/wd-sn850-black-speed-issue-trying-to-find-if-its-a-faulty-drive-or-pcie-3-0-issue.3714283/,"Hi Everyone,
+
+I bought the Western Digital WD Black™ SN850 1TB, PCIe Gen 4 SSD 7000MB/s R, 5300MB/s W, for Gaming & Content Creators, as an upgrade from my previous 128GB SATA SSD (m.2).
+
+My Laptop is Dell G7 7588 :
+M.2 Slot1x PCIe 3.0 x4 NVMe M.2 slot (2280, M-key)
+
+I am not getting the 7000MB/s R, 5300MB/s W speeds. From what I knew is that PCIe 3.0 has similar speeds to PCIe 4.0 should the difference be this much? As I am getting around 3500 MB/s R/W speeds only.
+
+HwinInfo of PCIe slot
+Crystal Report Benchmark
+WD Dashboard
+
+I've done most of the things I could like changing to AHCI in bios, updating the firmware of SSD and the payload is also 256 bytes.
+
+One thing I am curious about is if it's possible to increase my link speed for my PCIe 3.0 slot in Hwininfo its currently set as 8.0GT/s but its maximum support is 16.0GT/s/
+
+Two main questions on my mind now :
+
+Can I change the link speed and will that increase the performance
+Is it a software issue or is it related to the SSD itself, if it is I'll order a replacement.
+Could the great minds in tom's HARDWARE help me in this 😉"
+5,Heavy video editing laptop on a budget (reliable brand),https://forums.tomshardware.com/threads/heavy-video-editing-laptop-on-a-budget-reliable-brand.3497990/post-21142653,"Hi everyone! I am looking into getting a new laptop which can handle heavy video editing usage using Premier Pro, Adobe After Effects, Photoshop. The catch is that I do not want to spend more than $1,200 (hard limit) and for it to be a reliable brand (aka HP, Dell, Lenovo, Apple). I have been looking at the Lenovo  Yoga 720 and the Dell XPS 15. I am not sure what else may be out there. I should also mention that if the laptop is a bit older, I don't mind. I just need the video rendering to be decent speeds.
+
+Please let me know if you have any recommendations for me. I appreciate any help you can provide."
+6,"[SOLVED] MAINBOARD REPLACEMENT ON LAPTOP, HELP",https://forums.tomshardware.com/threads/mainboard-replacement-on-laptop-help.3451441/,"Hello everyone. 
+
+i have a DELL  inspiron model :15-7577 P72F.
+The mainboard needs out of warranty replacement 
+the part code is  ""VPTXG"" but there are no available for purchase at a reasonable price that dosen't justify buying a new laptop. 
+
+I can acquire a ""TM9WY"" maiboard for a reasonable price, and it even has a better CPU, but is for the newer dell laptop model, the G7 7588. 
+
+From what i can tell this mainboard is compatible with my laptop, both in specs, form and layout. But i have no way to be sure.
+I would require an expert opinion.
+
+thank you. 
+
+link to a VPTXG 
+https://www.ebay.com/itm/VPTXG-for-...SPIRON-15-7577-P72F-AB59-0VPTXG-/263889212437
+
+link to a TM9WY
+
+
+
+
+
+
+
+
+						TM9WY GENUINE DELL MOTHERBOARD INTEL I7-8750H G7 15 7588 P72F (AE58)
+					
+
+TM9WY GENUINE DELL MOTHERBOARD INTEL I7-8750H G7 15 7588 P72F (AE58)
+
+
+
+
+					www.xyverx.net"
+7,How to Connect to a 120+ Hz display,https://forums.tomshardware.com/threads/how-to-connect-to-a-120-hz-display.3268285/post-20879496,"Table of Contents:
+
+0.  Acer GN246HL and BenQ XL2411Z-specific instructions
+
+1.  Terminology
+
+2.  Summary: How to Connect to a 120+ Hz Monitor
+2.1.  DisplayPort
+2.2.  DVI
+2.3.  HDMI
+2.4.  ""Which one should I use?""​3.  DisplayPort
+3.1.  Full-Size DP vs. Mini DP Connectors
+3.2.  DP Versions and Speeds
+3.3.  DP Cable Selection
+3.4.  Adapters for Connecting to DP Monitors at 120+ Hz​4.  DVI
+4.1.  DVI Variations
+4.2.  Identifying Dual‑Link DVI Ports and Cables
+4.3.  DVI Cable Types
+4.4.  Compatibility Between DVI Port and Cable Variations
+4.5.  Adapters for Connecting to DVI Monitors at 120+ Hz​5.  HDMI
+5.1.  HDMI 120+ Hz Support
+5.2.  HDMI Versions and Self-Compatibility
+5.3.  HDMI Cable Selection
+5.4.  Notice Regarding HDMI Version 2.1 Compliance
+5.5.  Adapters for Connecting to HDMI Monitors at 120+ Hz​6.  Setting Up 120+ Hz, Verifying, and Troubleshooting
+6.1.  Setting the refresh rate
+6.2.  Verifying 120+ Hz operation
+6.3.  How to set a custom resolution​7.  Appendices
+7.1.  List of monitors known to support 120+ Hz over HDMI
+7.2.  List of monitors limited to 60 Hz over HDMI (non-exhaustive)​
+==================================================
+
+0.  Acer GN246HL and BenQ XL2411(Z) buyers read here:
+
+
+Spoiler: Click to Expand
+
+
+
+Overview
+
+These two monitors are an extremely common source of people needing help, so this section is dedicated to telling you how to connect to these monitors at 144 Hz. Also please note that the BenQ ""XL2411"" and ""XL2411Z"" are just two different names for the same product.
+
+If you are using a laptop that only has HDMI output, DO NOT BUY THESE MONITORS. There is no way of getting more than 60 Hz on these monitors from an HDMI output.​How can I connect to the GN246HL / XL2411Z at 144 Hz?
+
+The only way to get 144 Hz on the Acer GN246HL or BenQ XL2411Z is by connecting to the monitor's DVI port with a Dual-Link DVI connection. The VGA and HDMI ports on these monitors are limited to around 60 Hz at 1080p.
+
+The DVI connection must be DUAL-LINK, otherwise you will be limited to 60 Hz.
+
+In addition:
+
+All HDMI to Dual-Link DVI adapters are fake, and will be limited to 60 Hz at 1080p because they are really only Single-Link DVI adapters. No exceptions. You cannot use HDMI to DVI adapters to get 144 Hz on these monitors.
+Most DisplayPort to Dual-Link DVI adapters are fake, and will be limited to 60 Hz at 1080p because they are really only Single-Link DVI adapters. You cannot use normal cheap DP to DVI adapters to get 144 Hz on these monitors, you need much more expensive specialized adapters for this purpose (keep reading for details and specific recommendations).
+Most USB-C to Dual-Link DVI adapters are fake, and will be limited to 60 Hz at 1080p because they are really only Single-Link DVI adapters. You cannot use normal cheap USB-C to DVI adapters to get 144 Hz on these monitors, you need much more expensive specialized adapters for this purpose (keep reading for details and specific recommendations).
+Some Dual-Link DVI-to-DVI cables are fake, and will be limited to 60 Hz at 1080p because they are really only Single-Link DVI cables. Use the cable that comes included with the monitor. If you need a replacement cable, then look for a DVI cable that lists support for 9.9 Gbit/s bandwidth, or 330 MHz TMDS/pixel clock, or 2560×1440 or 2560×1600 support. Do NOT try to identify ""Dual-Link"" cables by counting the number of pins on the connector, just because it has 24+1 pins does not mean it is a genuine Dual-Link cable.
+The DVI ports on most motherboards (i.e. integrated graphics) and some low-end graphics cards (like the GeForce GT 1030) are single-link only and will be limited to 60 Hz at 1080p. And once again, you cannot distinguish single-link DVI from dual-link DVI ports by a visual inspection. Both ports look identical, no matter what the Wikipedia page says or what image diagrams people show you.
+So what can I use to get a true Dual-Link DVI connection?
+
+There are three ways to get a Dual‑Link DVI connection:
+
+From a Dual-Link DVI port on your graphics card, using a genuine Dual-Link DVI cable with no adapters
+From a DisplayPort port on your graphics card, using a DisplayPort to Dual‑Link DVI active adapter
+NOT JUST ANY normal DP-to-DVI adapter, and even NOT JUST ANY active adapter; it must be a DUAL-LINK ACTIVE ADAPTER
+
+From a video-capable USB-C port on your graphics card or laptop, using a USB-C to Dual‑Link DVI active adapter.
+NOT just any USB-C to DVI adapter, it must be a DUAL-LINK ACTIVE ADAPTER. Again, many ""dual-link"" adapters are also fake. Shop carefully. Recommendations are listed below.
+NOT just any USB-C port will work. It must support video output capability. This is an optional feature, not all USB-C ports have it. Research your device to verify that its USB-C port has video output capability (known as DP or DisplayPort Alt Mode). Thunderbolt 3 ports will also work.
+
+What if my computer doesn't have a DVI, DisplayPort, or USB-C video output?
+
+If you have a laptop that only has HDMI, then it is impossible to connect to these monitors at more than 60 Hz. You need to return or sell the monitor and buy one that supports 120+ Hz over HDMI. A list of such monitors can be found at the bottom of this guide (Section 7.1).​
+What kind of DisplayPort/USB-C adapters can I use?
+
+Getting 1080p 144 Hz on a DP to DVI or USB-C to DVI connection requires specialized adapters. You cannot use normal $10 adapters.
+
+You need to use a DUAL-LINK ACTIVE ADAPTER, which usually costs around $70–$100 USD.
+
+Please note, you cannot use just any ""active adapter"". It must be a DUAL-LINK active adapter. Not all DP to DVI active adapters are Dual-Link.​
+Do you have any suggestions for DisplayPort/USB-C to DVI adapters?
+
+Yes.
+
+I have tested the following DisplayPort to Dual-Link DVI active adapter. It works up to 144 Hz at 1080p:
+https://www.amazon.com/Dell-BIZLINK-DisplayPort-Adapter-Powered/dp/B003XYBA72/
+
+I have tested the following USB-C to Dual-Link DVI active adapter. It works up to 144 Hz at 1080p:
+https://www.amazon.com/CAC-1510-DVI-D-Active-Adapter-1600P/dp/B07QKM856C/
+
+However, be warned that DP to DL-DVI active adapters are not very reliable and should only be considered as a last resort. It is strongly recommended to return or sell the monitor and get one that has an actual DisplayPort input port rather than use these adapters.​
+That DP adapter is really expensive, are there any other options?
+
+None that I'm aware of (last checked: April 2020), otherwise I would have mentioned them. However, you can usually find the adapter I linked above for cheaper used on eBay. The same adapter is rebranded and sold under several different brands (Dell, Bizlink, Startech, Accell), so shop around for the best price.​
+Can I use HDMI?
+
+No. The HDMI ports on the GN246HL and XL2411Z are limited to 60 Hz at 1080p.​
+""But what if my laptop has an HDMI 2.0 port?""​
+It doesn't matter. The HDMI ports on these monitors are limited to 60 Hz at 1080p. The limitations of the monitor aren't going to change, regardless of what version of HDMI your computer supports.​
+""But what if I use an HDMI 2.0 or 2.1 cable?""​
+It doesn't matter. The HDMI ports on these monitors are limited to 60 Hz at 1080p. The limitations of the monitor aren't going to change, regardless of what cable you use.​
+What if my laptop only has HDMI output? Can I use a chain of adapters from HDMI to DP and then DP to DL-DVI?
+
+I've tried that already, but failed to get any signal at all. If you have a laptop that only has HDMI output, DO NOT BUY THESE MONITORS. If you've already bought the monitor, return it or sell it, and buy one that supports 144 Hz over HDMI, like the ViewSonic XG2401 (or refer to the full list in Section 7.1 for more options).​
+
+
+
+1.  Terminology
+
+To avoid misunderstandings, you should be aware of some terminology conventions:​
+1.1.  ""Adapter"" vs. ""Cable""​
+
+
+
+
+Left: Adapter dongle.  Right: Adapter cable
+
+The term ""adapter"" includes both adapter cables and adapter dongles. Internally they are the same thing, so all information in this guide applies equally to both types of adapter. An adapter cable is functionally identical to an adapter dongle with a cable permanently attached to it.
+
+Generally, adapter dongles are recommended, because the length of the attached cable is not fixed, and can be replaced by whatever you need, giving you better flexibility.​
+1.2.  Adapter Direction Notation​
+The convention for discussing adapters is ""<source> to <display>"". This means a ""DisplayPort to HDMI adapter"" is a device that connects a DP computer to an HDMI display, not the other way around. Most adapters only work in one direction, so having backwards terminology can potentially result in buying the wrong item. However, this can usually be avoided by simply reading the product description.
+
+Between DisplayPort, DVI, and HDMI, the only adapters that work in both directions are DVI-HDMI passive adapters. All other adapters, passive or active, are non-reversible.​
+1.3.  Input/Output Ports​
+The video ports on your computer/graphics card are called output ports because the video signal originates from here and is sent out to the monitor/display.
+
+The video ports on the monitor/display are called input ports because the video signal is sent into these ports by the computer.​"
+8,Samsung EVO 860 sata M.2 showing as Toshiba 256GB,https://forums.tomshardware.com/threads/samsung-evo-860-sata-m-2-showing-as-toshiba-256gb.3372892/post-20520539,"I Got the 860 EVO 1T to clone with the Samsung software. It seems that it worked but it is not recognize as Samsung but instead a 256GB Toshiba. I am not sure why but is reads 256GB but it shows 1T. It is in the Dell G7 15 7588 laptop. The drive I cloned was a 500GB that was not a Toshiba. How can I get the dang thing to show up as Samsung?
+
+
+
+
+
+[/url][/img]
+
+
+
+[/url][/img]
+
+
+
+[/url][/img]"
+9,Samsung EVO 860 sata M.2 showing as Toshiba 256GB,https://forums.tomshardware.com/threads/samsung-evo-860-sata-m-2-showing-as-toshiba-256gb.3372892/,"I Got the 860 EVO 1T to clone with the Samsung software. It seems that it worked but it is not recognize as Samsung but instead a 256GB Toshiba. I am not sure why but is reads 256GB but it shows 1T. It is in the Dell G7 15 7588 laptop. The drive I cloned was a 500GB that was not a Toshiba. How can I get the dang thing to show up as Samsung?
+
+
+
+
+
+[/url][/img]
+
+
+
+[/url][/img]
+
+
+
+[/url][/img]"

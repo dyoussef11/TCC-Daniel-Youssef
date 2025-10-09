@@ -1,0 +1,1566 @@
+ID_Unico,Conteudo_Comentario,Score_Comentario
+16q9bty,Check the drive's SMART with the WD dashboard.  I would say the drive is defective.,2
+16q9bty,I will give it a try. At this point something corrupted my original operating system so I'm waiting for the image to reload. I started doing some reading and I'm almost under the impression that this model of SSD is too powerful for this computer. Dell specs claim the computer can only handle up to 1TB pcie 3x4 while the drive itself is 2 TB pcie 4x4. Now I'm questioning if this has been the problem the whole time,1
+16q9bty,I have 2TB ADATA Gen4x4 on a Latitude 7290 and SN770 on an MSI gaming laptop.  If you are using the 850X it should be fine.,2
+16q9bty,I'm using the SN770. The specs for the 850x still look overwhelming for this computer though.  I'm not sure I understand the difference between the two,1
+16q9bty,"850X has DRAM and OPAL, 770 does not.",2
+16q9bty,I had no idea about this because it wasn't listed on any tech sheet i found. I already placed in the order for the Samsung 970 Evo Plus 1TB as my replacement. Now I feel stupid and apparently didn't know enough about SSDs to make an informed decision before purchasing,1
+16q9bty,You were right. It ended up being hardware incompatibility. I put in a 2TB Samsung Evo Plus (I know it's not as good as WD Black but the price was right)  cloned and booted up with absolutely no problems. Thank you for your help.,1
+16q9bty,"I'm facing the same issue. Do you know if the problem was exceeding the 1TB size limit, or was it the missing DRAM and OPAL? 
+
+I am wondering if a 2TB would work, if it is the more expensive style of NVME drive that includes DRAM and OPAL?",1
+16q9bty,You're welcome.,1
+16q9bty,">2TB Samsung Evo Plus
+
+Was that 2TB Samsung EVO Plus an NVME SSD? Were you able to get it to work? Dell specs say the M.2 slot is limited to 1TB for this laptop, so I'm wondering how you got the 2TB drive to work, unless, that drive was a SATA drive in the large storage slot for hard drives?",1
+16q9bty,It was the lack of DRAM that was the problem. I installed the Samsung 970 Evo Plus 2TB and it's been working wonderfully,1
+16q9bty,"It's an NVME M.2 SSD, the 1TB limit was for what it can easily handle based on the standards when this machine was manufactured.",1
+16q9bty,"Awesome, thanks!",1
+16q9bty,No problem,1
+xv0zy6,[Removido],[Comentário removido],
+xv0zy6,"going against the current... yes, update your bios if there is an update to be had.
+
+a bios update is no diff than any other update and may contain fixes for your hardware or security patches",1
+xv0zy6,I would say be careful with updating your Dell G7 BIOS. I have a Dell G7 17 7700 which auto updated the Bios to version 1.18 a couple weeks ago and caused my Dell G7 to become unbootable. The problem was so bad that it would not even let me get into the F12  BIOS boot menu. It would hang before that. I was forced to learn how to downgrade the Bios by using a USB drive containing the older 1.17 BIOS. I later found that the 1.19 Bios version also has the same hang problem.,1
+xv0zy6,"HwInfo shows that I am running the v1.10 BIOS. I use ThrottleStop to underclock my CPU.  
+Without that I reach temps of about 80C -100 C while installing games from steam.  
+I did not even try playing any games on it for the past 2 years.  
+
+
+Reading the posts in the last 2 years I see that the BIOS is still fked up. I won't be upgrading the BIOS anytime soon.   
+I just replaced my battery and upgraded my 128GB SSD to a 2TB samsung 970 pro SSD.  
+With a fresh install of windows my boot time reduced by \~40%.",1
+xv0zy6,[Removido],[Comentário removido],
+xv0zy6,Mine updated itself.,2
+xv0zy6,thank you. i just saw a lot of people on reddit saying their computer stopped working after updating the ram due to bios related issues :/,1
+xv0zy6,[Removido],[Comentário removido],
+xv0zy6,"I thought newer Dell systems had a Protect feature that would load the firmware onto the chip and safeguard those blocks until it loads the primary firmware.  I've had to recover a few Dell systems that had incomplete bios updates and yet to need to replace a system board.
+
+If the computer is running Pro, you can also disable driver updates via the group policy.",1
+15iyfnx,[Removido],[Comentário removido],
+15iyfnx,"I have and discovered the problem, my Hard-drive needed to be formatted to accept windows 10 and upgrade to windows 11.",1
+15s08ie,"You can clean it and remove dust that exists on the fans
+  
+Also replacing it with a high conductivity thermal paste, such as Grizzly Kryonaut thermal paste
+  
+
+  
+Lastly, perform undervolting, this always helps with Dell notebooks. But do this only if you understand this",1
+zedla2,Do the boot diagnostics throw a fan error?,0
+zedla2,no,1
+10bv0li,"You could get a 120 Hz refresh version with the 30-pin connector, but a 120 Hz refresh will *significantly* impact battery life. You likely would not see any meaningful benefits either with the increased refresh rate since the increase in power consumption will increase thermal values right along with it, which then in turn slows the GPU and CPU down.
+
+I would stick with the one you’ve already selected.",2
+zxy78e,[https://www.batterymall.com/products/kingsener-33ydh-56wh-laptop-battery-for-dell-inspiron-15-7577](https://www.batterymall.com/products/kingsener-33ydh-56wh-laptop-battery-for-dell-inspiron-15-7577)?,1
+fll17f,"Thanks for reaching out to us. Could you Private message the system service tag along with the registered owner's name and email address?
+You could follow the suggestions here: https://dell.to/3di0VGP to locate the tag.
+Regards,
+Mausam",1
+fll17f,[Removido],[Comentário removido],
+fll17f,[Removido],[Comentário removido],
+fll17f,">Mausam
+
+Thank you Mausam :)  
+I send you the service tag, name, and email address in private chat.",1
+fll17f,"Thanks for replying,
+
+Unfortunately there's nothing showing up when i plug or unplug my earbud. 
+
+It only says (Speaker/Headphones (2- Realtek(R) Audio). It says the same thing when I restart it with the earbud on.",1
+fll17f,"No unfortunately :(
+The technician keep sending me an update link which doesn't work. I asked other friends that used the same model and apparently it's just a reoccurring issue with the laptop.",1
+fll17f,"Hi,
+
+I'm sorry that I didn't get the details shared. Could you again send me the requested details via a private message ?
+
+-Gautam.",1
+fll17f,"Hi, got the same issue where I needed to do the same, but figured out there’s a control for that, usually there’s a prompt where it tells you “what type of audio you connected”, go to your notifications in the right, and there it should be the prompt to allow the headphone",1
+fll17f,[Removido],[Comentário removido],
+fll17f,[Removido],[Comentário removido],
+fll17f,I sent it again in DellCares chat. Thank you :),1
+fll17f,"Thanks for your response
+
+[https://imgur.com/a/vaeycTS](https://imgur.com/a/vaeycTS)
+
+Which one do I use?",1
+fll17f,Did anyone reply to you message from @DellCare ?,1
+fll17f,"Should appear up, like into the notifications, or just enter the Realtek control center (idk at all the name) but there you can config it I think",1
+fll17f,[should be like this ](https://1drv.ms/u/s!AuHhJ4HckpcLg5MBPOP4mj-dDIlBZw?e=hkExRO),1
+fll17f,No unfortunately,1
+fll17f,"Well in that case, could you Private message me the system Service Tag, so I can look into this and get back to you.
+
+-Arun",1
+whud4n,"may need to change your default sound outputs and inputs.
+
+right click the speaker in the bottom right and click sound options or whatever it's called.",1
+whud4n,I’ve clicked on “advanced sounds settings” which pulls up all the headphones and microphones and it doesn’t show up :c,1
+vdwl12,New PM incoming,2
+vdwl12,"* Username: /u/-Hilo-
+  * [[Click here to send a PM to this user]](https://www.reddit.com/message/compose/?to=-Hilo-)
+* Join date: 2016-07-18 14:33:58
+* Link karma: 61
+* Comment karma: 532
+* Confirmed trades: 3
+* Heatware: None
+
+^^This ^^information ^^does ^^not ^^guarantee ^^a ^^successful ^^swap. ^^It ^^is ^^being ^^provided ^^to ^^help ^^potential ^^trade ^^partners ^^have ^^more ^^immediate ^^background ^^information ^^about ^^with ^^whom ^^they ^^are ^^swapping. ^^Please ^^be ^^sure ^^to ^^familiarize ^^yourself ^^with ^^the ^^[RULES](https://www.reddit.com/r/hardwareswap/wiki/rules/rules) ^^and ^^other ^^guides ^^on ^^the ^^[WIKI](https://www.reddit.com/r/hardwareswap/wiki/index)",1
+mh571c,"Check out CPU clocks during performance dips. If it's down to 800 MHz, then it's throttling due to some reason. It may be thermals, or power limit, or both. To check throttle reason, run ThrottleStop without any tweaks and look in the Limits window while stress-testing.
+You can also use TS for undervolting your CPU, there are guides on that even in this sub. That will most likely significantly reduce performance issues.",1
+mh571c,Do you run it through an external monitor?,1
+mh571c,"Yeah the temperature goes above 75C and then it throttles.
+But wait I'll try all that you said.",1
+mh571c,All Dell laptops except for some AW M15/M17 R4 models are locked out from undervolting unless you want to go through the trouble of modifying the BIOS. I personally wouldn't bother on the G-Series because their thermals are terrible even with undervolting.,1
+mh571c,No.,1
+mh571c,"I'm running the same laptop, the 7588. I used to throttle down to 800 mhz when playing just about any game until i got my cpu and gpu repasted.  tehhedger is right about throttle stop, a 0.125 undervolt has been good to me. Also do you have dell power manager set to ultra? If not i recommend downloading it and checking what thermal management is set to, ultra will make the fans blow more and help with the heat. As for whisper mode, i found that dropped my fps in games
+
+Another warning, i got even worse throttling when I got my laptop back from the shop after being repasted. They caked on the paste like makeup. I took it back and had them fix it and put a thin layer of kryonaut on and it ran like a dream after that point. Just thought i'd put that out there
+
+Edit: sorry i forgot how to read and saw you said you got it repasted already. I'll show you my settings for various programs that helped with running at full performance
+
+[https://imgur.com/a/sA7Jz7p](https://imgur.com/a/sA7Jz7p)",1
+mh571c,Only in the latest bios uv is locked.,1
+mh571c,"Well, on certain models resetting setup to factory defaults unlocks undervolting capabilites. If that doesn't work, there's a way with writing NVRAM values with amisw / modified grub. And that's not modifying the BIOS, just an alternative way of tweaking settings that are hidden from setup UI.",1
+mh571c,May i ask what kryonaut are you using?,1
+fyy0hr,"Hi, 
+
+I would request you to please try the below steps, 
+
+- Go to power options from the control panel.
+- Click on show additional plans, click on change plan settings for high performance.
+- Click on Change advanced power settings.
+- Go to processor power management, select the maximum processor state.
+- Change both battery and plugged into 99%.
+- Set the thermal profile to cool in the Dell power manager.
+- Update the chipset drivers to the latest version.
+- Save changes and restart the system.  
+ 
+Also, I would request you to please share the service tag in a private message so that I can have it reviewed.
+
+-Vivek",3
+fyy0hr,Would you mind plugging in your laptop? Gaming laptop are designed with power adapter plugged in.  Battery alone isnt enough to power these things.,1
+fyy0hr,"I would not recommend what the Dell rep said to do. If you want good performance and better running temps, try undervolting around -0.150 with Throttlestop. A repaste and RAM upgrade wouldn't hurt either.",1
+fyy0hr,Repaste and throttle stop are the only things that managed to control my g5 Thermal throttling problem,1
+fyy0hr,Plugged still the same :(,1
+fyy0hr,"What do you do on Throttle stop? I mean, what values should I change?",1
+fyy0hr,"The post is about per power throttling, not thermal throttling.",1
+fyy0hr,"Then check if the charger is recognized by the laptop or not. There is no way your laptop is configured with 15w TDP plugged in.
+
+EDIT: after some testing i found out that Dell power manager will limit your tdp to  15w if Quiet mode in thermal management is enabled. Check it out too. 
+
+I still haave no idea why yours is locked to 0.8 ghz though",2
+fyy0hr,"This is very different for each unit. But throttle stop tutorials are all over the internet and they are very easy and straight forward. You will get some bsod before finding the right value, just reset and try a lower one. Mine is set to -0.140v or -140.3mV.",1
+fyy0hr,"My, totally mine bad... Can I just leave through the back door while no one is watching?",3
+fyy0hr,"Thanks for helping, I selected Ultra performance in Dell power manager and it worked. :D",1
+fyy0hr,Haha no worries.  You were trying to help regardless of the question.,1
+ohn5xw,Which is the best bios version for Dell G7 7588?,2
+ohn5xw,"Glad to hear you got it working.
+
+Just so you know there are options for manually controlling aspects of your CPU, like ThrottleStop.",1
+ohn5xw,"Note that it is also possible that your air ducting from the fans to the radiator fins, dust bunnies. 
+
+Just a few clogging the airways.  Your temps will be higher due to the airflow being actually less, cooling fewer of the fins.  
+
+I got a 2yr old Inspiron 15 7567, gaming edition with a gtx 1050Ti.  After updating BIOS for it, I had the same issues. Thermals were always high. 
+
+I finally tore down the laptop, and at the removal of fans stage, bam... right there. Clogs of dust bunnies. I had a WTF moment in realizing a Duh moment. 
+
+I finished off by replacing the thermal paste and ever since I've been able to use it for gaming.   Just typical odd quirks like powering on. But my thermals are normal again once I cleared the vents.",1
+ohn5xw,"Can you tell me if I can find support for the battery cable connection, it’s a 11 pin small thing, I don’t have part number.",1
+ohn5xw,"Never update your BIOS if the laptop works fine. Keep automatic BIOS updates disabled and if Windows is pushing them, disable Windows Update altogether.
+
+It takes just one faulty BIOS update to completely brick the device. And if this happens outside your warranty, you're basically screwed.",1
+j75fks,"Turn it off, Disconnect from external monitor and get a flashlight. Boot the laptop and shine the flashlight on the dark screen. Try at an extreme angle from above, and slowly move downward towards a straight on look. Do you at any point see an outline of the dell logo or any other images? If you do it’s a certain part in the monitor that is broken, can’t remember the name offhand.",2
+j75fks,Have you tried it with the external monitor disconnected?,1
+j75fks,"Nothing with the flashlight. I don’t think the monitor is broken. Like I said I performed the display test. If you hold the D button while turning on the computer, it does a monitor colour test. The colours come out fine.",1
+j75fks,Yes. I only added the external monitor when the screen stopped working.,1
+j75fks,Do you know what the little ribbons look like that transfer data from motherboard to monitor? It may be helpful to reseat it (reconnect) but that would require opening the laptop. Have you worked inside computers before?,1
+j75fks,It’s possible that your storage drive is disconnected or not being detected.,1
+j75fks,"Okay, maybe the laptop thinks the lid is closed? Not likely but you can try to go to power options and change action when lid is closed to nothing. Also if you go to display settings do you see both monitors there?",1
+j75fks,Already tried. It goes to sleep if I close the lid so it does recognize that the lid is closed. I changed the setting to do nothing when lid is closed but no luck.,1
+j75fks,"I'm out of ideas, you should probably contact dell or write on their forums. Wish you luck",1
+sbmojb,The extra watts wont hurt the computer nor would it be able to use the extra amount. You just got to make sure it is the same voltage,1
+9g7ce8,"Hello.
+
+Firstly, do open the 'mouse and touchpad' under PC & devices. Do check if the system has a precision touchpad.  If do driver updates are through Microsoft and there are not Dell specific drivers for these. 
+
+In order for me to be able to assist you better, please share the service tag of the computer along with the registered owner's name over a private message. ^SA ",2
+9g7ce8,You've taken the correct troubleshooting steps. I would say that this is now a hardware issue with the touchpad. ,1
+9g7ce8,For those of us that still have a G7 7588... Put a trackpad protector on now... The touchpad surface on mine just came off like deadskin. Now it's got a large shiny spot that doesn't work. I've seen where other people had the same issue.,1
+9g7ce8,"When it was working, there was a ""precision touchpad"" in Windows settings, but not anymore. Is there a chance this is a hardware problem and not a Windows bug, considering the touchpad still works as a ""PS/2 mouse""?",1
+9g7ce8,"Hello,
+
+I do not believe it is a hardware issue. If the touchpad itself were not functioning it wouldn't work at all. 
+
+Is your computer updated with the latest windows updates? ^SA ",1
+9g7ce8,"Yes, it's all updated and in version 1803.",1
+9g7ce8,"Hello,
+
+Have you tried checking manually in the device manager to see if the driver can be forced to load? 
+In order for us to be able to assist you better, do get back to us with the details of your computer over private message. ^SA",1
+9g7ce8,"Sent you the service tag. I tried uninstalling the driver, but it's built in Windows, it just installs itself again. I don't know what you mean by forcing to **load** it, though.",1
+9g7ce8,"Hello,
+
+Thank you for sharing the service tag with us. Here are two drivers you can install 
+https://dell.to/2MD1QTY
+
+https://dell.to/2MCXUm6
+
+Do try installing these drivers as they are also required for the proper functioning of the touchpad.
+
+Do get back to us on how it goes. 
+
+This is Dell techical Support. ^SA",1
+9g7ce8,"Hi, I installed both, and nothing changed.",1
+9g7ce8,"Thank you for that information. Do let us know over a private message in whose name is the system registered and your name. Also, are you in contact with our regional technical support team at present? ^SA",1
+9g7ce8,"When I contacted the local support in Brazil, they just tried installing drivers and doing everything I had already done via remote access.",1
+9g7ce8,I believe they are suggesting reinstallation of windows again. Have you tried that yet? ^SA,1
+9g7ce8,"Yes, I tried installing a clean Windows from scratch, downloading directly from Microsoft, and I tried resetting to Dell's factory image.",1
+9g7ce8,"Here are a few troubleshooting steps that we can suggest:
+
+
+1. In the Search box, type touchpad.
+2. Touch or click Mouse & touchpad settings (System settings).
+3. Look for ""Your PC has a precision touchpad"".
+
+Please note: When Your PC has a precision touchpad is not listed, your computer does not have a Precision Touchpad.
+
+^KP",1
+9g7ce8,"I'm sorry, but this does not apply to my problem, if you read the whole thread.",1
+961v1i,"You say youre exhausted with solutions, have you caled DELL support yet?",1
+961v1i,"Hello. I'm having the same issue.
+Did you find any fix? ",1
+961v1i,Well that’s just great. I tried doing a quick google search for what your described and I found this [toms hardware post] (http://www.tomshardware.com/answers/id-2829469/cpu-throttling-eventhough-temperature-low.html) Scroll down to the best answer and maybe try following what he says? I’m on vacation right now so I’m a couple thousand miles from my laptop ,1
+961v1i,"I don’t have my computer on me, but would you be able to disable both devices and check the read only box so the system doesn’t try to reinstall/enable it every time you boot up",1
+961v1i,"Heyyyyyyy
+
+My setup:
+
+Dell G7 7588
+
+8th Generation Intel(R) Core(TM) i7-8750H Processor (6-Core, 9MB Cache, up to 4.1GHz w/ Turbo Boost)
+
+GTX 1050Ti
+
+BCC 16GB (2x8GB) 2666MHz DDR4 Memory
+
+256GB Solid State Drive (Boot) + 1TB 5400RPM Hard Drive (Storage)
+
+&#x200B;
+
+Bios Version 1.6.1
+
+All another drivers updated to last version available on Dell Site (on 12-dec-2018)
+
+&#x200B;
+
+Before on GTA V: 95\~100 C
+
+&#x200B;
+
+I tryed to many things and get the bests results with:
+
+1. Undervolting (set to -0,150) (GTA V with temp on 85\~)
+
+OR
+
+2. In BIOS Setup (press f2 while booting), set Turbo Boost to Disabled  (GTA V with temp on 80\~)
+
+OR
+
+**3. \[SOLUTION FOR ME\] Control Panel -> All Control Panel Items -> Power Options -> Edit Plan Settings -> Change Advanced Power Settings -> Processor power management -> Maximun processor state -> Set both to 99% (GTA V with temp on 72\~77)**",1
+961v1i,"Yes, dell support was the one that told me to turn off turbo boost",1
+961v1i,"As of right now, not really. Do you have the same laptop or are you just having the same issue ",1
+961v1i,"Hey, I seem to have found a solution to this issue. I uninstalled ""Intel dynamic platform and thermal framework processor participant"" from the Device Manager. It shows up under ""System Devices"". The GPU temperature doesn't seem to be going over 75 C while gaming now. The said driver comes up after every reboot so you need to uninstall it on every boot.",1
+961v1i,"Doing this doesn't really solve the issue.
+
+Setting 99% max power for windows means disabling turbo boost. You paid for an expensive intel i7 and you're getting almost half of its performance. Might be ok for gaming but it's not a solution (and you might try undervolting -150mV and decreasin wattage on short turbo boost instead, that works better than disabling turboboost on both temps and performance).
+
+Dell HAS to give us the chance to control fans, that's all",3
+961v1i,I've the same laptop. It's barely a month old now. ,1
+961v1i,"hmnn, nice
+
+ill try, thx",1
+961v1i,"Yep we’re definitely in the same boat. Right now I’m just going back and forth with dell support, and if no real viable solution is available, I’ll just have to open up the laptop and apply new thermal paste. What I’m worried about is opening it up and seeing a completely black and fried CPU because it’s constantly at 90+ c. I’ll also have to probably buy one of those laptop cooling pads, which is so inconvenient for how much this laptop costs. ",1
+961v1i,"I've made an observation. If I place the laptop on a cooling pad while gaming, thermal throttling starts around 78 C. But if I place the laptop flatly on the table, thermal throttling doesn't happen at all and the GPU temperature goes up to and stays constant around 91 C. This results in no FPS drop. Quiet weird. ",1
+961v1i,Hey I got a notification that you found a fix but the comment isn’t here anymore. Are you still having issues also or is reddit just buggy ,1
+961v1i,I've replied on a different thread. Check the other comment. ,1
+awkl4e,"Disable touchguard in the touchpad settings. This is to prevent accidental cursor movements when typing. 
+
+I normally use an external mouse when playing games on my computer. I guess I'm used to it. 
+
+What you are facing would not ideally be limited to Apex legends, but to any movement of the mouse while typing.  There would be a delay or the first movement would not register.
+
+Anyway, do keep us posted on how it goes. ^SA",0
+awkl4e,"A mouse would be ideal! Unfortunately there's not a lot of room in an ambulance for one ;) I'll try the gestures.
+
+http://imgur.com/fZdmWQW",3
+awkl4e,"Where is the setting to actually disable the touch gestures, I unchecked all the boxes so they all ""do nothing"". But if I still have more than one finger on the pad, it stops moving the mouse.  I couldn't find anything for touchguard when searching settings.  
+
+&#x200B;
+
+Would you like me to PM you the service tag?",1
+awkl4e,"Wow. Ok. If you had stopped at 'not a lot of room', I would have imagined all sorts of cluttered desks and work-spaces, never an ambulance.
+
+Do keep us posted on how it goes with the touchpad. If that doesn't work, you can try using native Microsoft drivers for the touchpad from the device manager and see if it helps. 
+It is mainly a software/driver feature/ restriction depends on the situation. ^SA
+",2
+awkl4e,"Device manager shows a PS/2 and A HID mouse, nothing is plugged into the computer other than the power cord though. Do you know which one would be the track pad?",1
+awkl4e,"Sure, you can PM the service tag. Does the windows touchpad settings state that you have a precision touchpad? Would you be able to share an image of the touchpad settings in the windows settings? ^SA",1
+awkl4e,"I've sent it to you.
+
+It is a Precision touchpad. Here's a snip. I've reset it to defaults for now while I'm troubleshooting on here because it's easier to use the gesture to scroll.
+
+&#x200B;
+
+[https://imgur.com/a/mWKjYGp](https://imgur.com/a/mWKjYGp)",1
+awkl4e,"It should be listed as a HID compliant device (mouse) in the device manager, try changing that to HID complaint touchpad under standard system devices, which would be obtained by attempting to update the driver manually from the device manager.  It would be best to try this when you have any external mouse available as it can also render the touchpad unusable until the driver is reverted back. Unless you know how to navigate around the computer to undo these changes without using a mouse. ^SA",1
+awkl4e,"Alright, I will wait until I get home tonight to try. Thank you!",1
+awkl4e,"I was able to update the driver buy installing the Intel IO update, and then the Dell TouchPad driver.  There's still no options for Touchguard or Disabling Gestures though.",1
+awkl4e,"Try to open control panel and check if you are able to see Dell touchpad in it. If yes, click on it to open touchpad settings.
+See if you have the option to disable touchguard.
+What is the BIOS version installed on your system?
+Have you installed Dell power manager from Dell support website? If yes, go to dell power manager and set thermal management profile to optimized.
+We can also access your system to check for the settings and fix it. please share a 2 hour time frame when you will be available with your system.
+^KK
+",1
+awkl4e,"I have BIO 1.5.0  There's a Dell Touchpad setting, but it really doesn't offer any settings.  I also installed the Dell touchpad settings app from the MS store and it doesn't seem to offer any help either.
+
+[https://imgur.com/a/rZeptTi](https://imgur.com/a/rZeptTi)
+
+&#x200B;
+
+I won't be available until Tuesday for an uninterrupted time. Should I contact Dell Support through the site then?",1
+awkl4e,"We recommend you update the BIOS to 1.9.0 and remove the Dell touchpad driver and application from the system. 
+Since your system was shipped with a precision touchpad, you are unable to use Dell touchpad settings.
+Here is a link https://dell.to/2SE7UOV for more information on precision touchpad. Please read through and try the steps to see if it helps.
+^KK
+
+",1
+hv9c6p,"It looks like your Integrated graphics card is being used to drive the display, which is normal. Your Nvidia graphics is only used for processing when you use high performance apps or games. You can set this behavior inside the Nvidia control panel under optimus settings.
+
+You can see details about your Nvidia graphics in Task Manager such as when it's being used and other more advanced details like VRAM and utilization. There should be two GPUs listed. The first will be the Intel one and second should be Nvidia.
+
+[See this image of a diagram on how your laptop's graphics works](https://www.notebookcheck.net/fileadmin/_migrated/pics/Optimus_Usage_03.png)",5
+hv9c6p,"What you're looking at is the cpu integrated graphics, not a 1060",3
+hv9c6p,"First of all, you dont have 16gb vram.",2
+hv9c6p,How would I check the VRAM on my graphics card?,1
+hv9c6p,I know that but 0.128 gb was really concerning especially for the dedicated video memory,1
+hv9c6p,"What u/SovereignDS said or just open Task Manager and it tells you how much dedicated memory you have under ""GPU 1""",3
+hv9c6p,View it using the nvidia control panel or geforce exp,2
+q1hj8g,">So, do we just have to wait?
+
+No. You can go ahead and install it now, just be aware it's not certified yet and no guarantee all drivers will work 100%.",1
+ib7tw9,"I would check for thermal throttling while playing games. That can come on suddenly and unexpectedly. It is the common cause of frequent FPS drops. 
+
+To check for throttling, download HWINFO64 and run it with sensors-only. Play the game and wait until it starts lagging. Keep playing for a bit, maybe 5 minutes and then go back to HWINFO64. 
+
+Look at the ""Thermal throttling"" sensors. Do they say ""Yes?"" at all? Look at the CPU temperatures as well. You may see multiple CPU readings. Look at them all and take note. Anything alarming?  
+
+Report back your findings here. 
+
+Ideally, I would like to see your HWINFO64 data. So if possible, take screenshots of all the data (scroll down to see the other data too). Post screenshots here.",5
+ib7tw9,"Do you run games on an external monitor?
+
+Have you removed all of Dell's bloatware?",2
+ib7tw9,Virus?,1
+ib7tw9,"Some simple things you can check.
+
+Often times there's an integrated GPU and a dedicated GPU. Check and see if your games are running with your dedicated GPU.
+
+Another thing is for laptops often times, the performance drops when unplugged from the charger. Are you playing while the charger is plugged or on battery? If the issue only happens on battery you may need to plug in to get full performance.",1
+ib7tw9,"Hey, I'm having similar problems in the same device, did you manage to fix your problems? Would help a lot thanks.",1
+ib7tw9,"I haven’t managed to fix it yet as I haven’t had the chance, but I know what is causing it. The thermal paste that dell has in the computer when you buy it is terrible, and has very likely worn out for you as well as me. This causes the computer to overheat, which will make the FPS drop around the 77C degrees point. So basically, shitty thermal paste=shitty=overheating computer=FPS drop.",1
+o8dg4y,"Hey, I ordered that exact same screen for a defective screen on a laptop here. Hoe is the 120Hz feeling? Smooth as silk?",1
+ga3wet,Did you end up getting it? I just ordered it on ebay,1
+ga3wet,"Yes it does work very well for me, the color temp is a bit different as well as mine has a dead pixel. Be careful when installing, mine wound up being a tight fit for my model",1
+ga3wet,"I used this panel too, and on dark scenes I saw some noisy blocks. Also the battery life of the laptop reduced a fair amount after moving to 120hz. How was your experience?",1
+ga3wet,My battery life didn't really change.. not to a degree I could notice anyway. My screen does have a bit of light bleed but not bad. You have to look for it to see it. Installation was easy enough although it's a tight fit in there.. one dead pixel. Otherwise it's been great. Nothing I couldn't account for really with windows color tuning etc.,1
+ga3wet,"Thanks for your answer. In general, it seems like a great panel. The backlight bleeding could be adjusted by changing the tighntess of the screws.",1
+bso6f0,"The laptop I'm looking at currently has less specs than this, is brand new, and 3x the price. This is honesty a steal, GLWS!",4
+bso6f0,NOVA represent!!! Sadly I'm not looking for a laptop :/,3
+bso6f0,"* Username: /u/justintimehere
+* Join date: 2017-06-27 13:40:02
+* Link karma: 156
+* Comment karma: 243
+* Confirmed trades: 26
+* Heatware: None
+
+^^This ^^information ^^does ^^not ^^guarantee ^^a ^^successful ^^swap. ^^It ^^is ^^being ^^provided ^^to ^^help ^^potential ^^trade ^^partners ^^have ^^more ^^immediate ^^background ^^information ^^about ^^with ^^whom ^^they ^^are ^^swapping. ^^Please ^^be ^^sure ^^to ^^familiarize ^^yourself ^^with ^^the ^^[RULES](https://www.reddit.com/r/hardwareswap/wiki/rules/rules) ^^and ^^other ^^guides ^^on ^^the ^^[WIKI](https://www.reddit.com/r/hardwareswap/wiki/index)",1
+bso6f0,Is it still available?  Also where in VA are you? I am in Rockville MD and might be able to meet you locally.,1
+bso6f0,3x really? damn lol anyways thanks!,1
+bso6f0,no worries I appreciate the bump :),2
+bso6f0,I just sold it 2 days ago for $640 Sorry. I just closed the listing,1
+bso6f0,"Darn it. Oh well, thanks for replying to me.",1
+hxdbk5,[Removido],[Comentário removido],
+hxdbk5,"Yeah, basically. Sorry about being all over the place with it lol.",1
+hxdbk5,[Removido],[Comentário removido],
+hxdbk5,"Yeah. Hopefully I can sell the laptop. The laptop seems to be worth 1,200$, and selling it for 900 seems to be a good price.",1
+hxdbk5,[Removido],[Comentário removido],
+hxdbk5,"Here are the specs:
+
+Intel Core i7-8750H 14
+
+16 GB Ram
+
+Gtx 1650
+
+1tb hard drive
+
+15"" display
+
+These are the main things. I was too tired to search everything else up but these should be the main things I want my buyer to know when Im selling. If you want you van search for the laptop and find the specs.",1
+hxdbk5,[Removido],[Comentário removido],
+hxdbk5,Well hopefully I’ll be able to get it. I’ll try to do some advertising for the product and show the 300$ price difference from getting it new. I’m gonna hope I can sell it,1
+g9ihsy,"Hello, thank you for reaching out
+
+Please run a full scan on the SupportAssist application, which will check and update any outdated drivers, identify hardware issues (if any), and optimize the system performance. Click on the link below to learn how: https://dell.to/3aIXk23  
+Note: Keep the charger connected during the process.
+
+Also, do share the system service tag via private message  to assist you further
+
+Thanks",1
+g9ihsy,[Removido],[Comentário removido],
+g9ihsy,I did a full system restore from factory and never fixed the webcam and microphone issue but now if I plug in the aux piece the microphone on the earphone works. Dell told me since I was a couple days out of warranty I could screw off. I opened up the laptop and disconnected and reconnected the webcam piece and it didn’t work either so I just gave up on having a webcam,1
+g9ihsy,[Removido],[Comentário removido],
+g9ihsy,"I have the same problem, and haven't found a solution yet.",1
+9hf8bt,"That would be my recommendation, uninstall everything related to the card and use Dell drivers.  
+
+Also, only get updated drivers from dell for everything related to the laptop, it won’t work right otherwise, found that out the hard way",2
+9hf8bt,"If you got the driver from the Dell site for your correct laptop you need to call tech support, you may have faulty hardware",2
+9hf8bt,"I have the 7577 model, do you have other issues as well? Sound, low frame rate, etc?  Im at my wits end with this pos",1
+9hf8bt,My msi laptop had shitty killer wifi I changed the drivers almost weekly until I put in an Intel 8265 no issues since and the drivers automatically installed. It may have just been a faulty WiFi card but I had the Intel one in my parts bin so it was a quick easy swap. There are newer parts available now too.,1
+9hf8bt,"Mine has the 1060 maxq 6GB video card.  Sometimes the audio crackles, frame rate in games just drops for no reason.  Lots of issues with these laptops and dell knows but refuses to fix them.  Unfortunately I found out to late for a refund",0
+9hf8bt,Thank you ,1
+9hf8bt,When I try to install either the wireless or Ethernet drivers an error message shows that says “no compatible hardware was detected” ? What do I do :(,1
+9hf8bt,Hmmm not that I could say honestly. And mine might be the 7577 model as well honestly I had to rush out to class this morning ,1
+9hf8bt,So in my case do I just need to reinstall my WiFi/ Ethernet cards from the DELL website?,0
+9hf8bt,It may help. Or go to the killer website. I'd avoid the whole suite of crap that comes with their drivers. Its clunky and the prioritising part never worked for me.,1
+kxwjq4,"Ok, so figured it out. Turns out SK Hynix is NOT an NVME  SSD, and my Enclosure is only useful for an NVME SSD. Thanks ME. #facepalm",1
+i03p9x,"probably thermal throttling. Nothing wrong w the charger, laptops just get hot when they’re under load+charging. Try repasting or use throttlestop.",2
+i03p9x,But i check the laptops temps with the charger on is 80 to 85 degrees C  (CPU) and 70 degrees C (GPU) isnt that normal temp?,1
+i03p9x,hmm. Open up HWmonitor or task manager and see look at your clock speeds over a game.,2
+enhxzy,"Hi,
+Have you reported this to Dell technical support yet? If not, please send a private message with system Service Tag to help further.
+^KK",1
+enhxzy,"Same with my g7 for F1 and 2 keys only 
+but still sucks those are important keys also support didn't do anything for me so i just use 2 of my mouse keys for them let me know if u got it fixed",1
+enhxzy,No I'm not yet,1
+enhxzy,"We will look into this for you. Please send a private message with system Service Tag to help further.
+^KK",1
+enhxzy, i sent the private message,1
+kkcws3,"[Dell Page.](https://www.dell.com/support/manuals/en-bb/g-series-15-7588-laptop/g7-7588-setupandspecs/memory?guid=guid-feaa12ac-49d6-4fac-aefe-9fb8ba6f1151&lang=en-us)
+
+It supports modules up to 16GB, and a total capacity of 32GB.",1
+frf5ow,"Thanks for reaching out to us. Could you Private message the system service tag along with the registered owner's name and email address?
+You could follow the suggestions here: https://dell.to/2JlVf0H to locate the tag.
+Regards,
+Mausam",1
+frf5ow,Sent,1
+frf5ow,I've contacted you but have not received any reply,1
+frf5ow,"Hi,
+
+I've not received any information via private message. Kindly share the details via private message.
+
+-Gopal",1
+b0sa1h,"* Username: /u/TealeafParadise
+* Join date: 2015-12-12 04:08:18
+* Link karma: 725
+* Comment karma: 612
+* Confirmed trades: None
+* Heatware: None
+
+^^This ^^information ^^does ^^not ^^guarantee ^^a ^^successful ^^swap. ^^It ^^is ^^being ^^provided ^^to ^^help ^^potential ^^trade ^^partners ^^have ^^more ^^immediate ^^background ^^information ^^about ^^with ^^whom ^^they ^^are ^^swapping. ^^Please ^^be ^^sure ^^to ^^familiarize ^^yourself ^^with ^^the ^^[RULES](https://www.reddit.com/r/hardwareswap/wiki/rules/rules) ^^and ^^other ^^guides ^^on ^^the ^^[WIKI](https://www.reddit.com/r/hardwareswap/wiki/index)",1
+b0sa1h,"I have a G5 laptop that's i5-8500H/1060 6GB, 16gb and 500gb of nvme storage.",1
+b0sa1h,[Removido],[Comentário removido],
+b0sa1h,Whats your zip?,1
+b0sa1h,"Sorry, I'm only looking for G7 :(
+Thanks anyways!",1
+b0sa1h,"Thanks, I'll look into it if I can't find what I'm looking for!",1
+b0sa1h,What's the difference? Does the G5 not have Thunderbolt 3?,1
+b0sa1h,"Ah, it's mainly just the aesthetic/design difference! I prefer the blue backlight and white chassis",1
+gmdc6k,"I'm researching about the same thing, and it seems it's perfectly fine. I'm also going with the AX200.
+
+References: 
+
+* This entire thread: [https://linustechtips.com/main/topic/1086207-has-anyone-successfully-replaced-an-intel%C2%AE-wireless-ac-9560-with-an-ax201/?do=findComment&comment=12810338](https://linustechtips.com/main/topic/1086207-has-anyone-successfully-replaced-an-intel%C2%AE-wireless-ac-9560-with-an-ax201/?do=findComment&comment=12810338)
+* [https://www.reddit.com/r/Dell/comments/dympbf/dell\_g7\_wireless\_card\_upgrade/](https://www.reddit.com/r/Dell/comments/dympbf/dell_g7_wireless_card_upgrade/)",1
+gmdc6k,I just added this card to my G7 7588 and it's working find so far.,1
+c1aqby,No.... I hate mine.,1
+c1aqby,"here's a review  [https://www.notebookcheck.net/Dell-G7-15-i7-8750H-GTX-1060-Max-Q-Laptop-Review.317686.0.html](https://www.notebookcheck.net/Dell-G7-15-i7-8750H-GTX-1060-Max-Q-Laptop-Review.317686.0.html) 
+
+&#x200B;
+
+I don't own one so I can't help you with personal experience though, sorry",1
+c1aqby,"I have one with the 4K screen. Been using it for 10 months. It is an ""OK"" laptop. I wouldn't expect it to have great thermals or audio. Those are the two sore spots on this machine. However, it does what I want. Plays music in the background, plays Warcraft, browses the web to read things like Reddit and such tasks. I did upgrade the SSD to a 512GB Adata SX8200 Pro.",1
+c1aqby,"I own that model for almost a year now.
+11 months and almost 3 weeks to be exact.
+
+To put it simply, I love mine. But there's a stupid bios problem that everyone complains about. Mine still on BIOS 1.3, and it runs well. I played MHW almost everyday with tempts around 60-70 degree celcius (I live in a tropical country on SEA).
+All I did is undervolt the CPU. And will change my thermal paste once the warranty is over.
+
+But by reading through reddit I think you can find the BIOS problem. Every bios after 1.3 is trash at temp since they change the fan to be more ""silent"" and doesn't cool well.",1
+c1aqby,"Thanks for the reply, from what I've seen a lot of people have complained a lot of software problems and fps drops in certain games but don't know much about the laptop.",1
+d1e0c7,"* Username: /u/tedman633
+* Join date: 2013-02-03 17:17:59
+* Link karma: 177
+* Comment karma: 3
+* Confirmed trades: None
+* Heatware: None
+
+^^This ^^information ^^does ^^not ^^guarantee ^^a ^^successful ^^swap. ^^It ^^is ^^being ^^provided ^^to ^^help ^^potential ^^trade ^^partners ^^have ^^more ^^immediate ^^background ^^information ^^about ^^with ^^whom ^^they ^^are ^^swapping. ^^Please ^^be ^^sure ^^to ^^familiarize ^^yourself ^^with ^^the ^^[RULES](https://www.reddit.com/r/hardwareswap/wiki/rules/rules) ^^and ^^other ^^guides ^^on ^^the ^^[WIKI](https://www.reddit.com/r/hardwareswap/wiki/index)",1
+d1e0c7,Pm,1
+d1e0c7,Sold to u/ry5nn,1
+ayipdo,"Looks better like this, so what's the problem :P ? Just remove the rest of the button paint and you got yourself an OP power led.",5
+ayipdo,"You could put vinyl on it. 
+",2
+ayipdo,"I had the same problem :( It's sad but I made a sticker and looks good as the new one. But I would like to know if I can change it, to the fingerprint scanner",2
+ayipdo,rip to my paint job👎,1
+ayipdo,[Removido],[Comentário removido],
+ayipdo,"Cut a small square of vinyl, get a hair dryer, heat it a bit and then tuck the vinyl in the gap.  Then with a sharp precision knife, cut out around the button.",1
+eshgjq,"Anything works such as a M.2 PCIE drives, the only question will be choices 1TB for 200 you can go from Samsung 970 Evo Plus, WD Blacks, XPG, Adata etc.",1
+eshgjq,"The G7 7588 has two storage slots - one is an ""M.2"" slot, the other is a standard SATA slot. You would need to open the laptop to confirm which slot is occupied, but my guess is that the m.2 slot is in use.
+
+The easiest way to go would be to get a 1TB drive for the SATA slot. Something like the 860 Evo is a good value. This would allow you to keep the 128GB you already have and add on rather than replacing.",1
+e3x5ni,"* Username: /u/reuskrispies11
+* Join date: 2016-10-08 08:51:56
+* Link karma: 431
+* Comment karma: 270
+* Confirmed trades: None
+* Heatware: None
+
+^^This ^^information ^^does ^^not ^^guarantee ^^a ^^successful ^^swap. ^^It ^^is ^^being ^^provided ^^to ^^help ^^potential ^^trade ^^partners ^^have ^^more ^^immediate ^^background ^^information ^^about ^^with ^^whom ^^they ^^are ^^swapping. ^^Please ^^be ^^sure ^^to ^^familiarize ^^yourself ^^with ^^the ^^[RULES](https://www.reddit.com/r/hardwareswap/wiki/rules/rules) ^^and ^^other ^^guides ^^on ^^the ^^[WIKI](https://www.reddit.com/r/hardwareswap/wiki/index)",1
+e3x5ni,-Boiiiiiiiiiii if only i saw this before i started buying more Pc parts. 😭 glws,1
+bj3dj8,"The laptop is overheating and lowering its clockspeed to protect itself from damage.
+
+Lower your graphics settings or resolution in that game. You can also buy laptop cooling pads/docks to help cool it down.
+
+If youre feeling adventurous you xan open the laptops service door and make sure the fan/heatsink isnt clogged with dust. I wouldnt do this if it's under warranty though.",3
+bj3dj8,"Could be BIOS related.
+
+&#x200B;
+
+See if there are any BIOS updates for the computer and/or see if there are any settings in the BIOS that could limit the CPU speeds. You're looking for options that state auto fan adjusting/speed settings or something of the sort.",2
+bj3dj8,I'll try that and I'll let you know if it works out 👌🏼,2
+bj3dj8,"This looks promising, I'm going to check for a BIOS update rn",1
+e90pzm,"Crucial ram worked for me, but 8gb sticks at 2666",1
+cti06m,"Hello! I was just using my laptop as usual, then I noticed the battery lights were flickering which was unusual because I have never seen it do that before.  Does anyone have an idea on what's wrong? Thank you!",1
+cti06m,"maybe you turn on hard disk usage something, press fn + h and see",1
+9iqi31,"It is not bad, but I would maybe prefer something with a 144Hz screen if possible within budget.
+
+What about the **[Acer Predator Helios 300](https://shopineer.com/laptops/Acer-Predator-Helios-300-Gaming-Laptop-15-6-Full-HD-IPS-Display-w-PH315-51-78NP)**?
+
+- 8th Generation Intel Core i7-8750H 6-Core Processor (Up to 4.1GHz)
+- 15.6""
+- 1920 x 1080
+- 16 GB RAM
+- 256 GB SSD
+- NVIDIA GeForce GTX 1060 Overclockable Graphics with 6 GB of dedicated GDDR5 VRAM
+- Windows 10 Home
+- 7 hours battery
+- 5.95 lbs.
+
+It has good build quality and around 5 hours of battery according to [this review](https://www.ultrabookreview.com/19445-acer-helios-300-coffee-lake-review/). 
+
+It also has a 144Hz screen for a smoother gameplay. Seems it is a 72% NTSC IPS screen, so it should be quite good for this price range.
+
+The SSD will help to speed up the laptop as well. You can add an HDD later on if you need more storage.
+
+This latest gen six-core CPU should be great for gaming and multitasking.
+
+The 1060 GPU should be able to run most modern games on high settings. That should be useful considering future games as well.
+
+For more options you can check this [list of gaming laptops](https://shopineer.com/laptops/top-lists/best-gaming-laptops) (including some gaming benchmarks). I keep this updated, so if you are not buying right now you can check back there later on.
+
+
+
+",2
+9iqi31,"The Dell G7 7588 is probably the best gaming laptop in its price range. There are other laptops with similar specs and you can check the entire list [**here**](https://noteb.com/?search/search.php?advsearch=1&Regions%5B%5D=United%20States&bdgminadv=550&bdgmaxadv=1100&exchadv=USD&nrcoresmin=2&nrcoresmax=8&cputdpmin=2&cputdpmax=95&cpufreqmin=1.5&cpufreqmax=5&cputechmin=12&cputechmax=28&launchdatemin=2014&launchdatemax=2018&gputype=1&gputype2%5B%5D=1&gputype2%5B%5D=2&gputype2%5B%5D=4&GPU_model_id%5B%5D=GeForce%20GTX%201060%20%285.4%2F10%29&GPU_model_id%5B%5D=GeForce%20GTX%201060%20Max-Q%20%284.9%2F10%29&gpumemmin=64&gpumemmax=16384&gpubusmin=64&gpubusmax=2048&gpulaunchdatemin=2013&gpulaunchdatemax=2018&gpupowermin=18&gpupowermax=300&displaymin=13.1&displaymax=15.6&verresmin=1080&verresmax=2160&DISPLAY_msc_id%5B%5D=LED%20IPS&DISPLAY_msc_id%5B%5D=LED%20IPS%20PenTile&DISPLAY_msc_id%5B%5D=LED%20TN%20WVA&DISPLAY_msc_id%5B%5D=OLED&capacitymin=179&capacitymax=8192&nrhdd=1&typehdd%5B%5D=SSD&mdbslots=0&mdbwwan=0&rammin=8&rammax=64&freqmin=1333&freqmax=3200&batlifemin=2.1&batlifemax=20.3&acumcapmin=25&acumcapmax=104&weightmin=0.7&weightmax=5.6&thicmin=6.9&thicmax=73.7&widthmin=208&widthmax=456&depthmin=170&depthmax=345&webmin=0&webmax=5&wnetspeed=150&oddtype=Any%2FNone&opsist%5B%5D=Windows%2010%20Home&opsist%5B%5D=Windows%2010%20Pro&opsist%5B%5D=Windows%2010%20S&opsist%5B%5D=macOS%2010.13&opsist%5B%5D=Chrome%20OS%201&yearsmin=1&yearsmax=5&ref=starchaser).
+
+I think the only two other laptops that can compare in terms of performance, cooling and build quality are the [**HP Omen 15t**](https://noteb.com/?model/model.php?conf=16076551095266000896_1790&ref=starchaser&ex=USD), the older [**Dell Inspiron 15 7577 Gaming**](https://noteb.com/?model/model.php?conf=16444144701920999424_1175&ref=starchaser&ex=USD) and the [**Dell Gaming G5 15 5587**](https://noteb.com/?model/model.php?conf=6517864421866806059_1686&ref=starchaser&ex=USD).",1
+9iqi31,"I too would advocate for the [**Acer Predator Helios 300**](https://www.amazon.com/Acer-Predator-i7-8750H-Overclockable-PH315-51-78NP/dp/B07CTHLX8C/ref=sr_1_4?s=electronics&ie=UTF8&qid=1537913022&sr=1-4&keywords=acer+predator+helios+300&tag=laptopz18-20), it is a better value in my opinion. You get the regular GTX 1060 and full 1080p 144Hz display, which are both big upgrades. ",1
+dbgejy,"* Username: /u/USPatriot45
+* Join date: 2018-09-05 06:44:11
+* Link karma: 330
+* Comment karma: 2465
+* Confirmed trades: None
+* Heatware: None
+
+^^This ^^information ^^does ^^not ^^guarantee ^^a ^^successful ^^swap. ^^It ^^is ^^being ^^provided ^^to ^^help ^^potential ^^trade ^^partners ^^have ^^more ^^immediate ^^background ^^information ^^about ^^with ^^whom ^^they ^^are ^^swapping. ^^Please ^^be ^^sure ^^to ^^familiarize ^^yourself ^^with ^^the ^^[RULES](https://www.reddit.com/r/hardwareswap/wiki/rules/rules) ^^and ^^other ^^guides ^^on ^^the ^^[WIKI](https://www.reddit.com/r/hardwareswap/wiki/index)",1
+9gr7i5,I have 1TB HDD+ 256 GB SSD. Always try to innstall Windows on SSD for faster performance. HDD are much slower. ,3
+9gr7i5,"My G7 came with only 1TB SSHD from Seagate, so I’m guessing the 2TB one works as well. For SSD I bought a Samsung 970 Evo 256GB, need to disable RAID in the Bios but otherwise it’s basically plug and play. Not sure about the other brands and models for SSD and HDD ",3
+9gr7i5,I replaced my 128gb drive with a 250gb evo with no problems,2
+9gr7i5,If you have any issues it is a simple BIOS setting which should need changing.,1
+8zl7aq,Try using electrical tape instead of regular. Might be worth a shot,1
+8zl7aq,"I tried to use several types of tapes, thick electrical to kitchen labels, none worked (didnt try 2mm thick as may touch the screen when closed and scratch it).
+
+I am using external mouse, but sometimes need to use touch pad buttons for portable uses, especially on airplane for example.
+
+Thank you [Spacecowboycarl](https://www.reddit.com/user/Spacecowboycarl) and  [Mirithyls](https://www.reddit.com/user/Mirithyls)  for your reply, please keep me posted if you know some solution..",1
+9zorle,Update to 1.6.1. It’s better than 1.5.0.  The very first time a new computer starts it has a lot of things to update. It will run hot for a hour or two. ,1
+9zorle,"Hello,
+
+Thank you for taking the time to write to us.The Fan should begin to speed up when CPU reaches up to 75C or GPU reaches up to 57C by BIOS v1.5.0.
+This is by design. 
+
+You can try updating the BIOS and see if it helps. ^SA",1
+aqayzj,"* Username: /u/drdisrespecting00
+* Join date: 2018-09-13 16:44:02
+* Link karma: 64
+* Comment karma: 1601
+* Confirmed trades: None
+* Heatware: None
+
+^^This ^^information ^^does ^^not ^^guarantee ^^a ^^successful ^^swap. ^^It ^^is ^^being ^^provided ^^to ^^help ^^potential ^^trade ^^partners ^^have ^^more ^^immediate ^^background ^^information ^^about ^^with ^^whom ^^they ^^are ^^swapping. ^^Please ^^be ^^sure ^^to ^^familiarize ^^yourself ^^with ^^the ^^[RULES](https://www.reddit.com/r/hardwareswap/wiki/rules/rules) ^^and ^^other ^^guides ^^on ^^the ^^[WIKI](https://www.reddit.com/r/hardwareswap/wiki/index)",1
+1kgnml6,"What do you mean by ""which Linux Mint version""?",2
+1kgnml6,"I'm on nvidia + linux for 3 years by now, my laptop has i7-4910mq + gtx 965m (so it's even worse than yours). Currently i'm on fedora with gnome, but have used mint previously and everything there (cuda, nvenc, vulkan,) worked just fine.
+
+Performance on the cinnamon itself depends on your integrated gpu (since it's rendering on it by default to save some battery life) and in my case it was decent enough, only overview animations were a little laggy. Your cpu has much better igpu, so i think you should be fine.
+
+Performance of nvidia in games is also ok, i did a test about 2 month ago on windows, and the fps was either the same or better (but i should mention that i compared this to results on fedora with latest nvidia drivers, drivers in mint are a bit outdated by default.",1
+1kgnml6,"It think it's called flavours? so Cinammon, XFCE, and Mate",1
+1kgnml6,"Ah ok, thought you meant something else. I see a lot of Cinammon recommendations, I hardly see anyone mentioning the other ones.",1
+1kgnml6,"Oh I see, hoping that someone will eventually come by with similar specs to give some insights. Because I did some digging and reading, almost all of the one's recommending cinammon is having these beefy gpu's like: RTX 3080 and above, of course! cinammon would work on you because you have a beast of a computer compared to my old ass hardware lols.",1
+1kgnml6,AFAIK cinnamon isn't that resource heavy. You should be fine.,1
+1kgnml6,"Oh interesting. How about nvidia drivers to use? latest or what is recommended when installing?
+
+To be honest I could just install mint cinammon right now and do some testing. But I need to save headache and ask for advice so that I can be set on a path rather than branching out running back and forth during testing.",1
+1kgnml6,I haven't used Nvidia in over 10 years so no clue,1
+1kgm9gs,"Please Re-Flair your post if a solution is found. [How to Flair a post?](https://imgur.com/a/wH3hPrj) This allows other users to [search for common issues](https://www.reddit.com/r/linuxmint/search?q=flair%3ASOLVED+&sort=new&restrict_sr=on&t=all) with the SOLVED flair as a filter, leading to those issues being resolved very fast.
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/linuxmint) if you have any questions or concerns.*",1
+1kgm9gs,"Go with cinnamon. If you plan to send/receive stuff from MS Office, make sure to get the windows and MS Office fonts.",5
+1kgm9gs,"Latest is fine,  use cinnamon de",4
+1kgm9gs,You have an 8th Gen I7 CPU.  8th Gen Intel stuff is well supported now.  Since you have a NVIDIA GPU you *might* need to install the correct driver.  Both Cinnamon and XFCE will work fine.  If you use your laptop for gaming check out r/linux_gaming for tips and tricks :-),5
+1kgm9gs,"You'll be fine on 22.1 Cinnamon, but you can always try other options if you don't like it.",2
+1kgm9gs,"Literally have the exact same laptop. Installed Linux Mint 22.1 on one drive and Windows 11 24H2 in the other, yesterday. Running 570.133 drivers. It defaults to Nouveau during install but you can switch using driver manager afterwards.
+
+https://www.reddit.com/r/linuxmint/comments/1kgfn2w/a_linux_mint_success_story_with_secure_boot_and/",2
+1kgm9gs,"When I reinstalled recently on my work machine with a 1650 it was WOEFULLY slow and laggy without the proper drivers, and that was just in the desktop environment.
+
+Definitely install the proprietary drivers if you want a chance of playing games.",2
+1lctn2q,"Does issue persist when plugged into wall charger?  After being shelved for 6 months, it might be running lots of updates in the background which is causing performance issues.
+
+If you're not too tech savvy, I would just run a system reset to have the laptop become factory reset.",2
+1lctn2q,"Hi, thank you for your comment. Yes, I have it plugged in at all times especially when gaming. Also, I did put on new Windows 6 months ago before shelving it and it has like no other apps other than like Steam and Witcher 3. Doesn't even have Microsoft Office. It's basically empty other than the game. I also keep the Wifi switched off since I don't really feel like updating anything as my internet connection is quite poor. But I did have all the drivers for the GPU updated with GEFORCE Experience. It still has the problem with everything updated.
+
+Yeah I actually thought of that, that maybe I should do a full reset and see how it goes. I should also mention that I think my battery is quite gone as it's puffed up a bit and it does not retain it's charge at all like it used to. I consulted with chatgpt if my laptop requires a healthy battery to keep games running smooth and it informed me that usually DELL laptops do require a healthy battery to run things smoothly. Hence my venture towards finding a new battery which unfortunately did not yield the desired result.",1
+1gd38qa,"Unless you switch to MSI / Messaged signal interrupts you're not going to get anywhere fun driving an EGPU with a laptop or in general. The high CPU use is likely from system interrupt's and trying to drive the card with IRQ. If you switch to MSI you won't be using CPU interrupts to drive GPU and it will perform a lot better.
+
+There is honestly no point in even doing TB3/4 occulink / nvme / egpu if you do not take the time to set this up. You need to use NV clean and specifically enable Messaged signal interrupts for nvidia card. For other GPU vendors you can either use a tool to mod registry or edit registry to set devices to use MSI vs IRQ.  This applies to other non gpu devices as well.",1
+1gd38qa,"It sounds to me that it s a driver issue, you need to uninstall your NVIDIA Drivers before installing your AMD GPU drivers, use DDU app to uninstall both of NVIDIA and AMD GPU drivers and  then reinstall AMD drivers",1
+1gd38qa,"""Have you tried connecting an external monitor? Maybe the CPU is overloaded by bidirectional transfer through Thunderbolt.""",1
+1gd38qa,Damn,1
+1gd38qa,I installed an MSI tool and it looked all everything that supported MSI was already set to it except some audio devices which didn't have any ppsitive effect on performance,1
+1gd38qa,"I have always get great results with eGPU setting without messing around with Message signal interrupts.
+
+Something in O.P setting must have been done incorrectly, you don t need to tweak anything to get an eGPU working correctly as long as the correct drivers are installed it should work on the go or with a system restart and no more",0
+1gd38qa,"I'll try this tomorrow, I'll let you know how it goes",1
+1gd38qa,"I would have thought that the bandwidth would just bottleneck CPU utilization, not allowing it to be fully utilized anyway. I have yet to uninstall all display drivers and try it on a fresh install of my eGPU's driver but I'll let you know how it goes",1
+1gd38qa,"Its really easy to setup, but no one mentions it is needed for best-in-class performance with egpu.
+
+[Windows: Line-Based vs. Message Signaled-Based Interrupts. MSI tool. | guru3D Forums](https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044/) is a link to MSI enabler.
+
+[NVCleanstall - NVIDIA Driver Customizer](https://www.techpowerup.com/nvcleanstall/) Nvclean needed for nvidia not needed for intel or amd.
+
+Instructions for setting up MSI mode.
+
+After setting this up performance and CPU load are greatly improved. My CPU's can idle down to 800Mhz and is still driving 2 egpus. Before doing this, a single GPU would put my laptop at 10-15% idle use constantly.",1
+1gd38qa,You still have to set a checkmark to enable MSI mode for devices that support it.,1
+1gd38qa,"Performance isn't the issue it is about CPU idle usage, which can get quite high with EGPU using IRQ.
+
+People also don't need to overclock, but many do. Enabling MSI mode is recommended though. 
+
+Also OP is asking for suggestions not a sense of everything should just be alright.",1
+1gd38qa,"Thanks, it will also help the Mini PC community if you report a successful result in this Topic",1
+1gd38qa,"Try adjusting the settings in the power profiles by going into the details. If you have it set to High Performance, try switching to Balanced. I had a similar situation on a Beelink SER 6 Pro 7735HS without eGPU where, on the High Performance profile, I experienced low frame rates with high temperatures and CPU load. On Balanced, the performance improved, and the temperatures were lower. You can also go into Advanced Options and look for Processor Power Management to experiment with the minimum and maximum settings there.",1
+1gd38qa,They were already checkmarked,1
+1gd38qa,"It is possible that i am misunderstanding but i think he does have Petformances issue, didn t he said that he has the same FPS with the eGPU than with the IGPU, but still you don t need to tweak M S I to run properly an eGPU
+
+https://preview.redd.it/cdgw7lx14rxd1.jpeg?width=1086&format=pjpg&auto=webp&s=7e5183e436061e1ce5f7c5ad7e03f3c211abc61d",1
+1gd38qa,"CPU utilization hasn't changed after a driver uninstall. However, results may be inconclusive because the game that I tested it on which is using high CPU actually forces the native Nvidia drivers to be installed, even if there is no GPU enabled.
+
+However, again, performance is much better, getting nearly 60 fps on a laptop after doing a factory reset and driver reinstall.",2
+1gd38qa,"Thanks you for the feefback, i am glad to hear you get noticable improvement",1
+zubfp9,"Turn off Intel Turbo Boost, that's really that's all to it.  Most games do not require the CPU extensively and by default Windows will shove it into overdrive just be cause it **can.**",3
+zubfp9,"in short, open up repaste, repaste thermal pads, install dell power manager, use ultra performance all the time, use windows balanced energy scheme
+
+I had a g5 5587 with the same cpu and a 1050ti, nothing mattered anyway, few months ago it just died, probably motherboard, out of the fucking blue
+
+fuck dell",5
+zubfp9,"I have a inspiron 7577 gtx1060 maxq back when it was new, after a few months it basically started going haywire with temps and shit, even after replacing thermal paste, fans, throttlestop, etc, it was a long story that led to nowhere so i basically gave up and now i just play really low req games like league or minecraft",2
+zubfp9,No issues at all playing games with my G7 17” 7790. I bought it for gaming while traveling.,2
+zubfp9,"I have an inspiron 7577 that waa always thermal throttling, I found that cleaning the exhaust sometimes will help more than repasting. Use and air compressor and blow air into the exhaust and let dust fly away through the fans, but dont let them spin so fast. 
+After that use a laptop cooling pad it doesn't have to be crazy strong i bought a very cheap one and it keeps the air under the fan fresh.
+And to avoid thermal throttling use throttlestop to lock turbo power limits, i believe this option is found under FIVR button, and you can also control the turbo boost frequency through TS. 
+Blowing air into the exhausts and using throttlestop to lock turbo boost frequency at 3Ghz instead of 3.8 and locking turbo limits to avoid throttling really helped me. Laptop used to run at 90°C+ CPU with turbo boost off now it runs at almost always under 80°C, usually peaks at 75°C, the GPU (which is the same as yours) used to run at 83°C now it peaks at 69/70°C. I achieved those results without repasting.
+Sorry for bad formatting i am on mobile, if you need anthg ask me!",1
+zubfp9,[Removido],[Comentário removido],
+zubfp9,Does the performance / temps change with AC adapter connected? If yes the battery cant provide sufficient power for both cooling and performance,1
+zubfp9,"Don’t use a laptop stand and make sure the unit is perfectly level on a clean desktop. Make sure bios is updated to latest version. I thought a pad with fans would help but it made things much worse. I think the fans just pushed hot air back inside. After the above, my G7 works quite well even for extended gaming sessions with high graphics settings.",1
+zubfp9,"i have a g5. what i did was i got a decent cooling pad and a big desk fan. the desk fan would be blowing air to and into the laptop and intake ducts of the cooling pad to keep the machine cool. it can get pretty warm like you say - boiling point but with these measures it becomes bearable. i also, for the sake of longevity, started playing simpler games that are just as fun :)",1
+zubfp9,"You can consider using Honeywell 7950. After using that phase change thermal sheet, it has greatly improved my G7 7588 temperature. You can search in this sub or other subs for more info about this magical thermal sheet.",1
+zubfp9,"I have a G3 with i7 and 1050 Ti, it runs really hot, but undervolt and another paste, I don't have many problems. Have you tried checking if the undervolt is applied? Windows Defender virtualization doesn't let you undervolt, even if Throttlestop is allowing you to drag the sliders, and aside that, are you also undervolting the GPU with Afterburner? It will also lower the general temperature",1
+zubfp9,"1. Dont use max quality setting from game setting. G7 15 not have 144hz monitor specc, so 1280x720 resolution nvidia&game setting . Nvidia setting switch to performace . Not quality. 
+2. Set your fan speed to max performace
+3. Check your gpu fan is working. Gpu fan on right side(some user face this trouble)
+4. Uninstall all unuse dell app service / all 😖
+5. Set Air conditioner your room make your room frezzzz 😅
+What ply my lovely battlefield V and 1, 3-7 hours with no overheating 🫰.. u must know about max q tec.. 
+
+What I feel with MAX-Q is that even if you play with minimum quality settings you still feel maximum quality. and if you play with maximum settings you will get a higher value than maximum quality so your G7's performance is really heavy. 
+
+sorry if i'm wrong. but this is how i feel since 2019 with G7 7588",1
+zubfp9,[Removido],[Comentário removido],
+zubfp9,[Removido],[Comentário removido],
+zubfp9,"My dell g7 15 has major heating issues. I don't have a fancy  laser thermometer but just holding a regular one like a armpit thermometer BEHIND the laptop after an hour of overwatch on high graphics came with 121°F so I can only imagine the inside (im scared to mess with BIOS to turn on temp monitoring lol). That's just the air it's letting off behind.. and with a 5-fan cooling pad under it 😬 I do have the fan plugged into the laptop. My mouse and headphones as well.
+I will say I got it as an open box at Best Buy for $800 brand new, it looked like they were choosing between 2 and decided on the other because everything was still stickered (this was a few years ago now so probs when it first came out) and for that price it has done me real good and I don't hate it lol I just looked and I purchased Oct 13, 2018.
+But now looking thru this thread I'm excited to change some settings cus I've never played around with them before.. thanks for starting this thread so i can see what i'm doing wrong",1
+zubfp9,[Removido],[Comentário removido],
+zubfp9,How,1
+zubfp9,"I did that. Basically all of that. BIOS update, fan cleaning, ThrottleStop, nothing works!",3
+zubfp9,"Yes, it seems that the G series suffers a bit from this… my G7 died as well without saying good byes.
+
+Although there is a way to find optimal settings, like mentioned. It then works stable and provides good experience - until it dies :-)",1
+zubfp9,"Yup, thats exactly what I now have to do!!!",1
+zubfp9,I have one and the only issue I had was the battery ballooning.,1
+zubfp9,"I've had my Dell G7 for 3 years now, same exact specs as OP and I've never had an issue with it. I can play games like Elden Ring on high settings without any problems.",2
+zubfp9,"Please do let us know how long it lasts. Mine did 1,5 yrs. Best of luck!",1
+zubfp9,"I also had a 7577 and achieved the same lower temps by just cleaning the fans, exhaust fins, and undervolting using ThrottleStop. When I still had the laptop, I was tempted to repaste but never got around to it.",3
+zubfp9,"I used Bob of All Trade's ThrottleStop guide ([https://www.youtube.com/watch?v=yNt9L3BWOFo](https://www.youtube.com/watch?v=yNt9L3BWOFo)) but it didn't seem to do much to lower my temps. Does reducing the Maximum Processor State to 90% in Power Options do the same thing, or does ThrottleStop do something differently?",1
+zubfp9,I only play with the AC adapter connected so that can't be a factor.,1
+zubfp9,Just saved me money stopping me buying a pad.,1
+zubfp9,"What cooling pad did you buy? Name, brand?",1
+zubfp9,"80°C is equivalent to 176°F, which is 353K.
+---
+^(I'm a bot that converts temperature between two units humans can understand, then convert it to Kelvin for bots and physicists to understand)",1
+zubfp9,"121°F is equivalent to 49°C, which is 322K.
+---
+^(I'm a bot that converts temperature between two units humans can understand, then convert it to Kelvin for bots and physicists to understand)",1
+zubfp9,got one for the same price undervolt the gpu with msi afterburner and use throttlestop to set max watt for cpu at around 28-30. this helped bring my temps from 91+ cpu 86+gpu to 75 gpu and 82-84 cpu. thos computer has alot of power but if you put in the research its actually really good,1
+zubfp9,It is a setting in the BIOS.  You will need to boot into it with the F2 or F12 keys.,1
+zubfp9,I repested mine with ptm 7950 and get 80 degrees at most. Also added a good cooling pad and I never hit 70. I also undervolted but I was having temp issues before the repaste.,1
+zubfp9,In bios,1
+zubfp9,[Removido],[Comentário removido],
+zubfp9,"Can you tell me more of your machine's specs? I am considering having one myself since the price now is quite good, just the specs dont seem to be really good. My first time buying a gaming laptop so there is a lot of things I dont know. Thanks!",1
+zubfp9,I’ve had it two years so far.,2
+zubfp9,"Cleaning the fins did the trick for me, the temperatures were lower even compared to when I bought the laptop brand new! I will repaste it and see if they can go lower.
+
+Also, try to tick the lock turbo power limits in FIVR in throttlestop, it will prevent the cpu from underclocking when it reaches the power limits, it didn't affect the temps much. 
+Also try to lock the turbo boost ratio to 33 instead of the default 3.8. 
+
+Try a low powered laptop cooling pad to keep the air fresh or raise the laptop above the desk, even when i run the laptop on the stand turned off the difference in temps can be more than 5°C sometimes. I hope these solutions work of OP, I think cleaning the exhaust fins with compreassed air is thr most important part many people forget about!",2
+zubfp9,"At one point I mentioned this to a higher tier support tech from Dell, and they confirmed that they do not recommend cooling pads for any of their laptops, and airflow is optimized when the unit is level. Glad to save you a few bucks! Damn, I should have sold you mine. Lol.",1
+zubfp9,"My laptop is a Dell G7. It was released in 2020, it's a decent laptop and you should be able to play most of not all modern games that are currently coming out today. 
+
+CPU is a i7-8750
+GPU is a Nvidia 1060 maxQ. 
+16 gb of ram. 
+
+For someone wanting to dip their toes into PC gaming, I'd say it's a perfect entry point. I'm actually going full PC this year and am about to start attempting to build a proper high end machine. (I'll still have my Switch, but that's about it. Goodbye PlayStation.)",1
+zubfp9,"5°C is equivalent to 41°F, which is 278K.
+---
+^(I'm a bot that converts temperature between two units humans can understand, then convert it to Kelvin for bots and physicists to understand)",1
+ccvso8,"Cool! You can add the MSI GS75 Stealth 8SE to the confirmed list, works great.",3
+ccvso8,I have an Acer Helios 500 AMD version and it works great with the Rift S even though Oculus has not white listed my Vega 56 graphics card. I can play may games on the high setting or with super sampling. I can even play Hellblade on the highest setting but it does stutter occasionally.,2
+ccvso8,Aftershock Apex 15 works fine. I'm using it since day 1 of  the Rift S' launch,2
+ccvso8,You can add the msi gt62vr to the compatible column. Just installed and played for an hour. Runs great. Though fans were blazing.,2
+ccvso8,[Removido],[Comentário removido],
+ccvso8,"Is it also compatible when you nee a USB powered hub? Tracking was terrible, my USB port did not delivered enough power",1
+ccvso8,I can confirm  ASUS ROG Strix Hero II  GL504GM - works with both CV1 and Rift S.,1
+ccvso8,Tag. Im possibly getting a rift s soon so ill be able to test one of your unconfirmed laptops.,1
+ccvso8,[Removido],[Comentário removido],
+ccvso8,Works great on my Acer predator G9-793 GTX 1070 i7 7700HQ 16GB RAM.,1
+ccvso8,"I can confirm that the following ORIGIN PC Laptops work with the  Oculus Rift S.
+
+EON15-X, EON17-X, EVO16-S, EVO17-S",1
+ccvso8,Dell G3 15 does not work. No displayport and no alt mode for thunderbolt.,1
+ccvso8,"This post should be pinned at [oculus.com](https://oculus.com), and all the manufacturers web page. Too much miss information, since many NON-OCULUS certified laptops works fine and many others that accomplish the requirements just don't work since the GPU>Display port.",1
+ccvso8,Razer Blade Pro 17 is incompatible.,1
+ccvso8,"Greetings, can confirm that the MSI GS75 Stealth 8SG (i7-8750H, 32GB, 2080 Max-Q) works very well with the Oculus Rift S. I had to use a USB Type-C to DisplayPort converter [(namely this converter)](https://www.jaycar.com.au/usb-3-0-type-c-to-displayport-converter/p/XC4971).",1
+ccvso8,The Rift S works fine with my ASUS ROG Zephyrus G GA502DU (using Usb c to displayport),1
+ccvso8,"EDIT: I was able to get it to work consistently. Had to use an adapter to plug the USB cable to the USB-C thunderbolt. Also now using a cooling pad and forcing the fans to run at max at all times. (all that plus undervolting, using beta version of the oculus app, etc). No black screens or crashes after that. Still gets super hot though but at least its usable.
+
+I have a Gigabyte Aero 15x v8 BK4. i7-8750H, GeForce GTX1070, 16G Ram.
+Got it a bit more than a year ago. So far the results are meh. Without any manipulation it starts getting super hot very quickly (90 degrees C) and stuff started failing at around the 15-20 min mark. I got a big crackling sound and got a back screen. Reinstalled the Oculus App and now it displays stuff but still have many issues.
+
+Tried most tips found on this subreddit like:
+
+* Disable power-savng on USB ports
+* Undervolt CPU (-0.150) and GPU (-0.120V)
+* Put fans on maximum speed at al times
+* Raise the laptop to let in more air
+* De-dust air entries
+
+With all this the temperatures are a little lower, hovering at 82-85 with some peaks at 90. Rift audio stopped working, have to use the internal PC audio (bluetooth earbuds work but there's noticeable lag. I'm reinstalling the Oculus App to see if that makes things better). Sometimes I get to play for some 30 mins without issues but around the hour something ends up crashing. Black screen most of the time.
+
+Pretty disappointed with the performance of this laptop so far,I wouldn't say its really compatible so far. I'm debating between returning the rift or reselling the laptop and buying a new one that will be better performing.
+
+I really liked the experience when it worked :(",1
+ccvso8,"The last entry says that the Razer Blade Pro 17"" is incompatible but i just tried my **Razer Blade Pro 17"" 2019 (2070 MaxQ, i7 9750H)** and it *works perfectly with an USB-C > DP adapter.*
+
+Oculus Home has never looked so good.",1
+ccvso8,"Asus ROG G752VY works with Oculus Rift S.
+
+Specs:
+
+Intel Core i7-6700HQ 2.60 GHz
+
+RAM 32,0 GB
+
+Nvidia GeForce GTX 980M
+
+&#x200B;
+
+Just plug 1 USB 3.0 port and 1 mini display port with adapter included. 
+
+It's works great in all ambients, played games like Skyrim VR, No Man's Sky, Star Trek: Bridge Crew and many others without any issue.",1
+ccvso8,"If the gigabyte 15x is confirmed to work, would that also apply to the gigabyte 17?",1
+ccvso8,"(edited)
+
+very helpful information! it's very hard to find a thread which explains the compatibility of the laptop for vr..
+
+anyway, I have a question.
+
+it says on the list above that the HP Omen 15 with i7-8750h; RTX 2060 is compatible, how about the :
+
+1. HP OMEN with i7-9750h; RTX 2060 (DH0105TX) with 1.4 DP Port
+2. HP OMEN with i5-9300h; RTX 2060 (DC-1077TX) with 1.2 DP Port
+3. LENOVO Y545 i7-9750h: RTX 2060 
+
+and also, is it matter if the oculus rift s cable is 1.2 (it's said on their website: [https://www.oculus.com/rift-s/#rift-s-pc-requirements](https://www.oculus.com/rift-s/#rift-s-pc-requirements)) and my laptop has 1.4 DP Port?? can I plug the 1.2 DP cable into 1.4 DP Port? (Answered: It is 90% compatible, since no one that has those 3 laptops above to confirm yet) 
+
+it's so risky to buy a not-cheap laptop and got dissapointed if they didn't work to oculus rift s :(
+
+thanks",1
+ccvso8,"NOT compatible MSI GT70 2QD Dominator
+
+Spent the week with support, we both gave up.
+
+Seems to be the Vbios not supporting HDCP on the DisplayPort",1
+ccvso8,Anyone with a predator triton 500 here? Couldnt make it work but not sure if i set it up correctly,1
+ccvso8,Just to confirm that the Lenovo Y540 with the 1660ti works flawlessly.,1
+ccvso8,"I see that the ASUS ROG Strix SCAR II  is under the confirmed list of laptops, but does this mean that the ASUS ROG Strix SCAR III is also compatible?",1
+ccvso8,Can anybody confirm if the Asus ROG Scar III can use the rift s.(also how am I supposed to use the alt usb c display port?),1
+ccvso8,Asus Rog Strix Scar III G531GV works,1
+ccvso8,"Hi! I just received the Oculus Rift S and I tried it on my Alienware 13r3. It works, so you can add it to the confirmed list too.",1
+ccvso8,Would the oculus rift s work with the Asus rog Zephyrus m gu502gv that has a displayport USB type-c ? But I'm not sure. Could you tell me if I show you my physx settings in the nvidia control panel?,1
+ccvso8,"I have the MSI GS75 Stealth and I am aware that the 8SE model with the 2060 & i7-8750H works, But I currently have the 9SE model with the same 2060, but an i7-9750H, does this matter and will it still work?",1
+ccvso8,"Confirmed working Rift s with a first gen lenovo thinkpad X1 Extreme (with 1050 ti max-q).  I used [this](https://www.amazon.com/gp/product/B07F17ZHJY/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1) for thunderbolt to displayport. Just as a note, I have a \~100mV undervolt on the CPU and need to prop the laptop up so it doesn't thermally throttle too much.  Games that I've tested that work are Robo recall, superhot, beat saber, google earth, and the lab (although the lab has frame dips sometimes). Subnautica  was a laggy mess.",1
+ccvso8,[Removido],[Comentário removido],
+ccvso8,"Gigabyte Aorus 15 BMF (just popped into system info to check the model number) works!  
+
+
+edit: i5-13500h, RTX 4050",1
+ccvso8,"I thought it was clear from my thread, but the Asus rog scar ii is compatible with the rift s, it works perfectly.
+
+https://www.asus.com/Laptops/ROG-Strix-SCAR-II/Tech-Specs/
+
+you can update your list.
+
+I have the 15'' 2070 if it makes any difference.",0
+ccvso8,Is the oculus rift s compatible with the ASUS GA401 Gaming Notebook?,1
+ccvso8,"  Lenovo - LOQ 15.6” (Model:82XV002LUS)
+
+This one works with a USBC to DP adapter.",1
+ccvso8,Thanks! Added the MSGS75 to the list and Redditor feedback.,1
+ccvso8,"I have exactly the same laptop, which converter did you buy/use?",1
+ccvso8,Thanks! Added the Acer Predator Helios 500 AMD version to the list and Redditor feedback.,2
+ccvso8,[Removido],[Comentário removido],
+ccvso8,What's the CPU/GPU for your Aftershock Apex 15?,1
+ccvso8,"Added, thanks!",1
+ccvso8,"What was your laptop? The confirmed list is compiled from the comments of Redditors with their specific laptop, and I didn't see any comments from them requiring a USB powered hub.",1
+ccvso8,Thanks! Added the ASUS ROG Strix Hero II GL504GM to the list and Redditor feedback.,1
+ccvso8,"You're right. I assumed most Dell G line laptops won't work, but I don't know how the G3 15 3579 slipped. I've added it to the unconfirmed list as a generalized Dell G3 15.",1
+ccvso8,"Added, thanks!",1
+ccvso8,"Added, thanks!",1
+ccvso8,"Added, thanks!",1
+ccvso8,"Added, Thanks!",1
+ccvso8,What model is that? Mine (2019) works perfectly with a USB-C > DP adapter,1
+ccvso8,/u/JohnnyCrawl,1
+ccvso8,Thanks. Added to the list.,1
+ccvso8,Could you send a picture what is showing you the physx tab in the nvidia control panel? I have an Asus rog Zephyrus m gu502gv but it's similar to yours and i want to buy a rift s.,1
+ccvso8,"That sucks, I have the same laptop as well and was going to try it with the rift. Thanks for the feedback.
+
+Edit: Just saw your comment reply here ( [https://www.reddit.com/r/oculus/comments/buswxs/will\_my\_laptop\_be\_able\_to\_use\_the\_oculus\_rift\_s/eph6xgq/?utm\_source=share&utm\_medium=web2x](https://www.reddit.com/r/oculus/comments/buswxs/will_my_laptop_be_able_to_use_the_oculus_rift_s/eph6xgq/?utm_source=share&utm_medium=web2x) ). Glad to see you were able to get it to work.",1
+ccvso8,Thanks. Added to the list.,1
+ccvso8,Thanks. Added to the list.,1
+ccvso8,I would say it does if it has the same components in order to get the Rift S to work.,1
+ccvso8,"I believe that the Rift S is compatible with DisplayPort 1.4. Regarding the two laptops, it is hard to tell without knowing if the laptop's DisplayPort/Mini-Display Port/USB-C with DisplayPort Alt Mode or Thunderbolt 3 is connected to the internal GPU. You will have to search the subreddit to see if someone has tested the laptop, or try it out for yourself.",1
+ccvso8,Thank you. Added it to the list.,1
+ccvso8,">Lenovo Y540 with the 1660ti
+
+Thanks! Added to the list.",1
+ccvso8,I would say it is compatible. The tech specs for the SCAR III states that the USB-C supports DP. I'll add it to the confirmed list if anyone is able to test it out.,1
+ccvso8,"I was searching for threads containing the word ""laptop"", and the only thread that I saw that was posted by you was from here:  [https://www.reddit.com/r/oculus/comments/c1d0kh/how\_to\_know\_if\_the\_laptop\_i\_want\_to\_buy\_is\_oculus/](https://www.reddit.com/r/oculus/comments/c1d0kh/how_to_know_if_the_laptop_i_want_to_buy_is_oculus/)
+
+From that thread, I did not see any update regarding whether the ASUS ROG Scar II was compatible. There were also posts talking about performance issues with the laptop and the Oculus Rift S, so that is why I left it in Unconfirmed.
+
+&#x200B;
+
+Thank you for your feedback. I've added the ASUS ROG Scar II to the Confirmed list and Redditor Feedback.",2
+ccvso8,"Is your laptop GL504GW or GL504GM variant? I just bought GL504GW, but not sure it's compatible with Rift or not...",1
+ccvso8,https://www.amazon.es/gp/product/B07C816QYT/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1,1
+ccvso8,i7-8750H and RTX 2070 Max-Q 8GB,2
+ccvso8,"Added, Thanks!",1
+ccvso8,Sure thing!,1
+ccvso8,"Yeah, edited the answer to update on that. I had a couple of long sessions today and had no black screens or crashes so I think you should be good to go as well. If you have one of this year's version of the laptop it should have a better cooling system than mine too. :D",1
+ccvso8,"the aero 17 has a thunderbolt 3 connector, instead of 2 like on the 15x. I would think it works, but it seems to heavily depend on how its implemented. 
+
+That being said, I went ahead and bought the laptop. I will let you know if the rift s works with it when I get one.",1
+ccvso8,"yes, I believe too. In fact, I  was already asked someone who has an HP omen laptop which has Mini DisplayPort 1.4 and it worked. But the type and model is different from the 2 listed on my question above.
+
+I already made the question on a thread here and on another website but no one has answered it yet.
+
+I want to test myself but it's too risky if I can't return the laptop the shop only because the Oculus Rift S didn't work.
+
+Maybe I'll just wait for someone to confirm the compatibility here. :)
+
+&#x200B;
+
+Oh btw, how about the lenovo Y740 17"" that compatible with Oculus Rift S no longer available, you can check it by clicking the Lenovo Y740 (17"" version) link from the Oculus website on Oculus Ready PCs sub-web. The Lenovo Y740 15"" still available though.
+
+And how about the Lenovo Y545? Is it compatible, anyone?",1
+ccvso8,"I am not next to it atm, it’s the one with the 2070.  
+If you take a picture of your Nvidia settings I can tell you exacly",1
+ccvso8,I have the GA502DU and it's still on the incompatible list above however you say it works? Which is correct please? :),1
+ccvso8,"Oh sorry, I just read your comment at another thread. It's GL504GW, same model as mine.
+
+Do you have any problem with setup/using rift s with laptop?  I intend to buy it as my first headset, but there is so much fuss around laptop with nvidia optimus. Kinda worried whether it can work well enough.",1
+ccvso8,Works perfectly fine for me 😁,1
+ccvso8,Im using my Rift S with this computer all the time. It works great.  You need to use the DP to MiniDP adapter which comes in the box.,1
+ccvso8,Any chance you know (or better yet have a link to) which usb-c adaptor you are using? I have Cable Matters one in my basket which is only one I can find which specificity mentions do 1.4. https://www.amazon.co.uk/dp/B07P61KV8Z/ref=cm_sw_r_wa_apa_i_NqNKDb1WPSGFK cheers.,1
+ccvso8,Awesome! Thank you very much.,2
+ccvso8,That's the same one I'm using! Haha,1
+12z3nbi,[Removido],[Comentário removido],
+12z3nbi,"There's nothing wrong with 4070 since 40 series GPUs run great at less wattage, meaning less heat and no throttling during prolonged workloads. Lenovo legion comes as an obvious choice for great thermals, uncompromised performance and good build quality. The zephyrus line feels more premium and portable but leave a little bit of performance on the table (not much). They do get loud and/or hot during long use because of that slim form factor, although they dont make the user uncomfortable due to that as far as i have heard.",5
+12z3nbi,"This post was automatically given the Request flair.
+
+*If this is wrong, please give your post the [correct flair](/r/GamingLaptops/wiki/flairing).*
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/GamingLaptops) if you have any questions or concerns.*",3
+12z3nbi,"I always reccomend this one. Is the best deal for your money $1,299 and you get q QHD, a full 3070ti , 32gb of ram, 1tb of ssd and free shipping.
+
+https://www.reddit.com/r/GamingLaptops/comments/12xngdo/vector_gp66_156_qhd_i712700h_3070_ti_32gb_ram_1tb/?utm_source=share&utm_medium=android_app&utm_name=androidcss&utm_term=1&utm_content=share_button",3
+12z3nbi,"This post was automatically given the Tech Support flair. 
+
+*If this is wrong, please give your post the [correct flair](/r/GamingLaptops/wiki/flairing).*
+
+If you solve your issue, please give your post the Solved flair.
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/GamingLaptops) if you have any questions or concerns.*",1
+12z3nbi,Asus G14 is nice,1
+12z3nbi,Consider checking out Dream Machines laptops. There might be some model that interest you.,1
+12z3nbi,"G14 zephyrus  is great, I use it for the same things you do but will recommend repasting every now and then. Also Lenovo legion 5 ?",1
+12z3nbi,Thank you! I looked into it but I saw a lot of people complaining about the plastic deck and it fading :/ I might get it though if I can't find another laptop with good build quality lol,3
+12z3nbi,Thank you! I really would love a zephyrus and I swear I would have bought [this](https://www.bestbuy.com/site/asus-rog-zephyrus-16-wqxga-165hz-gaming-laptop-intel-core-i9-16gb-ddr5-memory-nvidia-geforce-rtx-3070-ti-1tb-pcie-4-0-ssd-off-black/6494637.p?skuId=6494637&irclickid=RAVVVZXS9xyNUP1TdBwCE00LUkAQ7DxJ1W%3Ah000&irgwc=1&ref=198&loc=Jarrod%20Farncomb&acampID=0&mpid=2471149) if it wasn't for build quality issues! I would love to get a legion but the way they look compared to the zephyrus is not comparable :/ I might have to settle for it if I can't find another good option!,1
+12z3nbi,"Thank you! My only concern with it is that the cpu is 1.7ghz and it has ddr4 ram, how do you suggest it will hold against future proofing and performance and how long it will last?",0
+12z3nbi,Gets really hot,3
+12z3nbi,How easy are they to repaste? And I wanted a g14 but I read they overheat easily 😓,1
+12z3nbi,"This is an excellent deal, however the m16 does get fairly hot if not throttle with that super hot i9 (thats just the way intel works in compact designs). Id suggest going with g15 because it has ryzen cpus which dont run too hot and are quite efficient. Plus the design is almost identical but with a 16:9 aspect ratio.",1
+12z3nbi,"That frequency is a base clock for E-cores. 
+
+When you need the computing power, it will boost P- cores to 4.7 GHz. That way, you get a powerful processor that is sipping electricity when not utilised.
+
+Advice about comparing processors: their maximum frequency means very little to you. Overall, computing power is a combination of many specs. It is best to just look at benchmarks done on a specific laptop you are buying.",2
+12z3nbi,"The Cpu is 4.7ghz. 1.7ghz is the lowest. The 12700h has the same number of cores as the 13700h.  I dont mind the ddr4 , is totally find. You will save a gkod amount with this deal. I bought the same deal but in 17inch 1080p. But that one is sold out.
+
+https://ark.intel.com/content/www/es/es/ark/products/132228/intel-core-i712700h-processor-24m-cache-up-to-4-70-ghz.html",1
+12z3nbi,Thats the only reason I haven't gotten it yet tbh :/,1
+12z3nbi,"I have the 6700 one, doesn't get very hot. I don't think it will be very hard, if you are unsure the local repair shop will do it in 15 minutes",1
+12z3nbi,Thank you so much for explaining! I was just a little worried but I understand now :),3
+12z3nbi,The fact you got shops around you that even mess with Liquid Metal is nice,1
+1d5yz7e,"Remember to check our discord where you can get faster responses! 
+https://discord.gg/EBchq82
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/pchelp) if you have any questions or concerns.*",1
+1avxpag,"Hi u/DontHugMeImAwkward, thanks for posting to r/WindowsHelp! Don't worry, your post has not been removed. To let us help you better, try to include as much of the following information as possible! Posts with insufficient details might be removed at the moderator's discretion.
+
+* **Model of your computer** - For example: *""HP Spectre X360 14-EA0023DX""*
+* **Your Windows and device specifications** - You can find them by going to go to Settings > *""System""* > *""About""*
+* **What troubleshooting steps you have performed** - Even sharing little things you tried (like rebooting) can help us find a better solution!
+* **Any error messages you have encountered** - Those long error codes are not gibberish to us!
+* **Any screenshots or logs of the issue** - You can upload screenshots other useful information in your post or comment, and use [Pastebin](https://pastebin.com/) for text (such as logs). You can learn how to take screenshots [here](https://screenshot.help/windows).
+
+All posts must be help/support related. If everything is working without issue, then this probably is not the subreddit for you, so you should also post on a discussion focused subreddit like /r/Windows.
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/WindowsHelp) if you have any questions or concerns.*",1
+10nrr6f,[Removido],[Comentário removido],
+10nrr6f,"I will assume your CPU 7xxx series or 8xxx series since your GPU is 1050.
+
+For that cpu, I will recommend at most 3060Ti or 6600XT (assuming for gaming)",2
+10nrr6f,For what use case? For what budget?,3
+10nrr6f,"The problem with this products is that here in Brazil they are a lot more pricey so I was thinking in getting an Chinese one.
+If I see the Akitio selling in a good price I'll get one, thx!",2
+10nrr6f,"Yea it's an i7 8th gen!
+I was already thinking in the 3060ti over the 6600XT to stay with 2 GPUs NVIDIA.
+Thx!",2
+10nrr6f,"hi, what max gpu would you recommend for tb3 with i7-11370h?",1
+10nrr6f,"Just for gaming, I mostly play competitive games (VALORANT), but I'm thinking of starting playing triple A games with a good graphical quality.
+
+As for the budget, I'm Brazilian so it's around R$5000 wich is around $1300 (the prices of tech here are a bit inflated) just for the GPU.
+I'm thinking about getting a Chinese dock (around R$700 or $140), so that's not a problem.",1
+10nrr6f,[Removido],[Comentário removido],
+10nrr6f,"On the sidenote, I would actually recommend taking 6600XT over 2 Nvidia because 2 Nvidia can cause driver issue. You probably can double check and do some reading on that topic, not exactly sure about it too",2
+10nrr6f,"In that case just buy an enclosure (around 300 bucks) and put the rest of the money towatds the best graphics card you can buy.
+
+You should be able to get a really capable setup for those kind of money. I don't know the Brazilian market but over here you could get a used 3080 or even a 3090.",2
+10nrr6f,"Oh I didn't knew that, I thought that the 2 Nvidia GPUs would be better.
+I will see more about it,
+thx again!",2
+1837bpt,"Hey, I highly recommend [this video](https://youtu.be/oPD7bwJiYU8?si=iWpW6CnzpjuN2v_e). A bit long but everything you need to know is there (:",1
+zyie6u,"It might be worth opening up the machine. If the battery is swollen, it should be removed to prevent further problems.
+
+r/spicypillows shows what it looks like
+
+HTH.",2
+zyie6u,"Do you need the battery or does your laptop mostly sit on your desk? 
+
+The answer to that question will be your answer. 
+
+Also I would be a bit wary of putting too much money into such an old machine.
+
+Dells almost always run for like 7 to 10 years if they are taken care of, but it also doesn’t always make sense to put a ton of time, money and effort into old electronics.
+
+They can very quickly become money pits worse than boats!",1
+zyie6u,"Pretty old thread, but I have a Dell G7 7588 that is used like a desktop. Eventually, the battery did swell and I recently removed the battery to opt for only AC power. Well, my performance has gone down under heavy loads and I think the battery may be the reason. Do I need to replace the battery or do you think it could be something else? My laptop is due for a clean windows install (once every year or so) so not against starting fresh.",1
+zyie6u,"Trust me, I know. It sits on my desk all day so it doesn't move. However, I am afraid if the PC stops turning on because of the battery, I had a Dell laptop that had a dead battery but stopped turning on even if plugged in.",2
+zyie6u,"It does pull from the battery as well during heavy loads, so yeah you'll have to get a replacement.",1
+zyie6u,"Interesting. Did you try disconnecting the battery to see if it would power on with the battery disconnected? 
+
+I know that malfunctioning peripherals - especially USB hard drives - can definitely  prevent a PC from booting properly. I don’t see why a malfunctioning battery wouldn’t also possibly cause a computer to stop booting as well…",1
+zyie6u,I replaced the battery and I'm still having performance issues after a reimagine. In my tasks manager I see Desktop Window Manager taking crazy amounts of memory and the performance when watching YouTube is crazy bad. Guess it's time to retire the laptop to a server and get something newer,1
+zyie6u,"i have the same laptop, it happened to slow down because of thermo-throttling, the cpu went fast under heavy load & became too heat & system safety limit the cpu to cool it down & everything repeat. i disabled this function in BIOS then it was fine, hope it helps",1
+zyie6u,Are you using the Dell charger? When you use a non factory charger it can slow your shit down for no reason if you use it to reconnect the battery,1
+zyie6u,"What option is that in the bios? I'm not seeing it, I have dell g7 7588 as well",1
+imtocn,[Removido],[Comentário removido],
+imtocn,any laptop with intel 9750h and rtx 2060 will be better,2
+imtocn,"* The best laptop for you is the one with an RTX 2060 graphics card like the Acer u/djau444 suggested.
+* Avoid HP Omen u/ahmedranaa suggested because it features only a GTX 1660 Ti and also overpriced.
+* And don't listen to u/homicidalsincebirth, Acer laptops are good-quality, my 6-year-old Acer Aspice still runs well. Actually I have a bad experience with HP laptops. My girlfriend's HP was suddenly broken after a year of use.",4
+imtocn,Hp Omen 2020,2
+imtocn,I would suggest the Lenovo Legion 5 (AMD) on sale.,1
+imtocn,Legion 5 AMD or ASUS TUF 15?,1
+imtocn,"Hey,
+
+Right now, the most powerful laptop you can get in this budget is the [**Acer Aspire Nitro 5 15**](https://noteb.com/?model/model.php?conf=15220372327181000704_3024&ex=USD&ref=starchaser).
+
+It has a 10'th gen Intel processor, RTX 2060 graphics card, 144 Hz display, PCIe SSD and room for an HDD, 16 GB RAM 2 memory slots, ~4H battery life and a good peripheral port selection: 1 X USB-C 3.1, 2 X USB 3.1, 1 X USB 2.0, 1 X LAN.
+
+Or, for something a little bit more durable, this [**HP Omen 15t**](https://noteb.com/?model/model.php?conf=16943814178946000896_4564&ex=USD&ref=starchaser) is on sale at Microcenter for 1100$. 
+
+For similar laptops, you can check out this [**search engine**](https://noteb.com/?search/search.php?advsearch=1&Regions%5B%5D=United%20States&bdgminadv=500&bdgmaxadv=1150&exchadv=USD&nrcoresmin=6&nrcoresmax=12&cputdpmin=2&cputdpmax=127&cpufreqmin=1&cpufreqmax=5.3&cputechmin=7&cputechmax=28&launchdatemin=2012&launchdatemax=2020&gputype=1&gputype2%5B%5D=2&gputype2%5B%5D=4&gpumemmin=64&gpumemmax=16384&gpubusmin=64&gpubusmax=2048&gpulaunchdatemin=2013&gpulaunchdatemax=2020&gpupowermin=69&gpupowermax=150&displaymin=13&displaymax=16.1&verresmin=1080&verresmax=2400&DISPLAY_msc_id%5B%5D=LED%20IPS&DISPLAY_msc_id%5B%5D=LED%20IPS%20PenTile&DISPLAY_msc_id%5B%5D=LED%20TN%20WVA&DISPLAY_msc_id%5B%5D=OLED&DISPLAY_msc_id%5B%5D=mLED&capacitymin=256&capacitymax=8192&nrhdd=1&typehdd%5B%5D=SSD&mdbslots=0&mdbwwan=0&rammin=8&rammax=128&freqmin=1600&freqmax=4266&batlifemin=2.1&batlifemax=19.7&acumcapmin=24&acumcapmax=102&weightmin=0.4&weightmax=5.5&thicmin=7.2&thicmax=65&widthmin=201&widthmax=431.8&depthmin=128&depthmax=402.6&webmin=0&webmax=8&wnetspeed=150&oddtype=Any%2FNone&opsist%5B%5D=Windows%2010%20Home&opsist%5B%5D=Windows%2010%20Pro&opsist%5B%5D=Windows%2010%20S&opsist%5B%5D=macOS%2010.15&opsist%5B%5D=Chrome%20OS&yearsmin=1&yearsmax=3&sort_by=value&ref=starchaser)
+
+You can see and change the search parameters using the ""Refine results"" button in the upper-left part of the search results page. You can also click on the laptops for more information.
+
+Hope I helped!",1
+imtocn,"Hi, although it has a GTX 1660 Ti, I'd go with the  new [**Lenovo Legion 5 15""**](http://techneeeq.com/blog/index.php/product/lenovo-legion-5-gaming-laptop-15-fhd-1920x1080-ips-screen-amd-ryzen-7-4800h-processor-16gb-ddr4-512gb-ssd-nvidia-gtx-1660ti-windows-10-82b1000aus-phantom-black/). Reviews on it so far have been positive. It comes with a 8-core Ryzen 7 4800H processor, GTX 1660 Ti graphics, 16 GB RAM, a 512 GB SSD, and a 1080p 15.6"" 144Hz IPS display. This combination can run modern games at high settings at 1080p easily. 
+
+Unlike most Ryzen 4000 series laptops, it doesn't sacrifice thermals or display quality, which is a big plus. The Intel variant gets around 7 hours of battery life for light use, so you can expect something similar on this device. 
+
+The thermals are fairly solid on this device, which is why I recommend it over most RTX 2060 laptops in this price range since they sacrifice thermals.",1
+imtocn,"I would recommend this [Lenovo Legion 5](https://www.amazon.com/dp/B08BB9RWXD/?tag=bkadamos_alltest-20) because it comes with AMD Ryzen 4800H 8-Core  CPU which is one of the best in your budget and great for your usage, 16GB of RAM for smooth multitasking, Good SSD storage of 512GB for faster boot up and loading, 15.6 inch Full HD IPS screen which is a must have for this price range, it comes with GTX 1660Ti GPU, and high build quality.
+
+Due to the Virus a lot of laptops are being overpriced so make sure to check [this list of overpriced laptops](https://old.reddit.com/r/SuggestALaptop/comments/g99jp9/lpt_dont_buy_new_laptops_now_unless_you_really/) before you buy any laptop at the moment.",1
+imtocn,do you need the portability of a laptop?,1
+imtocn,"For gaming at this price range      I would advise you to check this laptop
+                   
+laptop name                 | [Acer Nitro 5](https://www.amazon.com/dp/B08777BH1B/?tag=adviser100-20)
+---      |----
+CPU  | Hexa core 9th Gen I7-9750H
+GPU  | RTX 2060
+Screen       | 144 Hz 15.6"" FHD IPS
+Ram  | 16 GB
+SSD  | 256 GB
+HDD  | 0
+Weight       | 4.85 lbs
+Battery life | 3 Hrs.
+Pros  | A full RTX 2060 is great for gaming .
+Pros  | Decent cooling system .
+Pros  | One of the best bang for the money in the market.
+ 
+ 
+For more options, please check the following [link](https://laptopmeter.com/shop/?min_price=800&max_price=1100&filter_screen-size=15-6-inches&filter_graphics-coprocessor=nvidia-geforce-gtx-1660-ti%7Cnvidia-geforce-gtx-1050-ti%7Cnvidia-geforce-gtx-1060%7Cnvidia-geforce-gtx-1070%7Cnvidia-geforce-gtx-1070-max-q%7Cnvidia-geforce-gtx-1650-2%7Cnvidia-geforce-rtx-2060%7Cnvidia-geforce-rtx-2070%7Cgeforce-rtx-2070-max-q%7Cgeforce-rtx-2080-max-q)",1
+imtocn,"This. There was a deal today with those specs at $900 on Amazon but it has since sold out. It is still available on Microsoft Store for $1000, and I believe you can take 10% off and get the $900 price with a student discount.
+
+https://www.microsoft.com/en-us/p/acer-nitro-5-gaming-laptop/8zm7c4w1nghz",3
+imtocn,asus zephyrus g14 on sale is better because better screen in terms of nits and srgb but it has a weaker gpu with a 1650 vs. 2060 at the same price when on sale for 1k,3
+imtocn,"This looks like just the thing. Thank you bro, much love",2
+imtocn,[Removido],[Comentário removido],
+imtocn,"look for model like
+
+Acer Preadater 2020
+
+lenevo legion 5i",1
+imtocn,1000$?,1
+imtocn,The graphics card on there is rather underwhelming,2
+imtocn,Can vouch for the TUF. Might be a little over 1000USD though.,1
+imtocn,But worse graphics. Also OP wanted 15 inch.,3
+imtocn,"https://youtu.be/i292_YrT6H8
+According to him circular deals are coming on best buy which you can get it for 1100 . I think he got the 4k model for that",2
+imtocn,Yeah... for less than $1000 I think it’s ok,2
+imtocn,yup. the acer nitro gets better performance. If he hooks it up with a good monitor then its the best value.,1
+imtocn,He can get a 2060 model of some other laptop somewhere,1
+imtocn,"Chill, it’s a suggestion.",2
+yly94e,[Removido],[Comentário removido],
+yly94e,"Officially, no:
+
+[https://www.dell.com/support/manuals/en-us/g-series-15-7588-laptop/g7-7588-setupandspecs/storage?guid=guid-c2e00a7e-f304-4a5d-a462-92a82bb0112a&lang=en-us](https://www.dell.com/support/manuals/en-us/g-series-15-7588-laptop/g7-7588-setupandspecs/storage?guid=guid-c2e00a7e-f304-4a5d-a462-92a82bb0112a&lang=en-us)
+
+but in all likelihood, yes. There's no reason to believe that the 2TB SSD wouldn't work.
+
+I think it's more the case that Dell doesn't want to have to support SSDs that might causes issues in the G7.
+
+An example of this might be when you use a SSD with NAND chips on both sides of the PCB (printed circuit board) which then causes problems with fitting into the laptop or with overheating. In general, using a double-sided SSD is something that probably should be avoided (or install a heat sink on the SSD to try to better remove heat).
+
+Anyway, the 980 Pro is a single sided SSD so you won't have those problems. These posts:
+
+[https://www.reddit.com/r/Dell/comments/rgxoic/dell\_g15\_5511\_ssd\_upgrade\_recommendations/](https://www.reddit.com/r/Dell/comments/rgxoic/dell_g15_5511_ssd_upgrade_recommendations/)
+
+[https://www.reddit.com/r/Dell/comments/sewbdl/dell\_g15\_5515\_adding\_a\_second\_drive\_will\_samsung/](https://www.reddit.com/r/Dell/comments/sewbdl/dell_g15_5515_adding_a_second_drive_will_samsung/)
+
+discuss the 980 Pro in a similar machine to yours (it's always helpful to search reddit for answers like these).",2
+yly94e,"I’d at least give it a try. 
+
+My Dell Inspiron (bought in 2019)  officially only supports up to 512GB, but I just installed a 1TB Samsung 970 EVO. 2 weeks later all is running great. 
+
+Make sure your vendor has a good return policy. I bought off Amazon so I could return if it didn’t work.",2
+yly94e,Great to hear,1
+yly94e,I'm buying the Samsung 970 evo 2tb gen 3 m.2 . Will update here if it works as it does seem that it will. \[it is a single sided SSD\],1
+yly94e,"Thanks, much appreciated.",1
+yly94e,So did it work? the 2 TB ?,1
+yly94e,"My G7 had some other issues shortly after my post (unrelated to the SSD upgrade.) I ended up with only the os on the internal SSD and getting an external docking station. Not as portable, but fits my needs.",2
+yly94e,"Oh. I see. In my case I have a 128 gb ssd + 1tb HDD. So replacing the HDD for a  1TB/2TB SSD makes sense for me. ~~I assume you had only 1 slot for either ssd or hdd.~~
+
+~~Just checked 1st slot (SATA AHCI) is upto 128GB ssd only same for all 7588~~",1
+yly94e,"I am also replacing the battery since the current one has a 2 min charge :D.  
+Also upgrading the RAM from 16 to 32gb.",1
+13ff38z,"try to search r/hardwareswap for this laptop. If selling locally, may add around 10% to the hardwareswap prices.",1
+13ff38z,$3.50,1
+13ff38z,So just keep it is what you are saying,1
+13hzofk,$200,1
+13hzofk,[Removido],[Comentário removido],
+13hzofk,Good condition with two chargers thank you for the input I’ll hit eBay and see if I can get  enough for a 1sr tier steam deck,1
+w04yma,What did you use and how long ago did you repaste?,1
+w04yma,Open SupportAssist and run a diagnostic on your fan. You may have to reboot and run the diagnostics through the BIOS (F12 or F8 at Dell Logo?) Definitely select the Cool Profile from Dell Power Manager (also available in the BIOS) until you have figured this out.,1
+w04yma,"So When you update or downgrade the bios, are you resetting to factory defaults and then after also Unclocking the OC Lock and CFG Lock (for undervolting) in usb EFI grub shell.
+
+after doing a bios reset or upgrade I also delete the throttle stop config and start fresh and redo all my settings. As I notice it wouldn’t kick in unless I did . I also don’t check the Speed Shift EPP setting. Since SST is green for me. Then i'll go into Dell Power Manager app>thermal management and change from optimized to ultra or vice versa and then back to whatever I had it on before. I also use Gelid GC-Extreme and I spread it with the little tool to make a little layer on top of the silver dies and then put a small small dot on top of that (for both gpu and cpu).
+
+I am also on the latest 1.21 bios. I mainly just play Elder scrolls online and hit about 80C-81C max on CPU and anywhere from 67C-80C on GPU.",1
+w04yma,"Hey mate, I have the same model. I'm gonna tell you what works for me.
+
+1. When playing a game (or running a demanding software) set the Thermal Management in Dell Power Manager to Ultra Performance (make sure you have the latest version installed, you can check for any updates using Dell Update). This gives your laptop a performance boost as well as increase your fans speed.
+2. Make sure your fans are clean.
+3. I tried undervolting my CPU 1-2 years ago, and my temps went down a lot. If you succeed to only undervolt your CPU without underclocking, that would be great, otherwise, you might want to underclock for better temps. I'm using [ThrottleStop](https://www.techpowerup.com/download/techpowerup-throttlestop/), My CPU Core is at -250 mV and my CPU Cache is at -128.9 mV. Unfortunately, I had to underclock to avoid Power throttling (but that's another problem), in other words, when all my CPU's cores are active, the clock is at 3.1 GHz - which is kinda sad since this CPU is designed to Turbo Boost up to 4.1 GHz.
+4. There were some services that were exhausting my CPU (taking up-to 40%). You can disable them in the Services tab in System Configuration. The ones which were causing this problem (for me at least) were Dell Data Vault Collector, Energy Server Service queencreek and Intel (R) System Usage Report Service SystemUsageReportSvc\_QUEENCREEK.
+5. I changed the thermal paste recently, but I got high temps (100 degrees). But then I noticed that the undervolt wasn't working so I had to restore factory settings to my BIOS.
+
+My temps are now 83 for GPU and 77 for CPU when gaming. Note that if you decide to undervolt, don't use the same values as I did, look up an undervolting guide and follow their instructions (it took me more than a year to get the perfect values).
+
+Other advice: keep you drivers up-to-date, and your pc clean. If you're still not satisfied with your temps, you can try to underclock your GPU (not undervolt or overclock or anything, just underclock). This will cut down performance but will give you better temps. I tried it (when gaming) using MSI Afterburner and my temps went down by 5-6 degrees (I don't underclock my GPU anymore because my temps are great after the thermal repaste). You can also put a small book just under the edge of your laptop between the fans (my temps went down 2 degrees). You can do this if you don't want to buy a cooling fan. As a last resort, you can disable Turbo Boost which would greatly improve your temps but cap your CPU clock at 2.2 GHz which would reduce performance.
+
+NB: Dell G7 15 7588 chassis sucks when it comes to cooling. Dell didn't try to invest a lot in this model (sad). Nearly every Dell G7 user faces problems with thermal throttling.
+
+Hope this helps :)",1
+w04yma,I believe thermal grizzly and 3 days ago.,1
+w04yma,"Ran it, it said everything was OK.",1
+w04yma,"Ya man, this is a head-scratcher for sure. All I can say is make sure your fan is working correctly (see below comment), and get a cooling pad. I bought this one and it dramatically cools my laptop down. The air stream is very strong. https://smile.amazon.com/gp/product/B07NMBJVBG/ref=ppx\_yo\_dt\_b\_search\_asin\_title?ie=UTF8&psc=1
+
+The other thing I learned is, though Thermal Grizzly Kryonaut is amazing stuff, it's not great for Dell laptops because it dries out when temps are in the 80s and 90s almost all the time (which Dell thinks is perfectly fine). It certainly should last you much longer than 3 days, of course, I went about 6 months before repasting mine. Arctic MX-4 has much longer durability, and works almost as well as Thermal Grizzly, but it's made out of stuff that doesn't dry out as easily. 
+
+One last question - are you sure it's thermal-throttling, and not power-throttling? These H-series processors are rated for like 35-45W, but once the turbo boost runs out, Both Dell and Windows have them set to throttle down - mine would go from 4.5 GHz, and then throttle down to like 1.1 GHz inexplicably, meanwhile frames would plummet and my thermals seemed fine.  What are your temps, say, if you run Cinebench or CPU-Z's stress test?",1
+w04yma,"Hmmm, I never actually tested it for power throttling, that’s interesting. How does it power throttle, I’m just using the same power adapter the laptop came with. But still, I’ve tried Cinebench and didn’t notice high temps but it’s when I tried to play any other games even old ones that the temps easily reach over 90 degrees, maxing out at 100 degrees and fluctuating between 87, 95, and 98. How are you G7 temps with the cooling pad, does it go down by like 10 degrees?",1
+w04yma,"I actually have an Inspiron 16 7610, but mine power throttled pretty badly. It has an RTX 3050 and an i7-11800H. About 3 or 4 minutes after starting a game, I'd notice my CPU was only at like 25% utilization. My temps seemed fine, but my frames were like a fraction of what they should have been. My CPU would boost at 80W for about 20 seconds, and then immediately start power throttling down to nothing, and stay there until the utilization went back down. 
+
+Throttlestop (I'm on ver 9.5) is an incredibly useful app, not just for undervolting, but also for CPU monitoring and power control. It will tell you just how many watts you're using (PKG Power). Try running TS Bench, and watch the PKG power. When your system starts throttling, see if the PKG power starts going down. If you click ""Limits,"" it will show you why your system is throttling. Opening the TPL tab, you can click ""disable controls"" and then you gotta figure out wattage to put your PL1 and PL2 at. They should be the same. Mine is set for 65W for both PL1 and PL2.
+
+My system uses a 130W power brick. My RTX 3050 uses 60W, so if I set my CPU for 60W, that gives my system 10W more for other components. I actually found I could bump the CPU up to 70W if I wanted with no negative effects that I've noticed, except from what I heard it can interfere with your GPU and your GPU won't use as much as it should. Also, I flipped the Turbo Time Limit to the max length. Try TS Bench again after you change these settings, and you've got this made if you can maintain your package power.
+
+As for the cooling pad, that cooling pad is works like air conditioning for my laptop. It probably brings my temps down 10C while it's under load. It's a strong air stream that blows in just the right place into the underside of my laptop. It's a little loud, though, but I really don't mind.",1
+109c99s,"**Getting dump files which we need for accurate analysis of BSODs.** Dump files are crash logs from BSODs.
+
+If you can get into Windows normally or through [Safe Mode](https://support.microsoft.com/en-us/help/12376/windows-10-start-your-pc-in-safe-mode) could you check C:\Windows\Minidump for any dump files? If you have any dump files, copy the folder to the desktop, zip the folder and upload it. If you don't have any zip software installed, right click on the folder and select Send to → Compressed (Zipped) folder. 
+
+Upload to any easy to use file sharing site. Reddit keeps blacklisting file hosts so find something that works, currently [catbox.moe](https://www.catbox.moe/) or [mediafire.com](https://mediafire.com) seems to be working. 
+
+We like to have multiple dump files to work with so if you only have one dump file, none or not a folder at all, upload the ones you have and then follow [this guide](https://www.tenforums.com/tutorials/5560-configure-windows-10-create-minidump-bsod.html) to change the dump type to Small Memory Dump. The ""Overwrite dump file"" option will be grayed out since small memory dumps never overwrite.
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/techsupport) if you have any questions or concerns.*",1
+109c99s,"If you have Windows on the HDD still. You can check the health of the drives with crystaldiskinfo.
+
+[https://crystalmark.info/en/software/crystaldiskinfo/](https://crystalmark.info/en/software/crystaldiskinfo/)
+
+What is the error that it gives you when trying to install/run on the SSD?",2
+109c99s,"crystaldiskinfo shows my SSD is at 89% and HDD is healthy
+The errors when I tried to run on SSD is winload.efi, sacdrv.sys,… and Automatic Repair couldn’t repair your PC.
+For extra context, the tipping point as to why I am reinstalling Windows was it couldn’t connect to wifi, play MP4, tons of errors when starting and restarts and can’t activate windows.",1
+fywgou,[Removido],[Comentário removido],
+fywgou,"Hi, 
+
+I understand that you're facing CPU usage and FPS drop issues while gaming. Does the issue happen when you play any other game?
+
+Let me know since when have you been facing the issue?
+Were any recent hardware, software changes or updates performed on the system before the issue occurred?
+
+Also, could you share the Service tag of the system via a private message?
+
+-Gautam.",1
+fywgou,"Here are the Screenshots of Temperatures of my PC analysed using HWMonitor
+
+these temperatures are during gameplay (During lags)
+
+[https://drive.google.com/open?id=12uwRseS12T-lSOGk2n2VnmpIRtBSGUGn](https://drive.google.com/open?id=12uwRseS12T-lSOGk2n2VnmpIRtBSGUGn)",1
+fywgou,And I also have the same problem.This happened from 2 days ago with no setting or driver be changed I think. The Cpu Usage and Fps drops very frequently,2
+fywgou,Yes every game which use my cpu more than 20 % also Unreal engine 4.23 lags too,1
+fywgou,Im also facing same issue already sent my service tag please check.,1
+fywgou,[Removido],[Comentário removido],
+fywgou,[Removido],[Comentário removido],
+fywgou,"Probably, I have found a Solution 
+
+Step 1: Download ThrottleStop Stable Version. ([https://www.techpowerup.com/download/techpowerup-throttlestop/](https://www.techpowerup.com/download/techpowerup-throttlestop/))
+
+Step 2: Go to FIVR Set your CPU Core Voltage to -125(You can change this like between -250 to -125) and CPU Cache Voltage to -125
+
+Step 3: Apply by Saving voltage.
+
+Step 4: While in ThrottleStop Turn ON SpeedShift EPP and keep the value on 128.
+
+That's it ""Save the Settings"" and Open this Software every time you play the game or you can also create a basic task in TaskScheduler to open it whenever you LOGIN.
+
+For more INFO follow this Tutorial ( [https://www.youtube.com/watch?v=yNt9L3BWOFo&list=PL8fLBy67n1W3OFCBC6RNsDPq28O1aDc7s&index=2&t=0s](https://www.youtube.com/watch?v=yNt9L3BWOFo&list=PL8fLBy67n1W3OFCBC6RNsDPq28O1aDc7s&index=2&t=0s) ) EXCEPT for THE SPEEDSHIFTVALUE",1
+fywgou,"Alright,
+
+As requested, please share the Service tag of the system via a private message.
+
+-Gautam.",3
+fywgou,"Hi,
+We have not received the Service Tag yet. Please try sending the private message again.
+-Krishna",1
+fywgou,"Hi!
+
+Thank you for reaching the Dell Reddit Support.
+
+This is Deepti, and I will be assisting you. Please share the system service tag via a private message to review and assist you further.
+
+-Deepti",1
+fywgou,What should I do?,2
+fywgou,Done I've sent the Service tag of PC and my name on Direct Message,1
+fywgou,done sir,1
+fywgou,[Removido],[Comentário removido],
+fywgou,"I'm sorry but I didn't get the Service tag.
+
+Please send me the Service tag via a private message.
+
+-Gautam.",1
+fywgou,We did not receive the tag yet. Could you try sending it via Private Message again?,1
+fywgou,"Done BRO
+
+&#x200B;
+
+Probably, I have found a Solution 
+
+Step 1: Download ThrottleStop Stable Version. ([https://www.techpowerup.com/download/techpowerup-throttlestop/](https://www.techpowerup.com/download/techpowerup-throttlestop/))
+
+Step 2: Go to FIVR Set your CPU Core Voltage to -125(You can change this like between -250 to -125) and CPU Cache Voltage to -125
+
+Step 3: Apply by Saving voltage.
+
+Step 4: While in ThrottleStop Turn ON SpeedShift EPP and keep the value on 128.
+
+That's it ""Save the Settings"" and Open this Software every time you play the game or you can also create a basic task in TaskScheduler to open it whenever you LOGIN.
+
+For more INFO follow this Tutorial ( [https://www.youtube.com/watch?v=yNt9L3BWOFo&list=PL8fLBy67n1W3OFCBC6RNsDPq28O1aDc7s&index=2&t=0s](https://www.youtube.com/watch?v=yNt9L3BWOFo&list=PL8fLBy67n1W3OFCBC6RNsDPq28O1aDc7s&index=2&t=0s) ) EXCEPT for THE SPEEDSHIFTVALUE",1
+fywgou,Sure,1
+fywgou,Done,1
+zxjyqz,"Thousands digit is the grade (3 is entry, 5 is midrange, 7 is premium and 9 is ultra).
+
+Hundreds is the screen size (5 is 15 inch, 7 is 17 inch).
+
+Tens is the CPU generation, roughly (8 = 8th generation, 2 or 3 is current).
+
+I do not recall what the ones digit does, I believe it is a miscellaneous number.
+
+Not sure if this helps any or not.",-1
+zxjyqz,"This is pretty accurate. And you're on the right path about the screen size.
+My opinion would be, if there are no proper specs and description listed, you're pretty much taking a risk.",0
+qm0c5s,"Weirdly enough, I've experienced a lack of issues and better performance when I upgraded to the windows 11 beta months ago. I had weird encoder issues with 10 that I'm sure most people don't experience, but the upgrade somehow fixed that. AE runs smoothly and everything else seems fine with the rest of the suite. The only thing I haven't used acrobat, so I can't speak for that one.
+
+My specs are Ryzen 5 3600, 32gb ram, rtx 2060, and an SSD with several hard drives in case you wanna know",1
+qm0c5s,"Running great with the new 22 release. I use mostly AE and Illustrator and running nice! few lags from the new Multi-Frame Rendering that hopefully will be fixed in the coming Adobe updates.
+
+I think your 970Evo will help much performance wise but if you can upgrade to 32GB of rams would be awesome your lap supports that.",1
+qm0c5s,"Out of those, I only use Acrobat Pro DC, and it's working fine. Most of my apps feel the same. The bigger issue with Windows 11 for me is the decreased productivity due to the new (inconsistent) UI and (lack of) settings, plus a smattering of bugs. If you use ungrouped taskbar items/labels in Windows 10, you're going to miss that in 11, and if you use a lot of right-click commands, you're probably going to miss the old context menu. Want to move the taskbar around or have the system clock on a second monitor? Again, not happening natively. You can download third-party apps for changes, but at that point you might as well stick with Windows 10 unless you're interested in a more Mac-like interface.",1
+qm0c5s,"Same cpu here. I often use lightroom and photoshop sometimes. I feel that w11 is laggy, file explorer or some right click's reaction. But interestingly, Lightroom and Photoshop works smoothly. Faster and Better than w10. Just my opinion.",1
+qm0c5s,"Currently I've only got Acrobat DC installed since the upgrade, but so far creative cloud and Acrobat DC have run fine with no issues.  Been using it for about a week now for work, so been put through it's paces, as I use Acrobat DC every day.",1
+qm0c5s,"That's good to know!
+I just did a backup and also a recovery point and I'm going to upgrade it.
+Thank you!",2
+qm0c5s,"Yeah, I'm planning on upgrading my ram to 32 gb by December.
+Thanks!",1
+qm0c5s,Thanks! I just read somewhere that there's a way to recover the previous right-click menu in windows 11.,1
+qm0c5s,"Thanks! 
+Maybe there's a way to solve this lag issue you have.
+I just made a backup and I'm going to install the update.",1
+hu6fag,Go to display settings (?advanved?) and manually change the refresh rate from 40 to 60hz,1
+hu6fag,Exactly 40 or hovering around 40?,1
+hu6fag,"I have manually set the refresh rate to 60 hz wherever possible, my scrren doesnt even have an option for 40 hz . It has a 48 hz and 60 hz.",1
+hu6fag,Its changes only by a difference of 1. So it goes from 40 to 39 or 40 to 41 ut mostly its at 40.,1
+hu6fag,"Shen you say ""wherever possible"", you mean you right clciked desktop, went to display, went into monitor properties and changed it......or you just set it in the games?",1
+hu6fag,"Go here and tell us what its saying https://www.testufo.com/refreshrate
+
+Edit: Also almost certainly a soft throttle, problems usually bounce around a lot more. Probably not a conflict or damaged hardware, power settings can cause a throttle, over heating, unstable power supplies can also activate an underclock effect",1
+hu6fag,Yes I right clicked the desktop and set it there as well .,1
+hu6fag,Shows 60.020 Hz thers as well.,1
+hu6fag,Unplug and replug your power brick.,1
+hu6fag,60 hertz but 40 fps? What happens when you turn off vsync?,1
+hu6fag,Tried it too... didn't work,1
+hu6fag,"Yup , 60 hz but 40 fps and vsync is already turned off.",1
+hu6fag,CSGO used to give me around 220 fps on average but it has also been capped to 40 fps.,1
+hu6fag,"Check your power setting profiles and make sure they never underclock, also monitor your heat but usually that starts fast then slows down, if its just always slow you must be missing a soft throttle somewhere. Could be GPU or CPU but its gotta be throttling",1
+hu6fag,"I dont think thats an issue... I'm using XTU to monitor the cpu , the temps are in 70 - 75 range. The power limit throttling bar says ' Yes' in red but the cpu is operating at around 3.1 Ghz constantly.",1
+rb7pd0,"Yeah probably need to go into the BIOS and change the disk from RAID to AHCI, then it will get picked up by Manjaro. Using AHCI your Windows will be unbootable though. This can be fixed really easily though with some commands in Windows. I don't have the link right now but I'm sure you can find it on the arch wiki",2
+rb7pd0,[Removido],[Comentário removido],
+rb7pd0,"Thanks! I did the process and now I'm able to see the Disk. Although I came across another problem. When I set the /boot/efi for Manjaro in the FAT32 partition of windows for dual booting; when I click next, a prompt appears where it shows ""efi system partition configured incorrectly"". Also it says that I need 300 MiB of storage for efi partitioning. Would be a huge help if you could assist with this!",1
+rb7pd0,"I want to install it on the same device; on my laptop to be specific. That's why I wrote the specs to be as clear as possible. I created an empty space using Disk Management in Windows and allocated some space (created unallocated space) for the Manjaro Linux installation. What I'm trying to say is that I have to install Linux alongside with Windows in the NVMe Disk. When I load Linux using the Bootable pen-drive and try to install it, when in Partition Section of installer I am not getting the desired disk (i.e. NVMe) however the drop down menu of disk in the installer is showing the SATA Disk. I want the installer to show the NVMe Disk where I'll install Linux.",1
+rb7pd0,"What I did is go into windows, and just create unallocated space. Then change to AHCI and boot into liveUSB, and you should be able to install right on the unallocated space. GRUB will install aswell, I did the default partitioning from manjaro. Then do this to make windows 10 bootable again: https://triplescomputers.com/blog/uncategorized/solution-switch-windows-10-from-raidide-to-ahci-operation/",1
+tvik0w,Temps?,1
+tvik0w,"Using *Destiny 2*, here are the temps:
+
+Idle, in orbit: 69C~
+
+General Gameplay: 75-77C~
+
+100% Spike: 77C (aka it never moved)",1
+tvik0w,Temps are fine.,1
+rwj28t,Does it save it if you use any other setting?,1
+rwj28t,Alienware Command Center overrides My Dell power and battery settings,1
+rwj28t,"No
+It might be due to BIOS, since when i check the battery section, it let me choose between Standard and ExpressCharge, when i picked Standard it defaulted to it in the next restart.
+Is there a way to turn this off?",1
+rwj28t,"It seems like this might be a case of Dell software fuckery.
+
+I'd suggest trying a reinstall of dell power manager and making sure you're up to date on your BIOS updates.
+
+If that fails, you might have to contact Dell support to complain.",1
+rxvm6h,[Removido],[Comentário removido],
+rxvm6h,What's wrong with it?,1
+rxvm6h,"Overheats, loads slowly, loud fans.",1
+rxvm6h,">Overheats
+
+Tell Dell its overheating and the fan is running often, could be dust, poor heatsink mounting, poor thermal paste application, or it could be high CPU usage.",1
+pnaffh,"If you suspect you may have malware on your computer, or are trying to remove malware from your computer, please see our [malware guide](https://rtech.support/books/safety-and-security/page/malware-guide)
+
+*Please ignore this message if the advice is not relevant.*
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/techsupport) if you have any questions or concerns.*",1
+pnaffh,Have you check the temps? Repasting might help. As your laptop are kinda powerful in such apps like CSGO and web browsing.,2
+pnaffh,"Check all the temperatures in your laptop with a program like HWMonitor and test it while running a game. Scan your pc for malware. Try a fresh install. If these are good, maybe another part of it is faulty, since you replaced the motherboard and screen, it can be the power adapter or anything else.",1
+pnaffh,"I have exact model, and I've been inside the hardware side of the laptop. First of all, check the temperatures using hwinfo64, make sure ALL temps are normal aka less than 80-90°C under heavy load. Idle temp for my laptop is 37 on a cool day and 47 know a really hot day, expect 50-ish if you don't have an undervolt or custom fan curves + turbo boost enabled. 
+
+For the outdated motherboard only 1 response in mind: ""what the heck is he talking about?"" It is a laptop so custom motherboard for a custom laptop, it isn't outdated BUT if the mobo is compatible with other laptops maybe they mixed mobos or used whatever. But still check temps first
+
+For fans, check what bios version you have, if you have bios version less than 1.3 do no update if you enjoy having a cooler pc (if it get fixed eventually)
+
+My 7588 had 1 misaligned thermal pad and the thermal paste was a lesser quality but sufficient for their budget. I repasted and repadded, i used 1mm thermal pads as i recall. I also actively cooled the PCH which probably died on your mobo bcz of overheating.
+
+If you reply with updates i will reply back as i have same machine and i have interest in it.",1
+pnaffh,"Not only that, but mine had 1 thermal pad misaligned, good thing i repasted and repadded, worth while. I also actively cooled the PCH",2
+n3bvci,If you have a USB-C port you can buy a dock. I have that setup with two monitors. I bought one off of Amazon for $50 and it's worked great for almost 2 years.,3
+n3bvci,I would use an hdmi to usb adapter for another port for the second monitor.,2
+n3bvci,[Get this.](https://www.dell.com/en-ca/shop/dell-adapter-usb-c-to-hdmi-dp-with-power-pass-through/apd/492-bctu/pc-accessories?gacd=9683780-3008-5761040-266662033-0&dgc=st&gclid=CjwKCAjwm7mEBhBsEiwA_of-TOMPsMDG9qOaoKbJLxrNUzY8E3VqUhz1iLsxmlRiglGqaPNSkBixOBoC-y4QAvD_BwE&gclsrc=aw.ds),1
+n3bvci,Did you fix your problem? I have the same need,1
+n3bvci,[Removido],[Comentário removido],
+n3bvci,That setup is great because if you need to go to a meeting you can just take the laptop with you and leave the desktop stuff.,1
+dpfj21,Your TB3 port likely isn't connected to your discreet GPU making it incompatible with Rift.,2
+dpfj21,"I would find out if it is an active display port, I had the same issue trying to use another vr headset with a surface book that had USB type c and because it wasn't an active port it wouldn't power the headset",1
+dpfj21,Is it advertised as VR ready?,1
+dpfj21,"We both seem to have had the same issue considering my laptop is pretty much the same as yours and I had the same problem. It’s due to your thunderbolt 3 port being connected to your intel gpu and not the Nvidia one. If you can return the rift s and buy the quest then do that as the quest with the oculus link cable will work in your thunderbolt 3 port due to not being a video output and being data transferred over the wire. I’ll just find when I asked it in my post history quickly
+
+Edit: [Got it](https://www.reddit.com/r/oculus/comments/bkwxg1/hey_guys_im_new_to_vr_and_i_heard_the_oculus_rift/?utm_source=share&utm_medium=ios_app&utm_name=iossmf)",1
+dpfj21,so is the whole oculus incompatible then?,1
+dpfj21,"Discrete*, but yes I think you’re right.",1
+dpfj21,is the rift and quest the same? i was told the quest is not for gaming,1
+dpfj21,Unfortunately this is likely the case.,1
+dpfj21,Possibly. The way to know for sure is to go into the PhysX configuration tab for your graphics card and see if any of the ports are connected to your discrete GPU. If you’re not sure you can post the picture here and ppl will tell you (or google for one of the online explanations).,1
+dpfj21,"Quest might be the ideal situation for you, because it has its own games and doesn't require a computer at all to make it work.  But later this year it'll get its Link update which will allow it to tether to a computer only requiring a USB port and give it access to play all of Rift games.
+
+So i would ask whoever bought yo uthe Rift to return it for you and get you a Quest instead.  You can use it stand alone for now until it gets its Link update.  Both Rift and Quest are the same price so it should be an easy swap.",1
+dpfj21,"The Quest is for wireless vr where you wouldn’t get the same graphics as a pc vr headset but you will still be playing games the same but with a smaller library. However recently oculus announced that if you have a good enough usb 3 cable or by purchasing the official one you can connect the quest to your pc as if it was a rift s. The graphics will be slightly worse as it’s not like the rift s where it’s a monitor and rather that it’s like data being compressed and then unpacked on the quest to display to you but it can from there do everything the rift s can. And I know for a fact it will run on there since we have the same laptop and I’ve been doing some research 
+
+Plus the quest has hand tracking while the rift s doesn’t",1
+dpfj21,"The thing that is not for gaming is the oculus go, which is for only movies and seated games",1
+dpfj21,that’s disappointing. i was really looking forward to playing it. i know the HTC Vice is compatible but i can’t find it anywhere.,1
+dpfj21,That’s because it’s discontinued. Other choices include the Odyssey+ (in the US at least).,1
+hdevy7,[Removido],[Comentário removido],
+hdevy7,"I paid 1100 euro for a G3 3590 in march, i7 9750h, 16gb ram, 512gb ssd, 1660ti. Usually dollars can be converted 1 to 1 to euro's when it comes to laptops. 
+
+I think you paid too much for those specs especially since it's an open box.",5
+hdevy7,"if you can return it, please do. The following will be 1,199 from 24th June. 
+
+[https://www.costco.com/msi-ge75-raider-gaming-laptop---10th-gen-intel-core-i7-10750h---geforce-rtx-2060---1080p.product.100568605.html](https://www.costco.com/msi-ge75-raider-gaming-laptop---10th-gen-intel-core-i7-10750h---geforce-rtx-2060---1080p.product.100568605.html)",4
+hdevy7,You paid too much for sure. For that much you’d want at least a 1660ti if not a 2060 maxp on a deal,4
+hdevy7,u got cheated hard bruv,3
+hdevy7,[Removido],[Comentário removido],
+hdevy7,"Yes, you do need$60 yearly membership, they do delivery at home.",1
+hdevy7,I really wish I knew what graphics cards and components were good. I will check if I can return it. It really seems like a ripoff for giving me only 128 GB of SSD. That all is for the system itself and I can’t put any games on it.,1
+hdevy7,This might be stupid questionDo you know if I need Costco membership or something? And do they deliver it? How would I get the deal,1
+hdevy7,"I remember I bought R6 for $16 on my laptop, the next day it was on sale ;-;",1
+hdevy7,Second on this question if anyone reads this,1
+rvvpzn,"We do not recommend that users try upgrading to Windows 11 straight away. Waiting a week or more will allow for more guides, articles, fixes, and how-tos to be made.
+
+Making changes to your system BIOS settings or disk setup can cause you to lose data. Always test your data backups before making changes to your PC. 
+
+For more information please see our FAQ thread: https://www.reddit.com/r/techsupport/comments/q2rns5/windows_11_faq_read_this_first/		   
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/techsupport) if you have any questions or concerns.*",1
+k6saip,"Any chance you’ve tried a wired connection, just as a troubleshooting step?",1
+k6saip,Yup,1
+k6saip,"Any different, or do you get the same result?",1
+k6saip,"It actually didn’t even work, there may not be Ethernet at this apartment complex",1
+k6saip,Is the WiFi provided by your apartment complex? Your options might be limited if that’s the case.,1
+k6saip,"Yes, but I just think it’s so strange how it comes in at a non steady rate",1
+k6saip,I agree. Do you have another machine you can check with? That would at least tell you if it’s specific to your PC or if it’s some underlying network issue.,1
+k6saip,I will get my roommate to check with his laptop once he gets back,1
+gyozmr,"I currently have 64Gb of RAM in my G7 7588.
+
+\[Imgur\]([https://i.imgur.com/eRnqc3G.png](https://i.imgur.com/eRnqc3G.png))",1
+gyozmr,"I currently have a Dell G7 and was hoping to upgrade to 64.  Unfortunately can only afford 32GB will that still be decent for newer games?
+
+Currently run 16 GB of RAM
+
+Although sometimes loading takes a little bit of time but graphically it's pretty smooth.
+
+Most games I run
+Battlefield 2042
+Call of Duty Cold War and Black Ops 6
+Dragon Ball Xenoverse 2
+Dirt rally 2.0
+And recently back for blood. 
+
+This is the first gaming PC / laptop I've had in a really long time so I'm not really familiar with specs too much and interested in any tips or info on how to keep this running smoothly",1
+gyozmr,"64GB seems working fine on g7-7588:
+
+Source: https://x.com/qbgabe12/status/1908430139584872922?s=46",1
+gyozmr,Does it still work normally? Did you ever run into any issues?,2
+gyozmr,"Probably little to no different from 16 to 32GB for games ... (see YouTube review)
+
+Modern games might need 32GB, but g7 wont run anyway ...",1
+gyozmr,Still works like normal.,2
+gyozmr,Thanks for the reply! I'll be doing that as well in a few months. :),2
+gyozmr,No problem! PM me if you have any issue with it,1
+gyozmr,did bios solved the issue with ram compatibility? planning to upgrade to 32gb.,2
+gyozmr,I didn’t have any issues or bios issues when upgrading to 64GB of RAM.,1
+dew60m,[Removido],[Comentário removido],
+dew60m,There is definitely something wrong with cooling. Applying a new paste would be good. You sure other apps in the background are not eating up resources?,2
+dew60m,Download Throttle Stop and do like a -250mv undervolt and force/edit max turbo and lowest clock. Had to do that with my G7 before I gave up and sold it. Ended up doing a liquid metal application that dropped max temp to around 70c under synthetic load but still had to undervolt it. I sold it and got a desktop instead. Tired of dealing with laptop issues.,1
+dew60m,"If you are using ThrottleStop, why not post some screenshots so we can see how you have the program setup.  Use imgur and post some links here.  Make sure BD PROCHOT is not checked in ThrottleStop.  If your CPU is overheating, it is designed to throttle.  You need to fix that problem.
+
+Instead of using Disable Turbo, you can lower the FIVR - Turbo Ratio Limits so the CPU uses less turbo boost compared to using no turbo boost.
+
+Intel CPUs are not designed to throttle down 0.5 GHz.  A lot of software reports throttling incorrectly.  A properly designed computer will  rapidly change the CPU speed hundreds of times per second between full speed and usually about 800 MHz for most processors.  This will result in a smooth reduction in CPU performance.  
+
+Run a ThrottleStop log file.  It is one of the few apps that uses the Intel recommended monitoring method and correctly reports the CPU multiplier when throttling is in progress; power limit or thermal throttling.  Unfortunately, some manufacturers have cooked up their own poorly thought out throttling schemes which randomly results in the CPU getting stuck at 800 MHz for prolonged periods of time.  This has been a common problem with many Dell laptops for the last decade.",1
+dew60m,"> Could be dust clogging the fans
+
+Its definitely not this. I opened my laptop up about 3-4 weeks ago to clean the fans.
+
+> Just remember you void your warranty when opening up most laptops
+
+Off topic i guess, but this isn't the case (at least in the USA) anymore, granted, it's always been illegal to say/do that, but only recently did the FTC crack down on it.
+
+> A lot of laptops throttle due to poor thermals.
+
+I'm aware of this, but when i look up videos and articles on people testing this laptop and pushing it to its limits, their targets are always vastly different than mine.
+
+As mentioned in the OP, most videos show people getting a normal -.5ghz on their clock when thermal throttling, my CPU drops down to less than a ghz, making it basically unusable until it shoots back up.",2
+dew60m,"> You sure other apps in the background are not eating up resources?
+
+Not to the degree that it would hamper my CPU this badly. Typically its just chrome, steam, and whatever game i'm playing.",2
+dew60m,"a -250mv underclock will cause my laptop to crash. The lowest i can get is about -180, but it doesn't seem to change anything anyways.",1
+dew60m,"> some manufacturers have cooked up their own poorly thought out throttling schemes which randomly results in the CPU getting stuck at 800 MHz for prolonged periods of time. This has been a common problem with many Dell laptops for the last decade.
+
+So is my only solution to this to just suck it up? 
+
+I'll get you those screenshots as soon as i wake up.",1
+dew60m,"Ok, so resetting my bios seems to have fixed the heating issue for now, but now i run into an issue where i hit *power* limit throttling, knocking me down to 800 mHZ until i basically close out of my game.",1
+dew60m,[Removido],[Comentário removido],
+dew60m,And you are not recording or streaming at the same time while you are playing??,1
+dew60m,Damn. Mine could go about -380 before i ran into problems. Honestly the chassis sucks ass for cooling. And it is a nightmare to repaste. The stock dell paste was almost dry and I liquid metaled my G7 a week after I got it because it would regularly thermal runaway and hit 90-95c under load. One of the main reasons I sold it.,1
+dew60m,"No, i haven't. How would you go about doing that?",1
+dew60m,"Nope. I may have a youtube video on running at 720p in the background, but thats usually it.",1
+dew60m,That's not heavy. Maybe your thermal paste has worn out and its not making proper contact with heatsinks.,1
+ot4xgy,"Throttling is safety to prevent overheating. What about thermal paste replacement? Once I ran desktop i5 without thermalpaste out of curiosity and it was throttling in BIOS. Also open it up and clean interior as there is probably a lot of dust in there.
+I heard many complaining for low performance of laptops that were 2 years old, which were top spec at the time, but performance does not downgrade over time. You probably just need to clean it up and replace thermal paste and it will be as new.
+ Thermal paste wont cost you over 5$ and wont take more than an hour so I would give it a try.",7
+ot4xgy,"If your battery lasts one hour, replace it.
+
+Far as I know you can expect that thing might be on it's last leg. And batteries on their last leg are hazardous.
+
+Laptops are thermal furnaces as they are and just adding in the heat caused by the battery recharging while you're torching the Graphics card proliferates the burn. 
+
+To keep my laptop's battery healthy, I recharge it before it's at 25% and plug it off at 90%. And the laptop remains shut down while plugged in. Never turned on, much less in use.
+
+Heat is bad for batteries.
+
+Processor-wise. It will be fine. Or it should be. It's never safe to make guarantees.",2
+ot4xgy,"He should
+1-Replace thermal paste and clean up fans.
+2-replace HDD in case this laptop has a HDD he should replace it for a SSD or if possible an NVME if he can (I’ve seen lower end laptops with M.2 NVME slots)
+3.Get the new battery and replace it
+4.Make a clean windows installation (he will keep his windows Key as it usually is a OEM windows and will stay activated.
+
+What else?",5
+ot4xgy,"Indeed, G7 7588 has M.2 SATA connector and 2.5in slot. As far as I noticed, this model came default with SSD. And yes, dont forget to replace thermal paste on GPU also.",2
+brxdkb,Acer Predator Helios 300,2
+brxdkb,[Removido],[Comentário removido],
+brxdkb,dell laptops is super bang for the buck in my experience 2yrs na yung dell 7567 ko and also home service if nagkaroon ng problem laptop mo super running smoothly pa rin laptop ko and gamit na gamit sa gaming and programming,1
+brxdkb,"My laptop is Lenovo Legion y530, (white backlight)  hindi siya ganun ka mukhang gaming laptop sa public. I triend going around gilmore and dun ko siya nabili, and deretso sa store na ako nag pa upgrade.",1
+brxdkb,"If I'm limited by your preference, my choices are:
+
+&#x200B;
+
+E for the processor and real estate. 17"" is rare these days and you need all the space you need for content creation. Also, it has Intel Optane. It will make your 1TB feel like an SSD. I'd cough up a little more dough to upgrade your RAM. The only potential problem I see with this is thermal throttling. The design goes for looks but sacrifices a little performance.  Also, it would be heavy. 
+
+A for the looks. Thermals would not an issue going by its exhaust. I would still upgrade the RAM to 16GB (8GB is the minimum these days) and the HDD. Once you try an SSD, HDD feel like they are in slow motion. Literally.
+
+&#x200B;
+
+Also, are you on RUPH or GFC? I think I saw a post yesterday asking similar questions.",1
+brxdkb,"I have a variant of the Lenovo gaming one. the RAM is upgradable up to 16GB with Intel Optane. 
+
+Your problem is going to be with the keycaps. have sent mine to the shop twice this year already (bought 2019 Jan) for loose keycaps.",1
+brxdkb,Look screams gaming laptop pero can't think of an alternative that can beat the price for the specs you get. Much better if you can buy from US. May promo the other day $900 lang sya.,3
+brxdkb,"Hmm, when I went around stores, usually hindi na kasi customizable si HP. Looking at Pavillion, well this [one](http://www.villman.com/Product-Detail/hp_pavilion_15-cs1084tx), it doesnt match the processor specs I'm looking for. But I must admit the processor looks powerful. Still, I'm on H processors, so i'm iffy on that.  
+I was considering HP ENVY or HP OMEN, but I dont need the ""flexibility"" features and way off budget.
+
+thanks for your suggestion!",1
+brxdkb,"Hi! Thanks for your reply :)
+
+>The only potential problem I see with this is thermal throttling.
+
+So if I do buy this, 1) how can I possibly resolve this problem and 2) how much would that cost estimate?  
+I am willing to add a little bit more to slap in an SSD and upgrade the RAM.   
+
+
+>Also, are you on RUPH or GFC? I think I saw a post yesterday asking similar questions.
+
+I'm not sure what this is? But if these are subreddits then no, I haven't really been around reddit.  
+
+
+If you weren't limited to the options in the post, what laptop would you recommend? I'd appreciate your input.",1
+brxdkb,"wow that's just pretty recent yikes  
+any suggestions how to avoid loosing keycaps?",1
+brxdkb,"Hmmm parang alanganin kung bibilhin ko from the US. Not only transport worries, but also repair/servicing problems. Can't work with that.   
+Thanks for the suggestion though!",1
+brxdkb,"I'm out of the laptop game for quite some time so I can't recommend you one. My last laptop purchase was on the 4th i7 laptop.  I'd go for the Lenovo. Villamn's specs are limited so I did a little digging. If this laptop  [https://www.lenovo.com/au/en/laptops/ideapad/300-series/Lenovo-ideapad-330-17ICH/p/88IP3001011](https://www.lenovo.com/au/en/laptops/ideapad/300-series/Lenovo-ideapad-330-17ICH/p/88IP3001011)  is the same as the one from Villman, you can upgrade the RAM up to 16GB. I'd go for this  [https://www.amazon.com/Corsair-Memory-2400MHz-SODIMM-CMSX16GX4M2A2400C16/dp/B019MRBKYG/ref=sr\_1\_fkmr1\_2?keywords=16gb+dd4+sodimm&qid=1558601016&s=gateway&sr=8-2-fkmr1](https://www.amazon.com/Corsair-Memory-2400MHz-SODIMM-CMSX16GX4M2A2400C16/dp/B019MRBKYG/ref=sr_1_fkmr1_2?keywords=16gb+dd4+sodimm&qid=1558601016&s=gateway&sr=8-2-fkmr1)  but you can always find a local seller.
+
+&#x200B;
+
+Also, it seems this laptop has a M.2 Slot. I believe the Optane is placed there so if incase you want more space in the future, you can sell your Optane and HDD and replace them with 1TB 2.5"" SSD (prices are coming down) and another M.2 SSD",1
+brxdkb,"lol i don't know. maybe don't use a silicon keyboard cover? that seems to be what did me in. the silicon clings to the keys and i guess pulls too hard on the upstroke. 
+
+but yeah the keyboards for new lenovo laptops seem to be... weak. i actually wanted the dell g-series before settling on my 330s but those are rife with issues as well, as per r/dell",1
+brxdkb,benstore has one for 69k\~ i think. or if you can find one selling the first edition (60 Hz screen) mas cheaper yun,1

@@ -1,0 +1,910 @@
+ID_Post,Titulo_Post,URL_Post,Conteudo_Post
+0,Qual valor de venda do notebook Dell G7 7588?,https://www.clubedohardware.com.br/forums/topic/1648318-qual-valor-de-venda-do-notebook-dell-g7-7588/?do=findComment&comment=8596798,"Olá, pessoal, tudo certo?
+
+
+	 
+
+
+	Então, possuo um notebook da Dell, modelo G7 7588, que comprei em 2019 e quero vendê-lo. Ele simplesmente não apresenta nenhuma marca de uso, sempre ficou sobre uma base, sempre muito bem cuidado e limpo. Faz menos de um ano que mandei ele pra uma assistência técnica, mas somente pra limpá-lo internamente (tirar pó das fans e etc). Não apresenta defeito nem nada, além de até hoje nunca ter incomodado em nenhum aspecto. A venda se dá por motivo que montei um PC e agora ele está sem uso.
+	 
+
+
+	Specs:
+
+
+	 
+
+
+	i7-8750H
+
+
+	GTX 1050 Ti
+
+
+	16GB RAM
+
+
+	256 SSD (Sistema)
+	1TB HDD
+
+
+	15.6, Full HD (1920 x 1080) IPS, Antirreflexo
+
+
+	A bateria apresenta um desgaste natural, ela dura cerca de 1:15min fora da tomada.
+
+
+	 
+
+
+	Penso em vendê-lo por R$ 3.500,00. Acham um bom valor?
+
+
+	 
+
+
+	Grato."
+1,Dell G7 15 7588,https://www.clubedohardware.com.br/forums/topic/1458753-dell-g7-15-7588/?do=findComment&comment=7825483,Conteúdo não encontrado
+2,"Dell G7 7588, processador cai o clock quando desconecto carregador",https://www.clubedohardware.com.br/forums/topic/1471589-dell-g7-7588-processador-cai-o-clock-quando-desconecto-carregador/?do=findComment&comment=7880999,"Olá pessoal, 
+
+
+	 
+
+
+	Meu primeiro post aqui, espero estar fazendo certo.
+
+
+	 
+
+
+	Tenho um notebook Dell G7 com essas especificações:
+
+
+	 
+
+
+	Modelo: Dell G7 7588
+
+
+	Processador: Intel core I7-8750H Coffe lake
+
+
+	Memória: 8 Gb
+
+
+	Gpu: Nvidia Gtx 1060 With Max Q
+
+
+	 
+
+
+	O problema: 
+
+
+	 
+
+
+	O que acontece é o seguinte, quando o pc está conectado na bateria ele roda liso e sem problemas. A coisa fica feia quando desplugo o carregador. O clock do processador cai pra 0,8 e por ai. Verifiquei a integridade da bateria e no software da dell dá que está tudo funcionando normal. O estado da bateria está excelente.
+
+
+	 
+
+
+	Soluções testadas:
+
+
+	 
+
+
+	Atualizar a BIOS
+
+
+	Colocar a opção de energia em Alto Desempenho
+
+
+	Aumentar o minimo para 100% nas opções avançadas de alto desempenho na opção de energia.
+
+
+	Verificar a situação da bateria.
+
+
+	 
+
+
+	Informações adicionais:
+
+
+	 
+
+
+	Fiz um undervolt no processador usando o Throttlestop, pois esse modelo esquenta de mais. (Porém, mesmo desativando o undervolt o problema continua)
+
+
+	Também desmontei o notebook recentemente para trocar a pasta térmica, mas verifiquei todos os componentes internos e os encaixes estão corretos.
+
+
+	 
+
+
+	Enfim, se alguém puder me ajudar agradeço muito. Afinal, notebook é ideal por ser portátil pra mim.
+
+
+	Desde já agradeço."
+3,teclado do notebook G7-7588 não funciona algumas teclas,https://www.clubedohardware.com.br/forums/topic/1490555-teclado-do-notebook-g7-7588-n%C3%A3o-funciona-algumas-teclas/?do=findComment&comment=7963538,"Olá, algumas teclas do meu teclado recentemente deixaram de funcionar. vi alguns vídeos no youtube pra ver se conseguia sanar o problema, mas não deu certo. procurei aqui no fórum também outras soluções, mas não encontrei. já reinstalei o driver, verifiquei atualizações, mudei aquelas configurações de teclas de filtro e também nada. meu notebook em menos de 2 anos de uso, nunca levou agua nem queda as teclas que não estão funcionando são as seguintes.: 
+
+
+backspace
+	f3
+	tab
+	ty[]
+	capslock
+	shift esquerdo
+	fn
+	+ do teclado numerico
+	. do teclado numerico"
+4,problema no sistema de audio dell g7 7588 depois de atualizar o windows,https://www.clubedohardware.com.br/forums/topic/1408574-problema-no-sistema-de-audio-dell-g7-7588-depois-de-atualizar-o-windows/?do=findComment&comment=7621837,o áudio funcionava perfeitamente antes de atualizar agora nem áudio nem microfone nem fone de ouvido funcionam
+5,Dell G7 7588 com queda brusca de desempenho em jogos,https://www.clubedohardware.com.br/forums/topic/1320731-dell-g7-7588-com-queda-brusca-de-desempenho-em-jogos/?do=findComment&comment=7220062,"Boa noite a todos. Estou com um problema com o dell G7 em que basicamente quando estou jogando, aleatoriamente a placa grafica gtx 1060 with max q alterna para a placa integrada intel UHD 630 causando uma brusca queda de fps ainda mais em jogos quando estão em ultra. Segundo umas pesquisas em sites dos Estados Unidos pude confirmar que outros usuarios estão reclamando do mesmo problema meu e inclusive um datalogou que a cpu dele atinge quase 100 graus e que no caso acontece do mesmo jeito para mim. 
+
+
+	Nao sei se realmente pode ser uma config errada ou realmente um problema de resfriamento do modelo mas apos desligar o turboboost da intel (no caso caiu de 3,906 Ghz para 2,20 Ghz) essa troca de placa de video da gtx para a intel UHD parou e a temperatura da CPU e da GPU estabilizou em 77 graus mais ou menos. Gostaria de saber se alguem q possua esse modelo teve algum problema relacionado.
+
+
+	Especificacao. processador  - Core i7 8750h
+
+
+	placa de video - GTX 1060 with max Q
+
+
+	Ram - 8 GB 2666 Mhz
+
+
+	placa integrada - Intel UHD 630 
+
+
+	 
+
+
+	adicionado 1 minuto depois
+
+	   segue o print durante uma partida do fortnite mostrando a queda do uso da GTX 1060 e ativando a Intel UHD"
+6,Placa de rede Killer E2400 Gigabit limitada a 100 Mbps,https://www.clubedohardware.com.br/forums/topic/1637821-placa-de-rede-killer-e2400-gigabit-limitada-a-100-mbps/?do=findComment&comment=8565111,"Olá, meu plano de internet da Claro é de 500 mb. Porém, ao medir a velocidade da internet o resultado é de no máximo 95 mb. Nas configurações da placa de rede Killer E2400 Gigabit aparece apenas 100 Mbps. O cabo de rede é CAT 5e de apenas 1,5 metro. Já desinstalei e instalei novamente os drivers para a versão mais recente (Versão 9.0.0.50 de 14/01/2020). O computador é o XPS 8930 da Dell. Conectei um outro computador com outro modelo de placa de rede Ethernet nesse mesmo modem da Claro e na mesma porta e passou de 500 mb, ou seja, ao que parece o problema não está no modem da Claro. O que será que pode estar limitando a velocidade em apenas 100 mb nessa placa de rede Killer E2400 Gigabit? Desde já agradeço a atenção."
+7,É possível ligar dois monitores nas saídas HDMI e Thunderbolt?,https://www.clubedohardware.com.br/forums/topic/1526646-%C3%A9-poss%C3%ADvel-ligar-dois-monitores-nas-sa%C3%ADdas-hdmi-e-thunderbolt/?do=findComment&comment=8115683,"Galera, pode parecer uma pergunta óbvia, porém, é possível expandir imagens diferentes em 2 monitores HDMI a partir de um notebook com uma saída HDMI e outra Thunderbolt 3?
+
+
+	 
+
+
+	Eu poderia utilizar um adaptador de Thunderbolt pra HDMI sem problemas nem perda de desempenho, travamentos etc?
+
+
+	 
+
+
+	Qual a melhor sugestão de vocês, no caso.
+
+
+	 
+
+
+	Ambos os monitores possuem portas HDMI e DISPLAYPORT.
+
+
+	 
+
+
+	Seguem os equipamentos utilizados:
+
+
+	 
+
+
+	Notebook: Notebook Dell G7 15 Gaming, G7-7588-A40B, 8ª Geração Intel Core i7-8750H, 16 GB RAM, HD 1TB + 256GB SSD, NVIDIA® GeForce® GTX 1060 6GB GDDR5, Tela 15.6"" LED Full HD IPS, Windows 10, Branco
+
+
+https://www.amazon.com.br/Notebook-G7-7588-A40B-Geração-i7-8750H-GeForce®/dp/B07Q3H3M84
+
+
+	 
+
+
+	Monitor 1: Monitor LED 24.5'' Gamer Dell AW2518HF 1920x1080 1ms 240hz Free-sync Alienware
+
+
+	Portas e slots: 1. Conector do cabo de alimentação | 2. 2 portas HDMI | 3. Porta de saída | 4. Porta USB para downstream com carregamento de energia | 5. Entrada de fones de ouvido | 6. Porta USB 3.0 | 7. DisplayPort | 8. Porta USB 3.0 para upstream | 9. 2 portas USB 3.0
+
+
+https://www.americanas.com.br/produto/133400454
+
+
+	 
+
+
+	Monitor 2: Monitor Gamer Acer LED 23.6´ Widescreen, Full HD, HDMI/Display Port, 144Hz, 1ms - KG241Q Pbiip
+
+
+	Conexões: - 2x HDMI 1.4
+	- 1x DisplayPort 1.2
+
+
+https://www.kabum.com.br/produto/101340/monitor-gamer-acer-led-23-6-widescreen-full-hd-hdmi-display-port-144hz-1ms-kg241q-pbiip"
+8,Recomendação de Notebook - Arquitetura (até 5k),https://www.clubedohardware.com.br/forums/topic/1379908-recomenda%C3%A7%C3%A3o-de-notebook-arquitetura-at%C3%A9-5k/?do=findComment&comment=7497714,"Boa tarde!
+
+
+	 
+
+
+	Atualmente tenho um Notebook Sony Vaio Fit que comprei em 2013 (i7-3537U 2.00Ghz, 8GB RAM, GT 735M 2GB, SSD de 128gb)
+
+
+	 
+
+
+	Meu notebook já está ""velho"", a minha ideia era ficar com ele para ter mobilidade uma vez que trabalho autônoma num cooworking, então preciso de mobilidade, e ter um desktop em casa. Mas como ele está deixando a desejar no quesito renderização que eu preciso bastante (programas como Lumion, Vray, 3DSMax) pensei em abrir mão dele, vender, e comprar um novo. A ideia de ter um desktop me soa muito melhor mas no momento ele não tá me atendendo bem quando preciso estar fora de casa.
+	Sobre o notebook que eu preciso comprar: 
+	- Gostaria de continuar com o SSD mesmo que seja um híbrido ou que eu coloque mais pra frente (eu vi que os da Acer não vem com SSD mas é possível colocar depois);
+
+
+	- E eu posso, no momento, gastar até uns 5k. 
+
+
+	 
+
+
+	Existe a possibilidade dar um upgrade no meu atual e ter um desktop em casa que me atenda? Ou upgrade em notebook é fora de cogitação? 
+
+
+	Ou vender esse aqui e comprar um de 5k.
+
+
+	 
+
+
+	Qualquer dica/conselho é válido, obrigada! 
+
+
+	 
+
+
+	adicionado 6 minutos depois
+
+
+	Ah alguns modelos que eu andei pesquisando e que eu tô em dúvida:
+
+
+
+	Notebook Gamer Acer Aspire AN515-51-50U2 Intel Core 7 I5 8GB (GeForce GTX 1050 com 4GB) 1TB Tela IPS Full HD 15,6"" W10 - Acer - R$ 4.022,32 em até 12x de R$ 335,19 s/ juros com Ame e receba R$ 201,12 (5% de volta)
+	Notebook Gamer Acer Aspire Nitro AN515-51-77FH Intel® Core™ i7 8GB RAM 1TB de HD 15.6"" Full HD NVIDIA® GeForce® GTX 1050 com 4 GB - R$ 4399,99
+	Notebook Dell Gaming G7 7588-A10B Intel Core 8º i5 8GB (GeForce GTX 1050TI com 4GB) 1TB Tela Full HD 15,6"" Windows 10 - Branco - R$ 4.638,99 em até 12x de R$ 386,58 s/ juros com Ame e receba R$ 231,95
+	Notebook Gamer Acer Aspire Nitro 5 AN515-51-78D6 Intel® Core™ i7-7700HQ 16GB RAM HD 1TB 15.6"" Full HD NVIDIA® GeForce® GTX 1050 Ti com 4GB Windows 10 - R$ 4999,99
+	Notebook Samsumg Odyssey Intel Core I7 8GB (Geforce Gtx 1050TI com 4GB) 1TB 256GB SSD LED Full HD 15.6'' W10 Preto - R$ 5.159,35 em até 12x de R$ 429,94 s/ juros com Ame e receba R$ 257,97
+	Notebook Gamer Dell G7-7588-M20B 8ª Ger. i7 8GB 1TB+128GB SSD GTX 1050Ti 4GB 15.6"" FHD Windows 10 - R$ 5.429,00 em até 12x de R$ 452,41 s/ juros com Ame e receba R$ 271,45
+	Notebook Dell Gaming G7 7588-A20P Intel Core 8º i7 8GB (GeForce GTX 1050TI com 4GB) 1TB 128GB SSD Tela Full HD 15,6"" Windows 10 - Preto - R$ 5.477,09 em até 12x de R$ 456,42 s/ juros com Ame e receba R$ 273,86 
+	Avell Intel® Core™ i5-9300H Coffee Lake Refresh, 8MB Cache (2.4 GHz até 4.1 GHz com Intel® Turbo Boost) NVIDIA® GeForce® GTX 1050 GPU (4GB GDDR5) 16GB [2x 8GB - Dual Channel] Memória DDR4 (2666 MHZ) SSD M.2 - 512GB - [ 500 MB/s ] 5.6"" WVA FULLHD 16:9 (1920x1080p) LED-Backlit Matte (sem windows) - R$5.777,00 - vi muita reclamação falando que a avell para de funcionar logo depois do 1 ano de garantia.. mas esse notebook parece muito mais customizável, fiquei bem na dúvida."
+9,Dell G7 - 2 notebooks e o mesmo erro: DRIVER_POWER_STATE_FAILURE,https://www.clubedohardware.com.br/forums/topic/1604738-dell-g7-2-notebooks-e-o-mesmo-erro-driver_power_state_failure/?do=findComment&comment=8427109,"Olá pessoal!
+
+
+	 
+
+
+	Estou com 2 clientes diferentes, com o mesmo modelo de notebook (Dell G7 Modelo 7588) que está dando tela azul DRIVER_POWER_STATE_FAILURE.
+
+
+	O que já fiz:
+
+
+	 
+
+
+	Atualizei Windows (um cliente é o 10 e o outro 11)
+
+
+	Atualizei a BIOS para a última versão, driver de chipset
+
+
+	Atualizei para o último driver da placa de vídeo (ambos bem desatualizados)
+
+
+	Dei os comandos de reparo (sfc scannow, chkdsk, dism)
+
+
+	Verifiquei Malware
+
+
+	 
+
+
+	A tela azul apresenta ao usar Autocad ou Sketchup ou se fica no youtube por algumas horas (ambos os casos), o que dá a impressão é que seja algum problema na placa de vídeo ou o driver.
+
+
+	 
+
+
+	Analisando o DMP pelo WinDbg ele retorna com isso:
+
+
+	 
+
+
+	!DevObj !DrvObj !DevExt ObjectName ffff8704dcd9d030 \Driver\nvlddmkm ffff8704dcd9d180 InfoMask field not found for _OBJECT_HEADER at ffff8704dcd9d000 ffff8704dc439dc0 \Driver\ACPI ffff8704d9f0a010 InfoMask field not found for _OBJECT_HEADER at ffff8704dc439d90 > ffff8704dc45b0a0 \Driver\pci ffff8704dc45b1f0 Cannot read info offset from nt!ObpInfoMaskToOffset !DevNode ffff8704dc45ba60 : DeviceInst is ""PCI\VEN_10DE&DEV_1C8C&SUBSYS_08241028&REV_A1\4&b85e5b5&0&0008"" ServiceName is ""nvlddmkm""
+
+
+	 
+
+
+	Muito obrigado desde já! Abraço."
+10,Dell G7 - 2 notebooks e o mesmo erro: DRIVER_POWER_STATE_FAILURE,https://www.clubedohardware.com.br/forums/topic/1604738-dell-g7-2-notebooks-e-o-mesmo-erro-driver_power_state_failure/?do=findComment&comment=8443659,"Bom dia pessoal, 
+
+
+	 
+
+
+	estou com o mesmo problema em vários notebook g7 na empresa onde trabalho e não sei mais o que fazer.
+
+
+	Usei esse modelo de driver no meu (30.0.14.7212) de final de 2021. 
+
+
+	 
+
+
+@Jean Carlo Pereira quando conseguir a versão eu testo aqui também."
+11,Dell G7 - 2 notebooks e o mesmo erro: DRIVER_POWER_STATE_FAILURE,https://www.clubedohardware.com.br/forums/topic/1604738-dell-g7-2-notebooks-e-o-mesmo-erro-driver_power_state_failure/?do=findComment&comment=8443065,"Bom dia pessoal, 
+
+
+	 
+
+
+	estou com o mesmo problema em vários notebook g7 na empresa onde trabalho e não sei mais o que fazer.
+
+
+	Usei esse modelo de driver no meu (30.0.14.7212) de final de 2021. 
+
+
+	 
+
+
+@Jean Carlo Pereira quando conseguir a versão eu testo aqui também."
+12,Dell G7 - 2 notebooks e o mesmo erro: DRIVER_POWER_STATE_FAILURE,https://www.clubedohardware.com.br/forums/topic/1604738-dell-g7-2-notebooks-e-o-mesmo-erro-driver_power_state_failure/?do=findComment&comment=8438074,"Bom dia pessoal, 
+
+
+	 
+
+
+	estou com o mesmo problema em vários notebook g7 na empresa onde trabalho e não sei mais o que fazer.
+
+
+	Usei esse modelo de driver no meu (30.0.14.7212) de final de 2021. 
+
+
+	 
+
+
+@Jean Carlo Pereira quando conseguir a versão eu testo aqui também."
+13,Dell G7 - 2 notebooks e o mesmo erro: DRIVER_POWER_STATE_FAILURE,https://www.clubedohardware.com.br/forums/topic/1604738-dell-g7-2-notebooks-e-o-mesmo-erro-driver_power_state_failure/?do=findComment&comment=8433419,"Olá pessoal!
+
+
+	 
+
+
+	Estou com 2 clientes diferentes, com o mesmo modelo de notebook (Dell G7 Modelo 7588) que está dando tela azul DRIVER_POWER_STATE_FAILURE.
+
+
+	O que já fiz:
+
+
+	 
+
+
+	Atualizei Windows (um cliente é o 10 e o outro 11)
+
+
+	Atualizei a BIOS para a última versão, driver de chipset
+
+
+	Atualizei para o último driver da placa de vídeo (ambos bem desatualizados)
+
+
+	Dei os comandos de reparo (sfc scannow, chkdsk, dism)
+
+
+	Verifiquei Malware
+
+
+	 
+
+
+	A tela azul apresenta ao usar Autocad ou Sketchup ou se fica no youtube por algumas horas (ambos os casos), o que dá a impressão é que seja algum problema na placa de vídeo ou o driver.
+
+
+	 
+
+
+	Analisando o DMP pelo WinDbg ele retorna com isso:
+
+
+	 
+
+
+	!DevObj !DrvObj !DevExt ObjectName ffff8704dcd9d030 \Driver\nvlddmkm ffff8704dcd9d180 InfoMask field not found for _OBJECT_HEADER at ffff8704dcd9d000 ffff8704dc439dc0 \Driver\ACPI ffff8704d9f0a010 InfoMask field not found for _OBJECT_HEADER at ffff8704dc439d90 > ffff8704dc45b0a0 \Driver\pci ffff8704dc45b1f0 Cannot read info offset from nt!ObpInfoMaskToOffset !DevNode ffff8704dc45ba60 : DeviceInst is ""PCI\VEN_10DE&DEV_1C8C&SUBSYS_08241028&REV_A1\4&b85e5b5&0&0008"" ServiceName is ""nvlddmkm""
+
+
+	 
+
+
+	Muito obrigado desde já! Abraço."
+14,Esquema eletrico para reparo de artefato,https://www.clubedohardware.com.br/forums/topic/1599477-esquema-eletrico-para-reparo-de-artefato/?do=findComment&comment=8406803,"alguém tem o esquema elétrico do dell g7 7588 a30p
+
+
+	 
+
+
+	já foi feito o rebaling da gpu e reset da BIOS via jacaré mas parece ser problema nos modulos de memória da gpu ou na parte de injeção elétrica da gpu ou processador
+
+
+	ainda apresenta os mesmos artefatos no inicio da logo da dell e congela"
+15,Cabo de rede Cat6 blindado é pior se o equipamento não possuir blindagem também?,https://www.clubedohardware.com.br/forums/topic/1458749-cabo-de-rede-cat6-blindado-%C3%A9-pior-se-o-equipamento-n%C3%A3o-possuir-blindagem-tamb%C3%A9m/?do=findComment&comment=7825468,Conteúdo não encontrado
+16,Como identificar se um conector RJ45 é categoria 6?,https://www.clubedohardware.com.br/forums/topic/1454854-como-identificar-se-um-conector-rj45-%C3%A9-categoria-6/?do=findComment&comment=7809042,Conteúdo não encontrado
+17,Recomendação de Notebook para Arquitetura,https://www.clubedohardware.com.br/forums/topic/1410050-recomenda%C3%A7%C3%A3o-de-notebook-para-arquitetura/?do=findComment&comment=7628250,"olá, boa tarde a todos, minha irmã está a procura de um novo notebook para utilizar em programas como autocad 2020, revit 2020, corel draw x8, sketchup com v-ray, e lumons 8.5. ela está a procura de um notebook que seja ao menos um quad core com uns 8gb de ram no mínimo, ou 16gb seria ao ideal junto de uma placa de vídeo para renderização. no caso não tem problema ter um hd, pois adicionaria um ssd, sendo um sata ou até mesmo m.2. tanto faz.
+
+
+	ps: o valor não passando muito dos r$5500 seria ideal(isso parcelado)
+
+
+	ps 2: lojas seriam casas bahia, ponto frio, magazine e luiza
+
+
+	alguns notebooks que já vi.
+
+
+notebook acer an515-51-78d6 i7-7700hq 16gb + 1tb 5400rpm + gtx 1050 ti - r$4700
+
+
+	 
+
+
+	vejam à seguir alguns modelos de notebooks que encontrei:
+	 
+
+
+	 
+
+
+	dell    i15-7580-m40s        core i7-8565u 4c/8t 1.8ghz    16gb ddr4 2400mhz(2x8gb)        mx150 2gb gddr5        15.6"" tn 1080p        1tb 5400rpm           128gb ssd m.2 sata       m.2 sata        
+	                                                                                                                                                        
+	dell    g3-3579-a30        core i7-8750h 6c/12t 2.2ghz    16gb ddr4 2400mhz(2x8gb)        gtx 1050 ti 4gb gddr5    15.6"" ips 1080p        1tb 5400rpm + 8gb cache                m.2 nvme        
+	                                                                                                                                                        
+	acer    nitro 5 a515-52-72uu    core i7-8750h 6c/12t 2.2ghz    16gb ddr4 2400mhz(1x16gb)        gtx 1050 ti 4gb gddr5    15.6"" ips 1080p        1tb 5400rpm        128gb ssd m.2 sata    m.2 sata        
+	                                                                                                                                                        
+	acer    nitro 5 a515-52-780p    core i7-8750h 6c/12t 2.2ghz    8gb ddr4 2400mhz(1x8gb até 32gb)    gtx 1050 ti 4gb gddr5    15.6"" ips 1080p        1tb 5400rpm        128gb ssd m.2 sata            m.2 sata        
+	                                                                                                                                                        
+	acer    nitro 5 a515-51-71a7    core i7-7700hq 4c/8t 2.8ghz    8gb ddr4 2400mhz(1x8gb até 32gb)    gtx 1050 4gb gddr5    15.6"" ips 1080p        1tb 5400rpm        128gb ssd m.2 sata            m.2 sata        
+	                                                                                                                                                        
+	dell    g7 i15-7588-a40p    core i7-8750h 6c/12t 2.2ghz    16gb ddr4 2400mhz(1x16gb)        gtx 1060 6gb gddr5    15.6"" ips 1080p        1tb 5400rpm        256gb ssd m.2 sata            m.2 sata        
+	                                                                                                                                                        
+	dell    g7 i15-7588-a20        core i7-8750h 6c/12t 2.2ghz    8gb ddr4 2400mhz(1x8gb até 32gb)    gtx 1050 ti 4gb gddr5    15.6"" ips 1080p        1tb 5400rpm        128gb ssd m.2 sata            m.2 sata        
+	                                                                                                                                                        
+	acer    nitro 5 a515-52-75gw    core i7-8750h 6c/12t 2.2ghz    16gb ddr4 2400mhz(1x16gb até 32gb)    gtx 1050 ti 4gb gddr5    15.6"" ips 1080p        1tb 5400rpm        128gb ssd m.2 sata            m.2 sata        
+	                                                                                                                                                        
+	acer    g3-572-75l9        core i7-7700hq 4c/8t 2.8ghz    16gb ddr4 2400mhz(1x16gb até 32gb)    gtx 1060 6gb gddr5    15.6"" ips 1080p        2tb 5400rpm                            m.2 sata/m.2 nvme        
+	                                                                                                                                                        
+	samsung    np800g5h        core i7-7700hq 4c/8t 2.8ghz    16gb ddr4 2400mhz(1x16gb até 32gb)    gtx 1060 6gb gddr5    15.6"" ips 1080p ips hdr    1tb 5400rpm                            m.2 sata/m.2 nvme        
+	                                                                                                                                                        
+	acer    nitro 5 a515-52-75gw    core i7-8750h 6c/12t 2.2ghz    16gb ddr4 2400mhz(1x16gb até 32gb)    gtx 1050 ti 4gb gddr5    15.6"" ips 1080p        1tb 5400rpm        128gb ssd m.2 sata            m.2 sata        
+	                                                                                                                                                        
+	2am gaming    2am-e550    core i7-9700 8c/8t 3ghz        8gb ddr4 2400mhz(1x8gb até 32gb)    gtx 1050 3gb gddr5    15.6"" ips 1080p        1tb 5400rpm                            m.2 sata/m.2 nvme"
+18,Recomendações notebook até R$ 5000,https://www.clubedohardware.com.br/forums/topic/1409678-recomenda%C3%A7%C3%B5es-notebook-at%C3%A9-r-5000/?do=findComment&comment=7626509,"Boa tarde,
+
+
+	 
+
+
+	Estou procurando uma notebook para jogos com a faixa de preço até 5 mil, estive olhando notebooks da ACER, SAMSUNG e 2am, mais são muitos modelos e preços diferente, alguem pode abrir minha mente rsrsrsrs.
+
+
+	 
+
+
+	Grato"
+19,Notebook para Multitarefas + Jogos,https://www.clubedohardware.com.br/forums/topic/1401873-notebook-para-multitarefas-jogos/?do=findComment&comment=7592507,"Pessoal,
+
+
+	 
+
+
+	Estou separando um orçamento de R$ 5.000 para um Notebook novo. Eu vou utilizá-lo para Multitarefas de trabalho. Costumo abrir de 3 a 4 navegadores simultâneos para pesquisas online. Então são muitas abas abertas ao mesmo tempo, aplicativos de edição de imagens ( simples, não chega ser Photoshop ). Além de aplicativos do dia a dia ( Office por exemplo ).
+
+
+	 
+
+
+	No momentos vagos queria usar o notebook para jogar Games tipo: FIFA, CS GO, PUGB. (Nenhum jogo muito exagerado).
+
+
+	 
+
+
+	Pensei no notebook abaixo por ter 16GB + SSD, além de ser um I7 de Oitava geração. O que me sugerem?
+
+
+	 
+
+
+	Notebook Dell Gaming G7 7588-A30P Intel Core 8º i7 16GB (GeForce GTX 1050TI com 4GB) 1TB 256GB SSD Tela Full HD 15,6"" Windows
+
+
+https://www.americanas.com.br/produto/133710840/notebook-dell-gaming-g7-7588-a30p-intel-core-8o-i7-16gb-geforce-gtx-1050ti-com-4gb-1tb-256gb-ssd-tela-full-hd-15-6-windows-preto"
+20,Esse SSD é compatível com meu notebook? Ele compensa?,https://www.clubedohardware.com.br/forums/topic/1571774-esse-ssd-%C3%A9-compat%C3%ADvel-com-meu-notebook-ele-compensa/?do=findComment&comment=8301429,"Olá, bons dias.
+
+
+	Gostaria da ajuda de vcs para saber se esse SSD é compatível com meu notebook (g7 7588)*:
+
+
+SSD WD Blue SN550, 500GB, M.2, PCIe, NVMe, Leituras: 2400Mb/s e Gravações: 1750Mb/s - WDS500G2B0C | KaBuM!
+
+
+	*Para o slot M.2 que veio vazio nessa versão que comprei. Pretendo instalar meu OS nele e usar o HD q veio para arquivos pouco usados. É possível, certo?
+
+
+	Aproveito a oportunidade para perguntar se esta é uma boa escolha, pelo valor (400 a vista)
+
+
+	 
+
+
+	Desde já agradeço!"
+21,Minha GPU tem cooler ou apenas dissipador? NVIDIA Geforce GTX 1060 with Max-Q de,https://www.clubedohardware.com.br/forums/topic/1566128-minha-gpu-tem-cooler-ou-apenas-dissipador-nvidia-geforce-gtx-1060-with-max-q-de/?do=findComment&comment=8279674,"Meu notebook está perdendo desempenho (dando gargalo) em jogos e as vezes até em algumas aplicações mesmo.
+
+
+	 
+
+
+	Por esse motivo, tem algumas semanas que estou investigando o motivo e descobri que esse gargalo é causado quando a GPU atinge 78º C.
+
+
+	 
+
+
+	O notebook é gamer e deveria dar conta tranquilamente de qualquer jogo, sendo assim, não era pra estar dando esses gargalos ao chegar nos 78º C, que é a temperatura máxima suportada pela GPU.
+
+
+	 
+
+
+	Então eu tenho uma dúvida: minha GPU tem cooler ou apenas dissipador? Porquê se houver cooler, não sei se está funcionando não.
+
+
+	 
+
+
+	O notebook é um Dell G7-7588-A40B Intel Core i7HQ - 16GB 1TB SSD256GB 15,6” FullHD Placa GTX 1060 with Max-Q design 6GB
+
+
+	 
+
+
+	Essa placa não é uma GTX 1060 convencional não, ela é uma GTX 1060 with Max-Q design, que funciona de maneira bem diferente da convencional.
+
+
+	 
+
+
+	Agradeço se alguém puder me ajudar na solução."
+22,Notebook Equivalente ou Superior a Essa Config,https://www.clubedohardware.com.br/forums/topic/1332534-notebook-equivalente-ou-superior-a-essa-config/?do=findComment&comment=7274493,"Pessoal, preciso que me indiquem um bom notebook com config boa, vou deixar uma abaixo de exemplo, não entendo muito de notebook, então não estou conseguindo escolher um bom (quando digo um bom me refiro a um difícil de travar mesmo sob extress, meu ultimo note travava até sem fazer nada, to usando um desktop mas preciso de um notebook por que fico muito tempo longe do PC, a config que vou deixar a baixo é dele, se podem me indicar algo similar agradeceria, um programa que uso (e é bem pesado) é a Unreal Engine 4, as vezes trabalho com projetos um pouco grandes), o orçamento ta em R$4500/R$5000 contando com o frete
+
+
+	 
+
+
+	Ryzen 5 1600
+
+
+	16 DDR4 2400MHz HyperX Fury
+
+
+	GTX 1060 3GB
+
+
+	HD 2TB/SSD 240GB"
+23,Onde comprar HD WD com garantia?,https://www.clubedohardware.com.br/forums/topic/1533645-onde-comprar-hd-wd-com-garantia/?do=findComment&comment=8144249,"Comprei recentemente um HD WD, chequei tempo de uso e ele já estava usado. 
+
+
+	Procurei no site da WD e todos revendedores listados lá possuem esse sistema de marketplace, vários revendedores, muitos sem nem área de perguntas pra checar com o vendedor.
+
+
+	Queria muito comprar um WD Blue com a garantia da WD, mas estou honestamente quase desistindo... Alguém sabe onde posso encontrar?"
+24,Notebook para estudos e para programar,https://www.clubedohardware.com.br/forums/topic/1488166-notebook-para-estudos-e-para-programar/?do=findComment&comment=7952334,"Tudo bem pessoal?
+
+
+	Estou procurando um notebook pra mim poder usar nos estudos e para programação e possivelmente para estudar e para trabalhar com programação.
+
+
+	 
+
+
+	Muito grato com a ajuda gente."
+25,hd notebook não aparece e fica dando bip,https://www.clubedohardware.com.br/forums/topic/1480632-hd-notebook-n%C3%A3o-aparece-e-fica-dando-bip/?do=findComment&comment=7919164,"EU TENHO O SEGUINTE NOTEBOOK:
+
+
+	 
+
+
+https://www.inpower.com.br/notebook-dell-inspiron-g7-15-7588-15-6-fhd-i7-8750h-1tbplus256gb-16gb-gtx-1050-ti-4gb-win10-pro-pretonac006060-p987242
+
+
+	 
+
+
+	O HD fica dando bip e não aparece mais entre os drivers. Acredito que não irei conseguir recuperá-lo.
+
+
+	O meu HD é da Western Digital
+
+
+	 
+
+
+	Qual seria o modelo ideal para usar no meu notebook?
+
+
+	 
+
+
+	Já vi até alguns abaixo:
+
+
+https://www.waz.com.br/hd-notebook-2tb-sata3-western-digital-blue-wd20spzx-2-5pol-5-400-rpm-128mb-cache-119587-html/p
+
+
+	 
+
+
+https://www.kabum.com.br/cgi-local/site/produtos/descricao_ofertas.cgi?codigo=90597 https://www.oficinadosbits.com.br/hd-2-tb-para-notebook-western-digital-blue-5400rpm-128mb-cache-slim-7mm-wd20spzx-p6593/
+
+
+	 
+
+
+
+
+
+	adicionado 10 minutos depois
+
+
+	Outra dúvida seria em relação a polegadas do HD. 2,5"" ou 3,5""?"
+26,Congelamento Notebook DELL G3 3590,https://www.clubedohardware.com.br/forums/topic/1444772-congelamento-notebook-dell-g3-3590/?do=findComment&comment=7863786,"Boa tarde,
+
+
+	Tenho um notebook dell g3 3590, ele veio com Linux, porém acabei  passando ele para o Windows, acontece que todo dia ele trava de não poder fazer nada, só consigo voltar a usar, se desligar ele diretamente no botão. Tem vezes que ele trava só de ta ligado, as vezes eu estou usando sketchup. Já procurei na internet e não consegui resolver, vi videos para mudar a NDU de 2 para 4, mas isso não resolveu o problema. Também entrei em contato com o suporte da DELL e fizeram os testes e não deu nada. Quando pedi a segunda vez o suporte falaram que por eu ter trocado o Sistema eles não poderiam fazer nada, só se eu voltasse com o Linux.
+
+
+	Notebook Dell G3 3590
+	Processador: Intel(R) Core(TM) i7-9570H CPU @2.6gHZ 
+	RAM: 8.00gb
+	Placa de Video: GTX 1660TI 6GB
+
+
+	Sistema Operacional: Windows 10 Pro - Versão 1909.
+
+
+	Desde já agradeço se alguém poder ajudar."
+27,Dell G7 15 7588,https://www.clubedohardware.com.br/forums/topic/1458753-dell-g7-15-7588/?do=findComment&comment=7826588,Conteúdo não encontrado
+28,PC para Lol e Fortnite até R$ 1600,https://www.clubedohardware.com.br/forums/topic/1427689-pc-para-lol-e-fortnite-at%C3%A9-r-1600/?do=findComment&comment=7699285,"Olá pessoal do Clube do Hardware, preciso de ajuda pra montar um PC, porque sou leigo com desktops porque sempre usei notebook, tô saindo de um Dell G7-7588-a20p, pois ele estava dando muitos problemas e então me desfiz dele. Queria um que rodasse Lol com folga e Fortnite mesmo que com gráficos ruins, o meu orçamento é de cerca de uns 1600 reais, não posso passar disso porque ainda tenho q comprar um monitor e periféricos, quero gastar só esse valor no PC mesmo. Não sei quase nada sobre compatibilidade de peças, mas tenho preferência por intel/nvidia,entretanto tô aberto a todas as sugestões."
+29,Dell G7 com 30 FPS e GPU em 100% de uso,https://www.clubedohardware.com.br/forums/topic/1394282-dell-g7-com-30-fps-e-gpu-em-100-de-uso/?do=findComment&comment=7561050,"O Problema: Após uns 5 minutos rodando CS:GO aos 144 FPS (e o uso da GPU em 20-40% por ser um jogo leve e estar em uma configuração extremamente baixa) os FPS caem drasticamente (de 144 FPS para 30-50 FPS)... E todas as vezes que o FPS cai, o uso da GPU sobe de 20-40% para 96-100%. Após um tempo volta ao normal porém rapidamente o FPS cai novamente. E NÃO, o uso da CPU fica estável desde o momento em que ligo o Notebook até o momento que desligo. Tudo (aparentemente) funciona bem, apenas a Placa de Vídeo que está estranha. Configurações do Notebook: O meu Notebook é um DELL G7 7588 com 16gb de RAM, Intel Core i7-8750H 2.20GHz[Cores 6] [Logical/Core 2] e GTX 1060 with Max-Q Design."
+30,problema no sistema de audio dell g7 7588 depois de atualizar o windows,https://www.clubedohardware.com.br/forums/topic/1408574-problema-no-sistema-de-audio-dell-g7-7588-depois-de-atualizar-o-windows/?do=findComment&comment=7621867,o áudio funcionava perfeitamente antes de atualizar agora nem áudio nem microfone nem fone de ouvido funcionam
+31,"Compra de notebook com HD + SSD, tela Full HD, etc.",https://www.clubedohardware.com.br/forums/topic/1398337-compra-de-notebook-com-hd-ssd-tela-full-hd-etc/?do=findComment&comment=7577748,"@Gabriel Torres , seja bem vindo ao Clube do Hardware. 
+
+	 
+
+
+	Para que melhor possamos indicar, atendendo plenamente suas necessidades, favor informar qual será a utilização do equipamento e qual o orçamento disponível? 
+
+
+
+
+
+
+
+
+
+
+
+
+
+								1"
+32,Note Dell G7 15 vs Avell C65 MUV,https://www.clubedohardware.com.br/forums/topic/1387708-note-dell-g7-15-vs-avell-c65-muv/?do=findComment&comment=7532617,"Olá Galera, estou em busca de um computador para trabalho de Design Gráfico... as vezes posso rolar um edição de vídeo mas nada complexo, estou namorando estes dois notes, o Dell G7 15 e o Avell C65, o link está abaixo, ambos com SSD e em torno de 8 mil reais.
+
+
+	Alguns vão questionar de comprar um PC e não Note... mas é que viajo e preciso da mobilidade.
+
+
+	 
+
+
+https://avell.com.br/profissional/notebooks-para-design/avell-c65-muv
+
+
+https://www.dell.com/pt-br/shop/gaming-and-games/dell-g7-15/spd/g-series-15-7588-laptop/cag7588w191807brdbw
+
+
+	 
+
+
+	O Processador da Avell é de mais novo já da ultima geração, eu já uso Dell a mais de 10 anos... nunca utilizei e nunca vi de perto um Avell , o que me dizem ?"
+33,Indicação de notebook até R$3mil,https://www.clubedohardware.com.br/forums/topic/1381891-indica%C3%A7%C3%A3o-de-notebook-at%C3%A9-r3mil/?do=findComment&comment=7506359,"Olá, prezados, tudo bem?
+	Haviam me indicado este notebook abaixo, é um excelente notebook, porém, a patroa não quer gastar muito além dos 3k mesmo.https://www.recomendacaodenotebooks.com.br/dell-gaming-g7-7588-u10p/
+	Ontem enquanto pesquisávamos, encontramos este notebook abaixo, é um bom custo x benefício?! Vimos que a vga dele é melhor do que uma MX150. Vi que ele também roda alguns jogos AAA no mínimo/médio como The Witcher, GTA V entre outros. Tem também o ponto de que, com ela, jogaria jogos mais leves do tipo Trine, Inside, Ori, Cuphead, Limbo e esses, acredito eu, que rodaria com a mão nas costas, ou estou enganado?
+	O notebook em questão seria este, vale a pena ou melhor esperar uma promoção em um melhor?https://www.kabum.com.br/produto/96885/notebook-acer-aspire-5-amd-a12-9720p-8gb-1tb-amd-radeon-rx-540-2gb-windows-10-15-6-vermelho-a515-41g-1480"
+34,Dicas de notebook gamer,https://www.clubedohardware.com.br/forums/topic/1381180-dicas-de-notebook-gamer/?do=findComment&comment=7503530,"@mick 07 opa mick,também vou comprar um notebook, quero um bom para o dia a dia mas também quero jogar alguns jogos. provavelmente vou comprar Notebook Gamer Acer Intel Core i5-7300HQ 8GB 1TB Placa GTX1050 4GB Tela 15,6"" Windows 10 Aspire Nitro 5 50U2.
+
+
+	 
+
+
+	o que você acha?"
+35,Notebook bom e acessível,https://www.clubedohardware.com.br/forums/topic/1381010-notebook-bom-e-acess%C3%ADvel/?do=findComment&comment=7502737,"Olá, estou a procura de recomendações de modelos de notebook que seja bom para alguns jogos e que seja em torno de 3 e 4 mil reais, pois não tenho muito conhecimento a respeito."
+36,Recomendação de notebook até 4.500 no Brasil,https://www.clubedohardware.com.br/forums/topic/1366688-recomenda%C3%A7%C3%A3o-de-notebook-at%C3%A9-4500-no-brasil/?do=findComment&comment=7439666,"Bom dia!
+
+
+	 
+
+
+	Estou querendo comprar um notebook novo, saindo do meu da Acer de 6 anos que nunca me deu dor de cabeça.
+
+
+	 
+
+
+	O que recomendam na faixa dos 3k aos 4,5k? Quero no mínimo um i7 de 7ª geração com 8G de RAM e uma placa de vídeo dedicada. Sou escritora, então priorizo teclados bons (com tecla do ""ç"" de preferência). Não rodo nenhum programa muito pesado além do Photoshop ou Corel eventualmente. No mais, preciso de uma máquina que não trave com as várias abas de navegador que costumo abrir ou quando estiver usando o Office e o Photoshop ao mesmo tempo. Autonomia de bateria também é importante pra mim.
+
+
+	 
+
+
+	Esse note vale a pena? Samsung expert x51 - gostei da configuração e da aparência dele.
+
+
+	Ou vale mais a pena investir num Dell Novo Inspiron 15 7000? Será que para meu uso o SSD faz muita diferença?"
+37,"Melhores notebook entre R$2.500,00 à R$4.200,00",https://www.clubedohardware.com.br/forums/topic/1364050-melhores-notebook-entre-r250000-%C3%A0-r420000/?do=findComment&comment=7426779,"Boa tarde camaradas do FCH, minha irmã quer outro notebook e estou montado um orçamento para ela dos melhores notebooks, dentre este orçamento eu precisaria de um para as seguintes tarefas:
+
+
+	AutoCad 2016
+
+
+	Revit 2018
+
+
+	SketchUp + V-ray
+
+
+	Corel Draw X7
+
+
+	Illustrator
+
+
+	Photoshop CS5
+
+
+	 
+
+
+	Neste caso, eis à seguir os orçamentos que montei, porém ficaria grato de mais recomendações:
+
+
+	O que gostaria de ver ao menos seria um processador quad core com ou sem Hyper-threading, tanto faz a marca, ao menos 8GB de RAM que futuramente possa ser expansível e que tenha um HD de 1TB(mesmo assim será removido e adicionado um SSD de 480GB), portanto será usado como HD externo. E se possível com uma placa de vídeo dedicada.
+
+
+Orçamento Notebook - Planinha Excel(Link MEGA)"
+38,meu microfone não funciona.,https://www.clubedohardware.com.br/forums/topic/1363048-meu-microfone-n%C3%A3o-funciona/?do=findComment&comment=7421708,"Meu computador possui somente uma entrada p2, porém na teoria era para reconhecer um HeadSet p2 com suporte para speaker e microfone.
+
+
+	as configurações do meu pc são:
+
+
+	Dell g7
+
+
+	intel core i7
+
+
+	geforce gtx 1050ti (4gb)
+
+
+	16 gb Ram dd4
+
+
+	mais informações no site oficial da dell, link abaixo
+	https://www.dell.com/pt-br/work/shop/cty/pdp/spd/g-series-15-7588-laptop/cag7588w10h191806brw
+	Ja tentei todos os drivers, estão todos atualizados
+	Gostaria muito de saber como posso resolver esse problema"
+39,qual melhor notebook comprar?,https://www.clubedohardware.com.br/forums/topic/1360597-qual-melhor-notebook-comprar/?do=findComment&comment=7409831,"Boa tarde! estou em dúvida sobre qual notebook comprar. Eu vi três que me interessam, mas não sei qual o melhor. Pois o meu notebook anterior foi da Dell durando 5 anos de uso.
+
+
+	 
+
+
+	https://www.dell.com/pt-br/shop/notebooks-dell/dell-g7-15/spd/g-series-15-7588-laptop/cag7588w10h191806brw
+
+
+	 
+
+
+	https://www.lenovo.com/br/pt/laptops/laptops-legion/legion-serie-y/Lenovo-Y720-15IKB/p/81CQ0000BR
+
+
+	 
+
+
+	https://www.samsung.com/br/pc/notebook-odyssey-np800g5h-xg4br/NP800G5H-XG4BR/"
+40,Computador NOVO - HD 100%,https://www.clubedohardware.com.br/forums/topic/1340782-computador-novo-hd-100/?do=findComment&comment=7313980,"Gente, acabei de comprar o seguinte notebook:
+
+
+	Dell Gaming G7 7588-A40B Intel Core 8º i7 16GB (GeForce GTX 1060 6GB) 1TB + 256GB SSD Tela Full HD 15,6"" Windows 10 
+
+
+	 
+
+
+	O windows está instalado no ssd, porém meus jogos e meu dropbox(que uso para trabalhar) está no hd de 1TB (segundo HD)
+
+
+	 
+
+
+	Quando o computador está parado, sem dropbox ou jogos ligados ele está executando normal tudo... Porém quando eu abro o drop ou qualquer jogo o segundo HD fica em 100% e trava tudo. Já tentei inúmeros tutoriais na internet, peguei esse note faz 5 dias, já até formatei ele... Nada resolve.
+
+
+	 
+
+
+	Agradeço muito pela ajuda de vocês."
+41,Notebook ou desktop no mesmo valor,https://www.clubedohardware.com.br/forums/topic/1331698-notebook-ou-desktop-no-mesmo-valor/?do=findComment&comment=7270745,"Boa noite amigos, 
+
+
+	 
+
+
+	Estava esperando para montar um Pc mas apareceu uma boa promoção de notebook e acredito estar valendo a pena. Mas como seria um investimento alto gostaria da opinião dos senhores.
+
+
+	 
+
+
+	Acham que vale a pena o notebook Dell g7-7588-a40 ou compensa mais pegar um Pc no valor dele?
+
+
+	 
+
+
+	Com um cupom de retorno, ele está saindo por r$5600 e tem a seguinte configuração:
+
+
+	i7 8750h
+
+
+	16 GB 2666mhz
+
+
+	1 TB+ .M2 256gb
+
+
+	1060 6 GB
+
+
+	Tela IPS Full HD
+
+
+	 
+
+
+	Daria pra montar um Pc melhor que esse notebook com esse mesmo valor?
+
+
+	Mobilidade conta pontos para essa decisão, mas se um desktop for muito mais vantagem, iria preferir o desktop.
+
+
+	 
+
+
+	Obs.: Estou desconsiderando o valor de um monitor para o desktop, mas acaba sendo relevante"
+42,Crysis (FPS) - Tópico oficial - Versões Xbox 360 e PS3 anunciadas,https://www.clubedohardware.com.br/forums/topic/284803-crysis-fps-t%C3%B3pico-oficial-vers%C3%B5es-xbox-360-e-ps3-anunciadas/?do=findComment&comment=2960993,Aurelios disse:	Inferis... voce diz pra min instalar no nv 5 e quando entrar no jogo colocar tudo em High ? pois eu instalei o 5 e o 4 primeiro e nem mexi nas configuração do jogo só muedei a resoluçao e tirei AA ficou muito ruim 15 fps muito pouco.... dai meti o nv 3 lá... o que muda se eu instalar o patch e mudar as configuraçoes pra low ou High ? eu puiz no high ficou 8 fps.... estou usando o vista.... Amigo você tem q instalar o patch e n alterar as configurações dentro do jogo... deixa td em custom mesmo!!! Aqui instalei o nivel 4 e vai muito bem... depois vou testar o nivel 5...

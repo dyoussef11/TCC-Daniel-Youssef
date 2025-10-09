@@ -1,0 +1,2539 @@
+ID_Post,Conteudo_Comentario
+0,back in 2018*
+0,"xansarcade said:
+
+
+
+			has anyone else here faced power throttling at such low temps
+		
+Click to expand...
+
+Definitely yes. You are not alone.
+
+This is a common problem with many, many Dell laptops. Dell decided to dream up a new power limit throttling scheme when Intel's 8th Generation CPUs were introduced. This great idea was not that great when these laptops were brand new. Things only got worse as these laptops got older.
+
+What seems to happen is there is an embedded controller (EC) that can send turbo power limits directly to the CPU. These power limits are separate from the MSR and MMIO turbo power limits that ThrottleStop lets you control. The EC seems to be sending a 5 Watt or maybe even a 0 Watt turbo power limit to the CPU. This forces the CPU to run as slow as possible as it tries to get power consumption down to this ridiculously low level. The result is a CPU that randomly gets stuck at 798 MHz for extended periods of time. This of course makes the laptop completely unusable when trying to play any game.
+
+Turn on the ThrottleStop Log File option and you will have a complete record of exactly what is going on. It will confirm this problem. You can copy and paste the data to www.pastebin.com if you want me to have a look.
+
+
+
+xansarcade said:
+
+
+
+			were u able to fix it?
+		
+Click to expand...
+
+Now the bad news. There is no fix for this design problem. You can try contacting Dell but as far as I know, Dell is still not willing to admit that this is indeed a serious problem. The cost to properly fix all of the Dell laptops that have this problem would be massive. Your laptop is just the tip of the iceberg.
+
+The only thing that might help make your defective laptop useable is to lower the CPU speed significantly. The severe throttling seems to be triggered by the average CPU temperature. When the average temperature gets up somewhere around 90°C is when these laptops go into severe power limit throttling mode.  You can use ThrottleStop to lower the Speed Shift Max value in the TPL window to try and control the CPU speed and heat output. Post some ThrottleStop screenshots and a log file if you need help."
+0,"hey unclewebb!! im pleased to interact with you as i have been closely following your advice on these forums and they have been of great help throughout the time i've owned this laptop.
+and here are my current ts settings"
+0,"@xansarcade 
+Can you show me a ThrottleStop Log File from a gaming session? Hopefully at least 15 minutes. You can copy and paste the log file data to www.pastebin.com
+
+Does the TS Bench report any errors? An undervolt of -154.3 mV is on the edge of stability for most 8750H. The core and the cache offset do not need to be set to the same value. Some users get better overall results by reducing the amount of cache offset voltage a little and then increasing the core offset voltage to -175 mV or -200 mV. This seems to trick the CPU into using less voltage when running code with a lot of AVX instructions. 
+
+Here are some examples that a user sent me.  The download includes 3 pictures of some Cinebench testing on an 8750H.
+https://drive.google.com/file/d/1B2HZjwlS6B5vO-m6HrkYMuiu8yVh3LvY/view?usp=sharing
+
+Use Cinebench R20 or R23 when testing different voltages. I prefer R20 because it defaults to a single test.
+
+
+
+
+
+
+
+
+
+						MAXON Cinebench R20.0 Download
+					
+
+CINEBENCH is a real-world cross platform test suite that evaluates your computer's performance capabilities. CINEBENCH is based on MAXON's award-winn
+
+
+
+
+					www.techpowerup.com"
+0,"uWebb429 said:
+
+
+
+@xansarcade
+Can you show me a ThrottleStop Log File from a gaming session? Hopefully at least 15 minutes. You can copy and paste the log file data to www.pastebin.com
+
+Does the TS Bench report any errors? An undervolt of -154.3 mV is on the edge of stability for most 8750H. The core and the cache offset do not need to be set to the same value. Some users get better overall results by reducing the amount of cache offset voltage a little and then increasing the core offset voltage to -175 mV or -200 mV. This seems to trick the CPU into using less voltage when running code with a lot of AVX instructions.
+
+Here are some examples that a user sent me.  The download includes 3 pictures of some Cinebench testing on an 8750H.
+https://drive.google.com/file/d/1B2HZjwlS6B5vO-m6HrkYMuiu8yVh3LvY/view?usp=sharing
+
+Use Cinebench R20 or R23 when testing different voltages. I prefer R20 because it defaults to a single test.
+
+
+
+
+
+
+
+
+
+						MAXON Cinebench R20.0 Download
+					
+
+CINEBENCH is a real-world cross platform test suite that evaluates your computer's performance capabilities. CINEBENCH is based on MAXON's award-winn
+
+
+
+
+					www.techpowerup.com
+				
+
+
+
+
+Click to expand...
+
+
+i did the changes right now and here's the logfile with them while playing valorant https://pastebin.com/CgnhHCXM
+
+ts bench starts to report errors around the -170 mark, i went through the log file and temperature is rising to 95 degrees in it. It hasn't even been 2 weeks since i repasted with arctic mx-4, should i use a different thermal compound like the ge lid gc extreme? or is it going to be the same result again. Also this could be a really stupid question but my laptop's battery only lasts for around 30 mins on a full charge so i have unplugged it and i use it on AC power, even though the same things happened when the battery was connected would this ever influence power throttling?"
+0,"xansarcade said:
+
+
+
+			i did the changes right now and here's the logfile with them while playing valorant https://pastebin.com/CgnhHCXM
+
+ts bench starts to report errors around the -170 mark, i went through the log file and temperature is rising to 95 degrees in it. It hasn't even been 2 weeks since i repasted with arctic mx-4, should i use a different thermal compound like the ge lid gc extreme? or is it going to be the same result again. Also this could be a really stupid question but my laptop's battery only lasts for around 30 mins on a full charge so i have unplugged it and i use it on AC power, even though the same things happened when the battery was connected would this ever influence power throttling?
+		
+Click to expand...
+
+oh and i'll run the cinebench as soon as im done with work. i really appreciate your help here!"
+0,"uWebb429 said:
+
+
+
+@xansarcade
+Can you show me a ThrottleStop Log File from a gaming session? Hopefully at least 15 minutes. You can copy and paste the log file data to www.pastebin.com
+
+Does the TS Bench report any errors? An undervolt of -154.3 mV is on the edge of stability for most 8750H. The core and the cache offset do not need to be set to the same value. Some users get better overall results by reducing the amount of cache offset voltage a little and then increasing the core offset voltage to -175 mV or -200 mV. This seems to trick the CPU into using less voltage when running code with a lot of AVX instructions.
+
+Here are some examples that a user sent me.  The download includes 3 pictures of some Cinebench testing on an 8750H.
+https://drive.google.com/file/d/1B2HZjwlS6B5vO-m6HrkYMuiu8yVh3LvY/view?usp=sharing
+
+Use Cinebench R20 or R23 when testing different voltages. I prefer R20 because it defaults to a single test.
+
+
+
+
+
+
+
+
+
+						MAXON Cinebench R20.0 Download
+					
+
+CINEBENCH is a real-world cross platform test suite that evaluates your computer's performance capabilities. CINEBENCH is based on MAXON's award-winn
+
+
+
+
+					www.techpowerup.com
+				
+
+
+
+
+Click to expand...
+
+
+
+
+ did a couple runs of r20 and my cpu does not hit anywhere near 3.9 at any point in the test. It usually starts off at 3.4 and throttles down to 2.9 and temps hover between 89-98. For the test i changed the turbo ratio limits to defaults in the hopes that the clocks would go up , but that didnt happen. i am going to get it repasted with gc extreme tomorrow to see if that helps the case. i had used arctic mx4 last week and it only ran fine for like a week after which it started to throttle again."
+0,"xansarcade said:
+
+
+
+			arctic mx4
+		
+Click to expand...
+
+Your experience with this paste is the same as everyone else's experience. This paste pumps out and will quickly fail when used direct die on laptop CPUs. About a week is typical.
+
+Turn on the Log File option when testing. Copy and paste the data to www.pastebin.com"
+0,"Hi @uWebb429 , I actually had my Dell G7 7588 repasted a couple of weeks back. Before repaste the CPU used to throttle down to 800Mhz when it reached 95c degress and and GPU when it touches 77c degrees, after repaste now the GPU seems to be cool around 70c when full load whereas CPU still reaches 95-100c under full turbo boost but it never throttles even at 100c.
+(All these noted during gaming)
+
+Was worried since even are underclocking to 3.5 or 3.6Ghz it stil reaches 95c+ which is bad for the CPU to run long at those high temperatures.
+So is this normal or should I get it repasted again?"
+0,"onyxx111 said:
+
+
+
+			Hi @uWebb429 , I actually had my Dell G7 7588 repasted a couple of weeks back. Before repaste the CPU used to throttle down to 800Mhz when it reached 95c degress and and GPU when it touches 77c degrees, after repaste now the GPU seems to be cool around 70c when full load whereas CPU still reaches 95-100c under full turbo boost but it never throttles even at 100c.
+(All these noted during gaming)
+
+Was worried since even are underclocking to 3.5 or 3.6Ghz it stil reaches 95c+ which is bad for the CPU to run long at those high temperatures.
+So is this normal or should I get it repasted again?
+		
+Click to expand...
+
+I have a G5 with 9750h and the only way to stop it overheating while gaming is undervolting."
+0,"sizzling said:
+
+
+
+			I have a G5 with 9750h and the only way to stop it overheating while gaming is undervolting.
+		
+Click to expand...
+
+Hi @sizzling , I did undervolt with Throttlestop(-150mv core and cache), but it still does reach high temperatures.
+It does not throttle, only issue being contant high temperatures of 95-100c"
+0,"onyxx111 said:
+
+
+
+			Hi @sizzling , I did undervolt with Throttlestop(-150mv core and cache), but it still does reach high temperatures.
+It does not throttle, only issue being contant high temperatures of 95-100c
+		
+Click to expand...
+
+Have you monitored that the undervolt is actually changing the voltage? Some BIOS versions would stop the software controlling the voltage. It might not be throttling but it would be limiting boosting."
+0,"sizzling said:
+
+
+
+			Have you monitored that the undervolt is actually changing the voltage? Some BIOS versions would stop the software controlling the voltage. It might not be throttling but it would be limiting boosting.
+		
+Click to expand...
+
+Yes I have verified the undervolt through HWmonitor and it is being applied.
+Is there any other way to test it?"
+0,"onyxx111 said:
+
+
+
+			Yes I have verified the undervolt through HWmonitor and it is being applied.
+Is there any other way to test it?
+		
+Click to expand...
+
+That’s the method I used when I ran into problems with the BIOS locking it out."
+0,"sizzling said:
+
+
+
+			That’s the method I used when I ran into problems with the BIOS locking it out.
+		
+Click to expand...
+
+So what else can be we do now? 😅"
+0,"onyxx111 said:
+
+
+
+			95c+ which is bad for the CPU
+		
+Click to expand...
+
+Who says 95C is bad? Intel says any temperature under 100C is a safe operating temperature. That is why the vast majority of Intel CPUs produced during the last 14 years have the thermal throttling temperature set to 100C. Some used 105C.
+
+
+
+onyxx111 said:
+
+
+
+			It does not throttle
+		
+Click to expand...
+
+Trust me, if a CPU core reaches 100C, it will throttle. Some users expect the CPU to drop to 800 MHz and get stuck there until things cool down. That is not how Intel thermal throttling works. The CPU is designed to only slow down the bare minimum to keep the CPU from exceeding 100C. Turn on the ThrottleStop Log File option so you have an accurate record of your CPU temperature and performance while it is thermal throttling. The Afterburner on screen data is not as accurate when a CPU is constantly thermal throttling.
+
+There are lots of thermal pastes that can start to degrade in a week or two when used on a laptop CPU. I would not trust any shop to use a high quality paste. Learn how to do this basic maintenance procedure yourself. Use Noctua NT-H2 or a similar paste.
+
+No need to use HWMonitor. The ThrottleStop FIVR monitoring table shows if the voltages are being applied or not."
+0,"uWebb429 said:
+
+
+
+			Who says 95C is bad? Intel says any temperature under 100C is a safe operating temperature. That is why the vast majority of Intel CPUs produced during the last 14 years have the thermal throttling temperature set to 100C. Some used 105C.
+
+
+Trust me, if a CPU core reaches 100C, it will throttle. Some users expect the CPU to drop to 800 MHz and get stuck there until things cool down. That is not how Intel thermal throttling works. The CPU is designed to only slow down the bare minimum to keep the CPU from exceeding 100C. Turn on the ThrottleStop Log File option so you have an accurate record of your CPU temperature and performance while it is thermal throttling. The Afterburner on screen data is not as accurate when a CPU is constantly thermal throttling.
+
+There are lots of thermal pastes that can start to degrade in a week or two when used on a laptop CPU. I would not trust any shop to use a high quality paste. Learn how to do this basic maintenance procedure yourself. Use Noctua NT-H2 or a similar paste.
+
+No need to use HWMonitor. The ThrottleStop FIVR monitoring table shows if the voltages are being applied or not.
+		
+Click to expand...
+
+Hello, so I see in the logfile that it throttles to 3 or 3.4Ghz but comes back to 3.9Ghz later.
+No severe throttling observed.
+Here's the log file.
+https://pastebin.com/p8cPGZ6Z"
+0,"onyxx111 said:
+
+
+
+			it throttles
+		
+Click to expand...
+
+Lots and lots of throttling. Everytime you see TEMP in the right column of the log file, that indicates thermal throttling is in progress. There is a mixture of this and lots of PL1 power limit throttling. Your 8750H has a 45W TDP rating but at times it is being limited to less than 20W. 
+
+It is bad design by Dell. Your 8750H cannot compete with the same CPU in a properly engineered and properly cooled laptop. There is no fix for Dell's excessive power limit throttling issues."
+0,"uWebb429 said:
+
+
+
+			Lots and lots of throttling. Everytime you see TEMP in the right column of the log file, that indicates thermal throttling is in progress. There is a mixture of this and lots of PL1 power limit throttling. Your 8750H has a 45W TDP rating but at times it is being limited to less than 20W.
+
+It is bad design by Dell. Your 8750H cannot compete with the same CPU in a properly engineered and properly cooled laptop. There is no fix for Dell's excessive power limit throttling issues.
+		
+Click to expand...
+
+So I suppose there is no fix for that.
+Thanks for the help anyway!"
+1,Comentário não encontrado
+1,"g-unit1111 said:
+
+
+
+			OK so I am wrong on that one, I will admit that. But I do stand by my claim that some things just aren't worth the hassle. By the time you buy the adapters and get everything configured, you might as well just buy new.
+		
+Click to expand...
+
+https://www.amazon.com/Laptop-DDR4-Desktop-Adapter-Converter/dp/B07FFW1CZD
+
+They're like $15 on Amazon. And yes, they work:"
+1,"No, because they're soldered to the board. The only thing you can reuse from that laptop is the storage and RAM using a SO-DIMM to DIMM adapter"
+1,"Upon request (and with a little help, I'm new to this sorry) I can produce the exact specs of the graphics card.  I've been told not to bother with RAM and hard drive because they're always incompatible so I'm assuming the processor and graphics card are the only ones possible to be reused. So, would it be possible to take these parts out and use it in a new build? Thanks for any and all responses guys.
+		
+Click to expand...
+
+
+Whoever told you that is 100% wrong and does not know what they are talking about. It's actually the opposite.  A laptop CPU won't carry over to a desktop. Main reason is because laptop CPUs use different sockets. Laptop GPUs won't carry over either because they are all integrated into the motherboard.
+
+Hard drives and SSDs, on the other hand, are the only component that will carry over between laptops and desktops because they use the same connectors and power doesn't really matter."
+1,"bens6687 said:
+
+
+
+			So, would it be possible to take these parts out and use it in a new build?
+		
+Click to expand...
+
+No.
+The only things that are exchangeable between desktop and laptop are the storage devices.
+
+In theory, you could maybe reuse the RAM froma laptop in a desktop. But that is WAY more time and expense than it is worth."
+1,"USAFRet said:
+
+
+
+			No.
+The only things that are exchangeable between desktop and laptop are the storage devices.
+
+In theory, you could maybe reuse the RAM froma laptop in a desktop. But that is WAY more time and expense than it is worth.
+		
+Click to expand...
+
+This."
+1,"bens6687 said:
+
+
+
+			Hey folks! Wanted to start this by saying how you all have helped me out many times in the past, but I'm making an account to ask a question myself this time.
+Essentially, I currently run a gaming laptop (Dell G7 15 7588) which uses:
+-Intel(R) Core(TM) i5-8300H CPU @ 2.30GHz[Cores 4] [Logical processors 8]
+-gtx 1050
+Upon request (and with a little help, I'm new to this sorry) I can produce the exact specs of the graphics card.  I've been told not to bother with RAM and hard drive because they're always incompatible so I'm assuming the processor and graphics card are the only ones possible to be reused. So, would it be possible to take these parts out and use it in a new build? Thanks for any and all responses guys.
+		
+Click to expand...
+
+
+If you don't want to keep the laptop and replacing it with a desktop, sell the laptop, use the money towards desktop parts.  Keep in mind that video cards are hard to find and are way over normal prices.  If I was you, I would use the laptop till you can buy video cards at normal prices again."
+1,"g-unit1111 said:
+
+
+
+			A laptop CPU won't carry over to a desktop. Main reason is because laptop CPUs are low voltage and made to run on a battery. Desktop motherboards and CPUs require a lot of power to run properly.
+		
+Click to expand...
+
+Main reason for incompatibility is laptop and desktop cpus use different sockets. Not compatible. Period.
+
+
+g-unit1111 said:
+
+
+
+			You could, but the voltages and speeds between laptop RAM and desktop RAM are so different that you're just better off buying new.
+		
+Click to expand...
+
+No. Voltages are the same for laptop and desktop ram.
+DDR4 and DDR3L is 1.2V to 1.35V - on both desktop and laptop.​DDR3 is 1.5V to 1.65V - on both desktop and laptop.​But again - different sockets DIMM and SODIMM. So not compatible without a specific adapter."
+1,"SkyNetRising said:
+
+
+
+			Main reason for incompatibility is laptop and desktop cpus use different sockets. Not compatible. Period.
+
+But again - different sockets DIMM and SODIMM. So not compatible without a specific adapter.
+		
+Click to expand...
+
+
+I have seen laptops that run desktop CPUs but I am guessing that the OP doesn't have one of those.
+
+
+
+
+
+			No. Voltages are the same for laptop and desktop ram.
+DDR4 and DDR3L is 1.2V to 1.35V - on both desktop and laptop.​DDR3 is 1.5V to 1.65V - on both desktop and laptop.​But again - different sockets DIMM and SODIMM. So not compatible without a specific adapter.
+		
+Click to expand...
+
+
+OK so I am wrong on that one, I will admit that. But I do stand by my claim that some things just aren't worth the hassle. By the time you buy the adapters and get everything configured, you might as well just buy new."
+1,"g-unit1111 said:
+
+
+
+			OK so I am wrong on that one, I will admit that. But I do stand by my claim that some things just aren't worth the hassle. By the time you buy the adapters and get everything configured, you might as well just buy new.
+		
+Click to expand...
+
+https://www.amazon.com/Laptop-DDR4-Desktop-Adapter-Converter/dp/B07FFW1CZD
+
+They're like $15 on Amazon. And yes, they work:"
+1,"Could also just get a motherboard that has SO-DIMM slots, but that is silly as well to just re-use some memory.
+
+There are companies in China harvesting laptop CPUs and putting them on desktop substrates, but not something you can do yourself. I believe Linus also did a video on that some years back.
+
+Honestly nothing wrong with an i5-8300H and a GTX 1060 right now. I would just keep it. Maybe replace the thermal compound for a little boost in performance."
+1,"Eximo said:
+
+
+
+			Could also just get a motherboard that has SO-DIMM slots, but that is silly as well to just re-use some memory.
+
+There are companies in China harvesting laptop CPUs and putting them on desktop substrates, but not something you can do yourself. I believe Linus also did a video on that some years back.
+
+Honestly nothing wrong with an i5-8300H and a GTX 1060 right now. I would just keep it. Maybe replace the thermal compound for a little boost in performance.
+		
+Click to expand...
+
+
+Really? This is a thing?"
+1,"Yes, they did a few high end Mini-ITX boards with SO-DIMM slots, purely for the space savings. Can't say I've seen one recently though. 
+
+https://pcpartpicker.com/product/kT...o-mini-itx-lga1151-motherboard-mbd-x11ssv-q-o
+
+
+
+If you are referring to the laptop CPUs for desktops, apparently available on Amazon and Ebay:
+
+https://www.amazon.com/Modify-4770HQ-Adapter-LGA1150-Compatible/dp/B07KYC8BPM
+
+https://www.ebay.com/itm/Modify-COR...dapter-to-LGA-1150-Mod-for-HTPC-/254069873498
+
+Seems to be the same group doing them, same spelling mistakes and general descriptions."
+2,Comentário não encontrado
+2,"Go to Keyboardtester and see if you have any keys depressed. Following that, if you find a culprit key that's depressed, power down the laptop and disconnect from the wall, remove the keyboard and remove the keycap under which the faulty switch may be residing and take a fine bristle brush to clean the switch top. Usually dust or debris(or hair follicle or lint) can cause the switch to be depressed.
+
+You might also want to see if you have any BIOS updates pending for your laptop and if your OS isn't on version 20H2, if you're on Windows 10).
+
+If none of the above help, you will need a replacement keyboard for your laptop."
+2,"Go to Keyboardtester and see if you have any keys depressed. Following that, if you find a culprit key that's depressed, power down the laptop and disconnect from the wall, remove the keyboard and remove the keycap under which the faulty switch may be residing and take a fine bristle brush to clean the switch top. Usually dust or debris(or hair follicle or lint) can cause the switch to be depressed.
+
+You might also want to see if you have any BIOS updates pending for your laptop and if your OS isn't on version 20H2, if you're on Windows 10).
+
+If none of the above help, you will need a replacement keyboard for your laptop."
+2,"I updated my BIOS and firmware and that fixed it. Very relieved. 
+Thank you Lutfij"
+3,Comentário não encontrado
+3,"g-unit1111 said:
+
+
+
+			OK so I am wrong on that one, I will admit that. But I do stand by my claim that some things just aren't worth the hassle. By the time you buy the adapters and get everything configured, you might as well just buy new.
+		
+Click to expand...
+
+https://www.amazon.com/Laptop-DDR4-Desktop-Adapter-Converter/dp/B07FFW1CZD
+
+They're like $15 on Amazon. And yes, they work:"
+3,"No, because they're soldered to the board. The only thing you can reuse from that laptop is the storage and RAM using a SO-DIMM to DIMM adapter"
+3,"Upon request (and with a little help, I'm new to this sorry) I can produce the exact specs of the graphics card.  I've been told not to bother with RAM and hard drive because they're always incompatible so I'm assuming the processor and graphics card are the only ones possible to be reused. So, would it be possible to take these parts out and use it in a new build? Thanks for any and all responses guys.
+		
+Click to expand...
+
+
+Whoever told you that is 100% wrong and does not know what they are talking about. It's actually the opposite.  A laptop CPU won't carry over to a desktop. Main reason is because laptop CPUs use different sockets. Laptop GPUs won't carry over either because they are all integrated into the motherboard.
+
+Hard drives and SSDs, on the other hand, are the only component that will carry over between laptops and desktops because they use the same connectors and power doesn't really matter."
+3,"bens6687 said:
+
+
+
+			So, would it be possible to take these parts out and use it in a new build?
+		
+Click to expand...
+
+No.
+The only things that are exchangeable between desktop and laptop are the storage devices.
+
+In theory, you could maybe reuse the RAM froma laptop in a desktop. But that is WAY more time and expense than it is worth."
+3,"USAFRet said:
+
+
+
+			No.
+The only things that are exchangeable between desktop and laptop are the storage devices.
+
+In theory, you could maybe reuse the RAM froma laptop in a desktop. But that is WAY more time and expense than it is worth.
+		
+Click to expand...
+
+This."
+3,"bens6687 said:
+
+
+
+			Hey folks! Wanted to start this by saying how you all have helped me out many times in the past, but I'm making an account to ask a question myself this time.
+Essentially, I currently run a gaming laptop (Dell G7 15 7588) which uses:
+-Intel(R) Core(TM) i5-8300H CPU @ 2.30GHz[Cores 4] [Logical processors 8]
+-gtx 1050
+Upon request (and with a little help, I'm new to this sorry) I can produce the exact specs of the graphics card.  I've been told not to bother with RAM and hard drive because they're always incompatible so I'm assuming the processor and graphics card are the only ones possible to be reused. So, would it be possible to take these parts out and use it in a new build? Thanks for any and all responses guys.
+		
+Click to expand...
+
+
+If you don't want to keep the laptop and replacing it with a desktop, sell the laptop, use the money towards desktop parts.  Keep in mind that video cards are hard to find and are way over normal prices.  If I was you, I would use the laptop till you can buy video cards at normal prices again."
+3,"g-unit1111 said:
+
+
+
+			A laptop CPU won't carry over to a desktop. Main reason is because laptop CPUs are low voltage and made to run on a battery. Desktop motherboards and CPUs require a lot of power to run properly.
+		
+Click to expand...
+
+Main reason for incompatibility is laptop and desktop cpus use different sockets. Not compatible. Period.
+
+
+g-unit1111 said:
+
+
+
+			You could, but the voltages and speeds between laptop RAM and desktop RAM are so different that you're just better off buying new.
+		
+Click to expand...
+
+No. Voltages are the same for laptop and desktop ram.
+DDR4 and DDR3L is 1.2V to 1.35V - on both desktop and laptop.​DDR3 is 1.5V to 1.65V - on both desktop and laptop.​But again - different sockets DIMM and SODIMM. So not compatible without a specific adapter."
+3,"SkyNetRising said:
+
+
+
+			Main reason for incompatibility is laptop and desktop cpus use different sockets. Not compatible. Period.
+
+But again - different sockets DIMM and SODIMM. So not compatible without a specific adapter.
+		
+Click to expand...
+
+
+I have seen laptops that run desktop CPUs but I am guessing that the OP doesn't have one of those.
+
+
+
+
+
+			No. Voltages are the same for laptop and desktop ram.
+DDR4 and DDR3L is 1.2V to 1.35V - on both desktop and laptop.​DDR3 is 1.5V to 1.65V - on both desktop and laptop.​But again - different sockets DIMM and SODIMM. So not compatible without a specific adapter.
+		
+Click to expand...
+
+
+OK so I am wrong on that one, I will admit that. But I do stand by my claim that some things just aren't worth the hassle. By the time you buy the adapters and get everything configured, you might as well just buy new."
+3,"g-unit1111 said:
+
+
+
+			OK so I am wrong on that one, I will admit that. But I do stand by my claim that some things just aren't worth the hassle. By the time you buy the adapters and get everything configured, you might as well just buy new.
+		
+Click to expand...
+
+https://www.amazon.com/Laptop-DDR4-Desktop-Adapter-Converter/dp/B07FFW1CZD
+
+They're like $15 on Amazon. And yes, they work:"
+3,"Could also just get a motherboard that has SO-DIMM slots, but that is silly as well to just re-use some memory.
+
+There are companies in China harvesting laptop CPUs and putting them on desktop substrates, but not something you can do yourself. I believe Linus also did a video on that some years back.
+
+Honestly nothing wrong with an i5-8300H and a GTX 1060 right now. I would just keep it. Maybe replace the thermal compound for a little boost in performance."
+3,"Eximo said:
+
+
+
+			Could also just get a motherboard that has SO-DIMM slots, but that is silly as well to just re-use some memory.
+
+There are companies in China harvesting laptop CPUs and putting them on desktop substrates, but not something you can do yourself. I believe Linus also did a video on that some years back.
+
+Honestly nothing wrong with an i5-8300H and a GTX 1060 right now. I would just keep it. Maybe replace the thermal compound for a little boost in performance.
+		
+Click to expand...
+
+
+Really? This is a thing?"
+3,"Yes, they did a few high end Mini-ITX boards with SO-DIMM slots, purely for the space savings. Can't say I've seen one recently though. 
+
+https://pcpartpicker.com/product/kT...o-mini-itx-lga1151-motherboard-mbd-x11ssv-q-o
+
+
+
+If you are referring to the laptop CPUs for desktops, apparently available on Amazon and Ebay:
+
+https://www.amazon.com/Modify-4770HQ-Adapter-LGA1150-Compatible/dp/B07KYC8BPM
+
+https://www.ebay.com/itm/Modify-COR...dapter-to-LGA-1150-Mod-for-HTPC-/254069873498
+
+Seems to be the same group doing them, same spelling mistakes and general descriptions."
+4,Comentário não encontrado
+4,"thecharismaticsid said:
+
+
+
+			From what I knew is that PCIe 3.0 has similar speeds to PCIe 4.0
+		
+Click to expand...
+
+nope.
+3.0 is about half the speed of 4.0
+https://en.wikipedia.org/wiki/PCI_Express#History_and_revisions
+
+so your 3500 is about half of 7000. that about right
+
+
+
+
+thecharismaticsid said:
+
+
+
+			Can I change the link speed and will that increase the performance
+		
+Click to expand...
+
+short answer is no, need a new laptop"
+4,"thecharismaticsid said:
+
+
+
+			From what I knew is that PCIe 3.0 has similar speeds to PCIe 4.0
+		
+Click to expand...
+
+nope.
+3.0 is about half the speed of 4.0
+https://en.wikipedia.org/wiki/PCI_Express#History_and_revisions
+
+so your 3500 is about half of 7000. that about right
+
+
+
+
+thecharismaticsid said:
+
+
+
+			Can I change the link speed and will that increase the performance
+		
+Click to expand...
+
+short answer is no, need a new laptop"
+4,Gen 4 drive in a Gen 3 nvme m.2 slot will only go as fast as a Gen 3 drive...so 3500mb read/write is about as good as you'll get from that m.2 slot.
+4,"rgd1101 said:
+
+
+
+			nope.
+3.0 is about half the speed of 4.0
+https://en.wikipedia.org/wiki/PCI_Express#History_and_revisions
+
+so your 3500 is about half of 7000. that about right
+
+
+
+short answer is no, need a new laptop
+		
+Click to expand...
+
+
+Thank You so much rgd1101 that clears my doubts."
+4,"dorsai said:
+
+
+
+			Gen 4 drive in a Gen 3 nvme m.2 slot will only go as fast as a Gen 3 drive...so 3500mb read/write is about as good as you'll get from that m.2 slot.
+		
+Click to expand...
+
+
+Thank you dorsai"
+5,"Okay, so after some searching, I found a great article on how to pick out a good video editing laptop based on what type of video editing I would be doing exactly. The article is here: https://laptopstudy.com/best-laptop-for-video-editing/
+
+I narrowed it down to fast CPU with 6 cores (8th or 9th gen), midrange GPU, 16GB - 32GB RAM, small SSD with big HDD.
+
+I did a search on these websites which allow you to customize specs: https://laptopmedia.com/specs/ 
+https://www.newegg.com/d/Product/PowerSearch?SubCategory=32&N=100006740&IsNodeId=1
+
+I came up with these results:
+
+HP Omen 15 2018
+HP Pavilion 15 Gaming Notebook
+HP Omen 15t Gaming and Business
+Dell G7 15 7588
+Alienware 15 R4
+Lenovo Legion Y7000
+
+These are all midrange finds. There would be a lot of lowend results with Nvidia 1050s like the Dell XPS 15 (cost around 1,100).
+
+If anyone has any other suggestions, I'm open! I hope this helps someone else out."
+6,Comentário não encontrado
+6,"What will work in a laptop would really need to come from the vendor support techs, unless you can find something online that someone tried that same model and it worked.  If not, you need to hope it works or get the real replacement.  Usually there are issues with the screen and maybe keyboard issues when changing motherboard."
+6,"What will work in a laptop would really need to come from the vendor support techs, unless you can find something online that someone tried that same model and it worked.  If not, you need to hope it works or get the real replacement.  Usually there are issues with the screen and maybe keyboard issues when changing motherboard."
+7,"2.  Summary: How to Connect to a 120+ Hz Monitor
+
+Generally, you connect to a 120+ Hz monitor using DisplayPort, DVI, or HDMI, as long as all of the requirements are met. You monitor, computer, and cable all have individual requirements that must be met for 120+ Hz to work.​
+2.1.  DisplayPort​
+
+Spoiler: Click to Expand
+
+
+
+Most 120+ Hz monitors have a DisplayPort (DP) input (see Section 3). DisplayPort is the primary option for connecting to the monitor. DP is the safest option to ensure you get the maximum refresh rate of your display.​
+Monitor requirements for DisplayPort
+
+As long as your monitor actually has a DisplayPort input (can be either full-size DP or mini DP, there's no difference), there's really nothing else to check for in this area.
+
+Technically, the monitor's DP port must support a high enough speed, but in practice, monitors will always support whatever speed is necessary for its specs, so this isn't something you need to actually check for.
+
+So, as long as your monitor has a DisplayPort input, then the monitor's requirements are fulfilled.​
+Computer requirements for DisplayPort
+
+The DisplayPort output on the graphics card must support the necessary speed. In general, you can tell what speed is supported by the claimed ""DisplayPort version"" of the graphics card.
+
+DisplayPort 1.3–1.4 graphics card: HBR3 speed, up to 1440p 240 Hz or 4K 120 Hz
+DisplayPort 1.2 graphics card: HBR2 speed, up to 1080p 240 Hz or 1440p 165 Hz
+Note: NVIDIA 600 and 700 series cards support HBR2 (""DP 1.2"") but are limited to 75% bandwidth, max 1080p 200 Hz or 1440p 120 Hz.
+
+DisplayPort 1.0–1.1 graphics card: HBR speed, up to 1080p 144 Hz or 1440p 85 Hz
+
+Cable requirements for DisplayPort
+
+Generally high refresh rate monitors will include a DisplayPort cable that will work, but if you need another one, the only things you need to look for are:
+
+A high enough speed rating
+VESA certification
+
+DP cables are not classifed by a ""version number"". There is no such thing as a ""DP 1.2 cable"" or ""DP 1.4 cable"". DP cables are classified by a speed rating, such as HBR, HBR2, or HBR3. Your DP cable must be rated for the necessary speed to work for 120+ Hz at high resolutions. In addition, you should also look for a ""VESA-certified"" cable, because non-certified cables often lie about their speed ratings.
+
+For 1920×1080 up to 144 Hz, any DisplayPort cable will work. For higher, up to 240 Hz, you need a DisplayPort cable rated for HBR2 speed. For even higher, such as 360 Hz, you need a DisplayPort cable rated for HBR3 speed.
+
+For 2560×1440 up to 85 Hz, any DisplayPort cable will work. For higher, up to 170 Hz, you need a DisplayPort cable rated for HBR2 speed. For up to 240 Hz, you need a DisplayPort cable rated for HBR3 speed.
+
+For 3840×2160, you need an HBR3 rated cable to get higher than 60 Hz.
+
+All other ""specs"" of the cable such as wire gauge, version numbers, or ""support"" for features (like HDR, FreeSync/G-Sync, etc.) are meaningless.
+
+DP cables are classified by speed rating only. All DP cables are functionally identical apart from their maximum speed.​
+Can I use an adapter?
+
+If your computer does not have a DP output, you can also use a USB Type-C to DP adapter (see Section 3.4.3) or an HDMI to DP adapter (see Section 3.4.1).
+
+USB Type-C to DP adapters will only work if the USB port has video output capability. Not all USB Type-C ports have this capability; it is an optional feature. This adapter will give you the same capability as a native DP port. The maximum resolution and refresh rate will depend on the source device and adapter, but generally all devices will support a minimum of HBR2 speed (1080p 240 Hz or 1440p 165 Hz).
+
+HDMI to DP adapters are available for up to 1080p 240 Hz. There are no HDMI to DP adapters capable of more than 1080p 240 Hz. (Last checked: July 2021).
+
+Do not confuse ""HDMI to DP"" adapters with ""DP to HDMI"" adapters. DP to HDMI adapters will not work for this situation. Refer to Section 3.4.1.​
+
+
+
+2.2.  DVI​
+
+Spoiler: Click to Expand
+
+
+
+DVI can be used up to 1080p 144 Hz. Many 1080p 144 Hz monitors have a DVI port as a backup, and some very old models (like the Acer GN246HL and BenQ XL2411) use it as their only high-refresh rate connectivity option.​
+Computer requirements for DVI
+
+If your computer has a DVI output port, it needs to support Dual-Link mode. There is no way of identifying this visually. In general, DVI ports on graphics cards do support Dual-Link and will work for 144 Hz at 1080p, but DVI ports on motherboards (integrated graphics) do not support Dual-Link and will be limited to 60 Hz. Low-end graphics cards like the GeForce GT 1030 also may be limited to Single-Link only.
+
+Single‑Link DVI cables will be limited to around 60 Hz at 1080p.
+
+Be aware that you cannot distinguish Single-Link from Dual-Link cables by the pin configuration. Single-Link DVI and Dual‑Link DVI do not use separate connectors, they use the same connector. Some people on the internet insist that Single-Link DVI uses a different connector with missing center pins, and you may even have examples of cables like this. However, this is a non-standard pin configuration which is not defined in the DVI Specification. Although some cables may use this non-standard configuration, not all of them do. Therefore, just because a cable has a full 24+1 pin connector, that doesn't mean it's a Dual-Link DVI cable. Don’t judge a DVI cable by the pin count (19+1, 24+1, etc.). Refer to Section 4.2.​
+Monitor requirements for DVI
+
+As long as your monitor actually has a DVI port, there's really nothing to check in this area.
+
+DVI ports on high refresh rate monitors always support Dual-Link capability, and there is no compatibility difference whether the port is DVI-D or DVI-I so that doesn't matter either (meaning: if you don't know what that means, don't worry about it).​
+Cable requirements for DVI
+
+You just need a Dual-Link DVI cable. These are also called ""Dual-Link DVI-D"" cables (same thing). Any Dual-Link DVI cable will work, as long as it's genuine. There are no speed tiers or ratings, or ""versions"" of DVI cables besides the wiring (Single-Link or Dual-Link).​
+Can I use an adapter?
+
+If your computer does not have a DL-DVI output port at all, it is difficult to get high refresh rates through an adapter. The only option is a DisplayPort to DL-DVI active adapter, which will work up to 1080p 144 Hz, but they are very expensive (see Section 4.5.1). Please note that fake DP to ""Dual-Link"" DVI adapters are very common. Cheap adapters are SINGLE-LINK-ONLY and will be limited to 60 Hz at 1080p, even if they claim/appear to be ""Dual-Link"".​
+
+
+
+2.3.  HDMI​
+
+Spoiler: Click to Expand
+
+
+
+HDMI can be used for high refresh rates on some monitors. It depends on the maximum HDMI bandwidth supported by the monitor. This is configured by the manufacturer and is not dictated by the ""HDMI version"" of the monitor.
+
+For example, some ""HDMI 1.4"" monitors are limited to 60 Hz at 1080p over HDMI, like the ASUS VG248QE, Acer GN246HL, and BenQ XL2411. Other ""HDMI 1.4"" monitors max out at 1080p 120 Hz, like the Samsung C24FG73. Other ""HDMI 1.4"" monitors support up to 1080p 144 Hz over HDMI like the ViewSonic XG2401.
+
+HDMI bandwidth can be limited to any arbitrary amount at the manufacturer's discretion (based on their hardware choices); some choose to cut costs in this area, others don't. Due to this, the capabilities of an HDMI device cannot be known just from the ""version number"" claimed by the device.​
+Computer requirements for HDMI
+
+The HDMI output on your computer must support the necessary speed for your monitor. Most HDMI devices support the maximum speed allowed by the HDMI Specification (whichever version was the most recent at the time). Therefore the claimed ""version number"" of the device is usually a good indicator.
+
+HDMI 1.3–1.4 is capable of up to 144 Hz at 1080p and 75 Hz at 1440p.
+
+HDMI 2.0 is capable of up to 240 Hz at 1080p, 144 Hz at 1440p, and 60 Hz at 4K.
+
+HDMI 2.1 is capable of at least 144 Hz at 4K.
+
+However, the HDMI Specification does not require that devices support the maximum possible speed, so there are exceptions, such as Intel integrated graphics (9th generation and earlier) being limited to 300 MHz TMDS (1080p 120 Hz) instead of the full 340 MHz allowed by the HDMI 1.4 Specification.​
+Monitor requirements for HDMI
+
+Your monitor must support 120+ Hz over HDMI. This is completely arbitrary and cannot be determined by the ""HDMI version number"" of the monitor. Please refer to the list of compatible monitors in Section 7.1.​
+Cable requirements for HDMI
+
+Any certified High Speed HDMI cable should work up to 144 Hz at 1080p (often improperly advertised as a ""version 1.3 cable"" or ""version 1.4 cable"").
+
+High Speed HDMI cables will also usually work for higher (HDMI 2.0) formats, up to 240 Hz at 1080p or 144 Hz at 1440p, but they are not certified at those speeds and are not guaranteed to handle them. This is not usually a concern for short cables, but for very long cables (> 10 meters) a Premium High Speed certified HDMI cable may be necessary. Refer to Section 5.3.4.
+
+For 4K 120 Hz, you may need a certified Ultra High Speed HDMI cable.​
+Can I use an adapter?
+
+If your computer does not have an HDMI output port available, there are many adapters readily available which can adapt to HDMI at high refresh rates. You can use a DP to HDMI adapter, but be warned that not all DP to HDMI adapters support high refresh rates, some are limited to 60 Hz at 1080p. You need a Type 2 passive adapter or an active adapter to get high refresh rates with a DP to HDMI adapter. See Section 5.5.1.
+
+You can also use a simple (Single-Link) DVI to HDMI passive adapter. For reasons too complicated to explain here, this does work for high refresh rates as long as it is used for a DVI to HDMI connection (not an HDMI to DVI connection). You don't need a ""Dual-Link"" DVI to HDMI adapter or anything like that. See Section 5.5.2 for more detail.​
+
+
+
+2.4.  ""Which one should I use?""​
+
+Spoiler: Click to Expand
+
+
+
+There is no visual difference between DVI, HDMI, and DisplayPort. They only differ in maximum capability.
+
+For example, at 1080p 144 Hz, DVI and DisplayPort can both do it, so they are both equally good options. At 1440p 144 Hz, DisplayPort can do it and DVI can't, so DisplayPort is better than DVI in that situation.
+
+That is how it works. Each interface either can or can't do it, depending on the desired format. All the options that can do it are just as good as each other. Use whichever one is most convenient.
+
+It should also be noted that DVI does not support inline audio or HDR. If you care about either of those, then you need to use HDMI or DisplayPort."
+7,"3.  DisplayPort
+
+
+
+
+
+DisplayPort (DP) is the primary option for connecting a 120+ Hz monitor. Most 120+ Hz monitors have a DP input port. The DP input will almost always be the connection that supports the display's maximum capabilities.​
+3.1.  Full-Size DP vs. Mini DP Connector​
+
+Spoiler: Click to Expand
+
+
+
+
+
+
+Left: Full-size DP cable connector. Right: mDP cable connector
+
+A DP port may have either a full-size DisplayPort (DP) connector or a Mini DisplayPort (mDP) connector, shown above. There is no difference between them, other than the physical shape of the connector. DisplayPort cables and ports have the same capability whether they use a full-size or a mini connector. They are interchangeable using a simple adapter, which does not affect the capabilities in any way.
+
+
+
+3.2.  DP Versions and Speeds​
+3.2.1.  Versions​
+
+Spoiler: Click to Expand
+
+
+
+Note: This is about versions of the DisplayPort Standard in general. It is not about DP cables. DisplayPort cables are not classified by a ""version number"". See Section 3.3 for information about selecting a DisplayPort cable.
+
+There are several different versions of the DisplayPort standard. Newer versions introduce support for faster speeds, which are necessary for high-bandwidth formats such as 1440p 144 Hz or 4K 60 Hz.
+
+For up to 1080p 144 Hz, no considerations need to be made. All versions of DisplayPort can support up to 1080p 144 Hz.
+
+To operate at the higher speeds, the hardware in both the monitor and the source device must BOTH support the required version.
+
+Keep in mind that the ""DisplayPort version"" is NOT an absolute description of a device's capabilities. Individual devices may have their own limitations. For example, NVIDIA Kepler graphics cards (GTX 600 and 700 series) have ""DisplayPort 1.2"" ports, but they are limited to only 75% of the maximum bandwidth allowed by the DP 1.2 standard.
+
+So just because a device has a certain version of DisplayPort does not necessarily mean it supports the full bandwidth allowed by that version. But just for reference, here are the maximum limits of each version of DisplayPort:
+
+
+
+
+
+
+
+3.2.2.  Transmission Speeds​
+
+Spoiler: Click to Expand
+
+
+
+The DisplayPort standard defines three different transmission speeds that a DP link can operate at, called HBR, HBR2, and HBR3. (There is also a lower mode called RBR but no one cares about that one)
+
+The basic speed, HBR, is enough for up to 144 Hz at 1080p. Higher resolutions and refresh rates require higher transmission speeds. To operate at a higher speed, the devices on both ends must each support that mode (HBR2 or HBR3), and the DP cable must also be rated to handle that speed.
+
+HBR Speed
+
+HBR speed is 10.8 Gbit/s. This mode was defined in DisplayPort version 1.0.
+
+Nearly all DisplayPort devices support the full speed of this mode. Some exceptions include older generation (2011-era) Intel integrated graphics such as Intel HD 3000, which was limited to around 6.75 Gbit/s over DisplayPort. This is not a concern with modern GPUs.
+
+Any DisplayPort cable should handle HBR speed. Even cheap knock-off cables will be capable of this speed.
+
+This speed is enough for up to:
+
+1920 × 1080 @ 144 Hz
+2560 × 1440 @ 85 Hz
+3840 × 2160 @ 30 Hz
+HBR2 Speed
+
+HBR2 speed is 21.6 Gbit/s. This mode was introduced in DisplayPort version 1.2.
+
+Most DisplayPort 1.2 GPUs are capable of the full HBR2 speed. There are some exceptions however; NVIDIA Kepler graphics cards (GTX 600 and 700 series) are limited to only 75% of the full data rate. Therefore, these graphics cards are limited to 200 Hz at 1080p or 120 Hz at 1440p.
+
+HBR2 speed also requires a DisplayPort cable which is properly rated for this speed. Not all DisplayPort cables will handle HBR2 speed, particularly longer cables (> 3 meters). Look for cables that have a VESA certification for HBR2 speed (21.6 Gbit/s). Sometimes these will also be advertised as ""DisplayPort version 1.2 cables"", although ""versions"" are not a technically proper way of classifying cables.
+
+Full HBR2 speed is enough for up to:
+
+1920 × 1080 @ 240 Hz
+2560 × 1440 @ 165 Hz
+3840 × 2160 @ 75 Hz
+HBR3 Speed
+
+HBR3 speed is 32.4 Gbit/s. This mode was introduced in DisplayPort version 1.3.
+
+All DisplayPort 1.3 and 1.4 GPUs so far support full HBR3 speed.
+
+HBR3 speed also requires a DisplayPort cable which is properly rated for this speed. Not all DisplayPort cables will handle HBR3 speed. Look for cables that have a VESA certification for HBR3 speed (32.4 Gbit/s), also known as a ""DP8K"" certification. Sometimes these will also be advertised as ""DisplayPort 1.3 cables"" or ""DisplayPort 1.4 cables"", although ""versions"" are not a technically proper way of classifying cables.
+
+Full HBR3 speed is enough for up to:
+
+2560 × 1440 @ 240 Hz
+3840 × 2160 @ 120 Hz
+There are no further speeds at this time. DisplayPort version 1.4 uses the same transmission speed (HBR3) as version 1.3.​
+
+
+
+3.2.3.  Compatibility Between Versions​
+
+Spoiler: Click to Expand
+
+
+
+All DisplayPort devices are compatible with each other regardless of version, and all DisplayPort cables are compatible with all devices, regardless of the speed rating of the cable. Speeds and features will be limited to the lowest version.
+
+For example, if your monitor supports DisplayPort 1.4, but your graphics card only has DP 1.2, then the connection will be limited to the speed and features of DP 1.2 only. Likewise, if your DP cable is only rated for HBR2 speed, then the connection will be limited to that speed.
+
+
+
+3.3.  DP Cable Selection​
+3.3.0.  TL;DR​
+
+Spoiler: Click to Expand
+
+
+
+""What DisplayPort cable do I need?""
+
+This depends only on the resolution/refresh rate combination you wish to run. DisplayPort cables do not affect feature support. All features, such as G-Sync/FreeSync, HDR, audio, etc. will work with any DP cable. You do not need any special DP cable to use certain features.
+
+For up to 1080p 144 Hz, any DisplayPort cable will work.
+
+For up to 1440p 165 Hz, or 1080p 240 Hz, or 4K 75 Hz, you should get a DisplayPort cable certified for HBR2 speed. These are sometimes advertised as ""version 1.2"" cables, although this notation is improper. DP cables are not rated by ""version numbers"".
+
+For up to 4K 120/144 Hz, you should get a DisplayPort cable certified for HBR3 speed. These are sometimes advertised as ""version 1.3"" or ""version 1.4"" cables, although again that notation is improper.
+
+
+
+3.3.1.  Cable Compatibility​
+
+Spoiler: Click to Expand
+
+
+
+All DisplayPort cables are compatible with all DisplayPort devices.
+
+DisplayPort cables do not affect feature support. All DisplayPort features, including inline audio, FreeSync/G-Sync, HDR, DSC, etc. will work on any DisplayPort cable.
+
+However, low quality cables may prevent you from reaching high resolutions or refresh rates. Generally speaking, any DP cable can handle up to 1080p 144 Hz, but higher formats like 1440p 144 Hz may require more careful selection, as described below.
+
+
+
+3.3.2.  What Types of DisplayPort Cable Exist? Are DP Cables All the Same?​
+
+Spoiler: Click to Expand
+
+
+
+DisplayPort cables are not all the same; not all DisplayPort cables can handle high speeds. You may hear people tell you ""DisplayPort cables are all the same"" or things like that, but this is not correct.
+
+DisplayPort cables are classified by a maximum speed rating.
+
+A DisplayPort connection only operates at a few specifically defined speeds. If the cable is too poor quality to maintain a stable data stream, the connection will fall back to a lower speed level.
+
+Users will often encounter this behavior with 1440p 144+ Hz monitors, where people will discover their monitor is limited to 1440p 85 Hz. This is because the cable was too poor quality to maintain a stable HBR2-speed connection, so the speed was reduced back to standard HBR level, which has a maximum of 85 Hz at 1440p. This can be resolved by replacing the cable with one that is properly rated for HBR2 speed.
+
+Transmission Speed Ratings
+
+Since there are only 3 different transmission speeds (HBR, HBR2, and HBR3), there are only 3 different ratings for DisplayPort cables:
+
+HBR cable (also advertised as ""10.8 Gbit/s"" or ""DP 1.1 cable"")
+HBR2 cable (also officially known as a ""Standard Certified DisplayPort Cable""; sometimes advertised as a ""21.6 Gbit/s"" or ""DP 1.2 cable"")
+HBR3 cable (also officially known as a ""DP8K Certified DisplayPort Cable""; sometimes advertised as a ""32.4 Gbit/s"" or ""DP 1.3 cable"" or ""DP 1.4 cable"")
+The details of these ratings (such as maximum resolution/refresh rate combinations) can be found in Section 3.2.2.
+
+Please note that referring to DP cables by ""version number"" is improper and should be avoided (see Section 3.3.3 for details).​
+
+
+
+3.3.3.  ""Versions"" of DP Cables​
+
+Spoiler: Click to Expand
+
+
+
+DisplayPort cables are classified by a maximum speed rating (either HBR, HBR2, or HBR3, as described in Section 3.3.2).
+
+DisplayPort cables are NOT classified by ""version number"". Cables only affect the maximum speed of the connection. As such, cables are rated by the maximum speed they can handle. Since the maximum speed does not change with every new DP version, it does not make sense to use version numbers for classifying cables.
+
+For example, DisplayPort versions 1.3 and 1.4 both have the same maximum speed, which is HBR3 speed (32.4 Gbit/s). Therefore, as long as a DP cable can handle HBR3 speeds, it will be sufficient for the full capabilities of both versions. There are no separate ""DisplayPort 1.3 cables"" or ""DisplayPort 1.4 cables"", and referring to an HBR3 cable as a ""DP 1.4 cable"" gives the false impression that there is also a separate ""DP 1.3 cable"", when there really isn't.
+
+In addition, using version numbers for cables gives false impressions about feature support. For example, calling an HBR cable a ""DP 1.1 cable"" might imply to some people that features from higher versions like HDR from DP 1.4 will not work on the cable, even though this is not the case. All DisplayPort features of any version will work on any cable. The only thing a cable with a low speed rating will do is limit the speed of the connection, which limits the maximum refresh rate and resolution. All other features, such as FreeSync, HDR, audio, etc. do NOT depend on the cable's speed rating in any way.
+
+
+
+3.3.4.  Does This DP Cable Support [Feature XYZ]?​
+
+Spoiler: Click to Expand
+
+
+
+All DisplayPort features work on any DisplayPort cable.
+
+You do not need any kind of special DisplayPort cable for FreeSync/G-Sync to work, or for inline audio or HDR, or anything else. All features work on all cables.
+
+The only thing the DisplayPort cable affects is the maximum speed of the connection, which dictates the maximum resolution/refresh rate that will be available. Nothing else is affected by the choice of DisplayPort cable.
+
+
+
+3.3.5.  Improperly Designed DisplayPort Cables​
+
+Spoiler: Click to Expand
+
+
+
+Please be aware that in the past, some manufacturers have made DisplayPort cables with improper pin configurations which were in violation of the DP standard and can potentially damage devices by causing a short circuit. Since they did not bother to submit their designs for certification, these mistakes were not caught until they were widely distributed. These products were not recalled as far as I'm aware, so if you buy off-brand non-certified cables, you run the risk of buying these incorrectly-designed DisplayPort cables. It is recommended to only buy DisplayPort cables that have been certified by VESA.
+
+More details can be found here:
+http://www.displayport.org/cables/how-to-choose-a-displayport-cable-and-not-get-a-bad-one/
+http://monitorinsider.com/displayport/dp_pin20_controversy.html
+https://versalogic.com/docs/kb/VT1844 DisplayPort Cable BackDrive.pdf
+
+
+
+3.3.6.  DisplayPort Cable Recommendations​
+
+Spoiler: Click to Expand
+
+
+
+People seem to have trouble finding quality DisplayPort cables, so here are some recommendations:
+
+VESA-certified Standard DisplayPort cables:
+DP-to-DP: US UK
+DP-to-mDP: US UK
+
+
+
+3.4.  DisplayPort adapters: ""How can I connect to my monitor's DisplayPort input at 120+ Hz if my computer doesn't have a DisplayPort output?""​
+3.4.1.  From HDMI Computer to DisplayPort Display​
+
+Spoiler: Click to Expand
+
+
+
+You can use an HDMI to DisplayPort active adapter (not to be confused with a ""DisplayPort to HDMI adapter""—See Section 1.1!). Currently, there are adapters available for up to 240 Hz at 1080p / 144 Hz at 1440p / 60 Hz at 4K (without HDR). There are no HDMI to DP adapters that support higher than this (last checked: July 2021).
+
+Recommendations:
+HDMI 2.0 to DP adapter (1080p 240 Hz, 1440p 144 Hz, or 4K 60 Hz): Amazon US
+I have tested this adapter to work at 144 Hz at 2560 × 1440.
+
+HDMI 1.4 to DP adapter (1080p 120 Hz, 1440p 60 Hz, or 4K 30 Hz): Amazon US
+I have tested this adapter to work up to 120 Hz at 1920 × 1080.
+
+Please note this is not the same thing as a ""DisplayPort to HDMI adapter"". Refer to Section 1.1. The inexpensive commonplace adapters and cables you find are DisplayPort to HDMI adapters, not HDMI to DisplayPort. They will not work for connecting to a DisplayPort display.
+
+
+
+3.4.2.  From DVI Computer to DisplayPort Display​
+
+Spoiler: Click to Expand
+
+
+
+DVI to DisplayPort adapters are very uncommon, and there are currently none that support more than 1080p 60 Hz (last checked: July 2021). Therefore, there is no way to connect a DVI computer to a DisplayPort display at 120+ Hz.
+
+Please note this is not the same thing as a ""DisplayPort to DVI adapter"". Refer to Section 1.1. The inexpensive commonplace adapters and cables you find are DisplayPort to DVI adapters, not DVI to DisplayPort. They will not work for connecting to a DisplayPort display.
+
+
+
+3.4.3.  From USB Type‑C Computer to DisplayPort Display​
+
+Spoiler: Click to Expand
+
+
+
+If you have a video-capable USB Type‑C port, you can use a USB‑C to DisplayPort adapter. This is equivalent to a native DisplayPort connection. Current devices (as of October 2019) support up to DisplayPort 1.2, so up to 240 Hz at 1080p or 165 Hz at 1440p. USB‑C adapters also work in Thunderbolt 3 ports.
+
+These adapters will only work if the USB‑C port has video output capability. Not all USB‑C ports have this capability, it is an optional feature.
+
+Recommendations: US (cable) US (dongle) UK (cable) UK (dongle)"
+7,"4.  DVI
+
+
+
+
+
+Most 1080p 120+ Hz monitors also have a DVI port as a backup. DVI supports up to 144 Hz at 1920 × 1080, or 60 Hz at 2560 × 1440.​
+4.0.  TL;DR​
+You just need a Dual‑Link DVI cable and you're good to go, up to 144 Hz at 1080p. DVI port type (DVI-D, DVI-I, etc.) doesn't make any difference.
+
+Generally your computer and monitor both need to have a DVI port. Adapters involving DVI are limited to 60 Hz, unless special adapters are used (See Section 4.5)​
+4.1.  DVI Variations​
+
+Spoiler: Click to Expand
+
+
+
+The basic DVI configuration is called ""Single‑Link DVI-D"", which only supports DVI signals up to 60 Hz at 1080p, and does not support passive VGA adapters.
+
+The DVI standard has two optional features that a DVI port may be equipped with.
+
+The first optional feature is the ability to send higher-bandwidth digital signals. This allows the DVI port to support up to 144 Hz at 1080p. Support for this feature is denoted by the name ""Dual‑Link"" instead of ""Single‑Link"".
+
+The second optional feature is the ability to send VGA signals. This allows the port to connect to VGA monitors with a simple passive adapter. A DVI port with this feature can be considered a ""DVI + VGA combo port"". Support for this feature is denoted by the name ""DVI-I"" instead of ""DVI-D"".
+
+DVI ports may support both of these features (i.e. ""Dual‑Link DVI-I""), or only one, or neither.
+
+Sometimes, retailers or manufacturers may not specify the full name of the DVI port. It is common to see terms like ""Dual‑Link DVI port"" (without specifying DVI-D or DVI-I), or sometimes just ""DVI port"" without specifying any part of the feature set. These terms do not represent additional variations of DVI (like a ""plain DVI"" instead of DVI-D or DVI-I; there is no such thing), it only means the retailer/manufacturer is not specifying which variation it is.
+
+It usually does not matter if they specify the exact DVI configuration, as certain assumptions can be made about Dual‑Link support (see Section 4.2), and VGA support (DVI-I vs. DVI-D) is irrelevant for connecting to 120+ Hz displays.
+
+
+
+4.1.1.   ""DVI-A""​
+
+Spoiler: Click to Expand
+
+
+
+You may hear people advise you to watch out for ""DVI-A"" as another DVI variant that only supports VGA signals, because they saw it on the Wikipedia diagram.
+
+This ""DVI-A"" connector is not a part of the DVI standard. It is an informal name given to an unofficial pin configuration found on some DVI-to-VGA passive adapters, where manufacturers occasionally leave off all unnecessary pins on the DVI side of the adapter, leaving only the ones needed for the VGA connection.
+
+Advice like ""make sure you aren't using a DVI-A cable"" or ""make sure your monitor's DVI input supports digital signals, it might only be a DVI-A port"" is complete nonsense. The ""DVI-A"" pin configuration has only ever been used on DVI-VGA passive adapters, where it's already predetermined that the other pins aren't going to be used. There are no ""DVI-A ports"" or ""DVI-A cables"".
+
+There are no situations in which it matters that the DVI-A pin configuration is used. You can therefore ignore its existence, and just pretend it says ""DVI-I"" whenever you see it mentioned.
+
+
+
+4.2.  Identifying Dual‑Link DVI Ports and Cables​
+
+Spoiler: Click to Expand
+
+
+
+People will often give you this diagram from Wikipedia, and tell you to just examine the pin configuration on the port/cable to determine if it's Single‑Link or Dual‑Link. This is generally incorrect.
+
+From the standpoint of a visual inspection, there are only two forms of DVI port that you will ever see, shown below:
+
+
+
+
+Left: Single or Dual‑Link DVI-D port; Right: Single or Dual‑Link DVI-I port
+
+Single‑Link DVI ports do not have missing center pinholes like the Wikipedia diagram might suggest. Single‑Link DVI and Dual‑Link DVI ports cannot be distinguished from each other by eye. The only visually identifiable feature on a DVI port is the ability to support VGA adapters, indicated by the four extra pins on the side (right-hand image).
+
+Single‑Link DVI cable connectors only sometimes have missing center pins. If a cable/adapter has missing pins, then it is definitely a Single‑Link cable, but if it has a full complement of pins then it could be either a Single‑Link or Dual‑Link cable. Dual‑Link DVI cables and adapters cannot be reliably distinguished by eye.
+
+
+
+
+Left: Single‑Link DVI cable; Right: Single OR Dual‑Link DVI cable
+
+To determine whether a DVI port or cable supports Dual‑Link, there are some general rules of thumb you can use:
+
+DVI ports on graphics cards and 120+ Hz monitors always support Dual‑Link DVI, and do not need to be checked.
+(There are a handful of exceptions, like the XFX Radeon HD 7870, but these cases are extremely rare)
+
+DVI ports/connectors on DisplayPort or HDMI passive adapters/cables are always Single‑Link DVI.
+If an adapter doesn't specify whether it is active or passive, then it’s a passive adapter, and only supports Single‑Link DVI
+Most passive DVI adapters are falsely advertised as ""Dual‑Link DVI"" adapters; don't be fooled, even if it says Dual‑Link right in the product title, they are not afraid to lie to your face. If it’s a passive adapter, it’s physically impossible for it to support Dual‑Link DVI.
+
+If a DVI cable or adapter only claims to support a maximum of 1920 × 1080 or 1920 × 1200, then it is a Single‑Link DVI cable/adapter.
+If a DVI cable claims to support 2560 × 1440 or higher, then it is a Dual‑Link DVI cable.
+
+
+
+
+4.3.  DVI Cable Types​
+
+Spoiler: Click to Expand
+
+
+
+DVI-to-DVI cables only come in two types: Single‑Link DVI and Dual‑Link DVI.
+
+Both of these cables can be used to successfully connect any DVI port to any other DVI port, but a Dual‑Link DVI cable is required for more than 60 Hz at 1080p or more than 40 Hz at 1440p.
+
+These cables are used for both DVI-D and DVI-I ports. There are not separate cable types for each type of port.
+
+These cables are also sometimes referred to as ""Single‑Link DVI-D"" and ""Dual‑Link DVI-D"" cables. The ""-D"" is typically omitted because it is superfluous and misleading. It suggests that the cables are only for DVI-D ports, when in fact the same cables are used for both DVI-D and DVI-I ports.
+
+Recommendations: US UK
+
+
+
+4.4.  Compatibility Between DVI Port and Cable Variations​
+
+Spoiler: Click to Expand
+
+
+
+A Dual‑Link DVI cable can be used to connect any DVI port to any other DVI port at maximum capability. This is the recommended cable for all situations.
+
+""Can I connect a DVI-I port to a DVI-D port?""
+
+Yes. A ""DVI-I"" port is just a DVI-D port that also supports VGA adapters. Any DVI-D adapter or cable will function identically in a DVI-I port as it would in a DVI-D port. You do not need a ""DVI-I to DVI-D"" cable or any other kind of special adapter.
+
+""Can I use a DVI-D cable in a DVI-I port?""
+
+Yes. So-called ""DVI-D"" cables are used for both DVI-D and DVI-I ports. There are no ""DVI-I cables"".
+
+""Can a Dual‑Link DVI cable be used in a Single‑Link DVI port?""
+
+Yes. You may be told by others that Single‑Link DVI ports have the center pinholes blocked and won't accept Dual‑Link cables. This is incorrect. Single‑Link DVI ports do not have the center pinholes blocked. Single‑Link DVI cables may have the center pins missing, but this does not affect compatibility, and not all Single‑Link cables are constructed this way.
+
+
+
+4.5.  DVI adapters: ""How can I connect to my monitor's DVI input at 120+ Hz if my computer doesn't have a DVI output?""​
+4.5.1.  From DisplayPort Computer to DVI Display​
+
+Spoiler: Click to Expand
+
+
+
+To connect a DisplayPort output to a DVI monitor at 120+ Hz, you need to use a DisplayPort to Dual‑Link DVI active adapter.
+
+While you can easily find cheap DP to DVI adapters and cables, these products are all passive adapters, which means they are Single‑Link only, and will be limited to 60 Hz at 1080p. Be aware that these Single‑Link adapters are commonly advertised as ""Dual‑Link"" and may appear to have a full set of Dual‑Link pins on the connector, but they are fake. Any passive DP to DVI adapter is automatically Single‑Link only.
+
+A Dual‑Link DVI active adapter is required for more than 60 Hz at 1080p. Note that not just any active adapter will work, it must be a Dual‑Link adapter. Active adapters that are only Single‑Link do exist.
+
+The following adapters will support up to 144 Hz at 1920×1080: Amazon US Amazon US Amazon US
+
+
+
+4.5.2.  HDMI Computer to DVI Display​
+
+Spoiler: Click to Expand
+
+
+
+There are no adapters that can connect an HDMI computer to a DVI monitor at more than 60 Hz at 1080p.
+
+Standard DVI-HDMI passive adapters are Single‑Link only, and will be limited to 60 Hz at 1080p. These Single‑Link adapters are commonly advertised as ""Dual‑Link"" and may appear to have a full set of Dual‑Link pins on the connector, but do not be fooled, they are fake. Any passive DVI-HDMI adapter is automatically Single‑Link only.
+
+An ""HDMI to Dual‑Link DVI active adapter"" would be required for 120+ Hz, but no such adapters are available on the market. (Last checked: July 2021)
+
+
+
+4.5.3.  USB Type‑C Computer to DVI Display​
+
+Spoiler: Click to Expand
+
+
+
+You can use a USB-C to dual-link DVI adapter to get up to 144 Hz at 1920×1080.
+
+While you can easily find cheap USB-C to DVI adapters and cables, these products are all Single‑Link only, and will be limited to 60 Hz at 1080p. Be aware that these Single‑Link adapters are commonly advertised as ""Dual‑Link"" and may appear to have a full set of Dual‑Link pins on the connector, but they are fake.
+
+To get more than 60 Hz at 1080p, it must be a dual-link adapter. Please remember that you cannot identify whether an adapter is ""dual-link"" by the number of pins. Even single-link adapters can have a full 24+1 pin DVI connector.
+
+I have tested the following adapter to work up to 144 Hz at 1920×1080: Amazon US"
+7,"5.  HDMI
+
+
+
+
+
+High refresh rates are supported over HDMI on most modern displays. HDMI 2.0 support is not required for 1080p 144 Hz or below.
+
+Some older 144 Hz displays are limited to 60 Hz at 1080p over HDMI (such as the Acer GN246HL, and BenQ XL2411, and ASUS VG248QE), but this is a limitation of those particular displays, not a limitation of the HDMI standard. Limitations of products have resulted in a lot of people saying things like ""the HDMI 1.4 standard is limited to 60 Hz"" or ""limited to 120 Hz"", ""you need HDMI 2.0 for 144 Hz"" etc, but these statements are incorrect.
+
+There is a lot of confusion and misinformation surrounding HDMI's high refresh rate capabilities. Here is the situation:
+
+It is possible to support high refresh rates over HDMI. 1080p 144 Hz is technically within spec as of HDMI 1.3 and later. I demonstrate high refresh rates over HDMI 1.4 here and here. However, this capability is optional. Display manufacturers are not required to support it.
+
+As a result, just because a 120+ Hz monitor has ""HDMI 1.3"" or ""HDMI 1.4"", that does not automatically mean it supports 120+ Hz. Some monitors don't. On the other hand, it doesn't automatically mean it is limited to 60 Hz either. Some monitors support up to 1080p 144 Hz with HDMI 1.4. The reality is that the ""version number"" really doesn't tell you anything at all.
+
+Please do not go around telling people ""1080p 144 Hz is supported by HDMI 1.3 and above"" with no additional context. It misleads people into believing that any 144 Hz monitor will support 144 Hz over HDMI as long as it has HDMI 1.3 or above, which is not the case.
+
+Please also do not go around telling people ""you need HDMI 2.0 for 144 Hz"" or ""HDMI 1.4 is limited to 60 Hz"" or ""HDMI 1.4 is limited to 120 Hz"", as these are not true either. Some specific products are limited to 60 Hz or 120 Hz over HDMI, but these limits do not apply to all products, so you cannot make any general statements based on HDMI version numbers alone.​
+5.1.  HDMI 120+ Hz Support​
+5.1.1.  ""How do I know if a monitor supports 120+ Hz over HDMI?""​
+
+Spoiler: Click to Expand
+
+
+
+If the manufacturer doesn't specify, then there is no way to know if a monitor supports 120+ Hz over HDMI except by testing it. A list of monitors known to support 120+ Hz over HDMI can be found at the end of this guide (see Section 7.1).
+
+A lot of people will probably tell you something about HDMI versions, like ""it'll work as long as it has HDMI 1.3 or higher"" or ""you need HDMI 2.0 or higher"", or ""that monitor has HDMI 1.4a, so it should support up to 120 Hz"" or something like that. These things are not correct.
+
+You cannot tell whether a monitor supports 1080p 120+ Hz over HDMI just from the HDMI version.
+
+It is technically possible to implement 1080p 144 Hz as of HDMI 1.3 and later, but since it is optional, you cannot tell anything from the version number. Some HDMI 1.4 monitors support 144 Hz over HDMI, while some HDMI 1.4 monitors are limited to 60 Hz over HDMI, and others only go up to 120 Hz but not 144. The HDMI version number doesn't tell you anything about 1080p 120+ Hz support.
+
+For 1440p, full HDMI 2.0 support is required for 120+ Hz. Please note that the monitor must also support HDMI 2.0, not just your graphics card/laptop. Many 1440p 144 Hz monitors only support HDMI 1.4 and will be limited to 60 Hz over HDMI, including ALL G-Sync monitors. Do not assume that the monitor has HDMI 2.0 just because it is a 1440p 144 Hz display.
+
+
+
+5.1.2.  ""Lots of people keep telling me HDMI is limited to 60 Hz""​
+
+Spoiler: Click to Expand
+
+
+
+Many popular monitors, such as the ASUS VG248QE, BenQ XL2411Z, and Acer GN246HL are limited to 60 Hz over HDMI. This is just a limitation of those monitors, but people have misinterpreted it as a limitation of the HDMI standard. In actual fact, the HDMI 1.4 standard does allow 120+ Hz at 1080p, manufacturers simply chose not to implement that capability in those particular monitors (and in many others). But not all monitors have this limitation. A list of monitors known to support 120+ Hz over HDMI can be found at the end of this guide (see Section 7.1).
+
+
+
+5.1.3.  ""Are you sure HDMI 1.4 allows 120+ Hz? This GamersNexus article says 120 Hz capability is only allowed to be used for 3D.""​
+
+Spoiler: Click to Expand
+
+
+
+The GamersNexus article is wrong, an unfortunate result of Google research. The ""only for 3D"" thing is just a made-up answer that spread around on forums and reddit threads a few years ago. It was just a hypothesis (an incorrect one, we now know), but it became popular because it couldn’t be ""disproved"" (the full HDMI 1.4 specification was confidential), and people were desperate to come up with an explanation for the hordes of people confused about why their VG248QE was only getting 60 Hz with HDMI. Eventually it was repeated often enough that it just became accepted as fact despite no actual attempt to verify it, especially when publications like GN started helping to spread it.
+
+There have been many 120/144 Hz monitors limited to 60 Hz over HDMI, and people have been making up explanations for this for a long time, the ""only for 3D"" hypothesis is just the most recent (but hopefully last) example.
+
+People used to say ""HDMI 1.4 doesn't have enough bandwidth for >60 Hz""
+This of course can be easily disproved with simple math, but it’s not even necessary, all you need is basic logic. HDMI has always been capable of at least 1080p 60 Hz, even in version 1.0. Then the maximum bandwidth was increased by over double in HDMI 1.3. It can't still only have enough bandwidth for 60 Hz at 1080p.
+
+Then people started saying ""well then, HDMI 1.4 must just have a flat 60 Hz limit, regardless of bandwidth""
+But 120 Hz formats at lower resolutions like 720p have been listed in the HDMI Specification going back as far as HDMI 1.2 (§6.3.2, p. 69)
+
+""Well then, it must be that HDMI 1.4 just has a 60 Hz limit regardless of bandwidth, but only for 1080p!""
+But HDMI Licensing publically released an excerpt of the HDMI 1.4a specification (the 3D section of it), and 1080p 120 Hz was listed as a supported format there (§8.2.3.2, p. 13)
+
+""Well then, it must be that HDMI 1.4 has a 60 Hz limit regardless of bandwidth, only for 1080p, but not if you're using 3D!""
+The ""2D"" section of the HDMI 1.4a specification was confidential and couldn’t be checked, but people decided to bet that 1080p 120 Hz wouldn’t be listed as a supported format in that section, only in the 3D section that had been revealed.
+They bet wrong. Actually, it’s been listed in that section since HDMI 1.4, not even just 1.4a. (§6.3.2, p. 108).
+
+So, the whole ""only for 3D"" thing was just a hypothesis based on the assumption ""I bet 1080p 120 Hz isn’t listed in the 2D section of the HDMI 1.4 spec"". But it is. The whole thing is a complete fiction. There is no ""3D only"" limitation on 120+ Hz refresh rates anywhere in any version of the HDMI specification.
+
+The real explanation, as mentioned, is that HDMI 1.4 does allow UP TO 144 Hz at 1080p, but it doesn't require this capability to be implemented. It is optional. And most manufacturers have opted not to implement it, presumably for cost-saving reasons. The 60 Hz HDMI limit on various monitors is not in any way a limitation imposed by the HDMI standard, it is the monitor manufacturer's choice.
+
+5.1.3.1.  ""Alright, so HDMI 1.4 lists support for 1080p 120 Hz. But where does 'HDMI 1.3+ supports up to 144 Hz' come from?""
+
+I only mention the fact that 1080p 120 Hz is listed in the HDMI 1.4 specification because it's an easy way to show without any doubt that these supposed ""60 Hz limit at 1080p"" and ""only for 3D"" limitations are totally made up, and are directly contradicted in black and white in the HDMI specification itself.
+
+But actually, that list of supported formats isn’t all that important. Back in HDMI 1.0 and 1.1, HDMI only allowed some specific home theater formats, but from version 1.2 onward, HDMI allows any arbitrary format, as long as it falls within the bandwidth limit. It’s literally the first sentence of the video section of the HDMI specification.
+
+
+
+
+HDMI Specification Version 1.4, §6.1, p. 105
+6    Video
+6.1    Overview
+
+HDMI allows any video timing format to be transmitted and displayed. To maximize interoperability between products, common DTV formats have been defined. These video format timings define the pixel and line counts and timing, synchronization pulse position and duration, and whether the format is interlaced or progressive. HDMI also allows vendor-specific formats to be used.
+		
+Click to expand...
+
+
+With the bandwidth available in HDMI 1.3–1.4b, that means up to a maximum of 144 Hz at 1080p.​
+5.1.3.2.  ""If HDMI 1.2+ allows any arbitrary format, what is the list of supported formats for?""
+
+The purpose of the ""supported formats"" list in §6.3.2 isn’t to dictate which formats are or aren’t allowed. It’s a list of formats that have standardized timing parameters defined already, to promote interoperability between products.
+
+Timing intervals (or blanking intervals) are short pauses between each line and frame of video, during which HDMI sends audio data and control signals. The durations of these intervals are adjustable, and are negotiated by the display and source upon connection. To ensure basic compatibility, the HDMI specification establishes standardized timing parameters for certain common formats, listed in that section.
+
+Formats that aren’t listed in that section are still permissible, the display vendor just needs to come up with their own timing parameters, which isn’t a big deal.​
+5.1.3.3.  Why is 1080p 120 Hz listed as a supported format in HDMI 1.4, but not in HDMI 1.3?
+
+HDMI 1.3 and 1.4 have the same bandwidth, so it may seem odd that HDMI 1.3 doesn’t list support for 1080p 120 Hz. Back when the public didn’t have access to the HDMI 1.4 Specification, this was often used to support the hypothesis that HDMI 1.4 imposed a 60 Hz limit at 1080p. After all, HDMI 1.3 already had the same bandwidth but didn’t list support for 1080p 120 Hz; while people couldn’t check HDMI 1.4, why would anything have changed? And besides, we had plenty of examples of HDMI 1.4 monitors like the VG248QE which were limited to 60 Hz over HDMI, so it seemed a reasonable assumption.
+
+Of course, with access to the HDMI 1.4 Specification, this assumption is easily debunked, as 1080p 120 Hz is indeed listed as a supported format (in both the 2D and 3D sections). However, that does still leave the question as to why HDMI 1.3 didn’t list support for it, even though it has the same bandwidth as HDMI 1.4.
+
+The answer has to do with where these supported formats come from. The HDMI specification declares this list of formats with predefined standardized timing parameters, but it doesn’t actually define the specific timings itself. It refers to a completely separate set of standards, called CTA‑861 (formerly known as CEA-861).
+
+1080p 120 Hz was not added to CTA‑861 until revision E, published in 2008. HDMI 1.3, published in 2006, only included formats defined in CTA‑861-D. HDMI 1.4, published in 2009, was updated to include the new standardized timings defined in CTA‑861-E, including 1080p 120 Hz.
+
+As mentioned, whether or not a format appears on this list is ultimately unimportant. Even if a video format is not on the supported formats list, it only means there are no standardized timing parameters defined for that format in the CTA‑861 standards, and the display maker must define their own custom timings for it. This isn’t a big deal, and is already done for other formats like 2560 × 1440, which isn’t listed in CTA‑861 either. 1080p 120 Hz and 1080p 144 Hz can be implemented as of HDMI 1.3 or later in exactly the same way.​
+
+
+
+5.2.  HDMI Versions and Self-Compatibility​
+
+Spoiler: Click to Expand
+
+
+
+The HDMI standard has numerous versions, which introduce new features and capabilities. To support a feature, the graphics card and display hardware must both support the necessary version. The HDMI cable design is the same for all versions and does not affect feature/version support. (The only exception to this is the inline Ethernet feature, which requires an ""HDMI with Ethernet"" type cable).
+
+All HDMI devices are compatible with each other regardless of version, but the capabilities will be limited to the lowest version between the two. For example, if your laptop has HDMI 2.0, but your monitor only has HDMI 1.4, you will be limited to the features and capabilities of HDMI 1.4.
+
+
+
+
+
+
+
+5.3.  HDMI Cable Selection​
+5.3.0.  TL;DR​
+
+Spoiler: Click to Expand
+
+
+
+HDMI cables don't affect feature support. Things like HDR, FreeSync, 3D, and inline audio will work on any HDMI cable. It doesn't matter which version the feature was introduced in or when the cable was made. The cable design has not changed from version to version. The only exception is inline Ethernet, which requires an ""HDMI with Ethernet"" cable which has a slightly different wiring.
+
+Maximum bandwidth (resolution and refresh rate) does depend on the manufacturing quality and length of the cable. Higher resolutions and refresh rates require more bandwidth, and therefore a higher quality cable.
+
+However, there is no need to buy the most expensive ""high quality cable"" you can find. HDMI cables have certifications that guarantee certain levels of bandwidth.
+
+High Speed HDMI cables have been tested to handle at least 10.2 Gbit/s. This is sufficient for at least 1080p 144 Hz or 1440p 75 Hz. Pretty much any HDMI cable can handle this.
+
+Premium High Speed HDMI cables have been tested to handle at least 18.0 Gbit/s. This is sufficient for at least 1080p 240 Hz, 1440p 144 Hz, or 4K 60 Hz. Many normal High Speed HDMI cables will also be ok at these speeds, but it is not guaranteed, especially at longer distances (see Section 5.3.4).
+
+Just get a cable with a high enough rating and you're good to go.
+
+Recommendations:
+US UK
+
+
+
+5.3.1.  HDMI Cable Types and Bandwidth Certifications​
+
+Spoiler: Click to Expand
+
+
+
+There are two basic designs an HDMI cable can have:
+
+HDMI cable
+HDMI cable with Ethernet
+The ""with Ethernet"" cable has a slightly different wiring, and is required for the inline Ethernet feature (which is very rarely supported by devices anyway).
+
+Other than that, the difference does not matter. Both types of cable are compatible with all HDMI devices. All other features work on both cable types.
+
+However, what the cable does affect is the maximum bandwidth. Although the wiring and feature support is the same for all cables (other than the normal and ""with Ethernet"" distinction), the manufacturing quality of the cable can affect the maximum bandwidth of the connection. Higher resolutions and refresh rates require more bandwidth, and therefore higher quality cables.
+
+To protect from overpriced ""high quality"" cable sharks, the HDMI creators have established a certification system for HDMI cables. All HDMI cables (either normal or ""with Ethernet"") also have an associated rating for how much bandwidth they can handle.
+
+HDMI Cable CertificationSpeed Rating
+This is the speed that this certification is tested at.This is enough for at least...Standard Speed HDMI Cable2.25 Gbit/s720p 60 Hz
+1080p 30 HzHigh Speed HDMI Cable10.2 Gbit/s1080p 144 Hz
+1440p 75 HzPremium High Speed HDMI Cable18.0 Gbit/s1080p 240 Hz
+1440p 144 Hz
+4K 60 HzUltra High Speed HDMI Cable48.0 Gbit/sBasically everything
+
+
+
+
+5.3.2.  The Cable Usually Isn't the Limit​
+
+Spoiler: Click to Expand
+
+
+
+While the HDMI cable can affect bandwidth, it is important to be aware that HDMI ports also have a maximum bandwidth, based on the version of the port. This applies to both the video source device and the display. The cable is not the sole determiner of how much bandwidth the connection will have.
+
+HDMI port maximum limitations:
+
+HDMI 1.0–1.2 Port: 4.95 Gbit/s
+HDMI 1.3–1.4 Port: 10.2 Gbit/s
+HDMI 2.0 Port: 18.0 Gbit/s
+HDMI 2.1 Port: 48.0 Gbit/s
+Since all cables are compatible with all HDMI devices, there is no technical disadvantage to a higher-end cable, but there is no advantage either. While you could make a future-proofing or a ""might as well"" argument for them, just be aware that using a cable rated beyond what your equipment allows serves no immediate purpose.
+
+If your GPU or your monitor only has an HDMI 1.4 port, then the connection will be limited to 10.2 Gbit/s at most. Using a cable rated for 18.0 Gbit/s won't ""upgrade"" the connection to a higher speed or give any other kind of advantage compared to a 10.2 Gbit/s-rated cable.
+
+
+
+5.3.3.  HDMI Cables Are Not Classified by ""Versions""​
+
+Spoiler: Click to Expand
+
+
+
+Using ""HDMI versions"" for cables is not technically accurate and should be avoided.
+
+High Speed HDMI cables are tested to handle bandwidth of at least 10.2 Gbit/s. Since HDMI 1.4 allows a maximum of 10.2 Gbit/s, people often call these cables ""HDMI 1.4 cables"". However, HDMI versions 1.3, 1.3a, 1.4, 1.4a, and 1.4b all have a maximum of 10.2 Gbit/s, so any of those names would also equally apply.
+
+HDMI cables are not designed specifically for one version or another. Using a specific version like ""HDMI 1.4 cable"" implies that this is different from an ""HDMI 1.3 cable"" or an ""HDMI 1.4a cable"", when in reality these terms all refer to the same thing: a High Speed HDMI cable.
+
+It also misleads people into thinking that the cable is involved in ""supporting"" the features introduced in that version. For example, people believe that you need an ""HDMI 1.4 cable"" for 3D, and that an ""HDMI 1.3 cable"" won't work. In reality, the cable does not affect feature support, only bandwidth, which is why they are categorized by bandwidth alone. Labeling HDMI cables with a ""version number"" in fact has been explicitly banned by HDMI Licensing, the creators of the HDMI standard.
+
+The same thing is true of Premium High Speed HDMI cables, tested to handle at least 18.0 Gbit/s; people like to call them ""HDMI 2.0 cables"", but this should be avoided. It misleads people into thinking that the cable is related to feature support. For example, people think that HDMI 2.0 features like HDR won't work on an ""HDMI 1.4 cable"".
+
+Premium High Speed HDMI cables are not a requirement for using HDMI 2.0 features, and there are no separate ""HDMI 2.0"" or ""HDMI 2.0a"" or ""HDMI 2.0b"" cables. These terms all refer to the same thing, a Premium High Speed HDMI cable.
+
+
+
+5.3.4.  High Speed Cables and HDMI 2.0​
+
+Spoiler: Click to Expand
+
+
+
+When HDMI 2.0 first launched, the creators of HDMI stated that any existing cable with a High Speed certification would be able to handle the increased 18.0 Gbit/s bandwidth (i.e. 4K 60 Hz). This statement is, in fact, still present on the HDMI.org website today.
+
+However, this is unfortunately not always true (for example, demonstrated here). While most High Speed HDMI cables do work at 18.0 Gbit/s, especially shorter ones (in the 5-meter range), it is not guaranteed that any High Speed cable will handle that speed. Long cables in particular are less likely to be able to handle the full speed.
+
+In response to this, the HDMI Forum has created the Premium HDMI certification program, which actually tests cables for proper operation at 18.0 Gbit/s. These cables are known as Premium High Speed HDMI cables.
+
+For a more detailed explanation, see here:
+https://www.bluejeanscable.com/articles/note-about-hdmi-2.htm
+https://www.bluejeanscable.com/articles/premium-hdmi-cable.htm
+
+
+
+5.5.  HDMI adapters: ""How can I connect to my monitor's HDMI input at 120+ Hz if my computer doesn't have an HDMI output?""​
+All information in this section assumes that your monitor supports 120+ Hz over HDMI. Some older monitors are limited to 60 Hz over HDMI, such as the ASUS VG248QE, Acer GN246HL, BenQ XL2411 family, and others. None of these options will work in that case.
+
+A list of monitors known to support 120+ Hz over HDMI can be found in Section 7.1.​
+5.5.1.  From DisplayPort Computer to HDMI Display​
+
+Spoiler: Click to Expand
+
+
+
+If your computer has a DisplayPort output, you can use either a passive or an active adapter.
+
+Passive DP to HDMI adapters can be used, but not all of them are the same.
+
+Type 1 passive adapters are limited to 60 Hz at 1920 × 1080
+Type 2 passive adapters support up to 120 Hz at 1920 × 1080, 60 Hz at 2560 × 1440, or 30 Hz at 4K
+Most retailers don’t label them ""Type 1"" or ""Type 2"", but you can identify Type 2 adapters by looking for adapters with ""4K support"".
+(Recommendations: US UK)
+
+For speeds beyond 120 Hz at 1080p, you need a DisplayPort to HDMI 2.0 active adapter. These will support up to 240 Hz at 1080p or 144 Hz at 1440p. These adapters are also compatible with HDMI 1.4 monitors, and will work up to 144 Hz at 1080p or 75 Hz at 1440p in that case (assuming the monitor supports those speeds over HDMI).
+(Recommendations: US UK)
+
+
+
+5.5.2.  From DVI Computer to HDMI Display​
+
+Spoiler: Click to Expand
+
+
+
+If your computer has a DVI port, and your monitor supports 120+ Hz over HDMI, you can use a standard inexpensive DVI-HDMI passive adapter/cable usually supporting at least 144 Hz at 1080p or 60 Hz at 1440p but sometimes beyond.
+(Recommendations: US UK)
+
+Long explanation and demonstration, for anyone skeptical:
+
+
+Spoiler: Click to Expand
+
+
+
+If a display supports 1080p 120+ Hz over HDMI, than a simple DVI-HDMI passive adapter can be used to connect from a DVI graphics card to the HDMI display, up to 144 Hz at 1080p. This only works from DVI source to HDMI display; the same adapter will be limited to 60 Hz at 1080p if used from an HDMI source to a DVI display.
+
+It is well established earlier in this guide that:
+
+For DVI, a Dual‑Link connection is required for more than 60 Hz at 1080p
+All DVI-HDMI passive adapters are Single‑Link only
+So why do these adapters work up to 144 Hz in this specific situation? To explain this, first you need some background on the relationship between DVI and HDMI, and how passive adapters function.
+
+For those who don't know, HDMI is effectively an extension to the DVI standard, not an original design. The basic operation, design, and signaling protocols of HDMI are all inherited from the DVI standard.
+
+The HDMI connector is a redesigned Single‑Link DVI-D connector with a slimmer shape (similar to how a Mini DisplayPort connector is a smaller but electrically identical version of the full-size DisplayPort connector). There is, in fact, a ""Dual‑Link HDMI"" connector defined in the HDMI standard (§4.1.3 p10–13), but it was never used in any commercial products.
+
+In Single‑Link DVI and HDMI cables, three pairs of wires used for sending video data. DVI and HDMI (versions 1.0–1.2) allow speeds up to 1.65 Gbit/s per pair (4.95 Gbit/s total with 3 pairs). This is enough for up to 60 Hz at 1080p. To add additional bandwidth however, these standards diverge in design.
+
+DVI adds an additional 3 pairs of wires (now 6 pairs total) for video data. On each pair, the data is still sent at the same rate (1.65 Gbit/s per pair), but the total bandwidth is now 9.90 Gbit/s (6 × 1.65 Gbit/s). Since it uses additional wires, it needs a different connector with more pins, which is the Dual‑Link DVI connector.
+HDMI 1.3 adds a similar amount of bandwidth, but instead of increasing the number of wires, it accomplishes it by increasing the signaling rate on the existing wires, from 1.65 Gbit/s to 3.4 Gbit/s per pair (total 10.2 Gbit/s for 3 pairs).
+Now, keeping that in mind, it is also important to understand how passive adapters function. They do not actually ""do"" anything. They only work because the video output ports on source devices have the ability to send multiple types of signals.
+
+For example, the DVI output ports on graphics cards are not just limited to sending out DVI signals, they are also capable of transmitting HDMI signals and (optionally) VGA signals. The only problem is that the DVI port can't physically morph into an HDMI port to allow you to plug HDMI cables in, which is why the passive adapter is required. It is only necessary for making the physical connection, it doesn't ""do"" anything else, the signaling is handled by the source device.
+
+When you connect a passive adapter from a DVI graphics card to an HDMI display, the adapter doesn't need to ""convert"" a 6 × 1.65 Gbit/s Dual‑Link DVI signal into a 3 × 3.4 Gbit/s HDMI signal. Instead, the DVI port switches to HDMI mode and starts sending out 3 × 3.4 Gbit/s across the Single‑Link pinout, just like an HDMI port. The original signal coming out of the DVI port is already in the Single‑Link HDMI format.
+
+So even though 1080p 144 Hz requires Dual‑Link DVI, it is still possible with a Single‑Link DVI to HDMI adapter, because the port is not sending a DVI signal, it is sending an HDMI signal, which does allow 1080p 144 Hz over a Single‑Link connection.
+
+Incidentally, because the original signal is HDMI, other features such as inline audio will also work over a DVI-to-HDMI connection.
+
+Lastly, it is important to note that this is only true in one direction. While output ports can send multiple types of signals, input ports are usually only capable of receiving their native format. DisplayPort inputs can only receive DP signals, DVI inputs can only receive DVI signals, etc.
+
+So, if you use the reverse configuration, an HDMI source to a DVI display, the opposite will happen; the HDMI output port will operate in DVI mode, and you'll be limited to Single‑Link DVI capabilities, 1080p 60 Hz with no audio. Since DVI signals are being used, Dual‑Link would be required for 144 Hz in that case. The HDMI port does not have enough pins to send Dual‑Link signals since it is only based on the Single‑Link DVI connector, and the DVI input ports on monitors generally will not accept the higher-speed HDMI signals (> 1.65 Gbit/s per pair), so the connection is limited to 3 × 1.65 Gbit/s, the speed of a normal Single‑Link DVI connection, 1080p 60 Hz.
+
+(There are some special cases, like the Dell U2711, which does accept high-speed Single‑Link signals through its DVI port, and Single‑Link DVI-HDMI adapters do work up to 2560 × 1440 at 60 Hz on that monitor, but this is extremely rare and has not been done on any 120+ Hz monitor, or any modern monitors at all, at least to my knowledge.)
+
+The DVI port on your graphics card essentially acts as a passthrough for the card’s HDMI controller when using a DVI to HDMI adapter, so the maximum capabilities are the same as whatever HDMI version the card has.
+
+I demonstrate this below by running 4K 60 Hz RGB (4:4:4) from my graphics card’s DVI port using a passive Single‑Link DVI to HDMI cable:
+
+
+
+
+
+
+
+
+
+
+
+I am able to get full HDMI 2.0 bandwidth with a Single‑Link connection from the DVI ports with both a GeForce GTX 1080 and a Radeon RX 480. I also tested HDMI 1.4 speeds from the DVI ports on a GTX 780 Ti and Radeon R9 290. My tests were done using this Bluerigger Single‑Link DVI to HDMI cable (as with most DVI-HDMI cables, it has a fake Dual‑Link connector on it, just ignore that ).
+
+
+
+
+
+
+5.5.3.  From USB Type‑C Computer to HDMI Display​
+
+Spoiler: Click to Expand
+
+
+
+If your computer has a video-capable USB Type‑C port, you can also use a USB Type‑C to HDMI adapter. These adapters are available in multiple options, some with only HDMI 1.4 support (up to up to 144 Hz at 1080p or 75 Hz at 1440p), and some have HDMI 2.0 support (up to 240 Hz at 1080p or 144 Hz at 1440p).
+
+These adapters will only work if the USB‑C port has video output capability. Not all USB‑C ports have this capability, it is an optional feature.
+
+(USB‑C to HDMI 2.0 Recommendations: US UK)"
+7,"6.  Setting Up 120+ Hz, Verifying, and Troubleshooting
+
+6.1.  Setting the refresh rate​
+If you haven't tried to set the refresh rate to anything else, make sure you do that. Not all monitors set themselves to 120+ Hz automatically. The instructions for setting the refresh rate in Windows 10 are in Section 6.1.1 below.
+
+If you have tried but there are no options above 60 Hz, see Section 6.1.2.
+
+If you have successfully set the refresh rate to 120+ Hz in Windows settings, but you believe you are still at 60 Hz because the UFO test says so, then make sure you are using Firefox for the test. It does not work properly on Chrome. Also be sure to follow all on-screen instructions for the test, including closing all other tabs and applications, and making it your primary display.​
+6.1.1.  How to set the refresh rate in Windows 10​
+
+Spoiler: Click to Expand
+
+
+
+If you just recently reinstalled your OS, make sure GPU drivers are installed and that you have restarted the computer since installing them.
+
+
+Right-click on the desktop and go to ""Display Settings"" [Image]
+If you have multiple monitors, select the correct one (if you are not sure, click ""Identify"" and it will show you which number monitor is which) [Image]
+
+
+
+Scroll down and click ""Display adapter properties"" [Image]
+
+
+Go to the ""Monitor"" tab [Image]
+
+
+The next instruction will cause the screen to turn black for a moment. If it does not come back, hit the Escape key or wait 20 seconds.
+
+
+Change the refresh rate and hit OK [Image]
+
+
+Click ""Keep changes"" when it prompts you to do so [Image]
+
+
+
+
+6.1.2.  If you have tried to change the refresh rate, but there are no options above 60 Hz​
+
+Spoiler: Click to Expand
+
+
+
+Make sure you are connected with the correct cables. Carefully read the sections of this guide that deal with the cables or adapters you are using.
+
+If you are using a TV
+
+If you are using a TV, it is most likely only a 60 Hz display. Almost all TVs advertise fake refresh rates like ""120 Hz"" or ""240 Hz"" when they are really only capable of 60 Hz.​
+If you are trying to set the refresh rate from the NVIDIA control panel
+
+If you are trying to set the refresh rate from the NVIDIA control panel, scroll down the resolution list and make sure you select from the ""PC"" section if the maximum resolution is listed there.
+
+
+
+
+Selecting from the ""PC"" section of the resolution list​
+If you are using DVI or HDMI with an AMD graphics card
+
+If you are using an AMD graphics card and using DVI or HDMI to connect, run the AMD Pixel Clock Patcher and restart the computer, then try to set the refresh rate again as described in Section 6.1.1.​
+If you are using DisplayPort
+
+If you are connected with DisplayPort, check the monitor's menu for a DP version option and set it to the highest available. If you can’t find any such control, read the monitor manual, sometimes it’s a hidden option.
+
+
+
+
+Example: enabling DisplayPort 1.2 capability on a Dell U3415W​
+If there are still no options above 60 Hz, try setting a custom resolution, as described in Section 6.3.
+
+
+
+6.2.  Verifying 120+ Hz Operation​
+The Blurbusters UFO test is commonly used to check high refresh rate monitors. This test does not always work properly since it depends on browser support. It is recommended to use Firefox for the UFO test. Chrome does not usually work above 60 Hz.
+
+Make sure to follow all onscreen instructions, including setting the high refresh monitor as your primary display and closing all other tabs and windows.
+
+Even in the best case scenario, the test may fail to detect refresh rates above 144 Hz, so don't be too worried if the test detects your monitor as having a lower refresh rate. It is not 100% reliable.​
+6.3.  How to set a custom resolution​
+6.3.1.  NVIDIA:​
+
+Spoiler: Click to Expand
+
+
+
+
+Open the Start Menu and type ""Control Panel"" and press Enter
+
+
+Open the NVIDIA Control Panel (NVCP) [Image]
+
+
+Click ""Change Resolution"" [Image]
+If there are no options besides 3D Settings, then you are most likely using a laptop with NVIDIA Optimus enabled. You should set a custom resolution from the Intel control panel instead, using the instructions from the Intel section below. Alternatively you can reboot and check the BIOS for an option to disable NVIDIA Optimus/switchable graphics).
+
+
+
+If you have multiple monitors, select the correct monitor at the top
+
+
+Below the list of resolutions, click the ""Customize"" button [Image]
+If the Customize button is greyed out, go to the ""Manage 3D Settings"" section and make sure all options inside ""DSR - Factors"" are unchecked. Custom resolutions cannot be used with DSR. [Image]
+If the Customize button is still greyed out, make sure you have no pending changes. If there are ""Apply / Cancel"" buttons in the bottom right corner of the NVCP, that means you have pending changes. You need to either apply or cancel them before setting a custom resolution.
+
+
+
+Click ""Create Custom Resolution..."" [Image]
+
+
+Set the horizontal pixels, vertical lines, and refresh rate boxes to the values you want, and in the Timing section, set the Standard option to ""CVT reduced blank"" [Image]
+
+
+The next instruction will cause the screen to turn black for a moment. If it does not come back, hit the Escape key or wait 20 seconds.
+
+
+Click Test, then when it prompts you to save the resolution, click Yes [Image]
+
+
+Click OK to close the Customize window
+
+
+In the NVCP Change Resolution section, scroll to the top of the resolution list, your custom resolution should be in its own section at the top. Select it, then hit ""Apply"" in the bottom right. [Image]
+
+
+
+
+6.3.2.  AMD:​
+
+Spoiler: Click to Expand
+
+
+
+If you are using DVI or HDMI, please run the AMD Pixel Clock Patcher first, and then restart your computer before proceeding.
+
+Go to the Start Menu and open the AMD Settings app [Image]
+
+
+Click the ""Displays"" section at the top [Image]
+
+
+Below the list of displays, in the Custom Resolutions section, click ""Create"" [Image]
+
+
+Set the Horizontal and Vertical Resolution and Refresh Rate to the desired values, and set the Timing Standard to ""CVT-Reduced Blanking"" [Image]
+
+
+In the upper right corner, click Save (this will cause the screen to go black momentarily) [Image]
+
+
+The setting you just created will now appear as an option in Windows. Change the refresh rate through Windows Settings as explained in Section 6.1.1.
+
+NOTE: If your connection involves DVI or HDMI and you get a message saying ""the custom resolution settings are not supported by this display"", this is usually due to a driver restriction. To bypass it, you need to run the AMD Pixel Clock Patcher utility, restart your computer, and then try to set a custom resolution again.
+
+
+
+6.3.3.  Intel:​
+
+Spoiler: Click to Expand
+
+
+
+
+Open the Start Menu, type ""Control Panel"", and hit Enter
+
+
+Open the Intel Graphics and Media Control Panel [Image]
+
+
+Go to the ""Display"" section [Image]
+
+
+Go to the ""Custom Resolutions"" section, and click ""Yes"" on the resulting warning message [Image]
+
+
+If you have multiple displays connected, select the correct display from the dropdown menu on the left side [Image]
+
+
+Set the Width, Height, and Refresh Rate to the desired values, and set the Timing Standard to ""CVT-RB"" [Image]
+
+
+Click ""Add"", and then click Yes when it prompts you to continue. [Image]
+
+
+The new format should now appear as an option in Windows (you may have to restart the computer). Set the refresh rate through Windows according to the instructions in Section 6.1.1.
+
+
+
+
+6.3.4.  All Platforms: Custom Resolution Utility (CRU):​
+
+Spoiler: Click to Expand
+
+
+
+
+Download the Custom Resolution Utility by ToastyX here and extract the contents to a new folder.
+
+
+Open CRU.exe and select the correct monitor in the dropdown list at the top. The list may contain monitors that were plugged into the computer in the past that are not present now. The monitors marked ""(Active)"" are the ones currently plugged in. [Image]
+
+
+In the ""Detailed Resolutions"" section, click ""Add"" [Image]
+Only four detailed resolutions are allowed (or 3 plus a name). If there are already 4 resolutions, you will have to remove one of them. Also if you fill up all 4 slots, just be aware that the monitor’s name will no longer be detected since there is no room for it, so it will show up as ""Generic PnP Monitor"". This doesn’t affect anything though.
+
+
+
+Set the timing dropdown at the top to ""LCD Reduced"". [Image]
+
+
+Set the resolution and refresh rate to the desired values and click OK, then click OK on the main CRU window to exit the program. [Image]
+
+
+In the CRU folder, run ""restart64.exe"" to restart the graphics driver. (Screen will go black for a few moments) [Image]
+
+
+The new format should now be available as an option in Windows, change the refresh rate as described in Section 6.1.1.
+
+
+If things aren’t working, you can revert to defaults by selecting the correct display in CRU and pressing the ""delete"" button. Or, you can run ""reset-all.exe"" in the CRU folder to delete all custom profiles. [Image]"
+7,"7.  Appendices
+
+7.1.  List of monitors known to support 120+ Hz at full resolution over HDMI​
+
+Spoiler: Click to Expand
+
+
+
+Last updated: December 2020
+
+Please note: This list will no longer be actively maintained. Nearly all new releases of modern monitors support high refresh rates over HDMI; it is not a rare or hard-to-find feature as it once was. Therefore, continuing to actively add new releases is no longer critical.
+
+Acer KG251Q (144 Hz)
+24.5"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (according to the FreeSync database; not verified)
+
+WARNING: There is a 75 Hz, a 144 Hz, and a 240 Hz version of this monitor, all called ""KG251Q"". Shop carefully.
+This monitor has 2 HDMI ports, but according to the manual only one of them supports 144 Hz
+Acer KG251Q (240 Hz)
+24.5"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 240 Hz over HDMI (according to the FreeSync database; not verified)
+
+WARNING: There is a 75 Hz, a 144 Hz, and a 240 Hz version of this monitor, all called ""KG251Q"". Shop carefully.
+This monitor has 2 HDMI ports, but according to the manual only one of them supports 240 Hz
+Acer VG270U (VG270U Pbmiipx)
+27.0"" 2560 × 1440 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+This monitor has 2 HDMI ports, but according to the manual only one of them supports 144 Hz
+Acer VG271U (VG271U Pbmiipx)
+27.0"" 2560 × 1440 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (according to FreeSync database; not verified)​
+Acer XF240H (?)
+24.0"" 1920 × 1080 TN panel (FreeSync over DP only)
+Maximum 120 Hz over HDMI (rumored; not verified)
+
+Options beyond 60 Hz will not appear normally, the user must set custom resolutions.
+Acer XV272U (XV272U Pbmiiprzx)
+27.0"" 2560 × 1440 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (rumored; not verified)​
+Alienware AW2518HF
+24.5"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 240 Hz over HDMI (claimed by manufacturer here; not verified)
+
+Not to be confused with the AW2518H (non-F variant), which is a G-Sync module monitor and is therefore limited to 60 Hz over HDMI
+Alienware AW2521HF / AW2521HFL
+24.5"" 1920 × 1080 IPS panel (FreeSync over DP and HDMI)
+Maximum 240 Hz over HDMI (claimed by manufacturer here; not verified)
+
+The difference between the HF and HFL models is only the color. The AW2521HF is black, and the AW2521HFL is white.
+Alienware AW2720HF
+27.0"" 1920 × 1080 IPS panel (FreeSync over DP and HDMI)
+Maximum 240 Hz over HDMI (claimed by manufacturer here; not verified)​
+Alienware AW2721D
+27.0"" 2560 × 1440 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+AOC C24G1
+23.5"" 1920 × 1080 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+AOC C27G1
+27.0"" 1920 × 1080 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+AOC C32G1
+31.5"" 1920 × 1080 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+AOC 24G2 / 24G2U
+23.8"" 1920 × 1080 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+The 24G2U has an integrated USB hub, while the 24G2 does not
+Not to be confused with the 24G2U5 or 24G2E5, which are 75 Hz monitors
+Not to be confused with the 24G2ZE, which is a 240 Hz TN monitor
+AOC 27G2 / 27G2U
+27.0"" 1920 × 1080 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+The 27G2U has an integrated USB hub, while the 27G2 does not
+Not to be confused with the 27G2U5 or 27G2E5, which are 75 Hz monitors
+Not to be confused with the C27G2, which is a curved VA monitor
+AOC C27G2
+27.0"" 1920 × 1080 VA panel (FreeSync over DP and HDMI)
+Maximum 165 Hz over HDMI (claimed by manufacturer here; not verified)
+
+Not to be confused with the 27G2, which is a flat IPS monitor
+AOC CQ27G2
+27.0"" 2560 × 1440 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+Not to be confused with the 27G2, which is a flat IPS monitor
+AOC G2460PF
+24.0"" 1920 × 1080 TN panel (FreeSync over DP only)
+Maximum 120 Hz over HDMI (verified by testing here)
+
+Options beyond 60 Hz will not appear normally, the user must set custom resolutions.
+Note: Tom's Hardware review states that this monitor supports FreeSync over HDMI. This is incorrect.
+AOC G2590PX
+24.5"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (verified by reviewer here)​
+AOC G2590FX
+24.5"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+AOC AGON AG241QX
+23.8"" 2560 × 1440 TN panel (FreeSync over DP only)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+AOC AGON AG271QX
+27.0"" 2560 × 1440 TN panel (FreeSync over DP only)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+AOC AGON AG322FCX
+31.5"" 1920 × 1080 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+AOC AG251FZ
+24.5"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+ASUS MG248QR
+24.0"" 1920 × 1080 TN panel (FreeSync over DP only)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)
+
+Not to be confused with the MG248Q (non-R variant), which is limited to 60 Hz over HDMI
+ASUS VG248QG
+24.0"" 1920 × 1080 TN panel (FreeSync over DP only)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+Not to be confused with the VG248QE or VG248QZ, which are limited to 60 Hz over HDMI
+ASUS VG249Q
+23.8"" 1920 × 1080 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+ASUS VG258Q / VG258QR
+24.5"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)
+
+This is NOT a typo of ""VG248QE"". The VG248QE is a completely different monitor which is much older and is limited to 60 Hz at 1080p over HDMI.
+ASUS VG259Q
+24.5"" 1920 × 1080 IPS panel (FreeSync over DP, unknown if supported on HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)
+
+Not to be confused with the VG259QM, which is a 240 Hz monitor
+ASUS VG259QM
+24.5"" 1920 × 1080 IPS panel (FreeSync over DP, unknown if supported on HDMI)
+Maximum 240 Hz over HDMI (claimed by manufacturer here; not verified)
+
+Not to be confused with the VG259Q (non-M variant), which is a 144 Hz monitor (120 Hz over HDMI)
+ASUS VG278Q
+27.0"" 1920 × 1080 TN panel
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)​
+ASUS VG279Q
+27.0"" 1920 × 1080 IPS panel (FreeSync over DP and HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)​
+ASUS XG248Q
+23.8"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 240 Hz over HDMI (claimed by manufacturer here; not verified)​
+ASUS XG258Q
+24.5"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 240 Hz over HDMI (claimed by manufacturer here; not verified)​
+ASUS XG27VQ
+27.0"" 1920 × 1080 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+ASUS XG32VQ / XG32VQR
+31.5"" 2560 × 1440 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+""R"" variant has support for HDR and FreeSync 2, ""non-R"" variant supports SDR and standard FreeSync only.
+BenQ XL2536
+24.5"" 1920 × 1080 TN panel (FreeSync over DP, unknown if supported on HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+BenQ XL2540
+24.5"" 1920 × 1080 TN panel (FreeSync over DP, unknown if supported on HDMI)
+Maximum 240 Hz over HDMI (claimed by manufacturer here; not verified)​
+BenQ XL2546
+24.5"" 1920 × 1080 TN panel (FreeSync over DP, unknown if supported on HDMI)
+Maximum 240 Hz over HDMI (claimed by manufacturer here; not verified)​
+BenQ XL2730
+27.0"" 2560 × 1440 TN panel
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+The XL2730 has two HDMI ports, but only one of the ports supports >60 Hz
+BenQ XL2735
+27.0"" 2560 × 1440 TN panel
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+The XL2735 has two HDMI ports, but only one of the ports supports >60 Hz
+BenQ XL2740
+27.0"" 1920 × 1080 TN panel (FreeSync over DP, unknown if supported on HDMI)
+Maximum 240 Hz over HDMI (claimed by manufacturer here; not verified)​
+Dell S2419HGF
+24.0"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+Dell S2719DGF
+27.0"" 2560 × 1440 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+The S2719DGF has two HDMI ports, but only one of them supports >60 Hz
+Gigabyte AD27QD
+27.0"" 2560 × 1440 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; verified by reviewer here)​
+Gigabyte FI27Q
+27.0"" 2560 × 1440 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+Gigabyte FI27Q-P
+27.0"" 2560 × 1440 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; verified by reviewer here)​
+Lenovo Y25f
+24.5"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+Lenovo Y27f
+27.0"" 1920 × 1080 VA panel (FreeSync over DP, unknown if supported on HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; indirect claim inferred from maximum pixel rate specification; not verified)​
+LG 24GM79G
+24.0"" 1920 × 1080 TN panel (FreeSync over DP, unknown if supported on HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)​
+LG 24GL600F
+24.0"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+LG 27GK750F
+27.0"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 240 Hz over HDMI (claimed by manufacturer here; not verified)​
+LG 27GL650F
+27.0"" 1920 × 1080 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+LG 27GL83A
+27.0"" 2560 × 1440 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+This monitor is limited to 100 Hz over HDMI while Adaptive-Sync (FreeSync/G-Sync) is enabled
+LG 27GL850
+27.0"" 2560 × 1440 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+This monitor is limited to 100 Hz over HDMI while Adaptive-Sync (FreeSync/G-Sync) is enabled
+LG 27GN850
+27.0"" 2560 × 1440 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+This monitor is limited to 100 Hz over HDMI while Adaptive-Sync (FreeSync/G-Sync) is enabled
+LG 32GK650F
+27.0"" 2560 × 1440 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+LG 32GK850F
+27.0"" 2560 × 1440 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+LG 34GL750
+34.0"" 2560 × 1080 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+MSI G24C
+23.6"" 1920 × 1080 VA panel (FreeSync over DP; unknown if supported on HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)​
+MSI G27C2
+27.0"" 1920 × 1080 VA panel (FreeSync over DP; unknown if supported on HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)​
+MSI AG32C
+31.5"" 1920 × 1080 VA panel (FreeSync over DP; unknown if supported on HDMI)
+Maximum 165 Hz over HDMI (claimed by manufacturer here;not verified)​
+MSI MAG24C
+23.6"" 1920 × 1080 VA panel (FreeSync over DP; unknown if supported on HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)​
+MSI MAG241CR
+23.6"" 1920 × 1080 VA panel (FreeSync over DP; unknown if supported on HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+MSI MAG27CQ
+27.0"" 2560 × 1440 VA panel (FreeSync over DP; unknown if supported on HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)​
+MSI MAG271CR
+27.0"" 1920 × 1080 VA panel (FreeSync over DP; unknown if supported on HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+Nixeus NX-VUE24A (or NX-VUE24B)
+24.0"" 1920 × 1080 TN panel (FreeSync over DP only)
+Maximum of 144 Hz over HDMI (verified by community here)
+
+Options beyond 60 Hz will not be appear normally, the user must set custom resolutions.
+""-B"" variant is the same monitor with a different stand
+Nixeus NX-EDG27 (or NX-EDG27S)
+27.0"" 2560 × 1440 IPS panel (FreeSync over DP only)
+Maximum of 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+""S"" variant is the same monitor with a different stand
+Samsung C24FG70
+23.5"" 1920 × 1080 VA panel (FreeSync over DP and HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)​
+Samsung C24FG73
+23.5"" 1920 × 1080 VA panel (FreeSync over DP and HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)​
+Samsung C27FG70
+27.0"" 1920 × 1080 VA panel (FreeSync over DP and HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)​
+Samsung C27FG73
+27.0"" 1920 × 1080 VA panel (FreeSync over DP and HDMI)
+Maximum 120 Hz over HDMI (claimed by manufacturer here; not verified)​
+Samsung C27HG70
+27.0"" 2560 × 1440 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+Samsung C27JG50 / C27JG52
+27.0"" 2560 × 1440 VA panel
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+These monitors have two HDMI ports, but only one of the ports supports >60 Hz
+Samsung C27G75 (Odyssey G7)
+27.0"" 2560 × 1440 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+Samsung C32HG70
+31.5"" 2560 × 1440 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+Samsung C32JG50 / C32JG52
+31.5"" 2560 × 1440 VA panel
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)
+
+These monitors have two HDMI ports, but only one of the ports supports >60 Hz
+Samsung C32G75 (Odyssey G7)
+31.5"" 2560 × 1440 VA panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+ViewSonic VX2458-mhd
+23.6"" 1920 × 1080 TN panel (FreeSync over DP, unknown if supported on HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; indirect claim inferred from horizontal and vertical refresh rate specifications; not verified)​
+ViewSonic VX2458-C-mhd
+23.6"" 1920 × 1080 VA panel (FreeSync over DP, unknown if supported on HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+ViewSonic VX2758-C-mh
+27.0"" 1920 × 1080 VA panel (FreeSync over HDMI only)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+ViewSonic XG2401
+24.0"" 1920 × 1080 TN panel (FreeSync over DP only)
+Maximum 144 Hz over HDMI (verified by testing here)​
+ViewSonic XG2402
+24.0"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+ViewSonic XG2405
+23.8"" 1920 × 1080 IPS panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+ViewSonic XG240R
+24.0"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 144 Hz over HDMI (claimed by manufacturer here; not verified)​
+ViewSonic XG2530
+24.5"" 1920 × 1080 TN panel (FreeSync over DP and HDMI)
+Maximum 240 Hz over HDMI (claimed by manufacturer here; not verified)​
+
+
+
+7.2.  List of 120+ Hz monitors limited to 60 Hz at full resolution over HDMI​
+
+Spoiler: Click to Expand
+
+
+
+Not an exhaustive list.
+
+Any monitor with an NVIDIA G-Sync module
+Acer GN246HL
+Acer GN276HL
+Acer XG270HU
+ASUS MG248Q
+ASUS MG278Q
+ASUS MG279Q
+ASUS VG236HE
+ASUS VG248QE
+ASUS VG248QZ
+ASUS VG278HE (VG278H)
+BenQ XL2410 (XL2410T)
+BenQ XL2411 (XL2411T, XL2411Z, XL2411P)
+BenQ XL2420 (XL2420T, XL2420TE, XL2420Z)
+BenQ XL2430 (XL2430T, XL2430Z)
+BenQ XL2720 (XL2720T XL2720Z)
+BenQ XR3501
+LG 24GM77 (24GM77-B)
+Samsung C49G95 (Odyssey G9)"
+7,Reserved
+7,"Hi Glenwing,
+
+First of all this seems like a great guide in which has been put a lot of work.
+Im not sure if you will read this but I kind of just want your confirmation if I understood this right because English is not my native language.
+
+I want to buy a monitor to play on 120HZ or 144HZ and connect it with HDMI to my Laptop which has 60HZ. I am using the ""Acer Nitro 5 (AN515-52-7840)"" and as far as i know it has a 1.4 HMDI Port and the gpu gtx1050ti. Does this mean that i can play games on a new monitor with 120HZ or 144HZ if i buy a monitor which supports atleast HMDI 1.4 and 144HZ with HDMI?
+
+Thank you in Advance!
+
+Edit: So all in all I want to make sure that I can play on a specific monitor per HMDI at 120HZ or 144HZ at 1920x1080 and not lose frames by using HDMI to connect my Laptop to the monitor"
+7,"Edit: So all in all I want to make sure that I can play on a specific monitor per HMDI at 120HZ or 144HZ at 1920x1080 and not lose frames by using HDMI to connect my Laptop to the monitor
+		
+Click to expand...
+
+Yes, it will work, as long as the monitor supports it."
+7,"Hi
+
+im using the Acer GN246HL and since new GPU's dont have an DVI Port i cant use the 144hz. I read your Instructions but tried an DVI-D to HDMI Cable anyways. 144hz are working i clearly see the difference but the Monitor is showing the Incorrect Cable Message. So How can i remove this Message? It must be so Firmware Flash out there. Sry for my bad english"
+7,"p3nis81 :
+                
+
+
+                       I read your Instructions but tried an DVI-D to HDMI Cable anyways. 144hz are working i clearly see the difference
+                    
+
+
+
+144 Hz at 1080p?
+
+
+
+
+                    p3nis81 :
+                
+
+
+                       So How can i remove this Message? It must be so Firmware Flash out there. Sry for my bad english
+                    
+
+
+
+Unfortunately you can't. Most monitors cannot have their firmware updated in the field."
+7,"Hi Glenwing, 
+
+Thanks so much for clearing up the misinformation about HDMI compatibility. It's been a struggle to find solid info on it and this guide is perfect. 
+
+Just one question: I can't seem to find what version my laptop's HDMI port is, but I'm fairly sure it's 1.4+. Will the HDMI version of my laptop's HDMI port affect what kind of monitor I need to get (depending on whether it's 1.4 or 2.0, for example)? Would all of the 144hz over HDMI monitors you've listed work with either HDMI 1.4 or HDMI 2.0? 
+
+This is my laptop: https://www.amazon.co.uk/HP-Pavilion-17-ab200na-17-3-inch-Natural/dp/B01NCNYOEL 
+
+Thanks in advance!"
+7,"techradish :
+                
+
+
+                       Hi Glenwing, 
+
+Thanks so much for clearing up the misinformation about HDMI compatibility. It's been a struggle to find solid info on it and this guide is perfect. 
+
+Just one question: I can't seem to find what version my laptop's HDMI port is, but I'm fairly sure it's 1.4+. Will the HDMI version of my laptop's HDMI port affect what kind of monitor I need to get (depending on whether it's 1.4 or 2.0, for example)? Would all of the 144hz over HDMI monitors you've listed work with either HDMI 1.4 or HDMI 2.0? 
+
+This is my laptop: https://www.amazon.co.uk/HP-Pavilion-17-ab200na-17-3-inch-Natural/dp/B01NCNYOEL 
+
+Thanks in advance!
+                    
+
+
+
+
+HDMI 2.0 isn't required, HDMI 1.4 is sufficient for 1080p 144 Hz. Some older Intel integrated graphics have limitations which will only let you get ≈100 Hz at 1080p but if you've got a dedicated GPU you should be ok."
+7,"@Glenwing
+
+Nice guide and info 
+
+
+
+Glenwing said:
+
+
+
+			If a DVI cable or adapter only claims to support a maximum of 1920 × 1080 or 1920 × 1200, then it is a Single‑Link DVI cable/adapter.■ If a DVI cable claims to support 2560 × 1440 or higher, then it is a Dual‑Link DVI cable.
+		
+Click to expand...
+
+
+Just wondering about this one https://www.amazon.co.uk/NEWlink-Di...1_1?s=computers&ie=UTF8&qid=1550263048&sr=1-1
+
+as it says it is an active one and supports 4K....but still only 60hz at 1080p 🙁 so is this SL or DL?  Ideally i want an active adapter that can run 1680x1050@120Hz but the ones I see cost at least £60 or more.
+
+anyway i'm probably just going to get https://www.ebay.co.uk/itm/1-x-Disp...deo-Audio-for-Laptop-PC-DVD-2018/302918544056
+says active but limited to 60hz and only a few quid.
+
+Also do you know if the new graphics cards that only have displayports still need an active adapter and 2 passive to run 3 monitors (i'm on eyefinity)?"
+7,"lekiamiga said:
+
+
+
+			@Glenwing
+Nice guide and info 
+
+Just wondering about this one https://www.amazon.co.uk/NEWlink-Di...1_1?s=computers&ie=UTF8&qid=1550263048&sr=1-1
+
+as it says it is an active one and supports 4K....but still only 60hz at 1080p 🙁 so is this SL or DL?  Ideally i want an active adapter that can run 1680x1050@120Hz but the ones I see cost at least £60 or more.
+
+anyway i'm probably just going to get https://www.ebay.co.uk/itm/1-x-Disp...deo-Audio-for-Laptop-PC-DVD-2018/302918544056
+says active but limited to 60hz and only a few quid.
+
+Also do you know if the new graphics cards that only have displayports still need an active adapter and 2 passive to run 3 monitors (i'm on eyefinity)?
+		
+Click to expand...
+
+
+It's a Single-Link adapter. It supports 4K via the HDMI protocol (high speed 10.2 Gbit/s Single-Link signals) if you attach a DVI to HDMI adapter on top of it.
+
+For the active/passive adapter eyefinity situation please see here: https://linustechtips.com/main/topi...v2/?section=active_adapters_for_multi_display"
+7,"Glenwing said:
+
+
+
+Last updated: February 2019​​​AOC G2460PF​24.0"" 1920 × 1080 TN panel (FreeSync over DP only)​Maximum 120 Hz over HDMI (verified by testing here)​
+Options beyond 60 Hz will not appear normally, the user must set custom resolutions.
+Note: Tom's Hardware review states that this monitor supports FreeSync over HDMI. This is incorrect.
+
+
+Click to expand...
+
+
+Hello, can you give more info about the non-freesync support over HDMI?  On AMD site https://www.amd.com/en/products/freesync-monitors the AOC G2460PF shows:
+
+RANGE:
+35-144 via DisplayPort 35-120 via HDMIINTERFACE:
+DisplayPort™, HDMI®LFC: Yes
+Thank you"
+7,"dan444 said:
+
+
+
+			Hello, can you give more info about the non-freesync support over HDMI?  On AMD site https://www.amd.com/en/products/freesync-monitors the AOC G2460PF shows:
+
+RANGE:
+35-144 via DisplayPort 35-120 via HDMIINTERFACE:
+DisplayPort™, HDMI®LFC: Yes
+Thank you
+		
+Click to expand...
+
+I got the monitor for testing a while ago, it does not support FreeSync over HDMI. I tried installing various beta drivers on the internet. The Tom's Hardware review states they had some kind of updated firmware that enabled it, I contacted AOC support to ask if this was true, the support rep said he'd ask an engineer but I never got a response after that. I also tried adding a FreeSync range through the EDID manually but it did not work, even with a small range like 60-120 Hz or 60-90 Hz. When I purchased the monitor it was already over a year after the Tom's Hardware review, so if there is some kind of firmware that enables it, it does not seem like it is being distributed in production monitors, at least in the US."
+7,"Glenwing said:
+
+
+
+			I got the monitor for testing a while ago, it does not support FreeSync over HDMI. I tried installing various beta drivers on the internet. The Tom's Hardware review states they had some kind of updated firmware that enabled it, I contacted AOC support to ask if this was true, the support rep said he'd ask an engineer but I never got a response after that. I also tried adding a FreeSync range through the EDID manually but it did not work, even with a small range like 60-120 Hz or 60-90 Hz. When I purchased the monitor it was already over a year after the Tom's Hardware review, so if there is some kind of firmware that enables it, it does not seem like it is being distributed in production monitors, at least in the US.
+		
+Click to expand...
+
+
+Thanks! Well i guess AMD should update their website because that sucks if someone buys it... One of the models im leaning towards is the ViewSonic VX2458-mhd. When you say ''FreeSync unknown if supported on HDMI'' how can i  verify to be sure of this? Should i contact viewsonic? Or only way is purchasing the monitor and testing it. (if so, how do i test it?) 
+
+And same question about ''maximum 144 Hz over HDMI (claimed by manufacturer here; indirect claim inferred from horizontal and vertical refresh rate specifications; not verified)''
+
+Also what about LFC? Since the monitor has this feature, i guess if freesync over hdmi supported then LFC should work too right? Or this is only displayport feature? Thank you"
+7,"I've tried creating a custom resolution in the Nvidia control panel as well as using the Custom Res Utility, following the directions exactly. Every time, my monitor just goes black, then switches back and forth between sleep and black screen a few times until it reverts automatically. I dragged the box over to my other monitor so that I could hit okay so it wouldn't revert, but it just kept cycling through the sleep/black screen every few seconds until I gave up and reset it to default. What are my options?"
+7,"dan444 said:
+
+
+
+			Thanks! Well i guess AMD should update their website because that sucks if someone buys it... One of the models im leaning towards is the ViewSonic VX2458-mhd. When you say ''FreeSync unknown if supported on HDMI'' how can i  verify to be sure of this? Should i contact viewsonic? Or only way is purchasing the monitor and testing it. (if so, how do i test it?) 
+
+And same question about ''maximum 144 Hz over HDMI (claimed by manufacturer here; indirect claim inferred from horizontal and vertical refresh rate specifications; not verified)''
+
+Also what about LFC? Since the monitor has this feature, i guess if freesync over hdmi supported then LFC should work too right? Or this is only displayport feature? Thank you
+		
+Click to expand...
+
+You can ask ViewSonic support but usually I don't take support's word when it comes to things like this. I look for independent reviews and/or testing, which I haven't found any for that monitor (hence why I have it listed as unknown ). You can test it by connecting to an AMD graphics card with HDMI and seeing if FreeSync is available 
+
+The manual doesn't specify exactly that it supports 1080p 144 Hz over HDMI; it says vertical refresh frequency on HDMI goes up to 144 Hz, but that doesn't necessarily mean it is supported at full resolution (for example some monitors list up to 75 Hz but they are capped at 60 Hz at full resolution, 75 Hz only is available at low resolution like 1280×1024). In those cases, sometimes the horizontal frequency will be a giveaway, as it may be too low to support full resolution at 144 Hz, but in this case the VX2458-mhd lists a maximum of 180 kHz which is more than enough to fit 1080p 144 Hz. Even with that, it's still technically possible that it doesn't support 1080p 144 Hz (by supporting only a really low horizontal resolution at 144 Hz), but that would be a quite bizarre limitation I think, it is very unlikely. So I am fairly confident it supports 1080p 144 Hz, but cannot be absolutely certain based on the specs in the manual (a maximum TMDS clock would confirm it, but that spec is just listed as ""TBD"" in the manual; I guess someone forgot to fill it in), and since there are also no reviews that can confirm it, that is why I have put the note that it is not specifically claimed in the manual (only indirectly inferred). More of a note for myself than anyone else, I don't expect most people to really know what the note means xD but I will update it if I see some reviews or the manual is updated.
+
+
+
+suavepenguin6 said:
+
+
+
+			I've tried creating a custom resolution in the Nvidia control panel as well as using the Custom Res Utility, following the directions exactly. Every time, my monitor just goes black, then switches back and forth between sleep and black screen a few times until it reverts automatically. I dragged the box over to my other monitor so that I could hit okay so it wouldn't revert, but it just kept cycling through the sleep/black screen every few seconds until I gave up and reset it to default. What are my options?
+		
+Click to expand...
+
+
+Not much unfortunately, sometime monitors just will not accept custom resolutions. You can try making sure that GPU scaling is on to try to avoid monitor compatibility problems, but it doesn't always work.
+
+
+Spoiler: Image"
+7,"Glenwing said:
+
+
+
+			You can ask ViewSonic support but usually I don't take support's word when it comes to things like this. I look for independent reviews and/or testing, which I haven't found any for that monitor (hence why I have it listed as unknown ). You can test it by connecting to an AMD graphics card with HDMI and seeing if FreeSync is available 
+
+The manual doesn't specify exactly that it supports 1080p 144 Hz over HDMI; it says vertical refresh frequency on HDMI goes up to 144 Hz, but that doesn't necessarily mean it is supported at full resolution (for example some monitors list up to 75 Hz but they are capped at 60 Hz at full resolution, 75 Hz only is available at low resolution like 1280×1024). In those cases, sometimes the horizontal frequency will be a giveaway, as it may be too low to support full resolution at 144 Hz, but in this case the VX2458-mhd lists a maximum of 180 kHz which is more than enough to fit 1080p 144 Hz. Even with that, it's still technically possible that it doesn't support 1080p 144 Hz (by supporting only a really low horizontal resolution at 144 Hz), but that would be a quite bizarre limitation I think, it is very unlikely. So I am fairly confident it supports 1080p 144 Hz, but cannot be absolutely certain based on the specs in the manual (a maximum TMDS clock would confirm it, but that spec is just listed as ""TBD"" in the manual; I guess someone forgot to fill it in), and since there are also no reviews that can confirm it, that is why I have put the note that it is not specifically claimed in the manual (only indirectly inferred). More of a note for myself than anyone else, I don't expect most people to really know what the note means xD but I will update it if I see some reviews or the manual is updated.
+		
+Click to expand...
+
+
+Thank you so much! I have few more doubts left, my b450 tomahawk motherboard have this ports:
+
+1 x DVI-D port, support a maximum resolution of 1920x1200@60Hz1
+1 x HDMI™ 1.4 port, supports a maximum resolution of 4096x2160@30Hz, 2560x1600@60Hz1
+Only support when using AMD® Ryzen™ with Radeon™ Vega Graphics/ Athlon™ with Radeon™ Vega Graphics Processors
+Maximum shared memory of 2048 MB
+
+I would be able to push 144hz with this motherboard right? (If the monitor does support 144hz over hdmi 1.4)
+
+Also, if the monitor is only able to push 144hz + support freesync over the DisplayPort option, would an active HDMI to DP adapter simple fix this? This would open more monitor choices for my needs
+
+I have a ryzen APU 2200g/vega 8 budget build and all i need on my monitor is: 
+-24'' 144hz 
+-TN 
+-enough comfort for study (most monitors i notice have anti flicker and anti blue light that should be enough) 
+-I mostly play league of legends and CSGO where i can push those fps but freesync will be handy when i have fps drops, also i will play with friends more demanding titles sometimes like apex legends where i have to lower resolution and settings for 50-70 fps so LFC feature on this freesync range will be good here i guess
+
+My monitor options are from worst to best: 
+-Viewsonic XG2402- 324EUR here... good option if it wasnt overpriced on my country
+
+-Viewsonic XG2401-220EUR (only freesync over DP so waiting your answer if an hdmi to dp adapter would fix it, otherwise discarded)
+
+-Viewsonic 2458-MHD for 196EUR was my favourite but yesterday i notice on some reviews (as well as the older model 2457) that the stand is really unstable and screen flickers at minimum movement on desktop. Others say its not that big deal but it really turned me off. Here it seems too shaky when he handles it 
+
+
+
+View: https://youtu.be/SQHI77ZgxCo
+  I can buy VESA stand but its around 50$ and not worth it i think
+
+So now i guess i will invest a bit more for AOC G2590FX 239EUR or AIC G2590PX 269 EUR, the 27'' version is on offer currently for 260EUR but i prefer 24''. It has all the features i need, and for the maximum 144 Hz over HDMI (claimed by manufacturer here; not verified) ill contact AOC support even if is not 100% reliable, im fine with 120hz and if i get 75 or 60 ill  return it on amazon
+
+Wich one you suggest? Thank you"
+7,"dan444 said:
+
+
+
+			Thank you so much! I have few more doubts left, my b450 tomahawk motherboard have this ports:
+
+1 x DVI-D port, support a maximum resolution of 1920x1200@60Hz1
+1 x HDMI™ 1.4 port, supports a maximum resolution of 4096x2160@30Hz, 2560x1600@60Hz1
+Only support when using AMD® Ryzen™ with Radeon™ Vega Graphics/ Athlon™ with Radeon™ Vega Graphics Processors
+Maximum shared memory of 2048 MB
+
+I would be able to push 144hz with this motherboard right? (If the monitor does support 144hz over hdmi 1.4)
+
+Also, if the monitor is only able to push 144hz + support freesync over the DisplayPort option, would an active HDMI to DP adapter simple fix this? This would open more monitor choices for my needs
+
+I have a ryzen APU 2200g/vega 8 budget build and all i need on my monitor is:
+-24'' 144hz
+-TN
+-enough comfort for study (most monitors i notice have anti flicker and anti blue light that should be enough)
+-I mostly play league of legends and CSGO where i can push those fps but freesync will be handy when i have fps drops, also i will play with friends more demanding titles sometimes like apex legends where i have to lower resolution and settings for 50-70 fps so LFC feature on this freesync range will be good here i guess
+
+My monitor options are from worst to best:
+-Viewsonic XG2402- 324EUR here... good option if it wasnt overpriced on my country
+
+-Viewsonic XG2401-220EUR (only freesync over DP so waiting your answer if an hdmi to dp adapter would fix it, otherwise discarded)
+
+-Viewsonic 2458-MHD for 196EUR was my favourite but yesterday i notice on some reviews (as well as the older model 2457) that the stand is really unstable and screen flickers at minimum movement on desktop. Others say its not that big deal but it really turned me off. Here it seems too shaky when he handles it 
+
+
+
+View: https://youtu.be/SQHI77ZgxCo
+  I can buy VESA stand but its around 50$ and not worth it i think
+
+So now i guess i will invest a bit more for AOC G2590FX 239EUR or AIC G2590PX 269 EUR, the 27'' version is on offer currently for 260EUR but i prefer 24''. It has all the features i need, and for the maximum 144 Hz over HDMI (claimed by manufacturer here; not verified) ill contact AOC support even if is not 100% reliable, im fine with 120hz and if i get 75 or 60 ill  return it on amazon
+
+Wich one you suggest? Thank you
+		
+Click to expand...
+
+An HDMI to DisplayPort adapter will not work with FreeSync, no.
+
+The G2590PX I think is a good option. The 24.5"" panel it uses is a newer panel as well, which supposedly has improved image quality compared to the older panels most 24.0"" 144 Hz monitors use. Haven't tested any myself though."
+7,"Hello, I have a question regarding the best way to connect my laptop to an external monitor, to be able to play at 144ghz at 1920x1080p
+
+My laptop - Dell g7 15 7588 (2018) , it has Type-C Thunderbolt 3 and HDMI 2.0 (according to the Dell website).
+The external monitor in question is - 215$ prime ,ViewSonic XG2402 24 Inch 1080p 1ms 144 Hz , as many sources claim is one of the best budget (under 250$) option. It offers DisplayPort and HDMI connectivity.
+
+I spent a lot of time researching and learning, so,  should I use laptop's Thunderbolt 3 output  with (Plugable USB C to DisplayPort Adapter), which was  mentioned in this topic above?
+Or
+HDMI 1.4 , according to what I read, it can offer 144 ghz at 1920x1080?
+
+P.S. Dell g7 15 has  6gb 1060 max-q dedicated graphics card, I am not sure if it supports 144 ghz external monitors, I couldn't find any info on that."
+7,"For shopping advice it may be best to start your own thread, so more people will see and reply, and so that this thread does not become full of recommendations that will eventually become outdated."
+8,"bladesout2011 :
+                
+
+
+                       I Got the 860 EVO 1T to clone with the Samsung software. It seems that it worked but it is not recognize as Samsung but instead a 256GB Toshiba. I am not sure why but is reads 256GB but it shows 1T. It is in the Dell G7 15 7588 laptop. The drive I cloned was a 500GB that was not a Toshiba. How can I get the dang thing to show up as Samsung?
+                    
+
+
+
+
+Install and run the Samsung Magician tool.
+What does it say?"
+8,I added a photos of what it says.  I do not understand why windows 10 is not reading it right.
+8,This is still not fixed or has been figured out yet... Anyone have any clue why it does not read it correct?
+9,"bladesout2011 :
+                
+
+
+                       I Got the 860 EVO 1T to clone with the Samsung software. It seems that it worked but it is not recognize as Samsung but instead a 256GB Toshiba. I am not sure why but is reads 256GB but it shows 1T. It is in the Dell G7 15 7588 laptop. The drive I cloned was a 500GB that was not a Toshiba. How can I get the dang thing to show up as Samsung?
+                    
+
+
+
+
+Install and run the Samsung Magician tool.
+What does it say?"
+9,I added a photos of what it says.  I do not understand why windows 10 is not reading it right.
+9,This is still not fixed or has been figured out yet... Anyone have any clue why it does not read it correct?
