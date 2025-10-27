@@ -44,6 +44,9 @@ df['language'] = df['Conteudo_Comentario'].astype(str).apply(get_language)
 
 # Agrupa os dados por idioma e salva cada grupo em um novo arquivo CSV
 for lang, group in df.groupby('language'):
-    output_filename = DIRETORIO_DADOS_LINGUAGENS / 'dataset_respostas_{lang}.csv'
+    # CORREÇÃO: Usar um f-string (f'...') para interpolar a variável 'lang'
+    # no nome do arquivo antes de combiná-lo com o caminho do diretório.
+    output_filename = DIRETORIO_DADOS_LINGUAGENS / f'dataset_respostas_{lang}.csv'
+    
     group.to_csv(output_filename, index=False)
     print(f"Dados do idioma '{lang}' salvos em '{output_filename}'")

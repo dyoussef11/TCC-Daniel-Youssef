@@ -7,7 +7,7 @@ Conteudo_Comentario,ID_Unico,annotation_id,annotator,created_at,id,lead_time,sen
 
 
 
-	O problema pode ser físico.",3,328,1,2025-09-21T16:39:23.067201Z,283,16.157,Negative,2025-09-21T16:39:23.067201Z,pt
+	O problema pode ser físico.",3,568,1,2025-10-23T16:16:48.702465Z,565,11.856,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:16:48.702465Z,pt
 "Em 07/10/2020  às  19:05,  	svr-artur disse:	
 
 
@@ -22,8 +22,37 @@ Conteudo_Comentario,ID_Unico,annotation_id,annotator,created_at,id,lead_time,sen
 	Caso não resolva, pode ter 2 caminhos, substituir o teclado para fins de teste, podendo tudo se resolver até então. Persistindo o defeito, tem de fazer limpeza na placa-mãe com álcool isopro, para ver se resolve, e por fim reparo por técnico na placa-mãe, podendo ser trilha rompida, oxidação de componentes.
 
 
-	Para conseguir usar o teclado do notebook, pode colocar um externo via usb.",3,284,1,2025-09-21T16:07:10.354289Z,284,2.888,Positive,2025-09-21T16:07:10.354289Z,pt
-Olá amigo.. comprei um note Dell G7 15.. bem parecido com o seu.. ainda nao recebi.. esta a caminho.. mas pesquisei bastante o modelo antes de comprar.. Li em varios lugares que usuários ajustavam a tensão da placa assim mantendo ela mais fria e evitando esse feito com perda minima de fps... da uma pesquisada em undervolting gtx 1060 no google q você deve achar algo q ajude. Abraços,5,285,1,2025-09-21T16:07:11.602629Z,285,0.872,Positive,2025-09-21T16:07:11.602629Z,pt
+	Para conseguir usar o teclado do notebook, pode colocar um externo via usb.",3,570,1,2025-10-23T16:29:56.965524Z,566,40.669,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T16:29:56.965524Z,pt
+Olá amigo.. comprei um note Dell G7 15.. bem parecido com o seu.. ainda nao recebi.. esta a caminho.. mas pesquisei bastante o modelo antes de comprar.. Li em varios lugares que usuários ajustavam a tensão da placa assim mantendo ela mais fria e evitando esse feito com perda minima de fps... da uma pesquisada em undervolting gtx 1060 no google q você deve achar algo q ajude. Abraços,5,571,1,2025-10-23T16:31:09.305396Z,567,19.982,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T16:31:09.305396Z,pt
+"@victro kenzo Bom dia Victor,
+
+
+	 
+
+
+	Tenho o PC igual ao seu mas meu uso é mais como Home Theater PC.
+
+
+	Tive problemas com as GPUs e tive que formatar o PC.
+
+
+	Acredito que o problema foi que eu atualizei os drivers Intel e Nvidia direto do site e não usei os drivers da DELL.
+
+
+	O software, que vem instalado no PC, GEFORCE EXPERIENCE, me alertou de um UPDATE de Driver e fiz, acredito que isso que deu problema no meu PC.
+
+
+	 
+
+
+	você esta utilizndo quais drivers?",5,572,1,2025-10-23T16:31:12.835087Z,568,23.47,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:31:12.835087Z,pt
+"@GabrielLV
+
+
+	 
+
+
+	Na parte do print de exemplo não teve nenhum evento desse ""Windows Error Reporting""",9,573,1,2025-10-23T16:31:22.153579Z,569,19.541,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:31:22.153579Z,pt
 "Já aconteceu algumas vezes comigo o modelo G5, talvez funcione com você:
 
 
@@ -56,9 +85,74 @@ Olá amigo.. comprei um note Dell G7 15.. bem parecido com o seu.. ainda nao rec
 
 
 
-								1",9,286,1,2025-09-21T16:07:12.629124Z,288,0.62,Positive,2025-09-21T16:07:12.629124Z,pt
-"Ola @rodrigokernn você conseguiu resolver o problema?... eu ja limpei o nota. troquei pasta térmica..  sai do wind 11. para wind 10 . com troquei os programas,  tirei o crive de vídeo atual e instalei um antigo e mesmo assim não ainda a tela azul.",9,287,1,2025-09-21T16:07:13.688850Z,289,0.666,Positive,2025-09-21T16:07:13.688850Z,pt
-"A fonte da cliente estava com problema. Colocando no teste de stress ele desligava. Troquei, o teste faz de boa mas continua com as telas azuis. Desativei a placa da Nvidia, o problema parou e o cliente vai usar assim mesmo, então não vou conseguir prosseguir com o diagnóstico.",9,333,1,2025-09-21T16:41:16.612586Z,292,5.367,Positive,2025-09-21T16:41:16.612586Z,pt
+								1",9,565,1,2025-10-23T15:38:20.563591Z,570,31.766,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T15:38:20.563591Z,pt
+"Ola @rodrigokernn você conseguiu resolver o problema?... eu ja limpei o nota. troquei pasta térmica..  sai do wind 11. para wind 10 . com troquei os programas,  tirei o crive de vídeo atual e instalei um antigo e mesmo assim não ainda a tela azul.",9,566,1,2025-10-23T15:38:40.864481Z,571,15.664,INFORMATIVA/DIAGNÓSTICO,2025-10-23T15:38:40.864481Z,pt
+"Olá, Pessoal.
+
+	Resolvi entrar aqui na conversa de vocês, porque estou junto nessa bronca.
+
+
+	Cuido do TI da empresa que trabalho, e temos 05 notebooks idênticos ao citado nesse post. ""Dell G7 7588"", comprados em 05/2019 (aproximadamente 03 anos), e todos começaram dar esse problema intermitente de tela azul (BSOD), por volta de 23 a 24 de Junho de 2022. Todos juntos, quase ao mesmo tempo, CAOS TOTAL!!!
+
+	O erro fica variando entre:
+UNEXPECTED_KERNEL_MODE_TRAP
+
+
+	e
+DRIVER_POWER_STATE_FAILURE
+
+	Trabalhamos com Sketchup e renderização, então as máquinas tem uso elevado, quase todos os dias desde sempre.
+
+1) No inicio do problema, comecei pelo óbvio que era superaquecimento. Desmontei um dos notes inteiro, fiz a limpeza, desoxidação das memórias RAM e troca da pasta térmica. Diminuiu a temperatura, mas não resolveu o problema.
+
+2) Formatei o note com a mídia original, instalação limpa, e depois de um dia o problema retornou.
+
+3) Fiz algumas modificações na configuração do plano de energia, como reduzir o clock do processador, para evitar que elevasse a temperatura (ainda estava achando que o problema era esse), mas não funcionou também.
+
+4) Rodei o diagnóstico da Dell, Fiz o CHKDSK, Teste de memória RAM, reinstalei drivers de bateria e USB, e NADA!!
+
+5) Troquei a fonte do note, Testei ligado em um estabilizador, nobreak, e até sem bateria, e o problema ressurgia como uma fênix enfurecida.
+
+6) Enfim, depois de quase 20 dias, já tinha feito tanta coisa, que estava até apelando pra uma intervenção divina, rs.
+
+
+	Enfim, parei, retomei a lucidez, e comecei a analisar as atualizações que a Dell forneceu próximo a essa data, que entraram em atualização automática pelo Dell Update e provavelmente continham algum erro que iniciou toda essa destruição em massa. Eram os seguintes drivers:
+
+	- BIOS
+	- Driver de vídeo NVIDIA
+	- Aplicativo e Controlador Ethernet
+
+	Já eliminei o driver de vídeo pelo DDU, e instalei uma versão antiga de 12/2021.
+	Instalei também uma versão antiga do Ethernet, e agora, estou aguardando como a máquina vai se comportar.
+
+	Se o problema voltar, só vai me restar fazer o downgrade da BIOS, que particularmente, estou evitando fazer ao máximo, por ser bem arriscado, ainda mais em 05 máquinas!
+
+
+	Sigo acreditando ser algum problema de driver recente que veio com problema, ainda mais depois que li esse relato do mesmo notebook, praticamente idêntico aos meus, e com os mesmos sintomas.
+	Também acontece esse erro no Sketchup mencionado acima pela @lorenagmss.
+
+	Já encontrei em outro fórum o mesmo problema do mesmo modelo de notebook, na mesma data.
+	Tem algo errado acontecendo com algum driver que está pegando todo mundo.
+
+	É isso, se alguém tiver mais alguma coisa para ajudar.
+	Vou atualizando por aqui essa saga sem fim.",9,574,1,2025-10-23T16:31:26.725626Z,572,51.919,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:31:26.725626Z,pt
+"OI @Jean Carlo Pereira , liguei pra Dell relatei tudo isso, sobre problema com divers,  principalmente o de Vídeos. 
+
+
+	Resposta: Teria que reclamar com a empresa do Sketchup que reclamaria com NVIDIA a assim fariam drives novos corrigindo o problema, mas acontece também com o Autocad, Revit, e o Archicad. (Autodesk - Grasoft ), dai, seguindo uma dica apresentada nessa discussão, desinstalei todos os drives que tinha logo da NVIDIA , até os de Áudio, usando apenas os genéricos do win.  por umas 8h achei ter resolvido o problema, depois ele retornou.
+
+
+	 
+
+
+	Seria bom se todos pudessem fazer reclamação com a Dell. pois a boca deles é doce pra dizer que tem que trocar a placa-mãe, que não faz sentido nenhum, pois não sou só eu que estou com esse problema, logo com várias reclamações ao setor de suporte, ele podem entender que precisa corrigir esse problema por atualização.. 
+
+
+
+	sobre a BIOS,  havia feito uma atualização da BIOS ano passado e sempre funcionou super bem. quando começou a dar problema ... que fui rodar o Dell suporte e vi que havia uma atualização da BIOS  pra fazer, fiz pois achei que iria resolver o problema,  foi uma das primeiras coisas que fiz, e não resolveu nada, era dia  27/06.  não havia atualização de driver de vídeo pra fazer. dia 28 saiu um driver de vídeo, achei que era a solução que eu precisava, mas como pode perceber, não foi...  então acredito que não seria o drive da BIOS. pois eu não mudei nada no meu até começar dar problema. 
+
+	obs: Meu sketchup é 2022 ( antes da formatação era o 2021) original comprado pelo site da Trimble global,  pago a licença anual em dolar, e meu autocad, revit e archicad são de estudante. pois tenho a licença da pós graduação nele,  todos licenciados, não tem como ser mau funcionamento de programa pirata.",9,579,1,2025-10-23T16:31:57.947019Z,573,53.52,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:31:57.947019Z,pt
+"A fonte da cliente estava com problema. Colocando no teste de stress ele desligava. Troquei, o teste faz de boa mas continua com as telas azuis. Desativei a placa da Nvidia, o problema parou e o cliente vai usar assim mesmo, então não vou conseguir prosseguir com o diagnóstico.",9,567,1,2025-10-23T16:15:28.006506Z,574,265.932,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T16:15:28.006506Z,pt
 "@lorenagmss Nossa.
 
 
@@ -125,7 +219,7 @@ Olá amigo.. comprei um note Dell G7 15.. bem parecido com o seu.. ainda nao rec
 	 
 
 
-	No meu caso cheguei a desconfiar disso também, mas troquei com a de outro note que não estava apresentando problema e não deu certo.",9,334,1,2025-09-21T16:41:36.505004Z,293,19.506,Negative,2025-09-21T16:41:36.505004Z,pt
+	No meu caso cheguei a desconfiar disso também, mas troquei com a de outro note que não estava apresentando problema e não deu certo.",9,575,1,2025-10-23T16:31:42.017369Z,575,42.958,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:31:42.017865Z,pt
 "@Jean Carlo Pereira  Meu Wind. era o 11 e fiz uma Formatação limpa instalando o wind 10 achando que iria resolver, então não acho que você atualizando para o 11 vai mudar.  atualizei o drive da placa da Intel gráficas 630.  e não resolveu.  desativei a mesma, e o sketchup não abre,  logo desativei a da NVIDIA como o @Rodrigo Kern indicou acima, o SketchUp abre dando uma seguinte mensagem.....(foto) e até agora sem tela azul mas ainda não abri o enscape,  (duas horas de teste).
 	 
 
@@ -133,7 +227,7 @@ Olá amigo.. comprei um note Dell G7 15.. bem parecido com o seu.. ainda nao rec
 	 
 
 
-	Obs.  comprei minha maquina no final de 2018, deve ser do mesmo lote",9,335,1,2025-09-21T16:41:47.130258Z,294,10.221,Negative,2025-09-21T16:41:47.130258Z,pt
+	Obs.  comprei minha maquina no final de 2018, deve ser do mesmo lote",9,576,1,2025-10-23T16:31:44.202862Z,576,27.05,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:31:44.202862Z,pt
 "@lorenagmss Que estranho.
 	Porém tem uma coisa que esqueci de mencionar.
 
@@ -147,53 +241,66 @@ Olá amigo.. comprei um note Dell G7 15.. bem parecido com o seu.. ainda nao rec
 	E é a única máquina que já faz uns 5 dias que está rodando perfeitamente!
 	Pode ter sido só uma coincidência, mas aconteceu.
 
-	Hoje vou restaurar mais uma nessa mesma condição, e semana que vem botar pra rodar com o usuário, e vamos ver como se comporta.",9,288,1,2025-09-21T16:07:15.035141Z,295,0.958,Positive,2025-09-21T16:07:15.035141Z,pt
+	Hoje vou restaurar mais uma nessa mesma condição, e semana que vem botar pra rodar com o usuário, e vamos ver como se comporta.",9,577,1,2025-10-23T16:31:47.171105Z,577,22.902,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T16:31:47.171105Z,pt
 "@Jean Carlo Pereira Ontem as 20h desativei a placa de vídeo da NVIDIA para tentar trabalhar de forma continua, sem bug. Trabalhei até as 4h da manhã sem reiniciar o computador.  pra renderizar pelo enscape, precisei ativar novamente, e até agora as 18h do dia seguinte sem bug. fiz vídeos e imagens pelo enscape, não sei se pelo fato que desativar e ativar a placa da Nvídea parou de dar bug.
 
 	Se voltar a aparecer o problema retorno aqui pra notificar. (Deus queira que não, pois também já estou apelando por uma intervenção divina)
 
-	obs. eu não posso mas fazer recuperação de fabrica no Dell recovery, pois em 2020 eu toquei meu HD por um SSD e formatei todo o HD M2 pra usar como Pendrive. ai eu faço recuperação com imagem do wind. gravado em um pendrive .",9,289,1,2025-09-21T16:07:16.037749Z,296,0.631,Positive,2025-09-21T16:07:16.037749Z,pt
+	obs. eu não posso mas fazer recuperação de fabrica no Dell recovery, pois em 2020 eu toquei meu HD por um SSD e formatei todo o HD M2 pra usar como Pendrive. ai eu faço recuperação com imagem do wind. gravado em um pendrive .",9,578,1,2025-10-23T16:31:49.476664Z,578,27.818,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T16:31:49.476664Z,pt
 "@lorenagmss Legal, bom saber disso.
 	Realmente, o teste com o Windows 11 não adiantou nada, em pouco tempo voltou a travar e dar tela azul.
 
 	Acabei de desabilitar a placa da NVIDIA aqui também, e pedi para o usuário trabalhar normal, no Sketchup e render também, mesmo perdendo um pouco de desempenho.
 
-	Vou procurar algo sobre isso, de conflito entre o Sketchup + Placa de vídeo GTX 1060, que é a que vem nesse note. Pode ter algo específico nesse cenário causando isso.",9,336,1,2025-09-21T16:41:56.592972Z,297,9.078,Positive,2025-09-21T16:41:56.592972Z,pt
+	Vou procurar algo sobre isso, de conflito entre o Sketchup + Placa de vídeo GTX 1060, que é a que vem nesse note. Pode ter algo específico nesse cenário causando isso.",9,580,1,2025-10-23T16:32:01.908791Z,579,8.466000000000001,FEEDBACK DE FECHAMENTO,2025-10-23T16:32:01.908791Z,pt
 "O Enscape ( renderizador) não abriu com a placa desabilitada,  
 
 	trabalhei o Fim de Semana todo e o Problema não voltou.
 	espero que resolva seu problema. 
 
 	Desisti de NVIDIA e DELL.  Comprei peças da ASUS e AMD pra montar um Computador de Mesa.  (essa vai ficar como suporte).
-	espero que",9,337,1,2025-09-21T16:42:04.226357Z,298,7.247,Neutral,2025-09-21T16:42:04.226357Z,pt
+	espero que",9,581,1,2025-10-23T16:32:34.384655Z,580,43.965,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T16:32:34.384655Z,pt
 "Caramba pessoal. Complicado! Coloquei a fonte do meu Dell G15 (180w contra 130w a original) por umas 6 horas e não deu problema.
 
 
 	 
 
 
-	Tá difícil!",9,290,1,2025-09-21T16:07:16.948951Z,299,0.516,Positive,2025-09-21T16:07:16.948951Z,pt
+	Tá difícil!",9,582,1,2025-10-23T16:32:39.048773Z,581,11.89,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T16:32:39.048773Z,pt
 "@lorenagmss Realmente!
 	Fiz o teste hoje desativando a placa da Nvidia em 2 notebooks e rodaram sem travar ou tela azul o dia todo.
 	Claro, o desempenho foi lá em baixo, mas antes isso, do que ficar praticamente inutilizável.
 
-	Agora é buscar o que está causando isso.",9,338,1,2025-09-21T16:42:15.354866Z,300,10.737,Neutral,2025-09-21T16:42:15.354866Z,pt
+	Agora é buscar o que está causando isso.",9,583,1,2025-10-23T16:32:42.325368Z,582,14.239,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:32:42.325368Z,pt
 "@Rodrigo Kern não sei porque essa fonte de 130W, vi  muitos reclamando, graça a Deus a minha já é 180W, uma vez deu problema, na garantia ainda, a Dell me deu uma Nova, mas o computador dá uma mensagem quando é a fonte. então nem desconfiei que fosse isso dessa vez, pois não deu a mensagem...
 
 
-@Jean Carlo Pereira tente ativar a placo depois, ativei a minha e o computador voltou ao normal. desde sábado sem ocorrências, minha modelagem já está bem avançada, já deu umas travadas e não deu mais erro .",9,291,1,2025-09-21T16:07:17.880916Z,301,0.512,Positive,2025-09-21T16:07:17.880916Z,pt
+@Jean Carlo Pereira tente ativar a placo depois, ativei a minha e o computador voltou ao normal. desde sábado sem ocorrências, minha modelagem já está bem avançada, já deu umas travadas e não deu mais erro .",9,584,1,2025-10-23T16:32:44.641482Z,583,25.127,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T16:32:44.641482Z,pt
+"@lorenagmss Pior que já fiz isso. Desativei pela manhã e usaram normalmente durante o dia. No final da tarde, ativei-a novamente e o erro voltou quase de forma instantânea. Como você procedeu nesse processo de reativá-la?
+
+
+@Rodrigo Kern As minhas já são de 180w. Testei elas também, e estão todas ok. No início dessa jornada até cheguei a desconfiar delas também, mas não iriam dar problema em todas ao mesmo tempo no meu caso. E depois pra tirar a prova, testei e realmente não eram elas o B.O.
+
+	O grande problema aí é algum conflito entre a Placa de vídeo GTX 1060 + Sketchup.
+
+	ou
+
+Placa de vídeo + algum recurso de aceleração de hardware ou algo assim, que normalmente os programas 3D usam. Até porque encontrei pessoas em outros fóruns com o mesmo notebook, e com o mesmo problema, porém não usavam o Sketchup, e sim o AutoCAD por exemplo.",9,585,1,2025-10-23T16:32:56.700198Z,584,29.571,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:32:56.700198Z,pt
+@Jean Carlo Pereira No meu caso dá ao usar a internet umas 5h também viu!,9,586,1,2025-10-23T16:33:01.268638Z,585,13.975,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T16:33:01.268638Z,pt
 "@Jean Carlo Pereira sim, Autocad, e Archicad, Revit. todos esses da BO. uso todos eles. e dependendo do site.  tambem dava B.O. tambem como o @Rodrigo Kern  confirmou. 
 
 	Tenho Um colega com o mesmo B.O. ele parece ter resolvido de forma diferente . 
 	pedi pra ele compartilhar aqui, ele vai fazer mais alguns teste . mas parece que ele fez um downgrade par um de 2020. ele ta com wind. 11 , só fez esse downgrade.
 
 
-	nota:  eu só fui em gerenciador de dispositivo, desabilitei ,  depois fui lá e habilitei , não fiz nada demais.",9,292,1,2025-09-21T16:07:18.811602Z,304,0.544,Positive,2025-09-21T16:07:18.811602Z,pt
+	nota:  eu só fui em gerenciador de dispositivo, desabilitei ,  depois fui lá e habilitei , não fiz nada demais.",9,587,1,2025-10-23T16:33:06.665858Z,586,21.825000000000003,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T16:33:06.665858Z,pt
 "@lorenagmss Opa, boa notícia!
 	eu cheguei a fazer o downgrade do driver também, mas para uma versão de dezembro de 2021, mas continuou dando erro, por isso nem tentei uma versão mais antiga ainda.
 
-	Mas se está dando certo com seu amigo, é um bom sinal, se amanhã eu conseguir, também vou fazer esse teste.",9,293,1,2025-09-21T16:07:19.681488Z,305,0.485,Positive,2025-09-21T16:07:19.681488Z,pt
-"@Jean Carlo Pereira Eu estou com 2 clientes com esse problemas, mas 1 deles eu resolvi colocando um driver específico antigo e resolveu, no outro não. Acredito que a fonte do outro cliente esteja ruim, o problema é que ela não quer trocar!",9,341,1,2025-09-21T16:55:15.174327Z,306,7.456,Positive,2025-09-21T16:55:15.174327Z,pt
+	Mas se está dando certo com seu amigo, é um bom sinal, se amanhã eu conseguir, também vou fazer esse teste.",9,588,1,2025-10-23T16:33:08.978445Z,587,57.303,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:33:08.978445Z,pt
+"@Jean Carlo Pereira Eu estou com 2 clientes com esse problemas, mas 1 deles eu resolvi colocando um driver específico antigo e resolveu, no outro não. Acredito que a fonte do outro cliente esteja ruim, o problema é que ela não quer trocar!",9,589,1,2025-10-23T16:33:11.902330Z,588,11.962,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T16:33:11.902330Z,pt
+@Rodrigo Kern Sabe dizer qual a versão ou a data do driver?,9,590,1,2025-10-23T16:33:13.912659Z,589,6.885000000000001,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:33:13.912659Z,pt
+@Jean Carlo Pereira Não lembro! Pior que já mandei faz umas 2 semanas. Mas acho que foi de janeiro deste ano!,9,591,1,2025-10-23T16:33:18.355814Z,590,7.217,FEEDBACK DE FECHAMENTO,2025-10-23T16:33:18.355814Z,pt
 "Opa, @Bruno Florentino! Puxa uma cadeira, pega uma cerveja e vem chorar com a gente!  
 	Tá convidado pro mêsversário da tela azul, dos meus cinco Dell G7 no próximo dia 23! kkkk
 	Um mês quase nessa labuta, 1000 tentativas, mas estamos ai na tentativa com o pessoal.
@@ -217,17 +324,24 @@ Olá amigo.. comprei um note Dell G7 15.. bem parecido com o seu.. ainda nao rec
 
 
 
-								1",10,344,1,2025-09-21T16:55:31.902539Z,309,18.247,Positive,2025-09-21T16:56:37.045014Z,pt
+								1",10,592,1,2025-10-23T16:33:21.778133Z,591,23.129,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:33:21.778634Z,pt
+"@Jean Carlo Pereira 
+
+
+	 
+
+
+	Tem cara de ser problema na BIOS, não?",10,593,1,2025-10-23T16:33:24.345126Z,592,5.987,ESPECULATIVA/INVÁLIDA,2025-10-23T16:33:24.345126Z,pt
 "@Rodrigo Kern Pior que não, achei que também era no começo.
 	Mas das minhas 05 máquinas, nem todas ainda tinha atualizado para última versão da BIOS, quando os problemas começaram.
 
-	Então descartei retroceder.",10,294,1,2025-09-21T16:07:20.568836Z,311,0.51,Positive,2025-09-21T16:07:20.568836Z,pt
-"@Jean Carlo Pereira Verdade! Ambos meus casos estavam desatualizado, bem lembrado.",10,295,1,2025-09-21T16:07:21.536593Z,312,0.595,Positive,2025-09-21T16:07:21.536593Z,pt
+	Então descartei retroceder.",10,594,1,2025-10-23T16:33:26.791538Z,593,9.815,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:33:26.791538Z,pt
+"@Jean Carlo Pereira Verdade! Ambos meus casos estavam desatualizado, bem lembrado.",10,595,1,2025-10-23T16:33:35.339595Z,594,13.557,INFORMATIVA/DIAGNÓSTICO,2025-10-23T16:33:35.339595Z,pt
 "@dwatashi Pois é
 	Apesar de ter uns 3 anos, fiz a limpeza das máquinas, mas não estavam tão sujas assim, até que estavam bem limpas.
 
 	De fato o problema é com a placa Nvidia, até porque desabilitando ela, o problema desaparece.
-	Mas por ter acontecido em várias máquinas ao mesmo tempo, me parece mais software (driver) do que o hardware em si.",10,346,1,2025-09-21T16:55:39.863659Z,313,38.209,Positive,2025-09-21T16:57:18.437354Z,pt
+	Mas por ter acontecido em várias máquinas ao mesmo tempo, me parece mais software (driver) do que o hardware em si.",10,596,1,2025-10-23T16:33:37.363663Z,595,10.634,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T16:33:37.363663Z,pt
 "@dwatashi liguei pra Dell para informar sobre. 
 
 
@@ -242,7 +356,23 @@ Olá amigo.. comprei um note Dell G7 15.. bem parecido com o seu.. ainda nao rec
 
 	como não aceitei nada disseram que eu tinha que reclamar com a empresa do programa o qual vai repassar para NVIDIA, pra fazer drive de reparação.
 
-	Eu limpo meu notebook uma vez por ano. e sempre troco a pasta térmica, uso uma da  cooler master, quando abri a pasta nem estava com as bordas secas, estavam aceitável.",10,347,1,2025-09-21T16:55:44.196941Z,314,9.902,Positive,2025-09-21T16:57:26.104979Z,pt
+	Eu limpo meu notebook uma vez por ano. e sempre troco a pasta térmica, uso uma da  cooler master, quando abri a pasta nem estava com as bordas secas, estavam aceitável.",10,569,1,2025-10-23T16:27:04.855960Z,596,5.278,,2025-10-23T16:27:04.855960Z,pt
+"Bom vamos lá! sou mais um que trabalha com Ti e está tendo o mesmo problema !
+	um Dell G3 e outro Dell G7.
+	UNEXPECTED_KERNEL_MODE_TRAP
+	DRIVER_POWER_STATE_FAILURE
+
+
+	SYSTEM_THREAD_EXCEPTION_NOT_HANDLED
+	todos os erros são tela Azul e alternado entre eles !
+	o G3 já formatei do zero , bloqueei atualizações do Windows utilizando a Versão ultima versão disponível no site da Microsoft , e Instalado os drivers fornecidos pela DELL , quando apresenta os erros ocorrem instabilidade no sistema e hora ou outra após o erro de tela azul o Driver de Vídeo Nvidia é dado com Exclamação sendo necessário fazer a reinstalação do mesmo!
+	fiz a instalação de Driver DCH , Driver Game e mesmo assim apresentou os mesmos problemas!
+	feito o diagnostico da Dell não é encontrado erro nos equipamentos! visto as baterias que não estão com a vida útil muito boa!
+	porém no G7 já foi feito a remoção da bateria e mesmo assim não resolveu o problema!
+
+	sigo na saga!
+
+	Att",10,597,1,2025-10-23T22:44:09.441722Z,597,21.275,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:44:09.441722Z,pt
 "Em 21/07/2022  às  15:31,  	Sektor_Infogames disse:	
 
 
@@ -272,8 +402,33 @@ Olá amigo.. comprei um note Dell G7 15.. bem parecido com o seu.. ainda nao rec
 	 
 
 
-	Será que tem ligação?",10,349,1,2025-09-21T16:55:58.292871Z,316,28.893,Positive,2025-09-21T16:57:49.230970Z,pt
-"acho pouco provável o G7 estava com a bateria ruim e mesmo removendo a bateria persistiu o problema! estou pensando seriamente que este problema pode estar relacionado a BIOS ! acredito que pode ter ocorrido alguma atualização dessa BIOS breve desse período, acredito eu que alguma atualização pra favorecer o Windows 11 e nisso está causando essas falhas com o windows 10!",10,350,1,2025-09-21T16:56:06.782073Z,317,15.424,Negative,2025-09-21T16:57:57.862735Z,pt
+	Será que tem ligação?",10,598,1,2025-10-23T22:44:31.544614Z,598,13.92,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:44:31.544614Z,pt
+"acho pouco provável o G7 estava com a bateria ruim e mesmo removendo a bateria persistiu o problema! estou pensando seriamente que este problema pode estar relacionado a BIOS ! acredito que pode ter ocorrido alguma atualização dessa BIOS breve desse período, acredito eu que alguma atualização pra favorecer o Windows 11 e nisso está causando essas falhas com o windows 10!",10,599,1,2025-10-23T22:45:07.959610Z,599,34.988,ESPECULATIVA/INVÁLIDA,2025-10-23T22:45:07.959610Z,pt
+"Opa @Sektor_Infogames puxa uma cadeira também aí, e bem vindo a saga! 
+
+	Não sei você chegou a ver os posts anteriores, mas também fiz tudo o que você efetuou, e até agora a única coisa que faz o note trabalhar sem dar nenhuma tela azul, é desabilitar a placa de vídeo Nvidia.
+
+	Fiz testes com e sem a bateria também, e não muda nada, acredito não ter relação com isso.
+
+@lorenagmss Tentei habilitar a placa novamente como você mencionou num post anterior, mas ao fazer isso, após alguns minutos a tela azul volta. Em dos meus notes, o usuário trabalhou o dia todo com a placa desabilitada, e quando habilitei novamente, voltou a desgraça com força.
+
+NOVO TESTE:
+	Estou executando hoje em uma dás máquinas, um teste com placa ativada normal, só que com um driver baixado no site da Dell de Maio de 2021.
+
+	Foi o mais antigo que encontrei no site da Dell, homologado pra placa GTX 1060.
+	No site da Nvidia, o mais antigo é de novembro de 2021, então preferi pegar esse da Dell.
+
+	Vamos ver como se comporta e vou informando por aqui.
+	 
+
+
+	Outra informação pessoal.
+	Temos aqui na empresa, um contato direto na Dell, mas do setor comercial.
+
+	Estou falando com ele, para ver se conseguimos algum contato de suporte direto, mesmo as máquinas estando fora da garantia.
+
+	Muito bom o relato de todos, assim que tiver a oportunidade, vou relatar o que temos discutido aqui.",10,600,1,2025-10-23T22:45:25.028689Z,600,15.872,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:45:25.028689Z,pt
+@Jean Carlo Pereira Maravilha!,10,601,1,2025-10-23T22:46:18.633681Z,601,28.378,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T22:46:18.633681Z,pt
 "Pessoal,
 
 
@@ -287,8 +442,8 @@ Quem também puder testar pra validar, será bem válido!
 
 Driver: 27.21.14.5771, A03
 Data: 10 mar 2021
-Link: https://www.dell.com/support/home/pt-br/drivers/driversdetails?driverid=xnn89&oscode=wt64a&productcode=g-series-15-7588-laptop",10,353,1,2025-09-21T16:58:27.095126Z,320,11.263,Positive,2025-09-21T16:58:27.095126Z,pt
-Pessoal hoje me vi lembrando de pontos em comum sobre os problemas do Dell e um ponto que foi de fato onde começou o problema foi quando ambas as clientes reclamaram comigo do fone não estar funcionando eis que pego e instalo os drivers de Áudio do site da Dell !  e inclusive o que foi formatado por ultimo! também fiz o mesmo processo de instalar os drivers da Dell ! vou tentar arrumar um tempo amanha pra tentar fazer a remoção dos drivers de áudio pra ver como vai se comportar.,10,354,1,2025-09-21T16:58:36.950528Z,321,9.462,Positive,2025-09-21T16:58:36.950528Z,pt
+Link: https://www.dell.com/support/home/pt-br/drivers/driversdetails?driverid=xnn89&oscode=wt64a&productcode=g-series-15-7588-laptop",10,603,1,2025-10-23T22:47:05.399184Z,602,27.811,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T22:47:05.399184Z,pt
+Pessoal hoje me vi lembrando de pontos em comum sobre os problemas do Dell e um ponto que foi de fato onde começou o problema foi quando ambas as clientes reclamaram comigo do fone não estar funcionando eis que pego e instalo os drivers de Áudio do site da Dell !  e inclusive o que foi formatado por ultimo! também fiz o mesmo processo de instalar os drivers da Dell ! vou tentar arrumar um tempo amanha pra tentar fazer a remoção dos drivers de áudio pra ver como vai se comportar.,10,602,1,2025-10-23T22:46:51.976586Z,603,16.647,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:46:51.976586Z,pt
 "Pessoal!
 	Vamos as atualizações:
 
@@ -300,7 +455,8 @@ Teste com driver de vídeo antigo (27.21.14.5771, A03)
 	Agora, sobre o que o @Sektor_Infogames falou, eu ainda não tinha testado também.
 	Em todas que formatei, reinstalei os driver usando o site da Dell também, ou seja os mais recentes.
 
-	Vou fazer esse teste também hoje, desinstalando o driver de áudio, e deixando ele instalar o automático do Windows Update. Vamos ver...",10,355,1,2025-09-21T16:58:44.283627Z,322,6.937,Positive,2025-09-21T16:58:44.283627Z,pt
+	Vou fazer esse teste também hoje, desinstalando o driver de áudio, e deixando ele instalar o automático do Windows Update. Vamos ver...",10,604,1,2025-10-23T22:47:56.754612Z,604,49.912,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:47:56.754612Z,pt
+@Jean Carlo Pereira Que triste,10,605,1,2025-10-23T22:48:29.505406Z,605,16.194,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T22:48:29.505406Z,pt
 "Em 21/07/2022  às  17:14,  	Sektor_Infogames disse:	
 
 
@@ -309,9 +465,11 @@ Teste com driver de vídeo antigo (27.21.14.5771, A03)
 
 
 
-	passando pra atualizar! na cliente do Dell G7 desinstalei o Driver de audio realtek e instalei o primeiro driver de vídeo no site da Dell desde sábado equipamento trabalhando sem nenhum problema.",10,296,1,2025-09-21T16:07:22.316726Z,324,0.392,Positive,2025-09-21T16:07:22.316726Z,pt
-no momento apenas removi o Driver realtek e deixei o driver do windows fazer o resto! 3 dias sem problemas.,10,297,1,2025-09-21T16:07:23.111196Z,326,0.413,Positive,2025-09-21T16:07:23.111196Z,pt
-aqui os dois notebooks estão resolvidos! removi o driver realtek e coloquei um driver de vídeo antigo! irei refazer alguns testes de colocar o driver de vídeo mais recente para validar! mas até então me parece que é algum bug com o driver de audio.,10,298,1,2025-09-21T16:07:24.121722Z,328,0.624,Positive,2025-09-21T16:07:24.121722Z,pt
+	passando pra atualizar! na cliente do Dell G7 desinstalei o Driver de audio realtek e instalei o primeiro driver de vídeo no site da Dell desde sábado equipamento trabalhando sem nenhum problema.",10,606,1,2025-10-23T22:48:54.534293Z,606,23.912,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:48:54.534293Z,pt
+"@Sektor_Infogames Deixou sem nenhum driver de áudio, ou pegou o automático do Windows Update? Se puder passar também, qual versão do driver de vídeo você usou",10,607,1,2025-10-23T22:49:09.705210Z,607,11.921,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:49:09.705210Z,pt
+no momento apenas removi o Driver realtek e deixei o driver do windows fazer o resto! 3 dias sem problemas.,10,608,1,2025-10-23T22:49:18.309874Z,608,7.562,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T22:49:18.309874Z,pt
+Alguma novidade pessoal?,10,609,1,2025-10-23T22:49:23.541824Z,609,4.18,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T22:49:23.541824Z,pt
+aqui os dois notebooks estão resolvidos! removi o driver realtek e coloquei um driver de vídeo antigo! irei refazer alguns testes de colocar o driver de vídeo mais recente para validar! mas até então me parece que é algum bug com o driver de audio.,10,610,1,2025-10-23T22:49:40.073610Z,610,14.779,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T22:49:40.073610Z,pt
 "Pessoal,
 	Comigo aconteceu o seguinte:
 
@@ -332,10 +490,10 @@ Observação 2:
 	Com essa fórmula, 02 notebooks estão trabalhando desde sexta-feira sem travar ou tela azul.
 	É pouco ainda pra dizer que deu certo, vou aguardar mais alguns dias e retorno aqui novamente.
 
-	Mas pelo menos, desse jeito, o áudio está funcionando, e a placa de vídeo está habilitada. com driver antigo, mas funcionando.",10,299,1,2025-09-21T16:07:25.028844Z,329,0.534,Positive,2025-09-21T16:07:25.028844Z,pt
-@Jean Carlo Pereira excelente! partimos do mesmo pretexto ! próxima analise é tentar o driver de vídeo atual e driver de audio antigo.,10,300,1,2025-09-21T16:07:25.889397Z,330,0.47,Positive,2025-09-21T16:07:25.889397Z,pt
+	Mas pelo menos, desse jeito, o áudio está funcionando, e a placa de vídeo está habilitada. com driver antigo, mas funcionando.",10,611,1,2025-10-23T22:50:15.707151Z,611,23.8,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T22:50:15.708149Z,pt
+@Jean Carlo Pereira excelente! partimos do mesmo pretexto ! próxima analise é tentar o driver de vídeo atual e driver de audio antigo.,10,612,1,2025-10-23T22:50:55.551192Z,612,4.272,FEEDBACK DE FECHAMENTO,2025-10-23T22:50:55.551192Z,pt
 "Pessoal, tenho uma máquina dessa também.  A minha é 7588-a40p e desde que comprei ela vivia dando tela azul. Abri vários chamados na dell e a solução sempre era formatar. Perto do vencimento da garantia eu fiz a garantia extendida e comprei um Acer Predator. O acer roda liso, apesar de ser mais frágil que o Dell. Recentemente voltei a usar o dell para treinar redes neurais e adivinhem?! Mais tela azul, mesmo a máquina estando totalmente atualizada. Eu acredito fielmente que é falha de engenharia dessa placa de vídeo, o meu é uma 1060 q max de 6 gigas.
-	Estou com outro suporte aberto na dell, quero uma solução, sinto que fomos todos enganados.",10,359,1,2025-09-21T16:59:04.925706Z,331,4.873,Negative,2025-09-21T16:59:04.925706Z,pt
+	Estou com outro suporte aberto na dell, quero uma solução, sinto que fomos todos enganados.",10,613,1,2025-10-23T22:52:25.993783Z,613,82.07,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:52:25.993783Z,pt
 "Opa, @Bruno Florentino! Puxa uma cadeira, pega uma cerveja e vem chorar com a gente!  
 	Tá convidado pro mêsversário da tela azul, dos meus cinco Dell G7 no próximo dia 23! kkkk
 	Um mês quase nessa labuta, 1000 tentativas, mas estamos ai na tentativa com o pessoal.
@@ -359,24 +517,24 @@ Observação 2:
 
 
 
-								1",11,360,1,2025-09-21T16:59:10.686296Z,332,5.383,Positive,2025-09-21T16:59:10.686296Z,pt
+								1",11,614,1,2025-10-23T22:52:52.834384Z,614,25.663,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:52:52.834384Z,pt
 "@Jean Carlo Pereira 
 
 
 	 
 
 
-	Tem cara de ser problema na BIOS, não?",11,361,1,2025-09-21T16:59:23.140202Z,333,12.07,Neutral,2025-09-21T16:59:23.140202Z,pt
+	Tem cara de ser problema na BIOS, não?",11,615,1,2025-10-23T22:52:58.148332Z,615,7.237,ESPECULATIVA/INVÁLIDA,2025-10-23T22:53:10.125205Z,pt
 "@Rodrigo Kern Pior que não, achei que também era no começo.
 	Mas das minhas 05 máquinas, nem todas ainda tinha atualizado para última versão da BIOS, quando os problemas começaram.
 
-	Então descartei retroceder.",11,362,1,2025-09-21T16:59:30.373574Z,334,6.847,Positive,2025-09-21T16:59:30.373574Z,pt
-"@Jean Carlo Pereira Verdade! Ambos meus casos estavam desatualizado, bem lembrado.",11,363,1,2025-09-21T16:59:35.694473Z,335,4.935,Positive,2025-09-21T16:59:35.694473Z,pt
+	Então descartei retroceder.",11,616,1,2025-10-23T22:53:15.555603Z,616,11.821,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:53:15.555603Z,pt
+"@Jean Carlo Pereira Verdade! Ambos meus casos estavam desatualizado, bem lembrado.",11,617,1,2025-10-23T22:53:22.315825Z,617,5.798,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:53:22.315825Z,pt
 "@dwatashi Pois é
 	Apesar de ter uns 3 anos, fiz a limpeza das máquinas, mas não estavam tão sujas assim, até que estavam bem limpas.
 
 	De fato o problema é com a placa Nvidia, até porque desabilitando ela, o problema desaparece.
-	Mas por ter acontecido em várias máquinas ao mesmo tempo, me parece mais software (driver) do que o hardware em si.",11,364,1,2025-09-21T17:12:00.669664Z,336,744.222,Positive,2025-09-21T17:12:00.669664Z,pt
+	Mas por ter acontecido em várias máquinas ao mesmo tempo, me parece mais software (driver) do que o hardware em si.",11,618,1,2025-10-23T22:53:32.943338Z,618,8.933,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:53:32.943338Z,pt
 "@dwatashi liguei pra Dell para informar sobre. 
 
 
@@ -391,7 +549,120 @@ Observação 2:
 
 	como não aceitei nada disseram que eu tinha que reclamar com a empresa do programa o qual vai repassar para NVIDIA, pra fazer drive de reparação.
 
-	Eu limpo meu notebook uma vez por ano. e sempre troco a pasta térmica, uso uma da  cooler master, quando abri a pasta nem estava com as bordas secas, estavam aceitável.",11,365,1,2025-09-21T17:12:13.508942Z,337,12.43,Positive,2025-09-21T17:12:13.508942Z,pt
+	Eu limpo meu notebook uma vez por ano. e sempre troco a pasta térmica, uso uma da  cooler master, quando abri a pasta nem estava com as bordas secas, estavam aceitável.",11,619,1,2025-10-23T22:53:58.300556Z,619,24.265,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:53:58.300556Z,pt
+"Bom vamos lá! sou mais um que trabalha com Ti e está tendo o mesmo problema !
+	um Dell G3 e outro Dell G7.
+	UNEXPECTED_KERNEL_MODE_TRAP
+	DRIVER_POWER_STATE_FAILURE
+
+
+	SYSTEM_THREAD_EXCEPTION_NOT_HANDLED
+	todos os erros são tela Azul e alternado entre eles !
+	o G3 já formatei do zero , bloqueei atualizações do Windows utilizando a Versão ultima versão disponível no site da Microsoft , e Instalado os drivers fornecidos pela DELL , quando apresenta os erros ocorrem instabilidade no sistema e hora ou outra após o erro de tela azul o Driver de Vídeo Nvidia é dado com Exclamação sendo necessário fazer a reinstalação do mesmo!
+	fiz a instalação de Driver DCH , Driver Game e mesmo assim apresentou os mesmos problemas!
+	feito o diagnostico da Dell não é encontrado erro nos equipamentos! visto as baterias que não estão com a vida útil muito boa!
+	porém no G7 já foi feito a remoção da bateria e mesmo assim não resolveu o problema!
+
+	sigo na saga!
+
+	Att",11,620,1,2025-10-23T22:54:18.358196Z,620,18.99,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:54:18.358196Z,pt
+"Em 21/07/2022  às  15:31,  	Sektor_Infogames disse:	
+
+
+			Bom vamos lá! sou mais um que trabalha com Ti e está tendo o mesmo problema !
+			um Dell G3 e outro Dell G7.
+			UNEXPECTED_KERNEL_MODE_TRAP
+			DRIVER_POWER_STATE_FAILURE
+		
+
+			SYSTEM_THREAD_EXCEPTION_NOT_HANDLED
+			todos os erros são tela Azul e alternado entre eles !
+			o G3 já formatei do zero , bloqueei atualizações do Windows utilizando a Versão ultima versão disponível no site da Microsoft , e Instalado os drivers fornecidos pela DELL , quando apresenta os erros ocorrem instabilidade no sistema e hora ou outra após o erro de tela azul o Driver de Vídeo Nvidia é dado com Exclamação sendo necessário fazer a reinstalação do mesmo!
+			fiz a instalação de Driver DCH , Driver Game e mesmo assim apresentou os mesmos problemas!
+			feito o diagnostico da Dell não é encontrado erro nos equipamentos! visto as baterias que não estão com a vida útil muito boa!
+			porém no G7 já foi feito a remoção da bateria e mesmo assim não resolveu o problema!
+
+			sigo na saga! caso a gente queira se reunir pra fazer mais testes e quiserem entrar em contato comigo seria de importância pra comunidade e em seguida replicamos aqui
+
+			Att
+		
+ Expandir  
+
+
+	O meu cliente com esse defeito, também está com problema na bateria e precisou retirar (ela estufou)
+
+
+	 
+
+
+	Será que tem ligação?",11,621,1,2025-10-23T22:54:32.315996Z,621,12.947,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:54:32.315996Z,pt
+"acho pouco provável o G7 estava com a bateria ruim e mesmo removendo a bateria persistiu o problema! estou pensando seriamente que este problema pode estar relacionado a BIOS ! acredito que pode ter ocorrido alguma atualização dessa BIOS breve desse período, acredito eu que alguma atualização pra favorecer o Windows 11 e nisso está causando essas falhas com o windows 10!",11,622,1,2025-10-23T22:54:43.027744Z,622,9.667,ESPECULATIVA/INVÁLIDA,2025-10-23T22:54:43.027744Z,pt
+"Opa @Sektor_Infogames puxa uma cadeira também aí, e bem vindo a saga! 
+
+	Não sei você chegou a ver os posts anteriores, mas também fiz tudo o que você efetuou, e até agora a única coisa que faz o note trabalhar sem dar nenhuma tela azul, é desabilitar a placa de vídeo Nvidia.
+
+	Fiz testes com e sem a bateria também, e não muda nada, acredito não ter relação com isso.
+
+@lorenagmss Tentei habilitar a placa novamente como você mencionou num post anterior, mas ao fazer isso, após alguns minutos a tela azul volta. Em dos meus notes, o usuário trabalhou o dia todo com a placa desabilitada, e quando habilitei novamente, voltou a desgraça com força.
+
+NOVO TESTE:
+	Estou executando hoje em uma dás máquinas, um teste com placa ativada normal, só que com um driver baixado no site da Dell de Maio de 2021.
+
+	Foi o mais antigo que encontrei no site da Dell, homologado pra placa GTX 1060.
+	No site da Nvidia, o mais antigo é de novembro de 2021, então preferi pegar esse da Dell.
+
+	Vamos ver como se comporta e vou informando por aqui.
+	 
+
+
+	Outra informação pessoal.
+	Temos aqui na empresa, um contato direto na Dell, mas do setor comercial.
+
+	Estou falando com ele, para ver se conseguimos algum contato de suporte direto, mesmo as máquinas estando fora da garantia.
+
+	Muito bom o relato de todos, assim que tiver a oportunidade, vou relatar o que temos discutido aqui.",11,623,1,2025-10-23T22:55:14.122069Z,623,19.769,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T22:55:14.122069Z,pt
+@Jean Carlo Pereira Maravilha!,11,624,1,2025-10-23T22:55:19.036557Z,624,3.866,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T22:55:19.036557Z,pt
+"Pessoal,
+
+
+Atualização do Teste de hoje:
+
+
+
+	Vou deixar abaixo os dados do driver que instalei hoje e consegui um bom resultado. A máquina rodou desde as 08:00h normalmente, Sketchup, CAD e Render, sem nenhuma tela azul ou travamento até então. É o driver mais antigo disponível no site da Dell para a placa GTX 1060. De todos os drivers que testei desde o início dos problemas, este se apresentou mais estável até então, mesmo sendo bem antigo. Até termos um driver atualizado sem problemas, talvez esse resolva.
+
+Quem também puder testar pra validar, será bem válido!
+
+Driver: 27.21.14.5771, A03
+Data: 10 mar 2021
+Link: https://www.dell.com/support/home/pt-br/drivers/driversdetails?driverid=xnn89&oscode=wt64a&productcode=g-series-15-7588-laptop",11,625,1,2025-10-23T22:55:28.824935Z,625,8.86,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T22:55:28.824935Z,pt
+Pessoal hoje me vi lembrando de pontos em comum sobre os problemas do Dell e um ponto que foi de fato onde começou o problema foi quando ambas as clientes reclamaram comigo do fone não estar funcionando eis que pego e instalo os drivers de Áudio do site da Dell !  e inclusive o que foi formatado por ultimo! também fiz o mesmo processo de instalar os drivers da Dell ! vou tentar arrumar um tempo amanha pra tentar fazer a remoção dos drivers de áudio pra ver como vai se comportar.,11,626,1,2025-10-23T22:55:34.178004Z,626,4.412,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:55:34.178004Z,pt
+"Pessoal!
+	Vamos as atualizações:
+
+Teste com driver de vídeo antigo (27.21.14.5771, A03)
+	Não rolou. Instalei na sexta, funcionou bem durante 1 dia, mas no sábado, já voltou os travamentos e tela azul. Então desconsiderem esse teste que ele não vai adiantar.
+
+
+
+	Agora, sobre o que o @Sektor_Infogames falou, eu ainda não tinha testado também.
+	Em todas que formatei, reinstalei os driver usando o site da Dell também, ou seja os mais recentes.
+
+	Vou fazer esse teste também hoje, desinstalando o driver de áudio, e deixando ele instalar o automático do Windows Update. Vamos ver...",11,627,1,2025-10-23T22:55:41.332950Z,627,6.178,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:55:41.332950Z,pt
+@Jean Carlo Pereira Que triste,11,628,1,2025-10-23T22:55:45.997491Z,628,5.025,FEEDBACK DE FECHAMENTO,2025-10-23T23:01:40.887399Z,pt
+"Em 21/07/2022  às  17:14,  	Sektor_Infogames disse:	
+
+
+			Pessoal hoje me vi lembrando de pontos em comum sobre os problemas do Dell e um ponto que foi de fato onde começou o problema foi quando ambas as clientes reclamaram comigo do fone não estar funcionando eis que pego e instalo os drivers de Áudio do site da Dell !  e inclusive o que foi formatado por ultimo! também fiz o mesmo processo de instalar os drivers da Dell ! vou tentar arrumar um tempo amanha pra tentar fazer a remoção dos drivers de áudio pra ver como vai se comportar.
+		
+
+
+
+	passando pra atualizar! na cliente do Dell G7 desinstalei o Driver de audio realtek e instalei o primeiro driver de vídeo no site da Dell desde sábado equipamento trabalhando sem nenhum problema.",11,629,1,2025-10-23T22:57:30.947337Z,629,103.906,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:57:30.947337Z,pt
+"@Sektor_Infogames Deixou sem nenhum driver de áudio, ou pegou o automático do Windows Update? Se puder passar também, qual versão do driver de vídeo você usou",11,630,1,2025-10-23T22:57:39.707106Z,630,7.827,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:57:39.707106Z,pt
+no momento apenas removi o Driver realtek e deixei o driver do windows fazer o resto! 3 dias sem problemas.,11,631,1,2025-10-23T22:57:47.604750Z,631,6.845,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:57:47.604750Z,pt
+Alguma novidade pessoal?,11,632,1,2025-10-23T22:57:59.244630Z,632,10.274,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:57:59.244630Z,pt
+aqui os dois notebooks estão resolvidos! removi o driver realtek e coloquei um driver de vídeo antigo! irei refazer alguns testes de colocar o driver de vídeo mais recente para validar! mas até então me parece que é algum bug com o driver de audio.,11,633,1,2025-10-23T22:58:08.437134Z,633,8.228,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T22:58:08.437134Z,pt
 "Pessoal,
 	Comigo aconteceu o seguinte:
 
@@ -412,9 +683,10 @@ Observação 2:
 	Com essa fórmula, 02 notebooks estão trabalhando desde sexta-feira sem travar ou tela azul.
 	É pouco ainda pra dizer que deu certo, vou aguardar mais alguns dias e retorno aqui novamente.
 
-	Mas pelo menos, desse jeito, o áudio está funcionando, e a placa de vídeo está habilitada. com driver antigo, mas funcionando.",11,380,1,2025-09-21T17:13:22.634374Z,352,8.148,Positive,2025-09-21T17:13:22.634374Z,pt
+	Mas pelo menos, desse jeito, o áudio está funcionando, e a placa de vídeo está habilitada. com driver antigo, mas funcionando.",11,634,1,2025-10-23T22:58:21.168645Z,634,3.809,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T22:58:21.168645Z,pt
+@Jean Carlo Pereira excelente! partimos do mesmo pretexto ! próxima analise é tentar o driver de vídeo atual e driver de audio antigo.,11,636,1,2025-10-23T22:58:39.307702Z,635,2.863,FEEDBACK DE FECHAMENTO,2025-10-23T22:58:39.307702Z,pt
 "Pessoal, tenho uma máquina dessa também.  A minha é 7588-a40p e desde que comprei ela vivia dando tela azul. Abri vários chamados na dell e a solução sempre era formatar. Perto do vencimento da garantia eu fiz a garantia extendida e comprei um Acer Predator. O acer roda liso, apesar de ser mais frágil que o Dell. Recentemente voltei a usar o dell para treinar redes neurais e adivinhem?! Mais tela azul, mesmo a máquina estando totalmente atualizada. Eu acredito fielmente que é falha de engenharia dessa placa de vídeo, o meu é uma 1060 q max de 6 gigas.
-	Estou com outro suporte aberto na dell, quero uma solução, sinto que fomos todos enganados.",11,382,1,2025-09-21T17:13:37.187416Z,354,7.096,Negative,2025-09-21T17:13:37.187416Z,pt
+	Estou com outro suporte aberto na dell, quero uma solução, sinto que fomos todos enganados.",11,635,1,2025-10-23T22:58:32.378223Z,636,3.995,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:58:32.378223Z,pt
 "Opa, @Bruno Florentino! Puxa uma cadeira, pega uma cerveja e vem chorar com a gente!  
 	Tá convidado pro mêsversário da tela azul, dos meus cinco Dell G7 no próximo dia 23! kkkk
 	Um mês quase nessa labuta, 1000 tentativas, mas estamos ai na tentativa com o pessoal.
@@ -438,13 +710,183 @@ Observação 2:
 
 
 
-								1",12,383,1,2025-09-21T17:14:00.699537Z,355,23.121,Positive,2025-09-21T17:14:00.699537Z,pt
-"@Jean Carlo Pereira Verdade! Ambos meus casos estavam desatualizado, bem lembrado.",12,386,1,2025-09-21T17:14:34.924249Z,358,8.898,Positive,2025-09-21T17:14:34.924249Z,pt
+								1",12,637,1,2025-10-23T22:59:15.475241Z,637,24.176,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:59:15.475241Z,pt
+"@Jean Carlo Pereira 
+
+
+	 
+
+
+	Tem cara de ser problema na BIOS, não?",12,638,1,2025-10-23T22:59:19.897555Z,638,3.46,ESPECULATIVA/INVÁLIDA,2025-10-23T22:59:19.897555Z,pt
+"@Rodrigo Kern Pior que não, achei que também era no começo.
+	Mas das minhas 05 máquinas, nem todas ainda tinha atualizado para última versão da BIOS, quando os problemas começaram.
+
+	Então descartei retroceder.",12,639,1,2025-10-23T22:59:24.867501Z,639,3.76,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:59:24.867501Z,pt
+"@Jean Carlo Pereira Verdade! Ambos meus casos estavam desatualizado, bem lembrado.",12,640,1,2025-10-23T22:59:33.067022Z,640,7.233,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:59:33.067022Z,pt
 "@dwatashi Pois é
 	Apesar de ter uns 3 anos, fiz a limpeza das máquinas, mas não estavam tão sujas assim, até que estavam bem limpas.
 
 	De fato o problema é com a placa Nvidia, até porque desabilitando ela, o problema desaparece.
-	Mas por ter acontecido em várias máquinas ao mesmo tempo, me parece mais software (driver) do que o hardware em si.",12,301,1,2025-09-21T16:07:26.878061Z,359,0.614,Positive,2025-09-21T16:07:26.878061Z,pt
+	Mas por ter acontecido em várias máquinas ao mesmo tempo, me parece mais software (driver) do que o hardware em si.",12,641,1,2025-10-23T22:59:43.852820Z,641,9.814,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:59:43.852820Z,pt
+"@dwatashi liguei pra Dell para informar sobre. 
+
+
+	 
+
+
+	depois de tentar me fazer pagar um formatação , o qual ja tinha feito, e indicar caso não resolvesse o problema, teria que trocar a placa-mãe. 
+
+
+	 
+
+
+	como não aceitei nada disseram que eu tinha que reclamar com a empresa do programa o qual vai repassar para NVIDIA, pra fazer drive de reparação.
+
+	Eu limpo meu notebook uma vez por ano. e sempre troco a pasta térmica, uso uma da  cooler master, quando abri a pasta nem estava com as bordas secas, estavam aceitável.",12,642,1,2025-10-23T22:59:52.870260Z,642,7.553,INFORMATIVA/DIAGNÓSTICO,2025-10-23T22:59:52.870260Z,pt
+"Bom vamos lá! sou mais um que trabalha com Ti e está tendo o mesmo problema !
+	um Dell G3 e outro Dell G7.
+	UNEXPECTED_KERNEL_MODE_TRAP
+	DRIVER_POWER_STATE_FAILURE
+
+
+	SYSTEM_THREAD_EXCEPTION_NOT_HANDLED
+	todos os erros são tela Azul e alternado entre eles !
+	o G3 já formatei do zero , bloqueei atualizações do Windows utilizando a Versão ultima versão disponível no site da Microsoft , e Instalado os drivers fornecidos pela DELL , quando apresenta os erros ocorrem instabilidade no sistema e hora ou outra após o erro de tela azul o Driver de Vídeo Nvidia é dado com Exclamação sendo necessário fazer a reinstalação do mesmo!
+	fiz a instalação de Driver DCH , Driver Game e mesmo assim apresentou os mesmos problemas!
+	feito o diagnostico da Dell não é encontrado erro nos equipamentos! visto as baterias que não estão com a vida útil muito boa!
+	porém no G7 já foi feito a remoção da bateria e mesmo assim não resolveu o problema!
+
+	sigo na saga!
+
+	Att",12,643,1,2025-10-23T23:00:04.846227Z,643,10.992,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:00:04.846227Z,pt
+"Em 21/07/2022  às  15:31,  	Sektor_Infogames disse:	
+
+
+			Bom vamos lá! sou mais um que trabalha com Ti e está tendo o mesmo problema !
+			um Dell G3 e outro Dell G7.
+			UNEXPECTED_KERNEL_MODE_TRAP
+			DRIVER_POWER_STATE_FAILURE
+		
+
+			SYSTEM_THREAD_EXCEPTION_NOT_HANDLED
+			todos os erros são tela Azul e alternado entre eles !
+			o G3 já formatei do zero , bloqueei atualizações do Windows utilizando a Versão ultima versão disponível no site da Microsoft , e Instalado os drivers fornecidos pela DELL , quando apresenta os erros ocorrem instabilidade no sistema e hora ou outra após o erro de tela azul o Driver de Vídeo Nvidia é dado com Exclamação sendo necessário fazer a reinstalação do mesmo!
+			fiz a instalação de Driver DCH , Driver Game e mesmo assim apresentou os mesmos problemas!
+			feito o diagnostico da Dell não é encontrado erro nos equipamentos! visto as baterias que não estão com a vida útil muito boa!
+			porém no G7 já foi feito a remoção da bateria e mesmo assim não resolveu o problema!
+
+			sigo na saga! caso a gente queira se reunir pra fazer mais testes e quiserem entrar em contato comigo seria de importância pra comunidade e em seguida replicamos aqui
+
+			Att
+		
+ Expandir  
+
+
+	O meu cliente com esse defeito, também está com problema na bateria e precisou retirar (ela estufou)
+
+
+	 
+
+
+	Será que tem ligação?",12,644,1,2025-10-23T23:00:17.396741Z,644,11.239,ESPECULATIVA/INVÁLIDA,2025-10-23T23:00:17.396741Z,pt
+"acho pouco provável o G7 estava com a bateria ruim e mesmo removendo a bateria persistiu o problema! estou pensando seriamente que este problema pode estar relacionado a BIOS ! acredito que pode ter ocorrido alguma atualização dessa BIOS breve desse período, acredito eu que alguma atualização pra favorecer o Windows 11 e nisso está causando essas falhas com o windows 10!",12,645,1,2025-10-23T23:00:23.505516Z,645,4.95,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:00:23.505516Z,pt
+"Opa @Sektor_Infogames puxa uma cadeira também aí, e bem vindo a saga! 
+
+	Não sei você chegou a ver os posts anteriores, mas também fiz tudo o que você efetuou, e até agora a única coisa que faz o note trabalhar sem dar nenhuma tela azul, é desabilitar a placa de vídeo Nvidia.
+
+	Fiz testes com e sem a bateria também, e não muda nada, acredito não ter relação com isso.
+
+@lorenagmss Tentei habilitar a placa novamente como você mencionou num post anterior, mas ao fazer isso, após alguns minutos a tela azul volta. Em dos meus notes, o usuário trabalhou o dia todo com a placa desabilitada, e quando habilitei novamente, voltou a desgraça com força.
+
+NOVO TESTE:
+	Estou executando hoje em uma dás máquinas, um teste com placa ativada normal, só que com um driver baixado no site da Dell de Maio de 2021.
+
+	Foi o mais antigo que encontrei no site da Dell, homologado pra placa GTX 1060.
+	No site da Nvidia, o mais antigo é de novembro de 2021, então preferi pegar esse da Dell.
+
+	Vamos ver como se comporta e vou informando por aqui.
+	 
+
+
+	Outra informação pessoal.
+	Temos aqui na empresa, um contato direto na Dell, mas do setor comercial.
+
+	Estou falando com ele, para ver se conseguimos algum contato de suporte direto, mesmo as máquinas estando fora da garantia.
+
+	Muito bom o relato de todos, assim que tiver a oportunidade, vou relatar o que temos discutido aqui.",12,646,1,2025-10-23T23:00:40.565066Z,646,15.505,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:00:40.565066Z,pt
+@Jean Carlo Pereira Maravilha!,12,647,1,2025-10-23T23:00:44.336337Z,647,2.753,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:00:44.336337Z,pt
+"Pessoal,
+
+
+Atualização do Teste de hoje:
+
+
+
+	Vou deixar abaixo os dados do driver que instalei hoje e consegui um bom resultado. A máquina rodou desde as 08:00h normalmente, Sketchup, CAD e Render, sem nenhuma tela azul ou travamento até então. É o driver mais antigo disponível no site da Dell para a placa GTX 1060. De todos os drivers que testei desde o início dos problemas, este se apresentou mais estável até então, mesmo sendo bem antigo. Até termos um driver atualizado sem problemas, talvez esse resolva.
+
+Quem também puder testar pra validar, será bem válido!
+
+Driver: 27.21.14.5771, A03
+Data: 10 mar 2021
+Link: https://www.dell.com/support/home/pt-br/drivers/driversdetails?driverid=xnn89&oscode=wt64a&productcode=g-series-15-7588-laptop",12,648,1,2025-10-23T23:00:57.525152Z,648,1.818,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:00:57.525152Z,pt
+Pessoal hoje me vi lembrando de pontos em comum sobre os problemas do Dell e um ponto que foi de fato onde começou o problema foi quando ambas as clientes reclamaram comigo do fone não estar funcionando eis que pego e instalo os drivers de Áudio do site da Dell !  e inclusive o que foi formatado por ultimo! também fiz o mesmo processo de instalar os drivers da Dell ! vou tentar arrumar um tempo amanha pra tentar fazer a remoção dos drivers de áudio pra ver como vai se comportar.,12,649,1,2025-10-23T23:01:18.294303Z,649,19.738,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:01:18.294303Z,pt
+"Pessoal!
+	Vamos as atualizações:
+
+Teste com driver de vídeo antigo (27.21.14.5771, A03)
+	Não rolou. Instalei na sexta, funcionou bem durante 1 dia, mas no sábado, já voltou os travamentos e tela azul. Então desconsiderem esse teste que ele não vai adiantar.
+
+
+
+	Agora, sobre o que o @Sektor_Infogames falou, eu ainda não tinha testado também.
+	Em todas que formatei, reinstalei os driver usando o site da Dell também, ou seja os mais recentes.
+
+	Vou fazer esse teste também hoje, desinstalando o driver de áudio, e deixando ele instalar o automático do Windows Update. Vamos ver...",12,650,1,2025-10-23T23:01:22.727663Z,650,3.444,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:01:22.727663Z,pt
+@Jean Carlo Pereira Que triste,12,651,1,2025-10-23T23:01:31.710110Z,651,8.041,FEEDBACK DE FECHAMENTO,2025-10-23T23:01:31.710110Z,pt
+"Em 21/07/2022  às  17:14,  	Sektor_Infogames disse:	
+
+
+			Pessoal hoje me vi lembrando de pontos em comum sobre os problemas do Dell e um ponto que foi de fato onde começou o problema foi quando ambas as clientes reclamaram comigo do fone não estar funcionando eis que pego e instalo os drivers de Áudio do site da Dell !  e inclusive o que foi formatado por ultimo! também fiz o mesmo processo de instalar os drivers da Dell ! vou tentar arrumar um tempo amanha pra tentar fazer a remoção dos drivers de áudio pra ver como vai se comportar.
+		
+
+
+
+	passando pra atualizar! na cliente do Dell G7 desinstalei o Driver de audio realtek e instalei o primeiro driver de vídeo no site da Dell desde sábado equipamento trabalhando sem nenhum problema.",12,652,1,2025-10-23T23:01:59.715859Z,652,14.962,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:01:59.715859Z,pt
+"@Sektor_Infogames Deixou sem nenhum driver de áudio, ou pegou o automático do Windows Update? Se puder passar também, qual versão do driver de vídeo você usou",12,653,1,2025-10-23T23:02:09.733895Z,653,9.021,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:02:09.733895Z,pt
+no momento apenas removi o Driver realtek e deixei o driver do windows fazer o resto! 3 dias sem problemas.,12,654,1,2025-10-23T23:02:14.674164Z,654,3.912,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:02:14.674164Z,pt
+Alguma novidade pessoal?,12,655,1,2025-10-23T23:02:26.793245Z,655,11.096,ESPECULATIVA/INVÁLIDA,2025-10-23T23:02:26.793245Z,pt
+aqui os dois notebooks estão resolvidos! removi o driver realtek e coloquei um driver de vídeo antigo! irei refazer alguns testes de colocar o driver de vídeo mais recente para validar! mas até então me parece que é algum bug com o driver de audio.,12,656,1,2025-10-23T23:02:33.966169Z,656,5.892,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:02:33.966169Z,pt
+"Pessoal,
+	Comigo aconteceu o seguinte:
+
+	A receita ""desinstalar driver de áudio + driver antigo de vídeo"" parece que funcionou para mim também. Porém, segue minhas observações.
+
+Observação 1:
+	Ao desinstalar o driver de áudio, e reiniciar, percebi que o Windows update instalou novamente o mesmo driver. Ao menos é a mesma versão, mas foi instalada dessa forma, pelo Windows update, e não diretamente por mim, pegando do site da Dell ou pelo SupportAssist.
+
+Observação 2:
+	Consegui êxito apenas com o driver 23.21.13.8901, A00, que peguei diretamente do site da Dell. Este sim, é o mais antigo. O que usei anteriormente, não era de fato o mais velho.
+
+	Link: https://www.dell.com/support/home/pt-br/drivers/driversdetails?driverid=kxxfk&oscode=wt64a&productcode=g-series-15-7588-laptop
+
+
+	 
+
+
+	Com essa fórmula, 02 notebooks estão trabalhando desde sexta-feira sem travar ou tela azul.
+	É pouco ainda pra dizer que deu certo, vou aguardar mais alguns dias e retorno aqui novamente.
+
+	Mas pelo menos, desse jeito, o áudio está funcionando, e a placa de vídeo está habilitada. com driver antigo, mas funcionando.",12,657,1,2025-10-23T23:02:38.046299Z,657,2.34,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:02:38.046299Z,pt
+@Jean Carlo Pereira excelente! partimos do mesmo pretexto ! próxima analise é tentar o driver de vídeo atual e driver de audio antigo.,12,658,1,2025-10-23T23:02:41.586173Z,658,2.521,FEEDBACK DE FECHAMENTO,2025-10-23T23:02:41.586173Z,pt
+"Pessoal, tenho uma máquina dessa também.  A minha é 7588-a40p e desde que comprei ela vivia dando tela azul. Abri vários chamados na dell e a solução sempre era formatar. Perto do vencimento da garantia eu fiz a garantia extendida e comprei um Acer Predator. O acer roda liso, apesar de ser mais frágil que o Dell. Recentemente voltei a usar o dell para treinar redes neurais e adivinhem?! Mais tela azul, mesmo a máquina estando totalmente atualizada. Eu acredito fielmente que é falha de engenharia dessa placa de vídeo, o meu é uma 1060 q max de 6 gigas.
+	Estou com outro suporte aberto na dell, quero uma solução, sinto que fomos todos enganados.",12,659,1,2025-10-23T23:02:48.384197Z,659,6.016,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:02:48.384197Z,pt
+"@GabrielLV
+
+
+	 
+
+
+	Na parte do print de exemplo não teve nenhum evento desse ""Windows Error Reporting""",13,660,1,2025-10-23T23:02:54.020803Z,660,4.415,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:02:54.020803Z,pt
 "Já aconteceu algumas vezes comigo o modelo G5, talvez funcione com você:
 
 
@@ -477,8 +919,8 @@ Observação 2:
 
 
 
-								1",13,406,1,2025-09-21T17:15:19.591934Z,379,5.072,Positive,2025-09-21T17:15:19.591934Z,pt
-"Ola @rodrigokernn você conseguiu resolver o problema?... eu ja limpei o nota. troquei pasta térmica..  sai do wind 11. para wind 10 . com troquei os programas,  tirei o crive de vídeo atual e instalei um antigo e mesmo assim não ainda a tela azul.",13,407,1,2025-09-21T17:15:27.116296Z,380,7.137,Positive,2025-09-21T17:15:27.116296Z,pt
+								1",13,661,1,2025-10-23T23:03:05.762645Z,661,11.017,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:03:05.762645Z,pt
+"Ola @rodrigokernn você conseguiu resolver o problema?... eu ja limpei o nota. troquei pasta térmica..  sai do wind 11. para wind 10 . com troquei os programas,  tirei o crive de vídeo atual e instalei um antigo e mesmo assim não ainda a tela azul.",13,662,1,2025-10-23T23:03:18.794175Z,662,11.942,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:03:18.794175Z,pt
 "Olá, Pessoal.
 
 	Resolvi entrar aqui na conversa de vocês, porque estou junto nessa bronca.
@@ -527,8 +969,91 @@ DRIVER_POWER_STATE_FAILURE
 	Tem algo errado acontecendo com algum driver que está pegando todo mundo.
 
 	É isso, se alguém tiver mais alguma coisa para ajudar.
-	Vou atualizando por aqui essa saga sem fim.",13,408,1,2025-09-21T17:15:41.539839Z,381,14.039,Positive,2025-09-21T17:15:41.539839Z,pt
-"A fonte da cliente estava com problema. Colocando no teste de stress ele desligava. Troquei, o teste faz de boa mas continua com as telas azuis. Desativei a placa da Nvidia, o problema parou e o cliente vai usar assim mesmo, então não vou conseguir prosseguir com o diagnóstico.",13,410,1,2025-09-21T17:15:52.986115Z,383,5.709,Positive,2025-09-21T17:15:52.986115Z,pt
+	Vou atualizando por aqui essa saga sem fim.",13,663,1,2025-10-23T23:03:49.828552Z,663,18.596,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:03:49.828552Z,pt
+"OI @Jean Carlo Pereira , liguei pra Dell relatei tudo isso, sobre problema com divers,  principalmente o de Vídeos. 
+
+
+	Resposta: Teria que reclamar com a empresa do Sketchup que reclamaria com NVIDIA a assim fariam drives novos corrigindo o problema, mas acontece também com o Autocad, Revit, e o Archicad. (Autodesk - Grasoft ), dai, seguindo uma dica apresentada nessa discussão, desinstalei todos os drives que tinha logo da NVIDIA , até os de Áudio, usando apenas os genéricos do win.  por umas 8h achei ter resolvido o problema, depois ele retornou.
+
+
+	 
+
+
+	Seria bom se todos pudessem fazer reclamação com a Dell. pois a boca deles é doce pra dizer que tem que trocar a placa-mãe, que não faz sentido nenhum, pois não sou só eu que estou com esse problema, logo com várias reclamações ao setor de suporte, ele podem entender que precisa corrigir esse problema por atualização.. 
+
+
+
+	sobre a BIOS,  havia feito uma atualização da BIOS ano passado e sempre funcionou super bem. quando começou a dar problema ... que fui rodar o Dell suporte e vi que havia uma atualização da BIOS  pra fazer, fiz pois achei que iria resolver o problema,  foi uma das primeiras coisas que fiz, e não resolveu nada, era dia  27/06.  não havia atualização de driver de vídeo pra fazer. dia 28 saiu um driver de vídeo, achei que era a solução que eu precisava, mas como pode perceber, não foi...  então acredito que não seria o drive da BIOS. pois eu não mudei nada no meu até começar dar problema. 
+
+	obs: Meu sketchup é 2022 ( antes da formatação era o 2021) original comprado pelo site da Trimble global,  pago a licença anual em dolar, e meu autocad, revit e archicad são de estudante. pois tenho a licença da pós graduação nele,  todos licenciados, não tem como ser mau funcionamento de programa pirata.",13,664,1,2025-10-23T23:04:04.260746Z,664,13.472,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:04:04.260746Z,pt
+"A fonte da cliente estava com problema. Colocando no teste de stress ele desligava. Troquei, o teste faz de boa mas continua com as telas azuis. Desativei a placa da Nvidia, o problema parou e o cliente vai usar assim mesmo, então não vou conseguir prosseguir com o diagnóstico.",13,665,1,2025-10-23T23:04:21.050894Z,665,17.428,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:04:25.424649Z,pt
+"@lorenagmss Nossa.
+
+
+	Aqui ainda estou meio que na mesma.
+
+
+	Sua máquina também foi comprada em 2019?
+
+
+	 
+
+
+	Testei várias versões do driver de vídeo, sempre excluindo pelo DDU e nada. Mas bom saber esse detalhe sobre a BIOS, eu nem vou arriscar retroceder a versão aqui então.
+
+
+	 
+
+
+	Tentei também atualizar manualmente todos os drivers listados como ""Urgente"" no site de suporte da Dell, mas não adiantou nada.
+
+
+	 
+
+
+	Aqui usamos o SketchUp 2019 + Render Supodium, mas todos originais e licenciados também, zero pirataria! Não poderia ser algo relacionado a isso também.
+
+
+	 
+
+
+	Amanhã, vou tentar fazer o upgrade para o Windows 11 em uma das máquinas para ver como os drivers se comportam, mas estou sem muita esperança.
+
+
+	 
+
+
+	Minhas máquinas já estão fora da garantia, mas vou tentar falar com o suporte na segunda sobre isso também. Existe algum problema em comum que está causando isso, não pode ser Hardware, é algo de software mesmo.
+
+
+	 
+
+
+	Se fosse um problema isolado, mas estamos vendo que algo maior.
+
+
+	 
+
+
+	Vamos ver se aparece mais alguém para colaborar por aqui.
+
+
+	 
+
+
+	Sigo tentando...
+
+
+	 
+
+
+@Rodrigo Kern As duas fontes estavam com problema?
+
+
+	 
+
+
+	No meu caso cheguei a desconfiar disso também, mas troquei com a de outro note que não estava apresentando problema e não deu certo.",13,666,1,2025-10-23T23:05:08.365614Z,666,41.914,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:05:08.365614Z,pt
 "@Jean Carlo Pereira  Meu Wind. era o 11 e fiz uma Formatação limpa instalando o wind 10 achando que iria resolver, então não acho que você atualizando para o 11 vai mudar.  atualizei o drive da placa da Intel gráficas 630.  e não resolveu.  desativei a mesma, e o sketchup não abre,  logo desativei a da NVIDIA como o @Rodrigo Kern indicou acima, o SketchUp abre dando uma seguinte mensagem.....(foto) e até agora sem tela azul mas ainda não abri o enscape,  (duas horas de teste).
 	 
 
@@ -536,7 +1061,7 @@ DRIVER_POWER_STATE_FAILURE
 	 
 
 
-	Obs.  comprei minha maquina no final de 2018, deve ser do mesmo lote",13,412,1,2025-09-21T17:16:07.709233Z,385,8.112,Negative,2025-09-21T17:16:07.709233Z,pt
+	Obs.  comprei minha maquina no final de 2018, deve ser do mesmo lote",13,667,1,2025-10-23T23:05:31.115485Z,667,21.785,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:05:31.115485Z,pt
 "@lorenagmss Que estranho.
 	Porém tem uma coisa que esqueci de mencionar.
 
@@ -550,35 +1075,41 @@ DRIVER_POWER_STATE_FAILURE
 	E é a única máquina que já faz uns 5 dias que está rodando perfeitamente!
 	Pode ter sido só uma coincidência, mas aconteceu.
 
-	Hoje vou restaurar mais uma nessa mesma condição, e semana que vem botar pra rodar com o usuário, e vamos ver como se comporta.",13,413,1,2025-09-21T17:16:22.050436Z,386,13.848,Positive,2025-09-21T17:16:22.050436Z,pt
+	Hoje vou restaurar mais uma nessa mesma condição, e semana que vem botar pra rodar com o usuário, e vamos ver como se comporta.",13,668,1,2025-10-23T23:05:46.859990Z,668,14.574,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:05:46.859990Z,pt
 "@Jean Carlo Pereira Ontem as 20h desativei a placa de vídeo da NVIDIA para tentar trabalhar de forma continua, sem bug. Trabalhei até as 4h da manhã sem reiniciar o computador.  pra renderizar pelo enscape, precisei ativar novamente, e até agora as 18h do dia seguinte sem bug. fiz vídeos e imagens pelo enscape, não sei se pelo fato que desativar e ativar a placa da Nvídea parou de dar bug.
 
 	Se voltar a aparecer o problema retorno aqui pra notificar. (Deus queira que não, pois também já estou apelando por uma intervenção divina)
 
-	obs. eu não posso mas fazer recuperação de fabrica no Dell recovery, pois em 2020 eu toquei meu HD por um SSD e formatei todo o HD M2 pra usar como Pendrive. ai eu faço recuperação com imagem do wind. gravado em um pendrive .",13,414,1,2025-09-21T17:16:35.164862Z,387,12.723,Positive,2025-09-21T17:16:35.164862Z,pt
+	obs. eu não posso mas fazer recuperação de fabrica no Dell recovery, pois em 2020 eu toquei meu HD por um SSD e formatei todo o HD M2 pra usar como Pendrive. ai eu faço recuperação com imagem do wind. gravado em um pendrive .",13,669,1,2025-10-23T23:06:05.600018Z,669,17.549,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:06:05.600018Z,pt
+"@lorenagmss Legal, bom saber disso.
+	Realmente, o teste com o Windows 11 não adiantou nada, em pouco tempo voltou a travar e dar tela azul.
+
+	Acabei de desabilitar a placa da NVIDIA aqui também, e pedi para o usuário trabalhar normal, no Sketchup e render também, mesmo perdendo um pouco de desempenho.
+
+	Vou procurar algo sobre isso, de conflito entre o Sketchup + Placa de vídeo GTX 1060, que é a que vem nesse note. Pode ter algo específico nesse cenário causando isso.",13,670,1,2025-10-23T23:06:15.585001Z,670,8.953,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:06:15.585001Z,pt
 "O Enscape ( renderizador) não abriu com a placa desabilitada,  
 
 	trabalhei o Fim de Semana todo e o Problema não voltou.
 	espero que resolva seu problema. 
 
 	Desisti de NVIDIA e DELL.  Comprei peças da ASUS e AMD pra montar um Computador de Mesa.  (essa vai ficar como suporte).
-	espero que",13,416,1,2025-09-21T17:16:42.554551Z,389,3.166,Negative,2025-09-21T17:16:42.554551Z,pt
+	espero que",13,671,1,2025-10-23T23:06:50.457601Z,671,33.875,FEEDBACK DE FECHAMENTO,2025-10-23T23:06:50.457601Z,pt
 "Caramba pessoal. Complicado! Coloquei a fonte do meu Dell G15 (180w contra 130w a original) por umas 6 horas e não deu problema.
 
 
 	 
 
 
-	Tá difícil!",13,417,1,2025-09-21T17:16:48.541444Z,390,5.588,Positive,2025-09-21T17:16:48.541948Z,pt
+	Tá difícil!",13,672,1,2025-10-23T23:07:03.009567Z,672,11.387,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:07:03.009567Z,pt
 "@lorenagmss Realmente!
 	Fiz o teste hoje desativando a placa da Nvidia em 2 notebooks e rodaram sem travar ou tela azul o dia todo.
 	Claro, o desempenho foi lá em baixo, mas antes isso, do que ficar praticamente inutilizável.
 
-	Agora é buscar o que está causando isso.",13,418,1,2025-09-21T17:16:55.476103Z,391,6.553,Positive,2025-09-21T17:16:55.476103Z,pt
+	Agora é buscar o que está causando isso.",13,673,1,2025-10-23T23:07:15.657518Z,673,11.787,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:07:15.657518Z,pt
 "@Rodrigo Kern não sei porque essa fonte de 130W, vi  muitos reclamando, graça a Deus a minha já é 180W, uma vez deu problema, na garantia ainda, a Dell me deu uma Nova, mas o computador dá uma mensagem quando é a fonte. então nem desconfiei que fosse isso dessa vez, pois não deu a mensagem...
 
 
-@Jean Carlo Pereira tente ativar a placo depois, ativei a minha e o computador voltou ao normal. desde sábado sem ocorrências, minha modelagem já está bem avançada, já deu umas travadas e não deu mais erro .",13,419,1,2025-09-21T17:16:58.449020Z,392,2.582,Positive,2025-09-21T17:16:58.449020Z,pt
+@Jean Carlo Pereira tente ativar a placo depois, ativei a minha e o computador voltou ao normal. desde sábado sem ocorrências, minha modelagem já está bem avançada, já deu umas travadas e não deu mais erro .",13,674,1,2025-10-23T23:07:26.022666Z,674,9.003,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:07:26.022666Z,pt
 "@lorenagmss Pior que já fiz isso. Desativei pela manhã e usaram normalmente durante o dia. No final da tarde, ativei-a novamente e o erro voltou quase de forma instantânea. Como você procedeu nesse processo de reativá-la?
 
 
@@ -588,51 +1119,89 @@ DRIVER_POWER_STATE_FAILURE
 
 	ou
 
-Placa de vídeo + algum recurso de aceleração de hardware ou algo assim, que normalmente os programas 3D usam. Até porque encontrei pessoas em outros fóruns com o mesmo notebook, e com o mesmo problema, porém não usavam o Sketchup, e sim o AutoCAD por exemplo.",13,420,1,2025-09-21T17:17:05.087489Z,393,6.246,Negative,2025-09-21T17:17:05.087489Z,pt
-@Jean Carlo Pereira No meu caso dá ao usar a internet umas 5h também viu!,13,421,1,2025-09-21T17:17:09.413076Z,394,3.92,Negative,2025-09-21T17:17:09.414085Z,pt
+Placa de vídeo + algum recurso de aceleração de hardware ou algo assim, que normalmente os programas 3D usam. Até porque encontrei pessoas em outros fóruns com o mesmo notebook, e com o mesmo problema, porém não usavam o Sketchup, e sim o AutoCAD por exemplo.",13,675,1,2025-10-23T23:07:50.934301Z,675,23.784,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:07:50.934301Z,pt
+@Jean Carlo Pereira No meu caso dá ao usar a internet umas 5h também viu!,13,676,1,2025-10-23T23:07:59.506361Z,676,7.646,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:07:59.506361Z,pt
 "@Jean Carlo Pereira sim, Autocad, e Archicad, Revit. todos esses da BO. uso todos eles. e dependendo do site.  tambem dava B.O. tambem como o @Rodrigo Kern  confirmou. 
 
 	Tenho Um colega com o mesmo B.O. ele parece ter resolvido de forma diferente . 
 	pedi pra ele compartilhar aqui, ele vai fazer mais alguns teste . mas parece que ele fez um downgrade par um de 2020. ele ta com wind. 11 , só fez esse downgrade.
 
 
-	nota:  eu só fui em gerenciador de dispositivo, desabilitei ,  depois fui lá e habilitei , não fiz nada demais.",13,422,1,2025-09-21T17:17:12.857565Z,395,3.058,Positive,2025-09-21T17:17:12.857565Z,pt
+	nota:  eu só fui em gerenciador de dispositivo, desabilitei ,  depois fui lá e habilitei , não fiz nada demais.",13,677,1,2025-10-23T23:08:23.203557Z,677,22.359,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:08:23.203557Z,pt
+"@lorenagmss Opa, boa notícia!
+	eu cheguei a fazer o downgrade do driver também, mas para uma versão de dezembro de 2021, mas continuou dando erro, por isso nem tentei uma versão mais antiga ainda.
+
+	Mas se está dando certo com seu amigo, é um bom sinal, se amanhã eu conseguir, também vou fazer esse teste.",13,678,1,2025-10-23T23:08:35.697917Z,678,11.571,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:08:35.697917Z,pt
+"@Jean Carlo Pereira Eu estou com 2 clientes com esse problemas, mas 1 deles eu resolvi colocando um driver específico antigo e resolveu, no outro não. Acredito que a fonte do outro cliente esteja ruim, o problema é que ela não quer trocar!",13,679,1,2025-10-23T23:08:41.500455Z,679,4.902,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:08:41.500455Z,pt
+@Rodrigo Kern Sabe dizer qual a versão ou a data do driver?,13,680,1,2025-10-23T23:08:50.602325Z,680,7.912,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:08:50.602325Z,pt
+@Jean Carlo Pereira Não lembro! Pior que já mandei faz umas 2 semanas. Mas acho que foi de janeiro deste ano!,13,681,1,2025-10-23T23:08:57.932735Z,681,5.608,FEEDBACK DE FECHAMENTO,2025-10-23T23:08:57.932735Z,pt
+"Gostaria do apoio da comunidade em como resolver este problema, já que meu equipamento encontra-se fora da garantia.
+ 
+Desde já agradeco a atenção de todos",5,682,1,2025-10-23T23:09:19.535817Z,682,9.447,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:09:19.535817Z,pt
+Existe algum atalho para ativar desativar estas teclas no Dell G7?,5,683,1,2025-10-23T23:09:27.553339Z,683,7.001,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:09:27.553339Z,pt
+"Olá Danilo, tudo bem? Dá uma olhada na resposta desse post aqui de outra comunidade. Pode ser que ele resolva o problema. Abraço!",5,684,1,2025-10-23T23:09:35.214834Z,684,6.718,FEEDBACK DE FECHAMENTO,2025-10-23T23:09:35.214834Z,pt
+Não pois o fornecedor é quem dará a garantia. Neste caso escolher uma boa loja,9,685,1,2025-10-23T23:09:54.891416Z,685,9.461,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:09:54.891416Z,pt
 "Por experiência própria e orientação dos técnicos da Dell você pode trocar as peças desde que não danifique nenhum componente ao fazer a troca (nem precisa falar isso, mas...) e caso o ssd/memória que você coloque dê algum problema no note que seja comprovado isto pode invalidar sua garantia.
-Mas é tranquilo até onde eu sei.",9,431,1,2025-09-21T17:17:53.830899Z,404,8.684,Positive,2025-09-21T17:17:53.830899Z,pt
+Mas é tranquilo até onde eu sei.",9,686,1,2025-10-23T23:10:14.679973Z,686,18.659,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:10:14.679973Z,pt
 "Isso pode acontecer se fizer a troca com pressa, com qualquer ferramenta e sem ler o manual de serviços. Assim pode danificar o acabamento, quebrar lacres e até mesmo conectores de cabo flexível
-O jeito certo é: escolher um bom fornecedor da peça, ler o manual de serviços mesmo entendendo da área, ele ensina o caminho mais curto para a troca da peça e as ferramentas certas. Trocar sem pressa e com atenção, assim o computador fica atualizado e intacto como se tivesse acabado de comprar",9,302,1,2025-09-21T16:07:27.716463Z,405,0.444,Positive,2025-09-21T16:07:27.716463Z,pt
+O jeito certo é: escolher um bom fornecedor da peça, ler o manual de serviços mesmo entendendo da área, ele ensina o caminho mais curto para a troca da peça e as ferramentas certas. Trocar sem pressa e com atenção, assim o computador fica atualizado e intacto como se tivesse acabado de comprar",9,687,1,2025-10-23T23:10:21.435179Z,687,5.723,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:10:21.435179Z,pt
 "Tem 3 motivos que fazem travar:
 Primeiro e principal: hd
 Segundo: Um ou mais programas ocupando muito o processador, memória ou disco (ver no ctrl alt del)
 Terceiro: Drivers ou windows desatualizado
-Solução: Deixe só o essencial, mantenha os drivers e o windows atualizados, escolha um bom ssd",11,303,1,2025-09-21T16:07:28.642171Z,406,0.544,Positive,2025-09-21T16:07:28.642171Z,pt
-"O travamento do G3 ou G7 ta mais relacionado com sistema e hd. Primeiro troquei o hd por ssd, melhorou consideravelmente mas eu queria que ficasse ainda mais rapido. Por fim tirei o windows e coloquei linux, agora esta voando e consegui todos programas que uso nesta plataforma então to usando até hoje e parou de travar",11,304,1,2025-09-21T16:07:29.561419Z,412,0.514,Positive,2025-09-21T16:07:29.561918Z,pt
-Estou com o mesmo problema. Ligando na Dell o suporte disse que foi porque atualizei o windows de fábrica por um windows pro. A solução que me ofereceram foi fazer um downgrade voltando pro windows de fábrica.,11,438,1,2025-09-21T17:18:35.709598Z,414,7.329,Negative,2025-09-21T17:18:35.709598Z,pt
-"O windows 10 Pro é pouca coisa mais pesado que o 10 Home, muitos recursos dele (de rede) vem desativado assim como no primeiro windows",11,439,1,2025-09-21T17:18:39.297006Z,415,3.203,Negative,2025-09-21T17:18:39.297006Z,pt
+Solução: Deixe só o essencial, mantenha os drivers e o windows atualizados, escolha um bom ssd",11,688,1,2025-10-23T23:10:36.762133Z,688,9.929,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:10:36.762133Z,pt
+"Ao Marcos
+Primeiro: passa nos testes de HD tranquilo, mas vou tentar de novo.
+ 
+Segundo: trava com pouquíssimos programas rodando
+ 
+Terceiro: está tudo atualizado.
+ 
+ 
+Ao Ed
+Chegou a testar o Skylake?  
+ 
+Vou continuar investigando. A Dell falou algo a respeito já?",11,689,1,2025-10-23T23:10:45.601578Z,689,7.816,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:10:45.601578Z,pt
+"Se passa nos testes do hd mas trava pode ser um problema na memória, na placa de video ou ate mesmo na placa principal. Na ultima opção tenta instalar a primeira ou ultima bios pra ver qual funciona melhor. O G7 não pode travar",11,690,1,2025-10-23T23:11:15.932090Z,690,29.476,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:11:15.932090Z,pt
+"Obrigado pelas informações. Passei todos os testes, o longo da DELL, um que acessa via BIOS... nada.
+ 
+Ficou um bom tempo (mais de um dia) sem dar problema. Mas voltou hoje. Tem a ver com alguma coisa de energia já que eu consigo destravar de 2 formas:
+- a melhor e mais rápida é desplugar da energia e replugar, já destrava na hora, com uma leve mudança de brilho na tela;
+- se não tiver com a fonte por perto, eu fecho a tampa para ele suspender, reabro e volto a logar no Windows.
+ 
+A impressão que eu tenho é que quanto mais tempo eu fico sem dar um ciclo de reboot completo (desligar o windows, sem suspender), mais ele trava. Vou observar. Seria legal achar uma ferramenta de debug, pra quando estiver travando a cada 3 minutos, eu poder pegar o que é.",11,691,1,2025-10-23T23:11:33.217897Z,691,16.121,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:11:33.217897Z,pt
+Talvez seja fonte mas a fonte que vem parece que fica no limite. Já liguei ele numa fonte 240w talvez fique mais estável mas não notei diferença pq uso ele sem exigir tanto tipo não renderizo nem jogo uma coisa que precise de muito processamento gráfico,11,692,1,2025-10-23T23:11:46.270039Z,692,12.09,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:11:46.270039Z,pt
+Acabei de criar um tópico exatamente igual e o seu apareceu nos relacionados. Tenho o mesmo problema. Achou alguma solução ou **bleep**?,11,693,1,2025-10-23T23:11:56.139349Z,693,8.216,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:11:56.139349Z,pt
+"O travamento do G3 ou G7 ta mais relacionado com sistema e hd. Primeiro troquei o hd por ssd, melhorou consideravelmente mas eu queria que ficasse ainda mais rapido. Por fim tirei o windows e coloquei linux, agora esta voando e consegui todos programas que uso nesta plataforma então to usando até hoje e parou de travar",11,694,1,2025-10-23T23:12:09.438169Z,694,12.386,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:12:09.438169Z,pt
+O G7 já vem com SSD. Tem algum problema de projeto/driver nesse note.,11,695,1,2025-10-23T23:12:14.489728Z,695,4.013,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:12:14.489728Z,pt
+Estou com o mesmo problema. Ligando na Dell o suporte disse que foi porque atualizei o windows de fábrica por um windows pro. A solução que me ofereceram foi fazer um downgrade voltando pro windows de fábrica.,11,696,1,2025-10-23T23:12:24.553875Z,696,9.164,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:12:24.553875Z,pt
+"O windows 10 Pro é pouca coisa mais pesado que o 10 Home, muitos recursos dele (de rede) vem desativado assim como no primeiro windows",11,697,1,2025-10-23T23:12:32.469632Z,697,7.099,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:12:32.469632Z,pt
 "Tenta o seguinte teste:
 Baixe o pendrive do Ubuntu, inicie com F12 modo teste mesmo
 Se não travar o problema pode estar no pŕoprio windows aí precisa aguardar uma atualização do mesmo ou da bios
-Obs: Pode acontecer do linux travar na primeira ou segunda inicialização, depois disso ele fica fluído. Se permanecer assim sem travar o jeito é aguardar as atualizações",11,440,1,2025-09-21T17:18:43.889654Z,416,4.097,Positive,2025-09-21T17:18:43.889654Z,pt
-"O meu já trocou a placa mãe, SSD, tela (até hoje não sei porque) e ventoinhas.... ele FERVE quando ta carregando... próximo aonde fica a bateria e placa de vídeo... não dá pra por a mão em cima daquela parte quase... Ele fica ""energizado""... quando está carregando, em algumas vezes, se correr os dedos na parte em que ficam as etiquetas (dell, intel, etc) perto do touchpad, os dedos vibram... como estivesse passando corrente elétrica. COMO que a DELL não faz um RECALL de um note que apresenta DIVERSAS reclamações da mesma porcaria de problema??? Isso é uma falha sistêmica da DELL... não interessa quem vende...NÃO QUERO MAIS esse G7... QUERO UM G3 ou G5... vamos pra justiça pessoal.... daí a DELL aprende!",11,441,1,2025-09-21T17:18:53.288330Z,417,8.911,Neutral,2025-09-21T17:18:53.288330Z,pt
-"Uma CARROÇA de 5mil reais... trava em tarefas simples... ta cada dia PIOR do que a DELL tenta INUTILMENTE resolver... Ele parece ENERGIZADO quando está carregando, em algumas vezes, se correr os dedos na parte em que ficam as etiquetas (dell, intel, etc) perto do touchpad, os dedos vibram... como estivesse passando corrente elétrica. COMO que a DELL não faz um RECALL de um note que apresenta DIVERSAS reclamações da mesma porcaria de problema??? Isso é uma falha sistêmica da DELL... não interessa quem vende... Eu quero um NOVO em 30 dias, ou vou processar a empresa e se bobear vou no ministério público abrir denúncia sobre essa situação. Absurdo isso... 5mil não se acha na esquina!!!!",11,442,1,2025-09-21T17:18:56.139271Z,418,2.357,Negative,2025-09-21T17:18:56.139271Z,pt
+Obs: Pode acontecer do linux travar na primeira ou segunda inicialização, depois disso ele fica fluído. Se permanecer assim sem travar o jeito é aguardar as atualizações",11,699,1,2025-10-23T23:13:16.723085Z,698,10.317,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:13:21.573426Z,pt
+"O meu já trocou a placa mãe, SSD, tela (até hoje não sei porque) e ventoinhas.... ele FERVE quando ta carregando... próximo aonde fica a bateria e placa de vídeo... não dá pra por a mão em cima daquela parte quase... Ele fica ""energizado""... quando está carregando, em algumas vezes, se correr os dedos na parte em que ficam as etiquetas (dell, intel, etc) perto do touchpad, os dedos vibram... como estivesse passando corrente elétrica. COMO que a DELL não faz um RECALL de um note que apresenta DIVERSAS reclamações da mesma porcaria de problema??? Isso é uma falha sistêmica da DELL... não interessa quem vende...NÃO QUERO MAIS esse G7... QUERO UM G3 ou G5... vamos pra justiça pessoal.... daí a DELL aprende!",11,698,1,2025-10-23T23:13:09.700106Z,699,2.075,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:13:09.700106Z,pt
+"Uma CARROÇA de 5mil reais... trava em tarefas simples... ta cada dia PIOR do que a DELL tenta INUTILMENTE resolver... Ele parece ENERGIZADO quando está carregando, em algumas vezes, se correr os dedos na parte em que ficam as etiquetas (dell, intel, etc) perto do touchpad, os dedos vibram... como estivesse passando corrente elétrica. COMO que a DELL não faz um RECALL de um note que apresenta DIVERSAS reclamações da mesma porcaria de problema??? Isso é uma falha sistêmica da DELL... não interessa quem vende... Eu quero um NOVO em 30 dias, ou vou processar a empresa e se bobear vou no ministério público abrir denúncia sobre essa situação. Absurdo isso... 5mil não se acha na esquina!!!!",11,700,1,2025-10-23T23:13:32.362290Z,700,9.75,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:13:32.362290Z,pt
 "Comprei um G7 há 1 ano... o note eh muito bom e rápido... só que tenho todos esses mesmos problemas dos colegas aí... pra jogar eu dou underclock nele tanto no processador (desativando o turbo via software) e tbm underclock na placa dd vídeo.... simplesmente por que se nao fizer isso ese esquenta tanto que da medo que vai derreter tudo...
  
 E a lentidão eu ja percebi que acontecem em duas situações principais... quando estou usando a rede pra ler ou gravar no HD dele ao mesmo tempo que tbm ta gravando e lendo o SSD... ele fica louco e comeca dar travadas... atrasa o audio em videos... as vezes chega travar o ponteiro do mouse na tela... mas ele da pequena travade volta... e fica nesse ciclo..... so melhora quando reinicia.... mas se acessar tudo junto ao mesmo tempo ele faz tudo de novo...
  
-Eh uma pena... paguei 7.500 nele na época... era o mais top da G7... e ter esses.problemas eh algo decepcionante... esperava muito mais que isso da DELL pela marca e pelo valor.cobrado.",11,443,1,2025-09-21T17:18:58.817699Z,419,2.203,Negative,2025-09-21T17:18:58.817699Z,pt
+Eh uma pena... paguei 7.500 nele na época... era o mais top da G7... e ter esses.problemas eh algo decepcionante... esperava muito mais que isso da DELL pela marca e pelo valor.cobrado.",11,701,1,2025-10-23T23:13:42.802663Z,701,9.562,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:13:42.802663Z,pt
 "SOLUÇÃO 2020: Meu G7 começou a dar travamentos incompatíveis com o hardware, tipo dar pequenas engasgadas no movimento do mouse ou na movimentação das paginas para cima e  para baixo. liguei o gerenciador de tarefas e deixei na aba ""desempenho"" para visualizar qual parte do hardware estava provocando os  engasgos. Descobri que era o processamento da placa de vídeo primaria da Intel (UHD 630), que chegava a vários picos ente 90 a 100%.
 Como solucionei: com não achei drives novos no suporte da Dell,  fui no site da intel e rodei o programa de atualização que identificou que que havia um drive de vídeo mais novo disponível, embora aparecesse um aviso que deveria procurara drives específicos da Dell .
-Instalei o drive OEM da Intel , e pronto o processamento elevado da placa de vídeo despencou para 02% e meu computador voltou a trabalha liso sem engasgos......e sem nenhuma perda ou efeito colateral em relação aos drives customizados da Dell.",11,305,1,2025-09-21T16:07:30.393433Z,420,0.453,Positive,2025-09-21T16:07:30.393433Z,pt
-"O G7 é um excelente notebook, eu tenho a versão anterior com a gtx 1050 ti e ele é ultra rápido, só a ventoinha que é ruim pq faz muito ruído (coloquei um pouco de wd40 pra diminuir). No meu eu coloquei um hd de 2TB e um m2 de 128 como cache, ativei o intel rst. Sem o rst ele fica lento precisa esperar um tempo pra ele ficar pronto e depois fica rápido. Com o rst ativado fica pronto rápido. Se o seu ta instalado no ssd e mesmo assim tiver lento aí pode ter algum defeito no ssd pq ele deve ser rápido. Mesmo assim recomendo acionar a garantia ou pensar na possibilidade de devolução caso não resolva. Na minha experiência com maquinas Dell o Inspirion Gaming é o melhor custo benefício em se tratando de rodar programas pesados e jogos gastando o mínimo. Tem mais modelos robustos só que o custo é muito acima do orçamento da maioria das pessoas",12,444,1,2025-09-21T17:19:04.201463Z,421,4.995,Negative,2025-09-21T17:19:04.201463Z,pt
+Instalei o drive OEM da Intel , e pronto o processamento elevado da placa de vídeo despencou para 02% e meu computador voltou a trabalha liso sem engasgos......e sem nenhuma perda ou efeito colateral em relação aos drives customizados da Dell.",11,702,1,2025-10-23T23:13:56.164221Z,702,12.253,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:13:56.164221Z,pt
+"O G7 é um excelente notebook, eu tenho a versão anterior com a gtx 1050 ti e ele é ultra rápido, só a ventoinha que é ruim pq faz muito ruído (coloquei um pouco de wd40 pra diminuir). No meu eu coloquei um hd de 2TB e um m2 de 128 como cache, ativei o intel rst. Sem o rst ele fica lento precisa esperar um tempo pra ele ficar pronto e depois fica rápido. Com o rst ativado fica pronto rápido. Se o seu ta instalado no ssd e mesmo assim tiver lento aí pode ter algum defeito no ssd pq ele deve ser rápido. Mesmo assim recomendo acionar a garantia ou pensar na possibilidade de devolução caso não resolva. Na minha experiência com maquinas Dell o Inspirion Gaming é o melhor custo benefício em se tratando de rodar programas pesados e jogos gastando o mínimo. Tem mais modelos robustos só que o custo é muito acima do orçamento da maioria das pessoas",12,703,1,2025-10-23T23:14:21.089671Z,703,23.199,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:14:21.089671Z,pt
 "O Geforce experience baixa quase que semanalmente um driver mas em vez de baixar ele na dell baixe ele direto da nvidia. Não o driver, o programa mesmo. Depois de pouco tempo instalado ele já notifica um driver novo. Com a atualização talvez corrija problemas como lentidão ou uso exagerado do hd ou da gpu
-Uma coisa que seria bom futuramente é somente um ssd ou m2 em vez de acelerar o hd por intel rst e colocar junto um pequeno m2. Pra coisas menos exigentes isso serve mas quando precisa exigir muito pode ficar lento mesmo assim dependendo de quanto o programa exige tipo renderizações de longa duração",12,445,1,2025-09-21T17:19:11.548118Z,422,6.956,Negative,2025-09-21T17:19:11.548118Z,pt
+Uma coisa que seria bom futuramente é somente um ssd ou m2 em vez de acelerar o hd por intel rst e colocar junto um pequeno m2. Pra coisas menos exigentes isso serve mas quando precisa exigir muito pode ficar lento mesmo assim dependendo de quanto o programa exige tipo renderizações de longa duração",12,704,1,2025-10-23T23:14:40.119345Z,704,18.155,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:14:40.119345Z,pt
 "Ele ja veio com um SSD de 256 e o Win10 Home está instalado nele.
 Entendi que a a placa de video nVidia só é acionada em alguns casos, pois funciona em conjunto com o Intel Graphics 630. Tenho atualizado constantemente tudo. 
-Está realmente lento nessas operações básicas.",12,446,1,2025-09-21T17:19:22.541010Z,423,10.607,Neutral,2025-09-21T17:19:22.541010Z,pt
+Está realmente lento nessas operações básicas.",12,705,1,2025-10-23T23:14:51.638817Z,705,10.453,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:14:51.638817Z,pt
 "Não é normal ele estar lento, pode até ser um defeito na placa. O meu é o modelo anterior mas ele só fica lento quando eu deixo somente o hd sem ativar o intel rst. A minha configuração é i7 7700hq, 16 ram, 2tb hd, m2 128gb (aceleração intel rst por ele ativada), gtx 1050ti e uma tela tn full hd
 Mesmo que passou um certo tempo da aquisição poderia ver se tem pelo menos um reparo em garantia
-Trocar a maquina é um parto, ja tentei uma vez e não consegui, o máximo que se consegue é um reparo ou instrução pra se tentar em casa o conserto",12,447,1,2025-09-21T17:19:26.402651Z,424,3.477,Positive,2025-09-21T17:19:26.402651Z,pt
-"A lentidão pode estar no hd, tanto que o meu quando instalo o windows somente no hd fica muito lento, travando e engasgando nos audios e videos. O certo seria trocar por um ssd mas como fiz um modo mais econômico eu apenas coloquei um m2 de 128GB e ativei o intel rst (acelerar a unidade principal, o hd) aí ficou rápido parou os travamentos. Antes era bastante irritante travava a toa",12,449,1,2025-09-21T17:19:43.298398Z,426,4.751,Positive,2025-09-21T17:19:43.298398Z,pt
+Trocar a maquina é um parto, ja tentei uma vez e não consegui, o máximo que se consegue é um reparo ou instrução pra se tentar em casa o conserto",12,706,1,2025-10-23T23:15:04.000836Z,706,11.354,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:15:04.000836Z,pt
+"O meu é o i5-8300H e um problema que ta me irritando bastante é que quando eu vou assistir vídeo no youtube o notebook fica muito lento em todos os modos de energia, econômica, equilibrado ou desempenho e o uso de CPU fica baixo em torno 9 - 22% com cerca de 0,78Ghz a 1,15Ghz mais em sua maior parte nos 0,78Ghz, o vídeo e som ficam saindo em tempos diferentes causando travamento ao assistir, agora se por no carregador volta ao normal. Gostaria muito de saber qual motivo desse problema, cheguei reinstalar o windows achando que iria resolver, porém só foi perca de tempo. Notebook Dell G7 i5-8300H, GTX 1050ti 4gb ddr5, 8Gb ram, 1.000 + 8 gb de HD hibrido.",12,707,1,2025-10-23T23:15:40.386302Z,707,6.693,ESPECULATIVA/INVÁLIDA,2025-10-23T23:15:40.386302Z,pt
+"A lentidão pode estar no hd, tanto que o meu quando instalo o windows somente no hd fica muito lento, travando e engasgando nos audios e videos. O certo seria trocar por um ssd mas como fiz um modo mais econômico eu apenas coloquei um m2 de 128GB e ativei o intel rst (acelerar a unidade principal, o hd) aí ficou rápido parou os travamentos. Antes era bastante irritante travava a toa",12,708,1,2025-10-23T23:16:00.406102Z,708,18.957,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:16:00.406102Z,pt
+"e como que ativa essa Tecnologia de Armazenamento Rapid ? pq no meu não tem opção pra ativar, só em relação a memoria optane, mas como n tenho esse tipo de memoria ela fica com a opção [ativar] desativada. Agora em relação a troca do HD hibrido por um SSD como eu poderia fazer isso, é simples?",12,709,1,2025-10-23T23:16:11.409769Z,709,10.136,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:16:11.409769Z,pt
 "Pra ativar o intel rst eu fiz o seguinte: Como o m2 de 128GB é apenas para acelerar e gravar dados temporários (exemplo converter um filme de avi para mpeg deixo a partição do m2 como onde será feito o processamento) aí pra deixar tudo pronto eu salvo os dados importantes e deixo totalmente zerado o m2 com os comandos:
 botão direito no iniciar
 digita cmd e escolhe executar como administrador
@@ -649,25 +1218,41 @@ Depois (opcionalmente) pode ir em iniciar configurações  armazenamento e espa
 Esse espaço que sobrou pode ser usado como um cache pro photoshop, premiere ou qualquer programa gráfico preferido bastando editar nas configurações
 Pra que tudo isso funcione o windows tem que ser instalado no hd primeiro, isso vc consegue baixando o windows da Microsoft usando a ferramenta de criação de mídia da mesma, o que tem no site da Dell não funciona pois ele instala automaticamente no m2 aí da tudo errado
 O da Microsoft permite personalizar a instalação
-O ssd pode ser do tipo sata ou m2 se precisar de mais armazenamento e a velocidade depende das especificações de cada um. Maior taxa de transferência é mais veloz. A maior capacidade que existe no mercado é 2TB e um bom custo benefício é 256GB",12,306,1,2025-09-21T16:07:31.287279Z,428,0.511,Positive,2025-09-21T16:07:31.287279Z,pt
-"eu tenho um ssd de 256 que so tem o windows, office o programa de imposto de renda.. para digitar no power point fica lento. pensando em devolver...",12,451,1,2025-09-21T17:19:51.367082Z,429,5.657,Negative,2025-09-21T17:19:51.367082Z,pt
-"O ssd normalmente é rápido, ele pode estar com algum defeito. A melhor coisa é devolver",12,452,1,2025-09-21T17:19:56.241785Z,430,4.45,Positive,2025-09-21T17:19:56.241785Z,pt
-Na verdade os testes não são muito exatos. Eu tenho um notebook gamer e outro workstation e na workstation tem uma placa que é preparada para realidade virtual enquanto que no gamer diz que não esta preparado. A workstation roda o jogo star wars batlefront em 4k mas rápido que o gamer em full hd. Nos behchmarks a workstation fica com nota mais baixa. Por isso que não acredito muito nessas pontuações. E ainda que na workstation tem somente hd comum e no gamer tem o intel rst ativado com um ssd de 128GB. Se a workstation tivesse um ssd esmagaria o notebook gamer em desempenho,12,453,1,2025-09-21T17:20:02.871622Z,431,6.221,Positive,2025-09-21T17:20:02.871622Z,pt
+O ssd pode ser do tipo sata ou m2 se precisar de mais armazenamento e a velocidade depende das especificações de cada um. Maior taxa de transferência é mais veloz. A maior capacidade que existe no mercado é 2TB e um bom custo benefício é 256GB",12,710,1,2025-10-23T23:16:15.706946Z,710,3.327,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:16:15.706946Z,pt
+"eu tenho um ssd de 256 que so tem o windows, office o programa de imposto de renda.. para digitar no power point fica lento. pensando em devolver...",12,711,1,2025-10-23T23:16:55.091319Z,711,38.312,SOLUÇÃO (EFETIVA ou POTENCIAL),2025-10-23T23:16:55.091319Z,pt
+"O ssd normalmente é rápido, ele pode estar com algum defeito. A melhor coisa é devolver",12,712,1,2025-10-23T23:16:59.760008Z,712,3.31,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:16:59.760008Z,pt
+Na verdade os testes não são muito exatos. Eu tenho um notebook gamer e outro workstation e na workstation tem uma placa que é preparada para realidade virtual enquanto que no gamer diz que não esta preparado. A workstation roda o jogo star wars batlefront em 4k mas rápido que o gamer em full hd. Nos behchmarks a workstation fica com nota mais baixa. Por isso que não acredito muito nessas pontuações. E ainda que na workstation tem somente hd comum e no gamer tem o intel rst ativado com um ssd de 128GB. Se a workstation tivesse um ssd esmagaria o notebook gamer em desempenho,12,713,1,2025-10-23T23:17:17.217961Z,713,16.454,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:17:17.217961Z,pt
 "Concordo.
-Até agora sem suporte da Dell",12,455,1,2025-09-21T17:20:13.060282Z,433,3.695,Negative,2025-09-21T17:20:13.060282Z,pt
-"Tenta entrar em contato com o suporte via chat ou telefone, não é normal o g7 ser lento, ele tem um excelente processador e placa de vídeo",12,456,1,2025-09-21T17:20:18.876029Z,434,5.427,Positive,2025-09-21T17:20:18.876029Z,pt
+Até agora sem suporte da Dell",12,715,1,2025-10-23T23:17:46.876063Z,715,7.781,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:17:46.876063Z,pt
+"Tenta entrar em contato com o suporte via chat ou telefone, não é normal o g7 ser lento, ele tem um excelente processador e placa de vídeo",12,716,1,2025-10-23T23:17:58.959672Z,716,11.035,INFORMATIVA/DIAGNÓSTICO,2025-10-23T23:17:58.959672Z,pt
 "Olá Gabriel,
  
 Adquiri recentemente o mesmo notebook G7 chega a ser ridiculo o desempenho. Travamento na digitação inclusive deste texto.
-Vou iniciar minhas tratativas para devolução desta porcaria, acredito que podemos unir forças.",12,457,1,2025-09-21T17:20:27.267063Z,435,7.997,Negative,2025-09-21T17:20:27.267063Z,pt
-Pra isso recomendo uma doca usb. O adaptador não é certeza se funciona,13,307,1,2025-09-21T16:07:32.366040Z,436,0.708,Positive,2025-09-21T16:07:32.366040Z,pt
-"Olá, Eu uso um na saída HDMI e outro na saída USB C, mas tive que comprar um adaptador de Tipo C para HDMI, depois é só ir em Configuração em Exibição, Vídeo e configurar escolhendo o monitor que vai deixar como principal.",13,458,1,2025-09-21T17:20:38.977170Z,437,11.239,Positive,2025-09-21T17:20:38.977170Z,pt
+Vou iniciar minhas tratativas para devolução desta porcaria, acredito que podemos unir forças.",12,717,1,2025-10-23T23:18:17.811763Z,717,2.915,FEEDBACK DE FECHAMENTO,2025-10-23T23:18:17.811763Z,pt
+Pra isso recomendo uma doca usb. O adaptador não é certeza se funciona,13,718,1,2025-10-23T23:18:31.721794Z,718,12.838,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:18:31.721794Z,pt
+"Olá, Eu uso um na saída HDMI e outro na saída USB C, mas tive que comprar um adaptador de Tipo C para HDMI, depois é só ir em Configuração em Exibição, Vídeo e configurar escolhendo o monitor que vai deixar como principal.",13,719,1,2025-10-23T23:18:38.959072Z,719,11.061,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:18:55.439401Z,pt
+"Olá amigo, comprei um g7 também, pode me falar qual tela da usando secundária ? Tô com medo de compra alguma e não ser compatível, e se conseguiu estender a terceira tela, qual foi? E como fez se poder me manda ficaria muito grato obrigado @Manfrrdi @Flashback1963 @pmarcos6821",13,720,1,2025-10-23T23:19:00.721431Z,720,11.937,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:19:00.721431Z,pt
 "Boa tarde. O valor de uma doca assusta qualquer um, se souber as especificações técnicas do adaptador, é certeza que funciona. Também não vai comprar da marca XL, certo !!
 Comprei o adaptador da própria Dell, portanto, funciona sim.
-Abs.",13,460,1,2025-09-21T17:20:47.313913Z,439,3.092,Negative,2025-09-21T17:20:47.313913Z,pt
-O meu está a mesma bosta... DELL nunca mais. Paguei 7mil reais por esse lixo. Dell nem de graça!,43,461,1,2025-09-21T17:20:51.213493Z,440,3.474,Negative,2025-09-21T17:20:51.213493Z,pt
+Abs.",13,721,1,2025-10-23T23:19:06.888668Z,721,4.821,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:19:06.888668Z,pt
+O meu está a mesma bosta... DELL nunca mais. Paguei 7mil reais por esse lixo. Dell nem de graça!,43,722,1,2025-10-23T23:19:16.007383Z,722,5.551,FEEDBACK DE FECHAMENTO,2025-10-23T23:19:16.007383Z,pt
 "Na bateria esse notebook é realmente um lixo, mesmo com BIOS atualizada, sem modo de economia de energia no windows. Simplesmente tranca ao usar qualquer navegador.
-Agora na tomada é ótimo.",43,283,1,2025-09-21T15:53:24.360049Z,441,2.564,Negative,2025-09-21T15:53:24.360049Z,pt
+Agora na tomada é ótimo.",43,723,1,2025-10-23T23:19:27.213859Z,723,2.157,ESPECULATIVA/INVÁLIDA,2025-10-23T23:19:27.213859Z,pt
+"O primeiro que citou, Samsung 980 Pro é Gen 4 (PCIe 4.0) e seu slot m.2 é PCIe 3.0. Esse SSD vai funcionar, só que limitado as taxas do padrão inferior.
+Os dois últimos citados são Gen 3 e são compatíveis. Os dois são bons, entre eles, vá no que estiver mais barato.",45,724,1,2025-10-23T23:19:43.728633Z,724,10.16,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:19:43.728633Z,pt
 "Olá ctsatre, tudo bem? Acredito que esse SSD não é compatível, pois seu notebook apresenta compatibilidade com SSD's PCIe 3x4, e o que você deseja adquirir é 4x4, conforme a foto abaixo do seu manual:
 
-Vou deixar aqui um link para um post da comunidade que fala sobre como checar quais componentes são compatíveis com o seu Dell na hora do upgrade. Se essa resposta te ajudou não esqueça de marcar ela como solução. Para quaisquer outras dúvidas estamos aqui. Abraço!",45,308,1,2025-09-21T16:07:33.257893Z,443,0.497,Positive,2025-09-21T16:07:33.257893Z,pt
+Vou deixar aqui um link para um post da comunidade que fala sobre como checar quais componentes são compatíveis com o seu Dell na hora do upgrade. Se essa resposta te ajudou não esqueça de marcar ela como solução. Para quaisquer outras dúvidas estamos aqui. Abraço!",45,725,1,2025-10-23T23:19:48.965487Z,725,4.148,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:19:48.965487Z,pt
+"Olá Arthur, tudo bem e com você?
+Obrigado por responder, eu sou leigo no assunto e por isso peço ajuda.Eu entendi sua recomendação, sabe me dizer se um dos dois SSDs abaixo são compatíveis:- SSD 1 TB WD Blue SN570, M.2 2280, NVMe, Leitura: 3.500MB/s e Gravação: 3.000MB/shttps://www.kabum.com.br/produto/310159/ssd-1-tb-wd-blue-sn570-m-2-2280-nvme-leitura-3-500mb-s-e-gravacao-3-000mb-s-azul-wds100t3b0c
+- SSD Samsung 1TB, M.2 PCIe 3.0, 980 Nvme, Leitura: 3.500 MB/s e Gravação: 3.000 MB/shttps://www.kabum.com.br/produto/352030/ssd-samsung-1tb-m-2-pcie-3-0-980-nvme-leitura-3-500-mb-s-e-gravacao-3-000-mb-s-preto-mz-v8v1t0b-am
+Se ambos forem compatíveis, indicaria algum deles?
+Agradeço desde já pela atenção.",45,726,1,2025-10-23T23:19:56.697501Z,726,6.588,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:19:56.697501Z,pt
+"No meu eu deixei só o ssd m2. No hd não tem nada, tirei tudo mesmo até o case e o cabo ficou só o conector. E pra completar desativei até na bios em ""drives"" ta só o m2 ativado e ta funcionando",48,727,1,2025-10-23T23:20:05.408672Z,727,7.8,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:20:05.408672Z,pt
+Obrigado :) Na verdade tanto faz pode deixar um ou outro como armazenamento mas o ssd m2 é muito mais pratico. No hd tem que tirar 6 parafusos pra trocar enquanto que no m2 é só 1 parafuso,48,728,1,2025-10-23T23:20:11.145557Z,728,4.115,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:20:11.145557Z,pt
+"Para ficar mais clara a minha pergunta, na configuração 256 GB (boot) + 1 TB de HDD (armazenamento), eu posso retirar o HDD, ficando apenas o SSD? Faço essa pergunta, porque alguns sistemas (como o Precision 3530) precisam de ambos os HDs, ao se instalar o SSD PCIe como primário (SSD classe 35).",48,729,1,2025-10-23T23:20:19.729520Z,729,6.789,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:20:19.729520Z,pt
+"Obrigado pela **bleep**! Bom saber disso que o HDD é apenas storage mesmo, nada mais. Grande abraço!",48,730,1,2025-10-23T23:20:26.272350Z,730,5.513,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:20:26.272350Z,pt
+"Mais uma vez agradeço pelas tuas explicações e dicas. Foram de grande valia! Vou aceitar a tua sugestão e deixar somente o SSD, pois também tenha a intenção de deixá-lo rápido e sem riscos de perder o HD, em caso de impactos ou quedas do notebook. Grande abraço!",48,731,1,2025-10-23T23:20:33.700657Z,731,1.831,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:20:33.700657Z,pt
+Tem outra vantagem ainda: O som! Pra mim o ruido do hd interfere até no audio,48,732,1,2025-10-23T23:20:40.018247Z,732,5.321,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:20:40.018247Z,pt
+*code43,64,766,1,2025-10-23T23:31:42.937207Z,766,7.523,ESPECULATIVA/INVÁLIDA,2025-10-24T12:05:33.266004Z,pt
+Comentário não encontrado,5,841,1,2025-10-23T23:47:21.637199Z,842,1.964,IRRELEVANTE/FORA DE TÓPICO,2025-10-23T23:47:21.637199Z,pt

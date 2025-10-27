@@ -1391,7 +1391,7 @@ Just hoping it downloads the ridiculous amount of Windows Updates I had over the
 However, if you still want to manually control your laptop's fans, you can try using software like SpeedFan or HWMonitor to adjust the fan speed manually. These programs allow you to control the fan speed based on the temperature of various components in your laptop.
 If the fan speed controls are greyed out, it may be because your laptop's BIOS has locked the fan controls, or the fan controllers are not accessible through software. In this case, you may need to look into a hardware solution, such as replacing the thermal paste on your CPU and GPU, or installing an additional cooling solution, such as a laptop cooling pad."
 102,"Hey I have Dell G7 7588 as well.. MSI Afterburner does not work for ours as far as Fan Control, it can be used with ThrottleStop to tweak the Nvidia GPU & Intel CPU though. For fan control, I use SpeedFan and at times HWiNFO.. both works like a charm.Screenshot: https://pasteboard.co/HUQ5kZG3burA.png"
-102,"@IzzyBoi​ 
+102,"
 i can't control, how to do?"
 102,"@BakaDev​ 
 Did you figure it out? I'm trying to do the same and even I can't see the fans..."
