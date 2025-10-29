@@ -2,19 +2,16 @@ import sys
 from pathlib import Path
 
 # Obtém o caminho absoluto da pasta do script atual.
-# Exemplo: 'C:\...\Buscar_Web\1- WebScrapping\script'
 caminho_script = Path(__file__).resolve().parent
 
 # Acessa a pasta raiz do projeto subindo dois níveis.
-# Exemplo: 'C:\...\Buscar_Web'
 caminho_raiz_projeto = caminho_script.parent.parent
 
 # Adiciona o caminho da raiz ao caminho de busca do Python.
 sys.path.append(str(caminho_raiz_projeto))
 
 # Agora a importação do módulo 'config' deve funcionar.
-from config import DIRETORIO_DADOS_WEBSCRAPPING,DIRETORIO_DADOS_EXTRACAO_QA
-
+from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_DADOS_EXTRACAO_QA
 
 import undetected_chromedriver as uc
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -27,11 +24,81 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
-# Listas para armazenar dados de posts e comentários
+# --- Variáveis de Saída e Criação de Diretórios (Melhoria de Robustez) ---
+DIRETORIO_SAIDA_PERGUNTAS = DIRETORIO_DADOS_EXTRACAO_QA / 'perguntas'
+DIRETORIO_SAIDA_RESPOSTAS = DIRETORIO_DADOS_EXTRACAO_QA / 'respostas'
+
+# Garante que os diretórios existam
+DIRETORIO_SAIDA_PERGUNTAS.mkdir(parents=True, exist_ok=True)
+DIRETORIO_SAIDA_RESPOSTAS.mkdir(parents=True, exist_ok=True)
+
+caminho_saida_perguntas = DIRETORIO_SAIDA_PERGUNTAS / 'posts_ClubeHardware_Perguntas.csv'
+caminho_saida_respostas = DIRETORIO_SAIDA_RESPOSTAS / 'comentarios_ClubeHardware_Respostas.csv'
+
+# --- DECLARAÇÕES DE HTML EM VARIÁVEIS (Facilidade de Manutenção) ---
+# Selenium (CSS)
+SELETOR_BOTAO_COOKIES = "div.ipsDialog_content a.ipsButton_fullWidth"
+SELETOR_POST_TITLE = "h1.ipsType_pageTitle.ipsContained_container"
+SELETOR_DIALOGO_COOKIES = "div.c-cookies-dialog"
+
+# BeautifulSoup (Classes HTML)
+CLASSE_POST_COMPLETO = "cPost ipsBox ipsResponsive_pull ipsComment ipsComment_parent ipsClearfix ipsClear ipsColumns ipsColumns_noSpacing ipsColumns_collapsePhone"
+CLASSE_CONTEUDO_WRAP = "cPost_contentWrap"
+
+# Listas globais
 posts_data = []
 comments_data = []
 driver = None
 
+
+def extrair_dados_topico(soup, post_id, link):
+    """
+    Extrai o título, o conteúdo do post original e os comentários
+    de um objeto BeautifulSoup.
+    """
+    # --- Extração de Dados do Post (Pergunta) ---
+    title_element = soup.find("h1", class_=SELETOR_POST_TITLE.split('.')[-1].replace(' ', '.')) # Reutiliza o seletor
+    page_title = title_element.text.strip() if title_element else "Título não encontrado"
+
+    # O conteúdo do post original é o primeiro elemento 'cPost'
+    first_post_element = soup.find("article", class_=CLASSE_POST_COMPLETO)
+    
+    post_content = "Conteúdo não encontrado"
+    if first_post_element:
+        content_wrap = first_post_element.find("div", class_=CLASSE_CONTEUDO_WRAP)
+        post_content = content_wrap.text.strip() if content_wrap else "Conteúdo não encontrado"
+
+    # Adiciona os dados do post à lista de posts
+    posts_data.append({
+        "ID_Post": post_id,
+        "Titulo_Post": page_title,
+        "URL_Post": link,
+        "Conteudo_Post": post_content
+    })
+
+    # --- Extração de Dados dos Comentários ---
+    # Encontra todos os posts (inclui a pergunta original)
+    comment_bodies = soup.find_all("article", class_=CLASSE_POST_COMPLETO)
+
+    # Itera a partir do segundo elemento (índice 1) para pegar apenas os comentários/respostas
+    for comment_body in comment_bodies[1:]:
+        try:
+            comment_text_elem = comment_body.find("div", class_=CLASSE_CONTEUDO_WRAP)
+            comment_text = comment_text_elem.text.strip() if comment_text_elem else "Comentário não encontrado"
+
+            # Adiciona os dados do comentário à lista de comentários
+            comments_data.append({
+                "ID_Post": post_id,  # Link para o post original usando o ID artificial
+                "Conteudo_Comentario": comment_text,
+            })
+
+        except Exception as e:
+            print(f"Erro ao extrair dados de um comentário no link {link}: {e}")
+            continue
+
+# =================================================================
+#               INÍCIO DO SCRIPT PRINCIPAL
+# =================================================================
 try:
     # --- Configuração do WebDriver ---
     chrome_options = Options()
@@ -55,63 +122,33 @@ try:
     for index, link in enumerate(df['link']):
         # Use o índice como um ID único para cada post
         post_id = index
-        print(f"Analisando link {index + 1}/{len(df['link'])} (ID: {post_id}): {link}")
+        print(f"\nAnalisando link {index + 1}/{len(df['link'])} (ID: {post_id}): {link}")
         
         try:
             driver.get(link)
 
             # --- Lidar com o pop-up de cookies ---
             try:
-                accept_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div.ipsDialog_content a.ipsButton_fullWidth")))
+                # Usa a variável de seletor para o botão de cookies
+                accept_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_COOKIES)))
                 print("Pop-up de cookies detectado. Clicando em 'Aceitar'...")
                 accept_button.click()
-                wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, "div.c-cookies-dialog")))
+                # Usa a variável de seletor para o diálogo de cookies
+                wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, SELETOR_DIALOGO_COOKIES)))
             except TimeoutException:
-                print("Pop-up de cookies não encontrado ou não clicável.")
+                # Se o timeout ocorrer no botão/diálogo, não é um erro fatal
+                pass 
             
-            # Espera o título da página carregar
-            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "h1.ipsType_pageTitle.ipsContained_container")))
+            # Espera o título da página carregar (usa a variável de seletor)
+            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, SELETOR_POST_TITLE)))
 
             # Pega o HTML da página
             page_source = driver.page_source
             soup = BeautifulSoup(page_source, 'html.parser')
 
-            # --- Extração de Dados do Post (Pergunta) ---
-            title_element = soup.find("h1", class_="ipsType_pageTitle ipsContained_container")
-            page_title = title_element.text.strip() if title_element else "Título não encontrado"
+            # --- Chamada da função de extração ---
+            extrair_dados_topico(soup, post_id, link)
             
-            # O conteúdo do post original é o primeiro elemento 'cPost'
-            first_post_element = soup.find("article", class_="cPost ipsBox ipsResponsive_pull ipsComment ipsComment_parent ipsClearfix ipsClear ipsColumns ipsColumns_noSpacing ipsColumns_collapsePhone")
-            post_content = first_post_element.find("div", class_="cPost_contentWrap").text.strip() if first_post_element else "Conteúdo não encontrado"
-            
-            # Adiciona os dados do post à lista de posts
-            posts_data.append({
-                "ID_Post": post_id,
-                "Titulo_Post": page_title,
-                "URL_Post": link,
-                "Conteudo_Post": post_content
-            })
-            
-            # --- Extração de Dados dos Comentários ---
-            # Encontra todos os comentários (pulando o primeiro, que é a pergunta original)
-            comment_bodies = soup.find_all("article", class_="cPost ipsBox ipsResponsive_pull ipsComment ipsComment_parent ipsClearfix ipsClear ipsColumns ipsColumns_noSpacing ipsColumns_collapsePhone")
-            
-            # Itera a partir do segundo comentário
-            for comment_body in comment_bodies[1:]:
-                try:
-                    comment_text_elem = comment_body.find("div", class_="cPost_contentWrap")
-                    comment_text = comment_text_elem.text.strip() if comment_text_elem else "Comentário não encontrado"
-                    
-                    # Adiciona os dados do comentário à lista de comentários
-                    comments_data.append({
-                        "ID_Post": post_id,  # Link para o post original usando o ID artificial
-                        "Conteudo_Comentario": comment_text,
-                    })
-                
-                except Exception as e:
-                    print(f"Erro ao extrair dados de um comentário no link {link}: {e}")
-                    continue
-        
         except TimeoutException:
             print(f"Erro: Tempo de espera esgotado para o link {link}.")
         except Exception as e:
@@ -120,7 +157,6 @@ try:
     # --- Salvamento dos Dados em arquivos CSV ---
     if posts_data:
         df_posts = pd.DataFrame(posts_data)
-        caminho_saida_perguntas = DIRETORIO_DADOS_EXTRACAO_QA / 'perguntas/posts_ClubeHardware_Perguntas.csv' 
         df_posts.to_csv(caminho_saida_perguntas, index=False, encoding='utf-8')
         print(f"\nDados de posts salvos em '{caminho_saida_perguntas}'.")
     else:
@@ -128,7 +164,6 @@ try:
 
     if comments_data:
         df_comments = pd.DataFrame(comments_data)
-        caminho_saida_respostas = DIRETORIO_DADOS_EXTRACAO_QA / 'respostas/comentarios_ClubeHardware_Respostas.csv'
         df_comments.to_csv(caminho_saida_respostas, index=False, encoding='utf-8')
         print(f"Dados de comentários salvos em '{caminho_saida_respostas}'.")
     else:

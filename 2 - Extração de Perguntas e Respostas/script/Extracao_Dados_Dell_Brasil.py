@@ -71,7 +71,7 @@ def extrair_dados_dell_community(url, post_id):
             })
 
 # --- Código Principal para processar os links do CSV ---
-caminho_entrada = DIRETORIO_DADOS_WEBSCRAPPING /'links_ComunidadeDell_Brasil_7588.csv'
+caminho_entrada = DIRETORIO_DADOS_WEBSCRAPPING /'links_discussoes_Dell_Brasil.csv'
 caminho_saida_perguntas = DIRETORIO_DADOS_EXTRACAO_QA / 'perguntas/posts_DellCommunity_Brasil_Perguntas.csv'
 caminho_saida_respostas = DIRETORIO_DADOS_EXTRACAO_QA / 'respostas/comentarios_DellCommunity_Brasil_Respostas.csv'
 

@@ -23,14 +23,13 @@ caminho_raiz_projeto = caminho_script.parent.parent
 sys.path.append(str(caminho_raiz_projeto))
 
 # Agora a importação dos módulos 'config' e 'modelo_de_busca' deve funcionar.
-from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_MODELOS_NOTEBOOKS
+from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_DATASET_FINAL
 from modelo_de_busca import ler_e_filtrar_modelos 
 
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_Tom_Hardware.csv'
-caminho_entrada = DIRETORIO_CSV_MODELOS_NOTEBOOKS / 'modelos_de_busca.csv'
+caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
 
 # --- Configuração de Busca e Filtro de CSV ---
-# Se MARCA_ALVO for None ou '', todos os modelos do CSV serão usados.
 MARCA_ALVO = None 
 
 # Lê e filtra os modelos do CSV
@@ -39,6 +38,18 @@ modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO)
 if not modelos_a_buscar:
     print(f"Não foram encontrados modelos para a marca '{MARCA_ALVO}' no arquivo CSV ou houve um erro na leitura. Saindo.")
     sys.exit()
+
+# --- DECLARAÇÕES DE HTML EM VARIÁVEIS (Facilidade de Manutenção) ---
+
+SITE_URL = "https://forums.tomshardware.com/search/"
+
+# --- Seletores de Ação ---
+SELETOR_CAMPO_BUSCA = "keywords" # Name do campo de input de busca (Usado com By.NAME)
+
+# --- Seletores de Resultados e Paginação ---
+SELETOR_LINKS_TITULOS = "h3.contentRow-title a" # Link/Título de cada resultado de busca (CSS)
+SELETOR_BOTAO_PROXIMA_PAGINA = "a[rel='next']" # Link para a próxima página (CSS)
+
 
 # --- Configurações iniciais do Selenium (HEADLESS) ---
 chrome_options = Options()
@@ -49,7 +60,6 @@ chrome_options.add_argument("--disable-gpu")
 
 # Inicializa o driver usando Service e Options
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-site_url = "https://forums.tomshardware.com/search/"
 wait = WebDriverWait(driver, 20)
 
 all_results = [] # Armazena {"Título": titulo, "Link": link, "Modelo Buscado": modelo}
@@ -64,14 +74,14 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
     print(f"{'='*70}")
     
     # 1. Navegar para a página de busca (necessário a cada novo termo)
-    driver.get(site_url)
+    driver.get(SITE_URL)
 
     try:
         # --- Realizar a busca ---
         print("Aguardando o campo de busca...")
         
-        # Espera que o campo de busca esteja visível e clicável (By.NAME = "keywords")
-        barra_de_busca = wait.until(EC.element_to_be_clickable((By.NAME, "keywords")))
+        # Espera que o campo de busca esteja visível e clicável (Usa a constante SELETOR_CAMPO_BUSCA)
+        barra_de_busca = wait.until(EC.element_to_be_clickable((By.NAME, SELETOR_CAMPO_BUSCA)))
 
         # Clica no campo, limpa e envia o termo
         barra_de_busca.click()
@@ -86,9 +96,9 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
         print("\n--- INICIANDO COLETA DE TÍTULOS E LINKS ---")
         
         while True:
-            # Tenta encontrar todos os títulos de discussão. Seletor robusto: h3.contentRow-title a
+            # Tenta encontrar todos os títulos de discussão (Usa a constante SELETOR_LINKS_TITULOS)
             discussion_titles = wait.until(
-                EC.presence_of_all_elements_located((By.CSS_SELECTOR, "h3.contentRow-title a"))
+                EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_LINKS_TITULOS))
             )
             
             novos_links_coletados = 0
@@ -112,10 +122,9 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
             
             print(f"Página processada. Novos links: {novos_links_coletados}. Total acumulado: {len(all_results)}")
 
-            # Tenta encontrar o botão "Próximo" para a paginação
+            # Tenta encontrar o botão "Próximo" para a paginação (Usa a constante SELETOR_BOTAO_PROXIMA_PAGINA)
             try:
-                # Seletor padrão para "Próximo" em fóruns XenForo
-                next_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "a[rel='next']")))
+                next_button = WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_PROXIMA_PAGINA)))
                 next_button.click()
                 print("Clicando no botão 'Próximo'...")
                 time.sleep(3) # Pausa para a nova página carregar
@@ -135,7 +144,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
 if all_results:
     print("\n--- SALVANDO TODOS OS RESULTADOS ACUMULADOS ---")
     with open(caminho_saida, 'w', newline='', encoding='utf-8') as file:
-        fieldnames = ['Título', 'Link', 'Modelo Buscado']
+        fieldnames = ['Título da Discussão', 'Link da Discussão', 'Modelo Buscado']
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(all_results)

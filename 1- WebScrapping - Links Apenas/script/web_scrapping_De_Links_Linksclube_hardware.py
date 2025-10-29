@@ -14,25 +14,22 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 # Obtém o caminho absoluto da pasta do script atual.
-# Exemplo: 'C:\...\Buscar_Web\1- WebScrapping\script'
 caminho_script = Path(__file__).resolve().parent
 
 # Acessa a pasta raiz do projeto subindo dois níveis.
-# Exemplo: 'C:\...\Buscar_Web'
 caminho_raiz_projeto = caminho_script.parent.parent
 
 # Adiciona o caminho da raiz ao caminho de busca do Python.
 sys.path.append(str(caminho_raiz_projeto))
 
 # Agora a importação do módulo 'config' e 'modelo_de_busca' deve funcionar.
-from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_MODELOS_NOTEBOOKS
+from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_DATASET_FINAL
 from modelo_de_busca import ler_e_filtrar_modelos
 
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_ClubeHardware.csv'
-caminho_entrada = DIRETORIO_CSV_MODELOS_NOTEBOOKS / 'modelos_de_busca.csv'
+caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
 
 # --- Configuração de Busca ---
-# Se MARCA_ALVO for None ou '', todos os modelos do CSV serão usados.
 MARCA_ALVO = None
 
 # Lê e filtra os modelos do CSV
@@ -42,21 +39,30 @@ if not modelos_a_buscar:
     print(f"Não foram encontrados modelos para a marca '{MARCA_ALVO}' no arquivo CSV ou houve um erro na leitura. Saindo.")
     sys.exit()
 
-# --- Configurações iniciais do Selenium (INTEGRANDO HEADLESS) ---
+# --- DECLARAÇÕES DE HTML EM VARIÁVEIS (Facilidade de Manutenção) ---
+
+SITE_URL = "https://www.clubedohardware.com.br/search/"
+
+# --- Seletores de Ação ---
+SELETOR_BOTAO_FECHAR_POPUP_AD = "span.__lxG__splash-close" # Botão fechar anúncio/pop-up
+SELETOR_RADIO_TODAS_PALAVRAS = "elField_andOr_full_label_and" # ID do LABEL para 'Contenham todas as palavras'
+SELETOR_CAMPO_BUSCA = "q" # Name do campo de input de busca (Usado com By.NAME)
+
+# --- Seletores de Resultados e Paginação ---
+SELETOR_LINKS_RESULTADO = "a[data-linktype='link'][data-searchable]" # Link de cada resultado de busca
+SELETOR_BOTAO_PROXIMA_PAGINA = "li.ipsPagination_next a" # Link para a próxima página
+
+# --- Configurações iniciais do Selenium (CORRIGINDO DUPLICAÇÃO) ---
 chrome_options = Options()
-# Adiciona os argumentos para execução em modo headless e otimizações
-chrome_options.add_argument("--headless")
+# Mantendo o modo headless comentado para o debug. Descomente se quiser headless.
+# chrome_options.add_argument("--headless") 
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--disable-gpu")
 
-# Inicializa o driver usando Service e Options (MODO HEADLESS - CORRIGIDO)
+# Inicializa o driver APENAS UMA VEZ.
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-# Aumenta o tempo de espera
-driver = webdriver.Chrome()
 wait = WebDriverWait(driver, 30)
-
-site_url = "https://www.clubedohardware.com.br/search/"
 
 all_results = [] # Armazena tuplas de (titulo, link, modelo) de forma acumulativa
 cookie_popup_fechado = False # Flag para fechar o pop-up apenas uma vez
@@ -71,33 +77,31 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
     print(f"{'='*60}")
     
     # 1. Navegar para a página de busca (necessário a cada novo termo)
-    driver.get(site_url)
-    print(f"Página acessada: {site_url}. Aguardando o carregamento...")
+    driver.get(SITE_URL)
+    print(f"Página acessada: {SITE_URL}. Aguardando o carregamento...")
 
     try:
         # --- A: Tratar o Pop-up de Anúncio (Apenas na primeira iteração) ---
         if not cookie_popup_fechado:
             try:
                 print("Verificando se há um pop-up de anúncio...")
-                # Reduz o tempo de espera para o pop-up para não atrasar se ele não estiver lá
-                close_ad_btn = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "span.__lxG__splash-close")))
+                # Usa a variável de seletor
+                close_ad_btn = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_FECHAR_POPUP_AD)))
                 close_ad_btn.click()
                 print("Pop-up de anúncio fechado.")
                 time.sleep(1)
-                cookie_popup_fechado = True
             except:
                 print("Nenhum pop-up de anúncio encontrado ou ele já foi fechado.")
-                cookie_popup_fechado = True
                 pass
+            
+            # Marca como fechado, independentemente de ter encontrado (para não tentar na próxima iteração)
+            cookie_popup_fechado = True 
         
-        # --- B: Clicar na opção "Contenham todas as palavras" (CORREÇÃO FINAL: Usando ID do LABEL) ---
-        
-        LABEL_ID = "elField_andOr_full_label_and"
-        
+        # --- B: Clicar na opção "Contenham todas as palavras" ---
         print("Selecionando a opção 'Contenham todas as palavras'...")
         
-        # Tenta encontrar o LABEL e clica (o LABEL é a área clicável visível)
-        radio_label = wait.until(EC.element_to_be_clickable((By.ID, LABEL_ID)))
+        # Usa a variável de seletor (By.ID)
+        radio_label = wait.until(EC.element_to_be_clickable((By.ID, SELETOR_RADIO_TODAS_PALAVRAS)))
         
         # Clica no LABEL usando JavaScript para evitar problemas de cobertura/tamanho
         driver.execute_script("arguments[0].click();", radio_label)
@@ -107,8 +111,8 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
         # --- C: Achar o campo de busca e preencher com o texto ---
         print("Aguardando o campo de busca...")
 
-        # Espera até que o campo de busca esteja visível e clicável
-        barra_de_busca = wait.until(EC.element_to_be_clickable((By.NAME, "q")))
+        # Espera até que o campo de busca esteja visível e clicável (Usa a variável de seletor - By.NAME)
+        barra_de_busca = wait.until(EC.element_to_be_clickable((By.NAME, SELETOR_CAMPO_BUSCA)))
 
         # Clica no campo para dar o foco, depois limpa e digita
         barra_de_busca.click()
@@ -128,9 +132,9 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
             print("Coletando links e títulos da página atual...")
             
             try:
-                # Espera que os links de resultado estejam presentes
+                # Espera que os links de resultado estejam presentes (Usa a variável de seletor)
                 discussion_links = wait.until(
-                    EC.presence_of_all_elements_located((By.CSS_SELECTOR, "a[data-linktype='link'][data-searchable]"))
+                    EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_LINKS_RESULTADO))
                 )
 
                 novos_links = 0
@@ -148,13 +152,16 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
                 
                 print(f"Novos links coletados nesta página: {novos_links}. Total acumulado: {len(all_results)}")
                 
-                # Tenta encontrar o botão "Próximo"
-                next_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "li.ipsPagination_next a")))
+                # Tenta encontrar o botão "Próximo" (Usa a variável de seletor)
+                next_button = WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_PROXIMA_PAGINA)))
                 print("Clicando no botão 'Próximo'...")
-                next_button.click()
+                
+                # Clica via JS para maior confiabilidade
+                driver.execute_script("arguments[0].click();", next_button)
                 time.sleep(3) # Pausa para a página carregar
             
             except Exception as e:
+                # Se o Timeout ocorrer no link dos resultados e novos_links for 0, sairá do loop.
                 print(f"Botão 'Próximo' não encontrado ou desabilitado para '{modelo_de_busca}'. Fim da paginação.")
                 break # Sai do while True (fim da paginação para o modelo atual)
         
