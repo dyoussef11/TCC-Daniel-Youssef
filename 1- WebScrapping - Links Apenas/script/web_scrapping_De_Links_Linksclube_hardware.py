@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 import csv
 import time
+import random # [MODIFICAÇÃO] Importar random para pausas anti-bloqueio
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -12,6 +13,8 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
+# [MODIFICAÇÃO] Importar traceback para debug de erro fatal
+import traceback 
 
 # Obtém o caminho absoluto da pasta do script atual.
 caminho_script = Path(__file__).resolve().parent
@@ -52,17 +55,21 @@ SELETOR_CAMPO_BUSCA = "q" # Name do campo de input de busca (Usado com By.NAME)
 SELETOR_LINKS_RESULTADO = "a[data-linktype='link'][data-searchable]" # Link de cada resultado de busca
 SELETOR_BOTAO_PROXIMA_PAGINA = "li.ipsPagination_next a" # Link para a próxima página
 
-# --- Configurações iniciais do Selenium (CORRIGINDO DUPLICAÇÃO) ---
+# --- Configurações iniciais do Selenium (OTIMIZAÇÃO DE VELOCIDADE/ANTI-BLOQUEIO) ---
 chrome_options = Options()
-# Mantendo o modo headless comentado para o debug. Descomente se quiser headless.
-# chrome_options.add_argument("--headless") 
+# [MODIFICAÇÃO] Ativar modo headless para maior velocidade
+chrome_options.add_argument("--headless") 
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--disable-gpu")
+# [MODIFICAÇÃO] Adicionar User-Agent para simular um navegador normal
+chrome_options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36")
+
 
 # Inicializa o driver APENAS UMA VEZ.
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-wait = WebDriverWait(driver, 30)
+# [MODIFICAÇÃO] Reduzir o tempo de espera padrão de 30s para 15s (mais ágil no headless)
+wait = WebDriverWait(driver, 15)
 
 all_results = [] # Armazena tuplas de (titulo, link, modelo) de forma acumulativa
 cookie_popup_fechado = False # Flag para fechar o pop-up apenas uma vez
@@ -72,6 +79,13 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
     # Formata o termo para pesquisa exata
     termo_de_busca = f'"{modelo_de_busca}"'
     
+    # [MODIFICAÇÃO] PAUSA ESTRATÉGICA E ALEATÓRIA ENTRE MODELOS
+    # Crucial para evitar rate limiting
+    if i > 0:
+        sleep_time = random.uniform(7, 12) # Pausa maior entre 7 e 12 segundos
+        print(f"Pausando por {sleep_time:.2f} segundos antes da busca do próximo modelo.")
+        time.sleep(sleep_time)
+
     print(f"\n{'='*60}")
     print(f"INICIANDO BUSCA {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}' com termo: {termo_de_busca}")
     print(f"{'='*60}")
@@ -86,15 +100,16 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
             try:
                 print("Verificando se há um pop-up de anúncio...")
                 # Usa a variável de seletor
+                # [MODIFICAÇÃO] Reduzir tempo de espera do pop-up
                 close_ad_btn = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_FECHAR_POPUP_AD)))
                 close_ad_btn.click()
                 print("Pop-up de anúncio fechado.")
-                time.sleep(1)
+                # [MODIFICAÇÃO] Remover time.sleep(1) e confiar no próximo wait
             except:
                 print("Nenhum pop-up de anúncio encontrado ou ele já foi fechado.")
                 pass
             
-            # Marca como fechado, independentemente de ter encontrado (para não tentar na próxima iteração)
+            # Marca como fechado
             cookie_popup_fechado = True 
         
         # --- B: Clicar na opção "Contenham todas as palavras" ---
@@ -123,17 +138,18 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
         
         # --- D: Pressionar Enter para iniciar a busca ---
         barra_de_busca.send_keys(Keys.ENTER)
-        print("Tecla ENTER pressionada. Pesquisa iniciada com sucesso!")
+        print("Tecla ENTER pressionada. Pesquisa iniciada com sucesso! Aguardando resultados...")
 
         # --- INÍCIO DA EXTRAÇÃO DE LINKS PARA O MODELO ATUAL ---
         print("\n--- INICIANDO COLETA DE LINKS ---")
 
         while True:
+            # [MODIFICAÇÃO] Aumentar o timeout para resultados iniciais (pode demorar após o ENTER)
             print("Coletando links e títulos da página atual...")
             
             try:
                 # Espera que os links de resultado estejam presentes (Usa a variável de seletor)
-                discussion_links = wait.until(
+                discussion_links = WebDriverWait(driver, 10).until(
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_LINKS_RESULTADO))
                 )
 
@@ -153,21 +169,27 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
                 print(f"Novos links coletados nesta página: {novos_links}. Total acumulado: {len(all_results)}")
                 
                 # Tenta encontrar o botão "Próximo" (Usa a variável de seletor)
-                next_button = WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_PROXIMA_PAGINA)))
+                # [MODIFICAÇÃO] Reduzir o tempo de espera do botão 'Próximo' para 5s (antes era 2s com sleep fixo)
+                next_button = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_PROXIMA_PAGINA)))
                 print("Clicando no botão 'Próximo'...")
                 
                 # Clica via JS para maior confiabilidade
                 driver.execute_script("arguments[0].click();", next_button)
-                time.sleep(3) # Pausa para a página carregar
+                # [MODIFICAÇÃO] Pausa menor e aleatória na paginação (dentro de um modelo)
+                time.sleep(random.uniform(2, 4)) 
             
-            except Exception as e:
-                # Se o Timeout ocorrer no link dos resultados e novos_links for 0, sairá do loop.
+            except TimeoutException:
+                 # Captura especificamente Timeout, que geralmente significa que o botão "Próximo" não apareceu
                 print(f"Botão 'Próximo' não encontrado ou desabilitado para '{modelo_de_busca}'. Fim da paginação.")
                 break # Sai do while True (fim da paginação para o modelo atual)
+            
+            except Exception as e:
+                # Outros erros inesperados na coleta ou paginação
+                print(f"Erro inesperado na coleta/paginação para '{modelo_de_busca}': {e}")
+                break 
         
     except Exception as e:
         print(f"Ocorreu um erro FATAL na busca pelo modelo '{modelo_de_busca}': {e}")
-        import traceback
         traceback.print_exc()
         continue # Pula para o próximo modelo
 
@@ -176,6 +198,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
 # Salva TODOS os resultados acumulados em um único arquivo CSV
 if all_results:
     print("\n--- SALVANDO TODOS OS RESULTADOS ACUMULADOS ---")
+    # [MODIFICAÇÃO] Adicionado encoding="utf-8" ao open
     with open(caminho_saida, 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(['Título da Discussão', 'Link da Discussão', 'Modelo Buscado']) # Cabeçalho do CSV

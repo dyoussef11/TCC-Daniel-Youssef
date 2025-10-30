@@ -26,6 +26,11 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
+# --- SELETORES DE PÁGINA (CONSTANTES) ---
+SELETOR_TITULO_PAGINA = "h1.ipsType_pageTitle.ipsContained_container"
+SELETOR_TODOS_POSTS_E_COMENTARIOS = "article.cPost"
+SELETOR_CONTEUDO_POST_COMENTARIO = "div.cPost_contentWrap"
+
 # Listas para armazenar dados de posts e comentários
 posts_data = []
 comments_data = []
@@ -58,24 +63,27 @@ try:
         try:
             driver.get(link)
 
-            # Espera o título da página carregar
-            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "h1.ipsType_pageTitle.ipsContained_container")))
+            # Espera o título da página carregar (USA SELETOR_TITULO_PAGINA)
+            wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, SELETOR_TITULO_PAGINA)))
 
             # Pega o HTML da página
             page_source = driver.page_source
             soup = BeautifulSoup(page_source, 'html.parser')
 
-            # Extrai o título do post, que está fora da estrutura de comentários
+            # Extrai o título do post (USA SELETOR_TITULO_PAGINA)
             title_element = soup.find("h1", class_="ipsType_pageTitle ipsContained_container")
+            # OBS: O seletor acima já está em SELETOR_TITULO_PAGINA, mas o find do BS4 exige a classe separada.
+            # Vamos manter a classe no find, mas o elemento esperado pelo Selenium já usa o CSS_SELECTOR.
             page_title = title_element.text.strip() if title_element else "Título não encontrado"
 
-            # Encontra todos os elementos de post/comentário
-            all_posts_and_comments = soup.find_all("article", class_="cPost")
+            # Encontra todos os elementos de post/comentário (USA SELETOR_TODOS_POSTS_E_COMENTARIOS)
+            all_posts_and_comments = soup.find_all("article", class_=SELETOR_TODOS_POSTS_E_COMENTARIOS.split('.')[-1]) # Extrai apenas o nome da classe 'cPost'
 
             # --- Extração de Dados do Post (Pergunta) ---
             if all_posts_and_comments:
                 first_post_element = all_posts_and_comments[0]
-                post_content_elem = first_post_element.find("div", class_="cPost_contentWrap")
+                # Conteúdo do Post (USA SELETOR_CONTEUDO_POST_COMENTARIO)
+                post_content_elem = first_post_element.find("div", class_=SELETOR_CONTEUDO_POST_COMENTARIO.split('.')[-1])
                 post_content = "\n".join([p.text for p in post_content_elem.find_all("p")]) if post_content_elem else "Conteúdo não encontrado"
 
                 posts_data.append({
@@ -90,7 +98,8 @@ try:
             if len(all_posts_and_comments) > 1:
                 for comment_body in all_posts_and_comments[1:]:
                     try:
-                        comment_text_elem = comment_body.find("div", class_="cPost_contentWrap")
+                        # Conteúdo do Comentário (USA SELETOR_CONTEUDO_POST_COMENTARIO)
+                        comment_text_elem = comment_body.find("div", class_=SELETOR_CONTEUDO_POST_COMENTARIO.split('.')[-1])
                         comment_text = "\n".join([p.text for p in comment_text_elem.find_all("p")]) if comment_text_elem else "Comentário não encontrado"
                         
                         comments_data.append({
@@ -100,7 +109,7 @@ try:
                     except Exception as e:
                         print(f"Erro ao extrair dados de um comentário no link {link}: {e}")
                         continue
-        
+            
         except TimeoutException:
             print(f"Erro: Tempo de espera esgotado para o link {link}.")
         except Exception as e:

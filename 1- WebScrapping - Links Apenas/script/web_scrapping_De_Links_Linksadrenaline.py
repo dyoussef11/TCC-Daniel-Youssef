@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 import csv
 import time
+import random # [MODIFICAÇÃO] Importar random para pausas anti-bloqueio
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
@@ -22,6 +23,7 @@ caminho_raiz_projeto = caminho_script.parent.parent
 sys.path.append(str(caminho_raiz_projeto))
 
 # Agora a importação do módulo 'config' e 'modelo_de_busca' deve funcionar.
+# Se esses módulos não existirem, o script irá falhar aqui.
 from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_DATASET_FINAL
 from modelo_de_busca import ler_e_filtrar_modelos
 
@@ -54,18 +56,21 @@ SELETOR_RESULTADOS_LISTA = "li.block-row.block-row--separated.js-inlineModContai
 SELETOR_RESULTADO_LINK_TITULO = "h3.contentRow-title a" # Link dentro do contêiner do resultado
 SELETOR_BOTAO_PROXIMA_PAGINA = "a.pageNav-jump.pageNav-jump--next" # Link para a próxima página
 
-# --- Configurações iniciais do Selenium (CORRIGINDO DUPLICAÇÃO) ---
+# --- Configurações iniciais do Selenium (OTIMIZAÇÃO DE VELOCIDADE/ANTI-BLOQUEIO) ---
 chrome_options = Options()
-# Mantendo o modo headless comentado para facilitar o debug, se necessário.
-# Se quiser o modo headless, descomente a linha abaixo e remova a linha 'driver = webdriver.Chrome()'
-# chrome_options.add_argument("--headless") 
+# [MODIFICAÇÃO] Modo headless ativo para maior velocidade
+chrome_options.add_argument("--headless") 
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--disable-gpu")
+# [MODIFICAÇÃO] Adicionar um User-Agent para parecer um navegador normal
+chrome_options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36")
+
 
 # Inicializa o driver APENAS UMA VEZ.
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-wait = WebDriverWait(driver, 30)
+# [MODIFICAÇÃO] Diminuir o tempo de espera implícita, pois usaremos EC.element_to_be_clickable
+wait = WebDriverWait(driver, 15) 
 
 todos_os_links_Adrenaline = [] # Armazena {"Título": titulo, "Link": link, "Modelo Buscado": modelo}
 contagem_links = 0
@@ -76,6 +81,13 @@ cookie_popup_fechado = False
 for i, modelo_de_busca in enumerate(modelos_a_buscar):
     termo_de_busca = modelo_de_busca 
     
+    # [MODIFICAÇÃO] PAUSA ESTRATÉGICA E ALEATÓRIA ENTRE MODELOS
+    # Crucial para evitar rate limiting e simular um humano
+    if i > 0:
+        sleep_time = random.uniform(5, 10) 
+        print(f"Pausando por {sleep_time:.2f} segundos antes da busca do próximo modelo.")
+        time.sleep(sleep_time)
+
     print(f"\n{'='*70}")
     print(f"INICIANDO BUSCA {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
     print(f"{'='*70}")
@@ -91,9 +103,10 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
                 # Usa a variável de seletor
                 cookie_button = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_COOKIES)))
                 if cookie_button:
+                    # Clicar via JS é mais rápido e confiável
                     driver.execute_script("arguments[0].click();", cookie_button)
                     print("Aviso de cookies aceito.")
-                    time.sleep(2)
+                    # [MODIFICAÇÃO] Remove time.sleep(2) e confia no próximo wait/driver.get
                     cookie_popup_fechado = True
             except:
                 pass 
@@ -124,24 +137,26 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
         search_input.send_keys(Keys.ENTER)
         
         print("Pesquisa iniciada com sucesso! Aguardando a página de resultados...")
-        time.sleep(3) # Tempo extra para o carregamento dos resultados
+        # [MODIFICAÇÃO] Remove time.sleep(3). A próxima chamada WebDriverWait cuidará da espera.
 
     except Exception as e:
         print(f"Erro na fase de busca inicial para '{modelo_de_busca}': {e}. Pulando para o próximo modelo.")
         continue # Pula para o próximo modelo
 
     # --- Passo 2: Coletar links de todas as páginas de resultados ---
+    pagina_atual = 1
     while True:
         try:
             # Aguarda a lista de resultados carregar (usa a variável de seletor)
-            WebDriverWait(driver, 5).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_RESULTADOS_LISTA)))
+            WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_RESULTADOS_LISTA)))
             
             # Encontra todos os elementos que contêm os resultados da busca na página atual
             # Usa a variável de seletor
             resultados = driver.find_elements(By.CSS_SELECTOR, SELETOR_RESULTADOS_LISTA)
             
             # Se não houver resultados na primeira página, sai do loop de paginação e passa para o próximo modelo
-            if not resultados and driver.current_url.endswith("page=1"):
+            # Verifica se a URL é a primeira página ou não tem número de página (implica ser a 1)
+            if not resultados and ('page=1' in driver.current_url or 'search/?type=post' in driver.current_url):
                 print(f"Zero resultados encontrados para o modelo '{modelo_de_busca}'. Pulando para o próximo.")
                 break
 
@@ -170,25 +185,28 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
                     print(f"Erro ao extrair link em resultado individual: {e}")
                     continue
             
-            print(f"Página processada. Novos links: {novos_links_coletados}. Total acumulado: {len(todos_os_links_Adrenaline)}")
+            print(f"Página {pagina_atual} processada. Novos links: {novos_links_coletados}. Total acumulado: {len(todos_os_links_Adrenaline)}")
+            pagina_atual += 1
 
             # Tenta encontrar o botão "Próxima"
             print("Procurando o botão 'Próxima' página...")
             try:
-                # Usa a variável de seletor
-                proxima_pagina_link = WebDriverWait(driver, 2).until(
+                # [MODIFICAÇÃO] Aumenta o tempo de espera para o link da próxima página para 5s (antes era 2s)
+                proxima_pagina_link = WebDriverWait(driver, 5).until(
                     EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_PROXIMA_PAGINA))
                 )
                 
                 print("Navegando para a próxima página...")
                 driver.execute_script("arguments[0].click();", proxima_pagina_link)
-                time.sleep(3) # Pausa para a nova página carregar
+                
+                # [MODIFICAÇÃO] Pausa menor e aleatória na paginação (dentro de um modelo)
+                time.sleep(random.uniform(1.5, 3)) 
             except (TimeoutException, NoSuchElementException):
                 print("Não há mais páginas. Fim da coleta para o modelo atual.")
                 break # Sai do loop se o botão não for encontrado ou clicável
 
         except Exception as e:
-            print(f"Coleta de links finalizada ou ocorreu um erro inesperado: {e}")
+            print(f"Coleta de links finalizada ou ocorreu um erro inesperado na paginação: {e}")
             break
 
 # --- Passo 3: Salvar os dados em um arquivo CSV ---

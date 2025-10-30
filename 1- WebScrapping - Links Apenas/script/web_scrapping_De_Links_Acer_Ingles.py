@@ -97,7 +97,7 @@ def salvar_links_csv(caminho, links):
 
 # --- LOOP PRINCIPAL: Itera sobre cada modelo lido do CSV ---
 for i, modelo_de_busca in enumerate(modelos_a_buscar):
-    termo_de_busca = f'"{modelo_de_busca}"'
+    termo_de_busca = f'{modelo_de_busca}'
     
     print(f"\n{'='*70}")
     print(f"INICIANDO BUSCA {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")

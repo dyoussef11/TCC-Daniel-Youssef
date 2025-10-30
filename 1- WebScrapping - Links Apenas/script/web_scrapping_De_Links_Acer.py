@@ -60,11 +60,12 @@ chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--no-sandbox") # Essencial para alguns ambientes headless
+chrome_options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36")
 
 # Inicializa o driver corretamente com as opções headless
 service = ChromeService(ChromeDriverManager().install())
 driver = uc.Chrome(version_main=141, options=chrome_options)
-driver = uc.Chrome()
+# driver = uc.Chrome()
 wait = WebDriverWait(driver, 30)
 
 site_url = "https://community.acer.com/pt"
@@ -109,7 +110,7 @@ def salvar_links_csv(caminho, links):
 
 # --- LOOP PRINCIPAL: Itera sobre cada modelo lido do CSV ---
 for i, modelo_de_busca in enumerate(modelos_a_buscar):
-    termo_de_busca = f'"{modelo_de_busca}"'
+    termo_de_busca = f'{modelo_de_busca}'
     
     print(f"\n{'='*70}")
     print(f"INICIANDO BUSCA {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
@@ -145,7 +146,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
         print("Pesquisa realizada com sucesso! Aguardando resultados...")
         time.sleep(3) # Pausa maior após a pesquisa é útil
 
-        result_blank = wait.until(
+        result_blank = WebDriverWait(driver, 5).until(
                     EC.presence_of_all_elements_located((By.XPATH, SELETOR_DE_BUSCA_VAZIA))
                 )
 

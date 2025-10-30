@@ -6,7 +6,7 @@ LENOVO,Outros/Não Classificado,Lenovo V15 82KDA01BIH Laptop (AMD Ryzen 3 5300U/
 APPLE,Outros/Não Classificado,Apple MacBook Air 2020 MGND3HN Laptop (Apple M1/ 8GB/ 256GB SSD/ MacOS),MACBOOK AIR 2020 MGND3HN,APPLEMACBOOK,Business/Premium (Apple),,m1 apple,apple apple,8
 INFINIX,Outros/Não Classificado,Infinix INBook Y2 Plus Laptop (11th Gen Core i5/ 16GB/ 512GB SSD/ Win 11 Home),INBOOK Y2 PLUS,INFINIXINBOOK,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming F15 FX506HF-HN024W Gaming Laptop (11th Gen Core i5/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),TUF GAMING F15 FX506HF-HN024W GAMING,HN024WGAMING,Gamer,,core i5 intel,dedicated nvidia,8
-HP,Outros/Não Classificado,HP 15s-fq5007TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),-FQ5007TU,Q5007TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fq5007TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),15S-FQ5007TU,Q5007TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 INFINIX,Série Geral de Performance,Infinix Zerobook 2023 Laptop (13th Gen Core i9/ 32GB/ 1TB SSD/ Win 11 Home),ZEROBOOK 2023,INFINIXZEROBOOK,Performance/Geral,,core i9 intel,integrated intel,32
 DELL,Notebook Geral,Dell Inspiron 3520 D560896WIN9B Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11),INSPIRON 3520 D560896WIN9B,DELLINSPIRON,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 SAMSUNG,Outros/Não Classificado,Samsung Galaxy Book2 Pro 13 Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/ Win11),GALAXY BOOK2 PRO 13,SAMSUNGGALAXY,Geral/Baixa Performance,,core i5 intel,integrated intel,16
@@ -40,7 +40,7 @@ MSI,MSI Thin (Gaming Slim/Entrada),MSI Thin GF63 12VE-071IN Gaming Laptop (12th 
 DELL,Dell Business (Latitude/Vostro),Dell Vostro 3425 Laptop (AMD Ryzen 5 5625U/ 8GB/ 512GB SSD/ Win11 Home),VOSTRO 3425,DELLVOSTRO,Business/Premium,,ryzen 5 amd,integrated amd,8
 HP,HP Victus (Gaming de Entrada),HP Victus 16-s0095AX Gaming Laptop (AMD Ryzen 7 7840HS/ 16GB/ 512GB SSD/ Win11/ 6GB Graph),VICTUS 16-S0095AX GAMING,S0095AXGAMING,Gamer,,ryzen 7 amd,dedicated nvidia,16
 HP,HP Victus (Gaming de Entrada),HP Victus 15-FB1001AX Gaming Laptop (AMD Ryzen 5 7535HS/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 15-FB1001AX GAMING,B1001AXGAMING,Gamer,,ryzen 5 amd,dedicated nvidia,8
-HP,Outros/Não Classificado,HP 15s-eq2132AU Laptop (AMD Ryzen 5 5500U/ 16GB/ 512GB SSD/ Win11 Home),-EQ2132AU,Q2132AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,16
+HP,Outros/Não Classificado,HP 15s-eq2132AU Laptop (AMD Ryzen 5 5500U/ 16GB/ 512GB SSD/ Win11 Home),15S-EQ2132AU,Q2132AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,16
 HP,HP Omen (Gaming),HP Omen 16-u0005TX Gaming Laptop (13th Gen Core i7/ 16GB/ 1TB SSD/ Win11 Home/ 8GB Graph),OMEN 16-U0005TX GAMING,U0005TXGAMING,Gamer,,core i7 intel,dedicated nvidia,16
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming F17 FX707ZC4-HX067W Gaming Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/ Win11/ 4GB Graph),TUF GAMING F17 FX707ZC4-HX067W GAMING,HX067WGAMING,Gamer,,core i5 intel,dedicated nvidia,16
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming F15 2023 FX507ZV-LP094W Gaming Laptop (12th Gen Core i7/ 16GB/512GB SSD/ Win11 Home/ 8GB Graph),TUF GAMING F15 2023 FX507ZV-LP094W GAMING,2023FX507ZV,Gamer,,core i7 intel,dedicated nvidia,16
@@ -66,7 +66,7 @@ MSI,Outros/Não Classificado,MSI Bravo 15 B7ED-012IN Gaming Laptop (AMD Ryzen 5 
 ASUS,ROG Strix (Gaming Performance),Asus ROG Strix G16 2023 G614JJ-N3086WS Gaming Laptop (13th Gen Core i5/ 16GB/ 512GB SSD/ Win11/ 6GB Graph),ROG STRIX G16 2023 G614JJ-N3086WS GAMING,2023G614JJ,Gamer,,core i5 intel,dedicated nvidia,16
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fb1016AX  Gaming Laptop (AMD Ryzen 5 7535HS/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 15-FB1016AX GAMING,GAMINGLAPTOP,Gamer,,ryzen 5 amd,dedicated nvidia,8
 LENOVO,Série Geral de Performance,Lenovo Yoga 7 82YM0074IN Laptop (AMD Ryzen 7 7735U/ 16GB/ 1TB SSD/ Win11 Home),YOGA 7 82YM0074IN,82YM0074IN,Geral/Média Performance,,ryzen 7 amd,integrated amd,16
-HP,Outros/Não Classificado,HP 15S-FQ5202TU Laptop (12th Gen Core i5/ 8 GB RAM/ 512 GB SSD/ Win 11),-FQ5202TU,Q5202TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15S-FQ5202TU Laptop (12th Gen Core i5/ 8 GB RAM/ 512 GB SSD/ Win 11),15S-FQ5202TU,Q5202TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,8
 HP,HP Victus (Gaming de Entrada),HP Victus15-fb0147AX Gaming Laptop (Ryzen 5 5600H/ 8GB/ 512GB SSD/ Win11 Home/ 4GB Graph),VICTUS15-FB0147AX GAMING,ICTUS15FB0147AX,Gamer,,ryzen 5 amd,dedicated amd,8
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming F15  FX506HF-HN075W Gaming Laptop (11th Gen Core i5/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),TUF GAMING F15 FX506HF-HN075W GAMING,HN075WGAMING,Gamer,,core i5 intel,dedicated nvidia,8
 LENOVO,Lenovo LOQ (Gaming Acessível),Lenovo LOQ 15IRH8 82XV00F5IN 2023 Gaming Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/ Win11/ 6GB Graph),LOQ 15IRH8 82XV00F5IN 2023 GAMING,15IRH882XV00F5IN,Gamer,,core i5 intel,dedicated nvidia,16
@@ -77,24 +77,24 @@ ASUS,Asus Zenbook (Premium/Ultrafino),Asus Zenbook 14X OLED 2023 M5401QA-KM541WS
 HP,Outros/Não Classificado,HP Pavilion 15-eh2050AU Laptop (AMD Ryzen 5 5625U/ 8GB/ 512GB SSD/ Win11 Home),PAVILION 15-EH2050AU,H2050AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
 ACER,Acer Predator (Gaming High-End),Acer Predator Helios Neo 16 PHN16-71 Laptop (13th Gen Core i7/ 16GB/ 512GB SSD/ Win11/ 6GB Graph),PREDATOR HELIOS NEO 16 PHN16-71,ACERPREDATOR,Gamer,,core i7 intel,dedicated nvidia,16
 HP,Outros/Não Classificado,HP 250 G8 7M6L7PA Laptop (11th Gen Core i3/ 8GB/ 1TB 256GB SSD/ Win11),250 G8 7M6L7PA,7M6L7PALAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
-HP,Outros/Não Classificado,HP 15-fc0025AU Laptop (AMD Ryzen 3 7320U/ 8GB/ 512GB SSD/ Win11 Home),15-FC0025AU,C0025AULAPTOP,Geral/Baixa Performance,,ryzen 3 amd,integrated amd,8
-HP,Outros/Não Classificado,HP 15-fc0028AU Laptop (AMD Ryzen 5 7520U/ 8GB/ 512GB SSD/ Win11 Home),15-FC0028AU,C0028AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
-HP,Outros/Não Classificado,HP 15s-fq2717TU Laptop (11th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),-FQ2717TU,Q2717TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15-fc0025AU Laptop (AMD Ryzen 3 7320U/ 8GB/ 512GB SSD/ Win11 Home),15S-FC0025AU,C0025AULAPTOP,Geral/Baixa Performance,,ryzen 3 amd,integrated amd,8
+HP,Outros/Não Classificado,HP 15-fc0028AU Laptop (AMD Ryzen 5 7520U/ 8GB/ 512GB SSD/ Win11 Home),15S-FC0028AU,C0028AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
+HP,Outros/Não Classificado,HP 15s-fq2717TU Laptop (11th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),15S-FQ2717TU,Q2717TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 DELL,Dell G Series (Gaming),Dell G15-5520 Gaming Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),G15-5520 GAMING,5520GAMING,Gamer,,core i5 intel,dedicated nvidia,8
 ASUS,ROG Flow (2-in-1 Gaming),Asus ROG Flow X13 GV301RC-LJ073WS Gaming Laptop (AMD Ryzen 9 6900HS/ 16GB/ 1TB SSD/ Win11 Home/ 4GB Graph),ROG FLOW X13 GV301RC-LJ073WS GAMING,GV301RCLJ073WS,Gamer,,ryzen 9 amd,dedicated nvidia,16
 ACER,Outros/Não Classificado,Acer TravelMate TMP214-53 Business Laptop (11th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Home),TRAVELMATE TMP214-53 BUSINESS,ACERTRAVELMATE,Geral/Baixa Performance,,core i5 intel,integrated intel,16
-HP,Outros/Não Classificado,HP 15s-eq2144au Laptop (Ryzen 5 5500U/ 8GB/ 512GB SSD/ Win11 Home),-EQ2144AU,Q2144AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
+HP,Outros/Não Classificado,HP 15s-eq2144au Laptop (Ryzen 5 5500U/ 8GB/ 512GB SSD/ Win11 Home),15S-EQ2144AU,Q2144AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
 HP,HP Spectre (Premium/2-in-1),HP Spectre x360 16-aa0665TU Laptop (Intel Core Ultra 7/ 32GB/ 2TB SSD/ Win11 Home),SPECTRE X360 16-AA0665TU,A0665TULAPTOP,Business/Premium,2024,core ultra 7 intel,dedicated intel,32
 LENOVO,Outros/Não Classificado,Lenovo V15 G4 82YU00W9IN Laptop (Ryzen 5 7520U/ 8GB/ 512GB SSD/ Win11 Home),V15 G4 82YU00W9IN,82YU00W9IN,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
 DELL,Outros/Não Classificado,Dell 5530 G15 Gaming Laptop (13th Gen Core i9/ 16GB/ 1TB SSD/ Win11/ 8GB Graph),5530 G15 GAMING,GAMINGLAPTOP,Gamer,,core i9 intel,dedicated nvidia,16
 HP,HP Spectre (Premium/2-in-1),HP Spectre x360 14-eu0666TU Laptop (Intel Core Ultra 7/ 32GB/ 1TB SSD/ Win11 Home),SPECTRE X360 14-EU0666TU,U0666TULAPTOP,Business/Premium,2024,core ultra 7 intel,dedicated intel,32
 LENOVO,Lenovo Legion Pro (High-End Gaming),Lenovo Legion Pro 5 16IRX8 82WK00MWIN Gaming Laptop (13th Gen Core i7/ 16GB/ 1TB SSD/ Win11/ 8GB Graph),LEGION PRO 5 16I 8 82WK00MWIN GAMING,LENOVOLEGION,Gamer,,core i7 intel,dedicated nvidia,16
 HP,HP Victus (Gaming de Entrada),HP Victus 15-FA1098TX Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/ Win11 Home/ 4GB Graph),VICTUS 15-FA1098TX,A1098TXLAPTOP,Gamer,,core i5 intel,dedicated nvidia,8
-HP,Série Geral de Performance,HP 15s-er2004AU Laptop (AMD Ryzen 7 5700U/ 16GB/ 512GB SSD/ Win11),-ER2004AU,R2004AULAPTOP,Geral/Média Performance,,ryzen 7 amd,integrated amd,16
+HP,Série Geral de Performance,HP 15s-er2004AU Laptop (AMD Ryzen 7 5700U/ 16GB/ 512GB SSD/ Win11),15S-ER2004AU,R2004AULAPTOP,Geral/Média Performance,,ryzen 7 amd,integrated amd,16
 ULTIMUS,Outros/Não Classificado,Ultimus Lite NU14U4INC44BN-CS Laptop (Celeron N4020/ 4GB/ 256GB SSD/ Win11 Home),LITE NU14U4INC44BN-CS,LITENU14U4INC,Geral/Baixa Performance,,celeron intel,integrated intel,4
 ZEBRONICS,Outros/Não Classificado,Zebronics Pro Series Z ZEB-NBC 3S 2023 Laptop (12th Gen Core i3 / 8GB/ 512GB SSD/ Win11 Home),PRO SERIES Z ZEB-NBC 2023,2023LAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 HP,HP Spectre (Premium/2-in-1),HP Spectre x360 14-eu0556TU Laptop (Intel Core Ultra 7/ 32GB/ 1TB SSD/ Win11 Home),SPECTRE X360 14-EU0556TU,U0556TULAPTOP,Business/Premium,2024,core ultra 7 intel,dedicated intel,32
-HP,Outros/Não Classificado,HP 15s-fq5185TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),-FQ5185TU,Q5185TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fq5185TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),15S-FQ5185TU,Q5185TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 ZEBRONICS,Outros/Não Classificado,Zebronics Pro Series Y ZEB-NBC 2S Laptop (11th Gen Core i5 / 16GB/ 512GB SSD/ Win11 Home),PRO SERIES Y ZEB-NBC,ZEBRONICS PRO SERIES Y ZEB_NA_UNKNOWN_CPU_INTEGRATED_16GB,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 ZEBRONICS,Outros/Não Classificado,Zebronics Pro Series Y ZEB-NBC 1S Laptop (11th Gen Core i3 / 8GB/ 512GB SSD/ Win11 Home),PRO SERIES Y ZEB-NBC,ZEBRONICS PRO SERIES Y ZEB_NA_UNKNOWN_CPU_INTEGRATED_8GB,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 HP,Outros/Não Classificado,HP Pavilion 14-dv2153TU Laptop (12th Gen Core i5/ 16GB/ 1TB SSD/ Win 11),PAVILION 14-DV2153TU,V2153TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
@@ -125,7 +125,7 @@ HP,HP Omen (Gaming),HP Omen 16-wd0880TX Gaming Laptop (13th Gen Core i5/ 16GB/ 5
 DELL,Dell G Series (Gaming),Dell G15-5520 2023 Laptop (12th Gen Core i5/ 16GB/ 1TB SSD/ Win11 Home/ 4GB Graph),G15-5520 2023,2023LAPTOP,Geral/Baixa Performance,,core i5 intel,dedicated nvidia,16
 CHUWI,Outros/Não Classificado,Chuwi CoreBook X Laptop (10th Gen Core i3/ 8GB/ 512GB SSD/ Win11),Outros/Não Classificado,CHUWICOREBOOK,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 MSI,Outros/Não Classificado,MSI Modern 14 C11M-029IN Laptop (11th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Home),MODERN 14 C11M-029IN,029INLAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
-HP,Série Geral de Performance,HP 15s-ey2001AU Laptop (AMD Ryzen 7 5700U/ 16GB/ 512GB SSD/ Win11 Home),-EY2001AU,Y2001AULAPTOP,Geral/Média Performance,,ryzen 7 amd,integrated amd,16
+HP,Série Geral de Performance,HP 15s-ey2001AU Laptop (AMD Ryzen 7 5700U/ 16GB/ 512GB SSD/ Win11 Home),15S-EY2001AU,Y2001AULAPTOP,Geral/Média Performance,,ryzen 7 amd,integrated amd,16
 HP,Outros/Não Classificado,HP Pavilion 15-eg3079TU Laptop (13th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Pro),PAVILION 15-EG3079TU,G3079TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 MSI,Outros/Não Classificado,MSI Modern 14 C12M-671IN Laptop (12th Gen Core i7/ 16GB/ 512GB SSD/ Win11 Home),MODERN 14 C12M-671IN,671INLAPTOP,Geral/Baixa Performance,,core i7 intel,integrated intel,16
 MSI,MSI Thin (Gaming Slim/Entrada),MSI Thin GF63 11UC-1474IN Gaming Laptop (11th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Home/ 4GB Graph),THIN GF63 11UC-1474IN GAMING,11UC1474IN,Gamer,,core i5 intel,dedicated nvidia,16
@@ -137,10 +137,10 @@ ASUS,TUF Gaming (Gaming Acessível),ASUS TUF Gaming A16 Advantage Edition FA617X
 ASUS,ROG Strix (Gaming Performance),Asus ROG Strix G16 2023 G614JV-N4141WS Gaming Laptop (13th Gen Core i9/ 16GB/ 1TB SSD/ Win11/ 8GB Graph),ROG STRIX G16 2023 G614JV-N4141WS GAMING,2023G614JV,Gamer,,core i9 intel,dedicated nvidia,16
 ASUS,ROG Strix (Gaming Performance),Asus ROG Strix G16 2023 G614JI-N4151WS Gaming Laptop (13th Gen Core i9/ 16GB/ 1TB SSD/ Win11/ 8GB Graph),ROG STRIX G16 2023 G614JI-N4151WS GAMING,2023G614JI,Gamer,,core i9 intel,dedicated nvidia,16
 ASUS,ROG Strix (Gaming Performance),Asus ROG Strix G16 2023 G614JU-N3200WS Gaming Laptop (13th Gen Core i7/ 16GB/ 1TB SSD/ Win11/ 6GB Graph),ROG STRIX G16 2023 G614JU-N3200WS GAMING,2023G614JU,Gamer,,core i7 intel,dedicated nvidia,16
-HP,Outros/Não Classificado,HP 15s-fr4001TU Laptop (11th Gen Core i5/16GB/ 512GB SSD/ Win11 Home),-FR4001TU,R4001TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
+HP,Outros/Não Classificado,HP 15s-fr4001TU Laptop (11th Gen Core i5/16GB/ 512GB SSD/ Win11 Home),15S-FR4001TU,R4001TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 MSI,MSI Mid-Range (Katana/Pulse),MSI Katana 15 B12UDXK-1005IN Gaming Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Home/ 6GB Graph),KATANA 15 B12UDXK-1005IN GAMING,B12UDXK1005IN,Gamer,,core i5 intel,dedicated nvidia,16
-HP,Outros/Não Classificado,HP 15s-fr5009TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),-FR5009TU,R5009TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
-HP,Outros/Não Classificado,HP 15-fd0013TU Laptop (13th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Home),15-FD0013TU,D0013TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
+HP,Outros/Não Classificado,HP 15s-fr5009TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),15S-FR5009TU,R5009TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15-fd0013TU Laptop (13th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Home),15S-FD0013TU,D0013TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming F17 FX706HF-HX018W Laptop (11th Gen Core i5/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),TUF GAMING F17 FX706HF-HX018W,HX018WLAPTOP,Gamer,,core i5 intel,dedicated nvidia,8
 HP,Outros/Não Classificado,HP 15-eg3036TU Laptop (13th Gen Core i7/ 16GB/ 1TB SSD/ Win11 Home),15-EG3036TU,G3036TULAPTOP,Geral/Baixa Performance,,core i7 intel,integrated intel,16
 MSI,Outros/Não Classificado,MSI Cyborg 15 A12UCX-264IN Gaming Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/ Win11/ 4GB Graph),CYBORG 15 A12UCX-264IN GAMING,264INGAMING,Gamer,,core i5 intel,dedicated nvidia,16
@@ -154,7 +154,7 @@ HP,Outros/Não Classificado,HP ProBook 445 G8 Business Laptop (AMD Ryzen 7 5800U
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fb0107AX Gaming Laptop (Ryzen 7-5800H/ 16GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 15-FB0107AX GAMING,B0107AXGAMING,Gamer,,ryzen 7 amd,dedicated nvidia,16
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fb0777AX Gaming Laptop (AMD Ryzen 5 5600H/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 15-FB0777AX GAMING,B0777AXGAMING,Gamer,,ryzen 5 amd,dedicated amd,8
 HP,HP Victus (Gaming de Entrada),HP Victus 16-d0311TX Gaming Laptop (11th Gen Core i5/ 16GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 16-D0311TX GAMING,D0311TXGAMING,Gamer,,core i5 intel,dedicated nvidia,16
-HP,Outros/Não Classificado,HP 15s-fr4000TU Laptop (11th Gen Core i5/ 8GB/ 512GB SSD/ Win11 Home),-FR4000TU,R4000TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fr4000TU Laptop (11th Gen Core i5/ 8GB/ 512GB SSD/ Win11 Home),15S-FR4000TU,R4000TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,8
 HP,Outros/Não Classificado,HP Envy x360 13-bf0121TU  Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/ Win11),ENVY X360 13-BF0121TU,HP ENVY X360 13_NA_UNKNOWN_CPU_INTEGRATED_16GB,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 HP,Outros/Não Classificado,HP Pavilion 14-dv2014TU Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/ Win 11),PAVILION 14-DV2014TU,V2014TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 HP,Outros/Não Classificado,HP 255 G8 6X4B2PA Laptop (AMD Athlon 3050/ 4GB/ 256GB SSD/ DOS),255 G8 6X4B2PA,6X4B2PALAPTOP,Geral/Baixa Performance,,other amd,integrated amd,4
@@ -162,10 +162,10 @@ MSI,Creator/Estação de Trabalho,MSI Creator M16 A12UD-633IN Laptop (12th Gen C
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fb0050AX Gaming Laptop (AMD Ryzen 5 5600H/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 15-FB0050AX GAMING,B0050AXGAMING,Gamer,,ryzen 5 amd,dedicated nvidia,8
 HP,Outros/Não Classificado,HP Pavilion 15s-fq5112TU Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/ Win11),PAVILION -FQ5112TU,Q5112TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 ASUS,ROG Zephyrus (Slim Performance),Asus ROG Zephyrus G15 2022 GA503RW-LN067WS Gaming Laptop (AMD Ryzen 9 6900HS/ 16GB/ 1TB SSD/ Win11 Home/ 8GB Graph),ROG ZEPHYRUS G15 2022 GA503RW-LN067WS GAMING,2022GA503RW,Gamer,,ryzen 9 amd,dedicated nvidia,16
-HP,Outros/Não Classificado,HP 15s-fq2673TU Laptop (11th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),-FQ2673TU,Q2673TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fq2673TU Laptop (11th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),15S-FQ2673TU,Q2673TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 HP,Outros/Não Classificado,HP Pavilion 15-eg2009TU Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/ Win11 Home),PAVILION 15-EG2009TU,G2009TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,8
 HP,Outros/Não Classificado,HP 247 G8 67U77PA Laptop (Athlon P-3045B HD/ 8GB/ 1TB HDD/ Win11),247 G8 67U77PA,67U77PALAPTOP,Geral/Baixa Performance,,other amd,integrated amd,8
-HP,Outros/Não Classificado,HP 14s-fq1092au Laptop (Ryzen 5 5500U/ 8GB/ 512GB SSD/ Win11 Home),-FQ1092AU,Q1092AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
+HP,Outros/Não Classificado,HP 14s-fq1092au Laptop (Ryzen 5 5500U/ 8GB/ 512GB SSD/ Win11 Home),14S-FQ1092AU,Q1092AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
 REALME,Série Geral de Performance,Realme Book Slim Laptop (11th Gen Core i3/ 8GB/ 256GB SSD/ Win10),BOOK SLIM,SLIMLAPTOP,Performance/Geral,,core i3 intel,integrated intel,8
 AVITA,Outros/Não Classificado,Avita Pura NS14A6 Laptop (AMD Ryzen 5/ 8GB/ 512GB SSD/ Win10),PURA NS14A6,NS14A6LAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
 HP,Outros/Não Classificado,HP EliteBook 840 G6 (8LX79PA) Laptop (8th Gen Core i5/ 8GB/ 512GB SSD/ Win10),ELITEBOOK 840 G6,HP ELITEBOOK 840 G6_NA_UNKNOWN_CPU_INTEGRATED_8GB,Business/Premium,,core i5 intel,integrated intel,8
@@ -179,7 +179,7 @@ HP,Outros/Não Classificado,HP 240 G9 8J0S5PA Laptop (12th Gen Core i5/ 8GB/ 512
 LENOVO,Outros/Não Classificado,Lenovo V14 82KAA0AMIH Laptop (11th Gen Core i5/ 8GB/ 512GB SSD/ DOS),V14 82KAA0AMIH,82KAA0AMIH,Geral/Baixa Performance,,core i5 intel,integrated intel,8
 LENOVO,Outros/Não Classificado,Lenovo V14 82KAA01QIH Laptop (11th Gen Core i5/ 8GB/ 512GB SSD/ Win10 Home),V14 82KAA01QIH,82KAA01QIH,Geral/Baixa Performance,,core i5 intel,integrated intel,8
 MSI,MSI Thin (Gaming Slim/Entrada),MSI Thin GF63 11UC-1494IN Gaming Laptop (11th Gen Core i7/ 16GB/ 1TB 256GB SSD/ Win11 Home/ 4GB Graph),THIN GF63 11UC-1494IN GAMING,11UC1494IN,Gamer,,core i7 intel,dedicated nvidia,16
-HP,Série Geral de Performance,HP 15s-EQ2084AU Laptop (AMD Ryzen 7 5700U/ 16GB/ 512GB SSD/ Win11 Home),-EQ2084AU,Q2084AULAPTOP,Geral/Média Performance,,ryzen 7 amd,integrated amd,16
+HP,Série Geral de Performance,HP 15s-EQ2084AU Laptop (AMD Ryzen 7 5700U/ 16GB/ 512GB SSD/ Win11 Home),15S-EQ2084AU,Q2084AULAPTOP,Geral/Média Performance,,ryzen 7 amd,integrated amd,16
 HP,Outros/Não Classificado,HP 250 G9 95X40PA Laptop (12th Gen Core i7/ 8GB/ 512 GB SSD/ DOS),250 G9 95X40PA,95X40PALAPTOP,Geral/Baixa Performance,,core i7 intel,integrated intel,8
 DELL,Dell Business (Latitude/Vostro),Dell Latitude 7440 14 Laptop (13th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Pro),LATITUDE 7440 14,DELLLATITUDE,Business/Premium,,core i5 intel,integrated intel,16
 AVITA,Outros/Não Classificado,Avita Liber AM15A2INT56F Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),LIBER AM15A2INT56F,LIBERAM15A2INT,Geral/Baixa Performance,,core i3 intel,integrated intel,8
@@ -190,7 +190,7 @@ AVITA,Outros/Não Classificado,Avita Pura S102 Laptop (Celeron N4020/ 8GB/ 512GB
 HP,HP Spectre (Premium/2-in-1),HP Spectre x360 14-ef2036TU Laptop (13th Gen Core i7/ 16GB/ 512GB SSD/ Win11 Home),SPECTRE X360 14-EF2036TU,F2036TULAPTOP,Business/Premium,,core i7 intel,integrated intel,16
 HP,HP Omen (Gaming),HP Omen 16-xd0005AX Gaming Laptop (AMD Ryzen 7 7840HS/ 16GB/ 1TB SSD/ Win11/ 6GB Graph),OMEN 16-XD0005AX GAMING,D0005AXGAMING,Gamer,,ryzen 7 amd,dedicated nvidia,16
 HP,Outros/Não Classificado,HP ProBook 440 G9 821M3PA Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/ Win11),PROBOOK 440 G9 821M3PA,821M3PALAPTOP,Business/Premium,2023,core i5 intel,integrated intel,16
-HP,Outros/Não Classificado,HP 15s-FR5012TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),-FR5012TU,R5012TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-FR5012TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),15S-FR5012TU,R5012TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 LENOVO,Outros/Não Classificado,Lenovo S14 Gen 3 82TW000VIH Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/ DOS),S14 GEN 3 82TW000VIH,82TW000VIH,Geral/Baixa Performance,,core i5 intel,integrated intel,8
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fa1134TX Laptop (12th Gen Core i7/ 16GB/ 512GB SSD/ Win11 Home/ 6GB Graph),VICTUS 15-FA1134TX,A1134TXLAPTOP,Gamer,,core i7 intel,dedicated nvidia,16
 MICROSOFT,Microsoft Surface (Premium/2-in-1),Microsoft Surface Laptop Go 3 XK1-00045 (12th Gen Core i5/ 8GB RAM/ 256 GB SSD/ Win 11),SURFACE LAPTOP GO 3 XK1-00045,CROSOFTSURFACE,Business/Premium (Surface),,core i5 intel,integrated intel,8
@@ -204,7 +204,7 @@ LENOVO,Outros/Não Classificado,Lenovo Yoga 7 82YL0095IN Laptop (13th Gen Core i
 ACER,Outros/Não Classificado,Acer Chromebook CB314-3H NX.K04SI.008 Laptop (Intel Celeron N4500/ 8GB/ 64GB SSD/ Chrome OS),CHROMEBOOK CB314- NX K04SI 008,ACERCHROMEBOOK,Geral/Baixa Performance,,celeron intel,integrated intel,8
 HP,HP Omen (Gaming),HP Omen 17-ck2011TX Gaming Laptop (13th Gen Core i9/ 32GB/ 1TB SSD/ Win11/ 16GB Graph),OMEN 17-CK2011TX GAMING,K2011TXGAMING,Gamer,,core i9 intel,dedicated nvidia,32
 PRIMEBOOK,Série Geral de Performance,Primebook PBMTWIFI11064 Wi-Fi Laptop (MediaTek MT8183/ 4GB/ 64B eMMC/ Prime OS),PBMTWIFI11064 WI-FI,IMEBOOKPBMTWIFI,Geral/Média Performance,,other other,integrated arm,4
-HP,Outros/Não Classificado,HP 15s-fy5007TU Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/ Win11 Home),-FY5007TU,Y5007TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fy5007TU Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/ Win11 Home),15S-FY5007TU,Y5007TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,8
 ZEBRONICS,Outros/Não Classificado,Zebronics ZEB-NBC 5S Laptop (12th Gen Core i7 / 16GB/ 512GB SSD/ Win11 Home),ZEB-NBC,ZEBRONICS ZEB_NA_UNKNOWN_CPU_INTEGRATED_16GB,Geral/Baixa Performance,,core i7 intel,integrated intel,16
 HP,Performance/Geral,HP Pavilion Plus 14-ey0789AU Laptop (AMD Ryzen 7 7840H/ 16GB/ 1TB SSD/ Win 11),PAVILION PLUS 14-EY0789AU,Y0789AULAPTOP,Geral/Média Performance,,ryzen 7 amd,integrated amd,16
 HP,HP Omen (Gaming),HP Omen 17-ck2008AX Gaming Laptop (13th Gen Core i7/ 16 GB RAM/ 1TB SSD/ Win 11/ 12GB Graphics),OMEN 17-CK2008AX GAMING,K2008AXGAMING,Gamer,,core i7 intel,dedicated nvidia,16
@@ -216,11 +216,11 @@ LENOVO,Outros/Não Classificado,Lenovo Yoga Slim 6 14IRH8 83E00015IN Laptop (13t
 LENOVO,Outros/Não Classificado,Lenovo Yoga Slim 6 83E00006IN Laptop (13th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Home),YOGA SLIM 6 83E00006IN,83E00006IN,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 ASUS,Outros/Não Classificado,Asus CX1101CMA-GJ0004 Chromebook (Celeron N4020/ 4GB/ 32GB eMMC/ Chrome OS),CX1101CMA-GJ0004 CHROMEBOOK,ASUSCX1101CMA,Geral/Baixa Performance,,celeron intel,integrated intel,4
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming F17 FX706HF-HX019W Laptop (11th Gen Core i5/ 16GB/ 512GB SSD/ Win11/ 4GB Graph),TUF GAMING F17 FX706HF-HX019W,HX019WLAPTOP,Gamer,,core i5 intel,dedicated nvidia,16
-HP,Outros/Não Classificado,HP 15s-fy5006TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),-FY5006TU,Y5006TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fy5006TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),15S-FY5006TU,Y5006TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 LENOVO,Outros/Não Classificado,Lenovo Yoga Slim 6 14IRH8 83E00007IN Laptop (13th Gen Core i7/ 16GB/ 512GB SSD/ Win11 Home),YOGA SLIM 6 14IRH8 83E00007IN,14IRH883E00007IN,Geral/Baixa Performance,,core i7 intel,integrated intel,16
 MSI,Creator/Estação de Trabalho,MSI CreatorPro Z16 HX B13VKTO-214IN Laptop (13th Gen Core i9/ 64GB/ 2TB SSD/ Win11/ RTX 3000 Ada),CREATORPRO Z16 HX B13VKTO-214IN,CREATORPRO,Creator/Workstation,,core i9 intel,dedicated nvidia,4
 MSI,Outros/Não Classificado,MSI Bravo 15 B7ED-011IN Gaming Laptop (AMD Ryzen 7 7735HS/ 16GB/ 512GB SSD/ Win11 Home/ 4GB Graph),BRAVO 15 B7ED-011IN GAMING,011INGAMING,Gamer,,ryzen 7 amd,dedicated amd,16
-HP,Outros/Não Classificado,HP 14s-dr3002TU Laptop (Intel Celeron N4500/ 8GB/ 512GB SSD/ Win11 Home),-DR3002TU,R3002TULAPTOP,Geral/Baixa Performance,,celeron intel,integrated intel,8
+HP,Outros/Não Classificado,HP 14s-dr3002TU Laptop (Intel Celeron N4500/ 8GB/ 512GB SSD/ Win11 Home),15S-DR3002TU,R3002TULAPTOP,Geral/Baixa Performance,,celeron intel,integrated intel,8
 HP,Outros/Não Classificado,HP Zbook FireFly 14 G8 4F0W6PA Laptop (11th Gen Core i5/ 16GB/ 512GB SSD/ Win11 ),ZBOOK FIREFLY 14 G8 4F0W6PA,ZBOOKFIREFLY,Creator/Workstation,,core i5 intel,integrated intel,16
 LENOVO,Outros/Não Classificado,Lenovo V14 G4 Laptop (AMD Ryzen 3 7320U / 8GB/ 512GB SSD/ Win11 Home),V14 G4,LENOVO V14 G4 LAPTOP_NA_RYZEN3_INTEGRATED_8GB,Geral/Baixa Performance,,ryzen 3 amd,integrated amd,8
 LENOVO,Outros/Não Classificado,Lenovo V15 G3 82TTA02UIH Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/ Win11),V15 G3 82TTA02UIH,82TTA02UIH,Geral/Baixa Performance,,core i5 intel,integrated intel,8
@@ -236,7 +236,7 @@ LENOVO,Outros/Não Classificado,Lenovo Yoga Pro 7 82Y700A2IN Laptop (13th Gen Co
 HP,Outros/Não Classificado,HP 15-fc0027AU Laptop (AMD Ryzen 3 7320U/ 8GB/ 512GB SSD/ Win11 Home),15-FC0027AU,C0027AULAPTOP,Geral/Baixa Performance,,ryzen 3 amd,integrated amd,8
 FUJITSU,Outros/Não Classificado,Fujitsu CH 4ZR1L82434 Laptop (13th Gen Core i7/ 16GB/ 512GB SSD/ Win11),CH 4ZR1L82434,1L82434LAPTOP,Geral/Baixa Performance,,core i7 intel,integrated intel,16
 HP,Outros/Não Classificado,HP Pavilion 15-eg3018TU Laptop (13th Gen Core i5/ 16GB/ 1TB SSD/ Win11 Home),PAVILION 15-EG3018TU,G3018TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
-HP,Outros/Não Classificado,HP 15s-fq3066TU Laptop (Intel Celeron N4500/ 8GB/ 512GB SSD/ Win11 Home),-FQ3066TU,Q3066TULAPTOP,Geral/Baixa Performance,,celeron intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fq3066TU Laptop (Intel Celeron N4500/ 8GB/ 512GB SSD/ Win11 Home),15S-FQ3066TU,Q3066TULAPTOP,Geral/Baixa Performance,,celeron intel,integrated intel,8
 HP,Outros/Não Classificado,HP 250 G9 7N179PA Laptop (12th Gen Core i5/ 8 GB RAM/ 512 GB SSD/ Win 11),250 G9 7N179PA,7N179PALAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,8
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming F15 90NR0GW1-M00F00 Laptop (12th Gen Core i7/ 16GB/ 1TB SSD/ Win11/ 4GB Graph),TUF GAMING F15 90NR0GW1-M00F00,M00F00LAPTOP,Gamer,,core i7 intel,dedicated nvidia,16
 HP,Outros/Não Classificado,HP 250 G9 7M659PA Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11),250 G9 7M659PA,7M659PALAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
@@ -250,7 +250,7 @@ HP,HP Omen (Gaming),HP Omen 16-xf0043AX Gaming Laptop (AMD Ryzen 9 7940HS/ 32GB/
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming F15 FX506HF-HN076W Gaming Laptop (11th Gen Core i5/ 16GB/ 512GB SSD/ Win11/ 4GB Graph),TUF GAMING F15 FX506HF-HN076W GAMING,HN076WGAMING,Gamer,,core i5 intel,dedicated nvidia,16
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fb1018AX Gaming Laptop (AMD Ryzen 5 7535HS/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 15-FB1018AX GAMING,B1018AXGAMING,Gamer,,ryzen 5 amd,dedicated nvidia,8
 FUJITSU,Outros/Não Classificado,Fujitsu UH-X 4ZR1L73352 2-in-1 Laptop (13th Gen Core i7/ 16GB/ 1TB SSD/ Win11),UH-X 4ZR1L73352 2-IN-1,FUJITSU UH_NA_UNKNOWN_CPU_INTEGRATED_16GB,Geral/Baixa Performance,,core i7 intel,integrated intel,16
-HP,Outros/Não Classificado,HP 15S-EQ1550AU Laptop (AMD Ryzen 3 3250U/ 8 GB RAM/ 512 GB SSD/ Win 11),-EQ1550AU,Q1550AULAPTOP,Geral/Baixa Performance,,ryzen 3 amd,integrated amd,8
+HP,Outros/Não Classificado,HP 15S-EQ1550AU Laptop (AMD Ryzen 3 3250U/ 8 GB RAM/ 512 GB SSD/ Win 11),15S-EQ1550AU,Q1550AULAPTOP,Geral/Baixa Performance,,ryzen 3 amd,integrated amd,8
 HP,HP Omen (Gaming),HP Omen 16-wf0056TX 834U0PA Gaming Laptop (13th Gen Core i7/ 16 GB RAM/ 512 GB SSD/ Win 11/ 8 GB Graphics),OMEN 16-WF0056TX 834U0PA GAMING,F0056TX834U0PA,Gamer,,core i7 intel,dedicated nvidia,16
 DELL,Dell Alienware (Gaming Premium),Dell Alienware x15 R2 D569947WIN9 Gaming Laptop (12th Gen Core i9/ 32 GB RAM/ 1 TB SSD/ Win 11/ 8 GB Graphics),ALIENWARE X15 R2 D569947WIN9 GAMING,DELLALIENWARE,Gamer,,core i9 intel,dedicated nvidia,32
 LENOVO,Outros/Não Classificado,Lenovo V15 82KB00RJIH Laptop (11th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Home),V15 82KB00RJIH,82KB00RJIH,Geral/Baixa Performance,,core i5 intel,integrated intel,16
@@ -277,7 +277,7 @@ HP,HP Victus (Gaming de Entrada),HP Victus 15-fb0134AX Gaming Laptop (AMD Ryzen 
 LENOVO,Lenovo LOQ (Gaming Acessível),Lenovo LOQ 15IRH8 82XV00F7IN 2023 Gaming Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/ Win11/ 8GB Graph),LOQ 15IRH8 82XV00F7IN 2023 GAMING,15IRH882XV00F7IN,Gamer,,core i5 intel,dedicated nvidia,16
 HP,Outros/Não Classificado,HP Pavilion x360 14-ek1074TU Laptop (13th Gen Core i5/ 16GB/ 512GB SSD/ Win11),PAVILION X360 14-EK1074TU,K1074TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 LENOVO,Lenovo LOQ (Gaming Acessível),Lenovo LOQ 15IRH8 82XV00F6IN 2023 Gaming Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/ Win11/ 6GB Graph),LOQ 15IRH8 82XV00F6IN 2023 GAMING,15IRH882XV00F6IN,Gamer,,core i5 intel,dedicated nvidia,16
-HP,Outros/Não Classificado,HP 15s-fr2515TU Laptop (11th Gen Core i3/ 8GB/ 512GB SSD/ Win11),-FR2515TU,R2515TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fr2515TU Laptop (11th Gen Core i3/ 8GB/ 512GB SSD/ Win11),15S-FR2515TU,R2515TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 LENOVO,Lenovo LOQ (Gaming Acessível),Lenovo LOQ 15APH8 82XT004HIN 2023 Gaming Laptop (AMD Ryzen 7 7840HS/ 16GB/ 512GB SSD/ Win11/ 6GB Graph),LOQ 15APH8 82XT004HIN 2023 GAMING,15APH882XT004HIN,Gamer,,ryzen 7 amd,dedicated nvidia,16
 MSI,Outros/Não Classificado,MSI Vector GP68HX 13VH-072IN Gaming Laptop (13th Gen Core i9/ 32GB/ 1TB SSD/ Win11/ 12GB Graph),VECTOR GP68HX 13VH-072IN GAMING,VECTORGP68HX,Gamer,,core i9 intel,dedicated nvidia,32
 LENOVO,Lenovo LOQ (Gaming Acessível),Lenovo LOQ 15APH8 82XT004JIN 2023 Gaming Laptop (AMD Ryzen 7 7840HS/ 16GB/ 512GB SSD/ Win11/ 6GB Graph),LOQ 15APH8 82XT004JIN 2023 GAMING,15APH882XT004JIN,Gamer,,ryzen 7 amd,dedicated nvidia,16
@@ -292,14 +292,14 @@ MSI,Outros/Não Classificado,MSI Prestige 14 Evo B12M-472IN Laptop (12th Gen Cor
 MSI,Outros/Não Classificado,MSI Modern 15 B12M-613IN Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),MODERN 15 B12M-613IN,613INLAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 MSI,Creator/Estação de Trabalho,MSI Creator Pro M16 B13VI-1273IN Gaming Laptop (13th Gen Core i7/ 16GB/ 1TB SSD/ Win 11/ 6GB Graph),CREATOR PRO M16 B13VI-1273IN GAMING,B13VI1273IN,Gamer,,core i7 intel,dedicated nvidia,16
 MSI,Outros/Não Classificado,MSI Prestige 14H B12UCX-412IN Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/Win11 Home/ 4GB Graphic),PRESTIGE B12UCX-412IN,412INLAPTOP,Geral/Baixa Performance,,core i5 intel,dedicated nvidia,16
-HP,Outros/Não Classificado,HP 15s-fy5005TU Laptop (12th Gen Core i3/ 8GB/ 1TB SSD/ Win11 Home),-FY5005TU,Y5005TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fy5005TU Laptop (12th Gen Core i3/ 8GB/ 1TB SSD/ Win11 Home),15S-FY5005TU,Y5005TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 LENOVO,Outros/Não Classificado,Lenovo Yoga 6 83B2005TIN Laptop (AMD Ryzen 5 7530U/ 16GB/ 512GB SSD/ Win11 Home),YOGA 6 83B2005TIN,83B2005TIN,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,16
-HP,Outros/Não Classificado,HP 15s-fy5004TU Laptop (12th Gen Core i3/ 16GB/ 512GB SSD/ Win11 Home),-FY5004TU,Y5004TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,16
+HP,Outros/Não Classificado,HP 15s-fy5004TU Laptop (12th Gen Core i3/ 16GB/ 512GB SSD/ Win11 Home),15S-FY5004TU,Y5004TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,16
 ASUS,ROG Zephyrus (Slim Performance),Asus ROG Zephyrus G16 2023 GU603ZU-N3023WS Laptop (12th Gen Core i7/ 16GB/ 1TB SSD/ Win11 Home/ 6GB Graph),ROG ZEPHYRUS G16 2023 GU603ZU-N3023WS,2023GU603ZU,Gamer,,core i7 intel,dedicated nvidia,16
 LG,LG Gram (Premium/Ultrafino),LG Gram 14 2023 14Z90R-G.CH54A2 Laptop (13th Gen Core i5/ 16GB/ 512GB SSD/ Win11),GRAM 14 2023 14Z90R-G CH54A2,CH54A2LAPTOP,Business/Premium (Ultrafino),,core i5 intel,integrated intel,16
 HP,Outros/Não Classificado,HP Chromebook x360 14a-ca0505TU Laptop (Intel Celeron N4120/ 4GB/ 64GB eMMC/ Chrome OS),CHROMEBOOK X360 14A-CA0505TU,CHROMEBOOK,Geral/Baixa Performance,,celeron intel,integrated intel,4
 FUJITSU,Outros/Não Classificado,Fujitsu UH-X 4ZR1L12856 Laptop (13th Gen Core i7/ 16GB/ 512GB SSD/ Win11),UH-X 4ZR1L12856,1L12856LAPTOP,Geral/Baixa Performance,,core i7 intel,integrated intel,16
-HP,Outros/Não Classificado,HP 15s-fq3073TU Laptop Intel Pentium Silver N6000/ 8GB/ 512GB SSD/ Win11 Home),-FQ3073TU LAPTOP INTEL,Q3073TULAPTOP,Geral/Baixa Performance,,pentium intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fq3073TU Laptop Intel Pentium Silver N6000/ 8GB/ 512GB SSD/ Win11 Home),15S-FQ3073TU LAPTOP INTEL,Q3073TULAPTOP,Geral/Baixa Performance,,pentium intel,integrated intel,8
 ASUS,ROG Zephyrus G14 (Performance Compacta),Asus ROG Zephyrus G14 GA402NJ-L8094WS Gaming Laptop (AMD Ryzen 7 7735HS/ 16GB/ 512GB SSD/ Win11/ 6GB Graph),ROG ZEPHYRUS G14 GA402NJ-L8094WS GAMING,GA402NJL8094WS,Gamer,,ryzen 7 amd,dedicated nvidia,16
 LG,Outros/Não Classificado,LG UltraPC 16 16U70R-G.AH56A2 Laptop (AMD Ryzen5-7530U/ 16GB/ 512GB SSD/ Win11),ULTRAPC 16 16U70R-G AH56A2,AH56A2LAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,16
 HP,Creator/Estação de Trabalho,HP ZBook Studio G9 16 WUXGA Workstation Laptop (12th Gen Core i7/ 16GB/ 1TB SSD/ Win11/ 6GB Graph),ZBOOK STUDIO G9 16 WUXGA WORKSTATION,ZBOOKSTUDIO,Creator/Workstation,,core i7 intel,dedicated nvidia,16
@@ -358,8 +358,8 @@ LENOVO,Outros/Não Classificado,Lenovo V14 G3 IAP Laptop (12th Gen Core i3/ 8GB/
 LENOVO,Outros/Não Classificado,Lenovo V15 G3 Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/Win11),V15 G3,LENOVO V15 G3 LAPTOP_NA_UNKNOWN_CPU_INTEGRATED_8GB,Geral/Baixa Performance,,core i5 intel,integrated intel,8
 LENOVO,Outros/Não Classificado,Lenovo V15 G3 82C7007SGE Laptop (AMD Ryzen 3 7320U/ 8GB/ 512GB SSD/ Win11 Home),V15 G3 82C7007SGE,82C7007SGE,Geral/Baixa Performance,,ryzen 3 amd,integrated amd,8
 HP,HP Victus (Gaming de Entrada),HP Victus 16-d0302TX Gaming Laptop (11th Gen Core i5/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 16-D0302TX GAMING,D0302TXGAMING,Gamer,,core i5 intel,dedicated nvidia,8
-HP,Outros/Não Classificado,HP 15s-ey1509AU Laptop (AMD Athlon Silver 3050U/ 8GB/ 512GB SSD/ Win11),-EY1509AU,Y1509AULAPTOP,Geral/Baixa Performance,,other amd,integrated amd,8
-HP,Outros/Não Classificado,HP 14s-dr3003TU 832T7PA Laptop (Pentium Silver N6000/ 8GB/ 512GB SSD/ Win11 Home),-DR3003TU 832T7PA,R3003TU832T7PA,Geral/Baixa Performance,,pentium intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-ey1509AU Laptop (AMD Athlon Silver 3050U/ 8GB/ 512GB SSD/ Win11),15S-EY1509AU,Y1509AULAPTOP,Geral/Baixa Performance,,other amd,integrated amd,8
+HP,Outros/Não Classificado,HP 14s-dr3003TU 832T7PA Laptop (Pentium Silver N6000/ 8GB/ 512GB SSD/ Win11 Home),15-DR3003TU 832T7PA,R3003TU832T7PA,Geral/Baixa Performance,,pentium intel,integrated intel,8
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fb0137AX Gaming Laptop (Ryzen 7 5800H/ 16GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 15-FB0137AX GAMING,B0137AXGAMING,Gamer,,ryzen 7 amd,dedicated nvidia,16
 HP,Outros/Não Classificado,HP ProBook 445 G8 7K2J8PA Business Laptop (AMD Ryzen 7 5800U/ 8GB/ 512GB SSD/ FreeDOS),PROBOOK 445 G8 7K2J8PA BUSINESS,7K2J8PABUSINESS,Business/Premium,,ryzen 7 amd,integrated amd,8
 HP,Outros/Não Classificado,HP Pavilion 15s-fq5190TU Laptop (12th Gen Core i7/ 16GB/ 512GB SSD/ Win11 Home),PAVILION -FQ5190TU,Q5190TULAPTOP,Geral/Baixa Performance,,core i7 intel,integrated intel,16
@@ -371,7 +371,7 @@ ACER,Outros/Não Classificado,Acer One 14 Z2-493 Business Laptop (AMD Ryzen 5 / 
 MSI,MSI Mid-Range (Katana/Pulse),MSI Katana 15 B12UDXK-1017IN Gaming Laptop (12th Gen Core i7/ 8GB/ 512GB SSD/ Win11 Home/ 6GB Graph),KATANA 15 B12UDXK-1017IN GAMING,B12UDXK1017IN,Gamer,,core i7 intel,dedicated nvidia,8
 MSI,MSI Mid-Range (Katana/Pulse),MSI Katana 15 B12UDXK-1019IN Gaming Laptop (12th Gen Core i5/ 16GB/ 1TB SSD/ Win11 Home/ 6GB Graph),KATANA 15 B12UDXK-1019IN GAMING,B12UDXK1019IN,Gamer,,core i5 intel,dedicated nvidia,16
 ACER,Outros/Não Classificado,Acer One 14 Business Z2-493 Laptop (Ryzen 3 3250U/ 8GB/ 512GB SSD/ Win11),ONE 14 BUSINESS Z2-493,ACER ONE 14 BUSINESS Z2_NA_RYZEN3_INTEGRATED_8GB,Geral/Baixa Performance,,ryzen 3 amd,integrated amd,8
-HP,Outros/Não Classificado,HP 15s-fq3071TU Laptop (Intel Celeron N4500/ 8GB/ 512GB SSD/ Win11 Home),-FQ3071TU,Q3071TULAPTOP,Geral/Baixa Performance,,celeron intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fq3071TU Laptop (Intel Celeron N4500/ 8GB/ 512GB SSD/ Win11 Home),15S-FQ3071TU,Q3071TULAPTOP,Geral/Baixa Performance,,celeron intel,integrated intel,8
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fb0135AX Gaming Laptop (AMD Ryzen 5 5600H/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 15-FB0135AX GAMING,B0135AXGAMING,Gamer,,ryzen 5 amd,dedicated nvidia,8
 HP,Outros/Não Classificado,HP Pavilion 15-eg3027TU Laptop (13th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Home),PAVILION 15-EG3027TU,G3027TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 DELL,Dell G Series (Gaming),Dell G15-5530 GN553064GRM002ORB1 Gaming Laptop (13th Gen Core i5/ 8GB/ 512GB SSD/ Win11/ 6GB Graph),G15-5530 GN553064GRM002ORB1 GAMING,5530GN553064GRM,Gamer,,core i5 intel,dedicated nvidia,8
@@ -393,15 +393,15 @@ HP,Outros/Não Classificado,HP 15-hr0001TU Laptop (13th Gen Core i5/ 16GB/ 512GB
 MSI,MSI Thin (Gaming Slim/Entrada),MSI Thin GF63 12UCX-269IN Gaming Laptop (12th Gen Core i5/ 16GB/ 1TB 256GB SSD/ Win11 Home/ 4GB Graph),THIN GF63 12UCX-269IN GAMING,269INGAMING,Gamer,,core i5 intel,dedicated nvidia,16
 MSI,MSI Mid-Range (Katana/Pulse),MSI Katana 15 B12UDXK-1006IN Gaming Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/ Win11 Home/ 6GB Graph),KATANA 15 B12UDXK-1006IN GAMING,B12UDXK1006IN,Gamer,,core i5 intel,dedicated nvidia,8
 ACER,Outros/Não Classificado,Acer Swift Go 14 SFG14-41 NX.KG3SI.003 Laptop (AMD Ryzen 5 7530U/ 16GB/ 512GB SSD/ Win11 Home),SWIFT GO 14 SFG14-41 NX KG3SI 003,ACER SWIFT GO 14 SFG14_NA_RYZEN5_INTEGRATED_16GB,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,16
-HP,Outros/Não Classificado,HP 15s-eq1580AU Laptop (AMD Ryzen 3 3250U/ 8GB/ 512GB SSD/ Win11 Home),-EQ1580AU,Q1580AULAPTOP,Geral/Baixa Performance,,ryzen 3 amd,integrated amd,8
+HP,Outros/Não Classificado,HP 15s-eq1580AU Laptop (AMD Ryzen 3 3250U/ 8GB/ 512GB SSD/ Win11 Home),15S-EQ1580AU,Q1580AULAPTOP,Geral/Baixa Performance,,ryzen 3 amd,integrated amd,8
 HP,Outros/Não Classificado,HP 15-fd0021TU Laptop (13th Gen Core i5/ 8GB/ 512GB SSD/ Win11 Home),15-FD0021TU,D0021TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,8
 MSI,MSI Thin (Gaming Slim/Entrada),MSI Thin GF63 12VE-267IN Gaming Laptop (12th Gen Core i5/ 16GB/ 1TB 256GB SSD/ Win11/6GB Graphics),THIN GF63 12VE-267IN GAMING,267INGAMING,Gamer,,core i5 intel,dedicated nvidia,16
 MSI,Creator/Estação de Trabalho,MSI Stealth 16 Studio A13VG-030IN Gaming Laptop (13th Gen Core i7/ 32GB/ 1TB SSD/ Win11 Home/ 8GB Graph),STEALTH 16 STUDIO A13VG-030IN GAMING,030INGAMING,Gamer,,core i7 intel,dedicated nvidia,32
 HP,Outros/Não Classificado,HP ProBook 440 G9 6J8T1PA Laptop (12th Gen Core i7/ 16GB/ 512GB SSD/ Win11),PROBOOK 440 G9 6J8T1PA,6J8T1PALAPTOP,Business/Premium,,core i7 intel,integrated intel,16
 HP,Outros/Não Classificado,HP 15-fd0024TU Laptop (13th Gen Core i7/ 16GB/ 512 GB SSD/ Win11 Home),15-FD0024TU,D0024TULAPTOP,Geral/Baixa Performance,,core i7 intel,integrated intel,16
 MSI,MSI Thin (Gaming Slim/Entrada),MSI GF63 Thin 11SC-1298IN Gaming Laptop (11th Gen Core i7/ 16GB/ 1TB 256GB SSD/ Win11/ 4GB Graph),GF63 THIN 11SC-1298IN GAMING,11SC1298IN,Gamer,,core i7 intel,dedicated nvidia,16
-HP,Outros/Não Classificado,HP 15s-fy5002TU Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/ Win11 Home),-FY5002TU,Y5002TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,8
-HP,Outros/Não Classificado,HP 15s-fy5003TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),-FY5003TU,Y5003TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fy5002TU Laptop (12th Gen Core i5/ 8GB/ 512GB SSD/ Win11 Home),15S-FY5002TU,Y5002TULAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fy5003TU Laptop (12th Gen Core i3/ 8GB/ 512GB SSD/ Win11 Home),15S-FY5003TU,Y5003TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 ACER,Outros/Não Classificado,Acer One 11 Z8-284 UN.013SI.014 Laptop ( Intel Celeron N4500/ 8GB/ 256GB SSD/ Win11 Home),ONE 11 Z8-284 UN 013SI 014,INTELCELERON,Geral/Baixa Performance,,celeron intel,integrated intel,8
 HP,Outros/Não Classificado,HP 15-fc0030AU Laptop (AMD Ryzen 5 7520U/ 16GB/ 512GB SSD/ Win11 Home),15-FC0030AU,C0030AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,16
 ACER,Acer Predator (Gaming High-End),Acer 16 Predator Neo NH.QLTSI.001 Laptop (13th Gen Core i5/ 16GB/ 512GB SSD/ Win11/ 6GB Graph),16 PREDATOR NEO NH QLTSI 001,ACER 16 PREDATOR NEO NH.QLTSI.001 LAPTOP_NA_UNKNOWN_CPU_INTEGRATED_16GB,Gamer,,core i5 intel,dedicated nvidia,16
@@ -419,7 +419,7 @@ HP,Outros/Não Classificado,HP Pavilion 15-eg2017TU Laptop (12th Gen Core i3/ 8G
 MSI,Outros/Não Classificado,MSI Summit E13 Flip Evo A11MT-214IN Laptop (11th Gen Core i5/ 16GB/ 512GB SSD/ Win10),SUMMIT E13 FLIP EVO A11MT-214IN,214INLAPTOP,Geral/Baixa Performance,,core i5 intel,integrated intel,16
 HP,HP Victus (Gaming de Entrada),HP Victus 16-d0333TX Gaming Laptop (11th Gen Core i5/ 16GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 16-D0333TX GAMING,D0333TXGAMING,Gamer,,core i5 intel,dedicated nvidia,16
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fb0121AX Gaming Laptop (AMD Ryzen 5 5600H/ 8GB/ 512GB SSD/ Win11/ 4GB Graph),VICTUS 15-FB0121AX GAMING,B0121AXGAMING,Gamer,,ryzen 5 amd,dedicated nvidia,8
-HP,Outros/Não Classificado,HP 15s-fq2738TU Laptop (11th Gen Core i3/ 8GB/ 512GB SSD/ Win 11 Home),-FQ2738TU,Q2738TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
+HP,Outros/Não Classificado,HP 15s-fq2738TU Laptop (11th Gen Core i3/ 8GB/ 512GB SSD/ Win 11 Home),15S-FQ2738TU,Q2738TULAPTOP,Geral/Baixa Performance,,core i3 intel,integrated intel,8
 HP,HP Omen (Gaming),HP Omen 16-n0123AX Gaming Laptop (AMD Ryzen 7 6800H/ 16GB/ 1TB SSD/ Win11/ 8GB Graph),OMEN 16-N0123AX GAMING,N0123AXGAMING,Gamer,,ryzen 7 amd,dedicated nvidia,16
 MSI,MSI High-End (Titan/Raider),MSI Raider GE68HX 13VG-027IN Gaming Laptop (13th Gen Core i9/ 32GB/ 2TB SSD/ Win11 Home/ 8GB Graph),RAIDER GE68HX 13VG-027IN GAMING,RAIDERGE68HX,Gamer,,core i9 intel,dedicated nvidia,32
 MSI,MSI Thin (Gaming Slim/Entrada),MSI Thin GF63 12UCX-265IN Gaming Laptop (12th Gen Core i5/ 16GB/ 512GB SSD/ Win11 Home/ 4GB Graph),THIN GF63 12UCX-265IN GAMING,265INGAMING,Gamer,,core i5 intel,dedicated nvidia,16
@@ -437,7 +437,7 @@ LENOVO,Outros/Não Classificado,Lenovo V14-IGL 82C40185PB Laptop (Celeron N4020/
 LENOVO,Outros/Não Classificado,Lenovo V14 82KAA04QIH Laptop (11th Gen Core i5/ 8GB/ 512GB SSD/ DOS),V14 82KAA04QIH,82KAA04QIH,Geral/Baixa Performance,,core i5 intel,integrated intel,8
 LENOVO,Outros/Não Classificado,Lenovo V15 G2 82KDA022IH Laptop (AMD Ryzen 5 5500U/ 8GB/ 512GB SSD/ Win11 Home),V15 G2 82KDA022IH,82KDA022IH,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
 FUJITSU,Série Geral de Performance,Fujitsu FMV MH 4ZR1K10326 Laptop (AMD Ryzen 7 5825U/ 16GB/ 512GB SSD/ Win11),FMV MH 4ZR1K10326,1K10326LAPTOP,Geral/Média Performance,,ryzen 7 amd,integrated amd,16
-HP,Outros/Não Classificado,HP 15s-eq2223AU Laptop (AMD Ryzen 5 5500U/ 8GB/ 512GB SSD/ Win11 Home),-EQ2223AU,Q2223AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
+HP,Outros/Não Classificado,HP 15s-eq2223AU Laptop (AMD Ryzen 5 5500U/ 8GB/ 512GB SSD/ Win11 Home),15S-EQ2223AU,Q2223AULAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
 MSI,Outros/Não Classificado,MSI Modern 15 B7M-072IN Laptop (Ryzen 5 7530U/ 8GB/ 512GB SSD/ Win11),MODERN 15 B7M-072IN,072INLAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,8
 DELL,Dell XPS (Premium/Creator),Dell XPS 9315 D560076WIN9S Laptop (12th Gen Core i5 / 16GB/ 512GB SSD/ Win11),XPS 9315 D560076WIN9S,9315D560076WIN,Creator/Workstation,,core i5 intel,integrated intel,16
 MSI,Outros/Não Classificado,MSI Modern 15 B7M-071IN Laptop (AMD Ryzen 5-7530U/ 16GB/ 512GB SSD/ Win11),MODERN 15 B7M-071IN,071INLAPTOP,Geral/Baixa Performance,,ryzen 5 amd,integrated amd,16
@@ -777,16 +777,16 @@ LENOVO,Outros/Não Classificado,Lenovo V15 ITL G2 82KBA033IH Laptop,V15 ITL G2 8
 HP,Outros/Não Classificado,HP Pavilion 15-ec2004AX Gaming Laptop,PAVILION 15-EC2004AX GAMING,C2004AXGAMING,Gamer,2021,AMD Ryzen 5 5600H,4 GB NVIDIA GeForce GTX 1650,8
 LENOVO,Outros/Não Classificado,Lenovo V15 82KBA03HIH Laptop,V15 82KBA03HIH,82KBA03HIH,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
 INFINIX,Série Geral de Performance,Infinix Zero Book Ultra Laptop,ZERO BOOK ULTRA,ULTRALAPTOP,Performance/Geral,2022,12th Gen Core i9,Missing,16
-HP,Outros/Não Classificado,HP 15s-eq1559AU Laptop,-EQ1559AU,Q1559AULAPTOP,Geral/Baixa Performance,2022,AMD Athlon Silver 3050U,AMD Radeon Graphics,8
-HP,Outros/Não Classificado,HP 15s-fq5111TU Laptop,-FQ5111TU,Q5111TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i5,Intel Iris Xe,8
+HP,Outros/Não Classificado,HP 15s-eq1559AU Laptop,15S-EQ1559AU,Q1559AULAPTOP,Geral/Baixa Performance,2022,AMD Athlon Silver 3050U,AMD Radeon Graphics,8
+HP,Outros/Não Classificado,HP 15s-fq5111TU Laptop,15S-FQ5111TU,Q5111TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i5,Intel Iris Xe,8
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming A15 FA506IHRZ-HN111W Laptop,TUF GAMING A15 FA506IHRZ-HN111W,HN111WLAPTOP,Gamer,2020,AMD Ryzen 5 4600H,4 GB NVIDIA GeForce GTX 1650,8
-HP,Outros/Não Classificado,HP 15s-er1501AU Laptop,-ER1501AU,R1501AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon,8
+HP,Outros/Não Classificado,HP 15s-er1501AU Laptop,15S-ER1501AU,R1501AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon,8
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fb0040AX Gaming Laptop,VICTUS 15-FB0040AX GAMING,B0040AXGAMING,Gamer,2021,AMD Ryzen 5 5600H,4 GB NVIDIA GeForce GTX 1650,8
 LENOVO,Outros/Não Classificado,Lenovo V15 ‎82C70005UK Laptop,V15 ‎82C70005UK,82C70005UK,Geral/Baixa Performance,,AMD Ryzen 5 5500U,AMD Radeon Graphics,8
 LENOVO,Outros/Não Classificado,Lenovo V15 82KDA00XIH Laptop,V15 82KDA00XIH,82KDA00XIH,Geral/Baixa Performance,,AMD Ryzen 5 5500U,AMD Radeon Graphics,8
 LENOVO,Outros/Não Classificado,Lenovo E41-55 82FJ00AGIH Laptop,E41-55 82FJ00AGIH,82FJ00AGIH,Geral/Baixa Performance,,Athlon Gold 3150U,AMD Radeon RADEON,4
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fa0165TX Laptop,VICTUS 15-FA0165TX,A0165TXLAPTOP,Gamer,2022,12th Gen Core i5,4 GB NVIDIA GeForce GTX 1650,8
-HP,Outros/Não Classificado,HP 15s-FR2511TU Laptop,-FR2511TU,R2511TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel UHD Graphics,8
+HP,Outros/Não Classificado,HP 15s-FR2511TU Laptop,15S-FR2511TU,R2511TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel UHD Graphics,8
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming A17 FA706IHRB-HX041W Gaming Laptop,TUF GAMING A17 FA706IHRB-HX041W GAMING,HX041WGAMING,Gamer,2020,AMD Ryzen 5 4600H,4 GB NVIDIA GeForce GTX 1650,8
 HP,Outros/Não Classificado,HP 15s- eq2212AU Laptop,- EQ2212AU,Q2212AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 5300U,AMD Radeon Graphics,8
 HP,Outros/Não Classificado,HP 245 G8 62G68PA Laptop,245 G8 62G68PA,62G68PALAPTOP,Geral/Baixa Performance,,AMD Ryzen 3  3250U,AMD Radeon Graphics,8
@@ -796,7 +796,7 @@ INFINIX,Série Geral de Performance,Infinix Zero Book Series ZL12 Laptop,ZERO BO
 HP,Outros/Não Classificado,HP Pavilion x360 14-ek0074TU Laptop,PAVILION X360 14-EK0074TU,K0074TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i5,Intel Integrated Iris Xe,16
 MSI,MSI Thin (Gaming Slim/Entrada),MSI Thin GF63 11SC-852IN Gaming Laptop,THIN GF63 11SC-852IN GAMING,852INGAMING,Gamer,2021,11th Gen Core i7,4 GB NVIDIA GeForce GTX 1650 MAX Q,8
 NOKIA,Outros/Não Classificado,Nokia PureBook S14 NKi511TL165S Laptop,PUREBOOK S14 NKI511TL165S,NOKIAPUREBOOK,Geral/Baixa Performance,2021,11th Gen Core i5,Intel Integrated Iris Xe,16
-HP,Outros/Não Classificado,HP 14s-dq2649TU Laptop,-DQ2649TU,Q2649TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
+HP,Outros/Não Classificado,HP 14s-dq2649TU Laptop,14S-DQ2649TU,Q2649TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
 ACER,Outros/Não Classificado,Acer One 14 Z2-493 Laptop,ONE 14 Z2-493,ACER ONE 14 Z2_NA_RYZEN3_INTEGRATED_8GB,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon Graphics,8
 HP,Outros/Não Classificado,HP Pavilion 15s-eq2182AU Laptop,PAVILION -EQ2182AU,Q2182AULAPTOP,Geral/Baixa Performance,,Ryzen 5 5500U,AMD Radeon Graphics,16
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fa0350TX Laptop,VICTUS 15-FA0350TX,A0350TXLAPTOP,Gamer,2022,12th Gen Core i5,4 GB NVIDIA GeForce RTX 3050,8
@@ -809,10 +809,10 @@ ACER,Outros/Não Classificado,Acer Swift 3 OLED SF314-71 NX.KAVSI.001 Laptop,SWI
 HP,Outros/Não Classificado,HP Pavilion 15-eg2018TX Laptop,PAVILION 15-EG2018TX,G2018TXLAPTOP,Geral/Baixa Performance,2022,12th Gen Core i5,2 GB NVIDIA GeForce MX550,16
 HP,Outros/Não Classificado,HP 247 G8 ‎6B5R3PA Laptop,247 G8 ‎6B5R3PA,6B5R3PALAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 5300U,AMD Radeon Graphics,8
 HP,HP Omen (Gaming),HP Omen 16-n0079AX Gaming Laptop,OMEN 16-N0079AX GAMING,N0079AXGAMING,Gamer,2022,AMD Ryzen 7 6800H,8 GB AMD Radeon RX 6650M,16
-HP,Outros/Não Classificado,HP 14s-dr3001TU Laptop,-DR3001TU,R3001TULAPTOP,Geral/Baixa Performance,,Pentium Silver N6000,Intel UHD Graphics,8
+HP,Outros/Não Classificado,HP 14s-dr3001TU Laptop,14S-DR3001TU,R3001TULAPTOP,Geral/Baixa Performance,,Pentium Silver N6000,Intel UHD Graphics,8
 ASUS,Creator/Estação de Trabalho,Asus ProArt StudioBook Pro 16 OLED H7600ZM-L701WS Laptop,PROART STUDIOBOOK PRO 16 OLED H7600ZM-L701WS,ASUSPROART,Gamer,2022,12th Gen Core i7,6 GB NVIDIA GeForce RTX 3060,16
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Dash F15 2022 FX517ZC-HN108WS Gaming Laptop,TUF DASH F15 2022 FX517ZC-HN108WS GAMING,2022FX517ZC,Gamer,2022,12th Gen Core i7,4 GB NVIDIA GeForce RTX 3050,16
-HP,Outros/Não Classificado,HP 14s-dy2507TU Laptop,-DY2507TU,Y2507TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD Graphics,8
+HP,Outros/Não Classificado,HP 14s-dy2507TU Laptop,14S-DY2507TU,Y2507TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD Graphics,8
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming F15,TUF GAMING F15,ASUS TUF GAMING F15_2022_UNKNOWN_CPU_RTX3050_16GB,Gamer,2022,2022) FX507ZE-HN038W Gaming Laptop ,4 GB NVIDIA GeForce RTX 3050-Ti,16
 ASUS,ROG Strix (Gaming Performance),Asus ROG Strix G17 2022 G713IE-HX040W Gaming Laptop,ROG STRIX G17 2022 G713IE-HX040W GAMING,2022G713IE,Gamer,2022,AMD Ryzen 7 4800H,4 GB NVIDIA GeForce RTX 3050 Ti,16
 HP,Outros/Não Classificado,HP Pavilion 15-eg2039TU Laptop,PAVILION 15-EG2039TU,G2039TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i7,Intel Integrated Iris Xe,16
@@ -826,9 +826,9 @@ HP,Outros/Não Classificado,HP Pavilion 15-EC2146AX Gaming Laptop,PAVILION 15-EC
 HP,HP Victus (Gaming de Entrada),HP Victus 16-e0162AX Gaming Laptop,VICTUS 16-E0162AX GAMING,E0162AXGAMING,Gamer,2021,Ryzen 5 5600H,4 GB AMD Radeon RX 5500M,8
 HP,Outros/Não Classificado,HP Pavilion 15-DK2100TX Gaming Laptop,PAVILION 15-DK2100TX GAMING,K2100TXGAMING,Gamer,2021,11th Gen Core i5,4 GB NVIDIA GeForce GTX 1650,8
 XIAOMI,Série Geral de Performance,Xiaomi Mi Notebook Pro 14 Laptop,MI NOTEBOOK PRO 14,XIAOMI MI NOTEBOOK PRO 14 LAPTOP_2021_11THGEN_INTEGRATED_16GB,Performance/Geral,2021,11th Gen Core i5,Intel Iris Xe Graphics,16
-HP,Outros/Não Classificado,HP 15s-GR0012AU Laptop,-GR0012AU,R0012AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon Vega 6,8
+HP,Outros/Não Classificado,HP 15s-GR0012AU Laptop,15S-GR0012AU,R0012AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon Vega 6,8
 HP,Outros/Não Classificado,HP 245 G8 Laptop,245 G8,HP 245 G8 LAPTOP_2022_UNKNOWN_CPU_INTEGRATED_8GB,Geral/Baixa Performance,2022,AMD Athlon Silver 3050U,AMD Radeon Graphics,8
-HP,Outros/Não Classificado,HP 15s-eq2146AU Laptop,-EQ2146AU,Q2146AULAPTOP,Geral/Baixa Performance,,Ryzen 3 5300U,AMD Radeon Graphics,8
+HP,Outros/Não Classificado,HP 15s-eq2146AU Laptop,15S-EQ2146AU,Q2146AULAPTOP,Geral/Baixa Performance,,Ryzen 3 5300U,AMD Radeon Graphics,8
 LENOVO,Outros/Não Classificado,Lenovo V15 82KBA01TIH Laptop,V15 82KBA01TIH,82KBA01TIH,Geral/Baixa Performance,2021,11th Gen Core i5,Intel Integrated Iris Xe,8
 LENOVO,Outros/Não Classificado,Lenovo V15 82KDA01UIH Laptop,V15 82KDA01UIH,82KDA01UIH,Geral/Baixa Performance,,AMD Ryzen 3 5300U,AMD Radeon Graphics,8
 LENOVO,Outros/Não Classificado,Lenovo Yoga 9i 83B1002GIN Laptop,YOGA 9I 83B1002GIN,83B1002GIN,Geral/Baixa Performance,2023,13th Gen Core i7,Intel Iris Xe Integrated Graphics,16
@@ -855,18 +855,18 @@ MSI,Outros/Não Classificado,MSI Vector GP66 12UEO-646IN Gaming Laptop,VECTOR GP
 MSI,Outros/Não Classificado,MSI Modern 14 B5M-242IN Laptop,MODERN 14 B5M-242IN,242INLAPTOP,Geral/Baixa Performance,,Ryzen 5 5500U,AMD Radeon Radeon,8
 HP,Outros/Não Classificado,HP Envy x360 13-bf0059TU Laptop,ENVY X360 13-BF0059TU,F0059TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i7,Intel Iris X Graphics,16
 HP,Outros/Não Classificado,HP Pavilion 15s-FR5007TU Laptop,PAVILION -FR5007TU,R5007TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i5,Intel Iris Xe,8
-HP,Outros/Não Classificado,HP 15s-ey1508AU Laptop,-EY1508AU,Y1508AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon Radeon,8
+HP,Outros/Não Classificado,HP 15s-ey1508AU Laptop,15S-EY1508AU,Y1508AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon Radeon,8
 MSI,MSI Thin (Gaming Slim/Entrada),MSI Thin GF63 11UC-866IN Gaming Laptop,THIN GF63 11UC-866IN GAMING,866INGAMING,Gamer,2022,11th Gen Core i7,4 GB NVIDIA GeForce RTX 3050,8
 MSI,MSI Thin (Gaming Slim/Entrada),MSI Thin GF63 11UC-867IN Gaming Laptop,THIN GF63 11UC-867IN GAMING,867INGAMING,Gamer,2022,11th Gen Core i5,4 GB NVIDIA GeForce RTX 3050,8
-HP,Outros/Não Classificado,HP 15s-fr2514TU Laptop,-FR2514TU,R2514TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel UHD Graphics,8
-HP,Outros/Não Classificado,HP 15s-dr3506TU Laptop,-DR3506TU,R3506TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel UHD Graphics,8
-HP,Outros/Não Classificado,HP 14s-fq0568AU Laptop,-FQ0568AU,Q0568AULAPTOP,Geral/Baixa Performance,2022,AMD Athlon 3050U,AMD Radeon AMD,8
-HP,Outros/Não Classificado,HP 15s-du3614TU Laptop,-DU3614TU,U3614TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
-HP,Outros/Não Classificado,HP 15s-eq1560AU Laptop,-EQ1560AU,Q1560AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon,8
+HP,Outros/Não Classificado,HP 15s-fr2514TU Laptop,15S-FR2514TU,R2514TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel UHD Graphics,8
+HP,Outros/Não Classificado,HP 15s-dr3506TU Laptop,15S-DR3506TU,R3506TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel UHD Graphics,8
+HP,Outros/Não Classificado,HP 14s-fq0568AU Laptop,14S-FQ0568AU,Q0568AULAPTOP,Geral/Baixa Performance,2022,AMD Athlon 3050U,AMD Radeon AMD,8
+HP,Outros/Não Classificado,HP 15s-du3614TU Laptop,15S-DU3614TU,U3614TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
+HP,Outros/Não Classificado,HP 15s-eq1560AU Laptop,15S-EQ1560AU,Q1560AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon,8
 HP,Outros/Não Classificado,HP Pavilion 14-eh0024TU Laptop,PAVILION 14-EH0024TU,H0024TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i7,Intel Iris Xe Graphics,16
 DELL,Dell XPS (Premium/Creator),Dell XPS 13 Plus 9320 Laptop,XPS 13 PLUS 9320,9320LAPTOP,Creator/Workstation,2022,12th Gen Core i7,Intel Iris Xe Graphics,16
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fa0354TX Laptop,VICTUS 15-FA0354TX,A0354TXLAPTOP,Gamer,2022,12th Gen Core i7,4 GB NVIDIA GeForce RTX 3050 Ti,16
-HP,Outros/Não Classificado,HP 15s-fq2671TU Laptop,-FQ2671TU,Q2671TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
+HP,Outros/Não Classificado,HP 15s-fq2671TU Laptop,15S-FQ2671TU,Q2671TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
 MSI,MSI Mid-Range (Katana/Pulse),MSI Katana GF66 11UE-861IN Gaming Laptop,KATANA GF66 11UE-861IN GAMING,861INGAMING,Gamer,2022,11th Gen Core i7,6 GB NVIDIA GeForce RTX 3060,16
 LENOVO,Outros/Não Classificado,Lenovo Yoga Slim 7 Pro 82NC00EWIN Laptop,YOGA SLIM 7 PRO 82NC00EWIN,82NC00EWIN,Geral/Baixa Performance,2021,11th Gen Core i5,Intel Iris Xe Graphics,16
 HP,Outros/Não Classificado,HP 15s- fr2512TU Laptop,- FR2512TU,R2512TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel UHD Graphics,8
@@ -891,12 +891,12 @@ HP,Outros/Não Classificado,HP 240 G8 Laptop,240 G8,HP 240 G8 LAPTOP_2021_11THGE
 LENOVO,Outros/Não Classificado,Lenovo E41-55 82FJ009JIH Laptop,E41-55 82FJ009JIH,82FJ009JIH,Geral/Baixa Performance,,Athlon Pro 3045B,Missing,4
 HP,Outros/Não Classificado,HP Pavilion 15-eh2018AU Laptop,PAVILION 15-EH2018AU,H2018AULAPTOP,Geral/Baixa Performance,,Ryzen 5 5625U,AMD Radeon Graphics,8
 HP,Outros/Não Classificado,HP Pavilion 14-ec1003AU Laptop,PAVILION 14-EC1003AU,C1003AULAPTOP,Geral/Baixa Performance,,Ryzen 5,AMD Radeon Graphics,8
-HP,Outros/Não Classificado,HP 14s-fq1089au Laptop,-FQ1089AU,Q1089AULAPTOP,Geral/Baixa Performance,,Ryzen 3 5300U,AMD Radeon Graphics,8
+HP,Outros/Não Classificado,HP 14s-fq1089au Laptop,14S-FQ1089AU,Q1089AULAPTOP,Geral/Baixa Performance,,Ryzen 3 5300U,AMD Radeon Graphics,8
 HP,Outros/Não Classificado,HP 15s- fq4021TU Laptop,- FQ4021TU,Q4021TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i5,Intel Iris Xe Graphics,8
-HP,Outros/Não Classificado,HP 15s-eq2143au Laptop,-EQ2143AU,Q2143AULAPTOP,Geral/Baixa Performance,,Ryzen 3 5300U,AMD Radeon AMD,8
+HP,Outros/Não Classificado,HP 15s-eq2143au Laptop,15S-EQ2143AU,Q2143AULAPTOP,Geral/Baixa Performance,,Ryzen 3 5300U,AMD Radeon AMD,8
 HP,Outros/Não Classificado,HP Pavilion 15-EC2145AX Gaming Laptop,PAVILION 15-EC2145AX GAMING,C2145AXGAMING,Gamer,2021,Ryzen 5 5600H,4 GB NVIDIA GeForce GTX 3050,8
 HP,Outros/Não Classificado,HP Pavilion 15-ec2150AX Laptop,PAVILION 15-EC2150AX,C2150AXLAPTOP,Gamer,2021,Ryzen 5 5600H,4 GB NVIDIA GeForce GTX 1650,8
-HP,Outros/Não Classificado,HP 14s-dy2506TU Laptop,-DY2506TU,Y2506TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
+HP,Outros/Não Classificado,HP 14s-dy2506TU Laptop,14S-DY2506TU,Y2506TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
 HP,Outros/Não Classificado,HP Pavilion 15-dk2095TX Gaming Laptop,PAVILION 15-DK2095TX GAMING,K2095TXGAMING,Gamer,2021,11th Gen Core i5,4 GB NVIDIA GeForce GTX 1650,8
 LENOVO,Outros/Não Classificado,Lenovo V15 82C30052IH Laptop,V15 82C30052IH,82C30052IH,Geral/Baixa Performance,,Intel Celeron N4020,Intel Integrated UHD,4
 HP,Outros/Não Classificado,HP Pavilion 15-ec2008AX Gaming Laptop,PAVILION 15-EC2008AX GAMING,C2008AXGAMING,Gamer,2021,Ryzen 5 5600H,4 GB NVIDIA GeForce GTX 1650,8
@@ -907,7 +907,7 @@ ASUS,ROG Flow (2-in-1 Gaming),Asus ROG Flow X13 GV301QH-K5462TS Gaming Laptop,RO
 LENOVO,Outros/Não Classificado,Lenovo Yoga 9i 82BG005JIN Laptop,YOGA 9I 82BG005JIN,82BG005JIN,Geral/Baixa Performance,2021,11th Gen Core i7,Intel Iris Xe Graphics,16
 LENOVO,Outros/Não Classificado,Lenovo V15 ITL 82KBA03JIH Laptop,V15 ITL 82KBA03JIH,82KBA03JIH,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
 HP,Outros/Não Classificado,HP Envy x360 15-ew0037TU Laptop,ENVY X360 15-EW0037TU,W0037TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i5,Intel Integrated Iris Xe,16
-HP,Outros/Não Classificado,HP 15s-eq2213AU Laptop,-EQ2213AU,Q2213AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 5300U,AMD Radeon Graphics,8
+HP,Outros/Não Classificado,HP 15s-eq2213AU Laptop,15S-EQ2213AU,Q2213AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 5300U,AMD Radeon Graphics,8
 HP,HP Victus (Gaming de Entrada),HP Victus 16-d0310TX Gaming Laptop,VICTUS 16-D0310TX GAMING,D0310TXGAMING,Gamer,2021,11th Gen Core i5,4 GB NVIDIA GeForce GTX 1650,8
 DELL,Dell G Series (Gaming),Dell G15-5520 D560897WIN9S Laptop,G15-5520 D560897WIN9S,5520D560897WIN,Gamer,2022,12th Gen Core i9,6 GB NVIDIA GeForce RTX 3060,16
 HP,HP Victus (Gaming de Entrada),HP Victus 16-e0333TX Gaming Laptop,VICTUS 16-E0333TX GAMING,E0333TXGAMING,Gamer,2021,AMD Ryzen 5 5600H,6 GB NVIDIA GeForce RTX3060,16
@@ -919,7 +919,7 @@ HP,Outros/Não Classificado,HP ProBook 445 G8 Laptop,PROBOOK 445 G8,HP PROBOOK 4
 HP,Performance/Geral,HP Pavilion Plus 14-eh0037TU Laptop,PAVILION PLUS 14-EH0037TU,H0037TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i5,Intel Integrated Iris Xe,16
 HP,Outros/Não Classificado,HP 245 G8 ‎6E3Z1PA Laptop,245 G8 ‎6E3Z1PA,6E3Z1PALAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon Graphics,8
 MSI,Outros/Não Classificado,MSI Modern 14 C12M-269IN Laptop,MODERN 14 C12M-269IN,269INLAPTOP,Geral/Baixa Performance,2022,12th Gen Core i3,Intel Integrated UHD,8
-HP,Outros/Não Classificado,HP 15s-du3612TU Laptop,-DU3612TU,U3612TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
+HP,Outros/Não Classificado,HP 15s-du3612TU Laptop,15S-DU3612TU,U3612TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
 HP,Outros/Não Classificado,HP Envy x360 15-ew0040TU Laptop,ENVY X360 15-EW0040TU,W0040TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i5,Intel Integrated Iris Xe,16
 HP,Outros/Não Classificado,HP Envy x360 15-ew0048TU Laptop,ENVY X360 15-EW0048TU,W0048TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i7,Intel Integrated Iris Xe,16
 HP,Outros/Não Classificado,HP Envy x360 15-ew0043TU Laptop,ENVY X360 15-EW0043TU,W0043TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i5,Intel Integrated Iris Xe,16
@@ -960,7 +960,7 @@ LENOVO,Outros/Não Classificado,Lenovo V15 G2-ITL 82KBA034IH Laptop,V15 G2-ITL 8
 DELL,Dell XPS (Premium/Creator),Dell XPS 9315 Laptop,XPS 9315,9315LAPTOP,Creator/Workstation,2022,12th Gen Core i7 ,Iris Xe,16
 HP,HP Victus (Gaming de Entrada),HP Victus 16-e0550AX Gaming Laptop,VICTUS 16-E0550AX GAMING,E0550AXGAMING,Gamer,2021,AMD Ryzen 7 5800H,4 GB AMD Radeon RX 5500M Graphics,8
 DELL,Dell G Series (Gaming),Dell G15-5520 D560895WIN9S Laptop,G15-5520 D560895WIN9S,5520D560895WIN,Gamer,2022,12th Gen Core i7,6 GB NVIDIA GeForce RTX 3060,16
-HP,Outros/Não Classificado,HP 15s-fq2670TU Laptop,-FQ2670TU,Q2670TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated,8
+HP,Outros/Não Classificado,HP 15s-fq2670TU Laptop,15S-FQ2670TU,Q2670TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated,8
 HP,Outros/Não Classificado,HP ProBook 445 G7 Laptop,PROBOOK 445 G7,HP PROBOOK 445 G7 LAPTOP_NA_RYZEN5_INTEGRATED_8GB,Business/Premium,,AMD Ryzen 5 4500U,AMD Radeon,8
 LENOVO,Outros/Não Classificado,Lenovo V15 82C3002VGE Laptop,V15 82C3002VGE,82C3002VGE,Geral/Baixa Performance,,Celeron N4020,Intel Integrated UHD,4
 DELL,Dell G Series (Gaming),Dell G15-5525 Gaming Laptop,G15-5525 GAMING,5525GAMING,Gamer,2022,Ryzen 9-6900HX,6 GB NVIDIA GeForce RTX 3060,16
@@ -976,7 +976,7 @@ ASUS,Outros/Não Classificado,Asus E410KA-BV002W Laptop,E410KA-BV002W,ASUSE410KA
 MSI,Creator/Estação de Trabalho,MSI Creator Pro Z17 A12UMST-237IN Gaming Laptop,CREATOR PRO Z17 A12UMST-237IN GAMING,237INGAMING,Gamer,2022,12th Gen Core i7,16 GB NVIDIA GeForce RTX A5500,32
 MSI,Creator/Estação de Trabalho,MSI Creator Z16P B12UKST-209IN Gaming Laptop,CREATOR Z16P B12UKST-209IN GAMING,Z16PB12UKST,Gamer,2022,12th Gen Core i9,12 GB NVIDIA GeForce RTX A3000,64
 LENOVO,Outros/Não Classificado,Lenovo Yoga 6 82UD0069IN Laptop,YOGA 6 82UD0069IN,82UD0069IN,Geral/Baixa Performance,,Ryzen 5 5500U,AMD Radeon Graphics,16
-HP,Outros/Não Classificado,HP 14s-fq0567AU Laptop,-FQ0567AU,Q0567AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon AMD,8
+HP,Outros/Não Classificado,HP 14s-fq0567AU Laptop,14S-FQ0567AU,Q0567AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon AMD,8
 MSI,Creator/Estação de Trabalho,MSI Creator Pro M16 A12UJS-601IN Gaming Laptop,CREATOR PRO M16 A12UJS-601IN GAMING,601INGAMING,Gamer,2022,12th Gen Core i7,8 GB NVIDIA GeForce RTX A2000,32
 HP,HP Omen (Gaming),HP Omen 17-ck1023TX Gaming Laptop,OMEN 17-CK1023TX GAMING,K1023TXGAMING,Gamer,2022,12th Gen Core i9,16 GB NVIDIA GeForce 3080Ti,32
 HP,HP Omen (Gaming),HP Omen 16-n0051AX Gaming Laptop,OMEN 16-N0051AX GAMING,N0051AXGAMING,Gamer,2022,AMD Ryzen 9 6900HX,8 GB AMD Radeon RX 6650M Graphics,32
@@ -1056,7 +1056,7 @@ MSI,MSI Mid-Range (Katana/Pulse),MSI Katana GF76 11UE-485IN Laptop,KATANA GF76 1
 MSI,Outros/Não Classificado,MSI Delta 15 A5EFK-201IN Gaming Laptop,DELTA 15 A5EFK-201IN GAMING,201INGAMING,Gamer,2021,AMD Ryzen 7 5800H,10 GB AMD Radeon RX 6700M,16
 LENOVO,Outros/Não Classificado,Lenovo V15 G2 82KDA00UIH Laptop,V15 G2 82KDA00UIH,82KDA00UIH,Geral/Baixa Performance,,Ryzen 3 5300U,AMD Radeon Graphic,4
 LENOVO,Outros/Não Classificado,Lenovo V14-IGL Laptop,V14-IGL,LENOVO V14_NA_UNKNOWN_CPU_INTEGRATED_4GB,Geral/Baixa Performance,,Celeron N4020,Intel Integrated UHD,4
-HP,Outros/Não Classificado,HP 14s-dy2508TU Laptop,-DY2508TU,Y2508TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
+HP,Outros/Não Classificado,HP 14s-dy2508TU Laptop,14S-DY2508TU,Y2508TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
 XIAOMI,Série Geral de Performance,Xiaomi Notebook Pro 120G Laptop,PRO 120G,XIAOMINOTEBOOK,Performance/Geral,2022,12th Gen Core i5,2 GB Nvidia MX550 Graphics,16
 HP,HP Spectre (Premium/2-in-1),HP Spectre x360 13-ef0057TU Laptop,SPECTRE X360 13-EF0057TU,F0057TULAPTOP,Business/Premium,2022,12th Gen Core i5,Intel Iris X Graphics,16
 DELL,Dell G Series (Gaming),Dell G15-5521 SE D560738WIN9B Laptop,G15-5521 SE D560738WIN9B,D560738WIN,Gamer,2022,12th Gen Core i7,6 GB NVIDIA GeForce RTX 3060,16
@@ -1081,12 +1081,12 @@ LG,LG Gram (Premium/Ultrafino),LG Gram 14 14Z90Q-G.AJ56A2 Laptop,GRAM 14 14Z90Q-
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming A17 FA706IHR-HX031W Gaming Laptop,TUF GAMING A17 FA706IHR-HX031W GAMING,HX031WGAMING,Gamer,2020,AMD Ryzen 5 4600H,4 GB NVIDIA GeForce GTX 1650,8
 ASUS,ROG Strix (Gaming Performance),Asus ROG Strix G15 G513RM-HF328WS Gaming Laptop,ROG STRIX G15 G513RM-HF328WS GAMING,G513RMHF328WS,Gamer,2022,Ryzen 7 6800H,6 GB NVIDIA GeForce RTX 3060,16
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fa0351TX Laptop,VICTUS 15-FA0351TX,A0351TXLAPTOP,Gamer,2022,12th Gen Core i7,4 GB NVIDIA GeForce RTX 3050,8
-HP,Outros/Não Classificado,HP 15s-eq1561AU Laptop,-EQ1561AU,Q1561AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon Radeon,8
+HP,Outros/Não Classificado,HP 15s-eq1561AU Laptop,15S-EQ1561AU,Q1561AULAPTOP,Geral/Baixa Performance,,AMD Ryzen 3 3250U,AMD Radeon Radeon,8
 ASUS,ROG Zephyrus (Slim Performance),Asus ROG Zephyrus M16 GU603ZM-K8034WS Laptop,ROG ZEPHYRUS M16 GU603ZM-K8034WS,GU603ZMK8034WS,Gamer,2022,12th Gen Core i7,6 GB ‎NVIDIA GeForce RTX 3060,16
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming F15 FX506HC-HN119W Gaming Laptop,TUF GAMING F15 FX506HC-HN119W GAMING,HN119WGAMING,Gamer,2022,11th Gen Core i5,4 GB NVIDIA GeForce RTX 3050,8
 ASUS,ROG Strix (Gaming Performance),Asus ROG Strix G15 G513QR-HF302WS Gaming Laptop,ROG STRIX G15 G513QR-HF302WS GAMING,G513QRHF302WS,Gamer,2022,Ryzen 7 5800H,8 GB NVIDIA GeForce RTX 3070,16
 HP,Outros/Não Classificado,HP Pavilion x360 14-dy0212TU Laptop,PAVILION X360 14-DY0212TU,Y0212TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated Iris Xe Graphics,8
-HP,Outros/Não Classificado,HP 14s-dq3037tu Laptop,-DQ3037TU,Q3037TULAPTOP,Geral/Baixa Performance,,Intel Celeron N4500,Intel Integrated UHD Graphics,8
+HP,Outros/Não Classificado,HP 14s-dq3037tu Laptop,14S-DQ3037TU,Q3037TULAPTOP,Geral/Baixa Performance,,Intel Celeron N4500,Intel Integrated UHD Graphics,8
 HP,Outros/Não Classificado,HP Pavilion x360 14-ek0088TU Laptop,PAVILION X360 14-EK0088TU,K0088TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i7,Intel Iris Xe Graphics,16
 FUJITSU,Outros/Não Classificado,Fujitsu UH-X FPC01319LK Laptop,UH-X FPC01319LK,FPC01319LK,Geral/Baixa Performance,2021,11th Gen Core i5,Intel Iris Xe Graphics,16
 FUJITSU,Outros/Não Classificado,Fujitsu UH-X FPC02568LK Laptop,UH-X FPC02568LK,FPC02568LK,Geral/Baixa Performance,2021,11th Gen Core i5,Intel Iris Xe Graphics,16
@@ -1113,8 +1113,8 @@ ASUS,ROG Flow (2-in-1 Gaming),Asus ROG Flow X13 GV301RA-LJ031WS Gaming Laptop,RO
 ASUS,ROG Zephyrus (Slim Performance),Asus ROG Zephyrus G15 GA503RW-LN066WS Gaming Laptop,ROG ZEPHYRUS G15 GA503RW-LN066WS GAMING,GA503RWLN066WS,Gamer,2022,AMD Ryzen 9 6900HS,8 GB NVIDIA GeForce RTX 3070Ti,16
 HP,Outros/Não Classificado,HP Pavilion x360 14-ek0092TU Laptop,PAVILION X360 14-EK0092TU,K0092TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i7,Intel Iris Xe Graphics,16
 HP,Outros/Não Classificado,HP Pavilion x360 14-ek0078TU Laptop,PAVILION X360 14-EK0078TU,K0078TULAPTOP,Geral/Baixa Performance,2022,12th Gen Core i5,Intel Iris Xe Graphics,16
-HP,Outros/Não Classificado,HP 15s-fq2672TU Laptop,-FQ2672TU,Q2672TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
-HP,Outros/Não Classificado,HP 15s-fq2674TU Laptop,-FQ2674TU,Q2674TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
+HP,Outros/Não Classificado,HP 15s-fq2672TU Laptop,15S-FQ2672TU,Q2672TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
+HP,Outros/Não Classificado,HP 15s-fq2674TU Laptop,15S-FQ2674TU,Q2674TULAPTOP,Geral/Baixa Performance,2021,11th Gen Core i3,Intel Integrated UHD,8
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF Gaming A17 FA706IC-HX036W Laptop,TUF GAMING A17 FA706IC-HX036W,HX036WLAPTOP,Gamer,2022,Ryzen 7 4800H,4 GB NVIDIA GeForce RTX RTX 3050,8
 MSI,MSI Thin (Gaming Slim/Entrada),MSI GF75 Thin 10SC-611IN Laptop,GF75 THIN 10SC-611IN,611INLAPTOP,Geral/Baixa Performance,2020,10th Gen Core i5,4 GB Nvidia GTX1650 MaxQ,8
 HP,HP Victus (Gaming de Entrada),HP Victus 15-fb0051AX Gaming Laptop,VICTUS 15-FB0051AX GAMING,B0051AXGAMING,Gamer,2022,Ryzen 5-5600H,4 GB NVIDIA GeForce RTX 3050 Ti,8
@@ -1178,7 +1178,7 @@ HP,HP Victus (Gaming de Entrada),HP Victus 16-e0361ax Gaming Laptop,VICTUS 16-E0
 HP,Outros/Não Classificado,HP Pavilion 14-EC1019AU Laptop,PAVILION 14-EC1019AU,C1019AULAPTOP,Geral/Baixa Performance,,Ryzen 5 5625U,AMD Radeon AMD,16
 ASUS,TUF Gaming (Gaming Acessível),Asus TUF A15 OLED FA507RM-HF030WS Laptop,TUF A15 OLED FA507RM-HF030WS,OLEDFA507RM,Gamer,2022,Ryzen 7 6800H,6 GB NVIDIA GeForce RTX 3060,16
 HP,Série Geral de Performance,HP Pavilion 14-EC1008AU Laptop,PAVILION 14-EC1008AU,C1008AULAPTOP,Geral/Média Performance,,Ryzen 7 5825U,AMD Radeon AMD,16
-HP,Outros/Não Classificado,HP 15s-du3519TX Laptop,-DU3519TX,U3519TXLAPTOP,Geral/Baixa Performance,2021,11th Gen Core i5,2 GB NVIDIA GeForce MX450,8
+HP,Outros/Não Classificado,HP 15s-du3519TX Laptop,15S-DU3519TX,U3519TXLAPTOP,Geral/Baixa Performance,2021,11th Gen Core i5,2 GB NVIDIA GeForce MX450,8
 ASUS,Outros/Não Classificado,Asus Strix G15 G513RM-HQ273WS Gaming Laptop,STRIX G15 G513RM-HQ273WS GAMING,G513RMHQ273WS,Gamer,2022,Ryzen 7 6800H,6 GB NVIDIA GeForce RTX 3060,16
 ASUS,Outros/Não Classificado,Asus BR1100CKA-GJ0722W Notebook,BR1100CKA-GJ0722W,ASUSBR1100CKA,Geral/Baixa Performance,,Celeron N4500,Missing,4
 FUJITSU,Outros/Não Classificado,Fujitsu UH-X 4ZR1F38024 Laptop,UH-X 4ZR1F38024,1F38024LAPTOP,Geral/Baixa Performance,2021,11th Gen Core i7,Intel Iris Xe Graphics,16

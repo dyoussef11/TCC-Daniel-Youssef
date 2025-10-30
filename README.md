@@ -8,11 +8,27 @@ O objetivo é coletar links de discussão para modelos de notebooks gamers (2018
 
 #### 1. Fóruns e Marcas Específicas
 
+[x] Dell Community (Português)/(Inglês) - Webscrapping dos links.
 
-[ ] Lenovo: Criar script de coleta (Fórum de suporte Lenovo Community).
+[x] Clube do Hardware - Webscrapping dos links.
+
+[x] Adrenaline - Webscrapping dos links.
+
+[x] Tom's Guide / Tom's Hardware - Webscrapping dos links.
+
+[x] Asus (Português)/(Inglês) - Webscrapping dos links.
+
+[x] Acer: (Português)/(Inglês) - Webscrapping dos links.
+
+[x] HP: (Inglês) - Webscrapping dos links.
+
+[x] Lenovo: (Português)/(Inglês) - Webscrapping dos links.
+
+Esta etapa foi finalizada
 
 
-#### 2. Status de Scripts Existentes
+
+#### 2. Status de Scripts links
 
 [x] Dell Community (Português)/(Inglês) - Lógica de múltiplos modelos implementada.
 
@@ -27,3 +43,17 @@ O objetivo é coletar links de discussão para modelos de notebooks gamers (2018
 [x] Acer: (Português)/(Inglês) - Lógica de múltiplos modelos implementada.
 
 [x] HP: (Inglês) - Lógica de múltiplos modelos implementada.
+
+[x] Lenovo: (Português)/(Inglês) - Lógica de múltiplos modelos implementada.
+
+Esta etapa foi finalizada
+
+
+#### 3. Scripts de links executados
+
+
+[x] Dell Community (Português)/(Inglês) - CSV dos links foi gerado, nome = '**1- WebScrapping - Links Apenas\data\links_discussoes_Dell_Ingles.csv** **,**  
+**1- WebScrapping - Links Apenas\data\links_discussoes_Dell_Brasil.csv**'.
+
+
+[x] Acer: (Inglês) - CSV dos links foi gerado, nome ='**1- WebScrapping - Links Apenas\data\links_discussoes_Acer_Ingles.csv** **,** **1- WebScrapping - Links Apenas\data\links_discussoes_Acer.csv**'.
