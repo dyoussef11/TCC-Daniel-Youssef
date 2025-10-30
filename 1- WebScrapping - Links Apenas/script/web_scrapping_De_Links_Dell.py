@@ -11,6 +11,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
+import undetected_chromedriver as uc
 
 # Obtém o caminho absoluto da pasta do script atual.
 caminho_script = Path(__file__).resolve().parent
@@ -40,12 +41,13 @@ if not modelos_a_buscar:
 
 # --- Configurações iniciais do Selenium ---
 chrome_options = Options()
-# chrome_options.add_argument("--headless")
+chrome_options.add_argument("--headless") # Modo Headless ativado
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--no-sandbox") # Essencial para alguns ambientes headless
 
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install())) # Modo Normal (sem headless)
+driver = uc.Chrome(service=Service(ChromeDriverManager().install()),options= chrome_options) # Modo Normal (sem headless)
 
 # Usamos um wait mais longo, já que a busca por vários modelos levará tempo
 wait = WebDriverWait(driver, 30)

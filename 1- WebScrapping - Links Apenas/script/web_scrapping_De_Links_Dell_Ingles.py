@@ -11,6 +11,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException, NoSuchElementException # Importação útil
+import undetected_chromedriver as uc
 
 # Obtém o caminho absoluto da pasta do script atual.
 # Exemplo: 'C:\...\Buscar_Web\1- WebScrapping\script'
@@ -44,13 +45,14 @@ if not modelos_a_buscar:
 # --- Configurações iniciais do Selenium ---
 chrome_options = Options()
 # Mantendo o headless, mas pode comentar para debug
-# chrome_options.add_argument("--headless") 
+chrome_options.add_argument("--headless") # Modo Headless ativado
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--no-sandbox") # Essencial para alguns ambientes headless
 
 # CORREÇÃO: Inicialização única do driver
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
 wait = WebDriverWait(driver, 20) # Usamos o wait mais longo
 
 site_url = "https://www.dell.com/community/en/categories/dell-community"
@@ -182,12 +184,18 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
 
             # Tenta encontrar o botão "Próximo" (Usando a variável)
             try:
+                # Diminui o timeout aqui, pois esperamos que o botão seja rápido (ou não exista)
                 next_button = WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_NEXT_BUTTON)))
+                
+                # 💡 ADICIONE ESSA VERIFICAÇÃO PARA FORÇAR A QUEBRA 💡
+                if 'disabled' in next_button.get_attribute('class'):
+                     raise Exception("Botão 'Next' desabilitado.") # Força a quebra
+
                 print("Clicando no botão 'Next'...")
                 # Uso de JavaScript para clique mais robusto
                 driver.execute_script("arguments[0].click();", next_button)
                 time.sleep(3) # Pausa para a página carregar
-            except:
+            except Exception: # Captura a exceção, incluindo a forçada acima
                 print("Botão 'Next' não encontrado ou desabilitado. Fim da paginação.")
                 break
         

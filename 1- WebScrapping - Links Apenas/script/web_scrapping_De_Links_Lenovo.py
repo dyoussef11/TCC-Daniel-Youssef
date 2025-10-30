@@ -58,8 +58,8 @@ chrome_options.add_argument("--no-sandbox") # Essencial para alguns ambientes he
 
 # Inicializa o driver corretamente com as opções headless
 service = ChromeService(ChromeDriverManager().install())
-driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-driver = uc.Chrome()
+driver = uc.Chrome(version_main=141, options=chrome_options)
+# driver = uc.Chrome()
 wait = WebDriverWait(driver, 30)
 
 site_url = "https://forums.lenovo.com/t5/Comunidade-Lenovo/ct-p/community_pt?language=pt"
