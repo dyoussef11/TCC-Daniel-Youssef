@@ -32,11 +32,10 @@ from modelo_de_busca import ler_e_filtrar_modelos
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_ClubeHardware.csv'
 caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
 
-# --- Configuração de Busca ---
 MARCA_ALVO = None
-
+TIPO_NOTEBOOK = 'Gamer'
 # Lê e filtra os modelos do CSV
-modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO)
+modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO, TIPO_NOTEBOOK)
 
 if not modelos_a_buscar:
     print(f"Não foram encontrados modelos para a marca '{MARCA_ALVO}' no arquivo CSV ou houve um erro na leitura. Saindo.")
@@ -82,12 +81,12 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
     # [MODIFICAÇÃO] PAUSA ESTRATÉGICA E ALEATÓRIA ENTRE MODELOS
     # Crucial para evitar rate limiting
     if i > 0:
-        sleep_time = random.uniform(7, 12) # Pausa maior entre 7 e 12 segundos
+        sleep_time = random.uniform(0.5, 1) # Pausa maior entre 7 e 12 segundos
         print(f"Pausando por {sleep_time:.2f} segundos antes da busca do próximo modelo.")
         time.sleep(sleep_time)
 
     print(f"\n{'='*60}")
-    print(f"INICIANDO BUSCA {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}' com termo: {termo_de_busca}")
+    print(f"INICIANDO BUSCA (Clube Hardware) {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}' com termo: {termo_de_busca}")
     print(f"{'='*60}")
     
     # 1. Navegar para a página de busca (necessário a cada novo termo)
@@ -149,7 +148,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
             
             try:
                 # Espera que os links de resultado estejam presentes (Usa a variável de seletor)
-                discussion_links = WebDriverWait(driver, 10).until(
+                discussion_links = WebDriverWait(driver, 2).until(
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_LINKS_RESULTADO))
                 )
 

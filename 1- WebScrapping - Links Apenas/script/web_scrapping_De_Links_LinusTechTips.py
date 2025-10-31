@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException
 from selenium.webdriver.chrome.options import Options
 import traceback # Importar para melhor rastreamento de erro
 from selenium import webdriver
@@ -18,143 +18,229 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 # Obtém o caminho absoluto da pasta do script atual.
 caminho_script = Path(__file__).resolve().parent
-
-# Acessa a pasta raiz do projeto subindo dois níveis.
 caminho_raiz_projeto = caminho_script.parent.parent
-
-# Adiciona o caminho da raiz ao caminho de busca do Python.
 sys.path.append(str(caminho_raiz_projeto))
 
-# Agora a importação do módulo 'config' deve funcionar.
-from config import DIRETORIO_DADOS_WEBSCRAPPING
+# Agora a importação do módulo 'config' e 'modelo_de_busca' deve funcionar.
+from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_DATASET_FINAL
+from modelo_de_busca import ler_e_filtrar_modelos 
 
+# --- CONFIGURAÇÃO DE ARQUIVOS E CHECKPOINT ---
+caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_LinusTechTips.csv'
+caminho_modelos_concluidos = DIRETORIO_DADOS_WEBSCRAPPING / 'modelos_concluidos_Linus_Tech_Tips.txt'
+caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
+
+# --- FUNÇÕES DE CHECKPOINTING E PROGRESSO ---
+
+def carregar_modelos_concluidos(path: Path) -> set:
+    """Carrega modelos já processados de um arquivo de texto para retomar o progresso."""
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            # Retorna um set para buscas O(1) rápidas e para garantir unicidade
+            return {line.strip() for line in f if line.strip()}
+    except FileNotFoundError:
+        return set()
+
+def marcar_modelo_concluido(path: Path, modelo: str):
+    """Adiciona um modelo à lista de concluídos."""
+    # Abre o arquivo para anexar (append)
+    with open(path, 'a', encoding='utf-8') as f:
+        f.write(modelo + '\n')
+
+def salvar_resultados_incrementais(path: Path, resultados: list, modelo_de_busca: str):
+    """Salva os resultados do modelo atual no arquivo CSV, anexando os dados."""
+    
+    if not resultados:
+        print(f"Nenhum resultado para salvar para o modelo '{modelo_de_busca}'.")
+        return
+
+    # Verifica se o arquivo existe ou está vazio para decidir se deve escrever o cabeçalho
+    escrever_cabecalho = not path.exists() or path.stat().st_size == 0
+
+    try:
+        with open(path, 'a', newline='', encoding='utf-8') as file:
+            fieldnames = ['Título da Discussão', 'Link da Discussão', 'Modelo Buscado']
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            
+            if escrever_cabecalho:
+                writer.writeheader()
+                
+            writer.writerows(resultados)
+            
+        print(f"Resultados do modelo '{modelo_de_busca}' APENDADOS ao arquivo de saída.")
+    except Exception as e:
+        print(f"ERRO ao salvar resultados incrementais para o modelo '{modelo_de_busca}': {e}")
+        # traceback.print_exc()
+
+MARCA_ALVO = None
+TIPO_NOTEBOOK = 'Gamer'
+modelos_a_buscar_bruto = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO, TIPO_NOTEBOOK)
+
+
+# 1. Carregar modelos já concluídos de execuções anteriores
+modelos_concluidos = carregar_modelos_concluidos(caminho_modelos_concluidos)
+print(f"Progresso carregado. {len(modelos_concluidos)} modelos já foram processados.")
+
+# 2. Lê todos os modelos do CSV
+modelos_a_buscar_bruto = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO, TIPO_NOTEBOOK)
+
+# 3. Filtra os modelos brutos para pular os concluídos
+modelos_a_buscar = [
+    modelo for modelo in modelos_a_buscar_bruto 
+    if modelo not in modelos_concluidos
+]
+
+if not modelos_a_buscar and modelos_a_buscar_bruto:
+    print("Todos os modelos no CSV já foram processados. Processo encerrado.")
+    sys.exit()
+elif not modelos_a_buscar:
+    print(f"Não foram encontrados modelos para a marca '{MARCA_ALVO}' no arquivo CSV ou houve um erro na leitura. Saindo.")
+    sys.exit()
+
+print(f"Iniciando busca para {len(modelos_a_buscar)} de {len(modelos_a_buscar_bruto)} modelos totais.")
 
 # --- CONSTANTES DE CONFIGURAÇÃO E DADOS ---
 SITE_URL = "https://linustechtips.com/search/"
-# Termo de busca FIXO para este exemplo.
-TERMO_DE_BUSCA = '"g7 15 7588"' 
-CAMPO_MODELO_BUSCADO_FIXO = TERMO_DE_BUSCA.replace('"', '') # Valor que será salvo no CSV
 
 # --- DECLARAÇÕES DE HTML EM VARIÁVEIS (Seletores) ---
-# Selenium (By.NAME)
 SELETOR_CAMPO_BUSCA = "q" 
-
-# Selenium (By.CSS_SELECTOR)
 SELETOR_LINKS_RESULTADO = "ol.ipsStream a[data-linktype='link']"
 SELETOR_BOTAO_PROXIMA_PAGINA = "li.pagination-next a"
 
-
-caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_LinusTechTips.csv'
-
 # Use undetected-chromedriver instead of standard Selenium
-# [MODIFICAÇÃO] Adicionar options para configurar o driver (como headless)
 chrome_options = Options()
-# [MODIFICAÇÃO] Ativar modo headless para maior velocidade
 chrome_options.add_argument("--headless") 
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--disable-gpu")
-# [MODIFICAÇÃO] Adicionar User-Agent para simular um navegador normal
 chrome_options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36")
 
 
 # Inicializa o driver APENAS UMA VEZ.
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-# [MODIFICAÇÃO] Reduzir o tempo de espera padrão de 30s para 15s (mais ágil no headless)
-wait = WebDriverWait(driver, 15)
-# [MODIFICAÇÃO] Remoção de driver.maximize_window() para otimização de performance.
-driver.get(SITE_URL)
-# [MODIFICAÇÃO] Reduzir o tempo de espera de 20s para 15s (ainda robusto, mas mais rápido)
 wait = WebDriverWait(driver, 15)
 
 try:
-    print("Aguardando o campo de busca...")
-    # Usa a constante de seletor (By.NAME)
-    barra_de_busca = wait.until(EC.presence_of_element_located((By.NAME, SELETOR_CAMPO_BUSCA)))
-    # [MODIFICAÇÃO] Remover time.sleep(3). O wait já garantiu a presença do elemento.
-
-    # Usa ActionChains para interagir com o elemento
-    actions = ActionChains(driver)
-    # Usa a constante TERMO_DE_BUSCA
-    actions.move_to_element(barra_de_busca).click().send_keys(TERMO_DE_BUSCA).send_keys(Keys.ENTER).perform()
-    print(f"Texto '{TERMO_DE_BUSCA}' inserido no campo de busca e a tecla Enter pressionada.")
-
-    print("Pesquisa realizada com sucesso!")
-    # [MODIFICAÇÃO] Remover time.sleep(5). O próximo wait (presence_of_all_elements_located) cuidará da espera.
-
-    all_results_data = []
-    # --- INICIANDO EXTRAÇÃO DE DADOS ---
-    print("\n--- INICIANDO COLETA DE TÍTULOS E LINKS ---")
-
-    while True:
-        try:
-            # Usa a constante de seletor. Timeout de 10s para a lista de resultados.
-            discussion_titles_elements = WebDriverWait(driver, 10).until(
-                EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_LINKS_RESULTADO))
-            )
-            
-            # Se não encontrar resultados, o loop de paginação irá parar, mas verificamos explicitamente:
-            if not discussion_titles_elements and ('page=1' in driver.current_url or 'search/?type=post' in driver.current_url):
-                print("Zero resultados encontrados na primeira página. Finalizando coleta.")
-                break
-
-            novos_links = 0
-            print("Coletando títulos e links da página atual...")
-            for element in discussion_titles_elements:
-                link = element.get_attribute("href")
-                title = element.text.strip()
-                
-                result_data = {
-                    "Título da Discussão": title, 
-                    "Link da Discussão": link,
-                    "Modelo Buscado": CAMPO_MODELO_BUSCADO_FIXO # Adiciona a informação do modelo buscado
-                }
-                
-                # Check for and prevent duplicate entries based on link
-                if not any(d['Link da Discussão'] == link for d in all_results_data):
-                    all_results_data.append(result_data)
-                    novos_links += 1
-            
-            print(f"Novos links coletados: {novos_links}. Total de resultados coletados até agora: {len(all_results_data)}")
-
-            # Tenta encontrar o botão "Próximo" para paginação
-            # Usa a constante de seletor
-            next_button = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_PROXIMA_PAGINA)))
-            
-            # Clica via JS para maior robustez
-            driver.execute_script("arguments[0].click();", next_button)
-            print("Clicando no botão 'Próximo'...")
-            
-            # [MODIFICAÇÃO] Usar pausa aleatória na paginação (Anti-Bloqueio/Simulação Humana)
-            sleep_time = random.uniform(2, 4) 
-            time.sleep(sleep_time)
-            print(f"Pausa de {sleep_time:.2f} segundos para carregamento.") 
-
-        except TimeoutException as e:
-            # Captura o Timeout se o botão 'Próximo' não aparecer (fim da paginação)
-            print(f"Botão 'Próximo' não encontrado ou tempo de espera esgotado. Fim da paginação.")
-            break
-        except Exception as e:
-            print(f"Ocorreu um erro durante a coleta/paginação. Finalizando. Detalhe do erro: {e}")
-            break
-
-    # --- SALVANDO DADOS EM CSV ---
-    if all_results_data:
-        with open(caminho_saida, 'w', newline='', encoding='utf-8') as file:
-            fieldnames = ['Título da Discussão', 'Link da Discussão', 'Modelo Buscado']
-            writer = csv.DictWriter(file, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerows(all_results_data)
-
-        print(f"\nDados salvos com sucesso em '{caminho_saida}'. Total de resultados: {len(all_results_data)}")
-    else:
-        print("\nNenhum resultado foi coletado para salvar.")
+    for i, modelo_de_busca in enumerate(modelos_a_buscar):
+        # Reinicia a lista de resultados para o modelo atual
+        current_model_results = []
         
+        # Pausa Estratégica e Aleatória entre modelos
+        if i > 0:
+            sleep_time = random.uniform(1, 3) 
+            print(f"Pausando por {sleep_time:.2f} segundos antes da busca do próximo modelo.")
+            time.sleep(sleep_time)
+
+        # Formata o termo de busca: o nome do modelo entre aspas para busca exata
+        termo_de_busca = f'{modelo_de_busca}'
+        
+        # ======================================================================================
+        # ADIÇÃO DO LOG SOLICITADO
+        # ======================================================================================
+        print(f"\n{'='*70}")
+        print(f"INICIANDO BUSCA (Linus Tech Tips) {i+1}/{len(modelos_a_buscar)} (Total de {len(modelos_a_buscar_bruto)}): Modelo '{modelo_de_busca}'")
+        print(f"{'='*70}")
+        # ======================================================================================
+
+        # 1. Navegar para a página de busca (necessário a cada novo termo)
+        driver.get(SITE_URL)
+
+        try:
+            print("Aguardando o campo de busca...")
+            barra_de_busca = wait.until(EC.presence_of_element_located((By.NAME, SELETOR_CAMPO_BUSCA)))
+
+            # 2. Realiza a busca
+            actions = ActionChains(driver)
+            actions.move_to_element(barra_de_busca).click().send_keys(termo_de_busca).send_keys(Keys.ENTER).perform()
+            print(f"Texto '{termo_de_busca}' inserido. Pesquisa iniciada. Aguardando resultados...")
+
+            # --- INICIANDO EXTRAÇÃO DE DADOS ---
+            while True:
+                try:
+                    # Espera que os resultados carreguem
+                    discussion_titles_elements = WebDriverWait(driver, 10).until(
+                        EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_LINKS_RESULTADO))
+                    )
+                    
+                    # Verifica explicitamente se não há resultados
+                    if not discussion_titles_elements and ('page=1' in driver.current_url or 'search/?type=post' in driver.current_url):
+                        print("Zero resultados encontrados na primeira página. Finalizando coleta para o modelo.")
+                        break
+
+                except TimeoutException:
+                    print("Timeout no carregamento dos links. Tentando encontrar o botão Próximo...")
+                
+                novos_links = 0
+                print("Coletando títulos e links da página atual...")
+                
+                # Re-localizar elementos para evitar StaleElementReferenceException
+                current_elements = driver.find_elements(By.CSS_SELECTOR, SELETOR_LINKS_RESULTADO)
+                
+                for element in current_elements:
+                    try:
+                        link = element.get_attribute("href")
+                        title = element.text.strip()
+                        
+                        result_data = {
+                            "Título da Discussão": title, 
+                            "Link da Discussão": link,
+                            "Modelo Buscado": modelo_de_busca # Usa o modelo do loop
+                        }
+                        
+                        # Check for and prevent duplicate entries in the current session
+                        # Se o checkpoint estivesse carregando dados, faríamos a unicidade globalmente.
+                        if not any(d['Link da Discussão'] == link for d in current_model_results):
+                            current_model_results.append(result_data)
+                            novos_links += 1
+                            
+                    except StaleElementReferenceException:
+                        continue # Pula o elemento instável
+                    except Exception as e:
+                        print(f"Erro ao ler elemento: {e}")
+                        continue
+                
+                print(f"Novos links coletados: {novos_links}. Total de resultados coletados para o modelo: {len(current_model_results)}")
+
+                # Tenta encontrar o botão "Próximo" para paginação
+                try:
+                    next_button = WebDriverWait(driver, 3).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_PROXIMA_PAGINA)))
+                    
+                    # Clica via JS para maior robustez
+                    driver.execute_script("arguments[0].click();", next_button)
+                    print("Clicando no botão 'Próximo'...")
+                    
+                    # Pausa aleatória na paginação
+                    sleep_time_page = random.uniform(1, 2) 
+                    time.sleep(sleep_time_page)
+                    
+                except (TimeoutException, NoSuchElementException):
+                    print("Botão 'Próximo' não encontrado ou tempo de espera esgotado. Fim da paginação.")
+                    break
+                except Exception as e:
+                    print(f"Ocorreu um erro durante a paginação. Finalizando. Detalhe do erro: {e}")
+                    break
+            
+            # --- PONTO CRUCIAL DE SALVAMENTO DE CHECKPOINT ---
+            # 1. Salva os resultados do modelo ATUAL (incrementalmente)
+            salvar_resultados_incrementais(caminho_saida, current_model_results, modelo_de_busca)
+
+            # 2. Marca o modelo como concluído SOMENTE se o processamento terminou
+            marcar_modelo_concluido(caminho_modelos_concluidos, modelo_de_busca)
+            print(f"Modelo '{modelo_de_busca}' marcado como CONCLUÍDO. Progresso salvo.")
+            
+        except Exception as e:
+            print(f"Ocorreu um erro durante a busca pelo modelo '{modelo_de_busca}'. Pulando para o próximo. Erro: {e}")
+            traceback.print_exc()
+            continue # Pula para o próximo modelo
+
+except KeyboardInterrupt:
+    print("\n[INTERRUPÇÃO DETECTADA] Encerrando o processo de forma segura...")
 except Exception as e:
     print(f"Ocorreu um erro FATAL: {e}")
     traceback.print_exc()
 
 finally:
     # Always close the browser
-    print("Fechando o navegador...")
-    driver.quit()
+    if driver:
+        driver.quit()
+    print("Processo concluído/interrompido. Navegador fechado.")

@@ -30,21 +30,25 @@ Esta etapa foi finalizada
 
 #### 2. Status de Scripts links
 
-[x] Dell Community (Português)/(Inglês) - Lógica de múltiplos modelos implementada.
+~~[x] Dell Community (Português)/(Inglês) - Lógica de múltiplos modelos implementada.~~
 
-[x] Clube do Hardware - Lógica de múltiplos modelos implementada.
+~~[x] Clube do Hardware - Lógica de múltiplos modelos implementada.~~
 
-[x] Adrenaline - Lógica de múltiplos modelos implementada.
+~~[x] Adrenaline - Lógica de múltiplos modelos implementada.~~
 
-[x] Tom's Guide / Tom's Hardware - Lógica de múltiplos modelos implementada.
+~~[x] Tom's Hardware - Lógica de múltiplos modelos implementada.~~
+
+~~[x] Tom's Guide  - Lógica de múltiplos modelos implementada.~~
 
 [x] Asus (Português)/(Inglês) - Lógica de múltiplos modelos implementada.
 
-[x] Acer: (Português)/(Inglês) - Lógica de múltiplos modelos implementada.
+~~[x] Acer: (Português)/(Inglês) - Lógica de múltiplos modelos implementada.~~
 
 [x] HP: (Inglês) - Lógica de múltiplos modelos implementada.
 
 [x] Lenovo: (Português)/(Inglês) - Lógica de múltiplos modelos implementada.
+
+[x] Linus Tech Tips: (Inglês) - Lógica de múltiplos modelos implementada.
 
 Esta etapa foi finalizada
 
@@ -56,4 +60,12 @@ Esta etapa foi finalizada
 **1- WebScrapping - Links Apenas\data\links_discussoes_Dell_Brasil.csv**'.
 
 
-[x] Acer: (Inglês) - CSV dos links foi gerado, nome ='**1- WebScrapping - Links Apenas\data\links_discussoes_Acer_Ingles.csv** **,** **1- WebScrapping - Links Apenas\data\links_discussoes_Acer.csv**'.
+[x] Acer: (Português)/(Inglês) - CSV dos links foi gerado, nome ='**1- WebScrapping - Links Apenas\data\links_discussoes_Acer_Ingles.csv** **,** **1- WebScrapping - Links Apenas\data\links_discussoes_Acer.csv**'.
+
+[x] Clube do Hardware - CSV dos links foi gerado, nome ='**1- WebScrapping - Links Apenas\data\links_discussoes_ClubeHardware.csv**'
+
+[x] Adrenaline - CSV dos links foi gerado, nome = '**1- WebScrapping - Links Apenas\data\links_discussoes_Adrenaline.csv**'
+
+[x] Tom's Guide  - CSV dos links foi gerado, nome = '**1- WebScrapping - Links Apenas\data\links_discussoes_Tom_Guide.csv**'
+
+[x] Tom's Hardware  - CSV dos links foi gerado, nome = '**1- WebScrapping - Links Apenas\data\links_discussoes_Tom_Hardware.csv**'

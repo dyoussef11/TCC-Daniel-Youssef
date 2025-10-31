@@ -39,9 +39,9 @@ caminho_entrada.parent.mkdir(parents=True, exist_ok=True)
 
 # --- Configuração de Busca ---
 MARCA_ALVO = 'ACER'
-
-# Lê e filtra os modelos do CSV
-modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO)
+TIPO_NOTEBOOK = 'Gamer'
+modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO, TIPO_NOTEBOOK)
+print(f'{modelos_a_buscar}')
 
 if not modelos_a_buscar:
     print(f"Não foram encontrados modelos para a marca '{MARCA_ALVO}' no arquivo CSV ou houve um erro na leitura. Saindo.")

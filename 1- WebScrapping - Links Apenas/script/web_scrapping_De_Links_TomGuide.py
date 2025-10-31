@@ -32,11 +32,10 @@ from modelo_de_busca import ler_e_filtrar_modelos
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_Tom_Guide.csv'
 caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
 
-# --- Configuração de Busca e Filtro de CSV ---
-MARCA_ALVO = None 
-
+MARCA_ALVO = None
+TIPO_NOTEBOOK = 'Gamer'
 # Lê e filtra os modelos do CSV
-modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO)
+modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO, TIPO_NOTEBOOK)
 
 if not modelos_a_buscar:
     print(f"Não foram encontrados modelos para a marca '{MARCA_ALVO}' no arquivo CSV ou houve um erro na leitura. Saindo.")
@@ -77,7 +76,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
     # [MODIFICAÇÃO] PAUSA ESTRATÉGICA E ALEATÓRIA ENTRE MODELOS
     # CRUCIAL para evitar rate limiting em buscas consecutivas.
     if i > 0:
-        sleep_time = random.uniform(7, 12) 
+        sleep_time = random.uniform(0, 1) 
         print(f"Pausando por {sleep_time:.2f} segundos antes da busca do próximo modelo.")
         time.sleep(sleep_time)
 
@@ -85,7 +84,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
     termo_de_busca = f'"{modelo_de_busca}"'
     
     print(f"\n{'='*70}")
-    print(f"INICIANDO BUSCA {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
+    print(f"INICIANDO BUSCA (Tom's Guide) {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
     print(f"{'='*70}")
     
     # 1. Navegar para a página de busca (necessário a cada novo termo)
@@ -116,7 +115,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
             try:
                 # Tenta encontrar todos os títulos de discussão (Usa a constante SELETOR_LINKS_TITULOS)
                 # [MODIFICAÇÃO] Tempo de espera reduzido para 10s (mais ágil)
-                discussion_titles = WebDriverWait(driver, 10).until(
+                discussion_titles = WebDriverWait(driver, 3).until(
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_LINKS_TITULOS))
                 )
             except TimeoutException:

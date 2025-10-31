@@ -1,16 +1,16 @@
 import sys
 from pathlib import Path
+import csv
+import time
+import pandas as pd
+import random # Importar para pausas anti-bloqueio
+import traceback # Importar para melhor rastreamento de erro
 
-# Obtém o caminho absoluto da pasta do script atual.
+# --- Configurações de Caminho e Módulos (Mantida) ---
 caminho_script = Path(__file__).resolve().parent
-
-# Acessa a pasta raiz do projeto subindo dois níveis.
 caminho_raiz_projeto = caminho_script.parent.parent
-
-# Adiciona o caminho da raiz ao caminho de busca do Python.
 sys.path.append(str(caminho_raiz_projeto))
 
-# Agora a importação do módulo 'config' deve funcionar.
 from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_DADOS_EXTRACAO_QA
 
 import undetected_chromedriver as uc
@@ -21,10 +21,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
-import pandas as pd
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
-# --- Variáveis de Saída e Criação de Diretórios (Melhoria de Robustez) ---
+# --- Variáveis de Saída e Criação de Diretórios ---
 DIRETORIO_SAIDA_PERGUNTAS = DIRETORIO_DADOS_EXTRACAO_QA / 'perguntas'
 DIRETORIO_SAIDA_RESPOSTAS = DIRETORIO_DADOS_EXTRACAO_QA / 'respostas'
 
@@ -35,41 +34,89 @@ DIRETORIO_SAIDA_RESPOSTAS.mkdir(parents=True, exist_ok=True)
 caminho_saida_perguntas = DIRETORIO_SAIDA_PERGUNTAS / 'posts_ClubeHardware_Perguntas.csv'
 caminho_saida_respostas = DIRETORIO_SAIDA_RESPOSTAS / 'comentarios_ClubeHardware_Respostas.csv'
 
-# --- DECLARAÇÕES DE HTML EM VARIÁVEIS (Facilidade de Manutenção) ---
-# Selenium (CSS)
+# NOVO: Caminho para o arquivo de rastreamento de progresso
+caminho_links_concluidos = DIRETORIO_DADOS_EXTRACAO_QA / 'links_concluidos_ClubeHardware.txt'
+
+
+# --- DECLARAÇÕES DE HTML EM VARIÁVEIS ---
 SELETOR_BOTAO_COOKIES = "div.ipsDialog_content a.ipsButton_fullWidth"
 SELETOR_POST_TITLE = "h1.ipsType_pageTitle.ipsContained_container"
 SELETOR_DIALOGO_COOKIES = "div.c-cookies-dialog"
-
-# BeautifulSoup (Classes HTML)
 CLASSE_POST_COMPLETO = "cPost ipsBox ipsResponsive_pull ipsComment ipsComment_parent ipsClearfix ipsClear ipsColumns ipsColumns_noSpacing ipsColumns_collapsePhone"
 CLASSE_CONTEUDO_WRAP = "cPost_contentWrap"
 
 # Listas globais
-posts_data = []
-comments_data = []
+posts_data = [] # Usada para armazenar dados do link atual antes de salvar
+comments_data = [] # Usada para armazenar dados do link atual antes de salvar
 driver = None
 
 
-def extrair_dados_topico(soup, post_id, link):
+# --- FUNÇÕES DE CHECKPOINTING E PROGRESSO (NOVAS) ---
+
+def carregar_links_concluidos(path: Path) -> set:
+    """Carrega IDs de links já processados para retomar o progresso."""
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            # Converte linhas para int (IDs) e retorna um set
+            return {int(line.strip()) for line in f if line.strip().isdigit()}
+    except FileNotFoundError:
+        return set()
+
+def marcar_link_concluido(path: Path, post_id: int):
+    """Adiciona o ID de um post (índice) à lista de concluídos."""
+    with open(path, 'a', encoding='utf-8') as f:
+        f.write(str(post_id) + '\n')
+
+def salvar_dados_incrementais(path: Path, data: list, fieldnames: list, type_name: str):
+    """Salva a lista de dados no arquivo CSV, anexando os dados."""
+    
+    if not data:
+        print(f"Nenhum dado de {type_name} para salvar.")
+        return
+
+    # Verifica se o arquivo existe ou está vazio para decidir se deve escrever o cabeçalho
+    escrever_cabecalho = not path.exists() or path.stat().st_size == 0
+
+    try:
+        # Usa 'a' (append) para anexar os novos dados
+        with open(path, 'a', newline='', encoding='utf-8') as file:
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            
+            if escrever_cabecalho:
+                writer.writeheader()
+                
+            writer.writerows(data)
+            
+        print(f"Dados de {type_name} (ID: {data[0]['ID_Post']}) APENDADOS ao arquivo de saída.")
+    except Exception as e:
+        print(f"ERRO ao salvar dados incrementais de {type_name}: {e}")
+        # traceback.print_exc()
+
+# --- FUNÇÃO DE EXTRAÇÃO MODIFICADA PARA RECEBER LISTAS LOCAIS ---
+def extrair_dados_topico(soup, post_id, link, posts_list, comments_list):
     """
     Extrai o título, o conteúdo do post original e os comentários
     de um objeto BeautifulSoup.
     """
     # --- Extração de Dados do Post (Pergunta) ---
-    title_element = soup.find("h1", class_=SELETOR_POST_TITLE.split('.')[-1].replace(' ', '.')) # Reutiliza o seletor
+    title_element = soup.find("h1", class_=SELETOR_POST_TITLE.split('.')[-1].replace(' ', '.'))
     page_title = title_element.text.strip() if title_element else "Título não encontrado"
 
-    # O conteúdo do post original é o primeiro elemento 'cPost'
     first_post_element = soup.find("article", class_=CLASSE_POST_COMPLETO)
     
     post_content = "Conteúdo não encontrado"
     if first_post_element:
         content_wrap = first_post_element.find("div", class_=CLASSE_CONTEUDO_WRAP)
-        post_content = content_wrap.text.strip() if content_wrap else "Conteúdo não encontrado"
+        # O post original é o primeiro elemento 'cPost', obtém seu conteúdo
+        # Certifique-se de pegar o corpo principal e não citações internas
+        if content_wrap:
+             # Remoção mais robusta de quebras de linha e múltiplos espaços
+            post_content = content_wrap.text.strip().replace('\n', ' ').replace('\r', '').replace('  ', ' ')
+        else:
+             post_content = "Conteúdo não encontrado"
 
-    # Adiciona os dados do post à lista de posts
-    posts_data.append({
+    # Adiciona os dados do post à lista LOCAL de posts
+    posts_list.append({
         "ID_Post": post_id,
         "Titulo_Post": page_title,
         "URL_Post": link,
@@ -84,11 +131,15 @@ def extrair_dados_topico(soup, post_id, link):
     for comment_body in comment_bodies[1:]:
         try:
             comment_text_elem = comment_body.find("div", class_=CLASSE_CONTEUDO_WRAP)
-            comment_text = comment_text_elem.text.strip() if comment_text_elem else "Comentário não encontrado"
+            
+            comment_text = "Comentário não encontrado"
+            if comment_text_elem:
+                # Remoção mais robusta de quebras de linha e múltiplos espaços
+                comment_text = comment_text_elem.text.strip().replace('\n', ' ').replace('\r', '').replace('  ', ' ')
 
-            # Adiciona os dados do comentário à lista de comentários
-            comments_data.append({
-                "ID_Post": post_id,  # Link para o post original usando o ID artificial
+            # Adiciona os dados do comentário à lista LOCAL de comentários
+            comments_list.append({
+                "ID_Post": post_id, 
                 "Conteudo_Comentario": comment_text,
             })
 
@@ -97,7 +148,7 @@ def extrair_dados_topico(soup, post_id, link):
             continue
 
 # =================================================================
-#               INÍCIO DO SCRIPT PRINCIPAL
+#               INÍCIO DO SCRIPT PRINCIPAL
 # =================================================================
 try:
     # --- Configuração do WebDriver ---
@@ -114,63 +165,91 @@ try:
     
     try:
         df = pd.read_csv(caminho_entrada)
+        # Filtra links duplicados e garante que a coluna 'link' seja a referência
+        df = df.drop_duplicates(subset=['link']).reset_index(drop=True) 
     except FileNotFoundError:
         print(f"Erro: O arquivo '{caminho_entrada}' não foi encontrado.")
         exit()
 
+    # --- Lógica de Retomada ---
+    links_concluidos = carregar_links_concluidos(caminho_links_concluidos)
+    print(f"Progresso carregado. {len(links_concluidos)} links já foram processados.")
+
     # --- Loop sobre a coluna 'link' do DataFrame ---
-    for index, link in enumerate(df['link']):
-        # Use o índice como um ID único para cada post
+    for index, link in df['link'].items(): # Usar .items() para obter (index, value)
         post_id = index
+        
+        # Pula se o ID já estiver na lista de concluídos
+        if post_id in links_concluidos:
+            print(f"Link {index + 1}/{len(df['link'])} (ID: {post_id}): JÁ CONCLUÍDO. Pulando.")
+            continue
+            
         print(f"\nAnalisando link {index + 1}/{len(df['link'])} (ID: {post_id}): {link}")
+
+        # Listas para armazenar dados apenas do link atual
+        current_post_data = []
+        current_comments_data = []
         
         try:
             driver.get(link)
+            time.sleep(random.uniform(1, 2)) # Pausa anti-bloqueio entre páginas
 
             # --- Lidar com o pop-up de cookies ---
             try:
-                # Usa a variável de seletor para o botão de cookies
-                accept_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_COOKIES)))
+                accept_button = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_COOKIES)))
                 print("Pop-up de cookies detectado. Clicando em 'Aceitar'...")
                 accept_button.click()
-                # Usa a variável de seletor para o diálogo de cookies
-                wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, SELETOR_DIALOGO_COOKIES)))
+                WebDriverWait(driver, 5).until(EC.invisibility_of_element_located((By.CSS_SELECTOR, SELETOR_DIALOGO_COOKIES)))
             except TimeoutException:
-                # Se o timeout ocorrer no botão/diálogo, não é um erro fatal
                 pass 
             
-            # Espera o título da página carregar (usa a variável de seletor)
+            # Espera o título da página carregar (usando wait padrão de 15s)
             wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, SELETOR_POST_TITLE)))
 
             # Pega o HTML da página
             page_source = driver.page_source
             soup = BeautifulSoup(page_source, 'html.parser')
 
-            # --- Chamada da função de extração ---
-            extrair_dados_topico(soup, post_id, link)
+            # --- Chamada da função de extração (usa listas locais) ---
+            extrair_dados_topico(soup, post_id, link, current_post_data, current_comments_data)
+
+            # --- PONTO CRUCIAL DE SALVAMENTO DE CHECKPOINT ---
+            # 1. Salva os dados do post
+            salvar_dados_incrementais(
+                caminho_saida_perguntas, 
+                current_post_data, 
+                ['ID_Post', 'Titulo_Post', 'URL_Post', 'Conteudo_Post'],
+                "Perguntas"
+            )
+
+            # 2. Salva os dados dos comentários
+            salvar_dados_incrementais(
+                caminho_saida_respostas, 
+                current_comments_data, 
+                ['ID_Post', 'Conteudo_Comentario'],
+                "Respostas"
+            )
+
+            # 3. Marca o link como concluído
+            marcar_link_concluido(caminho_links_concluidos, post_id)
+            print(f"Link (ID: {post_id}) marcado como CONCLUÍDO. Progresso salvo.")
             
         except TimeoutException:
-            print(f"Erro: Tempo de espera esgotado para o link {link}.")
+            print(f"Erro: Tempo de espera esgotado para o link {link}. Continuando para o próximo.")
         except Exception as e:
             print(f"Ocorreu um erro inesperado no link {link}: {e}")
-
-    # --- Salvamento dos Dados em arquivos CSV ---
-    if posts_data:
-        df_posts = pd.DataFrame(posts_data)
-        df_posts.to_csv(caminho_saida_perguntas, index=False, encoding='utf-8')
-        print(f"\nDados de posts salvos em '{caminho_saida_perguntas}'.")
-    else:
-        print("\nNenhum dado de post foi extraído.")
-
-    if comments_data:
-        df_comments = pd.DataFrame(comments_data)
-        df_comments.to_csv(caminho_saida_respostas, index=False, encoding='utf-8')
-        print(f"Dados de comentários salvos em '{caminho_saida_respostas}'.")
-    else:
-        print("Nenhum dado de comentário foi extraído.")
+            traceback.print_exc()
+            # Não marca como concluído, permitindo a retomada.
+            continue
+            
+except KeyboardInterrupt:
+    print("\n[INTERRUPÇÃO DETECTADA] Encerrando o processo de forma segura...")
+except Exception as e:
+    print(f"\n[ERRO FATAL] Ocorreu um erro inesperado: {e}")
+    traceback.print_exc()
 
 finally:
     if driver:
         driver.quit()
 
-print("\nProcesso concluído!")
+print("\nProcesso concluído! O progresso foi salvo.")

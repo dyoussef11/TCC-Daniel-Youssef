@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 import csv
 import time
+import random # Importar para pausas aleatórias
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -10,8 +11,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
+from selenium.common.exceptions import StaleElementReferenceException # Importação útil
 import undetected_chromedriver as uc
+import traceback # Importar para melhor rastreamento de erro
 
 # Obtém o caminho absoluto da pasta do script atual.
 caminho_script = Path(__file__).resolve().parent
@@ -27,38 +30,97 @@ from modelo_de_busca import ler_e_filtrar_modelos
 DIRETORIO_DADOS_WEBSCRAPPING.mkdir(parents=True, exist_ok=True)
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_Dell_Brasil.csv'
 caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
+# NOVO: Caminho para o arquivo de rastreamento de progresso
+caminho_modelos_concluidos = DIRETORIO_DADOS_WEBSCRAPPING / 'modelos_concluidos_Dell_Brasil.txt'
 
-# --- Configuração de Busca e Filtro de CSV ---
-# Buscando apenas modelos da Dell.
+# --- FUNÇÕES DE CHECKPOINTING E PROGRESSO (NOVAS) ---
+
+def carregar_modelos_concluidos(path: Path) -> set:
+    """Carrega modelos já processados de um arquivo de texto para retomar o progresso."""
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            return {line.strip() for line in f if line.strip()}
+    except FileNotFoundError:
+        return set()
+
+def marcar_modelo_concluido(path: Path, modelo: str):
+    """Adiciona um modelo à lista de concluídos."""
+    with open(path, 'a', encoding='utf-8') as f:
+        f.write(modelo + '\n')
+
+def salvar_resultados_incrementais(path: Path, resultados: list, modelo_de_busca: str):
+    """Salva a lista de links no arquivo CSV, ANEXANDO os dados."""
+    
+    if not resultados:
+        print(f"Nenhum resultado para salvar para o modelo '{modelo_de_busca}'.")
+        return
+
+    # Verifica se o arquivo existe ou está vazio para decidir se deve escrever o cabeçalho
+    escrever_cabecalho = not path.exists() or path.stat().st_size == 0
+
+    try:
+        # Usa 'a' (append) para anexar os novos dados
+        with open(path, 'a', newline='', encoding='utf-8') as file:
+            fieldnames = ['Título da Discussão', 'Link da Discussão', 'Modelo Buscado']
+            writer = csv.writer(file)
+            
+            if escrever_cabecalho:
+                writer.writerow(fieldnames)
+                
+            # Os resultados são uma lista de tuplas (title, url, modelo)
+            writer.writerows(resultados)
+            
+        print(f"Resultados do modelo '{modelo_de_busca}' APENDADOS ao arquivo de saída.")
+    except Exception as e:
+        print(f"ERRO ao salvar resultados incrementais para o modelo '{modelo_de_busca}': {e}")
+        # traceback.print_exc()
+
+# --- Configuração de Busca e Filtro de CSV (MODIFICADO PARA RETOMADA) ---
 MARCA_ALVO = 'DELL'
+TIPO_NOTEBOOK = 'Gamer'
+modelos_a_buscar_bruto= ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO, TIPO_NOTEBOOK)
+# 1. Carregar modelos já concluídos de execuções anteriores
+modelos_concluidos = carregar_modelos_concluidos(caminho_modelos_concluidos)
+print(f"Progresso carregado. {len(modelos_concluidos)} modelos DELL já foram processados.")
 
-# Lê e filtra os modelos do CSV
-modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO)
 
-if not modelos_a_buscar:
+
+# 3. Filtra os modelos brutos para pular os concluídos
+modelos_a_buscar = [
+    modelo for modelo in modelos_a_buscar_bruto 
+    if modelo not in modelos_concluidos
+]
+
+if not modelos_a_buscar and modelos_a_buscar_bruto:
+    print("Todos os modelos DELL no CSV já foram processados. Processo encerrado.")
+    sys.exit()
+elif not modelos_a_buscar:
     print(f"Não foram encontrados modelos para a marca '{MARCA_ALVO}' no arquivo CSV ou houve um erro na leitura. Saindo.")
     sys.exit()
 
+print(f"Iniciando busca para {len(modelos_a_buscar)} de {len(modelos_a_buscar_bruto)} modelos totais.")
+
+
 # --- Configurações iniciais do Selenium ---
 chrome_options = Options()
-chrome_options.add_argument("--headless") # Modo Headless ativado
+# chrome_options.add_argument("--headless")
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument("--no-sandbox") # Essencial para alguns ambientes headless
+chrome_options.add_argument("--no-sandbox")
 
-driver = uc.Chrome(service=Service(ChromeDriverManager().install()),options= chrome_options) # Modo Normal (sem headless)
-
-# Usamos um wait mais longo, já que a busca por vários modelos levará tempo
+# Inicializa o driver (fora do bloco try/finally)
+driver = uc.Chrome(version_main=141, options=chrome_options)
 wait = WebDriverWait(driver, 30)
 
 site_url = "https://www.dell.com/community/pt/categories/comunidade-da-dell"
 
-all_discussion_links = [] # Armazena tuplas de (titulo, link, modelo_buscado)
+# Lista vazia para esta sessão, pois o salvamento será incremental
+# all_discussion_links = [] 
 cookie_popup_fechado = False
 
-# --- SELETORES EM VARIÁVEIS (Novo e Atualizado) ---
-SELETOR_DIGITAR = "input[placeholder='O que você está procurando?']"
+# --- SELETORES EM VARIÁVEIS ---
+SELETOR_DIGITAR = 'input[placeholder="Pesquisar"]'
 SELETOR_NEXT_BUTTON = 'li[title="Próximo"]'
 SELETOR_BUSCA = ".search-input__submit-button-lg.search-input__submit-button__right"
 SELETOR_COOKIE = "onetrust-accept-btn-handler"
@@ -72,183 +134,185 @@ SELETOR_OPCAO_NOTEBOOKS_LAPTOPS = "//div[contains(@class, 'category-hierarchy-fi
 SELETOR_ELEMENTOS_DISCUSSAO = "section.conversation-card .conversation-card__details a[title]"
 
 
-# --- LOOP PRINCIPAL: Itera sobre cada modelo lido do CSV ---
-for i, modelo_de_busca in enumerate(modelos_a_buscar):
-    # Formata o termo para busca avançada
-    termo_de_busca = f'"{modelo_de_busca}"'
-    links_modelo_atual = 0 # Variável para contar links encontrados NESTE modelo
-    
-    print(f"\n{'='*70}")
-    print(f"INICIANDO BUSCA {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}' com termo: {termo_de_busca}")
-    print(f"{'='*70}")
+# --- LOOP PRINCIPAL ENVOLTO POR TRY/FINALLY PARA ENCERRAMENTO SEGURO ---
+try:
+    for i, modelo_de_busca in enumerate(modelos_a_buscar):
+        # Reinicia a lista de links para o modelo atual
+        current_model_results = [] 
+        links_modelo_atual = 0
 
-    driver.get(site_url)
+        # Pausa Estratégica e Aleatória (Anti-Bloqueio)
+        if i > 0:
+            sleep_time = random.uniform(2, 5) 
+            print(f"Pausando por {sleep_time:.2f} segundos antes da busca do próximo modelo.")
+            time.sleep(sleep_time)
+        
+        # Formata o termo para busca avançada
+        termo_de_busca = f'"{modelo_de_busca}"'
+        
+        # --- LOG DE INÍCIO DE BUSCA ---
+        print(f"\n{'='*70}")
+        print(f"INICIANDO BUSCA (Dell Community BRASIL) {i+1}/{len(modelos_a_buscar)} (Total de {len(modelos_a_buscar_bruto)}): Modelo '{modelo_de_busca}'")
+        print(f"{'='*70}")
 
-    try:
-        # Fecha o pop-up de cookies se ele existir (apenas na primeira iteração)
-        if not cookie_popup_fechado:
-            try:
-                cookie_button = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.ID, SELETOR_COOKIE)))
-                cookie_button.click()
-                time.sleep(2)
-                cookie_popup_fechado = True
-            except:
-                pass
-        
-        # =========================================================
-        # INSERÇÃO E BUSCA (Lógica de Re-captura para Stale Element)
-        # =========================================================
-        print("Aguardando o campo de busca...")
-        
-        # 1. CAPTURA INICIAL E ATIVAÇÃO
-        barra_de_busca = wait.until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_DIGITAR))
-        )
-        barra_de_busca.click()
+        driver.get(site_url)
 
-        # 2. RE-CAPTURA DO ELEMENTO (Se for Stale após o clique)
-        barra_de_busca_atualizada = driver.find_element(By.CSS_SELECTOR, SELETOR_DIGITAR)
-        
-        # 3. INSERÇÃO DE TEXTO
-        barra_de_busca_atualizada.clear()
-        barra_de_busca_atualizada.send_keys(termo_de_busca)
-        
-        print(f"Texto '{termo_de_busca}' inserido no campo de busca.")
-        
-        # 4. Clica no botão de busca
-        print("Aguardando o botão de busca...")
-        botao_de_busca = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BUSCA)))
-        botao_de_busca.click()
-        
-        print("Pesquisa realizada com sucesso! Aguardando resultados...")
-        time.sleep(3)
-
-        # --- FILTRO DE TIPO DE CONVERSA (PUBLICACÕES) ---
-        print("Aguardando o dropdown de 'Tipo de conversa'...")
-        tipo_de_conversa_dropdown = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_DROPDOWN_TIPO_CONVERSA))
-        )
-        tipo_de_conversa_dropdown.click()
-        
-        print("Dropdown de 'Tipo de conversa' clicado.")
-        
-        print("Aguardando a opção 'Publicações'...")
-        publicacoes_option = wait.until(EC.element_to_be_clickable((By.XPATH, SELETOR_OPCAO_PUBLICACOES)))
-        publicacoes_option.click()
-        print("Opção 'Publicações' selecionada.")
-        time.sleep(2)
-
-
-        # --- FILTRO DE CATEGORIA (NOTEBOOKS/LAPTOPS) ---
-        print("\n--- APLICANDO FILTRO DE CATEGORIA ---")
-        
-        # 1. Clica no contêiner do filtro (para abri-lo)
-        print("Aguardando o contêiner do filtro de categoria...")
-        filtro_categoria_container = wait.until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_CONTAINER_FILTRO_CATEGORIA)) 
-        )
-        filtro_categoria_container.click()
-        print("Dropdown de Categoria clicado.")
-        
-        # 2. Clica na opção "Notebooks/Laptops"
-        print("Aguardando a opção 'Notebooks/Laptops'...")
-        
-        time.sleep(2)
-        laptops_option = wait.until(
-            EC.element_to_be_clickable((By.XPATH, SELETOR_OPCAO_NOTEBOOKS_LAPTOPS))
-        )
-        laptops_option.click() # Clica no elemento
-        
-        # Clica via JavaScript para garantir o clique
-        # driver.execute_script("arguments[0].click();", laptops_option) # Removi a duplicação do clique para evitar instabilidade.
-        print("Opção 'Notebooks/Laptops' selecionada e filtro aplicado.")
-
-        time.sleep(3) # Aumentei o tempo para garantir que os resultados com o filtro carreguem.
-        
-        # --- INÍCIO DA EXTRAÇÃO DE LINKS ---
-        print("\n--- INICIANDO COLETA DE LINKS ---")
-        
-        pagina_atual = 1
-        while True:
-            # Extrai os links da página atual
-            print(f"Coletando links da página {pagina_atual}...")
+        try:
+            # 1. Fecha o pop-up de cookies se ele existir (apenas na primeira iteração)
+            if not cookie_popup_fechado:
+                try:
+                    cookie_button = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.ID, SELETOR_COOKIE)))
+                    cookie_button.click()
+                    time.sleep(1)
+                    cookie_popup_fechado = True
+                    print("Pop-up de cookies fechado.")
+                except:
+                    print("Pop-up de cookies não encontrado ou já fechado.")
+                    pass
             
-            # **NOVA LÓGICA DE DETECÇÃO DE ZERO RESULTADOS**
-            try:
-                # Tenta esperar que PELO MENOS um elemento de discussão esteja presente
-                discussion_elements = wait.until(
-                    EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_ELEMENTOS_DISCUSSAO))
-                )
-            except TimeoutException:
-                # Se o timeout ocorrer, significa que não há elementos de discussão visíveis.
-                discussion_elements = []
+            # 2. INSERÇÃO E BUSCA
+            print("Aguardando o campo de busca...")
+            barra_de_busca = wait.until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_DIGITAR))
+            )
+            barra_de_busca.click()
 
-            # Se nenhum elemento for encontrado, verifica o estado da busca
-            if not discussion_elements:
-                print(f"Nenhum elemento de discussão encontrado na página {pagina_atual}.")
+            # Lógica para evitar Stale Element
+            barra_de_busca_atualizada = driver.find_element(By.CSS_SELECTOR, SELETOR_DIGITAR)
+            
+            barra_de_busca_atualizada.clear()
+            barra_de_busca_atualizada.send_keys(termo_de_busca)
+            
+            print(f"Texto '{termo_de_busca}' inserido no campo de busca.")
+            
+            # Clica no botão de busca
+            print("Aguardando o botão de busca...")
+            botao_de_busca = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BUSCA)))
+            botao_de_busca.click()
+            
+            print("Pesquisa realizada com sucesso! Aguardando resultados...")
+            time.sleep(random.uniform(3, 5))
+
+            # 3. FILTRO DE TIPO DE CONVERSA (PUBLICACÕES)
+            print("Aguardando e aplicando filtro 'Publicações'...")
+            tipo_de_conversa_dropdown = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_DROPDOWN_TIPO_CONVERSA)))
+            tipo_de_conversa_dropdown.click()
+            
+            publicacoes_option = wait.until(EC.element_to_be_clickable((By.XPATH, SELETOR_OPCAO_PUBLICACOES)))
+            publicacoes_option.click()
+            print("Opção 'Publicações' selecionada.")
+            time.sleep(random.uniform(2, 4))
+
+
+            # 4. FILTRO DE CATEGORIA (NOTEBOOKS/LAPTOPS)
+            print("\n--- APLICANDO FILTRO DE CATEGORIA ---")
+            
+            filtro_categoria_container = wait.until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_CONTAINER_FILTRO_CATEGORIA)) 
+            )
+            filtro_categoria_container.click()
+            
+            print("Aguardando a opção 'Notebooks/Laptops'...")
+            
+            laptops_option = wait.until(
+                EC.element_to_be_clickable((By.XPATH, SELETOR_OPCAO_NOTEBOOKS_LAPTOPS))
+            )
+            laptops_option.click() 
+            print("Opção 'Notebooks/Laptops' selecionada e filtro aplicado.")
+
+            time.sleep(random.uniform(0, 1)) 
+            
+            # --- INÍCIO DA EXTRAÇÃO DE LINKS ---
+            print("\n--- INICIANDO COLETA DE LINKS ---")
+            
+            pagina_atual = 1
+            while True:
+                # Extrai os links da página atual
+                print(f"Coletando links da página {pagina_atual}...")
                 
-                # Se for a primeira página e não houver links, pula para o próximo modelo.
-                if pagina_atual == 1:
+                try:
+                    # Tenta esperar que PELO MENOS um elemento de discussão esteja presente
+                    discussion_elements = WebDriverWait(driver, 10).until(
+                        EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_ELEMENTOS_DISCUSSAO))
+                    )
+                except TimeoutException:
+                    discussion_elements = []
+
+                # Verifica zero resultados na primeira página
+                if not discussion_elements and pagina_atual == 1:
                     print(f"**ALERTA: Zero resultados para o modelo '{modelo_de_busca}'. Pulando para o próximo modelo.**")
-                    # **PULA PARA O PRÓXIMO MODELO NO LOOP FOR**
-                    break # Sai do loop while True de paginação
-                else:
-                    # Se não há links, mas não é a primeira página (significa que a paginação parou)
+                    break
+                elif not discussion_elements:
+                    # Se não há links, mas não é a primeira página (fim da paginação)
                     break 
 
-            
-            novos_links_coletados = 0
-            for element in discussion_elements:
-                link = element.get_attribute("href")
-                title = element.get_attribute("title")
                 
-                if link and title:
-                    item_data = (title, link, modelo_de_busca)
-                    # Garante que o link não seja duplicado na lista global
-                    if item_data not in all_discussion_links:
-                        all_discussion_links.append(item_data)
-                        novos_links_coletados += 1
-                        links_modelo_atual += 1 # Contabiliza para o modelo atual
-            
-            print(f"Novos links coletados nesta página: {novos_links_coletados}. Total acumulado: {len(all_discussion_links)}. Total para o modelo atual: {links_modelo_atual}")
-
-            # Tenta encontrar o botão "Próximo"
-            try:
-                # Diminui o timeout aqui, pois esperamos que o botão seja rápido (ou não exista)
-                next_button = WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_NEXT_BUTTON)))
+                novos_links_coletados = 0
+                for element in discussion_elements:
+                    try:
+                        link = element.get_attribute("href")
+                        title = element.get_attribute("title")
+                        
+                        if link and title:
+                            item_data = (title, link, modelo_de_busca)
+                            
+                            # Adiciona à lista local do modelo atual (para o salvamento incremental)
+                            # Nota: A desduplicação global será tratada pela lógica de checkpoint, 
+                            # mas desduplicação por modelo é sempre bom.
+                            if item_data not in current_model_results:
+                                current_model_results.append(item_data)
+                                novos_links_coletados += 1
+                                links_modelo_atual += 1
+                    except StaleElementReferenceException:
+                         print("Aviso: StaleElementReferenceException detectada. Tentando re-localizar na próxima iteração.")
+                         break
+                    except Exception as e:
+                         print(f"Erro ao extrair link/título de um elemento: {e}")
+                         continue
                 
-                # Verifica se o botão está desabilitado (pode ter uma classe 'disabled' ou atributo)
-                if 'disabled' in next_button.get_attribute('class'):
-                     raise Exception("Botão 'Próximo' desabilitado.")
+                print(f"Novos links coletados nesta página: {novos_links_coletados}. Total para o modelo atual: {links_modelo_atual}")
 
-                print("Clicando no botão 'Próximo'...")
-                driver.execute_script("arguments[0].click();", next_button)
-                pagina_atual += 1
-                time.sleep(3) # Pausa para a página carregar
-            except Exception:
-                print("Botão 'Próximo' não encontrado ou desabilitado. Fim da paginação para o modelo atual.")
-                break # Sai do loop while True
+                # Tenta encontrar o botão "Próximo"
+                try:
+                    next_button = WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_NEXT_BUTTON)))
+                    
+                    if 'disabled' in next_button.get_attribute('class'):
+                         print("Botão 'Próximo' desabilitado. Fim da paginação.")
+                         break
 
-    except Exception as e:
-        print(f"Ocorreu um erro FATAL na busca pelo modelo '{modelo_de_busca}': {e}")
-        import traceback
-        traceback.print_exc()
-        continue # Pula para o próximo modelo no loop FOR (se for um erro inesperado)
-    
+                    print("Clicando no botão 'Próximo'...")
+                    driver.execute_script("arguments[0].click();", next_button)
+                    pagina_atual += 1
+                    time.sleep(random.uniform(1, 2)) # Pausa para a próxima página carregar
+                    
+                except (TimeoutException, NoSuchElementException, ElementClickInterceptedException):
+                    print("Botão 'Próximo' não encontrado ou desabilitado. Fim da paginação para o modelo atual.")
+                    break
+                except Exception as e:
+                    print(f"Erro inesperado na paginação: {e}")
+                    break
+                
+            # --- PONTO CRUCIAL DE SALVAMENTO DE CHECKPOINT ---
+            # 1. Salva os resultados do modelo ATUAL (incrementalmente)
+            salvar_resultados_incrementais(caminho_saida, current_model_results, modelo_de_busca)
 
-# --- FIM DO LOOP ---
+            # 2. Marca o modelo como concluído SOMENTE se o processamento terminou
+            marcar_modelo_concluido(caminho_modelos_concluidos, modelo_de_busca)
+            print(f"Modelo '{modelo_de_busca}' marcado como CONCLUÍDO. Progresso salvo.")
+        
+        except Exception as e:
+            print(f"Ocorreu um erro FATAL na busca pelo modelo '{modelo_de_busca}'. Pulando para o próximo.")
+            traceback.print_exc()
+            continue # Pula para o próximo modelo no loop FOR
 
-# Salva TODOS os resultados acumulados em um único arquivo CSV
-if all_discussion_links:
-    print("\n--- SALVANDO TODOS OS RESULTADOS ACUMULADOS ---")
-    with open(caminho_saida, 'w', newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
-        writer.writerow(['Título da Discussão', 'Link da Discussão', 'Modelo Buscado']) # Cabeçalho do CSV
-        for title, url, modelo in all_discussion_links:
-            writer.writerow([title, url, modelo])
+except KeyboardInterrupt:
+    print("\n[INTERRUPÇÃO DETECTADA] Encerrando o processo de forma segura...")
+except Exception as e:
+    print(f"\n[ERRO FATAL] Ocorreu um erro inesperado: {e}")
+    traceback.print_exc()
 
-    print(f"\nResultados salvos com sucesso em {caminho_saida}. Total de resultados: {len(all_discussion_links)}")
-else:
-    print("Nenhum resultado foi coletado para salvar.")
-
-driver.quit()
-print("Processo concluído. Navegador fechado.")
+finally:
+    # Garante que o driver seja fechado, mesmo em caso de erro ou interrupção
+    if driver:
+        driver.quit()
+    print("Processo concluído/interrompido. Navegador fechado.")

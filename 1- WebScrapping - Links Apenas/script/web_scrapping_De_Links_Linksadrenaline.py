@@ -22,22 +22,26 @@ caminho_raiz_projeto = caminho_script.parent.parent
 # Adiciona o caminho da raiz ao caminho de busca do Python.
 sys.path.append(str(caminho_raiz_projeto))
 
+# --- ADAPTAÇÕES PARA DEMONSTRAÇÃO DO CÓDIGO (Simulação de imports) ---
+# Se for rodar localmente, COMENTE/REMOVA estas linhas e use seus imports reais
 # Agora a importação do módulo 'config' e 'modelo_de_busca' deve funcionar.
-# Se esses módulos não existirem, o script irá falhar aqui.
 from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_DATASET_FINAL
 from modelo_de_busca import ler_e_filtrar_modelos
 
-caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_Adrenaline.csv'
+caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_ClubeHardware.csv'
 caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
 
 # --- Configuração de Busca e Filtro de CSV ---
 # Se MARCA_ALVO for None ou '', todos os modelos do CSV serão usados.
-MARCA_ALVO = None 
+MARCA_ALVO = None
+TIPO_NOTEBOOK = 'Gamer'
 ID_FORUM_NOTEBOOKS = "175" # ID do fórum 'Notebooks' no Adrenaline
 SITE_URL = "https://forum.adrenaline.com.br/search/?type=post"
 
+MARCA_ALVO = None
+TIPO_NOTEBOOK = 'Gamer'
 # Lê e filtra os modelos do CSV
-modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO)
+modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO, TIPO_NOTEBOOK)
 
 if not modelos_a_buscar:
     print(f"Não foram encontrados modelos para a marca '{MARCA_ALVO}' no arquivo CSV ou houve um erro na leitura. Saindo.")
@@ -52,7 +56,8 @@ SELETOR_CAMPO_BUSCA = "keywords" # Name do campo de input (Usado com By.NAME)
 SELETOR_CAMPO_FILTRO_FORUM = "c[nodes][]" # Name do Select para filtrar fóruns (Usado com By.NAME)
 
 # --- Resultados e Paginação ---
-SELETOR_RESULTADOS_LISTA = "li.block-row.block-row--separated.js-inlineModContainer" # Contêiner de cada resultado
+SELETOR_RESULTADOS_LISTA_AUSENTE = '//div[text()="Nenhum resultado encontrado."]' # AJUSTE: Usaremos este XPath
+SELETOR_RESULTADOS_LISTA_PRESENTE = 'li[class="block-row block-row--separated js-inlineModContainer"]'
 SELETOR_RESULTADO_LINK_TITULO = "h3.contentRow-title a" # Link dentro do contêiner do resultado
 SELETOR_BOTAO_PROXIMA_PAGINA = "a.pageNav-jump.pageNav-jump--next" # Link para a próxima página
 
@@ -68,7 +73,12 @@ chrome_options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x6
 
 
 # Inicializa o driver APENAS UMA VEZ.
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+try:
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+except Exception as e:
+    print(f"ERRO ao inicializar o Chrome Driver: {e}. Verifique sua instalação do Chrome e permissões.")
+    sys.exit()
+
 # [MODIFICAÇÃO] Diminuir o tempo de espera implícita, pois usaremos EC.element_to_be_clickable
 wait = WebDriverWait(driver, 15) 
 
@@ -84,7 +94,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
     # [MODIFICAÇÃO] PAUSA ESTRATÉGICA E ALEATÓRIA ENTRE MODELOS
     # Crucial para evitar rate limiting e simular um humano
     if i > 0:
-        sleep_time = random.uniform(5, 10) 
+        sleep_time = random.uniform(2, 3) 
         print(f"Pausando por {sleep_time:.2f} segundos antes da busca do próximo modelo.")
         time.sleep(sleep_time)
 
@@ -106,7 +116,6 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
                     # Clicar via JS é mais rápido e confiável
                     driver.execute_script("arguments[0].click();", cookie_button)
                     print("Aviso de cookies aceito.")
-                    # [MODIFICAÇÃO] Remove time.sleep(2) e confia no próximo wait/driver.get
                     cookie_popup_fechado = True
             except:
                 pass 
@@ -137,77 +146,97 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
         search_input.send_keys(Keys.ENTER)
         
         print("Pesquisa iniciada com sucesso! Aguardando a página de resultados...")
-        # [MODIFICAÇÃO] Remove time.sleep(3). A próxima chamada WebDriverWait cuidará da espera.
 
     except Exception as e:
         print(f"Erro na fase de busca inicial para '{modelo_de_busca}': {e}. Pulando para o próximo modelo.")
         continue # Pula para o próximo modelo
 
-    # --- Passo 2: Coletar links de todas as páginas de resultados ---
+    # --- Passo 2: Coletar links de todas as páginas de resultados (LÓGICA CORRIGIDA) ---
     pagina_atual = 1
     while True:
         try:
-            # Aguarda a lista de resultados carregar (usa a variável de seletor)
-            WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_RESULTADOS_LISTA)))
+            # Tenta aguardar a lista de resultados carregar. Tempo de espera: 8s.
+            WebDriverWait(driver, 8).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_RESULTADOS_LISTA_PRESENTE)))
             
-            # Encontra todos os elementos que contêm os resultados da busca na página atual
-            # Usa a variável de seletor
-            resultados = driver.find_elements(By.CSS_SELECTOR, SELETOR_RESULTADOS_LISTA)
-            
-            # Se não houver resultados na primeira página, sai do loop de paginação e passa para o próximo modelo
-            # Verifica se a URL é a primeira página ou não tem número de página (implica ser a 1)
-            if not resultados and ('page=1' in driver.current_url or 'search/?type=post' in driver.current_url):
-                print(f"Zero resultados encontrados para o modelo '{modelo_de_busca}'. Pulando para o próximo.")
-                break
+        except TimeoutException:
+            # Se o timeout ocorrer, tenta encontrar a mensagem de "Nenhum resultado encontrado."
+            print("Timeout atingido ao esperar por resultados. Verificando se há mensagem de ausência...")
 
-            novos_links_coletados = 0
-            
-            # Extrai os dados de cada resultado
-            for resultado in resultados:
-                try:
-                    # Usa a variável de seletor
-                    titulo_elemento = resultado.find_element(By.CSS_SELECTOR, SELETOR_RESULTADO_LINK_TITULO)
-                    titulo = titulo_elemento.text.strip()
-                    link = titulo_elemento.get_attribute("href")
-                    
-                    # Garante que o link não foi coletado antes
-                    if not any(item['Link'] == link for item in todos_os_links_Adrenaline):
-                        todos_os_links_Adrenaline.append({
-                            "Título": titulo, 
-                            "Link": link, 
-                            "Modelo Buscado": modelo_de_busca
-                        })
-                        contagem_links += 1
-                        novos_links_coletados += 1
-                except NoSuchElementException:
-                    continue 
-                except Exception as e:
-                    print(f"Erro ao extrair link em resultado individual: {e}")
-                    continue
-            
-            print(f"Página {pagina_atual} processada. Novos links: {novos_links_coletados}. Total acumulado: {len(todos_os_links_Adrenaline)}")
-            pagina_atual += 1
-
-            # Tenta encontrar o botão "Próxima"
-            print("Procurando o botão 'Próxima' página...")
             try:
-                # [MODIFICAÇÃO] Aumenta o tempo de espera para o link da próxima página para 5s (antes era 2s)
-                proxima_pagina_link = WebDriverWait(driver, 5).until(
-                    EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_PROXIMA_PAGINA))
+                # Procura explicitamente pelo texto "Nenhum resultado encontrado." (By.XPATH)
+                WebDriverWait(driver, 3).until(
+                    EC.presence_of_element_located((By.XPATH, SELETOR_RESULTADOS_LISTA_AUSENTE)) 
                 )
+                print(f"Zero resultados encontrados para o modelo '{modelo_de_busca}'. Pulando para o próximo modelo.")
+                # SE ENCONTRADO, QUEBRA O LOOP DE PAGINAÇÃO.
+                break
+            
+            except TimeoutException:
+                # Se nem a lista de resultados nem a mensagem de ausência foram encontradas
+                print(f"Erro inesperado ou timeout grave no carregamento da página de resultados para o modelo '{modelo_de_busca}'.")
+                break # Pula para o próximo modelo
+
+        # Se a execução chegou aqui, 'SELETOR_RESULTADOS_LISTA_PRESENTE' foi encontrado (primeiro 'try')
+        
+        # Encontra todos os elementos que contêm os resultados da busca na página atual
+        resultados = driver.find_elements(By.CSS_SELECTOR, SELETOR_RESULTADOS_LISTA_PRESENTE)
+        
+        # Esta checagem é um backup
+        if not resultados:
+            print(f"Lista de resultados vazia (cheque de backup). Pulando.")
+            break
+
+        novos_links_coletados = 0
+        
+        # Extrai os dados de cada resultado
+        for resultado in resultados:
+            try:
+                # Usa a variável de seletor
+                titulo_elemento = resultado.find_element(By.CSS_SELECTOR, SELETOR_RESULTADO_LINK_TITULO)
+                titulo = titulo_elemento.text.strip()
+                link = titulo_elemento.get_attribute("href")
                 
-                print("Navegando para a próxima página...")
-                driver.execute_script("arguments[0].click();", proxima_pagina_link)
-                
-                # [MODIFICAÇÃO] Pausa menor e aleatória na paginação (dentro de um modelo)
-                time.sleep(random.uniform(1.5, 3)) 
-            except (TimeoutException, NoSuchElementException):
-                print("Não há mais páginas. Fim da coleta para o modelo atual.")
-                break # Sai do loop se o botão não for encontrado ou clicável
+                # Garante que o link não foi coletado antes
+                if not any(item['Link'] == link for item in todos_os_links_Adrenaline):
+                    todos_os_links_Adrenaline.append({
+                        "Título": titulo, 
+                        "Link": link, 
+                        "Modelo Buscado": modelo_de_busca
+                    })
+                    contagem_links += 1
+                    novos_links_coletados += 1
+            except NoSuchElementException:
+                continue 
+            except Exception as e:
+                print(f"Erro ao extrair link em resultado individual: {e}")
+                continue
+        
+        print(f"Página {pagina_atual} processada. Novos links: {novos_links_coletados}. Total acumulado: {len(todos_os_links_Adrenaline)}")
+        pagina_atual += 1
+
+        # Tenta encontrar o botão "Próxima"
+        print("Procurando o botão 'Próxima' página...")
+        try:
+            # [MODIFICAÇÃO] Aumenta o tempo de espera para o link da próxima página para 5s 
+            proxima_pagina_link = WebDriverWait(driver, 5).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_PROXIMA_PAGINA))
+            )
+            
+            print("Navegando para a próxima página...")
+            driver.execute_script("arguments[0].click();", proxima_pagina_link)
+            
+            # [MODIFICAÇÃO] Pausa menor e aleatória na paginação (dentro de um modelo)
+            time.sleep(random.uniform(1.5, 3)) 
+        except (TimeoutException, NoSuchElementException):
+            print("Não há mais páginas. Fim da coleta para o modelo atual.")
+            break # Sai do loop se o botão não for encontrado ou clicável
 
         except Exception as e:
+            # Captura outros erros que podem ocorrer após a coleta bem-sucedida de uma página
             print(f"Coleta de links finalizada ou ocorreu um erro inesperado na paginação: {e}")
             break
+
+# Fim do loop 'for' (ele irá para o próximo modelo)
 
 # --- Passo 3: Salvar os dados em um arquivo CSV ---
 print("\nSalvando os links coletados em um arquivo CSV...")

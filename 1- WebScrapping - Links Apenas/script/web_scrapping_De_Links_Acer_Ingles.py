@@ -42,7 +42,8 @@ caminho_entrada.parent.mkdir(parents=True, exist_ok=True)
 
 # --- Configuração de Busca ---
 MARCA_ALVO = 'ACER'
-modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO)
+TIPO_NOTEBOOK = 'Gamer'
+modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO, TIPO_NOTEBOOK)
 print(f'{modelos_a_buscar}')
 
 
