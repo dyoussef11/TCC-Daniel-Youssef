@@ -13,6 +13,28 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options
 import traceback # Importar para melhor rastreamento de erro
 
+# --- Configuração de Caminhos e Módulos (Mantida) ---
+caminho_script = Path(__file__).resolve().parent
+caminho_raiz_projeto = caminho_script.parent.parent
+sys.path.append(str(caminho_raiz_projeto))
+
+from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_DATASET_FINAL
+from modelo_de_busca import ler_e_filtrar_modelos
+
+# --- CONFIGURAÇÃO DE ARQUIVOS ---
+caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_Asus_Ingles.csv'
+# NOVO: Caminho para o arquivo de rastreamento de progresso
+caminho_modelos_concluidos = DIRETORIO_DADOS_WEBSCRAPPING / 'modelos_concluidos_Asus_Ingles.txt'
+caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
+
+# Garante que os diretórios de saída existam
+caminho_saida.parent.mkdir(parents=True, exist_ok=True)
+caminho_entrada.parent.mkdir(parents=True, exist_ok=True)
+
+# --- Configuração de Busca ---
+MARCA_ALVO = 'ASUS'
+TIPO_NOTEBOOK = 'Gamer'
+
 # --- FUNÇÕES DE CHECKPOINTING E PROGRESSO (NOVAS) ---
 
 def carregar_modelos_concluidos(path: Path) -> set:
@@ -62,28 +84,6 @@ def salvar_resultados_incrementais(path: Path, resultados: list, modelo_de_busca
         print(f"ERRO ao salvar resultados incrementais para o modelo '{modelo_de_busca}': {e}")
 
 
-# --- Configuração de Caminhos e Módulos (Mantida) ---
-caminho_script = Path(__file__).resolve().parent
-caminho_raiz_projeto = caminho_script.parent.parent
-sys.path.append(str(caminho_raiz_projeto))
-
-from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_DATASET_FINAL
-from modelo_de_busca import ler_e_filtrar_modelos
-
-# --- CONFIGURAÇÃO DE ARQUIVOS ---
-caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_Asus_Ingles.csv'
-# NOVO: Caminho para o arquivo de rastreamento de progresso
-caminho_modelos_concluidos = DIRETORIO_DADOS_WEBSCRAPPING / 'modelos_concluidos_Asus_Ingles.txt'
-caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
-
-# Garante que os diretórios de saída existam
-caminho_saida.parent.mkdir(parents=True, exist_ok=True)
-caminho_entrada.parent.mkdir(parents=True, exist_ok=True)
-
-# --- Configuração de Busca ---
-MARCA_ALVO = 'ASUS'
-TIPO_NOTEBOOK = 'Gamer'
-
 # 1. Carregar modelos já concluídos de execuções anteriores
 modelos_concluidos = carregar_modelos_concluidos(caminho_modelos_concluidos)
 print(f"Progresso carregado. {len(modelos_concluidos)} modelos ASUS já foram processados.")
@@ -108,7 +108,7 @@ print(f"Iniciando busca para {len(modelos_a_buscar)} de {len(modelos_a_buscar_br
 
 # --- Configurações iniciais do Selenium ---
 chrome_options = Options()
-chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--headless")
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--disable-gpu")
@@ -131,7 +131,7 @@ SELETOR_COOKIE_ASUS = "div.btn-asus.btn-ok.btn-read-ck" # Botão de aceitar cook
 SELETOR_DROPDOWN_GRANULARIDADE = (By.ID, 'searchGranularity') # Dropdown para selecionar "Posts"
 SELETOR_OPCAO_POSTS = "#searchGranularity option:nth-child(2)" # A 2ª opção é tipicamente "Posts"
 SELETOR_LINKS_DISCUSSAO = ".lia-message-view-message-search-item .MessageSubject h2 a.page-link" # Seletor para os links individuais
-SELETOR_PAGINACAO_PROXIMO = "li.pagination-next:not(.pagination-disabled) a" # Seletor do botão Próximo
+SELETOR_PAGINACAO_PROXIMO = 'a[aria-label="Next Page"]' # Seletor do botão Próximo
 
 # Esta lista precisa ser mantida globalmente ou carregada na inicialização
 # Para a lógica incremental, vamos garantir que ela contenha o que já foi salvo, 
@@ -155,7 +155,7 @@ try:
         termo_de_busca = f'"{modelo_de_busca}"'
         
         print(f"\n{'='*70}")
-        print(f"INICIANDO BUSCA {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
+        print(f"INICIANDO BUSCA (ASUS INGLES) {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
         print(f"{'='*70}")
 
         driver.get(site_url)

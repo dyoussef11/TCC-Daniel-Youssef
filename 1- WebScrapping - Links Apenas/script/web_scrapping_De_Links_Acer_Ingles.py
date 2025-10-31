@@ -35,7 +35,7 @@ from modelo_de_busca import ler_e_filtrar_modelos
 
 
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_Acer_Ingles.csv'
-caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
+caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
 # Garante que os diretórios de saída existam
 caminho_saida.parent.mkdir(parents=True, exist_ok=True)
 caminho_entrada.parent.mkdir(parents=True, exist_ok=True)
@@ -98,10 +98,10 @@ def salvar_links_csv(caminho, links):
 
 # --- LOOP PRINCIPAL: Itera sobre cada modelo lido do CSV ---
 for i, modelo_de_busca in enumerate(modelos_a_buscar):
-    termo_de_busca = f'{modelo_de_busca}'
+    termo_de_busca = f'"{modelo_de_busca}"'
     
     print(f"\n{'='*70}")
-    print(f"INICIANDO BUSCA {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
+    print(f"INICIANDO BUSCA (ACER INGLES) {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
     print(f"{'='*70}")
 
     driver.get(site_url)

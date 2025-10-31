@@ -2,16 +2,18 @@ import sys
 from pathlib import Path
 import csv
 import time
+import random # NOVO: Importar random para atrasos humanos
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service as ChromeService
+# REMOVER: from webdriver_manager.chrome import ChromeDriverManager
+# REMOVER: from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options
 import undetected_chromedriver as uc
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
 import traceback
+
 # --- Configuração de Caminhos e Módulos (Mantida) ---
 # Obtém o caminho absoluto da pasta do script atual.
 caminho_script = Path(__file__).resolve().parent
@@ -23,16 +25,11 @@ caminho_raiz_projeto = caminho_script.parent.parent
 sys.path.append(str(caminho_raiz_projeto))
 
 # Agora a importação do módulo 'config' e 'modelo_de_busca' deve funcionar.
-# Assumindo que essas importações são essenciais para o setup.
-
 from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_DATASET_FINAL
 from modelo_de_busca import ler_e_filtrar_modelos
 
-
-
-
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_Acer.csv'
-caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
+caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
 # Garante que os diretórios de saída existam
 caminho_saida.parent.mkdir(parents=True, exist_ok=True)
 caminho_entrada.parent.mkdir(parents=True, exist_ok=True)
@@ -45,55 +42,42 @@ print(f'{modelos_a_buscar}')
 
 if not modelos_a_buscar:
     print(f"Não foram encontrados modelos para a marca '{MARCA_ALVO}' no arquivo CSV ou houve um erro na leitura. Saindo.")
-    # Se a lista estiver vazia, usa um modelo padrão para demonstração
-    # if MARCA_ALVO == 'Asus':
-    #      modelos_a_buscar = ['ROG Zephyrus G14 GA401']
-    #      print("Usando modelo de fallback para demonstração: ['ROG Zephyrus G14 GA401']")
-    # else:
-    #     sys.exit()
+    sys.exit() # Adicionado para sair do script
 
-# --- Configurações iniciais do Selenium (CORRIGIDAS) ---
+# --- NOVO: Função para Atraso Humano ---
+def human_delay(min_sec=2, max_sec=4):
+    """Pausa com um tempo aleatório para simular um comportamento humano."""
+    sleep_time = random.uniform(min_sec, max_sec)
+    time.sleep(sleep_time)
+
+# --- Configurações iniciais do Selenium (Otimizado para UC) ---
 chrome_options = Options()
-# Adiciona os argumentos para execução em modo headless e otimizações
-chrome_options.add_argument("--headless") # Modo Headless ativado
+# Mantido sem headless, pois aumenta a chance de sucesso contra CAPTCHA/deteção.
+# Se precisar, descomente abaixo, mas pode reduzir a eficácia anti-bot:
+# chrome_options.add_argument("--headless") 
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument("--no-sandbox") # Essencial para alguns ambientes headless
-chrome_options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-blink-features=AutomationControlled") 
+# O UC faz o trabalho de User-Agent, mas uma explícita não custa:
+# chrome_options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36")
 
-# Inicializa o driver corretamente com as opções headless
-service = ChromeService(ChromeDriverManager().install())
-driver = uc.Chrome(version_main=141, options=chrome_options)
-# driver = uc.Chrome()
+# Inicializa o driver: o UC cuida da versão e do serviço, tornando o código mais limpo.
+driver = uc.Chrome(version = 141, options=chrome_options) 
 wait = WebDriverWait(driver, 30)
 
 site_url = "https://community.acer.com/pt"
 
-
-
 SELETOR_INPUT = 'input[aria-label="Pesquisar Texto"]'
- # Campo de texto da busca
-
-SELETOR_BUSCA = 'button[class*="SearchBar-styles-left"]' # Botão de busca
-
-
+SELETOR_BUSCA = 'button[class*="SearchBar-styles-left"]' 
 SELETOR_COOKIE_ACER = 'button[id="onetrust-accept-btn-handler"]'
-
-SELETOR_OPCAO_POLLS = '//span[text()="Enquetes"]' # A 1ª opção é tipicamente "Polls"
-
-SELETOR_OPCAO_IDEAS = '//span[text()="ideias"]'  # A 1ª opção é tipicamente "Ideas"
-
-SELETOR_FILTER = '//button[text()= "Filtrar"]' # Botão de "Filter"
-
-SELETOR_LINKS_DISCUSSAO = 'a[href*="/discussion/"]'
-
-
-SELETOR_PROXIMA_PAGINA = '//button[text()= "Próximo"]' # NOVO: Seletor para os links individuais # NOVO: Seletor para os links individuais
-
+SELETOR_OPCAO_POLLS = '//span[text()="Enquetes"]' 
+SELETOR_OPCAO_IDEAS = '//span[text()="ideias"]' 
+SELETOR_FILTER = '//button[text()= "Filtrar"]' 
+SELETOR_LINKS_DISCUSSAO = 'h3[href*="/discussion/"]'
+SELETOR_PROXIMA_PAGINA = '//button[text()= "Próximo"]' 
 SELETOR_DE_BUSCA_VAZIA = '//div[text()= "Nenhum resultado encontrado."]'
-
-all_discussion_links = []
 
 all_discussion_links = []
 
@@ -113,17 +97,18 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
     termo_de_busca = f'{modelo_de_busca}'
     
     print(f"\n{'='*70}")
-    print(f"INICIANDO BUSCA {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
+    print(f"INICIANDO BUSCA (ACER BRASIL) {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
     print(f"{'='*70}")
 
     driver.get(site_url)
+    human_delay(3, 5) # NOVO: Pausa maior e aleatória após navegação inicial
     
     try:
         # 1. Fecha o pop-up de cookies se ele existir
         print("Verificando e fechando o pop-up de cookies...")
         try:
             cookie_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_COOKIE_ACER)))
-            time.sleep(1) 
+            human_delay(0.5, 1.5) # Pausa rápida antes do clique
             cookie_button.click()
             print("Pop-up de cookies fechado.")
             
@@ -136,7 +121,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
         barra_de_busca = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_INPUT)))
         barra_de_busca.clear()
         barra_de_busca.send_keys(termo_de_busca)
-        time.sleep(1) 
+        human_delay(1, 2) # Pausa antes do clique
         
         # 3. Clica no botão de busca
         print("Aguardando e clicando no botão de busca...")
@@ -144,13 +129,23 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
         botao_de_busca.click()
         
         print("Pesquisa realizada com sucesso! Aguardando resultados...")
-        time.sleep(3) # Pausa maior após a pesquisa é útil
+        human_delay(4, 7) # NOVO: Pausa maior e mais variável para carregamento de resultados
 
-        result_blank = WebDriverWait(driver, 5).until(
-                    EC.presence_of_all_elements_located((By.XPATH, SELETOR_DE_BUSCA_VAZIA))
-                )
-
-    
+        # *** INÍCIO DA CORREÇÃO DE BUSCA VAZIA ***    
+        try:
+            # Usa um WebDriverWait mais curto (ex: 8 segundos) para checar a mensagem de erro
+            WebDriverWait(driver, 8).until(
+                EC.presence_of_element_located((By.XPATH, SELETOR_DE_BUSCA_VAZIA))
+            )
+            # Se a execução chegar aqui, significa que o elemento de busca vazia FOI encontrado
+            print("Resultado VAZIO encontrado. Pulando para o próximo modelo na lista.")
+            continue # <--- AQUI ESTÁ A CORREÇÃO: Pula o restante do loop e vai para o próximo modelo
+            
+        except TimeoutException:
+            # Se o elemento de busca vazia NÃO for encontrado após 8 segundos, 
+            # é porque assumimos que há resultados.
+            print("Resultados encontrados. Prosseguindo com a filtragem...")
+            pass
 
         # 4. Clica no Chechbox de Polls USANDO JAVASCRIPT
         print("Aguardando e clicando no botão de Polls (via JS)...")
@@ -158,7 +153,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
             elemento_polls = wait.until(EC.presence_of_element_located((By.XPATH, SELETOR_OPCAO_POLLS)))
             driver.execute_script("arguments[0].click();", elemento_polls)
             print("Checkbox 'Polls' clicado via JavaScript.")
-            time.sleep(1) 
+            human_delay(1, 2) # Pausa para processamento do clique
         except Exception as e:
             print(f"Erro ao clicar em 'Polls' (JS): {e}")
             pass 
@@ -169,7 +164,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
             elemento_ideas = wait.until(EC.presence_of_element_located((By.XPATH, SELETOR_OPCAO_IDEAS)))
             driver.execute_script("arguments[0].click();", elemento_ideas)
             print("Checkbox 'Ideas' clicado via JavaScript.")
-            time.sleep(1) 
+            human_delay(1, 2) # Pausa para processamento do clique
         except Exception as e:
             print(f"Erro ao clicar em 'Ideas' (JS): {e}")
             pass
@@ -180,31 +175,15 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
             botao_filter = wait.until(EC.element_to_be_clickable((By.XPATH, SELETOR_FILTER)))
             botao_filter.click()
             print("Botão 'Filter' clicado com sucesso!")
-            time.sleep(3) 
+            human_delay(3, 5) # Pausa maior para carregamento após o filtro
         except ElementClickInterceptedException:
              # Se o Filter for interceptado, tente JS também
              driver.execute_script("arguments[0].click();", botao_filter)
              print("Botão 'Filter' clicado via JavaScript (após interceptação)!")
-             time.sleep(3)
+             human_delay(3, 5) # Pausa maior para carregamento após o filtro
         except Exception as e:
             print(f"Erro ao clicar no botão 'Filter': {e}")
             pass 
-
-        # *** INÍCIO DA CORREÇÃO DE BUSCA VAZIA ***    
-        try:
-            # Usa um WebDriverWait mais curto (ex: 5 segundos) para checar a mensagem de erro
-            WebDriverWait(driver, 5).until(
-                EC.presence_of_element_located((By.XPATH, SELETOR_DE_BUSCA_VAZIA))
-            )
-            # Se a execução chegar aqui, significa que o elemento de busca vazia FOI encontrado
-            print("Resultado VAZIO encontrado. Pulando para o próximo modelo na lista.")
-            continue # <--- AQUI ESTÁ A CORREÇÃO: Pula o restante do loop e vai para o próximo modelo
-            
-        except TimeoutException:
-            # Se o elemento de busca vazia NÃO for encontrado após 5 segundos, 
-            # é porque assumimos que há resultados.
-            print("Resultados encontrados. Prosseguindo com a filtragem...")
-            pass
 
         # --- INÍCIO DA EXTRAÇÃO DE LINKS ---
         print("\n--- INICIANDO COLETA DE LINKS ---")
@@ -215,7 +194,6 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
             
             # Tenta encontrar todos os links <a>
             try:
-                # O seletor é CSS, então a busca deve ser By.CSS_SELECTOR, não By.CLASS_NAME
                 discussion_elements = wait.until(
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_LINKS_DISCUSSAO))
                 )
@@ -225,13 +203,9 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
             
             novos_links_coletados = 0
             for element in discussion_elements:
-                # Como o SELETOR_LINKS_DISCUSSAO já aponta para o <a>,
-                # não precisamos de find_element(By.TAG_NAME, 'a')
                 link = element.get_attribute("href")
                 title = element.text.strip().replace('\n', ' ') 
                 
-                # Opcional: Filtra links que são apenas títulos (para evitar outros <a>)
-                # Você pode pular essa verificação se souber que o seletor é muito específico
                 if "/discussion/" not in link:
                     continue
                 
@@ -243,19 +217,18 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
             
             print(f"Links coletados na Pág {pagina_atual}: {novos_links_coletados}. Total geral: {len(all_discussion_links)}")
             
-            # Tenta salvar os links incrementalmente
+            # Salva os links incrementalmente
             salvar_links_csv(caminho_saida, all_discussion_links)
 
             # Tenta encontrar o botão "Próximo" para a paginação
             try:
-                # O seletor de paginação padrão é robusto
                 next_button = WebDriverWait(driver, 2).until(
                     EC.element_to_be_clickable((By.XPATH, SELETOR_PROXIMA_PAGINA))
                 )
                 print("Clicando no botão 'Próximo'...")
                 next_button.click()
                 pagina_atual += 1
-                time.sleep(1)
+                human_delay(2, 3) # NOVO: Pausa humana entre as páginas
             except (TimeoutException, NoSuchElementException):
                 print("Botão 'Próximo' não encontrado ou desabilitado. Fim da paginação.")
                 break

@@ -40,7 +40,7 @@ Esta etapa foi finalizada
 
 ~~[x] Tom's Guide  - Lógica de múltiplos modelos implementada.~~
 
-[x] Asus (Português)/(Inglês) - Lógica de múltiplos modelos implementada.
+~~[x] Asus (Português)/(Inglês) - Lógica de múltiplos modelos implementada.~~
 
 ~~[x] Acer: (Português)/(Inglês) - Lógica de múltiplos modelos implementada.~~
 
@@ -69,3 +69,6 @@ Esta etapa foi finalizada
 [x] Tom's Guide  - CSV dos links foi gerado, nome = '**1- WebScrapping - Links Apenas\data\links_discussoes_Tom_Guide.csv**'
 
 [x] Tom's Hardware  - CSV dos links foi gerado, nome = '**1- WebScrapping - Links Apenas\data\links_discussoes_Tom_Hardware.csv**'
+
+[x] Asus (Português)/(Inglês) - '**1- WebScrapping - Links Apenas\data\links_discussoes_Asus_Brasil.csv** **,**
+**1- WebScrapping - Links Apenas\data\links_discussoes_Asus_Ingles.csv**'

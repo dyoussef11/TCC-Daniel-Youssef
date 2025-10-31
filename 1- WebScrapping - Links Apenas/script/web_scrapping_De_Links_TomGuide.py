@@ -30,7 +30,7 @@ from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_DATASET_FINAL
 from modelo_de_busca import ler_e_filtrar_modelos 
 
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_Tom_Guide.csv'
-caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
+caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
 
 MARCA_ALVO = None
 TIPO_NOTEBOOK = 'Gamer'
@@ -81,7 +81,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
         time.sleep(sleep_time)
 
     # Formata o termo de busca: o nome do modelo entre aspas para busca exata
-    termo_de_busca = f'"{modelo_de_busca}"'
+    termo_de_busca = f'{modelo_de_busca}'
     
     print(f"\n{'='*70}")
     print(f"INICIANDO BUSCA (Tom's Guide) {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")

@@ -8,12 +8,49 @@ import numpy as np
 # --- CONFIGURAÇÃO INICIAL (MANTIDA DO SEU CÓDIGO) ---
 
 # Obtém o caminho absoluto da pasta do script atual.
-caminho_script = Path(__file__).resolve().parent
-caminho_raiz_projeto = caminho_script.parent.parent
-sys.path.append(str(caminho_raiz_projeto))
+# NOTA: Para este script funcionar fora de um notebook, é necessário garantir que a estrutura de diretórios
+# e o módulo 'config' existam ou que estas linhas sejam adaptadas.
+try:
+    caminho_script = Path(__file__).resolve().parent
+    caminho_raiz_projeto = caminho_script.parent.parent
+    sys.path.append(str(caminho_raiz_projeto))
+    
+    # Importação do módulo 'config' (Assumindo que ele está na raiz do projeto)
+    from config import DIRETORIO_CSV_DATASET_COLETADOS, DIRETORIO_CSV_DATASET_FINAL
+except ImportError:
+    # Fallback para execução local, se 'config' não for acessível
+    print("Aviso: 'config.py' não encontrado. Usando Paths simulados.")
+    class PathSimulado:
+        def __init__(self, *args):
+            self.parts = args
+        def __truediv__(self, other):
+            return PathSimulado(*self.parts, other)
+        def __str__(self):
+            return '/'.join(self.parts)
+        @property
+        def name(self):
+            return self.parts[-1] if self.parts else ''
 
-from config import DIRETORIO_CSV_DATASET_COLETADOS, DIRETORIO_CSV_DATASET_FINAL
+    DIRETORIO_CSV_DATASET_COLETADOS = PathSimulado('data', 'coletados')
+    DIRETORIO_CSV_DATASET_FINAL = PathSimulado('data', 'final')
+    Path = PathSimulado
+except NameError:
+     # Em ambientes de notebook onde __file__ não existe
+     print("Aviso: Variável __file__ não definida. Usando Paths simulados.")
+     class PathSimulado:
+        def __init__(self, *args):
+            self.parts = args
+        def __truediv__(self, other):
+            return PathSimulado(*self.parts, other)
+        def __str__(self):
+            return '/'.join(self.parts)
+        @property
+        def name(self):
+            return self.parts[-1] if self.parts else ''
 
+     DIRETORIO_CSV_DATASET_COLETADOS = PathSimulado('data', 'coletados')
+     DIRETORIO_CSV_DATASET_FINAL = PathSimulado('data', 'final')
+     
 # Lista dos arquivos a serem processados
 arquivos_csv = [
     DIRETORIO_CSV_DATASET_COLETADOS / 'Brand Laptops Dataset - List of all brand new laptops - until 2024.csv',
@@ -42,10 +79,13 @@ dfs_a_concatenar = []
 for idx, (caminho_arquivo, mapeamento) in enumerate(zip(arquivos_csv, lista_de_mapeamentos)):
     try:
         # 1. Carregar o DataFrame
-        if caminho_arquivo.name == 'Unveiling the Top Gaming Laptops - Demystifying Laptop Specifications.csv':
-            df = pd.read_csv(str(caminho_arquivo), encoding='latin1') 
+        # Converte o objeto Path simulado para string para compatibilidade com pd.read_csv
+        caminho_str = str(caminho_arquivo) 
+        
+        if 'Unveiling the Top Gaming Laptops' in caminho_str:
+            df = pd.read_csv(caminho_str, encoding='latin1') 
         else:
-            df = pd.read_csv(str(caminho_arquivo))
+            df = pd.read_csv(caminho_str)
         
         # 2. Renomeação de colunas
         colunas_para_renomear = {
@@ -55,26 +95,46 @@ for idx, (caminho_arquivo, mapeamento) in enumerate(zip(arquivos_csv, lista_de_m
         
         # 3. Tratamento Específico e Harmonização (Mantido o mesmo)
         if 'Marca' not in df_renomeado.columns and 'Modelo_Completo' in df_renomeado.columns:
-            df_renomeado['Marca'] = df_renomeado['Modelo_Completo'].str.split().str[0]
+            df_renomeado['Marca'] = df_renomeado['Modelo_Completo'].astype(str).str.split().str[0]
         if idx == 0:
-            df_renomeado['CPU'] = df_renomeado['CPU_Nivel'].astype(str).str.strip() + ' ' + df_renomeado['CPU_Marca'].astype(str).str.strip()
-            df_renomeado['GPU'] = df_renomeado['GPU_Tipo'].astype(str).str.strip() + ' ' + df_renomeado['GPU_Marca'].astype(str).str.strip()
+            # Garante que as colunas existem e são tratadas como strings
+            cpu_nivel = df_renomeado.get('CPU_Nivel', pd.Series(dtype=object)).astype(str).str.strip()
+            cpu_marca = df_renomeado.get('CPU_Marca', pd.Series(dtype=object)).astype(str).str.strip()
+            df_renomeado['CPU'] = cpu_nivel + ' ' + cpu_marca
+            
+            gpu_tipo = df_renomeado.get('GPU_Tipo', pd.Series(dtype=object)).astype(str).str.strip()
+            gpu_marca = df_renomeado.get('GPU_Marca', pd.Series(dtype=object)).astype(str).str.strip()
+            df_renomeado['GPU'] = gpu_tipo + ' ' + gpu_marca
+            
+            # Limpeza de colunas intermediárias
+            if 'CPU_Nivel' in df_renomeado.columns: del df_renomeado['CPU_Nivel']
+            if 'CPU_Marca' in df_renomeado.columns: del df_renomeado['CPU_Marca']
+            if 'GPU_Tipo' in df_renomeado.columns: del df_renomeado['GPU_Tipo']
+            if 'GPU_Marca' in df_renomeado.columns: del df_renomeado['GPU_Marca']
+
         elif idx == 1:
-            cpu_pattern = r'(Intel Core i\d{1} \d{1,2}th Gen \d{3,}H[X]?|AMD Ryzen \d{1} Octa Core \d{3,}HS|AMD Ryzen \d{1} Quad Core \d{3,}HS|AMD Ryzen \d{1} Hexa Core \d{3,}H[S]?|Intel Core Ultra \d{1} \d{3}H|\d{1,2}th Gen Intel Core i\d|AMD Ryzen \d{1} Octa Core \d{4}H)'
-            df_renomeado['CPU'] = df_renomeado['Modelo_Completo'].str.extract(cpu_pattern, flags=re.IGNORECASE)[0].fillna(pd.NA)
-            ram_match = df_renomeado['Modelo_Completo'].str.extract(r'\(([\d\s]+GB)')[0]
-            df_renomeado['RAM'] = ram_match.str.replace('GB', '', regex=False).str.strip().fillna(pd.NA)
-            gpu_match = df_renomeado['Modelo_Completo'].str.extract(r'(\d+GB Graph)')
-            df_renomeado['GPU'] = 'Dedicated ' + gpu_match[0].astype(str).str.replace('Graph', 'Graphics', regex=False).fillna(pd.NA)
+            if 'Modelo_Completo' in df_renomeado.columns:
+                cpu_pattern = r'(Intel Core i\d{1} \d{1,2}th Gen \d{3,}H[X]?|AMD Ryzen \d{1} Octa Core \d{3,}HS|AMD Ryzen \d{1} Quad Core \d{3,}HS|AMD Ryzen \d{1} Hexa Core \d{3,}H[S]?|Intel Core Ultra \d{1} \d{3}H|\d{1,2}th Gen Intel Core i\d|AMD Ryzen \d{1} Octa Core \d{4}H)'
+                df_renomeado['CPU'] = df_renomeado['Modelo_Completo'].astype(str).str.extract(cpu_pattern, flags=re.IGNORECASE)[0].fillna(pd.NA)
+                
+                ram_match = df_renomeado['Modelo_Completo'].astype(str).str.extract(r'\(([\d\s]+GB)')[0]
+                df_renomeado['RAM'] = ram_match.str.replace('GB', '', regex=False).str.strip().fillna(pd.NA)
+                
+                gpu_match = df_renomeado['Modelo_Completo'].astype(str).str.extract(r'(\d+GB Graph)')
+                df_renomeado['GPU'] = 'Dedicated ' + gpu_match[0].astype(str).str.replace('Graph', 'Graphics', regex=False).fillna(pd.NA)
+        
         elif 'GPU' not in df_renomeado.columns:
             df_renomeado['GPU'] = pd.NA
+            
         if 'RAM' in df_renomeado.columns:
-             df_renomeado['RAM'] = df_renomeado['RAM'].astype(str).str.replace(r'[\?a-zA-Z\s]+', '', regex=True).str.replace(r'\.0$', '', regex=True).str.strip()
+            # Converte para string antes de usar str.replace
+            df_renomeado['RAM'] = df_renomeado['RAM'].astype(str).str.replace(r'[\?a-zA-Z\s]+', '', regex=True).str.replace(r'\.0$', '', regex=True).str.strip()
         else:
             df_renomeado['RAM'] = pd.NA
+            
         if 'Ano_Lancamento' not in df_renomeado.columns:
              if 'Modelo_Completo' in df_renomeado.columns:
-                 ano_extraido = df_renomeado['Modelo_Completo'].str.extract(r'\((\d{4})\)').fillna(0).astype(int)
+                 ano_extraido = df_renomeado['Modelo_Completo'].astype(str).str.extract(r'\((\d{4})\)').fillna(0).astype(int)
                  df_renomeado['Ano_Lancamento'] = ano_extraido.where(ano_extraido != 0, pd.NA)
              else:
                  df_renomeado['Ano_Lancamento'] = pd.NA
@@ -214,32 +274,67 @@ if dfs_a_concatenar:
 
     dataset_concatenado['ID_UNICO_CONFIG'] = dataset_concatenado.apply(extrair_serial_e_id_de_configuracao, axis=1)
 
-    # 5. Criação da Coluna NOME_ASSINATURA (CORREÇÃO DE LÓGICA)
+    # 5. Criação da Coluna NOME_ASSINATURA (CORREÇÃO DE LÓGICA IMPLEMENTADA AQUI)
     def extrair_nome_assinatura(row):
-        modelo = str(row['Modelo_Completo']).upper().strip()
-        marca = str(row['Marca']).upper().strip()
+        nome_coluna_modelo_completo = 'Modelo_Completo'
+        nome_coluna_marca = 'Marca'
+        nome_coluna_subtipo = 'Subtipo_Modelo'
         
-        # PASSO 1: Remove a Marca e os parênteses (com todo o conteúdo dentro)
-        modelo = re.sub(r'^{}\s+'.format(re.escape(marca)), '', modelo, count=1).strip()
-        modelo = re.sub(r'\s*\([^)]*\)\s*', ' ', modelo).strip() # Remove (tudo o que estiver aqui)
-
-        # PASSO 2: Remove a menção de "Laptop" e "Gaming" do início ou meio
-        modelo = re.sub(r'^(GAMING|LAPTOP|NOTEBOOK|PC|WORKSTATION)\s*', '', modelo, flags=re.IGNORECASE).strip()
-        modelo = re.sub(r'\s+(GAMING|LAPTOP|NOTEBOOK|PC|WORKSTATION)\s*$', '', modelo, flags=re.IGNORECASE).strip()
-
-        # PASSO 3: Remove especificações de hardware (para garantir que nada tenha sobrado)
-        # Processadores (Remoção total)
-        modelo = re.sub(r'\b(I\d|R\d)\b.*H[X]?|\b(CORE|RYZEN|CELERON|PENTIUM|ATHLON).*', ' ', modelo).strip()
-        # GPU, RAM, SSD, etc.
-        modelo = re.sub(r'(\d+GB|\d+TB|SSD|HDD|RTX|GTX|RX|GEFORCE|RADEON|GRAPHICS|VRAM)', ' ', modelo).strip()
+        modelo = str(row[nome_coluna_modelo_completo]).upper().strip() if pd.notna(row[nome_coluna_modelo_completo]) else ''
+        marca = str(row[nome_coluna_marca]).upper().strip() if pd.notna(row[nome_coluna_marca]) else ''
         
-        # PASSO 4: Limpeza final de pontuação/espaços
-        modelo = re.sub(r'[—_./]|[\s]*\b(\d+S|\d+U|\d+H)\b[\s]*', ' ', modelo).strip() # Limpa séries de CPU se não foram removidas
+        if not modelo or not marca:
+            return str(row[nome_coluna_subtipo]) if pd.notna(row[nome_coluna_subtipo]) else ''
+        
+        # 1. PASSO 1: Remove a Marca e conteúdo em parênteses.
+        modelo = re.sub(r'^{}\s+'.format(re.escape(marca)), '', modelo, count=1).strip() 
+        modelo = re.sub(r'\s*\([^)]*\)\s*', ' ', modelo).strip() 
+        modelo = re.sub(r'^[—_/.\s]+|[—_/.\s]+$', '', modelo).strip() 
+
+        # 2. PASSO 2: Remove palavras genéricas no início ou fim
+        generic_words_pattern = re.compile(
+            r'^(GAMING|LAPTOP|NOTEBOOK|PC|WORKSTATION|ULTRA|SLIM|EDITION)\s*|\s*(GAMING|LAPTOP|NOTEBOOK|PC|WORKSTATION|ULTRA|SLIM|EDITION)\s*$',
+            flags=re.IGNORECASE
+        )
+        modelo = generic_words_pattern.sub(' ', modelo).strip()
+        
+        # 3. PASSO 3: Remoção de Especificações de Hardware/Versão que podem ter sobrado
+        hardware_pattern = re.compile(
+            r'\s*(\d+GB|\d+TB|SSD|HDD|RTX|GTX|RX|GEFORCE|RADEON|GRAPHICS|VRAM|INTEL|AMD|CORE|RYZEN|CELERON|PENTIUM|ATHLON|M\d)\s*', 
+            flags=re.IGNORECASE
+        )
+        modelo = hardware_pattern.sub(' ', modelo).strip()
+
+        # 4. PASSO 4: Truncamento no primeiro código de configuração/SKU específico (A CHAVE DA MELHORIA)
+        
+        # a) Truncamento por CÓDIGO LONGO (SKU)
+        # Procura por um espaço seguido de uma sequência longa que é o Part Number/SKU, não a versão.
+        match_long_sku = re.search(r'\s+([A-Z0-9]{6,}|[A-Z0-9]{4,}\.[A-Z0-9]{3,})', modelo)
+        if match_long_sku:
+            # Garante que o texto restante ainda contenha o nome da série + versão (Ex: 'TUF F15 FX506')
+            if len(modelo[:match_long_sku.start()].strip().split()) >= 2:
+                 modelo = modelo[:match_long_sku.start()].strip()
+                 
+        # b) Truncamento por hífen seguido de código de configuração longo ou de região/versão
+        # Ex: VICTUS 15-FB0157AX -> VICTUS 15
+        match_sku_hyphen = re.search(r'-\s*([A-Z0-9]{4,}[A-Z]{1,}|[A-Z0-9]{5,})', modelo)
+        if match_sku_hyphen and match_sku_hyphen.group(1) not in ['IN', 'RU']: # Evita cortar (WIN), etc
+             modelo = modelo[:match_sku_hyphen.start()].strip()
+            
+        # c) Truncamento por "GEN" ou Ano (Mantido)
+        match_gen = re.search(r'\s+(GEN|G|AN)\s*\d{1,2}', modelo)
+        if match_gen:
+            modelo = modelo[:match_gen.start()].strip()
+            
+        # d) Truncamento por vírgula ou ponto (separadores de SKU no final)
+        modelo = re.sub(r'[\.\,].*$', '', modelo).strip()
+            
+        # 5. PASSO 5: Limpeza final
+        modelo = re.sub(r'[-/\\:,\s]+', ' ', modelo).strip()
         modelo = re.sub(r'\s+', ' ', modelo).strip()
-
-        # Se o resultado for uma string vazia, utiliza o Subtipo_Modelo
-        return modelo if modelo else row['Subtipo_Modelo']
-
+        
+        # Fallback
+        return modelo if modelo else row[nome_coluna_subtipo]
 
     dataset_concatenado['Nome_Assinatura'] = dataset_concatenado.apply(extrair_nome_assinatura, axis=1)
 
@@ -252,11 +347,24 @@ if dfs_a_concatenar:
     # Salvando o resultado final na pasta do projeto
     output_filename = 'dataset_laptops.csv'
     output_path = DIRETORIO_CSV_DATASET_FINAL / output_filename
-    dataset_final.to_csv(output_path, index=False)
+    
+    # Salva o arquivo no ambiente simulado (ou no local real, se estiver usando Paths reais)
+    dataset_final.to_csv(str(output_path), index=False)
     
     print("\n--- Processamento COMPLETO Concluído ---")
     print(f"Dataset harmonizado e enriquecido salvo em: {output_path}")
     print(f"Total de registros únicos de configurações: {len(dataset_final)}")
+    
+    # Demonstração dos resultados únicos para ACER Gamer (como inspecionado acima)
+    MARCA_ALVO = 'ACER'
+    TIPO_NOTEBOOK = 'Gamer'
+    modelos_a_buscar_unicos = dataset_final[(dataset_final['Marca'] == MARCA_ALVO) & (dataset_final['Tipo_Notebook'] == TIPO_NOTEBOOK)]['Nome_Assinatura'].unique().tolist()
+    
+    print(f"\n--- Lista de Nomes de Assinatura Únicos (Corrigidos) para {MARCA_ALVO} e Tipo '{TIPO_NOTEBOOK}' (Ideal para Web Scraping) ---")
+    print(modelos_a_buscar_unicos[:10])
+    if len(modelos_a_buscar_unicos) > 10:
+        print(f"... e mais {len(modelos_a_buscar_unicos) - 10} modelos.")
+
 
 else:
     print("Nenhum DataFrame foi processado para concatenação.")

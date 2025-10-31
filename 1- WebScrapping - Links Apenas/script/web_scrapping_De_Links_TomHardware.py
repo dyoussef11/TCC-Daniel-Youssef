@@ -66,7 +66,7 @@ from modelo_de_busca import ler_e_filtrar_modelos
 
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_Tom_Hardware.csv'
 caminho_modelos_concluidos = DIRETORIO_DADOS_WEBSCRAPPING / 'modelos_concluidos_Tom_Hardware.txt'
-caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
+caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
 
 # --- Configuração de Busca e Filtro de CSV (MODIFICADO PARA RETOMADA) ---
 MARCA_ALVO = None
@@ -125,7 +125,7 @@ try:
             print(f"Pausando por {sleep_time:.2f} segundos antes da busca do próximo modelo.")
             time.sleep(sleep_time)
             
-        termo_de_busca = f'"{modelo_de_busca}"'
+        termo_de_busca = f'{modelo_de_busca}'
         
         print(f"\n{'='*70}")
         print(f"INICIANDO BUSCA (Tom Hardware) {i+1}/{len(modelos_a_buscar)} (Total de {len(modelos_a_buscar_bruto)}): Modelo '{modelo_de_busca}'")

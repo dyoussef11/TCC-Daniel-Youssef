@@ -30,7 +30,7 @@ from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_DATASET_FINAL
 from modelo_de_busca import ler_e_filtrar_modelos
 
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_ClubeHardware.csv'
-caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
+caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
 
 MARCA_ALVO = None
 TIPO_NOTEBOOK = 'Gamer'
@@ -76,7 +76,7 @@ cookie_popup_fechado = False # Flag para fechar o pop-up apenas uma vez
 # --- INÍCIO DO LOOP PRINCIPAL SOBRE OS MODELOS ---
 for i, modelo_de_busca in enumerate(modelos_a_buscar):
     # Formata o termo para pesquisa exata
-    termo_de_busca = f'"{modelo_de_busca}"'
+    termo_de_busca = f'{modelo_de_busca}'
     
     # [MODIFICAÇÃO] PAUSA ESTRATÉGICA E ALEATÓRIA ENTRE MODELOS
     # Crucial para evitar rate limiting

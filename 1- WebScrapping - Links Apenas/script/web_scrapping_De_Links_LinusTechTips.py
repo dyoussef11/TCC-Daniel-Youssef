@@ -28,7 +28,7 @@ from modelo_de_busca import ler_e_filtrar_modelos
 # --- CONFIGURAÇÃO DE ARQUIVOS E CHECKPOINT ---
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_LinusTechTips.csv'
 caminho_modelos_concluidos = DIRETORIO_DADOS_WEBSCRAPPING / 'modelos_concluidos_Linus_Tech_Tips.txt'
-caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
+caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
 
 # --- FUNÇÕES DE CHECKPOINTING E PROGRESSO ---
 
@@ -118,6 +118,7 @@ chrome_options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x6
 
 # Inicializa o driver APENAS UMA VEZ.
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+# driver = webdriver.Chrome()
 wait = WebDriverWait(driver, 15)
 
 try:
@@ -127,7 +128,7 @@ try:
         
         # Pausa Estratégica e Aleatória entre modelos
         if i > 0:
-            sleep_time = random.uniform(1, 3) 
+            sleep_time = random.uniform(0, 1) 
             print(f"Pausando por {sleep_time:.2f} segundos antes da busca do próximo modelo.")
             time.sleep(sleep_time)
 

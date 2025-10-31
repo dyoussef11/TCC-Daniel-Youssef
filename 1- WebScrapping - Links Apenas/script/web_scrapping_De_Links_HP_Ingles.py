@@ -26,7 +26,7 @@ from modelo_de_busca import ler_e_filtrar_modelos
 
 # --- CONFIGURAÇÃO DE ARQUIVOS E CHECKPOINT ---
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_HP_Ingles.csv'
-caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops.csv'
+caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
 # NOVO: Caminho para o arquivo de rastreamento de progresso
 caminho_modelos_concluidos = DIRETORIO_DADOS_WEBSCRAPPING / 'modelos_concluidos_HP_Ingles.txt'
 
