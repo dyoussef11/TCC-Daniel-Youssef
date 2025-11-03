@@ -57,7 +57,7 @@ def salvar_dados_csv(data_list, output_path):
         
         # Usa DICTWRITER para salvar os dados
         with open(output_path, "w", newline="", encoding="utf-8") as file:
-            fieldnames = ['Título', 'Link', 'Modelo Buscado']
+            fieldnames = ['Título', 'Link da Discussão', 'Modelo Buscado']
             writer = csv.DictWriter(file, fieldnames=fieldnames, extrasaction='ignore')
             writer.writeheader()
             writer.writerows(data_list)

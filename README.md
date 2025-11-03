@@ -1,74 +1,56 @@
-## Notebook-Forum-Sentimento
+## Notebook-Forum-Sentimento 💻📊
 
 Projeto de Processamento de Linguagem Natural (PNL) para Análise de Sentimento em dados de fóruns sobre notebooks. O estudo explora as polaridades (positiva/neutro/negativa) das respostas usando as técnicas de representação de texto TF-IDF e em diferentes modelos de classificação.
 
-### TODO: Próximas Etapas (Web Scraping)
 ---
-O objetivo é coletar links de discussão para modelos de notebooks gamers (2018-2020) nas principais comunidades e fóruns de hardware. As seguintes tarefas de Web Scraping ainda precisam ser completadas (criar e/ou adaptar o script web_scrapping_De_Links_Marca.py para a coleta em lote de modelos):
 
-#### 1. Fóruns e Marcas Específicas
+### ✅ Status: Web Scraping de Links (Etapas Concluídas)
 
-[x] Dell Community (Português)/(Inglês) - Webscrapping dos links.
+Todas as tarefas de coleta de **links de discussão** e implementação da lógica de múltiplos modelos foram **finalizadas** para as seguintes fontes:
 
-[x] Clube do Hardware - Webscrapping dos links.
+| Fórum / Comunidade | Idiomas | Status dos Links (CSV Gerado) |
+| :--- | :--- | :--- |
+| **Dell Community** | Português / Inglês | ✅ Gerados (`links_discussoes_Dell_Ingles.csv`, etc.) |
+| **Clube do Hardware** | Português | ✅ Gerado (`links_discussoes_ClubeHardware.csv`) |
+| **Adrenaline** | Português | ✅ Gerado (`links_discussoes_Adrenaline.csv`) |
+| **Tom's Guide / Hardware** | Inglês | ✅ Gerados (`links_discussoes_Tom_Guide.csv`, etc.) |
+| **Asus** | Português / Inglês | ✅ Gerados (`links_discussoes_Asus_Brasil.csv`, etc.) |
+| **Acer** | Português / Inglês | ✅ Gerados (`links_discussoes_Acer_Ingles.csv`, etc.) |
+| **HP** | Inglês | ✅ Lógica implementada. |
+| **Lenovo** | Português / Inglês | ✅ Lógica implementada. |
+| **Linus Tech Tips** | Inglês | ✅ Lógica implementada. |
 
-[x] Adrenaline - Webscrapping dos links.
+---
 
-[x] Tom's Guide / Tom's Hardware - Webscrapping dos links.
+### 📌 TODO: Próximas Etapas (Web Scraping de **Conversas**)
 
-[x] Asus (Português)/(Inglês) - Webscrapping dos links.
+O objetivo principal agora é a **Extração de Perguntas e Respostas** (o conteúdo completo das discussões) a partir dos links coletados.
 
-[x] Acer: (Português)/(Inglês) - Webscrapping dos links.
+#### 1. Scripts de Web Scraping de Conversas (Prioridades)
 
-[x] HP: (Inglês) - Webscrapping dos links.
-
-[x] Lenovo: (Português)/(Inglês) - Webscrapping dos links.
-
-Esta etapa foi finalizada
-
-
-
-#### 2. Status de Scripts links
-
-~~[x] Dell Community (Português)/(Inglês) - Lógica de múltiplos modelos implementada.~~
-
-~~[x] Clube do Hardware - Lógica de múltiplos modelos implementada.~~
-
-~~[x] Adrenaline - Lógica de múltiplos modelos implementada.~~
-
-~~[x] Tom's Hardware - Lógica de múltiplos modelos implementada.~~
-
-~~[x] Tom's Guide  - Lógica de múltiplos modelos implementada.~~
-
-~~[x] Asus (Português)/(Inglês) - Lógica de múltiplos modelos implementada.~~
-
-~~[x] Acer: (Português)/(Inglês) - Lógica de múltiplos modelos implementada.~~
-
-[x] HP: (Inglês) - Lógica de múltiplos modelos implementada.
-
-[x] Lenovo: (Português)/(Inglês) - Lógica de múltiplos modelos implementada.
-
-[x] Linus Tech Tips: (Inglês) - Lógica de múltiplos modelos implementada.
-
-Esta etapa foi finalizada
+* [ ] **Clube do Hardware**: **Necessita ser consertado** para funcionar corretamente. (O script de extração está em: `2 - Extração de Perguntas e Respostas\script`).
+* [x] **Linus Tech Tips (Inglês)**: Está funcionando corretamente.
+* [x] **Tom Guide (Inglês)**: Está funcionando corretamente.
+* [x] **Tom Hardware (Inglês)**: Está funcionando corretamente.
+* [] **Dell (Inglês)**: Está funcionando corretamente.
+* [] **Dell (Portugues)**: Está funcionando corretamente.
+* [] **Adrenaline (Portugues)**: Está funcionando corretamente.
+* [] **Asus(Portugues)**: Está funcionando corretamente.
+* [] **Asus(Portugues)**: Está funcionando corretamente.
+* [] **Asus(Ingles)**: Está funcionando corretamente.
+* [] **Acer(Ingles)**: Está funcionando corretamente.
+* [] **Acer(Portugues)**: Está funcionando corretamente.
+* [] **HP(Ingles)**: Está funcionando corretamente.
+* [] **Lenovo(Ingles)**: Está funcionando corretamente.
+* [] **Lenovo(Portugues)**: Está funcionando corretamente.
 
 
-#### 3. Scripts de links executados
+#### 2. Próximo Fluxo de Processamento (Após a Coleta)
 
+A sequência de trabalho seguirá a estrutura de pastas do projeto após a conclusão da extração de todas as conversas:
 
-[x] Dell Community (Português)/(Inglês) - CSV dos links foi gerado, nome = '**1- WebScrapping - Links Apenas\data\links_discussoes_Dell_Ingles.csv** **,**  
-**1- WebScrapping - Links Apenas\data\links_discussoes_Dell_Brasil.csv**'.
-
-
-[x] Acer: (Português)/(Inglês) - CSV dos links foi gerado, nome ='**1- WebScrapping - Links Apenas\data\links_discussoes_Acer_Ingles.csv** **,** **1- WebScrapping - Links Apenas\data\links_discussoes_Acer.csv**'.
-
-[x] Clube do Hardware - CSV dos links foi gerado, nome ='**1- WebScrapping - Links Apenas\data\links_discussoes_ClubeHardware.csv**'
-
-[x] Adrenaline - CSV dos links foi gerado, nome = '**1- WebScrapping - Links Apenas\data\links_discussoes_Adrenaline.csv**'
-
-[x] Tom's Guide  - CSV dos links foi gerado, nome = '**1- WebScrapping - Links Apenas\data\links_discussoes_Tom_Guide.csv**'
-
-[x] Tom's Hardware  - CSV dos links foi gerado, nome = '**1- WebScrapping - Links Apenas\data\links_discussoes_Tom_Hardware.csv**'
-
-[x] Asus (Português)/(Inglês) - '**1- WebScrapping - Links Apenas\data\links_discussoes_Asus_Brasil.csv** **,**
-**1- WebScrapping - Links Apenas\data\links_discussoes_Asus_Ingles.csv**'
+* **2 - Extração de Perguntas e Respostas**: Gerar todos os CSVs de conversas completas.
+* **3 - Unificação dos CSV**: Consolidar os dados coletados.
+* **4 - Classificação de Perguntas**: Classificar perguntas para separar o foco nas respostas.
+* **5 - Separação das respostas - Problemas**: Filtrar o dataset.
+* ... (Continuação das etapas de limpeza, rotulagem e modelagem).

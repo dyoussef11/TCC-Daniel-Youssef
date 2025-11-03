@@ -37,13 +37,20 @@ caminho_saida_respostas = DIRETORIO_SAIDA_RESPOSTAS / 'comentarios_ClubeHardware
 
 # --- DECLARAÇÕES DE HTML EM VARIÁVEIS (Facilidade de Manutenção) ---
 # Selenium (CSS)
-SELETOR_BOTAO_COOKIES = "div.ipsDialog_content a.ipsButton_fullWidth"
-SELETOR_POST_TITLE = "h1.ipsType_pageTitle.ipsContained_container"
+SELETOR_BOTAO_COOKIES = 'div[class="ipsDialog_content a.ipsButton_fullWidth"]'
+
+
+SELETOR_POST_TITLE = 'h1[class="ipsType_pageTitle ipsContained_container"]'
+
+
 SELETOR_DIALOGO_COOKIES = "div.c-cookies-dialog"
 
+SELETOR_PUBLICIDADE = 'span[class="__lxG__splash-close"]'
+
 # BeautifulSoup (Classes HTML)
-CLASSE_POST_COMPLETO = "cPost ipsBox ipsResponsive_pull ipsComment ipsComment_parent ipsClearfix ipsClear ipsColumns ipsColumns_noSpacing ipsColumns_collapsePhone"
-CLASSE_CONTEUDO_WRAP = "cPost_contentWrap"
+CLASSE_POST_COMPLETO = 'article[class="cPost ipsBox ipsResponsive_pull  ipsComment  ipsComment_parent ipsClearfix ipsClear ipsColumns ipsColumns_noSpacing ipsColumns_collapsePhone"]'
+
+CLASSE_CONTEUDO_WRAP = 'div[class="cPost_contentWrap"]'
 
 # Listas globais
 posts_data = []
@@ -57,9 +64,9 @@ def extrair_dados_topico(soup, post_id, link):
     de um objeto BeautifulSoup.
     """
     # --- Extração de Dados do Post (Pergunta) ---
-    title_element = soup.find("h1", class_=SELETOR_POST_TITLE.split('.')[-1].replace(' ', '.')) # Reutiliza o seletor
+    title_element = soup.find('span[class="ipsType_break ipsContained"]', class_=SELETOR_POST_TITLE.split('.')[-1].replace(' ', '.')) # Reutiliza o seletor
     page_title = title_element.text.strip() if title_element else "Título não encontrado"
-
+    print(f'Titulo:{title_element}{page_title}')
     # O conteúdo do post original é o primeiro elemento 'cPost'
     first_post_element = soup.find("article", class_=CLASSE_POST_COMPLETO)
     
@@ -106,8 +113,9 @@ try:
     chrome_options.add_argument("--blink-settings=imagesEnabled=false")
     chrome_options.add_argument("--disable-gpu")
     
-    driver = uc.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-    wait = WebDriverWait(driver, 15)
+    driver = uc.Chrome(version_main=141, options=chrome_options)
+    driver = uc.Chrome()
+    wait = WebDriverWait(driver, 5)
 
     # --- Leitura do Arquivo CSV ---
     caminho_entrada = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_ClubeHardware.csv'
@@ -119,27 +127,14 @@ try:
         exit()
 
     # --- Loop sobre a coluna 'link' do DataFrame ---
-    for index, link in enumerate(df['link']):
+    for index, link in enumerate(df['Link da Discussão']):
         # Use o índice como um ID único para cada post
         post_id = index
-        print(f"\nAnalisando link {index + 1}/{len(df['link'])} (ID: {post_id}): {link}")
+        print(f"\nAnalisando link {index + 1}/{len(df['Link da Discussão'])} (ID: {post_id}): {link}")
         
         try:
             driver.get(link)
 
-            # --- Lidar com o pop-up de cookies ---
-            try:
-                # Usa a variável de seletor para o botão de cookies
-                accept_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_COOKIES)))
-                print("Pop-up de cookies detectado. Clicando em 'Aceitar'...")
-                accept_button.click()
-                # Usa a variável de seletor para o diálogo de cookies
-                wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, SELETOR_DIALOGO_COOKIES)))
-            except TimeoutException:
-                # Se o timeout ocorrer no botão/diálogo, não é um erro fatal
-                pass 
-            
-            # Espera o título da página carregar (usa a variável de seletor)
             wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, SELETOR_POST_TITLE)))
 
             # Pega o HTML da página

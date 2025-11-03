@@ -181,7 +181,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
 if all_results:
     print("\n--- SALVANDO TODOS OS RESULTADOS ACUMULADOS ---")
     with open(caminho_saida, 'w', newline='', encoding='utf-8') as file:
-        fieldnames = ['Título', 'Link', 'Modelo Buscado']
+        fieldnames = ['Título', 'Link da Discussão', 'Modelo Buscado']
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(all_results)

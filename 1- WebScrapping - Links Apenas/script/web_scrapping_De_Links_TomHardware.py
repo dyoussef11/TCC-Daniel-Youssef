@@ -43,7 +43,7 @@ def salvar_resultados_incrementais(path: Path, resultados: list, modelo_de_busca
 
     try:
         with open(path, 'a', newline='', encoding='utf-8') as file:
-            fieldnames = ['Título', 'Link', 'Modelo Buscado']
+            fieldnames = ['Título', 'Link da Discussão', 'Modelo Buscado']
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             
             if escrever_cabecalho:
@@ -110,7 +110,7 @@ chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36")
 
 # Inicializa o driver (fora do bloco try/except principal para ser acessível no finally)
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+driver = webdriver.Chrome(version_main=141, options=chrome_options)
 wait = WebDriverWait(driver, 15)
 
 # --- LOOP PRINCIPAL ENVOLTO POR TRY/FINALLY PARA ENCERRAMENTO SEGURO ---
