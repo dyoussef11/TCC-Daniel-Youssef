@@ -1,4 +1,4 @@
-ID_Unico,Conteudo_Comentario
+ID_Post,Conteudo_Comentario
 0,"If  you haven't done it, uninstall the Realtek in the Device Manager, DO NOT uninstall the driver, then restart the PC and let Windows reinstall it.  If there were some type of Windows corruption this usually corrects that.
 Just reinstalling over top of an existing install, without an uninstall/restart/install can result in the same problem.
 If this does not help and you are still in warranty or extended warranty consider contacting Dell support for your area."
