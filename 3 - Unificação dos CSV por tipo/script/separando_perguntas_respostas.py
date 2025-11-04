@@ -10,7 +10,7 @@ caminho_raiz_projeto = caminho_script.parent.parent
 sys.path.append(str(caminho_raiz_projeto))
 
 # Importa os diretórios
-from config import DIRETORIO_DADOS_EXTRACAO_QA, DIRETORIO_DADOS_SEPARACAO_PROBLEMAS, DIRETORIO_DADOS_UNIFICACAO 
+from config import DIRETORIO_DADOS_EXTRACAO_QA,  DIRETORIO_DADOS_UNIFICACAO 
 
 # Define as PASTAS de entrada
 caminho_entrada_perguntas_dir = DIRETORIO_DADOS_EXTRACAO_QA / 'perguntas'

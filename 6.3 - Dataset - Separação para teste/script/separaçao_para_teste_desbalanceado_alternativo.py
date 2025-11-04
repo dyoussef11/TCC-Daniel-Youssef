@@ -17,15 +17,21 @@ caminho_raiz_projeto = caminho_script.parent.parent
 sys.path.append(str(caminho_raiz_projeto))
 
 # Agora a importação do módulo 'config' deve funcionar.
-from config import DIRETORIO_DADOS_SEPARACAO_TESTE,DIRETORIO_DADOS_LINGUAGENS, DIRETORIO_DADOS_LIMPEZA
+from config import DIRETORIO_DADOS_SEPARACAO_TESTE,DIRETORIO_DADOS_LINGUAGENS, DIRETORIO_DADOS_LIMPEZA, DIRETORIO_DADOS_AMOSTRAGEM
 
 
 
+
+# caminhos_arquivos = [
+#     DIRETORIO_DADOS_LIMPEZA / 'dataset_respostas_en_limpo.csv',
+#     DIRETORIO_DADOS_LIMPEZA/ 'dataset_respostas_pt_limpo.csv'
+# ]
 
 caminhos_arquivos = [
-    DIRETORIO_DADOS_LIMPEZA / 'dataset_respostas_en_limpo.csv',
-    DIRETORIO_DADOS_LIMPEZA/ 'dataset_respostas_pt_limpo.csv'
+    DIRETORIO_DADOS_AMOSTRAGEM / 'dataset_rotulado_respostas_en.csv',
+    DIRETORIO_DADOS_AMOSTRAGEM / 'dataset_rotulado_respostas_pt_br.csv'
 ]
+
 
 caminho_saida = DIRETORIO_DADOS_SEPARACAO_TESTE 
 os.makedirs(caminho_saida, exist_ok=True)
@@ -34,7 +40,8 @@ os.makedirs(caminho_saida, exist_ok=True)
 for caminho_arquivo in caminhos_arquivos:
     try:
         df = pd.read_csv(caminho_arquivo)
-        df.dropna(subset=['Conteudo_Processado', 'sentiment'], inplace=True)
+        # df.dropna(subset=['Conteudo_Processado', 'sentiment'], inplace=True)
+        df.dropna(subset=['texto', 'label_predito'], inplace=True)
         print(f"✔ Arquivo '{caminho_arquivo}' carregado e limpo.")
     except FileNotFoundError:
         print(f"❌ Erro: Arquivo '{caminho_arquivo}' não encontrado. Pulando.")
@@ -44,9 +51,12 @@ for caminho_arquivo in caminhos_arquivos:
     nome_base = os.path.basename(caminho_arquivo).replace('.csv', '')
 
     # Separa 20% do dataset para teste, mantendo a estratificação
-    X = df['Conteudo_Processado']
-    y = df['sentiment']
+    X = df['texto']
+    y = df['label_predito']
     
+    # X = df['Conteudo_Processado']
+    # y = df['sentiment']
+   
     # Stratify=y garante que a distribuição das classes de 'sentiment' seja a mesma
     # no conjunto de treino e de teste.
     X_train, X_test, y_train, y_test = train_test_split(
