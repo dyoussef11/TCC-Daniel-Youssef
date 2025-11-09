@@ -17,7 +17,7 @@ caminho_raiz_projeto = caminho_script.parent.parent
 sys.path.append(str(caminho_raiz_projeto))
 
 # Agora a importação do módulo 'config' deve funcionar.
-from config import DIRETORIO_DADOS_SEPARACAO_TESTE,DIRETORIO_DADOS_LINGUAGENS, DIRETORIO_DADOS_LIMPEZA, DIRETORIO_DADOS_AMOSTRAGEM
+from config import DIRETORIO_DADOS_SEPARACAO_TESTE,DIRETORIO_DADOS_MODELO_ZERO_SHOT
 
 
 
@@ -28,8 +28,8 @@ from config import DIRETORIO_DADOS_SEPARACAO_TESTE,DIRETORIO_DADOS_LINGUAGENS, D
 # ]
 
 caminhos_arquivos = [
-    DIRETORIO_DADOS_AMOSTRAGEM / 'dataset_rotulado_respostas_en.csv',
-    DIRETORIO_DADOS_AMOSTRAGEM / 'dataset_rotulado_respostas_pt_br.csv'
+    DIRETORIO_DADOS_MODELO_ZERO_SHOT / 'dataset_rotulado_respostas_en.csv',
+    DIRETORIO_DADOS_MODELO_ZERO_SHOT / 'dataset_rotulado_respostas_pt_br.csv'
 ]
 
 
@@ -41,7 +41,7 @@ for caminho_arquivo in caminhos_arquivos:
     try:
         df = pd.read_csv(caminho_arquivo)
         # df.dropna(subset=['Conteudo_Processado', 'sentiment'], inplace=True)
-        df.dropna(subset=['texto', 'label_predito'], inplace=True)
+        df.dropna(subset=['Conteudo_Comentario_Limpo', 'label_predito'], inplace=True)
         print(f"✔ Arquivo '{caminho_arquivo}' carregado e limpo.")
     except FileNotFoundError:
         print(f"❌ Erro: Arquivo '{caminho_arquivo}' não encontrado. Pulando.")
@@ -51,7 +51,7 @@ for caminho_arquivo in caminhos_arquivos:
     nome_base = os.path.basename(caminho_arquivo).replace('.csv', '')
 
     # Separa 20% do dataset para teste, mantendo a estratificação
-    X = df['texto']
+    X = df['Conteudo_Comentario_Limpo']
     y = df['label_predito']
     
     # X = df['Conteudo_Processado']
@@ -64,15 +64,15 @@ for caminho_arquivo in caminhos_arquivos:
     )
 
     # Cria DataFrames separados para treino e teste
-    df_train = pd.DataFrame({'Conteudo_Processado': X_train, 'sentiment': y_train})
-    df_test = pd.DataFrame({'Conteudo_Processado': X_test, 'sentiment': y_test})
+    df_train = pd.DataFrame({'Conteudo_Comentario_Limpo': X_train, 'sentiment': y_train})
+    df_test = pd.DataFrame({'Conteudo_Comentario_Limpo': X_test, 'sentiment': y_test})
 
     # Salva os datasets em arquivos CSV
     caminho_saida_train = os.path.join(caminho_saida, f'{nome_base}_train.csv')
     caminho_saida_test = os.path.join(caminho_saida, f'{nome_base}_test.csv')
 
-    df_train.to_csv(caminho_saida_train, index=False)
-    df_test.to_csv(caminho_saida_test, index=False)
+    df_train.to_csv(caminho_saida_train, index=True)
+    df_test.to_csv(caminho_saida_test, index=True)
     
     print(f"✔ Conjunto de treino salvo em '{caminho_saida_train}'")
     print(f"✔ Conjunto de teste desbalanceado salvo em '{caminho_saida_test}'")

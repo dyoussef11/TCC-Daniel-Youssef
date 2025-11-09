@@ -25,8 +25,8 @@ import os
 
 # --- Configurações ---
 caminhos_arquivos = [
-    DIRETORIO_DADOS_LINGUAGENS/ 'dataset_respostas_en.csv',
-    DIRETORIO_DADOS_LINGUAGENS/ 'dataset_respostas_pt.csv'
+    DIRETORIO_DADOS_LINGUAGENS/ 'dataset_rotulado_respostas_en.csv',
+    DIRETORIO_DADOS_LINGUAGENS/ 'dataset_rotulado_respostas_pt.csv'
 ]
 caminho_saida = DIRETORIO_DADOS_SEPARACAO_TESTE 
 os.makedirs(caminho_saida, exist_ok=True)

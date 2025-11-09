@@ -5,33 +5,35 @@ import os
 import random
 import re
 import numpy as np
+from sklearn.utils import resample # Importação Adicionada para Oversampling Estratificado
 
-# --- Configurações de Caminhos ---
-caminho_script = Path(__file__).resolve().parent
-caminho_raiz_projeto = caminho_script.parent.parent
-sys.path.append(str(caminho_raiz_projeto))
-
-# Tentar importar as variáveis de configuração
+# --- Configurações de Caminhos SIMPLIFICADAS ---
+# Simplificação: Assumindo que os arquivos de entrada estão no diretório de execução,
+# e definindo o diretório de saída.
 try:
+    # Mantém a importação original do seu config.py se ele funcionar no seu ambiente
     from config import DIRETORIO_DADOS_BALANCEAMENTO, DIRETORIO_DADOS_SEPARACAO_TESTE
 except ImportError:
-    print("ERRO: Módulo 'config' não encontrado. Defina caminhos de fallback.")
-    # Fallback para execução
-    DIRETORIO_DADOS_BALANCEAMENTO = Path('./dados_balanceados_saida')
-    DIRETORIO_DADOS_LIMPEZA = Path('./dados_limpos_simplified')
+    print("Módulo 'config' não encontrado. Usando caminhos de fallback.")
+    # Fallback para execução: Adapte estes caminhos conforme a sua estrutura de pastas
+    DIRETORIO_DADOS_SEPARACAO_TESTE = Path('.') # Diretorio de INPUT
+    DIRETORIO_DADOS_BALANCEAMENTO = Path('./dados_balanceados_saida') # Diretorio de OUTPUT
 
 
-# --- Constantes dos Arquivos LIMPOS e de SAÍDA ---
-PT_INPUT_FILE = "dataset_respostas_pt_limpo_train.csv"
-EN_INPUT_FILE = "dataset_respostas_en_limpo_train.csv"
+# --- Constantes dos Arquivos LIMPOS e de SAÍDA (NOMES CORRIGIDOS) ---
+# ATENÇÃO: Corrigi a confusão nos nomes de arquivo originais.
+PT_INPUT_FILE = "dataset_rotulado_respostas_pt_br_train.csv"
+EN_INPUT_FILE = "dataset_rotulado_respostas_en_train.csv"
 
-PT_EQUAL_FILE = "dataset_respostas_pt_limpo_train_balanced.csv" # Novo nome mais claro
-EN_EQUAL_FILE = "dataset_respostas_en_limpo_train_balanced.csv" # Novo nome mais claro
+PT_EQUAL_FILE = "dataset_rotulado_respostas_pt_br_train_balanced.csv"
+EN_EQUAL_FILE = "dataset_rotulado_respostas_en_train_balanced.csv"
 
-# Nome da coluna que contém o texto LIMPO
-COLUNA_TEXTO = "Conteudo_Processado" 
+# Nome da coluna que contém o texto LIMPO e a coluna de rótulo
+COLUNA_TEXTO = "Conteudo_Comentario_Limpo"
+COLUNA_LABEL = "label_predito" # Assumindo este nome de coluna
 
-# --- Dicionários de sinônimos (Permanecem inalterados) ---
+# --- Dicionários de sinônimos (Inalterados) ---
+# ... (sinonimos_pt, sinonimos_en, mapeamento_sinonimos permanecem aqui) ...
 sinonimos_pt = {
     'ajuda': ['apoio', 'auxílio', 'suporte', 'socorro', 'assistência', 'amparo', 'colaboração', 'contribuição', 'cooperação', 'mão', 'favor', 'benefício'],
     'obrigado': ['agradecido', 'valeu', 'grato', 'obrigada', 'reconhecido', 'satisfação', 'prazer', 'muito obrigado'],
@@ -41,7 +43,6 @@ sinonimos_pt = {
     'ruim': ['negativo', 'péssimo', 'lamentável', 'deficiente', 'terrível', 'mau', 'prejudicial', 'desfavorável', 'fraco', 'detestável', 'nefasto'],
     'lento': ['devagar', 'demorado', 'atrasado', 'vagoroso', 'moroso', 'lerdo', 'arrastado', 'indolente', 'pausado', 'tardio']
 }
-
 sinonimos_en = {
     'help': ['support', 'assistance', 'aid', 'succor', 'cooperation', 'contribution', 'relief', 'back up', 'advise', 'facilitate', 'serve', 'lend a hand'],
     'thanks': ['grateful', 'thankful', 'much obliged', 'appreciate', 'gratitude', 'acknowledgement', 'recognition', 'cheers'], 
@@ -51,8 +52,8 @@ sinonimos_en = {
     'bad': ['negative', 'terrible', 'lamentable', 'poor', 'awful', 'dreadful', 'unpleasant', 'harmful', 'wicked', 'inferior']
 }
 mapeamento_sinonimos = {
-    'pt': sinonimos_pt,
-    'en': sinonimos_en
+'pt': sinonimos_pt,
+'en': sinonimos_en
 }
 
 # --- Função de aumento de dados (Inalterada) ---
@@ -65,10 +66,8 @@ def aumentar_texto(texto: str, language: str, max_substituicoes: int = 2) -> str
         return texto
     
     sinonimos = mapeamento_sinonimos[language]
-    # Usamos o regex \b\w+\b para capturar palavras em texto pré-processado (sem pontuação)
     tokens = re.split(r'(\b\w+\b)', texto)
 
-    # Nota: O texto já deve estar em minúsculas se veio da limpeza. 
     indices_candidatos = [i for i, t in enumerate(tokens) if t.lower() in sinonimos]
     if not indices_candidatos:
         return texto
@@ -79,8 +78,6 @@ def aumentar_texto(texto: str, language: str, max_substituicoes: int = 2) -> str
     for idx in indices_a_substituir:
         palavra_original = tokens[idx].lower()
         sinonimo = random.choice(sinonimos[palavra_original])
-        
-        # Como o texto está limpo (sem pontuação e em minúsculas), simplificamos a capitalização
         tokens[idx] = sinonimo
 
     return "".join(tokens)
@@ -91,8 +88,8 @@ print("Configurando diretórios...")
 DIRETORIO_DADOS_BALANCEAMENTO.mkdir(parents=True, exist_ok=True)
 
 try:
-    df_pt = pd.read_csv(DIRETORIO_DADOS_SEPARACAO_TESTE/ PT_INPUT_FILE)
-    df_en = pd.read_csv(DIRETORIO_DADOS_SEPARACAO_TESTE/ EN_INPUT_FILE)
+    df_pt = pd.read_csv(DIRETORIO_DADOS_SEPARACAO_TESTE / PT_INPUT_FILE)
+    df_en = pd.read_csv(DIRETORIO_DADOS_SEPARACAO_TESTE / EN_INPUT_FILE)
 except FileNotFoundError as e:
     print(f"Erro ao carregar arquivo LIMPO. Verifique os caminhos e nomes: {e}")
     sys.exit(1)
@@ -119,29 +116,72 @@ if diferenca == 0:
 
 print(f"\nPrecisamos aumentar {diferenca} exemplos em {idioma_menor.upper()} para igualar {len(df_maior)}.")
 
-# --- 3. Estratégia híbrida: duplicar e aumentar parcialmente ---
-print("Iniciando aumento de dados com foco na diversidade na coluna tratada...")
+# --- 3. Estratégia melhorada: Oversampling Estratificado + Augmentação ---
+print("Iniciando aumento de dados com Estratificação Interna...")
 
-# Passo 1: duplicar (garante o mesmo tamanho)
-df_menor_expandido = df_menor.sample(len(df_maior), replace=True, random_state=42).reset_index(drop=True)
+# Passo 1: Oversampling Estratificado no DF menor para melhor balanceamento de classes
+print(f"Oversampling das classes minoritárias em {idioma_menor.upper()}...")
+df_menor_list = []
+# Define o tamanho da classe majoritária no DF minoritário como o novo target
+max_class_size = df_menor[COLUNA_LABEL].value_counts().max()
 
-# Passo 2: aumentar parte dos exemplos (ex: 70%)
+for label in df_menor[COLUNA_LABEL].unique():
+    df_label = df_menor[df_menor[COLUNA_LABEL] == label]
+    
+    # Faz o upsampling (duplicação) da classe para o tamanho da classe majoritária
+    # Se já for a maior, resample_size = len(df_label), então não muda (ou duplica o tamanho, mas o target é max_class_size)
+    if len(df_label) < max_class_size:
+        df_label_resampled = resample(df_label, 
+                                      replace=True, 
+                                      n_samples=max_class_size, # Aumenta até o tamanho da maior classe
+                                      random_state=42)
+        df_menor_list.append(df_label_resampled)
+    else:
+        # Mantém a maior classe como está
+        df_menor_list.append(df_label)
+
+df_menor_balanceado = pd.concat(df_menor_list).sample(frac=1, random_state=42).reset_index(drop=True)
+print(f"Tamanho do DF menor após estratificação interna: {len(df_menor_balanceado)}")
+
+# Passo 2: Redução/Oversampling do novo DF menor para igualar o tamanho do DF maior
+if len(df_menor_balanceado) > len(df_maior):
+    # Se o balanceamento interno fez o DF menor ultrapassar o maior, faz o downsampling (amostragem)
+    df_menor_expandido = df_menor_balanceado.sample(len(df_maior), replace=False, random_state=42).reset_index(drop=True)
+    print(f"Downsampling para igualar o tamanho: {len(df_menor_expandido)}")
+else:
+    # Caso contrário (mais provável), usa replace=True para Oversampling até o tamanho do DF maior
+    df_menor_expandido = df_menor_balanceado.sample(len(df_maior), replace=True, random_state=42).reset_index(drop=True)
+    print(f"Oversampling final para igualar o tamanho: {len(df_menor_expandido)}")
+
+
+# Passo 3: Aumentar parte dos exemplos (ex: 70%) usando a função vetorizada
 taxa_aumento = 0.7
 num_aumentar = int(len(df_menor_expandido) * taxa_aumento)
 indices_aumentar = np.random.choice(df_menor_expandido.index, size=num_aumentar, replace=False)
 
-alterados = 0
-for idx in indices_aumentar:
-    # ATENÇÃO: Mudança da coluna de trabalho para a versão processada
-    texto_original = df_menor_expandido.loc[idx, COLUNA_TEXTO]
-    texto_aumentado = aumentar_texto(texto_original, idioma_menor)
-    
-    if texto_aumentado != texto_original:
-        # APLICA A ALTERAÇÃO na coluna de trabalho
-        df_menor_expandido.loc[idx, COLUNA_TEXTO] = texto_aumentado
-        alterados += 1
+# Cria uma cópia do DF apenas com os dados a serem aumentados
+df_sub = df_menor_expandido.loc[indices_aumentar, :].copy()
+
+# Aplica a função de aumento vetorizada na coluna COLUNA_TEXTO
+def aplicar_aumento(row):
+    return aumentar_texto(row[COLUNA_TEXTO], idioma_menor)
+
+# Usa .apply() para vetorizar, mas apenas na sub-seleção
+df_sub[COLUNA_TEXTO + '_AUMENTADO'] = df_sub.apply(aplicar_aumento, axis=1)
+
+# Atualiza a coluna original apenas onde a augmentação resultou em uma mudança
+df_sub['MUDOU'] = (df_sub[COLUNA_TEXTO] != df_sub[COLUNA_TEXTO + '_AUMENTADO'])
+alterados = df_sub['MUDOU'].sum()
+
+# Aplica as mudanças de volta ao DF expandido principal
+df_menor_expandido.loc[df_sub.index, COLUNA_TEXTO] = np.where(
+    df_sub['MUDOU'], 
+    df_sub[COLUNA_TEXTO + '_AUMENTADO'], 
+    df_sub[COLUNA_TEXTO]
+)
 
 print(f"Textos aumentados na coluna '{COLUNA_TEXTO}': {alterados}/{num_aumentar}")
+
 
 # --- 4. Salvar datasets nivelados ---
 if idioma_menor == "pt":

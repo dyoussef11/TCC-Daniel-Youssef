@@ -26,8 +26,8 @@ sys.path.append(str(caminho_raiz_projeto))
 from config import DIRETORIO_DADOS_BALANCEAMENTO, DIRETORIO_IMAGENS_MODELO_BAG_OF_WORDS
 
 caminhos_arquivos_treino = [
-    DIRETORIO_DADOS_BALANCEAMENTO / 'dataset_respostas_en_train_equal.csv',
-    DIRETORIO_DADOS_BALANCEAMENTO / 'dataset_respostas_pt_train_equal.csv'
+    DIRETORIO_DADOS_BALANCEAMENTO / 'dataset_rotulado_respostas_en_train_balanced.csv',
+    DIRETORIO_DADOS_BALANCEAMENTO / 'dataset_rotulado_respostas_pt_br_train_balanced.csv'
 ]
 
 caminho_saida = DIRETORIO_IMAGENS_MODELO_BAG_OF_WORDS
@@ -59,12 +59,12 @@ for caminho_treino in caminhos_arquivos_treino:
         print(f"❌ Erro: Arquivo de treino não encontrado para '{nome_base_arquivo}'. Pulando.")
         continue
 
-    df.dropna(subset=['Conteudo_Comentario', 'sentiment'], inplace=True)
+    df.dropna(subset=['Conteudo_Comentario_Limpo', 'sentiment'], inplace=True)
     if df.empty:
         print("Dataset vazio após a limpeza. Pulando.")
         continue
 
-    X = df['Conteudo_Comentario']
+    X = df['Conteudo_Comentario_Limpo']
     y = df['sentiment']
     
     # --- 2. Configurar StratifiedKFold ---

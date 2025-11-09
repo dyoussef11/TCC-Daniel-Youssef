@@ -25,11 +25,11 @@ except ImportError:
 # --- CONSTANTES ---
 # Coluna onde o texto limpo e aumentado está armazenado.
 # ATENÇÃO: Verifique se o nome desta coluna está correto nos seus CSVs finais.
-TEXT_COLUMN = 'Conteudo_Processado' 
+TEXT_COLUMN = 'Conteudo_Comentario_Limpo' 
 
 caminhos_arquivos_treino = [
-    DIRETORIO_DADOS_BALANCEAMENTO / 'dataset_respostas_en_limpo_train_balanced.csv',
-    DIRETORIO_DADOS_BALANCEAMENTO / 'dataset_respostas_pt_limpo_train_balanced.csv'
+    DIRETORIO_DADOS_BALANCEAMENTO / 'dataset_rotulado_respostas_en_train_balanced.csv',
+    DIRETORIO_DADOS_BALANCEAMENTO / 'dataset_rotulado_respostas_pt_br_train_balanced.csv'
 ]
 
 caminho_saida = DIRETORIO_IMAGENS_MODELO_BAG_OF_WORDS
@@ -45,15 +45,6 @@ for caminho_treino in caminhos_arquivos_treino:
     print(f"\n{'='*50}")
     print(f"--- Validação cruzada com StratifiedKFold para '{nome_base_arquivo}' ---")
 
-    # --- LÓGICA PARA DEFINIR A REGULARIZAÇÃO (C) ---
-    # CORREÇÃO: Usando a substring correta para identificar o arquivo EN
-    # if 'en_limpo_train_balanced' in nome_base_arquivo:
-    #     C_VALUE = 0.3 # Novo valor intermediário
-    #     print(f"ATENÇÃO: Usando Regularização C={C_VALUE} para ajustar o modelo EN.")
-    # else:
-    #     C_VALUE = 1.0 # Mantendo o padrão para o dataset PT
-        
-    # --- 1. Carregar o dataset completo para CV ---
     try:
         df = pd.read_csv(caminho_treino)
         print(f"✔ Dataset '{caminho_treino}' carregado.")
@@ -72,7 +63,7 @@ for caminho_treino in caminhos_arquivos_treino:
     y = df['sentiment']
     
     # --- 2. Configurar StratifiedKFold ---
-    n_splits = 3 # Você pode ajustar o número de splits
+    n_splits = 4 # Você pode ajustar o número de splits
     skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
     
     # --- Listas para armazenar as métricas de cada fold ---
@@ -139,7 +130,7 @@ for caminho_treino in caminhos_arquivos_treino:
     plt.ylabel('Rótulo Real')
     plt.xlabel('Rótulo Previsto')
     plt.tight_layout()
-    cm_path = os.path.join(pasta_saida, f'{nome_base_arquivo}_matriz_confusao_C__n_splits_{n_splits}.png')
+    cm_path = os.path.join(pasta_saida, f'{nome_base_arquivo}_matriz_confusao_C_{n_splits}.png')
     plt.savefig(cm_path)
     plt.close()
     print(f"✔ Matriz de confusão salva em: {cm_path}")
@@ -159,7 +150,7 @@ for caminho_treino in caminhos_arquivos_treino:
     plt.ylim(0, 1.1)
     plt.legend(loc='lower left')
     plt.tight_layout()
-    metrics_path = os.path.join(pasta_saida, f'{nome_base_arquivo}_performance_metrics_C_n_splits_{n_splits}.png')
+    metrics_path = os.path.join(pasta_saida, f'{nome_base_arquivo}_performance_metrics_C_{n_splits}.png')
     plt.savefig(metrics_path)
     plt.close()
     print(f"✔ Gráfico de métricas salvo em: {metrics_path}")
