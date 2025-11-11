@@ -13,7 +13,7 @@ caminho_raiz_projeto = caminho_script.parent.parent
 sys.path.append(str(caminho_raiz_projeto))
 
 # Agora a importação do módulo 'config' deve funcionar.
-from config import DIRETORIO_DADOS_LINGUAGENS,DIRETORIO_DADOS_BAG_OF_WORDS
+from config import DIRETORIO_DADOS_BALANCEAMENTO,DIRETORIO_DADOS_BAG_OF_WORDS
 
 
 import pandas as pd
@@ -24,8 +24,8 @@ import os
 # --- Configurações ---
 # Lista com os caminhos dos arquivos balanceados
 caminhos_arquivos = [
-    DIRETORIO_DADOS_LINGUAGENS / 'dataset_respostas_en.csv',
-    DIRETORIO_DADOS_LINGUAGENS / 'dataset_respostas_pt.csv'
+    DIRETORIO_DADOS_BALANCEAMENTO / 'dataset_respostas_en.csv',
+    DIRETORIO_DADOS_BALANCEAMENTO / 'dataset_respostas_pt.csv'
 ]
 
 # Pasta de saída para os resultados (agora com um nome mais genérico)

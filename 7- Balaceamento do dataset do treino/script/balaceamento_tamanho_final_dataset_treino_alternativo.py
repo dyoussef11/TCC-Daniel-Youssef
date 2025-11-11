@@ -10,14 +10,12 @@ from sklearn.utils import resample # Importação Adicionada para Oversampling E
 # --- Configurações de Caminhos SIMPLIFICADAS ---
 # Simplificação: Assumindo que os arquivos de entrada estão no diretório de execução,
 # e definindo o diretório de saída.
-try:
-    # Mantém a importação original do seu config.py se ele funcionar no seu ambiente
-    from config import DIRETORIO_DADOS_BALANCEAMENTO, DIRETORIO_DADOS_SEPARACAO_TESTE
-except ImportError:
-    print("Módulo 'config' não encontrado. Usando caminhos de fallback.")
-    # Fallback para execução: Adapte estes caminhos conforme a sua estrutura de pastas
-    DIRETORIO_DADOS_SEPARACAO_TESTE = Path('.') # Diretorio de INPUT
-    DIRETORIO_DADOS_BALANCEAMENTO = Path('./dados_balanceados_saida') # Diretorio de OUTPUT
+# --- Configuração de Caminhos ---
+caminho_script = Path(__file__).resolve().parent
+caminho_raiz_projeto = caminho_script.parent.parent
+sys.path.append(str(caminho_raiz_projeto))
+
+from config import DIRETORIO_DADOS_BALANCEAMENTO, DIRETORIO_DADOS_SEPARACAO_TESTE
 
 
 # --- Constantes dos Arquivos LIMPOS e de SAÍDA (NOMES CORRIGIDOS) ---
@@ -30,7 +28,8 @@ EN_EQUAL_FILE = "dataset_rotulado_respostas_en_train_balanced.csv"
 
 # Nome da coluna que contém o texto LIMPO e a coluna de rótulo
 COLUNA_TEXTO = "Conteudo_Comentario_Limpo"
-COLUNA_LABEL = "label_predito" # Assumindo este nome de coluna
+# COLUNA_LABEL = "label_predito" # Assumindo este nome de coluna
+COLUNA_LABEL = "sentiment" # Assumindo este nome de coluna
 
 # --- Dicionários de sinônimos (Inalterados) ---
 # ... (sinonimos_pt, sinonimos_en, mapeamento_sinonimos permanecem aqui) ...

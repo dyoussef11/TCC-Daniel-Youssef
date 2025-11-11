@@ -41,6 +41,7 @@ O objetivo principal agora é a **Extração de Perguntas e Respostas** (o conte
 * [] **Acer(Ingles)**: Está funcionando corretamente.
 * [] **Acer(Portugues)**: Está funcionando corretamente.
 * [] **HP(Ingles)**: Está funcionando corretamente.
+
 * [] **Lenovo(Ingles)**: Está funcionando corretamente.
 * [] **Lenovo(Portugues)**: Está funcionando corretamente.
 

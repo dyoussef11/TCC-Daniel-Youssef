@@ -5,7 +5,7 @@ from pathlib import Path
 import re
 import pandas as pd
 # Importa o módulo de detecção
-from langdetect import detect, DetectorFactory
+from langdetect import detect_langs, DetectorFactory
 
 # --- Configuração de Caminhos ---
 
@@ -31,20 +31,48 @@ except ImportError as e:
 # Garante que a detecção de idioma seja consistente
 DetectorFactory.seed = 0
 
-def get_language_corrected(text, min_length=20):
-    """Detecta o idioma e consolida em 'pt', 'en' ou 'other'."""
-    # O valor 'text' agora é garantido como string (inclusive 'nan' se for nulo)
-    if len(text) < min_length:
+def get_language_corrected(text, min_length=20, threshold=0.6):
+    """
+    Detecta o idioma predominante em um texto, considerando mistura pt/en.
+    Retorna 'pt', 'en' ou 'other'.
+    """
+    if not isinstance(text, str):
         return 'other'
-        
+
+    # Remove números, URLs e menções que atrapalham o detector
+    clean = re.sub(r'@\S+|http\S+|www\S+|\d+', ' ', text)
+    clean = re.sub(r'[^a-zA-ZÀ-ÿ ]', ' ', clean)
+    clean = re.sub(r'\s+', ' ', clean).strip()
+
+    if len(clean) < min_length:
+        return 'other'
+
     try:
-        lang = detect(text)
-        
-        if lang not in ['pt', 'en']:
+        langs = detect_langs(clean)
+        if not langs:
             return 'other'
-            
-        return lang
-    except:
+
+        # Exemplo de saída: [pt:0.71, en:0.28]
+        best = max(langs, key=lambda x: x.prob)
+        best_lang, prob = best.lang, best.prob
+
+        # --- Regras refinadas ---
+        # 1. Se há mistura pt/en, escolher o mais forte, mas permitir dualidade
+        lang_codes = [l.lang for l in langs if l.prob > 0.2]
+        if 'pt' in lang_codes and 'en' in lang_codes:
+            # português e inglês misturados — pode marcar como 'pt' se o texto for majoritariamente português
+            if best.lang == 'pt' or prob >= 0.5:
+                return 'pt-mixed'
+            else:
+                return 'en-mixed'
+
+        # 2. Se o idioma dominante é confiável
+        if best.lang in ['pt', 'en'] and prob >= threshold:
+            return best.lang
+
+        return 'other'
+
+    except Exception:
         return 'other'
 
 # --- Processamento Principal (Detecção de Idioma) ---

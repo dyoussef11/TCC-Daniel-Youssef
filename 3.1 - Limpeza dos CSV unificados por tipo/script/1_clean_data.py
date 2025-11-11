@@ -28,33 +28,60 @@ except ImportError as e:
 
 def clean_text(text):
     """
-    Realiza a limpeza padronizada do texto, removendo ruídos de fórum/web.
+    Limpeza robusta para textos de fórum, voltada para modelos zero-shot.
+    Remove ruídos, normaliza e mantém semântica útil.
     """
     if pd.isna(text):
         return text
 
     text = str(text)
 
-    # 1. REMOÇÃO DE ENTIDADES (Mentions, URLs, Zero-Width Space)
+    # 1. Remoção de menções, URLs, caracteres invisíveis e formatação de texto
     text = re.sub(r'@\S+|http\S+|www\S+|&#x200B;', ' ', text)
+    text = re.sub(r'[\x00-\x1F\x7F-\x9F]', ' ', text)  # remove caracteres de controle
+    
+    # NOVO: Remoção de caracteres de formatação Markdown/Fórum (*, _, ~)
+    text = re.sub(r'[*_~]', ' ', text)
 
-    # 2. REMOÇÃO DE CABEÇALHOS DE CITAÇÃO
+    # 2. Remoção de cabeçalhos de citação
     text = re.sub(r'Em\s+\d{2}/\d{2}/\d{4}\s+às\s+\d{2}:\d{2}.+?disse:\s*', ' ', text, flags=re.IGNORECASE)
 
-    # 3. CONSOLIDAÇÃO DE RUÍDO DE FORMATAÇÃO
-    text = re.sub(r'[\r\n\t\xa0]+', ' ', text)
-    text = re.sub(r'\s+\s*', ' ', text)
+    # 3. Normalização e pontuação
+    text = re.sub(r'[…]+', '.', text)
+    text = re.sub(r'([!?]){2,}', r'\1', text)
+    
+    # Sua adição: Remove múltiplos espaços após pontuação (ex: 'a.  b' -> 'a.b')
+    text = re.sub(r'([.,!?])\s+', r'\1', text) 
+    
+    # Mantém a separação correta (ex: 'a.b' -> 'a. b')
+    text = re.sub(r'([.,!?])([A-Za-z])', r'\1 \2', text)
 
-    # 4. NORMALIZAÇÃO DE CAIXA
+    # NOVO: Remoção de aspas (aspas duplas/simples) e emoticons simples
+    text = re.sub(r'["\']', '', text) # Remove aspas duplas e simples
+    # Regex para emoticons textuais comuns
+    text = re.sub(r'[:;=X][-oO*^]?[)D(P/|\\$S@]', ' ', text)
+
+    # 4. Consolidação de espaços e remoção de formatação
+    text = re.sub(r'[\r\n\t\xa0]+', ' ', text)
+    text = re.sub(r'\s+', ' ', text)
+
+    # 5. Normalização de caixa
     text = text.lower()
 
-    # 5. REMOÇÃO DO RUÍDO NUMÉRICO ISOLADO
-    text = re.sub(r'\s\d+\s*$', '', text)
+    # 6. Remoção de ruído numérico e frases irrelevantes
+    irrelevantes = [r'\bobrigad[ao]\b', r'\bespero ter ajudado\b', r'\bboa sorte\b', r'\bvaleu\b', r'\benfim\b']
+    text = re.sub('|'.join(irrelevantes), '', text)
+    text = re.sub(r'\s\d+\s*$', '', text) # Limpeza de score/números no final
+    
+    # 7. Normalização de valores monetários
+    text = re.sub(r'r\$\s?([\d,.]+)', r'\1 reais', text)
+    text = re.sub(r'(\d+)k', r'\1 mil', text)
 
-    # 6. CONSOLIDAÇÃO DE ESPAÇOS E FINALIZAÇÃO
+    # 8. Finalização
     text = re.sub(r'\s+', ' ', text).strip()
 
     return text
+
 
 
 # --- Processamento Principal (Apenas Limpeza) ---

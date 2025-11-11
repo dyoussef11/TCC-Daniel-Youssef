@@ -20,7 +20,7 @@ sys.path.append(str(caminho_raiz_projeto))
 
 # Tenta importar as variáveis de configuração
 try:
-    from config import DIRETORIO_DADOS_LIMPEZA_DATASETS, DIRETORIO_DADOS_UNIFICACAO
+    from config import DIRETORIO_DADOS_LIMPEZA_DATASETS
 except ImportError:
     print("Erro: Não foi possível importar diretórios de config.py.")
     sys.exit(1)
@@ -57,14 +57,6 @@ def is_pure_noise(text):
         return True
 
     return False
-
-def clean_text(text):
-    # Não executa limpeza real aqui
-    return text
-
-def get_language_corrected(text, min_length=20):
-    # Não executa detecção real aqui
-    return 'other'
 
 # --- Processamento Principal ---
 
