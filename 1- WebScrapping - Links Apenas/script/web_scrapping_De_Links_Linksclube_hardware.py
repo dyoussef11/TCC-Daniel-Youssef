@@ -3,6 +3,7 @@ from pathlib import Path
 import csv
 import time
 import random 
+import random 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -12,7 +13,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 import undetected_chromedriver as uc
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.common.exceptions import TimeoutException
+import undetected_chromedriver as uc
+from webdriver_manager.chrome import ChromeDriverManager
 import traceback 
+
+# --- CONFIGURAÇÃO DE CAMINHOS E LEITURA DE DADOS (Presume-se que módulos existem) ---
 
 # --- CONFIGURAÇÃO DE CAMINHOS E LEITURA DE DADOS (Presume-se que módulos existem) ---
 
@@ -32,6 +38,13 @@ try:
 except ImportError as e:
     print(f"Erro de importação de módulos de configuração. Verifique 'config' e 'modelo_de_busca': {e}")
     sys.exit()
+# Importações de módulos de configuração (Ajuste se necessário)
+try:
+    from config import DIRETORIO_DADOS_WEBSCRAPPING, DIRETORIO_CSV_DATASET_FINAL
+    from modelo_de_busca import ler_e_filtrar_modelos 
+except ImportError as e:
+    print(f"Erro de importação de módulos de configuração. Verifique 'config' e 'modelo_de_busca': {e}")
+    sys.exit()
 
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_ClubeHardware.csv'
 caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
@@ -42,8 +55,10 @@ modelos_a_buscar = ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO, TIPO_NOTEB
 
 if not modelos_a_buscar:
     print(f"Não foram encontrados modelos para a marca '{MARCA_ALVO}' no arquivo CSV. Saindo.")
+    print(f"Não foram encontrados modelos para a marca '{MARCA_ALVO}' no arquivo CSV. Saindo.")
     sys.exit()
 
+# --- DECLARAÇÕES DE HTML EM VARIÁVEIS ---
 # --- DECLARAÇÕES DE HTML EM VARIÁVEIS ---
 SITE_URL = "https://www.clubedohardware.com.br/search/"
 
@@ -54,6 +69,7 @@ MENSAGEM_DE_ERRO = 'div[id="elErrorMessage"]' # Seletor da mensagem de "Aguarde 
 SELETOR_LINKS_RESULTADO = "a[data-linktype='link'][data-searchable]" 
 SELETOR_BOTAO_PROXIMA_PAGINA = "li.ipsPagination_next a" 
 
+# --- INICIALIZAÇÃO DO SELENIUM ---
 # --- INICIALIZAÇÃO DO SELENIUM ---
 chrome_options = Options()
 chrome_options.add_argument("--window-size=1920,1080")
@@ -82,6 +98,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
     termo_de_busca = f'"{modelo_de_busca}"'
     
     # PAUSA ESTRATÉGICA ENTRE MODELOS para evitar Rate Limiting de forma proativa
+    # PAUSA ESTRATÉGICA ENTRE MODELOS para evitar Rate Limiting de forma proativa
     if i > 0:
         sleep_time = random.uniform(8,9) 
         print(f"Pausando por {sleep_time:.2f} segundos antes da busca do próximo modelo.")
@@ -89,8 +106,10 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
 
     print(f"\n{'='*60}")
     print(f"INICIANDO BUSCA (Clube Hardware) {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
+    print(f"INICIANDO BUSCA (Clube Hardware) {i+1}/{len(modelos_a_buscar)}: Modelo '{modelo_de_busca}'")
     print(f"{'='*60}")
     
+    # 1. Navegar para a página de busca
     # 1. Navegar para a página de busca
     driver.get(SITE_URL)
     print(f"Página acessada: {SITE_URL}. Aguardando o carregamento...")
@@ -100,6 +119,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
         if not cookie_popup_fechado:
             try:
                 print("Verificando se há um pop-up de anúncio...")
+                close_ad_btn = WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_FECHAR_POPUP_AD)))
                 close_ad_btn = WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_BOTAO_FECHAR_POPUP_AD)))
                 close_ad_btn.click()
                 print("Pop-up de anúncio fechado.")
@@ -127,6 +147,7 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
         # --- C: Achar o campo de busca e preencher com o texto ---
         print("Aguardando o campo de busca...")
         barra_de_busca = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_CAMPO_BUSCA)))
+        barra_de_busca = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_CAMPO_BUSCA)))
 
         barra_de_busca.click()
         barra_de_busca.clear()
@@ -139,14 +160,22 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
 
         # --- INÍCIO DA EXTRAÇÃO DE LINKS E PAGINAÇÃO ---
         print("\n--- INICIANDO COLETA E PAGINAÇÃO ---")
+        # --- INÍCIO DA EXTRAÇÃO DE LINKS E PAGINAÇÃO ---
+        print("\n--- INICIANDO COLETA E PAGINAÇÃO ---")
 
         while True:
+            print("\n" + "-"*50)
             print("\n" + "-"*50)
             print("Coletando links e títulos da página atual...")
             
             url_proxima_pagina = None 
 
+            
+            url_proxima_pagina = None 
+
             try:
+                # 1. COLETA DE LINKS
+                discussion_links = WebDriverWait(driver, 15).until( 
                 # 1. COLETA DE LINKS
                 discussion_links = WebDriverWait(driver, 15).until( 
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR, SELETOR_LINKS_RESULTADO))
@@ -163,6 +192,17 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
                         novos_links += 1
                 
                 print(f"Novos links coletados nesta página: {novos_links}. Total acumulado: {len(all_results)}")
+                
+                # --- VERIFICAÇÃO DE FIM DE PAGINAÇÃO ---
+                if novos_links == 0:
+                    print("Nenhum link NOVO coletado nesta página. Assumindo fim da paginação para este modelo.")
+                    break # SAI DO while True DE PAGINAÇÃO
+                
+                # 2. OBTENÇÃO DA URL DA PRÓXIMA PÁGINA
+                next_button_element = WebDriverWait(driver, 5).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, SELETOR_BOTAO_PROXIMA_PAGINA))
+                )
+                url_proxima_pagina = next_button_element.get_attribute("href")
                 
                 # --- VERIFICAÇÃO DE FIM DE PAGINAÇÃO ---
                 if novos_links == 0:
@@ -233,12 +273,20 @@ for i, modelo_de_busca in enumerate(modelos_a_buscar):
                 print("Continuando o loop de coleta na nova página.")
                 # Pausa randômica de "usuário humano" entre páginas
                 time.sleep(random.uniform(5, 10)) 
+            else:
+                print("Continuando o loop de coleta na nova página.")
+                # Pausa randômica de "usuário humano" entre páginas
+                time.sleep(random.uniform(5, 10)) 
         
+    except Exception as e_fatal:
+        print(f"Ocorreu um erro FATAL na busca pelo modelo '{modelo_de_busca}': {e_fatal}")
     except Exception as e_fatal:
         print(f"Ocorreu um erro FATAL na busca pelo modelo '{modelo_de_busca}': {e_fatal}")
         traceback.print_exc()
         continue # Pula para o próximo modelo
 
+# --- FIM DO LOOP E SALVAMENTO ---
+Nome_do_Site = 'ClubeHardware'
 # --- FIM DO LOOP E SALVAMENTO ---
 Nome_do_Site = 'ClubeHardware'
 # Salva TODOS os resultados acumulados em um único arquivo CSV
@@ -250,13 +298,23 @@ if all_results:
             writer.writerow(['Título da Discussão', 'Link da Discussão', 'Modelo Buscado', 'Site_Origem']) 
             for title, url, modelo in all_results:
                 writer.writerow([title, url, modelo, Nome_do_Site])
+    try:
+        with open(caminho_saida, 'w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(['Título da Discussão', 'Link da Discussão', 'Modelo Buscado', 'Site_Origem']) 
+            for title, url, modelo in all_results:
+                writer.writerow([title, url, modelo, Nome_do_Site])
 
+        print(f"\nResultados salvos com sucesso em {caminho_saida}. Total de resultados: {len(all_results)}")
+    except Exception as e_save:
+        print(f"Erro ao salvar o arquivo CSV: {e_save}")
         print(f"\nResultados salvos com sucesso em {caminho_saida}. Total de resultados: {len(all_results)}")
     except Exception as e_save:
         print(f"Erro ao salvar o arquivo CSV: {e_save}")
 else:
     print("Nenhum resultado foi coletado para salvar.")
 
+# --- Encerrar o Navegador ---
 # --- Encerrar o Navegador ---
 print("Fechando o navegador.")
 driver.quit()

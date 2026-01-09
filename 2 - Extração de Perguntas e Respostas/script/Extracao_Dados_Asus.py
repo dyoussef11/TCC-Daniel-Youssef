@@ -46,7 +46,6 @@ driver = None
 caminho_entrada = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_Asus.csv'
 caminho_saida_perguntas = DIRETORIO_DADOS_EXTRACAO_QA / 'perguntas/posts_Asus_Perguntas.csv'
 caminho_saida_respostas = DIRETORIO_DADOS_EXTRACAO_QA / 'respostas/comentarios_Asus_Respostas.csv'
-caminho_saida_perguntas_respostas = DIRETORIO_DADOS_EXTRACAO_QA / 'perguntas_e_respostas/perguntas_respostas_'
 
 
 # --- FUNÇÃO DE SALVAMENTO REUSÁVEL ---
