@@ -79,6 +79,7 @@ def salvar_resultados_incrementais(path: Path, resultados: list, modelo_de_busca
 MARCA_ALVO = 'DELL'
 TIPO_NOTEBOOK = 'Gamer'
 modelos_a_buscar_bruto= ler_e_filtrar_modelos(caminho_entrada, MARCA_ALVO, TIPO_NOTEBOOK)
+# modelos_a_buscar_bruto= '"    '
 # 1. Carregar modelos já concluídos de execuções anteriores
 modelos_concluidos = carregar_modelos_concluidos(caminho_modelos_concluidos)
 print(f"Progresso carregado. {len(modelos_concluidos)} modelos DELL já foram processados.")
@@ -90,6 +91,8 @@ modelos_a_buscar = [
     modelo for modelo in modelos_a_buscar_bruto 
     if modelo not in modelos_concluidos
 ]
+
+
 
 if not modelos_a_buscar and modelos_a_buscar_bruto:
     print("Todos os modelos DELL no CSV já foram processados. Processo encerrado.")

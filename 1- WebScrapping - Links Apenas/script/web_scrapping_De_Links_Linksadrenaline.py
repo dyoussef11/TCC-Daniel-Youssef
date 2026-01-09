@@ -1,5 +1,3 @@
-# seu_scraper_refatorado.py
-
 import sys
 from pathlib import Path
 import csv
@@ -37,7 +35,7 @@ except ImportError as e:
 caminho_saida = DIRETORIO_DADOS_WEBSCRAPPING / 'links_discussoes_ClubeHardware.csv'
 caminho_entrada = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
 
-ID_FORUM_NOTEBOOKS = "175"
+
 SITE_URL = "https://forum.adrenaline.com.br/search/?type=post"
 
 MARCA_ALVO = None
@@ -89,11 +87,13 @@ cookie_popup_fechado = False
 SELETOR_BOTAO_COOKIES = "a.js-noticeDismiss" 
 SELETOR_ICONE_BUSCA = "a.p-navgroup-link--search" 
 SELETOR_CAMPO_BUSCA = "keywords" 
-SELETOR_CAMPO_FILTRO_FORUM = "c[nodes][]" 
+ 
 SELETOR_RESULTADOS_LISTA_AUSENTE = '//div[text()="Nenhum resultado encontrado."]' 
 SELETOR_RESULTADOS_LISTA_PRESENTE = 'li[class="block-row block-row--separated js-inlineModContainer"]'
 SELETOR_RESULTADO_LINK_TITULO = "h3.contentRow-title a" 
-SELETOR_BOTAO_PROXIMA_PAGINA = "a.pageNav-jump.pageNav-jump--next" 
+SELETOR_BOTAO_PROXIMA_PAGINA = "a.pageNav-jump.pageNav-jump--next"
+SELETOR_CAMPO_FILTRO_FORUM_TOPICO  = "c[nodes][]"
+ID_FORUM_NOTEBOOKS_TOPICO = "175" 
 
 # --- Configurações iniciais do Selenium (Mantidas) ---
 chrome_options = Options()
@@ -116,7 +116,7 @@ try:
     
     # --- LOOP PRINCIPAL: Itera sobre cada modelo lido do CSV ---
     for i, modelo_de_busca in enumerate(modelos_a_buscar):
-        termo_de_busca = modelo_de_busca 
+        termo_de_busca = f'"{modelo_de_busca}"'
         
         # [PAUSA ESTRATÉGICA E ALEATÓRIA]
         if i > 0:
@@ -150,10 +150,10 @@ try:
 
             # 1. SELEÇÃO DO FÓRUM "NOTEBOOKS" (FILTRO) (Mantido)
             select_element = wait.until(
-                EC.presence_of_element_located((By.NAME, SELETOR_CAMPO_FILTRO_FORUM))
+                EC.presence_of_element_located((By.NAME, SELETOR_CAMPO_FILTRO_FORUM_TOPICO ))
             )
             forum_select = Select(select_element)
-            forum_select.select_by_value(ID_FORUM_NOTEBOOKS)
+            forum_select.select_by_value(ID_FORUM_NOTEBOOKS_TOPICO)
             
             # 2. INSERÇÃO DO TERMO DE BUSCA (Mantido)
             search_icon = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, SELETOR_ICONE_BUSCA)))
