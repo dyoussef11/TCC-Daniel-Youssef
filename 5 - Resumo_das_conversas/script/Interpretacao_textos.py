@@ -1,9 +1,8 @@
 import sys
 import json
 import re
-import spacy
-from collections import Counter
 from pathlib import Path
+from openai import OpenAI
 
 # --- 1. CONFIGURAÇÕES E CAMINHOS ---
 caminho_script = Path(__file__).resolve().parent
@@ -11,184 +10,204 @@ caminho_raiz_projeto = caminho_script.parent.parent
 sys.path.append(str(caminho_raiz_projeto))
 
 try:
-    from config import DIRETORIO_DADOS_RESUMO_CONVERSAS, DIRETORIO_DADOS_PRE_PROCESSAMENTO, DIRETORIO_DADOS_IDENTIFICACAO_ENTIDADES
+    from config import DIRETORIO_DADOS_RESUMO_CONVERSAS, DIRETORIO_DADOS_PRE_PROCESSAMENTO
 except ImportError:
     print("Aviso: Módulos de configuração não encontrados. Usando caminhos locais.")
-    DIRETORIO_DADOS_EXTRACAO_QA = caminho_script / 'dados_saida'
     DIRETORIO_DADOS_PRE_PROCESSAMENTO = caminho_script / 'dados_saida'
-    DIRETORIO_DADOS_RESUMO_CONVERSAS = caminho_script / 'dados_saida' # Ajuste aqui para fallback funcionar
+    DIRETORIO_DADOS_RESUMO_CONVERSAS = caminho_script / 'dados_saida'
 
-# Entra o arquivo limpo/enriquecido, sai o arquivo com tópicos identificados
 CAMINHO_ENTRADA_JSON = DIRETORIO_DADOS_PRE_PROCESSAMENTO / 'reddit_dados_limpos_enriquecidos.json'
-CAMINHO_SAIDA_JSON = DIRETORIO_DADOS_RESUMO_CONVERSAS / 'reddit_dados_com_topicos.json'
+CAMINHO_SAIDA_JSON = DIRETORIO_DADOS_RESUMO_CONVERSAS / 'reddit_dados_com_resumo_llama.json'
 
-# --- 2. CARREGAR MODELO E DEFINIR TERMOS ---
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    print("Modelo Spacy 'en_core_web_sm' não encontrado. Instale-o primeiro.")
-    sys.exit()
-
-# Dicionário de Termos
-TERMOS = {
-    'hardware': [
-        'cpu', 'gpu', 'ram', 'memory', 'ssd', 'hdd', 'hard drive', 'fan', 'heatsink', 
-        'motherboard', 'mobo', 'battery', 'charger', 'adapter', 'power supply', 'psu',
-        'thermal paste', 'connector', 'cable', 'ribbon cable', 'port', 'jack',
-        'screen', 'display', 'monitor', 'panel', 'ips', 'keyboard', 'key', 'trackpad', 
-        'touchpad', 'mouse', 'webcam', 'camera', 'speaker', 'mic', 'microphone', 
-        'chassis', 'hinge', 'bezel', 'case', 'vent',
-        'bios', 'uefi', 'driver', 'firmware', 'windows', 'linux', 'ubuntu'
-    ],
-    'marcas': [
-        'dell', 'lenovo', 'hp', 'asus', 'acer', 'apple', 'samsung', 'msi', 'toshiba', 
-        'microsoft', 'alienware', 'razer', 'lg', 'gigabyte', 'sony',
-        'intel', 'nvidia', 'amd', 'radeon', 'geforce', 'logitech', 'corsair'
-    ],
-    'problemas': [
-        'overheat', 'overheating', 'hot', 'warm', 'temperature', 'thermal', 
-        'throttle', 'throttling', 'lag', 'lagging', 'freeze', 'freezing', 'stutter', 
-        'slow', 'fps drop', 'performance', 'bottleneck',
-        'crash', 'crashing', 'bsod', 'blue screen', 'boot loop', 'shutdown', 'restart', 
-        'dead', 'brick', 'bricked', 'fail', 'failure', 'error',
-        'noise', 'noisy', 'loud', 'whine', 'coil whine', 'grinding', 'click',
-        'broken', 'damage', 'damaged', 'crack', 'cracked', 'loose', 'stuck',
-        'flicker', 'flickering', 'bleed', 'backlight bleed', 'dead pixel', 'artifact', 'glitch'
-    ],
-    'solucoes': [
-        'replace', 'replacement', 'swap', 'change', 'install', 'installation',
-        'clean', 'cleaning', 'dust', 'dusting', 'compressed air',
-        'repaste', 'repasting', 'thermal pad', 'cooling pad', 'cooler',
-        'open', 'screw', 'tighten', 'solder', 'fix', 'repair',
-        'update', 'updating', 'upgrade', 'downgrade', 'flash', 'reinstall',
-        'format', 'reset', 'restore', 'factory reset',
-        'undervolt', 'undervolting', 'underclock', 'overclock', 'throttle stop',
-        'disable', 'enable', 'turn off', 'turn on', 'tweak', 'optimize',
-        'warranty', 'rma', 'service', 'support', 'technician', 'tech',
-        'return', 'refund', 'send back', 'contact', 'call'
-    ]
+# --- 2. CONFIGURAÇÃO DO REGEX DE HARDWARE (ATUALIZADO) ---
+# Padrões definidos para rodar em texto .lower() (minúsculo)
+# --- 2. CONFIGURAÇÃO DO REGEX DE HARDWARE (VERSÃO FINAL 2010-2026 + HDD REFORÇADO) ---
+PADROES_HARDWARE = {
+    # GPU: NVIDIA (GT/GTX/RTX/Quadro/Titan/MX), AMD (HD/R-Series/RX/Vega), INTEL (Arc/Iris/UHD)
+    "gpu": r"\b("
+           r"(geforce\s*)?(rtx|gtx|gt|mx|quadro|titan)\s*\d{3,4}[a-z0-9]*([\s-]*(ti|super|max-q|mobile|oc|ada|lhr))?|"  # NVIDIA
+           r"(amd\s*)?(radeon\s*(tm|™)?\s*)?(rx|r9|r7|r5|hd|vega)\s*(\d{3,4}|[a-z0-9]+)([\s-]*(xt|xtx|gre|m|xt-m|pro))?|"  # AMD Radeon
+           r"(intel\s*)?(arc)\s*[ab]\d{3,4}[a-z]*|" # Intel ARC
+           r"iris\s*xe|uhd\s*graphics|radeon\s*graphics" # Integradas
+           r")\b",
+    
+    # CPU: INTEL (Core i/Ultra/Pentium/Celeron/Xeon), AMD (Ryzen/Threadripper/Athlon/FX/A-Series)
+    "cpu": r"\b("
+           r"(intel\s*)?(core\s*(ultra)?\s*)?(i[3579]|[3579])[\s-]*\d{3,5}[a-z0-9]*|" # Core i3, Core Ultra 7
+           r"(intel\s*)?(pentium|celeron|atom|xeon)[\s-]*[a-z0-9]+|" # Low-end/Server
+           r"(amd\s*)?(ryzen\s*(threadripper)?\s*[3579]|athlon|fx|a[468]|a1[02])[\s-]*(\d{3,4}[a-z]*)?" # Ryzen, FX, A-Series
+           r")\b",
+    
+    # STORAGE: SSDs (NVMe/SATA) e HDDs (Mecânicos/RPM/Enterprise)
+    "storage": r"\b("
+               r"(\d{1,4}\s*(gb|tb)\s*)?" # Capacidade (ex: 1TB) no início
+               r"(" # GRUPO DE IDENTIFICAÇÃO (Marca ou Linha)
+                   r"(samsung|wd|western\s*digital|crucial|kingston|sandisk|seagate|toshiba|sk\s*hynix|hynix|corsair|sabrent|adata|xpg|pny|lexar|hp|intel|teamgroup|patriot|gigabyte|hgst|hitachi)|" # Marcas
+                   r"(firecuda|barracuda|ironwolf|skyhawk|exos|blue|black|green|red|purple|gold|ultrastar|p300|x300|n300|l200|evo|qvo|pro|plus|mx500|bx500|p3|p5|nv2|kc3000|fury|legend|gammix|sn\d{3,4})" # Linhas SSD e HDD
+               r")?\s*"
+               r"([a-z0-9-]+\s*)?" # Modelo alfanumérico solto
+               r"(ssd|nvme|m\.2|sata|hdd|hard\s*drive|disco\s*r[ií]gido|hd|sshd|sdd|7200\s*rpm|5400\s*rpm)" # OBRIGATÓRIO: Tipo ou Rotação
+               r"(\s*\d{1,4}\s*(gb|tb))?" # Capacidade (ex: 500GB) no fim
+               r")\b",
+    
+    # RAM:
+    "ram": r"\b("
+           r"(\d{1,3}\s*gb\s*)?" 
+           r"(ddr[345]|lpddr[345]x?|sodimm|dimm|ram|mem[oó]ria)"
+           r"(\s*\d{3,5}\s*(mhz|mt/s)?)?"
+           r"(\s*ram)?"
+           r")\b",
+    
+    # TELA:
+    "screen": r"\b("
+              r"\d{2,3}(\.\d)?[\"”]\s*|" # Tamanho
+              r"120hz|144hz|165hz|240hz|300hz|360hz|60hz|" # Frequência
+              r"ips|tn|va|wva|pls|oled|amoled|miniled|mini-led|retina|" # Painel
+              r"4k|uhd|qhd|wqhd|fhd|hd\+|full\s*hd|1080p|1440p|2160p|768p|1366x768|1920x1080" # Resolução
+              r")\b"
 }
-
-REGEX_MODELOS = [
-    r'\b(g[357])\b', r'\b(\d{4})\b', r'\b(xps\s?\d{2})\b', r'\b(inspiron)\b', 
-    r'\b(latitude)\b', r'\b(precision)\b', r'\b(vostro)\b', r'\b(alienware)\b', 
-    r'\b(nitro\s?5)\b', r'\b(predator)\b', r'\b(legion)\b'
-]
-
-# --- 3. FUNÇÕES DE ANÁLISE ---
-
-def extrair_termos_simples(texto):
-    """Extrai termos baseados apenas na lista (mais rápido para contagem)"""
-    if not isinstance(texto, str): return []
-    
-    doc = nlp(texto.lower())
-    encontrados = []
-    
-    # 1. Busca por termos do dicionário (via Spacy Lemmas)
-    for token in doc:
-        lemma = token.lemma_
-        if lemma in TERMOS['hardware']: encontrados.append(('hardware', lemma))
-        elif lemma in TERMOS['problemas']: encontrados.append(('problema', lemma))
-        elif lemma in TERMOS['solucoes']: encontrados.append(('solucao', lemma))
-    
-    # 2. Busca modelos via Regex (CORREÇÃO DO ERRO)
-    # Precisamos iterar sobre a lista de regex, um por um
-    for padrao in REGEX_MODELOS:
-        matches = re.findall(padrao, texto.lower())
-        for match in matches:
-            # Se o regex tiver grupos e retornar tupla, pega o primeiro item
-            modelo = match if isinstance(match, str) else match[0]
-            encontrados.append(('modelo', modelo))
-        
-    return encontrados
-
-def gerar_resumo_topico(post):
+def extrair_hardware_regex(texto_completo):
     """
-    Analisa o post e comentários para determinar o tema central.
-    Usa sistema de pesos: Título (3x), Corpo (2x), Comentários (1x).
+    Varre o texto em busca de hardware e retorna uma string formatada.
+    Ex: 'GPU: rtx 3060 max-q, STORAGE: ssd nvme'
     """
-    contador_geral = Counter()
+    if not texto_completo: return None
     
-    # 1. Analisa Título (Peso 3)
-    termos_titulo = extrair_termos_simples(post.get('titulo', ''))
-    for categoria, termo in termos_titulo:
-        contador_geral[(categoria, termo)] += 3
-        
-    # 2. Analisa Corpo (Peso 2)
-    termos_corpo = extrair_termos_simples(post.get('conteudo_texto', ''))
-    for categoria, termo in termos_corpo:
-        contador_geral[(categoria, termo)] += 2
-        
-    # 3. Analisa Comentários (Peso 1 - Contexto coletivo)
-    if 'comentarios' in post:
-        for comentario in post['comentarios']:
-            # Usa conteudo_limpo se existir, senão conteudo normal
-            texto = comentario.get('conteudo_limpo', comentario.get('conteudo', ''))
-            termos_coments = extrair_termos_simples(texto)
-            for categoria, termo in termos_coments:
-                contador_geral[(categoria, termo)] += 1
+    texto_lower = texto_completo.lower()
+    componentes_encontrados = []
 
-    # --- SÍNTESE DO TÓPICO ---
-    top_problema = "General Discussion"
-    top_hardware = "Laptop"
-    top_solucao = None
+    for tipo, pattern in PADROES_HARDWARE.items():
+        matches = re.finditer(pattern, texto_lower)
+        # strip() remove espaços extras capturados nas bordas
+        uniques = set(m.group(0).strip() for m in matches)
+        if uniques:
+            # Formata como "TIPO: componente"
+            componentes_encontrados.append(f"{tipo.upper()}: {', '.join(uniques)}")
     
-    # Filtra contadores por categoria
-    probs = [k[1] for k in contador_geral if k[0] == 'problema']
-    hards = [k[1] for k in contador_geral if k[0] == 'hardware']
-    sols = [k[1] for k in contador_geral if k[0] == 'solucao']
-    
-    if probs:
-        top_problema = Counter({k[1]: v for k, v in contador_geral.items() if k[0] == 'problema'}).most_common(1)[0][0]
-    
-    if hards:
-        top_hardware = Counter({k[1]: v for k, v in contador_geral.items() if k[0] == 'hardware'}).most_common(1)[0][0]
-        
-    if sols:
-        top_solucao = Counter({k[1]: v for k, v in contador_geral.items() if k[0] == 'solucao'}).most_common(1)[0][0]
+    if componentes_encontrados:
+        return " | ".join(componentes_encontrados)
+    return "Nenhum componente específico detectado automaticamente."
 
-    # Cria a string legível
-    resumo = f"Issue with {top_hardware.upper()} ({top_problema})"
+# --- 3. CONFIGURAÇÃO DO CLIENTE OLLAMA ---
+client = OpenAI(
+    base_url='http://localhost:11434/v1',
+    api_key='ollama'
+)
+
+MODELO_OLLAMA = "llama3.2:latest"
+
+def analisar_com_ollama(titulo, corpo, comentarios):
+    """
+    Envia o texto para o Llama local e retorna um resumo estruturado.
+    """
     
-    tags = {
-        "componente_foco": top_hardware,
-        "problema_principal": top_problema,
-        "solucao_sugerida": top_solucao
+    # 1. Preparação dos Textos
+    texto_titulo = titulo if titulo else ""
+    texto_corpo = corpo[:1000] if corpo else ""
+    
+    texto_comentarios = ""
+    if comentarios:
+        texto_comentarios = "COMENTARIOS RELEVANTES:\n"
+        for c in comentarios[:3]:
+            conteudo = c.get('conteudo_limpo', c.get('conteudo', ''))
+            texto_comentarios += f"- {conteudo[:300]}\n"
+
+    # 2. Executa o REGEX (Enriquecimento)
+    texto_para_regex = f"{texto_titulo} {texto_corpo} {texto_comentarios}"
+    hardware_detectado = extrair_hardware_regex(texto_para_regex)
+
+    # 3. Montagem do Prompt com DADOS TÉCNICOS
+    texto_entrada_final = f"""
+[DADOS TÉCNICOS EXTRAÍDOS VIA SISTEMA]
+Componentes identificados no texto: {hardware_detectado}
+---------------------------------------------------
+TITULO: {texto_titulo}
+TEXTO: {texto_corpo}
+{texto_comentarios}
+"""
+
+    # 4. Prompt do Sistema
+    prompt_sistema = """
+    Você é um especialista em suporte técnico de notebooks.
+    
+    Sua tarefa é analisar o texto do usuário e os [DADOS TÉCNICOS EXTRAÍDOS] se houver.
+    Use os dados extraídos para preencher o campo 'componente' com precisão.
+    
+    Retorne APENAS um objeto JSON (sem markdown, sem explicações).
+    
+    O JSON deve ter exatamente estas chaves:
+    {
+        "resumo": "Resumo de 1 frase em português sobre o problema discutido, evite erros de português e afins.",
+        "intencao": "Escolha entre: Problema Técnico, Compra, Upgrade, ou Outro",
+        "componente": "Nome do componente principal citado (ex: RTX 3060, Tela, SSD) ou null",
+        "solucao": "Solução sugerida nos comentários ou null, evite erros de português e afins."
     }
-    
-    return resumo, tags
+    """
+
+    try:
+        response = client.chat.completions.create(
+            model=MODELO_OLLAMA,
+            messages=[
+                {"role": "system", "content": prompt_sistema},
+                {"role": "user", "content": texto_entrada_final}
+            ],
+            response_format={"type": "json_object"}, 
+            temperature=0.1 
+        )
+        
+        conteudo_resposta = response.choices[0].message.content
+        return json.loads(conteudo_resposta)
+
+    except json.JSONDecodeError:
+        print("X - Erro: O modelo não retornou um JSON válido.")
+        return None
+    except Exception as e:
+        print(f"X - Erro de conexão ou execução: {e}")
+        return None
 
 # --- 4. EXECUÇÃO PRINCIPAL ---
 
-print(f"Lendo arquivo: {CAMINHO_ENTRADA_JSON}")
+print(f"Carregando dados de: {CAMINHO_ENTRADA_JSON}")
 with open(CAMINHO_ENTRADA_JSON, 'r', encoding='utf-8') as f:
     dados = json.load(f)
 
-print("Gerando resumos dos tópicos...")
-contagem = 0
+print(f"Iniciando análise com OLLAMA (Modelo: {MODELO_OLLAMA})...")
+print("Pressione Ctrl+C para parar a qualquer momento.")
 
-for item in dados:
-    if 'posts' in item:
-        for post in item['posts']:
-            resumo_texto, tags_dict = gerar_resumo_topico(post)
-            
-            post['resumo_conversa'] = resumo_texto
-            post['tags_topico'] = tags_dict
-            
-            contagem += 1
+posts_analisados = 0
+
+try:
+    for item in dados:
+        if 'posts' in item:
+            for post in item['posts']:
+                titulo = post.get('titulo', 'Sem título')
+                print(f"\n[{posts_analisados+1}] Analisando: {titulo[:50]}...")
+                
+                resultado = analisar_com_ollama(
+                    titulo,
+                    post.get('conteudo_texto', ''),
+                    post.get('comentarios', [])
+                )
+                
+                if resultado:
+                    post['analise_ia'] = resultado
+                    print(f"   -> Componente (IA): {resultado.get('componente')}")
+                    print(f"   -> Resumo: {resultado.get('resumo')}")
+                    print(f"   -> Solução: {resultado.get('solucao')}")
+
+                else:
+                    post['analise_ia'] = {"erro": "Falha na análise do Ollama"}
+                
+                posts_analisados += 1
+
+except KeyboardInterrupt:
+    print("\n\nOperação interrompida pelo usuário. Salvando o que já foi feito...")
 
 # --- 5. SALVAMENTO ---
 CAMINHO_SAIDA_JSON.parent.mkdir(parents=True, exist_ok=True)
 with open(CAMINHO_SAIDA_JSON, 'w', encoding='utf-8') as f:
     json.dump(dados, f, ensure_ascii=False, indent=4)
 
-print(f"Processamento concluído. {contagem} conversas analisadas.")
+print(f"\nProcessamento finalizado.")
+print(f"Total de posts analisados: {posts_analisados}")
 print(f"Arquivo salvo em: {CAMINHO_SAIDA_JSON}")
-
-# --- EXEMPLO VISUAL ---
-if dados and 'posts' in dados[0] and len(dados[0]['posts']) > 0:
-    print("\n--- Exemplo de Resultado ---")
-    p = dados[0]['posts'][0]
-    print(f"Título: {p.get('titulo')}")
-    print(f"Resumo Gerado: {p.get('resumo_conversa')}")
-    print(f"Tags: {p.get('tags_topico')}")

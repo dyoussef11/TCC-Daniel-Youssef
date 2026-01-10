@@ -293,11 +293,11 @@
                 "semestre": 2,
                 "dia_semana": "Wednesday",
                 "timestamp": 1765363505.0,
-                "resumo_conversa": "Issue with FAN (damage)",
-                "tags_topico": {
-                    "componente_foco": "fan",
-                    "problema_principal": "damage",
-                    "solucao_sugerida": "repair"
+                "analise_ia": {
+                    "resumo": "O GPU do Dell G7 15 7588 está com problema de fã, possivelmente causado por falta de ar e danos ao connector da placa-mãe.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU",
+                    "solucao": "Reemplacar o fã do GPU com um novo, que pode vir com o cabo de conexão adequado."
                 }
             },
             {
@@ -390,11 +390,11 @@
                 "semestre": 2,
                 "dia_semana": "Wednesday",
                 "timestamp": 1765364391.0,
-                "resumo_conversa": "Issue with FAN (damage)",
-                "tags_topico": {
-                    "componente_foco": "fan",
-                    "problema_principal": "damage",
-                    "solucao_sugerida": "repair"
+                "analise_ia": {
+                    "resumo": "O fã do GPU da Dell G7 15 7588 está liberando ar de forma errática e fazendo um som estranho, provavelmente devido a uma conexão danificada.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU Fan",
+                    "solucao": "Substituição do fã do GPU"
                 }
             },
             {
@@ -418,11 +418,11 @@
                 "semestre": 2,
                 "dia_semana": "Wednesday",
                 "timestamp": 1765364080.0,
-                "resumo_conversa": "Issue with FAN (damage)",
-                "tags_topico": {
-                    "componente_foco": "fan",
-                    "problema_principal": "damage",
-                    "solucao_sugerida": "repair"
+                "analise_ia": {
+                    "resumo": "GPU fan do Dell G7 15 7588 não está funcionando corretamente após instalação de Windows",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU Fan",
+                    "solucao": "Comprar um novo GPU fan e realizar uma reparação"
                 }
             },
             {
@@ -446,11 +446,11 @@
                 "semestre": 2,
                 "dia_semana": "Wednesday",
                 "timestamp": 1765381935.0,
-                "resumo_conversa": "Issue with FAN (damage)",
-                "tags_topico": {
-                    "componente_foco": "fan",
-                    "problema_principal": "damage",
-                    "solucao_sugerida": "repair"
+                "analise_ia": {
+                    "resumo": "GPU fan do Dell G7 15 7588 não está funcionando corretamente após instalação de Windows",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU Fan",
+                    "solucao": "Comprar um novo GPU fan e realizar uma reparação"
                 }
             },
             {
@@ -474,11 +474,11 @@
                 "semestre": 2,
                 "dia_semana": "Wednesday",
                 "timestamp": 1765383417.0,
-                "resumo_conversa": "Issue with FAN (damage)",
-                "tags_topico": {
-                    "componente_foco": "fan",
-                    "problema_principal": "damage",
-                    "solucao_sugerida": "repair"
+                "analise_ia": {
+                    "resumo": "GPU fan do Dell G7 15 7588 não está funcionando corretamente após uma instalação de Windows recente",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU Fan",
+                    "solucao": "Comprar um novo GPU fan e realizar uma reparação de conexão do fã com a placa-mãe"
                 }
             },
             {
@@ -502,11 +502,11 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1763815142.0,
-                "resumo_conversa": "Issue with LAPTOP (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "Laptop",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "O notebook Dell g7 15 7588 apresenta um problema técnico",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU",
+                    "solucao": "null"
                 }
             },
             {
@@ -530,11 +530,11 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1763814976.0,
-                "resumo_conversa": "Issue with LAPTOP (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "Laptop",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "O notebook Dell g7 15 7588 apresenta um problema técnico",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU",
+                    "solucao": "null"
                 }
             },
             {
@@ -558,11 +558,11 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1763811944.0,
-                "resumo_conversa": "Issue with RAM (throttle)",
-                "tags_topico": {
-                    "componente_foco": "ram",
-                    "problema_principal": "throttle",
-                    "solucao_sugerida": "repaste"
+                "analise_ia": {
+                    "resumo": "Dell G7 15 com problemas de throttle e morte do teclado",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU: gtx 1060, CPU: 7588, i7 8750h, STORAGE: 2tb ssd, 256gb sdd, RAM: 16gb ram",
+                    "solucao": "null"
                 }
             },
             {
@@ -586,11 +586,11 @@
                 "semestre": 1,
                 "dia_semana": "Thursday",
                 "timestamp": 1746753642.0,
-                "resumo_conversa": "Issue with FAN (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "fan",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "clean"
+                "analise_ia": {
+                    "resumo": "O fã do Dell G7 15 7588 está fazendo barulho como se algo estivesse preso nele.",
+                    "intencao": "Problema Técnico",
+                    "componente": "Fan",
+                    "solucao": "Revisar ou limpar o fã com compressed air, se necessário"
                 }
             },
             {
@@ -853,11 +853,11 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1695487913.0,
-                "resumo_conversa": "Issue with SSD (crashing)",
-                "tags_topico": {
-                    "componente_foco": "ssd",
-                    "problema_principal": "crashing",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário está tendo problemas ao upgradear o SSD do Dell G7 15 com um modelo mais potente, apesar de a Dell especificar que o computador pode lidar com até 1TB.",
+                    "intencao": "Problema Técnico",
+                    "componente": "SSD",
+                    "solucao": "Verificar se o drive é defeituoso e verificar as especificações do SSD para garantir compatibilidade."
                 }
             },
             {
@@ -881,11 +881,11 @@
                 "semestre": 1,
                 "dia_semana": "Monday",
                 "timestamp": 1713227588.0,
-                "resumo_conversa": "Issue with BATTERY (performance)",
-                "tags_topico": {
-                    "componente_foco": "battery",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "reinstall"
+                "analise_ia": {
+                    "resumo": "Laptop Dell G7 15 7588 apresenta problemas de reboque e desempenho reduzido em modo de energia",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU: 7588",
+                    "solucao": "null"
                 }
             },
             {
@@ -927,11 +927,11 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1691248961.0,
-                "resumo_conversa": "Issue with SSD (fail)",
-                "tags_topico": {
-                    "componente_foco": "ssd",
-                    "problema_principal": "fail",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário tentou upgrade o SSD do seu Dell G7 15 7588 e enfrentou problemas de boot, que foram resolvidos após formatar a hard drive e atualizar o sistema operacional.",
+                    "intencao": "Problema Técnico",
+                    "componente": "SSD",
+                    "solucao": "Formatar a hard drive para aceitar Windows 10 e upgrade para Windows 11"
                 }
             },
             {
@@ -973,11 +973,11 @@
                 "semestre": 2,
                 "dia_semana": "Tuesday",
                 "timestamp": 1692123331.0,
-                "resumo_conversa": "Issue with BATTERY (overheat)",
-                "tags_topico": {
-                    "componente_foco": "battery",
-                    "problema_principal": "overheat",
-                    "solucao_sugerida": "support"
+                "analise_ia": {
+                    "resumo": "Laptop Dell g7 15 7588 queimou e não liga após coletar poeira nos ventiladores",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU: hdd",
+                    "solucao": "Limpeza com ar puro, substituição de thermal paste e desaceleração de voltagem"
                 }
             },
             {
@@ -1036,11 +1036,11 @@
                 "semestre": 2,
                 "dia_semana": "Tuesday",
                 "timestamp": 1670350197.0,
-                "resumo_conversa": "Issue with FAN (overheat)",
-                "tags_topico": {
-                    "componente_foco": "fan",
-                    "problema_principal": "overheat",
-                    "solucao_sugerida": "change"
+                "analise_ia": {
+                    "resumo": "Laptop Dell G7 15 7588 apresenta problemas de sobreaquecimento e fechamento, apesar de atualizações de BIOS, drivers e thermal paste.",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU: 7588",
+                    "solucao": "Verificar se o boot diagnostics apresenta erro de fan, ajustar configurações de gerenciamento de energia e considerar a utilização de um cooling pad."
                 }
             },
             {
@@ -1082,11 +1082,11 @@
                 "semestre": 1,
                 "dia_semana": "Saturday",
                 "timestamp": 1673719710.0,
-                "resumo_conversa": "Issue with SCREEN (thermal)",
-                "tags_topico": {
-                    "componente_foco": "screen",
-                    "problema_principal": "thermal",
-                    "solucao_sugerida": "replacement"
+                "analise_ia": {
+                    "resumo": "O usuário precisa substituir a tela do Dell G7 15 7588 e está procurando opções de upgrade para uma tela com mais de 60Hz.",
+                    "intencao": "Problema Técnico",
+                    "componente": "Tela",
+                    "solucao": "A opção de substituição da tela é recomendada, pois a upgrade de refresh rate pode impactar na vida útil da bateria e não oferecer benefícios significativos."
                 }
             },
             {
@@ -1264,11 +1264,11 @@
                 "semestre": 1,
                 "dia_semana": "Thursday",
                 "timestamp": 1584663457.0,
-                "resumo_conversa": "Issue with DRIVER (restart)",
-                "tags_topico": {
-                    "componente_foco": "driver",
-                    "problema_principal": "restart",
-                    "solucao_sugerida": "update"
+                "analise_ia": {
+                    "resumo": "O problema é que o laptop Dell G7 15 não reconhece o dispositivo de áudio quando o fone de ouvido é conectado e só funciona com o dispositivo de áudio após restart.",
+                    "intencao": "Problema Técnico",
+                    "componente": "7588",
+                    "solucao": "Reinstalar o driver de áudio, tentar atualizar o sistema operacional ou procurar soluções de ajustes no BIOS"
                 }
             },
             {
@@ -1292,11 +1292,11 @@
                 "semestre": 1,
                 "dia_semana": "Sunday",
                 "timestamp": 1672615435.0,
-                "resumo_conversa": "Issue with WEBCAM (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "webcam",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "clean"
+                "analise_ia": {
+                    "resumo": "Webcam do notebook G7 15 7588 está com problema de qualidade baixa devido à adesão de fita adesiva por tempo prolongado",
+                    "intencao": "Problema Técnico",
+                    "componente": "webcam",
+                    "solucao": "Limpeza com Goo Gone e álcool, mas sem sucesso"
                 }
             },
             {
@@ -1355,11 +1355,11 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1659809039.0,
-                "resumo_conversa": "Issue with MICROPHONE (click)",
-                "tags_topico": {
-                    "componente_foco": "microphone",
-                    "problema_principal": "click",
-                    "solucao_sugerida": "change"
+                "analise_ia": {
+                    "resumo": "O problema é que o laptop não está usando a micrôfone do headset, mas sim a micrôfone integrada.",
+                    "intencao": "Problema Técnico",
+                    "componente": "7588",
+                    "solucao": "Mudar as configurações de saída e entrada de áudio"
                 }
             },
             {
@@ -1418,11 +1418,11 @@
                 "semestre": 1,
                 "dia_semana": "Thursday",
                 "timestamp": 1655415205.0,
-                "resumo_conversa": "Issue with SSD (click)",
-                "tags_topico": {
-                    "componente_foco": "ssd",
-                    "problema_principal": "click",
-                    "solucao_sugerida": "clean"
+                "analise_ia": {
+                    "resumo": "Problema com o Mi Band 4 e Mi Band 6",
+                    "intencao": "Compra",
+                    "componente": "Mi Band 4 + Mi Band 6",
+                    "solucao": "Verificar se há algum problema específico com os dispositivos, caso contrário, pode ser um problema de envio ou manuseio"
                 }
             },
             {
@@ -1600,11 +1600,11 @@
                 "semestre": 1,
                 "dia_semana": "Wednesday",
                 "timestamp": 1617194279.0,
-                "resumo_conversa": "Issue with GPU (thermal)",
-                "tags_topico": {
-                    "componente_foco": "gpu",
-                    "problema_principal": "thermal",
-                    "solucao_sugerida": "update"
+                "analise_ia": {
+                    "resumo": "O problema é o FPS baixo e a lagging no Dell g7 15, apesar de ter sido atualizado e testado com stress",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU: NVIDIA GeForce GTX 1060 Max Q",
+                    "solucao": "Ativando o Whisper Mode no Nvidia Geforce Experience"
                 }
             },
             {
@@ -1816,11 +1816,11 @@
                 "semestre": 1,
                 "dia_semana": "Saturday",
                 "timestamp": 1586586146.0,
-                "resumo_conversa": "Issue with CPU (throttle)",
-                "tags_topico": {
-                    "componente_foco": "cpu",
-                    "problema_principal": "throttle",
-                    "solucao_sugerida": "open"
+                "analise_ia": {
+                    "resumo": "O problema é o Power Limit Throttling no Dell G7 15 7588, que está causando lentidão e sobrecaloramento.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU: geforce gtx 1060",
+                    "solucao": "Undervolting com throttlestop e repaste podem ajudar a controlar o problema"
                 }
             },
             {
@@ -1844,11 +1844,11 @@
                 "semestre": 2,
                 "dia_semana": "Friday",
                 "timestamp": 1658517654.0,
-                "resumo_conversa": "Issue with ADAPTER (damage)",
-                "tags_topico": {
-                    "componente_foco": "adapter",
-                    "problema_principal": "damage",
-                    "solucao_sugerida": "replace"
+                "analise_ia": {
+                    "resumo": "Laptop Dell G7 15 com problema de adapter queimado por água e não reconhece a tensão",
+                    "intencao": "Problema Técnico",
+                    "componente": "7588",
+                    "solucao": "null"
                 }
             },
             {
@@ -1872,11 +1872,11 @@
                 "semestre": 2,
                 "dia_semana": "Friday",
                 "timestamp": 1657903928.0,
-                "resumo_conversa": "Issue with CHARGER (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "charger",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "support"
+                "analise_ia": {
+                    "resumo": "Problema: encontrar um carregador de banco de energia compatível com Dell G7 15 (7588) que suporte o carregador de 180w",
+                    "intencao": "Problema Técnico",
+                    "componente": "Power Bank",
+                    "solucao": "Verificar a compatibilidade do carregador de banco de energia com o Dell G7 15 (7588) e verificar as especificações de saída para garantir que ele possa fornecer a corrente necessária"
                 }
             },
             {
@@ -1986,11 +1986,11 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1625938795.0,
-                "resumo_conversa": "Issue with CPU (thermal)",
-                "tags_topico": {
-                    "componente_foco": "cpu",
-                    "problema_principal": "thermal",
-                    "solucao_sugerida": "downgrade"
+                "analise_ia": {
+                    "resumo": "O usuário tentou downgrade o BIOS do Dell G7 15 7588 de 1.11.1 para 1.10.0 e enfrentou problemas com o CPU ficando preso em 2 GHz, apesar de ter resolvido a questão com sucesso",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU: 7567, 7588",
+                    "solucao": "Manter o BIOS atualizado ou verificar e limpar os ductos de ar para evitar problemas de resfriamento"
                 }
             },
             {
@@ -2168,11 +2168,11 @@
                 "semestre": 2,
                 "dia_semana": "Thursday",
                 "timestamp": 1602126384.0,
-                "resumo_conversa": "Issue with MONITOR (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "monitor",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "open"
+                "analise_ia": {
+                    "resumo": "Tela do Dell G7 15 não está funcionando, mas funciona com monitor externo.",
+                    "intencao": "Problema Técnico",
+                    "componente": "Tela",
+                    "solucao": "Verificar se a tela está danificada ou se há um problema de conexão"
                 }
             },
             {
@@ -2350,11 +2350,11 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1537066275.0,
-                "resumo_conversa": "Issue with TOUCHPAD (error)",
-                "tags_topico": {
-                    "componente_foco": "touchpad",
-                    "problema_principal": "error",
-                    "solucao_sugerida": "update"
+                "analise_ia": {
+                    "resumo": "O toque pad do G7 15 7588 não está funcionando corretamente e nenhuma solução trouxe resultado",
+                    "intencao": "Problema Técnico",
+                    "componente": "Touchpad",
+                    "solucao": "Recomenda-se a instalação de um protetor para toque pad, pois o problema pode estar relacionado à superfície do touchpad"
                 }
             },
             {
@@ -2396,11 +2396,11 @@
                 "semestre": 1,
                 "dia_semana": "Monday",
                 "timestamp": 1643032295.0,
-                "resumo_conversa": "Issue with PSU (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "psu",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "O usuário está preocupado em usar um PSU de 240W no seu G7 15, que normalmente consome 180W.",
+                    "intencao": "Problema Técnico",
+                    "componente": "PSU (Power Supply Unit)",
+                    "solucao": "Não há problema, desde que o mesmo for compatível com a mesma tensão de voltagem."
                 }
             },
             {
@@ -2680,11 +2680,11 @@
                 "semestre": 2,
                 "dia_semana": "Thursday",
                 "timestamp": 1533859077.0,
-                "resumo_conversa": "Issue with CPU (lag)",
-                "tags_topico": {
-                    "componente_foco": "cpu",
-                    "problema_principal": "lag",
-                    "solucao_sugerida": "disable"
+                "analise_ia": {
+                    "resumo": "O Dell G7 15 7588 está apresentando um problema de sobreaquecimento após apenas uma semana de uso, com o GPU GTX 1060 e CPU Intel Core i7 mostrando desempenhos instáveis.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GTX 1060",
+                    "solucao": "null"
                 }
             },
             {
@@ -2828,11 +2828,11 @@
                 "semestre": 1,
                 "dia_semana": "Saturday",
                 "timestamp": 1551550837.0,
-                "resumo_conversa": "Issue with TOUCHPAD (click)",
-                "tags_topico": {
-                    "componente_foco": "touchpad",
-                    "problema_principal": "click",
-                    "solucao_sugerida": "disable"
+                "analise_ia": {
+                    "resumo": "Touchpad do novo G7 15 não responde corretamente em Apex Legends",
+                    "intencao": "Problema Técnico",
+                    "componente": "Touchpad",
+                    "solucao": "Verificar configurações de gestos e verificar se há algum problema com a comunicação do touchpad"
                 }
             },
             {
@@ -2976,11 +2976,11 @@
                 "semestre": 2,
                 "dia_semana": "Tuesday",
                 "timestamp": 1595345283.0,
-                "resumo_conversa": "Issue with RAM (performance)",
-                "tags_topico": {
-                    "componente_foco": "ram",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "open"
+                "analise_ia": {
+                    "resumo": "O usuário está preocupado com o uso do GPU GTX 1060 Max-Q em um notebook Dell G7 15 7588 e quer saber se é normal",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU: gtx 1060 max-q",
+                    "solucao": "O uso do GPU GTX 1060 Max-Q está normal, mas o usuário pode ajustar as configurações no painel de controle NVIDIA para otimizar o desempenho"
                 }
             },
             {
@@ -3107,11 +3107,11 @@
                 "semestre": 2,
                 "dia_semana": "Monday",
                 "timestamp": 1597640330.0,
-                "resumo_conversa": "Issue with GPU (performance)",
-                "tags_topico": {
-                    "componente_foco": "gpu",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O problema é uma queda significativa na performance do Dell G7 15 7588 e o usuário não consegue identificar a causa.",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU: 7588",
+                    "solucao": "Verificar thermal throttling, remover bloatware e verificar se há vírus"
                 }
             },
             {
@@ -3153,11 +3153,11 @@
                 "semestre": 2,
                 "dia_semana": "Monday",
                 "timestamp": 1633388088.0,
-                "resumo_conversa": "Issue with DRIVER (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "driver",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "support"
+                "analise_ia": {
+                    "resumo": "Não há drivers Windows 11 disponíveis para o modelo G7 15 7588",
+                    "intencao": "Problema Técnico",
+                    "componente": "GTX 1060 Max-Q, i7-8750h",
+                    "solucao": "Instalar os drivers agora, mas sem certificação e garantia de funcionamento perfeito"
                 }
             },
             {
@@ -3181,11 +3181,11 @@
                 "semestre": 2,
                 "dia_semana": "Thursday",
                 "timestamp": 1636652211.0,
-                "resumo_conversa": "Issue with PORT (stuck)",
-                "tags_topico": {
-                    "componente_foco": "port",
-                    "problema_principal": "stuck",
-                    "solucao_sugerida": "enable"
+                "analise_ia": {
+                    "resumo": "O usuário está tentando configurar o FreeSync em seu monitor 144Hz via Thunderbolt, mas não consegue fazer isso.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU: Intel 1060 Max-Q",
+                    "solucao": "Verificar se o Optimus está ativado e configurar o FreeSync corretamente"
                 }
             },
             {
@@ -3227,11 +3227,11 @@
                 "semestre": 1,
                 "dia_semana": "Saturday",
                 "timestamp": 1624722923.0,
-                "resumo_conversa": "Issue with SCREEN (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "screen",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário upgradeu a tela do Dell G7 15 para uma nova N156HHE-GA1, mas a tela apresenta um filme leve e esverçado",
+                    "intencao": "Problema Técnico",
+                    "componente": "SCREEN",
+                    "solucao": "Não especificada"
                 }
             },
             {
@@ -3392,11 +3392,11 @@
                 "semestre": 1,
                 "dia_semana": "Friday",
                 "timestamp": 1558742445.0,
-                "resumo_conversa": "Issue with RAM (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "ram",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "repair"
+                "analise_ia": {
+                    "resumo": "Dell G7 15 7588 gaming laptop com GPU GTX 1060 e CPU i7 8750h está para venda, com preços sugeridos de $650 em dinheiro local ou $700 na entrega.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GTX 1060",
+                    "solucao": null
                 }
             },
             {
@@ -3506,11 +3506,11 @@
                 "semestre": 1,
                 "dia_semana": "Wednesday",
                 "timestamp": 1588139707.0,
-                "resumo_conversa": "Issue with MONITOR (dead)",
-                "tags_topico": {
-                    "componente_foco": "monitor",
-                    "problema_principal": "dead",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário está procurando upgradear o monitor do Dell G7 15 7588 com um novo panel N156HHE-GA1 sem gastar muito dinheiro.",
+                    "intencao": "Problema Técnico",
+                    "componente": "SCREEN: new-n156hhe-ga1-laptop-led-lcd-screen-15-6-120-hz-fhd",
+                    "solucao": "Substituir o monitor com um novo panel N156HHE-GA1 pode resolver problemas de qualidade de imagem e reduzir a vida útil da bateria."
                 }
             },
             {
@@ -3603,11 +3603,11 @@
                 "semestre": 2,
                 "dia_semana": "Friday",
                 "timestamp": 1595636937.0,
-                "resumo_conversa": "Issue with RAM (thermal)",
-                "tags_topico": {
-                    "componente_foco": "ram",
-                    "problema_principal": "thermal",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "O usuário está considerando vender seu PC para comprar um Dell G7 15 7588 e precisa avaliar se vale a pena.",
+                    "intencao": "Problema Técnico",
+                    "componente": "Asus Gtx 1650 Graphics Card",
+                    "solucao": "O laptop parece valer US$ 1.200, mas o usuário está oferecendo-o por US$ 900, o que pode ser um bom preço."
                 }
             },
             {
@@ -3666,11 +3666,11 @@
                 "semestre": 1,
                 "dia_semana": "Tuesday",
                 "timestamp": 1588057838.0,
-                "resumo_conversa": "Issue with MICROPHONE (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "microphone",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "update"
+                "analise_ia": {
+                    "resumo": "Microwave auxiliar do Dell G7 15 7588 quebra após atualização",
+                    "intencao": "Problema Técnico",
+                    "componente": "AUX Microfone",
+                    "solucao": "Reinstalar drivers e tentar conectar o microfone via headset USB"
                 }
             },
             {
@@ -3865,11 +3865,11 @@
                 "semestre": 2,
                 "dia_semana": "Thursday",
                 "timestamp": 1537449554.0,
-                "resumo_conversa": "Issue with DRIVER (error)",
-                "tags_topico": {
-                    "componente_foco": "driver",
-                    "problema_principal": "error",
-                    "solucao_sugerida": "reinstall"
+                "analise_ia": {
+                    "resumo": "O usuário está enfrentando problemas de conexão Wi-Fi em seu Dell G7 15 7588 e precisa saber se precisa reinstalar os drivers de rede.",
+                    "intencao": "Problema Técnico",
+                    "componente": "Killer E2400/E2500 Ethernet Controller, Wireless driver",
+                    "solucao": "Reinstalar os drivers de rede desde o site da Dell e seguir as instruções do usuário para evitar problemas futuros."
                 }
             },
             {
@@ -3945,11 +3945,11 @@
                 "semestre": 1,
                 "dia_semana": "Sunday",
                 "timestamp": 1578798348.0,
-                "resumo_conversa": "Issue with KEYBOARD (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "keyboard",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário está tendo problemas com as teclas '2, w, s, x' do teclado do Dell G7 15 não funcionando corretamente",
+                    "intencao": "Problema Técnico",
+                    "componente": "Keyboard",
+                    "solucao": "null"
                 }
             },
             {
@@ -4025,11 +4025,11 @@
                 "semestre": 2,
                 "dia_semana": "Wednesday",
                 "timestamp": 1596040376.0,
-                "resumo_conversa": "Issue with CHARGER (thermal)",
-                "tags_topico": {
-                    "componente_foco": "charger",
-                    "problema_principal": "thermal",
-                    "solucao_sugerida": "repaste"
+                "analise_ia": {
+                    "resumo": "O problema é com o desempenho do jogo Gears 5, que funciona bem quando o carregador está conectado, mas cai para 15fps e permanece assim, enquanto o mesmo problema não ocorre quando o carregador está desconectado.",
+                    "intencao": "Problema Técnico",
+                    "componente": "null",
+                    "solucao": "Pode ser causado por thermal throttling, verifique os tempos do CPU e GPU com HWMonitor ou Task Manager"
                 }
             },
             {
@@ -4071,11 +4071,11 @@
                 "semestre": 1,
                 "dia_semana": "Friday",
                 "timestamp": 1610723900.0,
-                "resumo_conversa": "Issue with SSD (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "ssd",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "replace"
+                "analise_ia": {
+                    "resumo": "O SSD pre-instalado SK Hynix SC311 não funciona quando usado em uma caixa de armazenamento externa.",
+                    "intencao": "Problema Técnico",
+                    "componente": "SSD",
+                    "solucao": "A SK Hynix é um SSD de série SATA, enquanto a caixa de armazenamento externa só suporta NVMe."
                 }
             },
             {
@@ -4134,11 +4134,11 @@
                 "semestre": 1,
                 "dia_semana": "Sunday",
                 "timestamp": 1585522494.0,
-                "resumo_conversa": "Issue with BATTERY (performance)",
-                "tags_topico": {
-                    "componente_foco": "battery",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "downgrade"
+                "analise_ia": {
+                    "resumo": "O usuário deseja forçar uma downgrade do BIOS G7 15 7588 para uma versão mais antiga, apesar de sabê-lo inseguro, para obter melhor desempenho.",
+                    "intencao": "Problema Técnico",
+                    "componente": "Bios G7 15 7588",
+                    "solucao": "O usuário já tentou forçar a downgrade com o método de recuperação forçada, mas sem sucesso."
                 }
             },
             {
@@ -4180,11 +4180,11 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1608958690.0,
-                "resumo_conversa": "Issue with RAM (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "ram",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário está procurando saber se é possível aumentar o RAM do Dell G7 15 7588 para 64GB.",
+                    "intencao": "Problema Técnico",
+                    "componente": "RAM",
+                    "solucao": "A Dell G7 15 7588 suporta até 16GB de RAM, mas não é possível alcançar 64GB."
                 }
             },
             {
@@ -4328,11 +4328,8 @@
                 "semestre": 1,
                 "dia_semana": "Wednesday",
                 "timestamp": 1552515844.0,
-                "resumo_conversa": "Issue with CHASSIS (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "chassis",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "swap"
+                "analise_ia": {
+                    "resumo": "O usuário está procurando comprar um Dell G7 15"
                 }
             },
             {
@@ -4391,11 +4388,11 @@
                 "semestre": 1,
                 "dia_semana": "Monday",
                 "timestamp": 1589845974.0,
-                "resumo_conversa": "Issue with DRIVER (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "driver",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário está procurando saber se é possível atualizar a placa de wifi do Dell G7 15 7588 e se o modelo AX200NGW é compatível.",
+                    "intencao": "Problema Técnico",
+                    "componente": "AX200NGW",
+                    "solucao": "O modelo AX200NGW é compatível e pode ser instalado no Dell G7 15 7588, de acordo com os comentários relevantes."
                 }
             },
             {
@@ -4419,11 +4416,11 @@
                 "semestre": 2,
                 "dia_semana": "Friday",
                 "timestamp": 1606460797.0,
-                "resumo_conversa": "Issue with KEYBOARD (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "keyboard",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "reinstall"
+                "analise_ia": {
+                    "resumo": "Teclado do Dell G7 15 7588 apresenta problemas de keys que funcionam aleatoriamente",
+                    "intencao": "Problema Técnico",
+                    "componente": "Keyboard",
+                    "solucao": "null"
                 }
             },
             {
@@ -4533,11 +4530,11 @@
                 "semestre": 1,
                 "dia_semana": "Sunday",
                 "timestamp": 1560696756.0,
-                "resumo_conversa": "Issue with SCREEN (thermal)",
-                "tags_topico": {
-                    "componente_foco": "screen",
-                    "problema_principal": "thermal",
-                    "solucao_sugerida": "tech"
+                "analise_ia": {
+                    "resumo": "O usuário está considerando comprar um Dell G7-15-7588 e deseja saber se os specs são valiosos e se o laptop apresenta problemas técnicos significativos",
+                    "intencao": "Problema Técnico",
+                    "componente": "Dell-G7-15-7588",
+                    "solucao": "O usuário deve esperar por comentários de outros proprietários ou verificar as especificações do produto antes de tomar uma decisão"
                 }
             },
             {
@@ -4647,11 +4644,8 @@
                 "semestre": 1,
                 "dia_semana": "Thursday",
                 "timestamp": 1551998155.0,
-                "resumo_conversa": "Issue with LAPTOP (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "Laptop",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "change"
+                "analise_ia": {
+                    "resumo": "O problema é o botão de potência do Dell G7 15"
                 }
             },
             {
@@ -4727,11 +4721,11 @@
                 "semestre": 2,
                 "dia_semana": "Sunday",
                 "timestamp": 1567963965.0,
-                "resumo_conversa": "Issue with DISPLAY (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "display",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "reset"
+                "analise_ia": {
+                    "resumo": "Dell G7 15 7588 i7 8750h GTX 1060 Max Q Gaming Laptop está para venda devido à falta de uso, com apenas scuff marks e AUO display",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU: gtx 1060",
+                    "solucao": "Nenhuma solução sugerida"
                 }
             },
             {
@@ -4790,11 +4784,11 @@
                 "semestre": 1,
                 "dia_semana": "Wednesday",
                 "timestamp": 1579724106.0,
-                "resumo_conversa": "Issue with LAPTOP (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "Laptop",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário está procurando uma recomendação de upgrade de armazenamento para o Dell G7 15 7588, que tem apenas 128 GB de armazenamento e deseja aumentar para pelo menos 1 TB.",
+                    "intencao": "Problema Técnico",
+                    "componente": "M.2",
+                    "solucao": "A sugestão é adquirir um drive M.2 PCIe de 1 TB, como o Samsung 970 EVO Plus ou WD Black, dentro do orçamento de $200."
                 }
             },
             {
@@ -4818,11 +4812,11 @@
                 "semestre": 2,
                 "dia_semana": "Thursday",
                 "timestamp": 1594953805.0,
-                "resumo_conversa": "Issue with RAM (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "ram",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "Vendedor busca saber o valor de venda do seu Dell G7 15 com processador i7-9750k e GPU GTX 1060.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GTX 1060",
+                    "solucao": "Avalie a redução de preço devido ao problema de um dos fãs buzando, considerando que o valor médio na eBay é de $800."
                 }
             },
             {
@@ -4915,11 +4909,11 @@
                 "semestre": 1,
                 "dia_semana": "Tuesday",
                 "timestamp": 1556631274.0,
-                "resumo_conversa": "Issue with CPU (throttle)",
-                "tags_topico": {
-                    "componente_foco": "cpu",
-                    "problema_principal": "throttle",
-                    "solucao_sugerida": "fix"
+                "analise_ia": {
+                    "resumo": "O processador do Dell G7 15 7588 pode se aquecer excessivamente e reduzir a velocidade, causando problemas de framerate.",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU i7-8750H",
+                    "solucao": "Ajustar as configurações de temperatura do sistema ou utilizar um ventilador adicional para ajudar a dissipar o calor excessivo"
                 }
             },
             {
@@ -4978,11 +4972,8 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1575124279.0,
-                "resumo_conversa": "Issue with RAM (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "ram",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "swap"
+                "analise_ia": {
+                    "erro": "Falha na análise do Ollama"
                 }
             },
             {
@@ -5041,11 +5032,11 @@
                 "semestre": 2,
                 "dia_semana": "Wednesday",
                 "timestamp": 1566399397.0,
-                "resumo_conversa": "Issue with BATTERY (flickering)",
-                "tags_topico": {
-                    "componente_foco": "battery",
-                    "problema_principal": "flickering",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "Flicker da luz de bateria do Dell G7 15 7588",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU: 7588",
+                    "solucao": "Verificar a configuração de uso do disco rígido, pressionar Fn + H"
                 }
             },
             {
@@ -5087,11 +5078,11 @@
                 "semestre": 2,
                 "dia_semana": "Tuesday",
                 "timestamp": 1576030704.0,
-                "resumo_conversa": "Issue with RAM (performance)",
-                "tags_topico": {
-                    "componente_foco": "ram",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário está procurando upgrade de RAM do seu laptop G7 15 7588 para 32 GB e precisa saber qual é a compatibilidade e o tipo de RAM recomendado.",
+                    "intencao": "Problema Técnico",
+                    "componente": "RAM",
+                    "solucao": "A RAM Crucial é compatível e funciona, mas é necessário usar sticks de 8 GB a 2666 MHz"
                 }
             },
             {
@@ -5167,11 +5158,11 @@
                 "semestre": 2,
                 "dia_semana": "Tuesday",
                 "timestamp": 1537865772.0,
-                "resumo_conversa": "Issue with SCREEN (performance)",
-                "tags_topico": {
-                    "componente_foco": "screen",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "update"
+                "analise_ia": {
+                    "resumo": "O usuário está considerando a Dell G7 15 7588 como sua primeira laptop de gaming e busca alternativas com tela 144Hz dentro do orçamento.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GeForce GTX 1060 Max-Q",
+                    "solucao": "O usuário sugere considerar o Acer Predator Helios 300 como uma alternativa melhor, com tela 144Hz e regular GTX 1060."
                 }
             },
             {
@@ -5247,11 +5238,11 @@
                 "semestre": 2,
                 "dia_semana": "Tuesday",
                 "timestamp": 1537240820.0,
-                "resumo_conversa": "Issue with HDD (performance)",
-                "tags_topico": {
-                    "componente_foco": "hdd",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "disable"
+                "analise_ia": {
+                    "resumo": "O usuário comprou um Dell G7 15 com 256 GB SSD e expressa preocupação sobre a compatibilidade com HDD e problemas de boot.",
+                    "intencao": "Problema Técnico",
+                    "componente": "SSD",
+                    "solucao": "Instalar o sistema operacional em um SSD para melhor desempenho, evitar HDD e configurar BIOS corretamente"
                 }
             },
             {
@@ -5293,11 +5284,11 @@
                 "semestre": 2,
                 "dia_semana": "Monday",
                 "timestamp": 1569870064.0,
-                "resumo_conversa": "Issue with RAM (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "ram",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "swap"
+                "analise_ia": {
+                    "resumo": "Venda de Dell G7 15 com GPU GTX 1060 e i7 8750h, em excelente condição",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU: quadro",
+                    "solucao": "Verificar a compatibilidade do GPU com o sistema antes de realizar a compra"
                 }
             },
             {
@@ -5356,11 +5347,11 @@
                 "semestre": 2,
                 "dia_semana": "Tuesday",
                 "timestamp": 1531834778.0,
-                "resumo_conversa": "Issue with SCREEN (click)",
-                "tags_topico": {
-                    "componente_foco": "screen",
-                    "problema_principal": "click",
-                    "solucao_sugerida": "disable"
+                "analise_ia": {
+                    "resumo": "O usuário deseja desabilitar a área de toque sobre os botões esquerdo e direito do touchpad no Dell G7 15 7588, pois isso interfere com suas edícios.",
+                    "intencao": "Problema Técnico",
+                    "componente": "Touchpad",
+                    "solucao": "Tentar usar fita elétrica em vez de fita regular, ou tentar outras soluções como ajustar a sensibilidade do touchpad."
                 }
             },
             {
@@ -5402,11 +5393,11 @@
                 "semestre": 2,
                 "dia_semana": "Friday",
                 "timestamp": 1542983853.0,
-                "resumo_conversa": "Issue with KEYBOARD (hot)",
-                "tags_topico": {
-                    "componente_foco": "keyboard",
-                    "problema_principal": "hot",
-                    "solucao_sugerida": "update"
+                "analise_ia": {
+                    "resumo": "O notebook G7 15 7588 apresenta calor excessivo mesmo em estado de inatividade, apesar de configuração de política de resfriamento ativa.",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU",
+                    "solucao": "Atualizar BIOS para 1.6.1"
                 }
             },
             {
@@ -5430,11 +5421,11 @@
                 "semestre": 2,
                 "dia_semana": "Tuesday",
                 "timestamp": 1563323450.0,
-                "resumo_conversa": "Issue with SSD (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "ssd",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "swap"
+                "analise_ia": {
+                    "resumo": "Dell G7 15 7588 com SSD de 128 GB Samsung 970 EVO Plus",
+                    "intencao": "Problema Técnico",
+                    "componente": "SSD",
+                    "solucao": "null"
                 }
             },
             {
@@ -5476,11 +5467,11 @@
                 "semestre": 1,
                 "dia_semana": "Wednesday",
                 "timestamp": 1550089121.0,
-                "resumo_conversa": "Issue with HDD (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "hdd",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "swap"
+                "analise_ia": {
+                    "resumo": "Venda de Dell G7 15 com problemas, não utilizado muito",
+                    "intencao": "Problema Técnico",
+                    "componente": "HDD",
+                    "solucao": "Verificar a compatibilidade do monitor com o sistema"
                 }
             },
             {
@@ -5504,11 +5495,11 @@
                 "semestre": 2,
                 "dia_semana": "Monday",
                 "timestamp": 1537793354.0,
-                "resumo_conversa": "Issue with LAPTOP (performance)",
-                "tags_topico": {
-                    "componente_foco": "Laptop",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "Problema de desempenho do laptop Dell G7 15",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU",
+                    "solucao": "null"
                 }
             },
             {
@@ -5532,11 +5523,11 @@
                 "semestre": 2,
                 "dia_semana": "Friday",
                 "timestamp": 1536937870.0,
-                "resumo_conversa": "Issue with LAPTOP (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "Laptop",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "O Dell G7 15 apresenta problemas de desempenho com sua CPU de 6ª geração",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU",
+                    "solucao": "null"
                 }
             },
             {
@@ -5697,11 +5688,11 @@
                 "semestre": 1,
                 "dia_semana": "Wednesday",
                 "timestamp": 1746588223.0,
-                "resumo_conversa": "Issue with DRIVER (performance)",
-                "tags_topico": {
-                    "componente_foco": "driver",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "support"
+                "analise_ia": {
+                    "resumo": "O usuário está procurando orientação sobre qual versão de Linux Mint usar com um laptop Dell G7 15 com hardware específico e tem dúvidas sobre o suporte a drivers NVIDIA.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU: GTX 965m, CPU: i7-4910mq",
+                    "solucao": "Deve usar uma versão de Linux Mint que suporte os drivers NVIDIA e seja compatível com o hardware do laptop, como Fedora com GNOME, que já funcionou bem no passado."
                 }
             },
             {
@@ -5828,11 +5819,11 @@
                 "semestre": 1,
                 "dia_semana": "Tuesday",
                 "timestamp": 1746583864.0,
-                "resumo_conversa": "Issue with DRIVER (slow)",
-                "tags_topico": {
-                    "componente_foco": "driver",
-                    "problema_principal": "slow",
-                    "solucao_sugerida": "install"
+                "analise_ia": {
+                    "resumo": "O usuário está procurando saber qual versão do Linux Mint é recomendada para o seu hardware Dell G7 15 com i7 8750h e GTX 1060 Max-Q, para uso casual de jogos e aplicativos leves.",
+                    "intencao": "Problema Técnico",
+                    "componente": "i7 8750h",
+                    "solucao": "Deve usar a versão mais recente do Linux Mint com oinnamon, e instalar os drivers de NVIDIA corretos para garantir estabilidade e desempenho adequados."
                 }
             },
             {
@@ -5908,11 +5899,11 @@
                 "semestre": 1,
                 "dia_semana": "Monday",
                 "timestamp": 1750082597.0,
-                "resumo_conversa": "Issue with BATTERY (lag)",
-                "tags_topico": {
-                    "componente_foco": "battery",
-                    "problema_principal": "lag",
-                    "solucao_sugerida": "warranty"
+                "analise_ia": {
+                    "resumo": "O problema é um jogo que não está funcionando corretamente, com estutters e lag, após o laptop ficar sem uso por 6 meses.",
+                    "intencao": "Problema Técnico",
+                    "componente": "7588",
+                    "solucao": "Mudar a configuração do jogo para usar DX12 em vez de DX11"
                 }
             },
             {
@@ -6226,11 +6217,11 @@
                 "semestre": 2,
                 "dia_semana": "Sunday",
                 "timestamp": 1730003951.0,
-                "resumo_conversa": "Issue with CPU (performance)",
-                "tags_topico": {
-                    "componente_foco": "cpu",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "enable"
+                "analise_ia": {
+                    "resumo": "O usuário está experimentando alta utilização do CPU após instalar um eGPU RX 6650 XT sobre Thunderbolt 3 no seu Dell G7 15",
+                    "intencao": "Problema Técnico",
+                    "componente": "RX 6650 XT",
+                    "solucao": "Desinstalar drivers de NVIDIA antes de instalar drivers AMD, usar aplicativo DDU para desinstalar ambos tipos de drivers e reinstalar os drivers AMD"
                 }
             },
             {
@@ -6254,11 +6245,11 @@
                 "semestre": 1,
                 "dia_semana": "Sunday",
                 "timestamp": 1747591989.0,
-                "resumo_conversa": "Issue with DRIVER (throttle)",
-                "tags_topico": {
-                    "componente_foco": "driver",
-                    "problema_principal": "throttle",
-                    "solucao_sugerida": "fix"
+                "analise_ia": {
+                    "resumo": "O problema do Dell G15 7588 que estava se aquecendo para 77° foi resolvido reinstalando o Windows e removendo os drivers causadores.",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU",
+                    "solucao": "Reinstalar o Windows e remover os drivers causadores"
                 }
             },
             {
@@ -6282,11 +6273,11 @@
                 "semestre": 1,
                 "dia_semana": "Saturday",
                 "timestamp": 1747512182.0,
-                "resumo_conversa": "Issue with DRIVER (performance)",
-                "tags_topico": {
-                    "componente_foco": "driver",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "update"
+                "analise_ia": {
+                    "resumo": "Problema de desempenho do laptop Dell G7 15 com problemas de thermal paste e atualização de drivers",
+                    "intencao": "Problema Técnico",
+                    "componente": "Intel Core i7-8750H, Thermal Paste, Realtek Audio Drivers, Intel r wireless AC 9560, Killer E2400 Gigabit Ethernet Controller",
+                    "solucao": "Revisar thermal paste e atualizar drivers para resolver problemas de desempenho e APC latency"
                 }
             },
             {
@@ -7433,11 +7424,11 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1563059110.0,
-                "resumo_conversa": "Issue with PORT (error)",
-                "tags_topico": {
-                    "componente_foco": "port",
-                    "problema_principal": "error",
-                    "solucao_sugerida": "update"
+                "analise_ia": {
+                    "resumo": "A lista de laptops compatíveis com Oculus Rift S foi criada para ajudar os usuários a encontrar um laptop que atenda às especificações mínimas do dispositivo.",
+                    "intencao": "Problema Técnico",
+                    "componente": "Vega 56, DisplayPort, HDMI",
+                    "solucao": "Verificar as especificações mínimas do Oculus Rift S e garantir que o laptop tenha um dGPU conectado ao DisplayPort ou HDMI"
                 }
             },
             {
@@ -8074,11 +8065,11 @@
                 "semestre": 2,
                 "dia_semana": "Saturday",
                 "timestamp": 1671893866.0,
-                "resumo_conversa": "Issue with FAN (thermal)",
-                "tags_topico": {
-                    "componente_foco": "fan",
-                    "problema_principal": "thermal",
-                    "solucao_sugerida": "change"
+                "analise_ia": {
+                    "resumo": "O problema é o thermal throttling causado por altas temperaturas durante o jogo, e a solução é ajustar as configurações de potência do processador",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU: gtx1060, gtx 1060 max-q | CPU: i7-8750h",
+                    "solucao": "Ajustar as configurações de potência do processador para reduzir o uso máximo do estado do processador"
                 }
             },
             {
@@ -8102,11 +8093,11 @@
                 "semestre": 2,
                 "dia_semana": "Sunday",
                 "timestamp": 1721531833.0,
-                "resumo_conversa": "Issue with LAPTOP (thermal)",
-                "tags_topico": {
-                    "componente_foco": "Laptop",
-                    "problema_principal": "thermal",
-                    "solucao_sugerida": "clean"
+                "analise_ia": {
+                    "resumo": "O usuário está considerando se limpar ou reforçar seu laptop Dell G7 15 (7588) ou substituí-lo por um novo.",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU: 7588",
+                    "solucao": "Limpeza e manutenção do sistema, possivelmente com a ajuda de um familiar."
                 }
             },
             {
@@ -8130,11 +8121,11 @@
                 "semestre": 1,
                 "dia_semana": "Saturday",
                 "timestamp": 1719674318.0,
-                "resumo_conversa": "Issue with GPU (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "gpu",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "O usuário está enfrentando problemas de FPS baixo em jogos no seu notebook Dell G7 15 7588, apesar de ter specs adequadas.",
+                    "intencao": "Problema Técnico",
+                    "componente": "Nvidia GTX 1060",
+                    "solucao": "Atualizar os drivers da GPU e configurar a temperatura do sistema para evitar o uso máximo da GPU"
                 }
             },
             {
@@ -8158,11 +8149,11 @@
                 "semestre": 1,
                 "dia_semana": "Saturday",
                 "timestamp": 1717281943.0,
-                "resumo_conversa": "Issue with KEY (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "key",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "clean"
+                "analise_ia": {
+                    "resumo": "Teclado do Dell G7 15 não registra algumas teclas de forma confiável",
+                    "intencao": "Problema Técnico",
+                    "componente": "7588",
+                    "solucao": "null"
                 }
             },
             {
@@ -8186,11 +8177,11 @@
                 "semestre": 1,
                 "dia_semana": "Tuesday",
                 "timestamp": 1708474864.0,
-                "resumo_conversa": "Issue with DRIVER (restart)",
-                "tags_topico": {
-                    "componente_foco": "driver",
-                    "problema_principal": "restart",
-                    "solucao_sugerida": "update"
+                "analise_ia": {
+                    "resumo": "O wifi não está funcionando e não aparece no popup de configurações do toolbar do Dell g7 15",
+                    "intencao": "Problema Técnico",
+                    "componente": "7588",
+                    "solucao": "null"
                 }
             },
             {
@@ -8368,11 +8359,11 @@
                 "semestre": 1,
                 "dia_semana": "Saturday",
                 "timestamp": 1674945653.0,
-                "resumo_conversa": "Issue with GPU (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "gpu",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário está procurando melhorar sua configuração de gaming com um GPU e precisa saber qual é o melhor modelo para seu laptop Dell G7 15",
+                    "intencao": "Problema Técnico",
+                    "componente": "3060ti",
+                    "solucao": "Recomenda-se o uso de um GPU de 3060ti ou 6600xt, considerando a série de CPU do usuário (7xxx ou 8xxx) e o orçamento"
                 }
             },
             {
@@ -8788,11 +8779,11 @@
                 "semestre": 2,
                 "dia_semana": "Friday",
                 "timestamp": 1599274288.0,
-                "resumo_conversa": "Issue with BATTERY (performance)",
-                "tags_topico": {
-                    "componente_foco": "battery",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "open"
+                "analise_ia": {
+                    "resumo": "Procurando laptop de gaming com Intel Core i7 e NVIDIA RTX 2060 para uso intensivo",
+                    "intencao": "Problema Técnico",
+                    "componente": "RTX 2060, Intel 9750H",
+                    "solucao": "Lembre-se de verificar a autenticidade do produto e evitar laptops com componentes obsoletos"
                 }
             },
             {
@@ -9004,11 +8995,11 @@
                 "semestre": 2,
                 "dia_semana": "Thursday",
                 "timestamp": 1672352463.0,
-                "resumo_conversa": "Issue with BATTERY (performance)",
-                "tags_topico": {
-                    "componente_foco": "battery",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "replace"
+                "analise_ia": {
+                    "resumo": "A bateria da Dell G7 está com capacidade de carga cheia reduzida e saúde baixa, o que sugere a possibilidade de substituição.",
+                    "intencao": "Problema Técnico",
+                    "componente": "Bateria",
+                    "solucao": "Verificar se a bateria pode ser substituída ou se é mais econômico manter a máquina e usar um adaptador de carga"
                 }
             },
             {
@@ -9050,11 +9041,11 @@
                 "semestre": 2,
                 "dia_semana": "Friday",
                 "timestamp": 1700873781.0,
-                "resumo_conversa": "Issue with RAM (thermal)",
-                "tags_topico": {
-                    "componente_foco": "ram",
-                    "problema_principal": "thermal",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário está procurando por um novo laptop com potência e confiabilidade para substituir seu atual Dell G7 15, mas não se preocupa com características como estilo ou bateria",
+                    "intencao": "Problema Técnico",
+                    "componente": "GTX 4070",
+                    "solucao": "A sugestão do usuário é a Alienware M16 com I7 13700HX e GTX 4070, mas os comentários relevantes não fornecem uma solução específica"
                 }
             },
             {
@@ -9232,11 +9223,11 @@
                 "semestre": 2,
                 "dia_semana": "Friday",
                 "timestamp": 1667566401.0,
-                "resumo_conversa": "Issue with SSD (overheat)",
-                "tags_topico": {
-                    "componente_foco": "ssd",
-                    "problema_principal": "overheat",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário deseja upgrade o SSD em um Dell G7 15 7588 e quer saber se pode suportar um SSD de 2TB, como o Samsung 980 Pro.",
+                    "intencao": "Problema Técnico",
+                    "componente": "SSD",
+                    "solucao": "Pode ser instalado, mas é recomendável verificar com a vendedora e ter uma política de devolução boa."
                 }
             },
             {
@@ -9312,11 +9303,11 @@
                 "semestre": 1,
                 "dia_semana": "Friday",
                 "timestamp": 1683880562.0,
-                "resumo_conversa": "Issue with SSD (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "ssd",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "O usuário está procurando saber um preço justo para vender seu Dell g7 15 com especificações I7 8750h, 16GB de RAM e GPU GTX 1060.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GTX 1060",
+                    "solucao": "O preço sugerido é de R$ 3.50"
                 }
             },
             {
@@ -9375,11 +9366,11 @@
                 "semestre": 1,
                 "dia_semana": "Monday",
                 "timestamp": 1684131397.0,
-                "resumo_conversa": "Issue with SSD (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "ssd",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "O usuário está procurando um preço justo para vender seu Dell G7 15 com especificações de I7 8750h, 16GB DDR4 e GTX 1060, considerando que deseja comprar um Steam Deck.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GTX 1060",
+                    "solucao": "O preço justo pode ser encontrado no eBay, com uma condição boa e dois carregadores, o que pode ajudar a alcançar um valor razoável para um Steam Deck."
                 }
             },
             {
@@ -9557,11 +9548,11 @@
                 "semestre": 2,
                 "dia_semana": "Friday",
                 "timestamp": 1657935904.0,
-                "resumo_conversa": "Issue with CPU (thermal)",
-                "tags_topico": {
-                    "componente_foco": "cpu",
-                    "problema_principal": "thermal",
-                    "solucao_sugerida": "update"
+                "analise_ia": {
+                    "resumo": "Dell G7 15 7588 apresenta thermal throttling após re-paste de thermal paste",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU: geforce gtx 1060 max-q",
+                    "solucao": "Revisar configurações do BIOS, executar diagnosticos de fã e ajustar perfil de resfriamento"
                 }
             },
             {
@@ -9773,11 +9764,11 @@
                 "semestre": 1,
                 "dia_semana": "Saturday",
                 "timestamp": 1586579447.0,
-                "resumo_conversa": "Issue with CPU (temperature)",
-                "tags_topico": {
-                    "componente_foco": "cpu",
-                    "problema_principal": "temperature",
-                    "solucao_sugerida": "open"
+                "analise_ia": {
+                    "resumo": "CPU do Dell G7 15 está apresentando uso reduzido durante jogos, com frequência de queda de FPS e uso de CPU",
+                    "intencao": "Problema Técnico",
+                    "componente": "i7 8750h",
+                    "solucao": "Verificar temperatura do CPU e ajustar configurações de jogo para reduzir o uso excessivo da CPU"
                 }
             },
             {
@@ -9836,11 +9827,11 @@
                 "semestre": 1,
                 "dia_semana": "Wednesday",
                 "timestamp": 1673462434.0,
-                "resumo_conversa": "Issue with SSD (error)",
-                "tags_topico": {
-                    "componente_foco": "ssd",
-                    "problema_principal": "error",
-                    "solucao_sugerida": "install"
+                "analise_ia": {
+                    "resumo": "O usuário está tendo problemas ao instalar Windows 10 no SSD, mas não no HDD, e precisa saber se há algo de errado com o SSD.",
+                    "intencao": "Problema Técnico",
+                    "componente": "SSD",
+                    "solucao": "Verificar a saúde dos discos com CristalDiskInfo e verificar os erros específicos como winload.efi, sacdrv.sys e automatic repair."
                 }
             },
             {
@@ -9899,11 +9890,11 @@
                 "semestre": 2,
                 "dia_semana": "Wednesday",
                 "timestamp": 1672259166.0,
-                "resumo_conversa": "Issue with SCREEN (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "screen",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "O usuário está tentando confirmar o modelo de um laptop Dell G7 com processador i7 e RTX, mas não tem informações claras sobre as especificações.",
+                    "intencao": "Problema Técnico",
+                    "componente": "RTX",
+                    "solucao": "Verifique se a placa gráfica é uma RTX 3060 ou outra versão, pois o modelo específico não está claro."
                 }
             },
             {
@@ -10081,11 +10072,11 @@
                 "semestre": 2,
                 "dia_semana": "Wednesday",
                 "timestamp": 1635962707.0,
-                "resumo_conversa": "Issue with RAM (click)",
-                "tags_topico": {
-                    "componente_foco": "ram",
-                    "problema_principal": "click",
-                    "solucao_sugerida": "upgrade"
+                "analise_ia": {
+                    "resumo": "O usuário está procurando saber se outros usuários da Adobe Creative Cloud tiveram problemas após a atualização para o Windows 11.",
+                    "intencao": "Problema Técnico",
+                    "componente": "GeForce GTX 1060, Intel i7 8750H, SSD Samsung 970 Evo Plus, RAM: 16GB",
+                    "solucao": "A atualização para o Windows 11 parece ter resolvido problemas de encoder e melhorado a performance, mas alguns usuários relatam lags com a nova versão do Adobe After Effects."
                 }
             },
             {
@@ -10109,11 +10100,11 @@
                 "semestre": 1,
                 "dia_semana": "Thursday",
                 "timestamp": 1677122009.0,
-                "resumo_conversa": "Issue with LAPTOP (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "Laptop",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": null
+                "analise_ia": {
+                    "resumo": "O usuário está procurando por um novo laptop de gaming para cerca de $2.000 e precisa saber qual é o melhor entre dois modelos: MSI Pulse 15 e ASUS ROG Zephyrus G15 GA503.",
+                    "intencao": "Problema Técnico",
+                    "componente": "7588",
+                    "solucao": "null"
                 }
             },
             {
@@ -10393,11 +10384,11 @@
                 "semestre": 2,
                 "dia_semana": "Sunday",
                 "timestamp": 1595186835.0,
-                "resumo_conversa": "Issue with MONITOR (throttle)",
-                "tags_topico": {
-                    "componente_foco": "monitor",
-                    "problema_principal": "throttle",
-                    "solucao_sugerida": "disable"
+                "analise_ia": {
+                    "resumo": "O problema é que o FPS da capa de jogo está sendo limitado a 40 fps e não consegue ser aumentado, mesmo após tentativas de desativar o DVR.",
+                    "intencao": "Problema Técnico",
+                    "componente": "SCREEN",
+                    "solucao": "Manually alterar a taxa de atualização da tela para 60 Hz nos ajustes de display"
                 }
             },
             {
@@ -10490,11 +10481,11 @@
                 "semestre": 2,
                 "dia_semana": "Tuesday",
                 "timestamp": 1638906306.0,
-                "resumo_conversa": "Issue with LINUX (click)",
-                "tags_topico": {
-                    "componente_foco": "linux",
-                    "problema_principal": "click",
-                    "solucao_sugerida": "install"
+                "analise_ia": {
+                    "resumo": "O problema é que o sistema de Manjaro não está detectando a drive de dual boot com Windows 10, e o usuário precisa encontrar uma solução para isso.",
+                    "intencao": "Problema Técnico",
+                    "componente": "NVMe SSD",
+                    "solucao": "Mudar a configuração do BIOS para AHCI e executar alguns comandos em Windows para resolver o problema."
                 }
             },
             {
@@ -10570,11 +10561,11 @@
                 "semestre": 1,
                 "dia_semana": "Sunday",
                 "timestamp": 1649016502.0,
-                "resumo_conversa": "Issue with GPU (slow)",
-                "tags_topico": {
-                    "componente_foco": "gpu",
-                    "problema_principal": "slow",
-                    "solucao_sugerida": "underclock"
+                "analise_ia": {
+                    "resumo": "GPU está se espalhando para 100% durante o jogo, causando atrasos massivos e tornando alguns jogos quase injogáveis em algumas ocasiões",
+                    "intencao": "Problema Técnico",
+                    "componente": "GPU",
+                    "solucao": "Verificar temperatura do GPU e ajustar configurações de jogo para otimizar desempenho"
                 }
             },
             {
@@ -10667,11 +10658,11 @@
                 "semestre": 1,
                 "dia_semana": "Wednesday",
                 "timestamp": 1641375458.0,
-                "resumo_conversa": "Issue with BATTERY (restart)",
-                "tags_topico": {
-                    "componente_foco": "battery",
-                    "problema_principal": "restart",
-                    "solucao_sugerida": "reinstall"
+                "analise_ia": {
+                    "resumo": "O Dell Power Manager não está salvando as configurações de bateria do usuário",
+                    "intencao": "Problema Técnico",
+                    "componente": "7588",
+                    "solucao": "Verificar se há alguma outra configuração que possa afetar a salvação das configurações de bateria, e verificar a BIOS para ver se há uma opção para desativar o padrão ExpressCharge"
                 }
             },
             {
@@ -10747,11 +10738,11 @@
                 "semestre": 1,
                 "dia_semana": "Thursday",
                 "timestamp": 1641520995.0,
-                "resumo_conversa": "Issue with HEATSINK (overheat)",
-                "tags_topico": {
-                    "componente_foco": "heatsink",
-                    "problema_principal": "overheat",
-                    "solucao_sugerida": "warranty"
+                "analise_ia": {
+                    "resumo": "Laptop Dell G7 15 não está funcionando bem e o usuário quer saber se pode aproveitar ao máximo a garantia.",
+                    "intencao": "Problema Técnico",
+                    "componente": "7588",
+                    "solucao": "O problema pode estar relacionado à aplicação inadequada de thermal paste, montagem defasada do heatsink ou uso excessivo do CPU."
                 }
             },
             {
@@ -11014,11 +11005,11 @@
                 "semestre": 2,
                 "dia_semana": "Wednesday",
                 "timestamp": 1572481051.0,
-                "resumo_conversa": "Issue with PORT (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "port",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "return"
+                "analise_ia": {
+                    "resumo": "O display do Oculus Rift S não está conectando ao laptop Dell G7 15",
+                    "intencao": "Problema Técnico",
+                    "componente": "Thunderbolt 3 adapter",
+                    "solucao": "Verificar se o porto é ativo e se o dispositivo é VR ready"
                 }
             },
             {
@@ -11128,11 +11119,11 @@
                 "semestre": 1,
                 "dia_semana": "Sunday",
                 "timestamp": 1619978064.0,
-                "resumo_conversa": "Issue with MONITOR (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "monitor",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "fix"
+                "analise_ia": {
+                    "resumo": "Como conectar dois monitores a um laptop com apenas uma porta HDMI",
+                    "intencao": "Problema Técnico",
+                    "componente": "HDMI, CPU: 7588",
+                    "solucao": "Usar um adaptador HDMI para USB ou comprar um dock USB-C"
                 }
             },
             {
@@ -11225,11 +11216,11 @@
                 "semestre": 2,
                 "dia_semana": "Monday",
                 "timestamp": 1631516691.0,
-                "resumo_conversa": "Issue with MOTHERBOARD (performance)",
-                "tags_topico": {
-                    "componente_foco": "motherboard",
-                    "problema_principal": "performance",
-                    "solucao_sugerida": "replace"
+                "analise_ia": {
+                    "resumo": "O notebook Dell G7 15 está subperformante devido ao uso prolongado e possíveis problemas de temperatura.",
+                    "intencao": "Problema Técnico",
+                    "componente": "NVIDIA GeForce GTX 1060",
+                    "solucao": "Verificar temperaturas do laptop com um programa como hwmonitor, scanar por malware e tentar uma instalação fresca."
                 }
             },
             {
@@ -11407,11 +11398,11 @@
                 "semestre": 1,
                 "dia_semana": "Sunday",
                 "timestamp": 1592774731.0,
-                "resumo_conversa": "Issue with SSD (General Discussion)",
-                "tags_topico": {
-                    "componente_foco": "ssd",
-                    "problema_principal": "General Discussion",
-                    "solucao_sugerida": "open"
+                "analise_ia": {
+                    "resumo": "O usuário comprou um Dell G7 15 com specs inferiores às que ele esperava e sente que foi enganado.",
+                    "intencao": "Problema Técnico",
+                    "componente": "Geforce GTX 1060",
+                    "solucao": "O usuário sugere que o preço pago era alto considerando as specs e que devia ser possível encontrar um modelo com uma GPU mais potente por um preço semelhante."
                 }
             },
             {
@@ -11657,11 +11648,11 @@
                 "semestre": 2,
                 "dia_semana": "Tuesday",
                 "timestamp": 1570516036.0,
-                "resumo_conversa": "Issue with CPU (throttle)",
-                "tags_topico": {
-                    "componente_foco": "cpu",
-                    "problema_principal": "throttle",
-                    "solucao_sugerida": "change"
+                "analise_ia": {
+                    "resumo": "O processador Intel Core i7-8750h do Dell G7 15 está sobrecalorando e reduzindo sua velocidade para 0,7 GHz, devido a problemas de resfriamento.",
+                    "intencao": "Problema Técnico",
+                    "componente": "CPU: intel core i7-8750h",
+                    "solucao": "Aplicar um novo cimento de resfriamento e verificar se outros aplicativos estão consumindo recursos excessivos."
                 }
             }
         ]
