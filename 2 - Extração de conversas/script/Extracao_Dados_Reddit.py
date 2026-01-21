@@ -4,7 +4,7 @@ import time
 import datetime
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from collections import Counter # <--- NOVO: Import necessário para contagem
+from collections import Counter
 import praw
 
 # --- 1. CONFIGURAÇÕES E CAMINHOS ---
@@ -25,15 +25,33 @@ CAMINHO_ENTRADA_CSV = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
 CAMINHO_SAIDA_JSON = DIRETORIO_DADOS_EXTRACAO_QA / 'reddit_dados_estruturados_modelo.json'
 
 # --- 2. PARÂMETROS DE BUSCA ---
-QTD_LIMITE_POSTS = 100 # Aumentei um pouco para o ranking ficar mais interessante
+QTD_LIMITE_POSTS_POR_KEYWORD = 100 # Reduzi um pouco para não estourar API rápido, já que faremos várias buscas
 SUBREDDITS_ALVO = "all"
+
+# Lista de termos para concatenar com o modelo
+# A string vazia "" garante que a busca original (só o modelo) também seja feita
+PALAVRAS_CHAVE = [
+    "",             # Busca geral (só o modelo)
+    "undervolt",
+    "thermal",
+    "overheating",
+    "temperature",
+    "battery",
+    "screen",
+    "fan",
+    "bios",
+    "driver",
+    "crash",
+    "blue screen",
+    "fps drop"
+]
 
 # --- 3. AUTENTICAÇÃO PRAW ---
 try:
     reddit = praw.Reddit(
         client_id='qgrpjfyUUZNPAp0wCymcdQ',
         client_secret='WshvOFWLM2YV5Rq87GRP-xwCwQoXPA',
-        user_agent='ResearchTopic_TCC_Script/1.2' # Atualizei versão
+        user_agent='ResearchTopic_TCC_Script/1.3_Keywords' 
     )
     print(f"Autenticação PRAW: OK (Read-Only: {reddit.read_only})")
 except Exception as e:
@@ -55,22 +73,14 @@ def carregar_json_existente(caminho):
             return []
     return []
 
-# --- NOVA FUNÇÃO DE RANKING ---
 def exibir_ranking_subreddits(resultados_brutos, modelo):
-    """
-    Recebe uma lista de tuplas (submission, modelo) e imprime
-    quais subreddits tiveram mais hits.
-    """
     if not resultados_brutos:
         return
 
-    # Extrai o nome do subreddit de cada objeto submission
-    # .display_name pega o nome "bonito" (ex: "GamingLaptops")
     lista_subs = [post.subreddit.display_name for post, _ in resultados_brutos]
-    
-    ranking = Counter(lista_subs).most_common()
+    ranking = Counter(lista_subs).most_common(5) # Top 5 apenas para não poluir
 
-    print(f"\n📊 RANKING DE FONTES PARA: '{modelo}'")
+    print(f"\n📊 RANKING (TOP 5) PARA: '{modelo}' (Total unificado: {len(resultados_brutos)})")
     print(f"{'Subreddit':<25} | {'Posts':<5}")
     print("-" * 35)
     
@@ -79,29 +89,25 @@ def exibir_ranking_subreddits(resultados_brutos, modelo):
     print("-" * 35 + "\n")
 
 def processar_submission(submission):
-    """
-    Constrói o dicionário do post e seus comentários.
-    """
-    autor_post = "[Usuário Deletado]"
+    autor_post = "[Usuário Deletado]" or "[Deletado]"
     try:
         if submission.author:
             autor_post = submission.author.name
     except:
         pass
 
-    # -- Camada 3: Comentários --
     lista_comentarios = []
     try:
-        submission.comments.replace_more(limit=1) 
+        submission.comments.replace_more(limit=0) # Limit 0 é mais rápido para dataset massivo, mas pode aumentar se precisar
         for comment in submission.comments.list():
-            autor_comentario = "[Deletado]"
-            if hasattr(comment, 'author') and comment.author:
-                autor_comentario = comment.author.name
-                
             if hasattr(comment, 'body'):
+                autor_com = "[Deletado]"
+                if hasattr(comment, 'author') and comment.author:
+                    autor_com = comment.author.name
+                    
                 lista_comentarios.append({
                     "id_comentario": comment.id,
-                    "autor_comentario": autor_comentario,
+                    "autor_comentario": autor_com,
                     "conteudo": comment.body,
                     "score": comment.score,
                     "data_publicacao": unix_to_iso(comment.created_utc)
@@ -109,10 +115,9 @@ def processar_submission(submission):
     except Exception as e:
         print(f" [!] Erro ao ler comentários: {e}")
 
-    # -- Camada 2: O Post --
     return {
         "id_post": submission.id,
-        "subreddit": submission.subreddit.display_name, # <--- NOVO: Guardar no JSON também é útil
+        "subreddit": submission.subreddit.display_name,
         "autor_post": autor_post,
         "titulo": submission.title,
         "url_original": submission.url,
@@ -143,7 +148,11 @@ def salvar_dados_json(buffer_dados, caminho_arquivo):
         encontrado = False
         for entry in dados_existentes:
             if entry.get("meta_data", {}).get("termo_pesquisado") == modelo:
-                entry["posts"].extend(posts_estruturados)
+                # Antes de adicionar, verificar duplicatas no JSON existente (opcional mas recomendado)
+                ids_existentes = {p['id_post'] for p in entry['posts']}
+                posts_filtrados = [p for p in posts_estruturados if p['id_post'] not in ids_existentes]
+                
+                entry["posts"].extend(posts_filtrados)
                 encontrado = True
                 break
         
@@ -165,24 +174,44 @@ def salvar_dados_json(buffer_dados, caminho_arquivo):
     except Exception as e:
         print(f" [X] Erro IO: {e}")
 
-# --- 5. BUSCA ---
-def buscar_modelo(modelo):
-    termo = f'"{modelo}"'
-    try:
-        print(f"🔍 Pesquisando: {termo}...")
-        referencia = reddit.subreddit(SUBREDDITS_ALVO).search(
-            termo, sort="relevance", limit=QTD_LIMITE_POSTS
-        )
-        res = list(referencia)
-        print(f"   -> {len(res)} posts encontrados.")
-        return [(sub, modelo) for sub in res]
-    except Exception as e:
-        print(f"   -> Erro busca: {e}")
-        return []
+# --- 5. BUSCA OTIMIZADA COM KEYWORDS ---
+def buscar_modelo_com_variacoes(modelo):
+    """
+    Realiza várias buscas combinando o modelo com palavras-chave.
+    Remove duplicatas (posts que aparecem em mais de uma busca).
+    """
+    posts_unicos = {} # Dicionário id_post -> objeto submission
+    
+    print(f"🔍 Iniciando varredura para: {modelo}")
+    
+    for keyword in PALAVRAS_CHAVE:
+        # Monta a query: "Modelo Exato" keyword
+        # Ex: "Dell G7 7588" undervolt
+        termo = f'""{modelo}"" {keyword}'.strip()
+        
+        try:
+            print(f"   -> Buscando: {termo}...") # Descomente se quiser ver o log detalhado
+            referencia = reddit.subreddit(SUBREDDITS_ALVO).search(
+                termo, sort="relevance", limit=QTD_LIMITE_POSTS_POR_KEYWORD
+            )
+            
+            for post in referencia:
+                if post.id not in posts_unicos:
+                    posts_unicos[post.id] = post
+                    
+        except Exception as e:
+            print(f"   [!] Erro na keyword '{keyword}': {e}")
+            continue
+            
+    lista_final = list(posts_unicos.values())
+    print(f"   -> Total unificado encontrado para {modelo}: {len(lista_final)} posts.")
+    
+    # Retorna lista de tuplas para manter compatibilidade com o resto do código
+    return [(post, modelo) for post in lista_final]
 
 # --- 6. MAIN ---
 def main():
-    print("\n=== EXTRATOR REDDIT COM RANKING ===")
+    print("\n=== EXTRATOR REDDIT MULTI-KEYWORD ===")
     opcao = input("1. CSV | 2. Manual: ").strip()
     lista = []
 
@@ -199,23 +228,21 @@ def main():
     if not lista: sys.exit()
 
     buffer = []
-    with ThreadPoolExecutor(max_workers=3) as executor:
-        futures = [executor.submit(buscar_modelo, m) for m in lista]
+    # Reduzi max_workers pois agora cada thread faz ~10 requisições (loops de keywords)
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        futures = [executor.submit(buscar_modelo_com_variacoes, m) for m in lista]
         
         for i, f in enumerate(as_completed(futures), 1):
-            resultado_thread = f.result() # Pega o resultado dessa thread específica
+            resultado_thread = f.result()
             
-            # --- NOVO: Lógica de Ranking ---
             if resultado_thread:
-                # O resultado é uma lista de tuplas [(post, 'modelo'), (post, 'modelo')...]
-                # Pegamos o nome do modelo do primeiro item
                 modelo_atual = resultado_thread[0][1]
                 exibir_ranking_subreddits(resultado_thread, modelo_atual)
             
             buffer.extend(resultado_thread)
             
-            # Salva periodicamente a cada 2 modelos processados
-            if i % 2 == 0:
+            # Salva a cada 1 modelo processado (pois agora cada modelo traz muito mais dados)
+            if i % 1 == 0:
                 salvar_dados_json(buffer, CAMINHO_SAIDA_JSON)
                 buffer.clear()
 

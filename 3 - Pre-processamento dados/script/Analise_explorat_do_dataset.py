@@ -15,7 +15,6 @@ sys.path.append(str(caminho_raiz_projeto))
 
 try:
     from config import DIRETORIO_DADOS_EXTRACAO_QA
-    from modelo_de_busca import ler_e_filtrar_modelos
 except ImportError:
     print("Aviso: Módulos de configuração não encontrados. Usando caminhos locais.")
     DIRETORIO_CSV_DATASET_FINAL = caminho_script / 'dados_entrada'

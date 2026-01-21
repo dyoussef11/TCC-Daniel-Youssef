@@ -4,7 +4,6 @@ import re
 import html
 from datetime import datetime
 from pathlib import Path
-import pandas as pd
 
 # --- CONFIGURAÇÕES E CAMINHOS ---
 caminho_script = Path(__file__).resolve().parent
@@ -21,139 +20,147 @@ except ImportError:
 CAMINHO_ENTRADA_JSON = DIRETORIO_DADOS_EXTRACAO_QA / 'reddit_dados_estruturados_modelo.json'
 CAMINHO_SAIDA_JSON = DIRETORIO_DADOS_PRE_PROCESSAMENTO / 'reddit_dados_limpos_enriquecidos.json'
 
-# --- FUNÇÕES AUXILIARES ---
+# --- FUNÇÕES ---
 
 def limpar_texto(texto):
-    if not isinstance(texto, str):
-        return ""
+    """
+    Limpa o texto forçando conversão para string e removendo lixo.
+    """
+    if texto is None: return ""
+    if not isinstance(texto, str): return str(texto)
     
-    texto = html.unescape(texto)
-    texto = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', texto) # Markdown links
-    texto = re.sub(r'https?://\S+|www\.\S+', '', texto)    # URLs
+    # Decodifica HTML
+    try: texto = html.unescape(texto)
+    except: pass
+
+    # Remove links markdown e URLs
+    texto = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', texto)
+    texto = re.sub(r'https?://\S+|www\.\S+', '', texto)
     
-    # Remove underscore manual para emojis tipo T_T ou -_-
+    # Remove caracteres especiais mantendo pontuação básica
     texto = texto.replace('_', ' ') 
-    
-    # Regex agressiva: remove ; : ( ) " ' < > e mantém apenas .,!?-
     texto = re.sub(r'[^\w\s.,!?\-]', '', texto)
+    texto = re.sub(r'\s+-\s+', ' ', texto) # Hífens soltos
     
-    # Limpa hífens soltos (ex: o que sobrou de ";-;")
-    texto = re.sub(r'\s+-\s+', ' ', texto)
-    
-    texto = ' '.join(texto.split())
-    return texto.lower()
+    return ' '.join(texto.split()).lower()
 
 def enriquecer_tempo(obj_dict, chave_data):
     """
-    Calcula metadados temporais e insere no dicionário.
-    Suporta formatos com ou sem milissegundos.
+    Adiciona metadados de tempo e retorna o objeto datetime se possível.
     """
+    keys_tempo = ['ano', 'mes', 'dia', 'hora', 'trimestre', 'semana', 'semestre', 'dia_semana', 'timestamp']
     data_str = obj_dict.get(chave_data)
-    if not data_str:
-        return
-
     dt = None
-    formatos = [
-        "%Y-%m-%dT%H:%M:%S.%f", # Com milissegundos
-        "%Y-%m-%dT%H:%M:%S"     # Sem milissegundos
-    ]
-    
-    for fmt in formatos:
-        try:
-            # Tenta conversão mais robusta primeiro (Python 3.7+)
-            dt = datetime.fromisoformat(data_str)
-            break
-        except ValueError:
+
+    if data_str and isinstance(data_str, str):
+        formatos = ["%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M:%S"]
+        for fmt in formatos:
             try:
-                # Fallback para strptime
-                dt = datetime.strptime(data_str, fmt)
+                dt = datetime.fromisoformat(data_str)
                 break
             except ValueError:
-                continue
+                try:
+                    dt = datetime.strptime(data_str, fmt)
+                    break
+                except ValueError: continue
     
-    if dt is None:
-        return 
-
-    # Insere as novas chaves
-    obj_dict['ano'] = dt.year
-    obj_dict['mes'] = dt.month
-    obj_dict['dia'] = dt.day
-    obj_dict['hora'] = dt.hour
-    obj_dict['trimestre'] = (dt.month - 1) // 3 + 1
-    obj_dict['semana'] = dt.isocalendar()[1]
-    obj_dict['semestre'] = 1 if dt.month <= 6 else 2
-    obj_dict['dia_semana'] = dt.strftime('%A')
-    obj_dict['timestamp'] = dt.timestamp()
+    if dt:
+        obj_dict['ano'] = dt.year
+        obj_dict['mes'] = dt.month
+        obj_dict['dia'] = dt.day
+        obj_dict['hora'] = dt.hour
+        obj_dict['trimestre'] = (dt.month - 1) // 3 + 1
+        obj_dict['semana'] = dt.isocalendar()[1]
+        obj_dict['semestre'] = 1 if dt.month <= 6 else 2
+        obj_dict['dia_semana'] = dt.strftime('%A')
+        obj_dict['timestamp'] = dt.timestamp()
+    else:
+        for k in keys_tempo:
+            if k not in obj_dict: obj_dict[k] = None
+            
+    return dt
 
 # --- CARREGAMENTO ---
+print(f"Lendo arquivo: {CAMINHO_ENTRADA_JSON.name}...")
 with open(CAMINHO_ENTRADA_JSON, 'r', encoding='utf-8') as f:
     dados = json.load(f)
 
 # --- CONFIGURAÇÃO DE FILTROS ---
 autores_ignorar = {"[deleted]", "[removed]", "[Deletado]", "AutoModerator", "DellCares"} 
-textos_ignorar = {"[deleted]", "[removed]"}
+textos_ignorar = {"[deleted]", "[removed]", ""}
 frases_bot = ["I am a bot", "action was performed automatically"]
-textos_vistos = set()
-comentarios_mantidos_total = 0
 
-# --- PROCESSAMENTO PRINCIPAL ---
+posts_processados = 0
+primeiro_post_verificado = False 
+
+# --- PROCESSAMENTO ---
+print("Iniciando limpeza, enriquecimento e ordenação...")
+
 for item in dados:
-    
-    # 1. Enriquecer META DATA (data_extracao)
+    # 1. Metadados do Item (Busca)
     if 'meta_data' in item:
         enriquecer_tempo(item['meta_data'], 'data_extracao')
 
+    # 2. Processar Posts
     if 'posts' in item:
         for post in item['posts']:
+            posts_processados += 1
             
-            # 2. Enriquecer POST (data_publicacao)
-            # AQUI ESTÁ A CORREÇÃO SOLICITADA
+            # Limpeza
+            titulo_original = post.get('titulo') or ""
+            conteudo_original = post.get('conteudo_texto') or ""
+
+            post['titulo_limpo'] = limpar_texto(titulo_original)
+            post['conteudo_texto_limpo'] = limpar_texto(conteudo_original)
+            
+            # Debug (apenas 1º post)
+            if not primeiro_post_verificado:
+                print(f"\n[DEBUG] Verificando 1º Post encontrado:")
+                print(f"   -> Título Limpo: '{post['titulo_limpo']}'")
+                primeiro_post_verificado = True
+
+            # Data
             enriquecer_tempo(post, 'data_publicacao')
 
+            # Comentários
             if 'comentarios' in post:
                 comentarios_limpos = []
+                textos_vistos_neste_post = set()
                 
                 for comentario in post['comentarios']:
-                    texto_original = comentario.get('conteudo', '')
+                    texto_orig = comentario.get('conteudo') or ""
                     autor = comentario.get('autor_comentario', '')
 
-                    # --- FILTROS DE LIMPEZA ---
                     if autor in autores_ignorar: continue
-                    if texto_original in textos_ignorar: continue
-                    if any(frase in texto_original for frase in frases_bot): continue
+                    if texto_orig in textos_ignorar: continue
+                    if any(bot in texto_orig for bot in frases_bot): continue
 
-                    texto_tratado = limpar_texto(texto_original)
+                    texto_tratado = limpar_texto(texto_orig)
                     
-                    if not texto_tratado or len(texto_tratado) < 2: continue
-                    if texto_tratado in textos_vistos: continue
+                    if len(texto_tratado) < 2: continue
+                    if texto_tratado in textos_vistos_neste_post: continue
                     
-                    # --- ATUALIZAÇÕES ---
                     comentario['conteudo_limpo'] = texto_tratado
-                    
-                    # 3. Enriquecer COMENTÁRIO (data_publicacao)
                     enriquecer_tempo(comentario, 'data_publicacao')
                     
-                    textos_vistos.add(texto_tratado)
+                    textos_vistos_neste_post.add(texto_tratado)
                     comentarios_limpos.append(comentario)
+                
+                # Opcional: Ordenar comentários do mais antigo para o novo também
+                comentarios_limpos.sort(key=lambda x: x.get('timestamp') or 0)
                 
                 post['comentarios'] = comentarios_limpos
                 post['total_comentarios'] = len(comentarios_limpos)
-                comentarios_mantidos_total += len(comentarios_limpos)
 
-# --- SALVAMENTO JSON ---
+        # --- ORDENAÇÃO DOS POSTS (NOVA FUNCIONALIDADE) ---
+        # Ordena a lista de posts deste modelo baseando-se no timestamp (Crescente: Antigo -> Novo)
+        # Se timestamp for None, assume 0 para não quebrar
+        item['posts'].sort(key=lambda p: p.get('timestamp') or 0)
+
+# --- SALVAMENTO ---
+print(f"\nSalvando {posts_processados} posts processados e ordenados...")
 CAMINHO_SAIDA_JSON.parent.mkdir(parents=True, exist_ok=True)
 with open(CAMINHO_SAIDA_JSON, 'w', encoding='utf-8') as f:
     json.dump(dados, f, ensure_ascii=False, indent=4)
 
-print(f"Processamento concluído.")
-print(f"Total de comentários válidos: {comentarios_mantidos_total}")
-print(f"Arquivo salvo em: {CAMINHO_SAIDA_JSON}")
-
-# --- VALIDAÇÃO RÁPIDA (Opcional) ---
-# Vamos verificar se o primeiro post realmente recebeu os campos novos
-if dados and 'posts' in dados[0] and len(dados[0]['posts']) > 0:
-    primeiro_post = dados[0]['posts'][0]
-    print("\nVerificação do primeiro post:")
-    print(f"Data Original: {primeiro_post.get('data_publicacao')}")
-    print(f"Ano Extraído: {primeiro_post.get('ano')}")
-    print(f"Semestre: {primeiro_post.get('semestre')}")
+print(f"Sucesso! Arquivo salvo em: {CAMINHO_SAIDA_JSON}")
