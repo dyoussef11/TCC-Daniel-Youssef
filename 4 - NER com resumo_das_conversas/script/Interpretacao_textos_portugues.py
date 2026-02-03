@@ -17,7 +17,7 @@ except ImportError:
     DIRETORIO_DADOS_RESUMO_CONVERSAS = caminho_script / 'dados_saida'
 
 CAMINHO_ENTRADA_JSON = DIRETORIO_DADOS_PRE_PROCESSAMENTO / 'reddit_dados_limpos_enriquecidos.json'
-CAMINHO_SAIDA_JSON = DIRETORIO_DADOS_RESUMO_CONVERSAS / 'reddit_dados_com_resumo_llama_aprimorado.json'
+CAMINHO_SAIDA_JSON = DIRETORIO_DADOS_RESUMO_CONVERSAS / 'reddit_dados_com_resumo_llama_aprimorado_portugues.json'
 
 # --- 2. FILTROS (BLACKLIST & WHITELIST) ---
 
@@ -75,7 +75,8 @@ PADROES_HARDWARE = {
     "cpu": r"(?i)\b((?:intel\s*)?core(?:\s*ultra)?\s*(?:i[3579]|[3579])[\s-]*\d{3,5}(?:hx|hk|hl|he|ue|ul|kf|ks|g[1-7]|[kfsthpuye])?|(?:intel\s*)?(?:pentium|celeron|atom|xeon)[\s-]*[a-z0-9]+|(?:amd\s*)?(?:ryzen(?:\s*(?:threadripper|ai))?\s*[3579]|athlon|fx|a[468]|a1[02])[\s-]*\d{3,4}[a-z]*)\b",
     "storage": r"\b((\d{1,4}\s*(gb|tb)\s*)?((samsung|wd|western\s*digital|crucial|kingston|sandisk|seagate|toshiba|sk\s*hynix|hynix|corsair|sabrent|adata|xpg|pny|lexar|hp|intel|teamgroup|patriot|gigabyte|hgst|hitachi)|(firecuda|barracuda|ironwolf|skyhawk|exos|blue|black|green|red|purple|gold|ultrastar|p300|x300|n300|l200|evo|qvo|pro|plus|mx500|bx500|p3|p5|nv2|kc3000|fury|legend|gammix|sn\d{3,4}))?\s*([a-z0-9-]+\s*)?(ssd|nvme|m\.2|sata|hdd|hard\s*drive|disco\s*r[ií]gido|hd|sshd|sdd|7200\s*rpm|5400\s*rpm)(\s*\d{1,4}\s*(gb|tb))?)\b",
     "ram": r"\b(((128|64|32|16|8|4|2)\s*gb\s*(x\d|2x|1x)?\s*)?((corsair|kingston|crucial|g\.?skill|samsung|sk\s*hynix|hynix|adata|teamgroup|patriot|hyperx|micron|pny|transcend|geil|mushkin|t-force|klevv)|(vengeance|fury|beast|impact|ballistix|trident|ripjaws|viper|dominator|elite|value\s*ram|aorus|predator|vulcan))?\s*([a-z0-9-]+\s*)?(ddr[2-5]|lpddr[3-5]x?|sodimm|so-dimm|dimm|udimm|ram|mem[oó]ria)(\s*\d{3,5}\s*(mhz|mt/s)?)?(\s*cl\d{1,2})?(\s*(128|64|32|16|8|4|2)\s*gb)?)\b",
-    "screen": r"\b(\d{2,3}(\.\d)?[\"”]\s*|120hz|144hz|165hz|240hz|300hz|360hz|480hz|60hz|ips|tn|va|wva|pls|oled|amoled|miniled|mini-led|retina|4k|uhd|qhd|wqhd|fhd|hd\+|full\s*hd|1080p|1440p|2160p|768p|1366x768|1920x1080)\b"
+    "screen": r"\b(\d{2,3}(\.\d)?[\"”]\s*|120hz|144hz|165hz|240hz|300hz|360hz|480hz|60hz|ips|tn|va|wva|pls|oled|amoled|miniled|mini-led|retina|4k|uhd|qhd|wqhd|fhd|hd\+|full\s*hd|1080p|1440p|2160p|768p|1366x768|1920x1080)\b",
+    "model": r"\b(dell\s*g[357]|legion|alienware|nitro\s*5|tuf|rog|pavilion|7588)\b"
 }
 
 def extrair_hardware_regex(texto_completo):
@@ -114,109 +115,6 @@ def eh_relevante_para_analise(titulo, corpo, subreddit, hardware_detectado):
 # --- 3. CONFIGURAÇÃO IA ---
 client = OpenAI(base_url='http://localhost:11434/v1', api_key='ollama')
 MODELO_OLLAMA = "llama3.2:latest"
-
-# def analisar_com_ollama(titulo, corpo, comentarios, hardware_detectado):
-#     texto_titulo = titulo if titulo else ""
-#     texto_corpo = corpo[:1000] if corpo else ""
-    
-#     texto_comentarios = ""
-#     if comentarios:
-#         texto_comentarios = "COMENTARIOS RELEVANTES:\n"
-#         for c in comentarios[:3]:
-#             conteudo = c.get('conteudo_limpo', c.get('conteudo', ''))
-#             texto_comentarios += f"- {conteudo[:300]}\n"
-
-#     hardware_str = hardware_detectado if hardware_detectado else "Nenhum componente específico."
-
-#     texto_entrada_final = f"""
-# [DADOS TÉCNICOS] Componentes: {hardware_str}
-# TITULO: {texto_titulo}
-# TEXTO: {texto_corpo}
-# {texto_comentarios}
-# """
-#     prompt_sistema = """
-#     Você é um especialista em suporte técnico.
-#     Retorne APENAS um JSON com estas chaves:
-#     {
-#         "resumo": "Resumo de 1 frase em português.",
-#         "intencao": "Problema Técnico, Compra, Upgrade, ou Outro",
-#         "componente": "Nome do componente principal ou null separado por chaves (como dicionário). Exemplo: CPU: "modelo" , GPU: "modelo" e etc",
-#         "solucao": "Solução sugerida ou null."
-#     }
-#     """
-#     try:
-#         response = client.chat.completions.create(
-#             model=MODELO_OLLAMA,
-#             messages=[
-#                 {"role": "system", "content": prompt_sistema},
-#                 {"role": "user", "content": texto_entrada_final}
-#             ],
-#             response_format={"type": "json_object"}, 
-#             temperature=0.1 
-#         )
-#         return json.loads(response.choices[0].message.content)
-#     except Exception as e:
-#         print(f"X - Erro IA: {e}")
-#         return None
-
-# def analisar_com_ollama(titulo, corpo, comentarios, hardware_detectado):
-#     texto_titulo = titulo if titulo else ""
-#     texto_corpo = corpo[:1000] if corpo else "" # Limita tokens para não estourar contexto
-    
-#     texto_comentarios = ""
-#     if comentarios:
-#         texto_comentarios = "COMENTARIOS RELEVANTES DA COMUNIDADE:\n"
-#         for c in comentarios[:3]:
-#             conteudo = c.get('conteudo_limpo', c.get('conteudo', ''))
-#             texto_comentarios += f"- {conteudo[:300]}\n"
-
-#     # Passamos o que o seu Regex já achou para ajudar a IA a não alucinar
-#     hardware_str = hardware_detectado if hardware_detectado else "Nenhum detectado via Regex."
-
-#     texto_entrada_final = f"""
-#     [DADOS TÉCNICOS PRÉ-IDENTIFICADOS]: {hardware_str}
-    
-#     TITULO: {texto_titulo}
-#     TEXTO DO POST: {texto_corpo}
-#     {texto_comentarios}
-#     """
-
-#     # --- AQUI ESTÁ A PADRONIZAÇÃO ---
-#     prompt_sistema = """
-#     Você é um especialista em hardware de computadores e suporte técnico.
-#     Sua tarefa é extrair informações estruturadas deste post do Reddit.
-    
-#     Retorne APENAS um JSON válido (sem markdown) seguindo estritamente este schema:
-#     {
-#         "resumo": "Resumo do problema ou tópico em uma frase simples (pt-BR).",
-#         "intencao": "Classifique em uma destas: 'Problema Técnico', 'Recomendação de Compra', 'Upgrade', 'Discussão/Notícia' ou 'Outro'.",
-#         "componentes": {
-#             "CPU": "Modelo exato da CPU ou null (Ex: 'Ryzen 5 5600', 'i7-13700K')",
-#             "GPU": "Modelo exato da Placa de Vídeo ou null (Ex: 'RTX 4060', 'RX 6600')",
-#             "RAM": "Quantidade e/ou modelo ou null (Ex: '16GB DDR4', 'Kingston Fury')",
-#             "MOBO": "Modelo da Placa-mãe ou null",
-#             "FONTE": "Modelo ou potência da fonte ou null",
-#             "DISK": "Modelo de SSD/HD ou null",
-#             "MODELO": "Modelo de laptop/notebook ou null"
-#         },
-#         "solucao_sugerida": "Se houver um problema claro, resuma a solução mais provável baseada no texto ou comentários. Se não, use null."
-#     }
-#     """
-
-#     try:
-#         response = client.chat.completions.create(
-#             model=MODELO_OLLAMA,
-#             messages=[
-#                 {"role": "system", "content": prompt_sistema},
-#                 {"role": "user", "content": texto_entrada_final}
-#             ],
-#             response_format={"type": "json_object"}, 
-#             temperature=0.1 # Temperatura baixa para ser mais determinístico
-#         )
-#         return json.loads(response.choices[0].message.content)
-#     except Exception as e:
-#         print(f"X - Erro IA: {e}")
-#         return None
 
 def analisar_com_ollama(titulo, corpo, comentarios, hardware_detectado):
     texto_titulo = titulo if titulo else ""

@@ -46,29 +46,41 @@ CAMINHO_SAIDA_JSON = DIRETORIO_DADOS_RESUMO_CONVERSAS / 'reddit_dados_com_resumo
 #         month_norm = timestamp.month / 12
 #         return np.array([year_norm, month_norm])
     
-    
-
 class TimeAwareEmbeddingEnglish:
-    # 1. Mudança principal: O modelo padrão agora é o BERT em inglês (Uncased)
     def __init__(self, model_name='bert-base-uncased'):
-        # 'all-MiniLM-L6-v2' é nativo em inglês, então funciona perfeitamente aqui
+        # Modelo eficiente para Inglês
         self.content_model = SentenceTransformer('all-MiniLM-L6-v2')
         
-        # Carregando tokenizadores/modelos de inglês
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModel.from_pretrained(model_name)
-        
     def create_temporal_embedding(self, text, timestamp):
-        # O encode agora processará o texto em inglês
+        # 1. Vetor de Conteúdo (384 dimensões)
         content_embed = self.content_model.encode(text)
         
-        # A matemática do tempo é universal, não muda nada aqui
-        time_embed = self._normalize_time(timestamp)
+        # 2. Vetor de Tempo (3 dimensões: Ano, Seno, Cosseno)
+        time_embed = self._normalize_time_cyclic(timestamp)
         
+        # --- A MÁGICA DO TCC (PESO TEMPORAL) ---
+        # Multiplicamos o vetor de tempo para que ele tenha impacto matemático na busca.
+        # Sem isso, o texto (384 dimensões) "engole" o tempo (3 dimensões).
+        PESO_TEMPORAL = 10.0 
+        time_embed = time_embed * PESO_TEMPORAL
+        
+        # 3. Fusão (387 dimensões)
         combined_embed = np.concatenate([content_embed, time_embed])
         return combined_embed
     
-    def _normalize_time(self, timestamp):
-        year_norm = timestamp.year / 2030
-        month_norm = timestamp.month / 12
-        return np.array([year_norm, month_norm])
+    def _normalize_time_cyclic(self, timestamp):
+        """
+        Transforma a data em uma representação matemática contínua.
+        Isso corrige o erro que você estava vendo.
+        """
+        # Normalização Linear do Ano (escala suave)
+        # Usamos 2018 como base (ano do lançamento do Dell G7)
+        year_norm = (timestamp.year - 2018) / 10.0 
+        
+        # Normalização Cíclica do Mês (Seno e Cosseno)
+        # Garante que Dezembro (12) e Janeiro (1) sejam matematicamente próximos
+        month_angle = 2 * np.pi * (timestamp.month / 12)
+        month_sin = np.sin(month_angle)
+        month_cos = np.cos(month_angle)
+        
+        return np.array([year_norm, month_sin, month_cos], dtype='float32')

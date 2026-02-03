@@ -1,0 +1,25 @@
+id,pergunta,data_simulada,resposta_rag,tempo_segundos
+1,Does the Dell G7 7588 have overheating issues?,2018-07-15,"MODEL: DELL G7 7588
+DATE: 2018-07-15
+------------------------------
+STATUS: The Dell G7 7588 does not have overheating issues according to user reviews
+DETAILS: It has a battery life of upto 8 hours and can be used for gaming at medium settings (50fps).
+VERDICT: Monitoring and thermal maintenance recommended.",6.52
+2,Does the Dell G7 7588 have overheating issues?,2019-12-01,"MODEL: DELL G7 7588
+DATE: 2019-12-01
+------------------------------
+STATUS: Yes, the Dell G7 7588 has overheating issues
+DETAILS: There is a thermal limit set at 78.0 celsius and it will throttle down slowly to 100mhz clock
+VERDICT: Monitoring and thermal maintenance recommended.",3.55
+3,What are the common BIOS problems for G7 7588?,2020-05-10,"MODEL: DELL G7 7588
+DATE: 2020-05-10
+------------------------------
+STATUS: Summary
+DETAILS: BIOS 1.12 update if you plan to undervolt your laptops, avoid bioses1.12.xtu and throttlestop seeming be disabled with this upgrade.
+VERDICT: Monitoring and thermal maintenance recommended.",3.14
+4,Is the battery life acceptable for G7 7588?,2018-09-20,"MODEL: DELL G7 7588
+DATE: 2018-09-20
+------------------------------
+STATUS: Is the battery life acceptable for G7 7588?
+DETAILS: Please provide us with more information so that we can serve you better and improve your shopping experience based on this review
+VERDICT: Monitoring and thermal maintenance recommended.",3.15
