@@ -40,14 +40,30 @@ count = 0
 for grupo in dados_reddit:
     for post in grupo.get('posts', []):
         
-        # Extrair dados
-        analise = post.get('analise_ia', {})
-        titulo = post.get('titulo_limpo', '')
-        resumo = analise.get('resumo', post.get('conteudo_texto_limpo', ''))
+        # # Extrair dados
+        # analise = post.get('analise_ia', {})
+        # titulo = post.get('titulo_limpo', '')
+        # resumo = analise.get('resumo', post.get('conteudo_texto_limpo', ''))
         
-        # Construir Texto Rico (Mistura PT/EN não é problema para este modelo)
-        texto_final = f"Título: {titulo}. Resumo: {resumo}"
+        # # Construir Texto Rico (Mistura PT/EN não é problema para este modelo)
+        # texto_final = f"Título: {titulo}. Resumo: {resumo}"
         
+        # No loop de vetorização:
+        resumo_ia = post.get('analise_ia', {})
+        # CORREÇÃO: Usar a chave 'summary' do JSON processado pela IA
+        resumo_tecnico = resumo_ia.get('summary', post.get('conteudo_texto_limpo', ''))
+
+        # Texto rico totalmente em Inglês
+        texto_final = f"Title: {post.get('titulo_limpo')}. Analysis: {resumo_tecnico}"
+        vector = model.encode(texto_final)
+
+        # Use o resumo se existir, senão o texto original
+        texto_base = resumo_ia if resumo_ia else post.get('conteudo_texto_limpo', '')
+
+        # Crie um texto rico e consistente
+        texto_final = f"Title: {post.get('titulo_limpo')}. Analysis: {texto_base}"
+        vector = model.encode(texto_final)
+
         # Timestamp
         ts = post.get('timestamp')
         if not ts: continue

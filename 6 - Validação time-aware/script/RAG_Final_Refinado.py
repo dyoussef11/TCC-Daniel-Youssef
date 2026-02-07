@@ -9,159 +9,134 @@ from pathlib import Path
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from sentence_transformers import SentenceTransformer
 
-# --- CONFIGURAÇÃO ---
-caminho_script = Path(__file__).resolve().parent
-caminho_raiz_projeto = caminho_script.parent.parent 
-sys.path.append(str(caminho_raiz_projeto))
+# --- CONFIGURAÇÃO DE AMBIENTE ---
+script_path = Path(__file__).resolve().parent
+project_root = script_path.parent.parent 
+sys.path.append(str(project_root))
+
 try:
     from config import DIRETORIO_DADOS_SIST_TIMERAG
 except ImportError:
-    DIRETORIO_DADOS_SIST_TIMERAG = caminho_script / 'dados_saida'
+    DIRETORIO_DADOS_SIST_TIMERAG = script_path / 'dados_saida'
 
-CAMINHO_BASE = DIRETORIO_DADOS_SIST_TIMERAG / 'base_conhecimento_multilingue.json'
+BASE_PATH = DIRETORIO_DADOS_SIST_TIMERAG / 'base_conhecimento_multilingue.json'
+
+def clean_system_noise(text):
+    """Limpeza agressiva de ruídos para o TCC (e-mails, saudações, lixo de sistema)."""
+    noise_patterns = [
+        r'(?i)summary:', r'(?i)intent:', r'(?i)components:', r'(?i)suggested_solution:',
+        r'(?i)Ttulo:', r'(?i)Resumió', r'(?i)Post \d+:', r'\[Concise summation\]',
+        r'[\w\.-]+@[\w\.-]+\.\w+', r'https?://\S+',
+        r'(?i)(Happy New Year|Regards|Thank you|Sincerely|Best wishes|Disclaimer)'
+    ]
+    for pattern in noise_patterns:
+        text = re.sub(pattern, '', text)
+    return re.sub(r'\s+', ' ', text).strip()
 
 class SpecialistTimeAwareRAG:
     def __init__(self, json_path):
-        print("--- RAG V14 (Model Validation & Expert Output) ---")
+        print("--- RAG V41 (Query-Driven & Source Title Linking) ---")
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.embedder = SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2', device=self.device)
         
-        # Carregamento em float16 (dtype) para economizar VRAM na GTX 1050 Ti
         print("Carregando Flan-T5-Large...")
         self.tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-large")
         self.model = AutoModelForSeq2SeqLM.from_pretrained(
             "google/flan-t5-large",
-            torch_dtype=torch.float16, # Mantendo float16 para performance
+            torch_dtype=torch.float16,
             device_map="auto"
         )
         self.load_index(json_path)
 
     def load_index(self, path):
         with open(path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        vectors = [np.array(d['vector'], dtype='float32') for d in data]
-        self.documents = data
+            self.documents = json.load(f)
+        vectors = [np.array(d['vector'], dtype='float32') for d in self.documents]
         self.index = faiss.IndexFlatL2(vectors[0].shape[0])
         self.index.add(np.vstack(vectors))
-        print(f"Índice: {self.index.ntotal} docs.")
+        print(f"Index carregado: {self.index.ntotal} docs.")
 
     def search(self, query, query_date_str, k=3):
-        # 1. Validação de Modelo (Essencial para o TCC)
-        model_keywords = ["g7", "7588", "g3", "g5", "dell", "legion", "nitro", "7590", "laptop", "notebook"]
-        if not any(word in query.lower() for word in model_keywords):
-            return "ERROR: Please specify the laptop model for an accurate analysis."
+        # 1. BARREIRA DE ESCOPO
+        strict_keywords = ["g3", "g5", "g7", "7588", "3579", "5587", "dell", "legion", "nitro", "hp", "lenovo"]
+        if not any(word in query.lower() for word in strict_keywords):
+            return "ERROR: Missing hardware reference. Please specify the model for analysis."
 
+        # 2. BUSCA VETORIAL E FILTRO TEMPORAL
         q_date = datetime.strptime(query_date_str, "%Y-%m-%d")
+        q_year = q_date.year
         q_vec = self.embedder.encode(query)
-        distances, indices = self.index.search(np.array([q_vec], dtype='float32'), 100)
+        distances, indices = self.index.search(np.array([q_vec], dtype='float32'), 50)
         
         candidates = []
         for i, idx in enumerate(indices[0]):
             if idx == -1: continue
             doc = self.documents[idx]
-            try:
-                doc_dt = datetime.fromisoformat(doc['date'])
-                if doc_dt > q_date: continue
-            except: continue
+            doc_dt = datetime.fromisoformat(doc['date'])
+            if doc_dt > q_date: continue 
             
             dist = distances[0][i]
-            days_diff = (q_date - doc_dt).days
-            score = ((1 / (1 + dist)) * 0.85) + ((1 / (1 + days_diff/365)) * 0.15)
+            days_diff = max((q_date - doc_dt).days, 1)
+            score = ((1 / (1 + dist)) * 0.80) + ((1 / (1 + days_diff/365)) * 0.20)
             candidates.append({'doc': doc, 'score': score})
             
         candidates.sort(key=lambda x: x['score'], reverse=True)
         top_k = candidates[:k]
         
-        if not top_k: return "No records found for this period."
+        if not top_k: return "ERROR: No technical records found."
 
+        # 3. EXTRAÇÃO DE TÍTULOS E CONTEXTO
         context_str = ""
+        source_titles = []
         for i, c in enumerate(top_k):
-            # Limpeza radical de ruído para o T5-Large
-            text = c['doc']['original_text'][:300].strip().replace('\n', ' ')
-            context_str += f"Post {i+1}: {text}\n"
+            yr = datetime.fromisoformat(c['doc']['date']).year
+            full_txt = c['doc']['original_text']
+            title_match = re.search(r'Title:\s*(.*?)\.\s*Technical Summary:', full_txt, re.I)
+            title = title_match.group(1) if title_match else "Hardware Report"
+            source_titles.append(f"'{title}' ({yr})")
+            
+            clean_txt = clean_system_noise(full_txt)
+            context_str += f"[Source {i+1}]: {clean_txt[:350]}\n\n"
 
-        # --- PROMPT V18: CLEAN LOGIC (SEM METALINGUAGEM) ---
-        prompt = f"""Task: Analyze the laptop status based on user reviews.
-        Question: {query}
-        Date Context: {query_date_str}
+        # 4. PROMPT V41: FOCO NA RESPOSTA DA PERGUNTA
+        # A pergunta agora vem DEPOIS do contexto para o modelo não esquecê-la
+        prompt = f"""Hardware Evidence:
+{context_str}
 
-        Reviews:
-        {context_str}
-
-        Structured Answer:
-        STATUS: 
-        DETAILS: 
-        VERDICT: """
+Task: Use the Evidence above to solve the question: "{query}"
+Format the response exactly as follows:
+STATUS: Brief mention of the titles {', '.join(source_titles[:1])}
+TECHNICAL DETAILS: Currently ({q_year}), regarding {query}, the analysis of the records shows that"""
 
         inputs = self.tokenizer(prompt, return_tensors="pt", truncation=True, max_length=512).to(self.device)
 
-        # Otimização de Geração para GTX 1050 Ti
+        # 5. GERAÇÃO DETERMINÍSTICA (Ajustada para o gatilho final)
         outputs = self.model.generate(
             **inputs, 
-            max_new_tokens=150, 
-            min_new_tokens=35,      # Força o modelo a desenvolver os detalhes
-            num_beams=5, 
-            repetition_penalty=1.3, # Permite termos técnicos repetidos sem "travar"
-            no_repeat_ngram_size=3,
-            early_stopping=True
+            max_new_tokens=400, 
+            min_new_tokens=150,
+            num_beams=5,
+            length_penalty=1.8,
+            repetition_penalty=1.6, # Impede o modelo de copiar o prompt
+            no_repeat_ngram_size=3
         )
 
         generated = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-        # --- PÓS-PROCESSAMENTO V20: RECONSTRUÇÃO POR PARTIÇÃO ---
-        # 1. Limpeza de ruído e normalização
-        raw_text = generated.replace("(Summarize in 3 words)", "").replace("(Final advice)", "")
-        raw_text = re.sub(r'\[.*?\]', '', raw_text) # Remove qualquer coisa entre colchetes
+        # 6. RECONSTRUÇÃO DO RELATÓRIO
+        res_status = source_titles[0] if source_titles else "General Analysis"
+        res_details = generated
+
+        if "TECHNICAL DETAILS:" in generated:
+            res_details = generated.split("TECHNICAL DETAILS:")[1].strip()
         
-        # 2. Extração de Conteúdo (Garante que pegamos o texto mesmo sem as tags certas)
-        # Removemos as tags existentes para re-organizar
-        clean_content = re.sub(r'(?i)(STATUS:|DETAILS:|VERDICT:)', '|||', raw_text)
-        parts = [p.strip() for p in clean_content.split('|||') if p.strip()]
+        # Garante que o texto comece com a âncora se o modelo a ignorou
+        if not res_details.lower().startswith(f"currently ({q_year})"):
+            res_details = f"Currently ({q_year}), regarding {query}, the records indicate that " + res_details
 
-        # --- PÓS-PROCESSAMENTO ROBUSTO (FIX INDEX ERROR) ---
-        # 3. Mapeamento Lógico (Seguro contra falhas de split)
-        status = "Information found"
-        details = "Technical details extracted from community discussions."
-        verdict = "Monitoring and thermal maintenance recommended."
-
-        if len(parts) >= 1:
-            # Pega a primeira parte como status, limpando se houver ponto final
-            status = parts[0].split('.')[0].strip()
-        
-        if len(parts) >= 2:
-            details = parts[1].strip()
-            
-        if len(parts) >= 3:
-            verdict = parts[2].strip()
-        elif len(parts) == 1:
-            # Fallback caso ele tenha gerado um blocão sem tags
-            # Usamos maxsplit=1 e verificamos o resultado
-            sub_parts = parts[0].split(". ", 1)
-            status = sub_parts[0].strip()
-            if len(sub_parts) > 1:
-                details = sub_parts[1].strip()
-            else:
-                # Se não houver ". ", o conteúdo vai para o Details e o Status fica genérico
-                details = status
-                status = "Summary"
-
-        # 4. Montagem Final do Relatório
-        final_report = (
-            f"MODEL: DELL G7 7588\n"
-            f"DATE: {query_date_str}\n"
-            f"{'-'*30}\n"
-            f"STATUS: {status.replace('STATUS:', '').strip()}\n"
-            f"DETAILS: {details.replace('DETAILS:', '').strip()}\n"
-            f"VERDICT: {verdict.replace('VERDICT:', '').strip()}"
+        return (
+            f"HARDWARE ANALYSIS: {query_date_str}\n" + "="*40 + "\n"
+            f"STATUS (Sources): {res_status}\n\n"
+            f"TECHNICAL DETAILS:\n{res_details}\n"
         )
 
-        return final_report
-
-if __name__ == "__main__":
-    # Certifique-se de que a base de dados aponta para o seu arquivo traduzido pelo Llama
-    rag = SpecialistTimeAwareRAG(CAMINHO_BASE) 
-    
-    print("\n" + "="*50)
-    print("ANÁLISE TÉCNICA (DELL G7 - 2018):")
-    # Agora com o T5-Large, ele deve sintetizar os posts sobre o i7-8750H e McAfee
-    print(rag.search("Does the Dell G7 7588 have overheating issues?", "2018-12-01"))

@@ -1,30 +1,135 @@
 [
     {
         "id": 1,
-        "pergunta": "Does the Dell G7 7588 have overheating issues?",
-        "data_simulada": "2018-07-15",
-        "resposta_rag": "MODEL: DELL G7 7588\nDATE: 2018-07-15\n------------------------------\nSTATUS: The Dell G7 7588 does not have overheating issues according to user reviews\nDETAILS: It has a battery life of upto 8 hours and can be used for gaming at medium settings (50fps).\nVERDICT: Monitoring and thermal maintenance recommended.",
-        "tempo_segundos": 6.52
+        "pergunta": "What is the long-term thermal durability of the G7?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: No relevant technical information was found in the database for this specific query.",
+        "tempo_segundos": 0.86
     },
     {
         "id": 2,
-        "pergunta": "Does the Dell G7 7588 have overheating issues?",
-        "data_simulada": "2019-12-01",
-        "resposta_rag": "MODEL: DELL G7 7588\nDATE: 2019-12-01\n------------------------------\nSTATUS: Yes, the Dell G7 7588 has overheating issues\nDETAILS: There is a thermal limit set at 78.0 celsius and it will throttle down slowly to 100mhz clock\nVERDICT: Monitoring and thermal maintenance recommended.",
-        "tempo_segundos": 3.55
+        "pergunta": "Is the performance stable on the early BIOS versions?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: Missing hardware reference. Specify the model (e.g., G7 7588).",
+        "tempo_segundos": 0.0
     },
     {
         "id": 3,
-        "pergunta": "What are the common BIOS problems for G7 7588?",
-        "data_simulada": "2020-05-10",
-        "resposta_rag": "MODEL: DELL G7 7588\nDATE: 2020-05-10\n------------------------------\nSTATUS: Summary\nDETAILS: BIOS 1.12 update if you plan to undervolt your laptops, avoid bioses1.12.xtu and throttlestop seeming be disabled with this upgrade.\nVERDICT: Monitoring and thermal maintenance recommended.",
-        "tempo_segundos": 3.14
+        "pergunta": "Are there performance drops after BIOS 1.3.3 update?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: Missing hardware reference. Specify the model (e.g., G7 7588).",
+        "tempo_segundos": 0.0
     },
     {
         "id": 4,
-        "pergunta": "Is the battery life acceptable for G7 7588?",
-        "data_simulada": "2018-09-20",
-        "resposta_rag": "MODEL: DELL G7 7588\nDATE: 2018-09-20\n------------------------------\nSTATUS: Is the battery life acceptable for G7 7588?\nDETAILS: Please provide us with more information so that we can serve you better and improve your shopping experience based on this review\nVERDICT: Monitoring and thermal maintenance recommended.",
-        "tempo_segundos": 3.15
+        "pergunta": "Does BIOS 1.9.0 restrict undervolting on the G7?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: No relevant technical information was found in the database for this specific query.",
+        "tempo_segundos": 0.03
+    },
+    {
+        "id": 5,
+        "pergunta": "What are the common BIOS problems for G7 7588?",
+        "data_simulada": "2020-05-10",
+        "resposta_rag": "ERROR: No relevant technical information was found in the database for this specific query.",
+        "tempo_segundos": 0.02
+    },
+    {
+        "id": 6,
+        "pergunta": "Does the latest BIOS improve fan control behavior?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: Missing hardware reference. Specify the model (e.g., G7 7588).",
+        "tempo_segundos": 0.0
+    },
+    {
+        "id": 7,
+        "pergunta": "Is there a significant FPS drop after recent updates?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: Missing hardware reference. Specify the model (e.g., G7 7588).",
+        "tempo_segundos": 0.0
+    },
+    {
+        "id": 8,
+        "pergunta": "How long does the G7 7588 battery last on light use?",
+        "data_simulada": "2018-07-25",
+        "resposta_rag": "ERROR: No relevant technical information was found in the database for this specific query.",
+        "tempo_segundos": 0.02
+    },
+    {
+        "id": 9,
+        "pergunta": "Is the power adapter overheating during heavy usage?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: Missing hardware reference. Specify the model (e.g., G7 7588).",
+        "tempo_segundos": 0.0
+    },
+    {
+        "id": 10,
+        "pergunta": "What is the battery wear level after 1 year of use?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: Missing hardware reference. Specify the model (e.g., G7 7588).",
+        "tempo_segundos": 0.0
+    },
+    {
+        "id": 11,
+        "pergunta": "Does the G7 battery life improve with Linux?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: No relevant technical information was found in the database for this specific query.",
+        "tempo_segundos": 0.01
+    },
+    {
+        "id": 12,
+        "pergunta": "Are there reports of battery swelling for the G7?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: No relevant technical information was found in the database for this specific query.",
+        "tempo_segundos": 0.02
+    },
+    {
+        "id": 13,
+        "pergunta": "Is it worth replacing the battery with a 3rd party one?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: Missing hardware reference. Specify the model (e.g., G7 7588).",
+        "tempo_segundos": 0.0
+    },
+    {
+        "id": 14,
+        "pergunta": "Can I upgrade the 60Hz screen to a 144Hz panel?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: Missing hardware reference. Specify the model (e.g., G7 7588).",
+        "tempo_segundos": 0.0
+    },
+    {
+        "id": 15,
+        "pergunta": "Is the Intel 9560 WiFi card stable on the Dell G7?",
+        "data_simulada": "2020-01-15",
+        "resposta_rag": "ERROR: No relevant technical information was found in the database for this specific query.",
+        "tempo_segundos": 0.01
+    },
+    {
+        "id": 16,
+        "pergunta": "Does the G7 work well with Thunderbolt 3 eGPUs?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: No relevant technical information was found in the database for this specific query.",
+        "tempo_segundos": 0.02
+    },
+    {
+        "id": 17,
+        "pergunta": "Is the Dell G5 5587 cooling better than the G7?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: No relevant technical information was found in the database for this specific query.",
+        "tempo_segundos": 0.02
+    },
+    {
+        "id": 18,
+        "pergunta": "Is the new G5 5590 worth the upgrade from G7 7588?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: No relevant technical information was found in the database for this specific query.",
+        "tempo_segundos": 0.02
+    },
+    {
+        "id": 19,
+        "pergunta": "What are the main complaints about the Dell G-Series?",
+        "data_simulada": "2025-01-01",
+        "resposta_rag": "ERROR: No relevant technical information was found in the database for this specific query.",
+        "tempo_segundos": 0.02
     }
 ]

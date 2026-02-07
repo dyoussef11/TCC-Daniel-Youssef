@@ -1,0 +1,23 @@
+=== RELATÓRIO DE EXTRAÇÃO TÉCNICA (DETALHES DO DIAGNÓSTICO) ===
+Fonte: resultados_validacao.json
+Data da Extração: 1770242996.6688013
+------------------------------------------------------------
+
+ID: 1 | DATA SIMULADA: 2025-01-01
+PERGUNTA: What is the long-term thermal durability of the G7?
+ANALYSIS:
+Conteúdo não formatado corretamente.
+------------------------------------------------------------
+
+ID: 2 | DATA SIMULADA: 2025-01-01
+PERGUNTA: Does BIOS 1.9.0 restrict undervolting on the G7?
+ANALYSIS:
+Conteúdo não formatado corretamente.
+------------------------------------------------------------
+
+ID: 3 | DATA SIMULADA: 2025-01-01
+PERGUNTA: Does the latest BIOS improve fan control behavior?
+ANALYSIS:
+Conteúdo não formatado corretamente.
+------------------------------------------------------------
+
