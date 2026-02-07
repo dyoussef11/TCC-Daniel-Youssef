@@ -1,0 +1,24 @@
+{
+    "mapeamentos": [
+        {
+            "arquivo": "Brand Laptops Dataset - List of all brand new laptops - until 2024.csv",
+            "colunas": {"brand": "marca", "Model": "modelo_completo", "ram_memory": "ram"}
+        },
+        {
+            "arquivo": "Gamming Laptop - Flipkart.csv",
+            "colunas": {"Laptop Name": "modelo_completo"}
+        },
+        {
+            "arquivo": "Laptops Dataset - Predicting laptop prices based on specifications.csv",
+            "colunas": {"brand": "marca", "model_name": "modelo_completo", "processor_name": "cpu", "ram(GB)": "ram"}
+        },
+        {
+            "arquivo": "Unveiling the Top Gaming Laptops - Demystifying Laptop Specifications.csv",
+            "colunas": {"Product": "modelo_completo", "Processor": "cpu", "Ram": "ram"}
+        },
+        {
+            "arquivo": "modelos_gerado_AI.csv",
+            "colunas": {"marca": "marca", "modelo": "modelo_completo", "ano": "ano_lancamento"}
+        }
+    ]
+}
