@@ -23,8 +23,7 @@ CAMINHO_BASE = DIRETORIO_DADOS_SIST_TIMERAG / 'base_conhecimento_multilingue.jso
 
 # Importe sua classe do script principal
 from RAG_Final_Refinado import SpecialistTimeAwareRAG 
-# from RAG_Final_Refinadocopy import SpecialistTimeAwareRAG 
-# from RAG_Final_Refinadocopycopy import SpecialistTimeAwareRAG 
+
 def executar_bateria_testes(rag_instance, casos_teste):
     print(f"Iniciando validação de {len(casos_teste)} casos...")
     resultados = []

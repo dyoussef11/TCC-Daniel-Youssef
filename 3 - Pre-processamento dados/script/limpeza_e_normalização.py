@@ -6,19 +6,20 @@ from datetime import datetime
 from pathlib import Path
 
 # --- CONFIGURAÇÕES E CAMINHOS ---
+# --- CONFIGURAÇÕES E CAMINHOS ---
 caminho_script = Path(__file__).resolve().parent
 caminho_raiz_projeto = caminho_script.parent.parent 
 sys.path.append(str(caminho_raiz_projeto))
 
-try:
-    from config import DIRETORIO_DADOS_EXTRACAO_QA, DIRETORIO_DADOS_PRE_PROCESSAMENTO
-except ImportError:
-    print("Aviso: Módulos de configuração não encontrados. Usando caminhos locais.")
-    DIRETORIO_DADOS_EXTRACAO_QA = caminho_script / 'dados_saida'
-    DIRETORIO_DADOS_PRE_PROCESSAMENTO = caminho_script / 'dados_saida'
 
-CAMINHO_ENTRADA_JSON = DIRETORIO_DADOS_EXTRACAO_QA / 'reddit_dados_estruturados_modelo.json'
-CAMINHO_SAIDA_JSON = DIRETORIO_DADOS_PRE_PROCESSAMENTO / 'reddit_dados_limpos_enriquecidos.json'
+
+from config import DIRETORIO_DADOS_PRE_PROCESSAMENTO, DIRETORIO_DADOS_EXTRACAO_QA
+# Caminho para a pasta onde estão os arquivos brutos
+DIRETORIO_BRUTO  = DIRETORIO_DADOS_EXTRACAO_QA / 'bruto'
+# Caminho para a pasta de saída (onde será salvo o arquivo unificado)
+DIRETORIO_PROCESSADO = DIRETORIO_DADOS_EXTRACAO_QA / 'processado'
+
+CAMINHO_SAIDA_JSON = DIRETORIO_DADOS_PRE_PROCESSAMENTO / 'reddit_notebook_dados_limpos.json'
 
 # --- FUNÇÕES ---
 
@@ -29,18 +30,14 @@ def limpar_texto(texto):
     if texto is None: return ""
     if not isinstance(texto, str): return str(texto)
     
-    # Decodifica HTML
     try: texto = html.unescape(texto)
     except: pass
 
-    # Remove links markdown e URLs
     texto = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', texto)
     texto = re.sub(r'https?://\S+|www\.\S+', '', texto)
-    
-    # Remove caracteres especiais mantendo pontuação básica
     texto = texto.replace('_', ' ') 
     texto = re.sub(r'[^\w\s.,!?\-]', '', texto)
-    texto = re.sub(r'\s+-\s+', ' ', texto) # Hífens soltos
+    texto = re.sub(r'\s+-\s+', ' ', texto) 
     
     return ' '.join(texto.split()).lower()
 
@@ -56,7 +53,7 @@ def enriquecer_tempo(obj_dict, chave_data):
         formatos = ["%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M:%S"]
         for fmt in formatos:
             try:
-                dt = datetime.fromisoformat(data_str)
+                dt = datetime.fromisoformat(data_str.replace('Z', '+00:00'))
                 break
             except ValueError:
                 try:
@@ -80,10 +77,21 @@ def enriquecer_tempo(obj_dict, chave_data):
             
     return dt
 
-# --- CARREGAMENTO ---
-print(f"Lendo arquivo: {CAMINHO_ENTRADA_JSON.name}...")
-with open(CAMINHO_ENTRADA_JSON, 'r', encoding='utf-8') as f:
-    dados = json.load(f)
+# --- CARREGAMENTO E CONSOLIDAÇÃO ---
+dados_totais = []
+arquivos_json = list(DIRETORIO_BRUTO.glob('*.json'))
+
+print(f"Localizados {len(arquivos_json)} arquivos na pasta bruto.")
+
+for caminho_arq in arquivos_json:
+    print(f"Lendo arquivo: {caminho_arq.name}...")
+    with open(caminho_arq, 'r', encoding='utf-8') as f:
+        conteudo = json.load(f)
+        # Se o arquivo for uma lista, estende a lista principal, se for dict, adiciona
+        if isinstance(conteudo, list):
+            dados_totais.extend(conteudo)
+        else:
+            dados_totais.append(conteudo)
 
 # --- CONFIGURAÇÃO DE FILTROS ---
 autores_ignorar = {"[deleted]", "[removed]", "[Deletado]", "AutoModerator", "DellCares"} 
@@ -91,12 +99,11 @@ textos_ignorar = {"[deleted]", "[removed]", ""}
 frases_bot = ["I am a bot", "action was performed automatically"]
 
 posts_processados = 0
-primeiro_post_verificado = False 
 
 # --- PROCESSAMENTO ---
-print("Iniciando limpeza, enriquecimento e ordenação...")
+print("Iniciando limpeza, enriquecimento e ordenação de todos os dados...")
 
-for item in dados:
+for item in dados_totais:
     # 1. Metadados do Item (Busca)
     if 'meta_data' in item:
         enriquecer_tempo(item['meta_data'], 'data_extracao')
@@ -107,18 +114,9 @@ for item in dados:
             posts_processados += 1
             
             # Limpeza
-            titulo_original = post.get('titulo') or ""
-            conteudo_original = post.get('conteudo_texto') or ""
-
-            post['titulo_limpo'] = limpar_texto(titulo_original)
-            post['conteudo_texto_limpo'] = limpar_texto(conteudo_original)
+            post['titulo_limpo'] = limpar_texto(post.get('titulo'))
+            post['conteudo_texto_limpo'] = limpar_texto(post.get('conteudo_texto'))
             
-            # Debug (apenas 1º post)
-            if not primeiro_post_verificado:
-                print(f"\n[DEBUG] Verificando 1º Post encontrado:")
-                print(f"   -> Título Limpo: '{post['titulo_limpo']}'")
-                primeiro_post_verificado = True
-
             # Data
             enriquecer_tempo(post, 'data_publicacao')
 
@@ -146,21 +144,19 @@ for item in dados:
                     textos_vistos_neste_post.add(texto_tratado)
                     comentarios_limpos.append(comentario)
                 
-                # Opcional: Ordenar comentários do mais antigo para o novo também
+                # Ordenar comentários (Antigo -> Novo)
                 comentarios_limpos.sort(key=lambda x: x.get('timestamp') or 0)
                 
                 post['comentarios'] = comentarios_limpos
                 post['total_comentarios'] = len(comentarios_limpos)
 
-        # --- ORDENAÇÃO DOS POSTS (NOVA FUNCIONALIDADE) ---
-        # Ordena a lista de posts deste modelo baseando-se no timestamp (Crescente: Antigo -> Novo)
-        # Se timestamp for None, assume 0 para não quebrar
+        # Ordenação dos Posts por timestamp
         item['posts'].sort(key=lambda p: p.get('timestamp') or 0)
 
 # --- SALVAMENTO ---
-print(f"\nSalvando {posts_processados} posts processados e ordenados...")
+print(f"\nSalvando {posts_processados} posts unificados e processados...")
 CAMINHO_SAIDA_JSON.parent.mkdir(parents=True, exist_ok=True)
 with open(CAMINHO_SAIDA_JSON, 'w', encoding='utf-8') as f:
-    json.dump(dados, f, ensure_ascii=False, indent=4)
+    json.dump(dados_totais, f, ensure_ascii=False, indent=4)
 
-print(f"Sucesso! Arquivo salvo em: {CAMINHO_SAIDA_JSON}")
+print(f"Sucesso! Arquivo consolidado salvo em: {CAMINHO_SAIDA_JSON}")

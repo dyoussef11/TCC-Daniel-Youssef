@@ -21,7 +21,7 @@ except ImportError:
     DIRETORIO_DADOS_EXTRACAO_QA = caminho_script / 'dados_saida'
     def ler_e_filtrar_modelos(caminho, marca, tipo): return []
 
-CAMINHO_ENTRADA_CSV = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_UNICOS.csv'
+CAMINHO_ENTRADA_CSV = DIRETORIO_CSV_DATASET_FINAL / 'dataset_laptops_GAMER_ONLY.csv'
 CAMINHO_SAIDA_JSON = DIRETORIO_DADOS_EXTRACAO_QA / 'reddit_dados_estruturados_modelo.json'
 
 # --- 2. PARÂMETROS DE BUSCA ---
