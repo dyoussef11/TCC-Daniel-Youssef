@@ -3,27 +3,41 @@
     {
       "arquivo": "Unveiling the Top Gaming Laptops - Demystifying Laptop Specifications.csv",
       "colunas": {
-        "Product": "modelo_completo"
+        "Product": "modelo_completo",
+        "Processor": "cpu",
+        "Ram": "ram",
+        "Memory": "storage",
+        "Size": "tela"
       }
     },
     {
       "arquivo": "Laptops Dataset - Predicting laptop prices based on specifications.csv",
       "colunas": {
         "model_name": "modelo_completo",
-        "brand": "marca"
+        "brand": "marca",
+        "processor_name": "cpu",
+        "ram(GB)": "ram",
+        "ssd(GB)": "storage",
+        "graphics": "gpu",
+        "screen_size(inches)": "tela"
       }
     },
     {
       "arquivo": "Brand Laptops Dataset - List of all brand new laptops - until 2024.csv",
       "colunas": {
         "Model": "modelo_completo",
-        "brand": "marca"
+        "brand": "marca",
+        "processor_tier": "cpu",
+        "ram_memory": "ram",
+        "primary_storage_capacity": "storage",
+        "display_size": "tela"
       }
     },
     {
       "arquivo": "Gamming Laptop - Flipkart.csv",
       "colunas": {
-        "Laptop Name": "modelo_completo"
+        "Laptop Name": "modelo_completo",
+        "sizes": "tela"
       }
     },
     {
@@ -34,6 +48,5 @@
         "ano": "ano_lancamento"
       }
     }
-   
   ]
 }

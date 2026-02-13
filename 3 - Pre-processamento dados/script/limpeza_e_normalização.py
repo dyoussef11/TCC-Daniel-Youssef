@@ -4,159 +4,196 @@ import re
 import html
 from datetime import datetime
 from pathlib import Path
+from tqdm import tqdm
+import shutil
+import re
+import html
 
-# --- CONFIGURAÇÕES E CAMINHOS ---
-# --- CONFIGURAÇÕES E CAMINHOS ---
-caminho_script = Path(__file__).resolve().parent
-caminho_raiz_projeto = caminho_script.parent.parent 
-sys.path.append(str(caminho_raiz_projeto))
+# --- BOOTSTRAP DE CAMINHO DO PROJETO ---
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from core.paths import (
+    EXTRACAO_DATA, 
+    PREPROCESSAMENTO_DATA 
+)
 
 
 
-from config import DIRETORIO_DADOS_PRE_PROCESSAMENTO, DIRETORIO_DADOS_EXTRACAO_QA
-# Caminho para a pasta onde estão os arquivos brutos
-DIRETORIO_BRUTO  = DIRETORIO_DADOS_EXTRACAO_QA / 'bruto'
-# Caminho para a pasta de saída (onde será salvo o arquivo unificado)
-DIRETORIO_PROCESSADO = DIRETORIO_DADOS_EXTRACAO_QA / 'processado'
+DIRETORIO_BRUTO = EXTRACAO_DATA / 'bruto'
+DIRETORIO_CHECKPOINT = PREPROCESSAMENTO_DATA / 'checkpoints'
+CAMINHO_SAIDA_JSON = PREPROCESSAMENTO_DATA / 'reddit_notebook_dados_limpos.json'
 
-CAMINHO_SAIDA_JSON = DIRETORIO_DADOS_PRE_PROCESSAMENTO / 'reddit_notebook_dados_limpos.json'
+# --- 2. SERVIÇO DE LIMPEZA E FILTRAGEM ---
+class TextCleanerService:
+    """Responsável por toda a higienização de strings e filtros de ruído."""
+    AUTORES_IGNORAR = {"[deleted]", "[removed]", "[Deletado]", "AutoModerator", "DellCares"}
+    TEXTOS_IGNORAR = {"[deleted]", "[removed]", ""}
+    FRASES_BOT = ["I am a bot", "action was performed automatically"]
 
-# --- FUNÇÕES ---
-
-def limpar_texto(texto):
-    """
-    Limpa o texto forçando conversão para string e removendo lixo.
-    """
-    if texto is None: return ""
-    if not isinstance(texto, str): return str(texto)
+    @staticmethod
+    def limpar(texto):
     
-    try: texto = html.unescape(texto)
-    except: pass
+        if texto is None: return ""
+        if not isinstance(texto, str): return str(texto)
+        
+        # 1. Descodificar entidades HTML (ex: &amp; para &, &#x200B; para espaço vazio)
+        try:
+            texto = html.unescape(texto)
+        except:
+            pass
 
-    texto = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', texto)
-    texto = re.sub(r'https?://\S+|www\.\S+', '', texto)
-    texto = texto.replace('_', ' ') 
-    texto = re.sub(r'[^\w\s.,!?\-]', '', texto)
-    texto = re.sub(r'\s+-\s+', ' ', texto) 
-    
-    return ' '.join(texto.split()).lower()
+        # 2. Remover placeholders de imagens do Reddit
+        # Exemplo: *Processing img vb9k9foz8r1f1...*
+        texto = re.sub(r'\*Processing img [^*]+\.\.\.\*', ' ', texto)
 
-def enriquecer_tempo(obj_dict, chave_data):
-    """
-    Adiciona metadados de tempo e retorna o objeto datetime se possível.
-    """
-    keys_tempo = ['ano', 'mes', 'dia', 'hora', 'trimestre', 'semana', 'semestre', 'dia_semana', 'timestamp']
-    data_str = obj_dict.get(chave_data)
-    dt = None
+        # 3. Remover e-mails
+        texto = re.sub(r'\S+@\S+\.\S+', ' ', texto)
 
-    if data_str and isinstance(data_str, str):
-        formatos = ["%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M:%S"]
-        for fmt in formatos:
-            try:
-                dt = datetime.fromisoformat(data_str.replace('Z', '+00:00'))
-                break
-            except ValueError:
-                try:
-                    dt = datetime.strptime(data_str, fmt)
-                    break
-                except ValueError: continue
-    
-    if dt:
-        obj_dict['ano'] = dt.year
-        obj_dict['mes'] = dt.month
-        obj_dict['dia'] = dt.day
-        obj_dict['hora'] = dt.hour
-        obj_dict['trimestre'] = (dt.month - 1) // 3 + 1
-        obj_dict['semana'] = dt.isocalendar()[1]
-        obj_dict['semestre'] = 1 if dt.month <= 6 else 2
-        obj_dict['dia_semana'] = dt.strftime('%A')
-        obj_dict['timestamp'] = dt.timestamp()
-    else:
-        for k in keys_tempo:
-            if k not in obj_dict: obj_dict[k] = None
-            
-    return dt
+        # 4. Remover menções a usuários e subreddits (u/username e r/subreddit)
+        texto = re.sub(r'\b[ur]/[A-Za-z0-9_]+\b', ' ', texto)
 
-# --- CARREGAMENTO E CONSOLIDAÇÃO ---
-dados_totais = []
-arquivos_json = list(DIRETORIO_BRUTO.glob('*.json'))
+        # 5. Remover links Markdown mantendo apenas o texto âncora [Texto](Link)
+        texto = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', texto)
 
-print(f"Localizados {len(arquivos_json)} arquivos na pasta bruto.")
+        # 6. Remover URLs remanescentes (http, https, www)
+        texto = re.sub(r'https?://\S+|www\.\S+', ' ', texto)
 
-for caminho_arq in arquivos_json:
-    print(f"Lendo arquivo: {caminho_arq.name}...")
-    with open(caminho_arq, 'r', encoding='utf-8') as f:
-        conteudo = json.load(f)
-        # Se o arquivo for uma lista, estende a lista principal, se for dict, adiciona
-        if isinstance(conteudo, list):
-            dados_totais.extend(conteudo)
-        else:
-            dados_totais.append(conteudo)
+        # 7. Remover Emojis e caracteres não-ASCII
+        # Abordagem agressiva para remover símbolos gráficos, mantendo o foco no texto técnico.
+        texto = texto.encode('ascii', 'ignore').decode('ascii')
 
-# --- CONFIGURAÇÃO DE FILTROS ---
-autores_ignorar = {"[deleted]", "[removed]", "[Deletado]", "AutoModerator", "DellCares"} 
-textos_ignorar = {"[deleted]", "[removed]", ""}
-frases_bot = ["I am a bot", "action was performed automatically"]
+        # 8. Normalizar separadores e pontuação ruidosa
+        # Substituímos underscores e barras verticais que costumam poluir títulos de posts.
+        texto = texto.replace('_', ' ').replace('|', ' ')
 
-posts_processados = 0
+        # 9. Manter apenas alfanuméricos e pontuação essencial
+        # Mantemos o apóstrofo (') para inglês e o hífen (-) para modelos de hardware (ex: i7-12700H).
+        # Removemos símbolos de moedas ($, €), asteriscos e aspas.
+        texto = re.sub(r"[^\w\s.,!?\-']", ' ', texto)
 
-# --- PROCESSAMENTO ---
-print("Iniciando limpeza, enriquecimento e ordenação de todos os dados...")
+        # 10. Limpeza final: Minúsculas e normalização de espaços em branco
+        texto = ' '.join(texto.split()).lower()
 
-for item in dados_totais:
-    # 1. Metadados do Item (Busca)
-    if 'meta_data' in item:
-        enriquecer_tempo(item['meta_data'], 'data_extracao')
+        return texto
 
-    # 2. Processar Posts
-    if 'posts' in item:
+    def deve_ignorar(self, autor, texto):
+        if autor in self.AUTORES_IGNORAR: return True
+        if texto in self.TEXTOS_IGNORAR: return True
+        if any(bot in texto for bot in self.FRASES_BOT): return True
+        return False
+
+# --- 3. SERVIÇO DE ENRIQUECIMENTO TEMPORAL ---
+class TimeEnricherService:
+    """Responsável por tratar datas e gerar metadados temporais."""
+    @staticmethod
+    def enriquecer(obj_dict, chave_data):
+        data_str = obj_dict.get(chave_data)
+        if not (data_str and isinstance(data_str, str)): return None
+        
+        try:
+            dt = datetime.fromisoformat(data_str.replace('Z', '+00:00'))
+            obj_dict.update({
+                'ano': dt.year, 'mes': dt.month, 'dia': dt.day,
+                'timestamp': dt.timestamp(), 'dia_semana': dt.strftime('%A')
+            })
+            return dt
+        except:
+            return None
+
+# --- 4. ORQUESTRADOR DO PRÉ-PROCESSAMENTO ---
+class RedditPreprocessor:
+    def __init__(self):
+        self.cleaner = TextCleanerService()
+        self.time_service = TimeEnricherService()
+        DIRETORIO_CHECKPOINT.mkdir(parents=True, exist_ok=True)
+
+    def processar_item(self, item):
+        """Processa a estrutura de posts e comentários recursivamente."""
+        if 'posts' not in item: return item
+
         for post in item['posts']:
-            posts_processados += 1
-            
-            # Limpeza
-            post['titulo_limpo'] = limpar_texto(post.get('titulo'))
-            post['conteudo_texto_limpo'] = limpar_texto(post.get('conteudo_texto'))
-            
-            # Data
-            enriquecer_tempo(post, 'data_publicacao')
+            post['titulo_limpo'] = self.cleaner.limpar(post.get('titulo'))
+            post['conteudo_texto_limpo'] = self.cleaner.limpar(post.get('conteudo_texto'))
+            self.time_service.enriquecer(post, 'data_publicacao')
 
-            # Comentários
             if 'comentarios' in post:
-                comentarios_limpos = []
-                textos_vistos_neste_post = set()
-                
-                for comentario in post['comentarios']:
-                    texto_orig = comentario.get('conteudo') or ""
-                    autor = comentario.get('autor_comentario', '')
+                coments_orig = post['comentarios']
+                coments_processados = []
+                vistos = set()
 
-                    if autor in autores_ignorar: continue
-                    if texto_orig in textos_ignorar: continue
-                    if any(bot in texto_orig for bot in frases_bot): continue
-
-                    texto_tratado = limpar_texto(texto_orig)
+                for com in coments_orig:
+                    texto = com.get('conteudo') or ""
+                    autor = com.get('autor_comentario')
                     
-                    if len(texto_tratado) < 2: continue
-                    if texto_tratado in textos_vistos_neste_post: continue
+                    if self.cleaner.deve_ignorar(autor, texto): continue
                     
-                    comentario['conteudo_limpo'] = texto_tratado
-                    enriquecer_tempo(comentario, 'data_publicacao')
-                    
-                    textos_vistos_neste_post.add(texto_tratado)
-                    comentarios_limpos.append(comentario)
+                    limpo = self.cleaner.limpar(texto)
+                    if len(limpo) > 2 and limpo not in vistos:
+                        com['conteudo_limpo'] = limpo
+                        self.time_service.enriquecer(com, 'data_publicacao')
+                        vistos.add(limpo)
+                        coments_processados.append(com)
                 
-                # Ordenar comentários (Antigo -> Novo)
-                comentarios_limpos.sort(key=lambda x: x.get('timestamp') or 0)
-                
-                post['comentarios'] = comentarios_limpos
-                post['total_comentarios'] = len(comentarios_limpos)
-
-        # Ordenação dos Posts por timestamp
+                # Ordena comentários por tempo
+                coments_processados.sort(key=lambda x: x.get('timestamp') or 0)
+                post['comentarios'] = coments_processados
+        
+        # Ordena posts por tempo
         item['posts'].sort(key=lambda p: p.get('timestamp') or 0)
+        return item
 
-# --- SALVAMENTO ---
-print(f"\nSalvando {posts_processados} posts unificados e processados...")
-CAMINHO_SAIDA_JSON.parent.mkdir(parents=True, exist_ok=True)
-with open(CAMINHO_SAIDA_JSON, 'w', encoding='utf-8') as f:
-    json.dump(dados_totais, f, ensure_ascii=False, indent=4)
+    def consolidar(self):
+        """Une todos os checkpoints no arquivo final."""
+        print("\n📦 Consolidando checkpoints no arquivo final...")
+        dados_finais = []
+        arquivos = list(DIRETORIO_CHECKPOINT.glob('*.json'))
+        
+        for arq in tqdm(arquivos, desc="聚合 Consolidando"):
+            with open(arq, 'r', encoding='utf-8') as f:
+                dados = json.load(f)
+                if isinstance(dados, list): dados_finais.extend(dados)
+                else: dados_finais.append(dados)
 
-print(f"Sucesso! Arquivo consolidado salvo em: {CAMINHO_SAIDA_JSON}")
+        with open(CAMINHO_SAIDA_JSON, 'w', encoding='utf-8') as f:
+            json.dump(dados_finais, f, ensure_ascii=False, indent=4)
+        
+        print(f"✅ Dataset final salvo em: {CAMINHO_SAIDA_JSON}")
+        shutil.rmtree(DIRETORIO_CHECKPOINT)
+
+    def executar(self):
+        arquivos_brutos = list(DIRETORIO_BRUTO.glob('*.json'))
+        if not arquivos_brutos:
+            print(f"⚠️ Nenhum arquivo encontrado em {DIRETORIO_BRUTO}")
+            return
+
+        print(f"🔍 Localizados {len(arquivos_brutos)} arquivos para pré-processamento.")
+        pbar = tqdm(arquivos_brutos, desc="⚙️ Processando Notebooks", unit="arq")
+
+        for caminho_arq in pbar:
+            caminho_check = DIRETORIO_CHECKPOINT / caminho_arq.name
+            if caminho_check.exists(): continue
+            
+            pbar.set_postfix(arquivo=caminho_arq.name[:15])
+
+            try:
+                with open(caminho_arq, 'r', encoding='utf-8') as f:
+                    conteudo = json.load(f)
+
+                if isinstance(conteudo, list):
+                    processado = [self.processar_item(i) for i in conteudo]
+                else:
+                    processado = self.processar_item(conteudo)
+
+                with open(caminho_check, 'w', encoding='utf-8') as f:
+                    json.dump(processado, f, ensure_ascii=False, indent=4)
+
+            except Exception as e:
+                print(f"\n❌ Erro ao processar {caminho_arq.name}: {e}")
+
+        self.consolidar()
+
+if __name__ == "__main__":
+    pipeline = RedditPreprocessor()
+    pipeline.executar()

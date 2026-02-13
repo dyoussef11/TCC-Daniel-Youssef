@@ -1,142 +1,151 @@
 import json
-import numpy as np
 import faiss
+import numpy as np
 import torch
 import sys
 import re
-from datetime import datetime
 from pathlib import Path
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from datetime import datetime
 from sentence_transformers import SentenceTransformer
+from transformers import T5Tokenizer, T5ForConditionalGeneration
 
-# --- CONFIGURAÇÃO DE AMBIENTE ---
-script_path = Path(__file__).resolve().parent
-project_root = script_path.parent.parent 
-sys.path.append(str(project_root))
 
-try:
-    from config import DIRETORIO_DADOS_SIST_TIMERAG
-except ImportError:
-    DIRETORIO_DADOS_SIST_TIMERAG = script_path / 'dados_saida'
+# --- BOOTSTRAP DE CAMINHO DO PROJETO ---
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
-BASE_PATH = DIRETORIO_DADOS_SIST_TIMERAG / 'base_conhecimento_multilingue.json'
-
-def clean_system_noise(text):
-    """Limpeza agressiva de ruídos para o TCC (e-mails, saudações, lixo de sistema)."""
-    noise_patterns = [
-        r'(?i)summary:', r'(?i)intent:', r'(?i)components:', r'(?i)suggested_solution:',
-        r'(?i)Ttulo:', r'(?i)Resumió', r'(?i)Post \d+:', r'\[Concise summation\]',
-        r'[\w\.-]+@[\w\.-]+\.\w+', r'https?://\S+',
-        r'(?i)(Happy New Year|Regards|Thank you|Sincerely|Best wishes|Disclaimer)'
-    ]
-    for pattern in noise_patterns:
-        text = re.sub(pattern, '', text)
-    return re.sub(r'\s+', ' ', text).strip()
+from core.paths import (
+VALIDACAO_CONFIG
+)
 
 class SpecialistTimeAwareRAG:
-    def __init__(self, json_path):
-        print("--- RAG V41 (Query-Driven & Source Title Linking) ---")
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.embedder = SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2', device=self.device)
+    def __init__(self, json_path, variant_name="V3_LEAD_DIAGNOSTICIAN"):
+        # --- 1. CONFIGURAÇÃO DE CAMINHOS ---
+        self.caminho_sinonimos = VALIDACAO_CONFIG / 'dictionary_synonyms.json'
+        self.caminho_prompts = VALIDACAO_CONFIG / 'prompt_variants.json'
         
-        print("Carregando Flan-T5-Large...")
-        self.tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-large")
-        self.model = AutoModelForSeq2SeqLM.from_pretrained(
-            "google/flan-t5-large",
-            torch_dtype=torch.float16,
+        # --- 2. CARREGAR MODELOS ---
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        print(f"--- RAG V41 (Persona-Driven & Time-Aware) ---")
+        
+        self.embed_model = SentenceTransformer(
+            'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2', 
+            device=self.device
+        )
+        
+        self.tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-large")
+        self.llm = T5ForConditionalGeneration.from_pretrained(
+            "google/flan-t5-large", 
             device_map="auto"
         )
+        
+        # --- 3. CARREGAR CONFIGURAÇÕES ---
+        self.sinonimos = self.load_json_config(self.caminho_sinonimos, "Synonyms")
+        self.prompt_library = self.load_json_config(self.caminho_prompts, "Prompt Variants")
+        
+        # Define a persona ativa
+        self.set_variant(variant_name)
+
+        # --- 4. CARREGAR BASE DE DADOS ---
+        self.documents = []
         self.load_index(json_path)
 
-    def load_index(self, path):
-        with open(path, 'r', encoding='utf-8') as f:
+    def load_json_config(self, path, name):
+        if path.exists():
+            with open(path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        return {}
+
+    def load_index(self, json_path):
+        with open(json_path, 'r', encoding='utf-8') as f:
             self.documents = json.load(f)
-        vectors = [np.array(d['vector'], dtype='float32') for d in self.documents]
-        self.index = faiss.IndexFlatL2(vectors[0].shape[0])
-        self.index.add(np.vstack(vectors))
-        print(f"Index carregado: {self.index.ntotal} docs.")
+        vectors = [doc['vector'] for doc in self.documents]
+        self.index = faiss.IndexFlatL2(len(vectors[0]))
+        self.index.add(np.array(vectors).astype('float32'))
+        print(f"✅ Knowledge base ready with {len(self.documents)} docs.")
 
-    def search(self, query, query_date_str, k=3):
-        # 1. BARREIRA DE ESCOPO
-        strict_keywords = ["g3", "g5", "g7", "7588", "3579", "5587", "dell", "legion", "nitro", "hp", "lenovo"]
-        if not any(word in query.lower() for word in strict_keywords):
-            return "ERROR: Missing hardware reference. Please specify the model for analysis."
+    def set_variant(self, variant_name):
+        """Switches Persona without reloading model weights."""
+        self.current_variant = self.prompt_library.get(variant_name, self.prompt_library.get("V1_SCIENTIFIC_RESEARCHER"))
+        print(f"🔄 Active Persona: {variant_name}")
 
-        # 2. BUSCA VETORIAL E FILTRO TEMPORAL
-        q_date = datetime.strptime(query_date_str, "%Y-%m-%d")
-        q_year = q_date.year
-        q_vec = self.embedder.encode(query)
-        distances, indices = self.index.search(np.array([q_vec], dtype='float32'), 50)
+    def identify_model(self, text):
+        text_lower = text.lower()
+        for modelo_oficial, apelidos in self.sinonimos.items():
+            if modelo_oficial.lower() in text_lower or any(a.lower() in text_lower for a in apelidos):
+                return modelo_oficial
+        return None
+
+    def search(self, query, current_date_str, top_k=4):
+        # 1. Temporal & Model Detection
+        modelo_alvo = self.identify_model(query)
+        try:
+            current_date = datetime.fromisoformat(current_date_str)
+        except ValueError:
+            current_date = datetime.strptime(current_date_str, "%Y-%m-%d")
+        q_year = current_date.year
         
-        candidates = []
-        for i, idx in enumerate(indices[0]):
-            if idx == -1: continue
-            doc = self.documents[idx]
-            doc_dt = datetime.fromisoformat(doc['date'])
-            if doc_dt > q_date: continue 
-            
-            dist = distances[0][i]
-            days_diff = max((q_date - doc_dt).days, 1)
-            score = ((1 / (1 + dist)) * 0.80) + ((1 / (1 + days_diff/365)) * 0.20)
-            candidates.append({'doc': doc, 'score': score})
-            
-        candidates.sort(key=lambda x: x['score'], reverse=True)
-        top_k = candidates[:k]
+        # 2. Vector Search
+        query_vector = self.embed_model.encode([query])
+        distances, indices = self.index.search(np.array(query_vector).astype('float32'), k=top_k * 4)
         
-        if not top_k: return "ERROR: No technical records found."
-
-        # 3. EXTRAÇÃO DE TÍTULOS E CONTEXTO
-        context_str = ""
+        scored_results = []
         source_titles = []
-        for i, c in enumerate(top_k):
-            yr = datetime.fromisoformat(c['doc']['date']).year
-            full_txt = c['doc']['original_text']
-            title_match = re.search(r'Title:\s*(.*?)\.\s*Technical Summary:', full_txt, re.I)
-            title = title_match.group(1) if title_match else "Hardware Report"
-            source_titles.append(f"'{title}' ({yr})")
+        
+        for dist, idx in zip(distances[0], indices[0]):
+            doc = self.documents[idx]
+            doc_date = datetime.fromisoformat(doc['date'])
+            if doc_date > current_date: continue # Time-Aware Filter
             
-            clean_txt = clean_system_noise(full_txt)
-            context_str += f"[Source {i+1}]: {clean_txt[:350]}\n\n"
+            score = dist
+            if modelo_alvo and modelo_alvo.lower() in doc['original_text'].lower():
+                score *= 0.7 # Synonym Boost
+            
+            scored_results.append({'doc': doc, 'score': score})
+            title_match = re.search(r"Title: (.*?)\.", doc['original_text'])
+            if title_match: source_titles.append(title_match.group(1))
 
-        # 4. PROMPT V41: FOCO NA RESPOSTA DA PERGUNTA
-        # A pergunta agora vem DEPOIS do contexto para o modelo não esquecê-la
-        prompt = f"""Hardware Evidence:
-{context_str}
+        scored_results = sorted(scored_results, key=lambda x: x['score'])[:top_k]
+        
+        if not scored_results:
+            return "STATUS: No records found.\nTECHNICAL DETAILS: No history available up to this date."
 
-Task: Use the Evidence above to solve the question: "{query}"
-Format the response exactly as follows:
-STATUS: Brief mention of the titles {', '.join(source_titles[:1])}
-TECHNICAL DETAILS: Currently ({q_year}), regarding {query}, the analysis of the records shows that"""
+        # 3. CONTEXT TRUNCATION (Preventing > 512 tokens error)
+       # Remova os rótulos que poluem o contexto
+        context_items = []
+        for r in scored_results:
+            clean_text = r['doc']['original_text'].replace("Summary:", "").replace("Specs:", "").replace("Intent:", "")
+            context_items.append(f"- {clean_text[:200]}")
+        context_str = "\n".join(context_items)
+        
+        # 4. PROMPT INJECTION (Persona-Aware)
+        task_f = self.current_variant['task'].format(query=query, q_year=q_year)
+        prefix_f = self.current_variant['prefix'].format(query=query, q_year=q_year)
+        
+        prompt = f"""
+        SYSTEM: You are a technical support specialist.
+        CONTEXT FROM DATABASE:
+        {context_str}
+
+        USER QUESTION: {query}
+        INSTRUCTION: Based ONLY on the context above, provide a diagnostic. 
+        If the information is not present, say it was not found in the records.
+
+        {prefix_f}"""
 
         inputs = self.tokenizer(prompt, return_tensors="pt", truncation=True, max_length=512).to(self.device)
-
-        # 5. GERAÇÃO DETERMINÍSTICA (Ajustada para o gatilho final)
-        outputs = self.model.generate(
+        outputs = self.llm.generate(
             **inputs, 
-            max_new_tokens=400, 
-            min_new_tokens=150,
-            num_beams=5,
-            length_penalty=1.8,
-            repetition_penalty=1.6, # Impede o modelo de copiar o prompt
-            no_repeat_ngram_size=3
+            max_new_tokens=350,      # Espaço suficiente para a resposta [cite: 1]
+            min_new_tokens=40,       # Força o modelo a desenvolver o texto [cite: 1]
+            temperature=0.1,         # Mantém o foco técnico e determinístico [cite: 1]
+            repetition_penalty=1.1,  # REDUZIDO: Valores altos causam texto ilegível 
+            no_repeat_ngram_size=2,  # Evita repetição de frases sem quebrar termos técnicos 
+            do_sample=True
         )
-
-        generated = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-
-        # 6. RECONSTRUÇÃO DO RELATÓRIO
-        res_status = source_titles[0] if source_titles else "General Analysis"
-        res_details = generated
-
-        if "TECHNICAL DETAILS:" in generated:
-            res_details = generated.split("TECHNICAL DETAILS:")[1].strip()
         
-        # Garante que o texto comece com a âncora se o modelo a ignorou
-        if not res_details.lower().startswith(f"currently ({q_year})"):
-            res_details = f"Currently ({q_year}), regarding {query}, the records indicate that " + res_details
-
-        return (
-            f"HARDWARE ANALYSIS: {query_date_str}\n" + "="*40 + "\n"
-            f"STATUS (Sources): {res_status}\n\n"
-            f"TECHNICAL DETAILS:\n{res_details}\n"
-        )
-
+        resposta = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        if "TECHNICAL DETAILS:" not in resposta:
+            return f"STATUS: {source_titles[0] if source_titles else 'N/A'}\nTECHNICAL DETAILS: {resposta}"
+        return resposta

@@ -1,3 +1,4 @@
+import sys
 import pandas as pd
 import json
 import re
@@ -5,6 +6,17 @@ import logging
 from pathlib import Path
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from core.paths import ( 
+    DATASET_CONFIG,
+    DATASET_KRUGGLE,
+    DATASET_FINAL_CSV 
+)
+
 
 # --- CONFIGURAÇÃO DE LOGS ---
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -35,8 +47,7 @@ class LimpadorModelos:
             return "modelo não identificado"
         
         nome = texto.strip()
-
-        # 1. Limpeza de termos genéricos (Global)
+        # 1. Limpeza de termos genéricos
         for termo in self.termos_genericos:
             nome = re.sub(termo, '', nome, flags=re.IGNORECASE).strip()
 
@@ -45,19 +56,18 @@ class LimpadorModelos:
         if match:
             nome = nome[:match.start()].strip()
 
-        # 3. Refinamento final (pontuação e espaços)
+        # 3. Refinamento final
         nome = re.sub(r'[\s\-,/]+$', '', nome) 
         nome = re.sub(r'\s+', ' ', nome)      
-        
         return nome.strip()
 
 class ProcessadorDatasetLaptops:
     def __init__(self, config: ConfiguracaoProcessamento, limpador: LimpadorModelos):
         self.config = config
-        self.limpador = limpador # Recebe o limpador baseado em JSON
+        self.limpador = limpador
 
     def limpar_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Padroniza strings: remove espaços extras (mantém case para a limpeza)."""
+        """Padroniza strings: remove espaços extras."""
         for col in df.select_dtypes(include=['object']).columns:
             df[col] = df[col].astype(str).str.strip()
         return df
@@ -83,10 +93,9 @@ class ProcessadorDatasetLaptops:
         return 'geral'
 
     def gerar_id_unico(self, row: pd.Series) -> str:
-        """Gera assinatura baseada em Marca + Modelo Limpo (com SKU) + CPU + RAM."""
+        """Gera assinatura baseada em Marca + Modelo Limpo + CPU + RAM."""
         def fix(x): return str(x).lower().replace(' ', '').strip() if x != "não identificado" else "na"
         marca = fix(row.get('marca', 'gen'))
-        # Usa o modelo_limpo (que já contém o SKU) para garantir unicidade
         modelo = fix(row.get('modelo_limpo', 'gen'))
         cpu = fix(row.get('cpu'))
         ram = fix(row.get('ram'))
@@ -97,30 +106,52 @@ class ProcessadorDatasetLaptops:
             enc = 'latin1' if 'Unveiling' in caminho.name else 'utf-8'
             df = pd.read_csv(caminho, encoding=enc)
             
-            # 1. Mapeamento e Limpeza inicial
+            # 1. Renomear conforme mapeamento (copia dados diretos do CSV)
             df = df.rename(columns={k: v.lower() for k, v in mapeamento.items()})
             df = self.limpar_dataframe(df)
 
-            # 2. Extração de Componentes (Obrigatório antes de limpar o nome)
-            for col_df, chave_json in {'cpu': 'cpu', 'gpu': 'gpu', 'ram': 'ram', 'storage': 'storage', 'tela': 'screen', 'ano_lancamento': 'ano'}.items():
-                df[col_df] = df['modelo_completo'].apply(lambda x: self.extrair_regex(x, chave_json))
+            # 2. Lógica "Plano B": Extração de Hardware
+            campos_hardware = {
+                'cpu': 'cpu', 'gpu': 'gpu', 'ram': 'ram', 
+                'storage': 'storage', 'tela': 'screen', 'ano_lancamento': 'ano'
+            }
+            
+            for col_df, chave_regex in campos_hardware.items():
+                if col_df not in df.columns:
+                    df[col_df] = "não identificado"
+                
+                # Só usa regex se a coluna estiver vazia ou "não identificado"
+                df[col_df] = df.apply(
+                    lambda row: self.extrair_regex(row['modelo_completo'], chave_regex) 
+                    if str(row.get(col_df, "não identificado")).lower() in ["não identificado", "nan", "none", ""] 
+                    else str(row[col_df]).lower(),
+                    axis=1
+                )
 
-            # 3. Nova Limpeza de Modelo (JSON)
+            # 3. Limpeza do Nome do Modelo
             df['modelo_limpo'] = df['modelo_completo'].apply(self.limpador.extrair_modelo)
 
-            # 4. Filtro de Acessórios
+            # 4. Filtro de Segurança (Remove acessórios)
             df = df[~((df['cpu'] == "não identificado") & (df['ram'] == "não identificado"))]
             if df.empty: return None
 
-            # 5. IDs e Categorias
+            # 5. Classificação e IDs
             df['categoria'] = df.apply(self.classificar_categoria, axis=1)
             df['id_unico'] = df.apply(self.gerar_id_unico, axis=1)
 
-            # Adiciona colunas faltantes como 'não identificado'
+            # 6. Organização Final das Colunas (modelo_limpo à esquerda de modelo_completo)
+            colunas_ordenadas = []
             for col in self.config.COLUNAS_PADRAO:
+                if col == "modelo_completo":
+                    colunas_ordenadas.append("modelo_limpo")
+                colunas_ordenadas.append(col)
+            
+            # Preenche colunas padrão faltantes
+            for col in colunas_ordenadas:
                 if col not in df.columns: df[col] = "não identificado"
                 
-            return df[self.config.COLUNAS_PADRAO + ['id_unico', 'modelo_limpo']]
+            return df[colunas_ordenadas + ['id_unico']]
+
         except Exception as e:
             logger.error(f"Erro ao processar {caminho.name}: {e}")
             return None
@@ -129,30 +160,27 @@ class ProcessadorDatasetLaptops:
 
 if __name__ == "__main__":
     BASE_DIR = Path(__file__).resolve().parent.parent
-    PATH_CONFIG = BASE_DIR / "config"
-    PATH_DADOS = BASE_DIR / "kruggle_coletados_csv"
-    PATH_OUTPUT = BASE_DIR / "dataset_final_csv" / "dataset_laptops_UNICOS.csv"
+    PATH_CONFIG = DATASET_CONFIG
+    PATH_DADOS = DATASET_KRUGGLE
+    PATH_OUTPUT = DATASET_FINAL_CSV / "dataset_laptops_UNICOS.csv"
 
     try:
-        # 1. Carregar Configurações
         config = ConfiguracaoProcessamento.carregar(PATH_CONFIG / "hardware_rules.json")
-        limpador = LimpadorModelos(PATH_CONFIG / "models_rules.json") # Novo arquivo JSON
+        limpador = LimpadorModelos(PATH_CONFIG / "models_rules.json")
         
         with open(PATH_CONFIG / "mapeamento_arquivos.json", 'r', encoding='utf-8') as f:
             mapeamentos_json = json.load(f)["mapeamentos"]
 
-        # 2. Inicializar Processador com o novo limpador
         processador = ProcessadorDatasetLaptops(config, limpador)
         datasets_validados = []
 
         for item in mapeamentos_json:
             caminho_csv = PATH_DADOS / item["arquivo"]
             if caminho_csv.exists():
-                logger.info(f"Lendo: {item['arquivo']}")
+                logger.info(f"Processando: {item['arquivo']}")
                 df_p = processador.processar_arquivo(caminho_csv, item["colunas"])
                 if df_p is not None: datasets_validados.append(df_p)
 
-        # 3. Unificar e Salvar
         if datasets_validados:
             df_final = pd.concat(datasets_validados, ignore_index=True)
             total_antes = len(df_final)
@@ -160,9 +188,10 @@ if __name__ == "__main__":
             
             PATH_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
             df_final.to_csv(PATH_OUTPUT, index=False)
+            logger.info(f"✅ Concluído! Dataset salvo em: {PATH_OUTPUT}")
             logger.info(f"✅ Sucesso! Total: {total_antes} -> Únicos: {len(df_final)}")
         else:
-            logger.error("Nenhum dado válido encontrado.")
+            logger.error("Nenhum dado processado com sucesso.")
 
     except Exception as e:
         logger.error(f"Erro fatal: {e}")

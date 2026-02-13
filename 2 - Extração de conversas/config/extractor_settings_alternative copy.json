@@ -1,0 +1,14 @@
+{
+    "reddit_params": {
+        "limit_posts_per_keyword": 100,
+        "subreddits": "all",
+        "search_variations": [ ""
+            
+        ],
+        "user_agent": "LaptopSentimentBot/1.0"
+    },
+    "paths": {
+        "input_csv": "../0 - Dataset dos notebooks gamer/dataset_final_csv/dataset_laptops_GAMER_ONLY.csv",
+        "output_bruto": "data/bruto/"
+    }
+}

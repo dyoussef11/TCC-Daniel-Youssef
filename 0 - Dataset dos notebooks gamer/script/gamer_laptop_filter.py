@@ -1,6 +1,16 @@
+import sys
 import pandas as pd
 import logging
 from pathlib import Path
+
+# --- BOOTSTRAP DE CAMINHO DO PROJETO ---
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from core.paths import (
+    DATASET_FINAL_CSV
+)
 
 # --- CONFIGURAÇÃO DE LOGS ---
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -51,8 +61,8 @@ class FiltradorGamer:
 if __name__ == "__main__":
     # Caminhos baseados na estrutura do projeto
     BASE_DIR = Path(__file__).resolve().parent.parent
-    INPUT = BASE_DIR / "dataset_final_csv" / "dataset_laptops_UNICOS.csv"
-    OUTPUT = BASE_DIR / "dataset_final_csv" / "dataset_laptops_GAMER_ONLY.csv"
+    INPUT = DATASET_FINAL_CSV / "dataset_laptops_UNICOS.csv"
+    OUTPUT = DATASET_FINAL_CSV / "dataset_laptops_GAMER_ONLY.csv"
 
     # Instancia a classe e executa a ação
     filtrador = FiltradorGamer(INPUT, OUTPUT)

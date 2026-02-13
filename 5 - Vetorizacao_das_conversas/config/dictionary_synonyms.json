@@ -1,0 +1,7 @@
+
+DICIONARIO_SINONIMOS = {
+    "dell g7 7588": ["g7", "7588", "g7 15", "dell 7588"],
+    "msi stealth gs77": ["gs77", "stealth gs77", "msi gs77"],
+    "acer nitro 5": ["nitro 5", "an515", "nitro v"],
+    "hp pavilion gaming": ["pavilion gaming", "pavilion 15", "hp pavilion"]
+}

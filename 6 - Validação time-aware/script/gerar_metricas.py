@@ -1,45 +1,56 @@
 import json
 import pandas as pd
-import json
-import numpy as np
-import faiss
-import torch
-import sys
-import re
-from datetime import datetime
 from pathlib import Path
-import time
+import sys
+
+# --- BOOTSTRAP DE CAMINHO DO PROJETO ---
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from core.paths import (
+
+VALIDACAO_DATA
+
+)
 
 
-
-# --- CONFIGURAÇÃO ---
-caminho_script = Path(__file__).resolve().parent
-caminho_raiz_projeto = caminho_script.parent.parent 
-sys.path.append(str(caminho_raiz_projeto))
-try:
-    from config import DIRETORIO_DADOS_SIST_TIMERAG,DIRETORIO_DADOS_VALID_SIST_TIMERAG
-except ImportError:
-    DIRETORIO_DADOS_SIST_TIMERAG = caminho_script / 'dados_saida'
-
-CAMINHO_BASE = DIRETORIO_DADOS_SIST_TIMERAG / 'base_conhecimento_multilingue.json'
-
-
+DIRETORIO_DADOS_VALID_SIST_TIMERAG = VALIDACAO_DATA
 
 def analisar_resultados(arquivo_json):
+    if not arquivo_json.exists():
+        print(f"❌ Erro: Arquivo {arquivo_json} não encontrado. Execute o validador primeiro.")
+        return
+
     with open(arquivo_json, "r", encoding="utf-8") as f:
         dados = json.load(f)
     
+    if not dados:
+        print("⚠️ O arquivo de resultados está vazio.")
+        return
+
     df = pd.DataFrame(dados)
     
-    print("--- RELATÓRIO DE DESEMPENHO (ETAPA 3) ---")
-    print(f"Total de Testes: {len(df)}")
-    print(f"Tempo Médio de Resposta: {df['tempo_segundos'].mean():.2f} segundos")
-    print(f"Tempo Máximo: {df['tempo_segundos'].max():.2f}s")
-    print(f"Tempo Mínimo: {df['tempo_segundos'].min():.2f}s")
+    # Métrica de Qualidade TCC:
+    # 1. Deve conter as tags técnicas.
+    # 2. Deve ter corpo de texto (evita respostas curtas de erro/repetição).
+    df['sucesso'] = df['resposta_rag'].apply(
+    lambda x: 1 if "TECHNICAL DETAILS" in str(x) and len(str(x)) > 150 else 0
+    )
+
+    print("\n" + "="*50)
+    print("📈 RELATÓRIO DE DESEMPENHO ACADÊMICO - RAG V41")
+    print("="*50)
+    print(f"Total de Casos Analisados: {len(df)}")
+    print(f"Taxa de Conformidade (Prompt V41): {df['sucesso'].mean()*100:.1f}%")
+    print(f"Latência Média: {df['tempo_segundos'].mean():.2f}s")
+    print(f"Desvio Padrão Tempo: {df['tempo_segundos'].std():.2f}s")
     
-    # Exporta para CSV para facilitar a criação de tabelas no seu TCC (LaTeX/Word)
-    df.to_csv(DIRETORIO_DADOS_VALID_SIST_TIMERAG / "metricas_tcc.csv", index=False)
-    print("\nDados exportados para 'metricas_tcc.csv'.")
+    # Exportação formatada para o TCC
+    caminho_csv = DIRETORIO_DADOS_VALID_SIST_TIMERAG / "metricas_finais_tcc.csv"
+    df.to_csv(caminho_csv, index=False, sep=';', encoding='utf-8-sig')
+    print(f"\n✅ Planilha para Tabelas (CSV) gerada: {caminho_csv.name}")
 
 if __name__ == "__main__":
-    analisar_resultados(DIRETORIO_DADOS_VALID_SIST_TIMERAG / "resultados_validacao.json")
+    caminho_input = DIRETORIO_DADOS_VALID_SIST_TIMERAG / "resultados_validacao.json"
+    analisar_resultados(caminho_input)

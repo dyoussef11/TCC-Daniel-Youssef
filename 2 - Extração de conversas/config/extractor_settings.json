@@ -2,7 +2,7 @@
     "reddit_params": {
         "limit_posts_per_keyword": 100,
         "subreddits": "all",
-        "search_variations": [
+        "search_variations": [ "",
     "undervolt",
     "undervolting",
     "thermal throttling",

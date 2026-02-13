@@ -1,5 +1,7 @@
 import re
 
+
+
 def extrair_modelo_curto(texto):
     if not isinstance(texto, str):
         return ""

@@ -1,6 +1,20 @@
+import sys
 import pandas as pd
 import re
 from pathlib import Path
+
+# --- BOOTSTRAP DE CAMINHO DO PROJETO ---
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from core.paths import (
+
+EXTRACAO_CONFIG,
+EXTRACAO_DATA,
+DATASET_FINAL_CSV,
+EXTRACAO_SRC
+)
 
 class ModelLoader:
     def __init__(self, config):
