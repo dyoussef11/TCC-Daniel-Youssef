@@ -150,7 +150,7 @@ class RedditPreprocessor:
         dados_finais = []
         arquivos = list(DIRETORIO_CHECKPOINT.glob('*.json'))
         
-        for arq in tqdm(arquivos, desc="聚合 Consolidando"):
+        for arq in tqdm(arquivos, desc="Consolidando"):
             with open(arq, 'r', encoding='utf-8') as f:
                 dados = json.load(f)
                 if isinstance(dados, list): dados_finais.extend(dados)
@@ -159,8 +159,8 @@ class RedditPreprocessor:
         with open(CAMINHO_SAIDA_JSON, 'w', encoding='utf-8') as f:
             json.dump(dados_finais, f, ensure_ascii=False, indent=4)
         
-        print(f"✅ Dataset final salvo em: {CAMINHO_SAIDA_JSON}")
-        shutil.rmtree(DIRETORIO_CHECKPOINT)
+        # print(f"✅ Dataset final salvo em: {CAMINHO_SAIDA_JSON}")
+        # shutil.rmtree(DIRETORIO_CHECKPOINT)
 
     def executar(self):
         arquivos_brutos = list(DIRETORIO_BRUTO.glob('*.json'))

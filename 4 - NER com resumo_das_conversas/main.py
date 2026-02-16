@@ -9,7 +9,7 @@ from openai import AsyncOpenAI
 from tqdm.asyncio import tqdm
 
 # --- BOOTSTRAP DE CAMINHO DO PROJETO ---
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
@@ -70,7 +70,7 @@ class HardwareExtractor:
 
 # --- 4. AGENTE DE IA ---
 class AIAgent:
-    def __init__(self, model: str = "llama3.2:latest", limit: int = 2):
+    def __init__(self, model: str = "llama3.2:latest", limit: int = 1):
         # Aumentamos o timeout para evitar o erro de conexão em posts longos
         self.client = AsyncOpenAI(
             base_url='http://localhost:11434/v1', 
@@ -117,8 +117,16 @@ class RedditProcessor:
             except: pass
 
         # Limpeza e Extração de Dicas (Hints)
-        titulo = self.cleaner.limpar(post.get('titulo_limpo', post.get('titulo', '')))
-        corpo = self.cleaner.limpar(post.get('conteudo_texto_limpo', post.get('conteudo_texto', '')))[:1200]
+        # titulo = self.cleaner.limpar(post.get('titulo_limpo', post.get('titulo', '')))
+        # corpo = self.cleaner.limpar(post.get('conteudo_texto_limpo', post.get('conteudo_texto', '')))[:1200]
+
+        # 1. Pega os dados que JÁ foram limpos pelo script anterior
+        titulo = post.get('titulo_limpo', '')
+        # 2. Pega o conteúdo limpo e apenas limita o tamanho para a IA
+        # corpo = post.get('conteudo_texto_limpo', '')[:1200]
+        corpo = post.get('conteudo_texto_limpo', '')[:2500]
+
+        
         hw_hints = self.extractor.get_hints(f"{titulo} {corpo}")
         
         prompt_sys =  """
