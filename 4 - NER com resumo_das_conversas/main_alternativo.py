@@ -50,7 +50,7 @@ class HardwareExtractor:
 
 # --- 4. AGENTE DE IA (OTIMIZADO PARA GTX 1050 TI) ---
 class AIAgent:
-    def __init__(self, model: str = "llama3.2:1b", limit: int = 2): 
+    def __init__(self, model: str = "llama3.2:1b", limit: int = 1): 
         self.client = AsyncOpenAI(base_url='http://localhost:11434/v1', api_key='ollama')
         self.model = model
         self.semaphore = asyncio.Semaphore(limit)

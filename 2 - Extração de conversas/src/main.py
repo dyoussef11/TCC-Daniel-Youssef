@@ -115,5 +115,5 @@ class RedditExtractionPipeline:
 
 if __name__ == "__main__":
     # LIMITE_NOTEBOOKS: Altere para None para processar todo o CSV
-    pipeline = RedditExtractionPipeline(limite=1)
+    pipeline = RedditExtractionPipeline(limite=50)
     pipeline.executar()
