@@ -1,2 +1,0 @@
-'web_scrapping_De_Links_Asus.py', 'web_scrapping_De_Links_Lenovo.py', 'web_scrapping_De_Links_MSI.py', 'web_scrapping_De_Links_HP.py', 'web_scrapping_De_Links_Gigabyte.py', 'web_scrapping_De_Links_Razer.py', 'web_scrapping_De_Links_Samsung.py', 'web_scrapping_De_Links_AsusGringo.py', 'web_scrapping_De_Links_LenovoGringo.py', 'web_scrapping_De_Links_MSIGringo.py', 'web_scrapping_De_Links_HPGringo.py', 'web_scrapping_De_Links_RazerGringo.py' | ForEach-Object { New-Item -ItemType File -Name $_ }
-

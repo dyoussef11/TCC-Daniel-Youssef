@@ -1,57 +1,68 @@
-## Notebook-Forum-Sentimento 💻📊
+# 💻 Specialist Time-Aware RAG Engine (Ollama + BGE-M3)
 
-Projeto de Processamento de Linguagem Natural (PNL) para Análise de Sentimento em dados de fóruns sobre notebooks. O estudo explora as polaridades (positiva/neutro/negativa) das respostas usando as técnicas de representação de texto TF-IDF e em diferentes modelos de classificação.
+### Sistema de Recuperação de Conhecimento e Análise de Sentimento para Suporte Técnico
 
----
-
-### ✅ Status: Web Scraping de Links (Etapas Concluídas)
-
-Todas as tarefas de coleta de **links de discussão** e implementação da lógica de múltiplos modelos foram **finalizadas** para as seguintes fontes:
-
-| Fórum / Comunidade | Idiomas | Status dos Links (CSV Gerado) |
-| :--- | :--- | :--- |
-| **Dell Community** | Português / Inglês | ✅ Gerados (`links_discussoes_Dell_Ingles.csv`, etc.) |
-| **Clube do Hardware** | Português | ✅ Gerado (`links_discussoes_ClubeHardware.csv`) |
-| **Adrenaline** | Português | ✅ Gerado (`links_discussoes_Adrenaline.csv`) |
-| **Tom's Guide / Hardware** | Inglês | ✅ Gerados (`links_discussoes_Tom_Guide.csv`, etc.) |
-| **Asus** | Português / Inglês | ✅ Gerados (`links_discussoes_Asus_Brasil.csv`, etc.) |
-| **Acer** | Português / Inglês | ✅ Gerados (`links_discussoes_Acer_Ingles.csv`, etc.) |
-| **HP** | Inglês | ✅ Lógica implementada. |
-| **Lenovo** | Português / Inglês | ✅ Lógica implementada. |
-| **Linus Tech Tips** | Inglês | ✅ Lógica implementada. |
+Este projeto consiste numa engine de **RAG (Retrieval-Augmented Generation)** de alta fidelidade, desenvolvida para processar e responder a dúvidas técnicas complexas sobre hardware. O sistema utiliza critérios de **temporalidade** e **regionalidade** para gerar respostas precisas, focando especialmente no ecossistema de portáteis de alto desempenho.
 
 ---
 
-### 📌 TODO: Próximas Etapas (Web Scraping de **Conversas**)
+## ⚠️ Status do Ciclo de Vida do Projeto
 
-O objetivo principal agora é a **Extração de Perguntas e Respostas** (o conteúdo completo das discussões) a partir dos links coletados.
+* **`1 - Web Scraping` & `legacy/` [DESCONTINUADOS]:** As ferramentas de recolha ativa, incluindo o diretório `legacy/scrapy-sites`, foram oficialmente descontinuadas. O projeto transitou da fase de aquisição de dados para a fase de inteligência, processamento e validação.
+* **Engine RAG [ATIVO]:** Desenvolvimento focado no motor de busca semântica, otimização de modelos locais e validação de prompts.
+* **Base de Conhecimento [OBSERVAÇÃO]:** Embora fontes nacionais e oficiais tenham sido mapeadas no planeamento, **a base de dados atual integrada ao RAG é composta majoritariamente por dados extraídos do Reddit**.
 
-#### 1. Scripts de Web Scraping de Conversas (Prioridades)
+---
 
-* [ ] **Clube do Hardware**: **Necessita ser consertado** para funcionar corretamente. (O script de extração está em: `2 - Extração de Perguntas e Respostas\script`).
-* [x] **Linus Tech Tips (Inglês)**: Está funcionando corretamente.
-* [x] **Tom Guide (Inglês)**: Está funcionando corretamente.
-* [x] **Tom Hardware (Inglês)**: Está funcionando corretamente.
-* [] **Dell (Inglês)**: Está funcionando corretamente.
-* [] **Dell (Portugues)**: Está funcionando corretamente.
-* [] **Adrenaline (Portugues)**: Está funcionando corretamente.
-* [] **Asus(Portugues)**: Está funcionando corretamente.
-* [] **Asus(Portugues)**: Está funcionando corretamente.
-* [] **Asus(Ingles)**: Está funcionando corretamente.
-* [] **Acer(Ingles)**: Está funcionando corretamente.
-* [] **Acer(Portugues)**: Está funcionando corretamente.
-* [] **HP(Ingles)**: Está funcionando corretamente.
+## 🚀 Arquitetura e Fluxo de Dados
 
-* [] **Lenovo(Ingles)**: Está funcionando corretamente.
-* [] **Lenovo(Portugues)**: Está funcionando corretamente.
+O pipeline transforma discussões orgânicas em respostas técnicas estruturadas, otimizadas para hardware de entrada.
 
 
-#### 2. Próximo Fluxo de Processamento (Após a Coleta)
 
-A sequência de trabalho seguirá a estrutura de pastas do projeto após a conclusão da extração de todas as conversas:
+### 1. Gestão de Dados (Camadas de Processamento)
+A organização dos dados segue o fluxo de refinação:
+* **Dados Brutos (Raw):** Conteúdo original extraído (JSON/CSV). Contém o ruído típico de fóruns e metadados brutos.
+* **Dados Limpos e Processados:** Texto normalizado e enriquecido via NER (Named Entity Recognition), com identificação de GPUs, CPUs e modelos de notebooks.
 
-* **2 - Extração de Perguntas e Respostas**: Gerar todos os CSVs de conversas completas.
-* **3 - Unificação dos CSV**: Consolidar os dados coletados.
-* **4 - Classificação de Perguntas**: Classificar perguntas para separar o foco nas respostas.
-* **5 - Separação das respostas - Problemas**: Filtrar o dataset.
-* ... (Continuação das etapas de limpeza, rotulagem e modelagem).
+### 2. Busca Semântica e Re-ranking Temporal
+* **Vetorização (Embeddings):** Uso do modelo **BGE-M3** (1024 dimensões) via Ollama para capturar jargões técnicos.
+* **Banco Vetorial:** Implementação via **FAISS** (`IndexFlatL2`) para buscas de alta performance.
+* **Consciência Temporal:** Algoritmo que prioriza informações recentes, garantindo que soluções de hardware atuais tenham precedência sobre posts obsoletos.
+
+### 3. IA Local e Otimização (Edge AI)
+Validado numa **NVIDIA GTX 1050 Ti 4GB**, utilizando a família **Qwen 2.5 / 3**:
+* **Quantização Q6_K:** Nível de compressão ideal para manter o rigor técnico sem exceder a VRAM da GPU.
+* **Performance:** Respostas geradas entre 40s e 55s em ambiente totalmente offline.
+
+---
+
+## 📂 Organização do Ecossistema (Diretórios)
+
+| Diretório | Descrição e Propósito |
+| :--- | :--- |
+| `0 - Dataset dos notebooks gamer` | Contém as "regras de ouro" (`hardware_rules.json`), mapeamentos de marcas e datasets de referência (Flipkart/Kruggle). |
+| `2 - Processamento & NER` | Scripts de tratamento que preparam os dados brutos para a inteligência artificial. |
+| `5 - RAG Engine` | Núcleo da aplicação: orquestração FAISS, dicionário de sinónimos e lógica de chat. |
+| `legacy/` | Contém scripts e spiders de scraping antigos que não são mais utilizados na execução atual. |
+| `scripts_e_beachmark/` | Ferramentas de medição de desempenho, contagem de modelos e testes de temperatura da GPU. |
+| `Data/` | Armazena os índices vetoriais (`Vetorization`) e relatórios de performance (`Validation`). |
+
+---
+
+## 📊 Fontes de Conhecimento
+
+A engine é alimentada primordialmente por:
+* **Reddit (r/all):** Principal fonte ativa para problemas de hardware e experiências de upgrade.
+* *Nota: Outras fontes (Dell, Asus, Adrenaline) permanecem mapeadas nos ficheiros de configuração, mas não estão integradas no dataset de teste atual do RAG.*
+
+---
+
+## ✅ Metodologia de Validação (TCC)
+- [x] Transição de Scraping (Legacy) para Engine RAG Local.
+- [x] Implementação de Re-ranking Temporal (Recency Bias).
+- [x] Estudo de Viabilidade em Hardware Restrito (Benchmarking 1050 Ti).
+- [x] Redução de Alucinações através de Prompts de "Rigor Técnico".
+
+---
+**Projeto desenvolvido para o estudo de LLMs aplicados à Recuperação de Informação e Suporte Técnico.**

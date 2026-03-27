@@ -2,9 +2,13 @@
 __pycache__/
 *.py[codz]
 *$py.class
+.vscode
+.deepeval
 
 # C extensions
 *.so
+
+notebook_forum_sentimento.egg-info
 
 # Distribution / packaging
 .Python

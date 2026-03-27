@@ -2,11 +2,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-# --- BOOTSTRAP DE CAMINHO DO PROJETO ---
-ROOT = Path(__file__).resolve().parents[2]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-
 # Bootstrap + paths centralizados
 from core.paths import (
     EXTRACAO,
@@ -37,9 +32,9 @@ def run_script(script_path: Path, working_dir: Path, step_name: str):
 
 def etapa_extracao():
     run_script(
-        script_path=EXTRACAO / "src" / "main.py",
+        script_path=EXTRACAO / "src" / "extrator_conversas_reddit.py",
         working_dir=EXTRACAO,
-        step_name="Extração de Conversas",
+        step_name="Extração de Conversas (Reddit)",
     )
 
 
@@ -68,7 +63,7 @@ def etapa_ner_llama3_2_latest():
         step_name="NER com resumo",
     )
 
-def etapa_rag():
+def etapa_vetorizacao():
     run_script(
         script_path=VETORIZATION / "script" / "Revetorizar_Multilingue.py",
         working_dir=VETORIZATION,
@@ -81,7 +76,7 @@ def pipeline_completo():
     etapa_preprocessamento()
     etapa_ner_llama3_2_1b()
     etapa_ner_llama3_2_latest()
-    etapa_rag()
+    etapa_vetorizacao()
 
 
 # ==========================================================
@@ -94,9 +89,9 @@ def main():
     print("2. Pré-processamento")
     print("3. NER com resumo_das_conversas - llama3_2_1b")
     print("4. NER com resumo_das_conversas - llama3_2_latest")
-    print("4. Sistema time-aware rag")
-    print("4. Sistema time-aware rag")
-    print("5. Pipeline Completo (1 → 4)")
+    print("5 - Vetorizacao_das_conversas")
+    print("6 - Validação time-aware")
+    print("7. Pipeline Completo (1 → 4)")
 
     choice = input("\nEscolha uma opção: ").strip()
 
@@ -109,8 +104,10 @@ def main():
     elif choice == "4":
         etapa_ner_llama3_2_latest()
     elif choice == "5":
-        etapa_rag()
+        etapa_vetorizacao()
     elif choice == "6":
+        etapa_vetorizacao()
+    elif choice == "7":
         pipeline_completo()
     else:
         print("❌ Opção inválida.")
