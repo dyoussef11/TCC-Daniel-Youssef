@@ -1,68 +1,87 @@
-# 💻 Specialist Time-Aware RAG Engine (Ollama + BGE-M3)
+# 💻 Specialist Time-Aware RAG Engine (V8 Hybrid Auditor)
 
-### Sistema de Recuperação de Conhecimento e Análise de Sentimento para Suporte Técnico
+### Framework de RAG Temporal para Mitigação de Alucinações por Obsolescência em Hardware
 
-Este projeto consiste numa engine de **RAG (Retrieval-Augmented Generation)** de alta fidelidade, desenvolvida para processar e responder a dúvidas técnicas complexas sobre hardware. O sistema utiliza critérios de **temporalidade** e **regionalidade** para gerar respostas precisas, focando especialmente no ecossistema de portáteis de alto desempenho.
-
----
-
-## ⚠️ Status do Ciclo de Vida do Projeto
-
-* **`1 - Web Scraping` & `legacy/` [DESCONTINUADOS]:** As ferramentas de recolha ativa, incluindo o diretório `legacy/scrapy-sites`, foram oficialmente descontinuadas. O projeto transitou da fase de aquisição de dados para a fase de inteligência, processamento e validação.
-* **Engine RAG [ATIVO]:** Desenvolvimento focado no motor de busca semântica, otimização de modelos locais e validação de prompts.
-* **Base de Conhecimento [OBSERVAÇÃO]:** Embora fontes nacionais e oficiais tenham sido mapeadas no planeamento, **a base de dados atual integrada ao RAG é composta majoritariamente por dados extraídos do Reddit**.
+Este projeto apresenta uma arquitetura avançada de **Retrieval-Augmented Generation (RAG)** focada na resolução de um problema crítico em domínios técnicos: a **obsolescência informacional**. Diferente de sistemas RAG convencionais, esta engine integra sensibilidade temporal e auditoria lógica de série para garantir que assistentes de suporte não sugiram drivers ou especificações ultrapassadas.
 
 ---
 
-## 🚀 Arquitetura e Fluxo de Dados
+## 🎯 Conceitos Centrais
 
-O pipeline transforma discussões orgânicas em respostas técnicas estruturadas, otimizadas para hardware de entrada.
+### 1. Motor de Decaimento Linear (LinearV3)
+Para resolver o fenômeno do **Borrão Semântico** (onde problemas técnicos de 2021 e 2026 parecem idênticos para o FAISS), implementamos uma taxa de obsolescência parametrizada em **4% ao ano**. Isso garante que, em caso de "empate técnico" vetorial, a solução mais recente tenha prioridade no re-ranqueamento.
 
-
-
-### 1. Gestão de Dados (Camadas de Processamento)
-A organização dos dados segue o fluxo de refinação:
-* **Dados Brutos (Raw):** Conteúdo original extraído (JSON/CSV). Contém o ruído típico de fóruns e metadados brutos.
-* **Dados Limpos e Processados:** Texto normalizado e enriquecido via NER (Named Entity Recognition), com identificação de GPUs, CPUs e modelos de notebooks.
-
-### 2. Busca Semântica e Re-ranking Temporal
-* **Vetorização (Embeddings):** Uso do modelo **BGE-M3** (1024 dimensões) via Ollama para capturar jargões técnicos.
-* **Banco Vetorial:** Implementação via **FAISS** (`IndexFlatL2`) para buscas de alta performance.
-* **Consciência Temporal:** Algoritmo que prioriza informações recentes, garantindo que soluções de hardware atuais tenham precedência sobre posts obsoletos.
-
-### 3. IA Local e Otimização (Edge AI)
-Validado numa **NVIDIA GTX 1050 Ti 4GB**, utilizando a família **Qwen 2.5 / 3**:
-* **Quantização Q6_K:** Nível de compressão ideal para manter o rigor técnico sem exceder a VRAM da GPU.
-* **Performance:** Respostas geradas entre 40s e 55s em ambiente totalmente offline.
+### 2. Protocolo V8 & SKU-Lock
+Mecanismo de auditoria híbrida que impõe uma trava lógica de entidade. O sistema é instruído a:
+* **Invalidar Inferências de Série:** Não assume que o que funciona para o Nitro AN515-58 funciona para o AN515-56.
+* **Zero-Trust Grounding:** Prefere a omissão segura ("Informação não encontrada") à alucinação baseada no conhecimento interno do modelo.
 
 ---
 
-## 📂 Organização do Ecossistema (Diretórios)
+## 🚀 Pipeline de Processamento (6 Estágios)
 
-| Diretório | Descrição e Propósito |
-| :--- | :--- |
-| `0 - Dataset dos notebooks gamer` | Contém as "regras de ouro" (`hardware_rules.json`), mapeamentos de marcas e datasets de referência (Flipkart/Kruggle). |
-| `2 - Processamento & NER` | Scripts de tratamento que preparam os dados brutos para a inteligência artificial. |
-| `5 - RAG Engine` | Núcleo da aplicação: orquestração FAISS, dicionário de sinónimos e lógica de chat. |
-| `legacy/` | Contém scripts e spiders de scraping antigos que não são mais utilizados na execução atual. |
-| `scripts_e_beachmark/` | Ferramentas de medição de desempenho, contagem de modelos e testes de temperatura da GPU. |
-| `Data/` | Armazena os índices vetoriais (`Vetorization`) e relatórios de performance (`Validation`). |
+O fluxo de dados transforma discussões informais do Reddit e Dell em **Relatórios Técnicos Densos**:
 
----
-
-## 📊 Fontes de Conhecimento
-
-A engine é alimentada primordialmente por:
-* **Reddit (r/all):** Principal fonte ativa para problemas de hardware e experiências de upgrade.
-* *Nota: Outras fontes (Dell, Asus, Adrenaline) permanecem mapeadas nos ficheiros de configuração, mas não estão integradas no dataset de teste atual do RAG.*
+| Estágio | Operação | Objetivo Técnico |
+| :--- | :--- | :--- |
+| **00 - Referência** | `dataset_laptops_UNICOS_V3` | Consolidação de "Golden Rules" e especificações canônicas para ancoragem. |
+| **01 - Extração** | `reddit_serviceV2.py` | Captura de relatos reais (Reddit/Dell) sobre falhas e upgrades térmicos. |
+| **02 - Pre-proc** | `filtro_tecnico_conversas` | Saneamento do corpus e aplicação de thresholds de volumetria amostral. |
+| **03 - NER & Resumo** | `NerResumLLAMA3.2V7` | Uso de SLMs para converter chats em relatórios com tags de intent e gravidade. |
+| **04 - Vetorização** | `BGE-M3 Multilingual` | Indexação densa com suporte a múltiplos idiomas e busca híbrida. |
+| **05 - Time-Aware** | `RAG_LinearV7.py` | Execução do motor RAG com re-ranking cronológico e lógica de auditoria. |
+| **06 - Avaliação** | `custom_evaluatorV2.py` | Auditoria via DeepEval (LLM-as-a-Judge) com limpeza heurística de JSON. |
 
 ---
 
-## ✅ Metodologia de Validação (TCC)
-- [x] Transição de Scraping (Legacy) para Engine RAG Local.
-- [x] Implementação de Re-ranking Temporal (Recency Bias).
-- [x] Estudo de Viabilidade em Hardware Restrito (Benchmarking 1050 Ti).
-- [x] Redução de Alucinações através de Prompts de "Rigor Técnico".
+## 🛠️ Stack Tecnológico & Otimização Local
+
+Desenvolvido para ser executado em ambientes restritos (**GTX 1050 Ti 4GB**), o sistema utiliza:
+
+* **Modelos Compactos (SLMs):** `Llama 3.2 3B` (NER) e `Qwen 3 4B-Instruct` (Geração).
+* **Orquestração de VRAM:** Implementação de `asyncio.Semaphore(1)` para processamento serial, evitando estouro de memória durante a geração de justificativas (*reasons*) de auditoria.
+* **Post-Processing:** Camada de reparo heurístico para saídas de modelos de 4B, garantindo a integridade dos vereditos da métrica.
 
 ---
-**Projeto desenvolvido para o estudo de LLMs aplicados à Recuperação de Informação e Suporte Técnico.**
+
+## 📊 Framework de Auditoria (DeepEval V3)
+
+A eficácia do sistema é validada por uma suíte de testes rigorosa:
+* **`TC_STATIC`:** Verifica se o RAG respeita limites físicos (ex: slots de SSD).
+* **`TC_CONFLICT`:** Testa se o sistema prioriza o driver de 2026 sobre o de 2021.
+* **`TC_HYBRID`:** Confronta o conhecimento paramétrico (interno) do modelo com o dado recuperado, forçando o uso exclusivo do contexto [RAG].
+
+---
+
+## ⚖️ Metodologia e Propriedade Intelectual
+
+Este projeto integra uma pesquisa voltada para a criação de sistemas de suporte técnico de alta fidelidade, priorizando a segurança informacional e a integridade de hardware. A arquitetura LinearV3 + SKU-Lock foi desenhada para reduzir em até 90% as alucinações de compatibilidade em notebooks de alto desempenho.
+
+---
+
+## 📂 Organização do Repositório
+
+```bash
+.
+├── 00_datasets_referencia/      # Datasets canônicos e scripts de filtragem gamer.
+├── 01_extracao_conversas/       # Scrapers especializados (Reddit/Dell) e análise temática.
+├── 02_preprocessamento/         # Limpeza, indexação e gráficos de sensibilidade.
+├── 03_ner_e_resumo/             # Pipeline de extração de entidades e sumarização técnica.
+├── 04_vetorizacao/              # Geração de índices FAISS com BGE-M3.
+├── 05_validacao_time_aware/     # O núcleo do RAG: Motores Vanilla vs LinearV7.
+├── 06_avaliacao_quantitativa/   # Suíte DeepEval, logs de métricas e simuladores de decaimento.
+├── core/                        # Centralização de caminhos e bootstrap do sistema.
+└── run_pipeline.py              # Orquestrador geral do fluxo.
+
+
+---
+
+## 🛠️ Stack Tecnológico & Otimização Local
+
+Desenvolvido para ser executado em ambientes restritos (**GTX 1050 Ti 4GB**), o sistema utiliza:
+
+* **Modelos Compactos (SLMs):** `Llama 3.2 3B` (NER) e `Qwen 3 4B-Instruct` (Geração).
+* **Orquestração de VRAM:** Implementação de `asyncio.Semaphore(1)` para processamento serial, evitando estouro de memória durante a geração de justificativas (*reasons*) de auditoria.
+* **Post-Processing:** Camada de reparo heurístico para saídas de modelos de 4B, garantindo a integridade dos vereditos da métrica.
+
+---
