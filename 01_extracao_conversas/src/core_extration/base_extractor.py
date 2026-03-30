@@ -2,16 +2,12 @@ import json
 from pathlib import Path
 
 
-
 from core.paths import (
 
-EXTRACAO_CONFIG,
-EXTRACAO
+EXTRACAO_CONFIG, EXTRACAO
 
 )
 
-# This Python class `BaseExtractor` initializes with a platform, loads a configuration file, and sets
-# up specific folders for extraction.
 class BaseExtractor:
     def __init__(self, platform):
         self.platform = platform
@@ -21,9 +17,9 @@ class BaseExtractor:
         self._setup_folders()
 
     def _load_config(self):
-        # config_path: Path = EXTRACAO_CONFIG / "extractor_settings_alternative.json"
+        
         config_path: Path = EXTRACAO_CONFIG / "extractor_settings_extendedV2.json"
-        # CORREÇÃO: json.load(f) para LER o arquivo
+        
         with open(config_path, 'r', encoding='utf-8') as f:
             return json.load(f) 
 

@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 import numpy as np
-from core.paths import NER_DATA, PREPROCESSAMENTO_DATA
+from core.paths import  PREPROCESSAMENTO_DATA
 # Ajuste os caminhos conforme seu ambiente
 # CAMINHO_ENTRADA = NER_DATA / "reddit_50_notebooks_w_componentsV2.json"
 CAMINHO_ENTRADA = PREPROCESSAMENTO_DATA / "limpo_amostras_filtrados" / "reddit_amostra_limpa_e_filtrada_V2.json"

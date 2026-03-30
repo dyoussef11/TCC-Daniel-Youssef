@@ -12,7 +12,7 @@
         "user_agent": "LaptopSentimentBot/1.0"
     },
     "paths": {
-        "input_csv": "../0 - Dataset dos notebooks gamer/dataset_final_csv/dataset_laptops_GAMER_ONLY.csv",
+        "input_csv": "../00_datasets_referencia/dataset_final_csv/dataset_laptops_GAMER_ONLY.csv",
         "output_bruto": "data/bruto/"
     }
 }

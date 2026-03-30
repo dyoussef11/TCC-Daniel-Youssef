@@ -3,8 +3,6 @@ from core.paths import EXTRACAO_DATA, EXTRACAO_DATA_BRUTO, NER_DATA
 
 # Configurações de Caminho
 CAMINHO_JSON = EXTRACAO_DATA_BRUTO /  'acer_acer16predatorneonh.qltsi.001_corei5_16.json'
-# CAMINHO_JSON = NER_DATA /  'reddit_amostra_50_filtrada_limpa_V3.json'
-# ARQUIVO_SAIDA = NER_DATA / 'struct_json' / "ESTRUTURA_PROJETOV5.md"
 ARQUIVO_SAIDA = EXTRACAO_DATA / 'arvore_json' / "ESTRUTURA_PROJETOV5.md"
 
 def extrair_arvore(dados, indent="", prefixo="└── "):

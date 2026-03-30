@@ -3,7 +3,7 @@ import json
 import pandas as pd
 from core.paths import PREPROCESSAMENTO_DATA, EXTRACAO_DATA
 
-# CAMINHO_JSON = PREPROCESSAMENTO_DATA / "Dados_Prontos_Sem_Threshold"
+
 CAMINHO_JSON = PREPROCESSAMENTO_DATA / "Dados_Consolidados_Por_Modelo"
 CAMINHO_SAIDA = EXTRACAO_DATA / "Contagem_Analise"
 
