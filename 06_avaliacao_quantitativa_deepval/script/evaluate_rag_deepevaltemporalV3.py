@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from core.paths import VETORIZATION_DATA, VALIDACAO_SCRIPT, VALIDACAO_CONFIG, AVALIACAO_DATA 
+from core.paths import VETORIZATION_DATA, VALIDACAO_SCRIPT, AVALIACAO_DATA 
 sys.path.append(str(VALIDACAO_SCRIPT))
 
 # from RAG_Final_Refinado_Ollama_LinearV6ComExpansao import SpecialistTimeAwareRAG
