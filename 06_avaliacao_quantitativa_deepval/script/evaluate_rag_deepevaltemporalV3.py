@@ -8,7 +8,7 @@ from core.paths import VETORIZATION_DATA, VALIDACAO_SCRIPT, VALIDACAO_CONFIG, AV
 sys.path.append(str(VALIDACAO_SCRIPT))
 
 # from RAG_Final_Refinado_Ollama_LinearV6ComExpansao import SpecialistTimeAwareRAG
-from RAG_Final_Refinado_Ollama_LinearV7 import SpecialistTimeAwareRAG
+from RAG_Temporal_V8 import SpecialistTimeAwareRAG
 from dataset_avaliacaoV3 import TEST_SUITE
 from custom_evaluatorV2 import OllamaEvaluator
 

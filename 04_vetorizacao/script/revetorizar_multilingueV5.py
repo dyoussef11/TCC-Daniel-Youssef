@@ -8,7 +8,7 @@ from tqdm.asyncio import tqdm
 # --- CONFIGURAÇÃO DE CAMINHOS ---
 try:
     from core.paths import NER_DATA, VETORIZATION_DATA
-    # Pasta contendo os arquivos individuais por modelo (ex: NER_acer_predator.json)
+    
     DIR_ENTRADA = NER_DATA / 'Base_Conhecimento_Resumida'
     CAMINHO_SAIDA = VETORIZATION_DATA / 'base_conhecimento_multilingueV2.json'
 except ImportError:

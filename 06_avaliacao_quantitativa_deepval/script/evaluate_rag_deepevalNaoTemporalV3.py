@@ -16,7 +16,7 @@ from RAGNaoTemporal import VanillaRAG
 
 # from RAG_Final_Refinado_Ollama_LinearV5 import SpecialistTimeAwareRAG
 # from RAG_Final_Refinado_Ollama_LinearV6ComExpansao import SpecialistTimeAwareRAG
-from RAG_Final_Refinado_Ollama_LinearV7 import SpecialistTimeAwareRAG
+from RAG_Temporal_V8 import SpecialistTimeAwareRAG
 from custom_evaluatorV2 import OllamaEvaluator
 from dataset_avaliacaoV3 import TEST_SUITE
 from deepeval.test_case import LLMTestCase

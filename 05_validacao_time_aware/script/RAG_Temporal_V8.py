@@ -20,7 +20,7 @@ class SpecialistTimeAwareRAG:
     
     def __init__(self, json_path: Union[str, Path], variant_name: str = "V8_HYBRID_AUDITOR") -> None:
         self.dimension: int = 1024  # Dimensão do BGE-M3
-        self.caminho_prompts: Path = VALIDACAO_CONFIG / 'prompt_variants_alternativeHybridV3.json'
+        self.caminho_prompts: Path = VALIDACAO_CONFIG / 'prompt_rag_temporal_hybrid_V8.json'
         # [NOVO] Caminho para o dicionário de sinônimos
         self.caminho_sinonimos: Path = VALIDACAO_CONFIG / 'dictionary_synonyms_refined.json'
         self.variant_name = variant_name
@@ -57,28 +57,6 @@ class SpecialistTimeAwareRAG:
         with open(self.caminho_prompts, 'r', encoding='utf-8') as f:
             self.prompts = json.load(f)
 
-    # def _expandir_query_com_sinonimos(self, query: str) -> str:
-    #     """
-    #     [NOVO] Normaliza a query expandindo termos curtos ou apelidos para o SKU completo.
-    #     Isso evita que o Step 1 (SKU Verification) do V8 descarte o contexto.
-    #     """
-    #     query_norm = query.lower()
-    #     expansao = []
-        
-    #     for nome_canonico, apelidos in self.sinonimos.items():
-    #         for apelido in apelidos:
-    #             # Usa regex para garantir que combine a palavra inteira (evita 'g15' em 'g1555')
-    #             pattern = rf'\b{re.escape(apelido.lower())}\b'
-    #             if re.search(pattern, query_norm):
-    #                 expansao.append(nome_canonico)
-    #                 break # Encontrou um apelido, não precisa testar outros para este mesmo SKU
-        
-    #     if expansao:
-    #         query_expandida = f"{query} ({', '.join(expansao)})"
-    #         return query_expandida
-        
-    #     return query
-
     def _extrair_auditoria(self, full_response: str) -> Dict[str, str]:
         audit_match = re.search(r"AUDIT:(.*?)(?=ANSWER:|$)", full_response, re.DOTALL | re.IGNORECASE)
         answer_match = re.search(r"ANSWER:(.*)", full_response, re.DOTALL | re.IGNORECASE)
@@ -90,11 +68,7 @@ class SpecialistTimeAwareRAG:
 
     async def search(self, query: str, ref_date: str = "2026-03-23"):
         ref_dt = datetime.strptime(ref_date, "%Y-%m-%d")
-        
-        # # [NOVO] Aplicar Expansão de Sinônimos antes da busca
-        # query_processada = self._expandir_query_com_sinonimos(query)
 
-        # [NOVO] Aplicar Expansão de Sinônimos antes da busca
         query_processada = query
         
         # 1. Embedding da Query (usando a query expandida para melhor match vetorial)

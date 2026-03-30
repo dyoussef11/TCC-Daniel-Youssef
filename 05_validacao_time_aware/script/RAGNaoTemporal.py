@@ -3,7 +3,7 @@ import faiss
 import numpy as np
 import ollama
 import asyncio
-from RAG_Final_Refinado_Ollama_LinearV7 import SpecialistTimeAwareRAG
+from RAG_Temporal_V8 import SpecialistTimeAwareRAG
 
 class VanillaRAG(SpecialistTimeAwareRAG):
     """

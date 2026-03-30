@@ -51,13 +51,7 @@ A eficácia do sistema é validada por uma suíte de testes rigorosa:
 * **`TC_CONFLICT`:** Testa se o sistema prioriza o driver de 2026 sobre o de 2021.
 * **`TC_HYBRID`:** Confronta o conhecimento paramétrico (interno) do modelo com o dado recuperado, forçando o uso exclusivo do contexto [RAG].
 
----
 
-## ⚖️ Metodologia e Propriedade Intelectual
-
-Este projeto integra uma pesquisa voltada para a criação de sistemas de suporte técnico de alta fidelidade, priorizando a segurança informacional e a integridade de hardware. A arquitetura LinearV3 + SKU-Lock foi desenhada para reduzir em até 90% as alucinações de compatibilidade em notebooks de alto desempenho.
-
----
 
 ## 📂 Organização do Repositório
 
