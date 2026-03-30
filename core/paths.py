@@ -14,10 +14,11 @@ EXTRACAO = ROOT / "01_extracao_conversas"
 PREPROCESSAMENTO = ROOT / "02_preprocessamento"
 NER = ROOT / "03_ner_e_resumo"
 VETORIZATION = ROOT / "04_vetorizacao"
-VALIDACAO = ROOT / "05_validacao_time_aware"
+VALIDACAO = ROOT / "05_definicao_sistemas_rags"
+# VALIDACAO = ROOT / "05_validacao_time_aware"
 
 
-
+# 05_validacao_time_aware
 # ==========================================================
 # SUBPASTAS IMPORTANTES
 # ==========================================================

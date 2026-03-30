@@ -48,6 +48,11 @@ A etapa de extração requer credenciais da API do Reddit:
 3. Insira seu `client_id`, `client_secret` e `user_agent`.
 *Nota: Caso o arquivo não seja configurado, o sistema utilizará os logs pré-carregados na pasta de referência para fins de demonstração.*
 
+### 4. Descompactação da base de conhecimento (JSON)
+A etapa de descompactação requer:
+1. Navegue até `04_vetorizacao\data\base_conhecimento_multilingueV2.json.bz2`.
+2. Descompacte o arquivo `base_conhecimento_multilingueV2.json.bz2` para se tornar `base_conhecimento_multilingueV2.json` .
+
 ---
 
 ## 🚀 Pipeline de Processamento (6 Estágios)

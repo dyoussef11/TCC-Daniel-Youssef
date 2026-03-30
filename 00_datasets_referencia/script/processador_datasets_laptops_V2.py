@@ -162,7 +162,6 @@ if __name__ == "__main__":
     PATH_CONFIG = DATASET_CONFIG
     PATH_DADOS = DATASET_KAGGLE
     PATH_OUTPUT = DATASET_FINAL_CSV / "dataset_laptops_UNICOS_V3.csv"
-    # PATH_OUTPUT = DATASET_FINAL_CSV / "dataset_laptops_UNICOS_V2.csv"
 
     try:
         config = ConfiguracaoProcessamento.carregar(PATH_CONFIG / "hardware_rules.json")
