@@ -7,13 +7,11 @@ from pathlib import Path
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional
 
-
 from core.paths import ( 
     DATASET_CONFIG,
     DATASET_KAGGLE,
     DATASET_FINAL_CSV 
 )
-
 
 # --- CONFIGURAÇÃO DE LOGS ---
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -21,7 +19,6 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class ConfiguracaoProcessamento:
-    
     COLUNAS_PADRAO: List[str] = field(default_factory=list)
     PADROES_HARDWARE: Dict[str, str] = field(default_factory=dict)
     CATEGORIAS: Dict[str, List[str]] = field(default_factory=dict)
@@ -44,7 +41,9 @@ class LimpadorModelos:
         if not isinstance(texto, str) or texto.lower() == 'nan':
             return "modelo não identificado"
         
-        nome = texto.strip()
+        # Inicia a limpeza já em minúsculo
+        nome = texto.strip().lower()
+        
         # 1. Limpeza de termos genéricos
         for termo in self.termos_genericos:
             nome = re.sub(termo, '', nome, flags=re.IGNORECASE).strip()
@@ -57,7 +56,7 @@ class LimpadorModelos:
         # 3. Refinamento final
         nome = re.sub(r'[\s\-,/]+$', '', nome) 
         nome = re.sub(r'\s+', ' ', nome)      
-        return nome.strip()
+        return nome.strip().lower()
 
 class ProcessadorDatasetLaptops:
     def __init__(self, config: ConfiguracaoProcessamento, limpador: LimpadorModelos):
@@ -65,9 +64,9 @@ class ProcessadorDatasetLaptops:
         self.limpador = limpador
 
     def limpar_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Padroniza strings: remove espaços extras."""
+        """Padroniza strings: remove espaços extras e converte para minúsculo."""
         for col in df.select_dtypes(include=['object']).columns:
-            df[col] = df[col].astype(str).str.strip()
+            df[col] = df[col].astype(str).str.strip().str.lower()
         return df
 
     def extrair_regex(self, texto: str, chave: str) -> str:
@@ -80,9 +79,9 @@ class ProcessadorDatasetLaptops:
         return match.group(0).strip().lower() if match else "não identificado"
 
     def classificar_categoria(self, row: pd.Series) -> str:
-
         modelo = str(row.get('modelo_completo', '')).lower()
         gpu = str(row.get('gpu', '')).lower()
+        
         if any(kw.lower() in modelo for kw in self.config.CATEGORIAS.get('KEYWORDS_GAMER', [])) or 'rtx' in gpu or 'gtx' in gpu:
             return 'gamer'
         if any(kw.lower() in modelo for kw in self.config.CATEGORIAS.get('KEYWORDS_CREATOR', [])) or 'quadro' in gpu:
@@ -105,11 +104,13 @@ class ProcessadorDatasetLaptops:
             enc = 'latin1' if 'Unveiling' in caminho.name else 'utf-8'
             df = pd.read_csv(caminho, encoding=enc)
             
-            # 1. Renomear conforme mapeamento (copia dados diretos do CSV)
+            # 1. Renomear conforme mapeamento
             df = df.rename(columns={k: v.lower() for k, v in mapeamento.items()})
+            
+            # 2. Limpeza inicial e Lowercase Global
             df = self.limpar_dataframe(df)
 
-            # 2. Lógica "Plano B": Extração de Hardware
+            # 3. Lógica "Plano B": Extração de Hardware
             campos_hardware = {
                 'cpu': 'cpu', 'gpu': 'gpu', 'ram': 'ram', 
                 'storage': 'storage', 'tela': 'screen', 'ano_lancamento': 'ano'
@@ -119,7 +120,7 @@ class ProcessadorDatasetLaptops:
                 if col_df not in df.columns:
                     df[col_df] = "não identificado"
                 
-                # Só usa regex se a coluna estiver vazia ou "não identificado"
+                # Extração via Regex (garantindo lower)
                 df[col_df] = df.apply(
                     lambda row: self.extrair_regex(row['modelo_completo'], chave_regex) 
                     if str(row.get(col_df, "não identificado")).lower() in ["não identificado", "nan", "none", ""] 
@@ -127,27 +128,30 @@ class ProcessadorDatasetLaptops:
                     axis=1
                 )
 
-            # 3. Limpeza do Nome do Modelo
-            df['modelo_limpo'] = df['modelo_completo'].apply(self.limpador.extrair_modelo)
+            # 4. Limpeza do Nome do Modelo (Preserva SKUs e converte para lower)
+            df['modelo_limpo'] = df['modelo_completo'].apply(self.limpador.extrair_modelo).str.lower()
 
-            # 4. Filtro de Segurança (Remove acessórios)
+            # 5. Filtro de Segurança (Remove acessórios)
             df = df[~((df['cpu'] == "não identificado") & (df['ram'] == "não identificado"))]
             if df.empty: return None
 
-            # 5. Classificação e IDs
+            # 6. Classificação e IDs
             df['categoria'] = df.apply(self.classificar_categoria, axis=1)
             df['id_unico'] = df.apply(self.gerar_id_unico, axis=1)
 
-            # 6. Organização Final das Colunas (modelo_limpo à esquerda de modelo_completo)
+            # 7. Organização Final das Colunas
             colunas_ordenadas = []
             for col in self.config.COLUNAS_PADRAO:
                 if col == "modelo_completo":
                     colunas_ordenadas.append("modelo_limpo")
                 colunas_ordenadas.append(col)
             
-            # Preenche colunas padrão faltantes
+            # Preenche colunas padrão faltantes e garante lower final
             for col in colunas_ordenadas:
-                if col not in df.columns: df[col] = "não identificado"
+                if col not in df.columns: 
+                    df[col] = "não identificado"
+                else:
+                    df[col] = df[col].astype(str).str.lower()
                 
             return df[colunas_ordenadas + ['id_unico']]
 
@@ -158,12 +162,12 @@ class ProcessadorDatasetLaptops:
 # ==================== EXECUÇÃO PRINCIPAL ====================
 
 if __name__ == "__main__":
-    # print(ConfiguracaoProcessamento.__doc__)
     PATH_CONFIG = DATASET_CONFIG
     PATH_DADOS = DATASET_KAGGLE
     PATH_OUTPUT = DATASET_FINAL_CSV / "dataset_laptops_UNICOS_V3.csv"
 
     try:
+        # Carregamento de configurações
         config = ConfiguracaoProcessamento.carregar(PATH_CONFIG / "hardware_rules.json")
         limpador = LimpadorModelos(PATH_CONFIG / "models_rules.json")
         
@@ -173,24 +177,32 @@ if __name__ == "__main__":
         processador = ProcessadorDatasetLaptops(config, limpador)
         datasets_validados = []
 
+        # Loop de processamento por arquivo
         for item in mapeamentos_json:
             caminho_csv = PATH_DADOS / item["arquivo"]
             if caminho_csv.exists():
                 logger.info(f"Processando: {item['arquivo']}")
                 df_p = processador.processar_arquivo(caminho_csv, item["colunas"])
-                if df_p is not None: datasets_validados.append(df_p)
+                if df_p is not None: 
+                    datasets_validados.append(df_p)
 
+        # Consolidação e Remoção de Duplicatas
         if datasets_validados:
             df_final = pd.concat(datasets_validados, ignore_index=True)
             total_antes = len(df_final)
+            
+            # Drop duplicates baseado no ID Único gerado
             df_final = df_final.drop_duplicates(subset=['id_unico'], keep='first')
             
             PATH_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
             df_final.to_csv(PATH_OUTPUT, index=False)
+            
+            logger.info("=" * 50)
             logger.info(f"✅ Concluído! Dataset salvo em: {PATH_OUTPUT}")
-            logger.info(f"✅ Sucesso! Total: {total_antes} -> Únicos: {len(df_final)}")
+            logger.info(f"📊 Estatísticas: Total Bruto: {total_antes} | Únicos (Lower): {len(df_final)}")
+            logger.info("=" * 50)
         else:
             logger.error("Nenhum dado processado com sucesso.")
 
     except Exception as e:
-        logger.error(f"Erro fatal: {e}")
+        logger.error(f"Erro fatal no script: {e}")

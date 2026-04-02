@@ -9,6 +9,7 @@ from core.paths import (
     AVALIACAO_SCRIPT,
     DATASET_GAMER,
     DATASET_SCRIPTS,
+    DATASET_UTILS,
     EXTRACAO,
     EXTRACAO_SRC,
     NER_SCRIPT,
@@ -50,6 +51,12 @@ def etapa_dataset():
     # 2. Depois o Filtro Gamer (depende do Geral)
     run_script(
         script_path=DATASET_SCRIPTS / "gamer_laptop_filter_V2.py",
+        working_dir=DATASET_GAMER,
+        step_name="Criação de Dataset - Versão Gamer",
+    )
+    # 2. Elimina Duplicatas (depende do Geral)
+    run_script(
+        script_path=DATASET_UTILS / "eliminar_duplicatas_gamer.py",
         working_dir=DATASET_GAMER,
         step_name="Criação de Dataset - Versão Gamer",
     )
