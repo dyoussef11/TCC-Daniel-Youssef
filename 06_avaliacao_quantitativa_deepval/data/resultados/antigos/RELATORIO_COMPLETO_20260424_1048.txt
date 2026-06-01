@@ -1,0 +1,32 @@
+RELATÓRIO DE AVALIAÇÃO COMPLETA
+Data: 20260424_1048
+Base: C:\Users\Daniel Youssef\Documents\Backup\Notebook-Forum-Sentimento\04_vetorizacao\data\base_conhecimento_multilingueV7.json
+Avaliador: qwen3:4b-instruct
+================================================================================
+
+
+============================================================
+ID: TC_STATIC_01
+Test Type: traditional
+Query: What is the maximum RAM capacity for the Acer Nitro 5 AN515-56?
+Reference Date: 2026-03-12
+
+--- RESPOSTA ---
+The specific maximum RAM capacity for Acer Nitro 5 AN515-56 is not explicitly stated in the provided documentation. Generally, models within this series are known to support up to DDR4 memory configurations which can range from 8GB onboard and additional slots available for expansion. For precise information regarding your specific model (AN515-56), it's recommended to consult the official user manual or contact Acer directly as these details may vary between individual units due to potential variations in production batches.
+
+INFORMATION FOR ACER NITRO 5 AN515-56 IS NOT AVAILABLE IN THE DOCUMENTATION PROVIDED FOR THIS MODEL.
+
+--- AUDIT ---
+[[ID_1 | DATE: 2026-04-02], [ID_2 | DATE: 2026-04-02]]
+
+--- MÉTRICAS (DeepEval) ---
+C_Precision: 1.000
+  Reason: The score is 1.00 because the first node (rank 1) provides a direct and specific statement about a maximum RAM capacity of 32GB for the AN515-46 model, which is contextually consistent with the AN515-56 variant due to shared series specifications, and thus directly supports the expected output. The 
+C_Relevancia: 0.077
+  Reason: The score is 0.08 because the retrieval context fails to specify the maximum RAM capacity for the Acer Nitro 5 AN515-56 model. The only relevant statement mentions the AN515-46 model, not the AN515-56, and references a recommendation to upgrade to 32GB of RAM, which is a suggested capacity, not a co
+C_Recall: 0.000
+  Reason: The score is 0.00 because the expected output references the Acer Nitro 5 AN515-56 model and its 32GB DDR4 3200MHz RAM specification, but no node in retrieval context mentions AN515-56 specifically. The closest models referenced are AN515-46, AN515-45, and AN515-58, all of which differ in SKU and ar
+Faithfulness: 0.833
+  Reason: The score is 0.83 because the retrieval context does not mention the Acer Nitro 5 AN515-56 at all, only covering AN515-46, AN515-58, and AN515-58-54UH. Any claim about AN515-56 is unsupported and unverifiable, meaning the original assertion of 'yes' regarding its documentation is incorrect. The corr
+Answer_Rel: 0.833
+  Reason: The score is 0.83 because the output contains a factually incorrect and irrelevant statement claiming that information for the Acer Nitro 5 AN515-56 is not available in documentation, which directly contradicts publicly available technical specifications showing support for up to 32GB of RAM via DDR

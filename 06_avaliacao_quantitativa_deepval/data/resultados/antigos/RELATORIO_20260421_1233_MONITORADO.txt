@@ -1,0 +1,29 @@
+RELATÓRIO DE AVALIAÇÃO RAG
+Data: 20260421_1233
+Base: C:\Users\Daniel Youssef\Documents\Backup\Notebook-Forum-Sentimento\04_vetorizacao\data\base_conhecimento_multilingueV6_OTIMIZADO.json
+Avaliador: qwen3:4b-instruct
+======================================================================
+
+============================================================
+ID: TC_STATIC_01 | Query: What is the maximum RAM capacity for the Acer Nitro 5 AN515-56?
+GPU: 60°C
+
+C_Precision:
+  V1: 1.000 | The score is 1.00 because the first node (rank 1) has a 'yes' verdict with the reason "The context states 'SOLUTIONS: - Upgrade to 32GB of RAM', which directly supports the maximum RAM capacity of 32GB, even though it does not specify the model or RAM type. This is remotely useful in establishing a numerical capacity value for RAM, aligning with the expected output's claim of 32GB." — this is the only node that provides a specific, numerical maximum RAM capacity, and it is ranked first. All subs
+  V8: 1.000 | The score is 1.00 because the first node (rank 1) has a 'yes' verdict with the reason 'The context states 'SOLUTIONS: - Upgrade to 32GB of RAM', which directly supports the maximum RAM capacity of 32GB, even though it does not specify the model or RAM type. This provides a relevant clue about capacity, though not fully precise to the AN515-56 model.' This node is relevant and ranks first, as it contains a specific capacity value. All subsequent nodes with 'no' verdicts either lack explicit capac
+
+C_Relevancia:
+  V1: 0.118 | The score is 0.12 because the retrieval context contains no statement that specifies the maximum RAM capacity for the Acer Nitro 5 AN515-56 model. The relevant statement about the AN515-46 model mentions a solution to upgrade to 32GB of RAM, but this refers to a different model (AN515-46), not the AN515-56 as specified in the input. Similarly, the statement about the AN515-58 model discusses RAM upgrade options and advises checking manufacturer specifications, but it does not state the maximum R
+  V8: 0.133 | The score is 0.13 because the retrieval context contains no statement that directly specifies the maximum RAM capacity for the Acer Nitro 5 AN515-56 model. The relevant statement about the AN515-46 model ('Upgrade to 32GB of RAM') and the AN515-58 model ('check manufacturer specifications for maximum supported RAM') refer to different models (AN515-46 and AN515-58), not the AN515-56 as specified in the input. The model mismatches in the reasons for irrelevancy—such as references to AN515-45, AN5
+
+C_Recall:
+  V1: 0.000 | The score is 0.00 because the expected output claims specific RAM specifications—32GB DDR4 3200MHz across two SO-DIMM slots—for the Acer Nitro 5 AN515-56, but no node in retrieval context addresses this exact configuration. The first node references AN515-46, not AN515-56, and only suggests upgrading to 32GB without specifying RAM type or speed. Nodes 2, 3, and 4 reference different models (AN515-45, AN515-58) and do not mention DDR4 3200MHz, SO-DIMM slot count, or capacity limits for AN515-56. 
+  V8: 0.000 | The score is 0.00 because the expected output claims specific RAM specifications—32GB DDR4 3200MHz across two SO-DIMM slots—for the Acer Nitro 5 AN515-56, but no node in the retrieval context (1st to 5th) provides any information about DDR4 3200MHz or SO-DIMM slot configuration for this exact model. The only related model discussed (AN515-58) does not match the AN515-56, and no evidence supports the RAM spec or slot configuration stated in the output.
+
+Faithfulness:
+  V1: 0.800 | The score is 0.80 because the retrieval context does not mention the Acer Nitro 5 AN515-56 at all, and there is no information about its maximum RAM capacity. The actual output claims to rely on 'similar models and general knowledge' to infer performance capabilities, which is not supported by the retrieval context. This reliance on external general knowledge constitutes a contradiction to the requirement of using only facts from the retrieval context. While the absence of mention is faithful, t
+  V8: 1.000 | The faithfulness score is 1.00 because there are no contradictions between the actual output and the retrieval context, as the contradiction list is empty. This indicates perfect alignment with the provided evidence.
+
+Answer_Rel:
+  V1: 0.833 | The score is 0.83 because the output discusses general RAM capacity ranges for performance laptops, which is overly broad and fails to specify the maximum RAM capacity for the exact model, Acer Nitro 5 AN515-56. This lack of model-specific detail directly undermines relevance. The score is not higher because the response does not provide a precise, verifiable figure for the AN515-56's maximum RAM capacity, which is the core query. While it touches on general performance laptop RAM, this does not
+  V8: 1.000 | The score is 1.00 because the output directly and accurately answers the input question about the maximum RAM capacity of the Acer Nitro 5 AN515-56, providing a specific and relevant specification without any irrelevant statements. There are no irrelevant statements in the output, and the information aligns precisely with the query. The response is fully faithful to the input, as no extraneous details or off-topic content are present. Given that the answer is both complete and contextually preci

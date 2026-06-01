@@ -1,0 +1,50 @@
+Product,Processor,Ram,Memory,OS ,Size,Price,modelo_completo_limpo
+MSI Stealth GS77 12UHS-226IN,12th Gen Core i9,32?GB DDR5 RAM,2?TB SSD,Windows 11 OS,17.3?inches,"3,00,990",msi_stealth_gs77_12uhs_226in
+MSI Titan GT77 HX 13VI-092IN,13th Gen Intel Core i9 13980HX,64?GB DDR5 RAM,4?TB SSD,Windows 11 OS,17.3?inches,"5,99,990",msi_titan_gt77_hx_13vi_092in
+Acer Predator Helios 500 Ph517-52,11th Gen Intel Core i9 11980HK,64?GB DDR4 RAM,2?TB SSD,Windows 10 OS,17.3?inches,"4,42,605",acer_predator_helios_500_ph517_52
+MSI Titan GT77 HX 13VH-093IN,13th Gen Intel Core i9 13980HX,64?GB DDR5 RAM,2?TB SSD,Windows 11 OS,17.3?inches,"4,89,990",msi_titan_gt77_hx_13vh_093in
+MSI Stealth GS66 12UGS-290IN,12th Gen Intel Core i7 12700H,32?GB DDR5 RAM,1?TB SSD,Windows 11 OS,15.6?inches,"1,95,990",msi_stealth_gs66_12ugs_290in
+MSI GT77 Titan 12UHS-054IN,12th Gen Intel Core i9 12900HX,64?GB DDR5 RAM,2?TB SSD,Windows 11 OS,17.3?inches,"4,99,990",msi_gt77_titan_12uhs_054in
+Asus ROG Zephyrus Duo 16,7th Gen AMD Ryzen 9 7945HX,32?GB DDR5 RAM,2?TB SSD,Windows 11 OS,16?inches,"4,29,990",asus_rog_zephyrus_duo_16
+MSI Gaming Raider GE66 12UHS-218IN,12th Gen Intel Core i7 12700H,32?GB DDR5 RAM,2?TB SSD,Windows 11 OS,17.3?inches,"4,10,990",msi_gaming_raider_ge66_12uhs_218in
+Asus ROG Zephyrus Duo 16 (2023),7th Gen AMD Ryzen 9 7945HX,32?GB DDR5 RAM,2?TB SSD,Windows 11 OS,16?inches,"3,79,990",asus_rog_zephyrus_duo_16_2023
+MSI Creator Z16P B12UMST-211IN,12th Gen Intel Core i9 12900H,64?GB DDR5 RAM,2?TB SSD,Windows 11 OS,16?inches,"4,85,990",msi_creator_z16p_b12umst_211in
+Dell XPS 9720,12th Gen Intel Core i7 12700H,16?GB DDR5 RAM,1?TB SSD,Windows 11 OS,17?inches,"2,72,490",dell_xps_9720
+Asus ROG Zephyrus Duo 16 2022,6th Gen AMD Ryzen 9 6900HX,32?GB DDR5 RAM,2?TB SSD,Windows 11 OS,16?inches,"3,98,589",asus_rog_zephyrus_duo_16_2022
+Dell Alienware X17 R2 D569943WIN9,12th Gen Intel Core i7 12700H,32?GB LPDDR5 RAM,1?TB SSD,Windows 11 OS,17.3?inches,"3,00,490",dell_alienware_x17_r2_d569943win9
+Lenovo Legion 5 Pro 82RF00E1IN,12th Gen Intel Core i7 12700H,32?GB DDR5 RAM,1?TB SSD,Windows 11 OS,16?inches,"2,17,001",lenovo_legion_5_pro_82rf00e1in
+HP Omen 17-ck1023TX,12th Gen Intel Core i9 12900HX,32?GB DDR5 RAM,2?TB SSD,Windows 11 OS,17.3?inches,"2,96,000",hp_omen_17_ck1023tx
+Asus ROG Zephyrus Duo 16 2022 GX650RXZ-LO227WS,6th Gen AMD Ryzen 9 6900HX,32?GB DDR5 RAM,2?TB SSD,Windows 11 OS,16?inches,"3,91,990",asus_rog_zephyrus_duo_16_2022_gx650rxz_lo227ws
+Asus ROG Zephyrus Duo 16 2022 GX650RXZ-LS228WS,6th Gen AMD Ryzen 9 6900HX,32?GB DDR5 RAM,2?TB SSD,Windows 11 OS,16?inches,"3,61,990",asus_rog_zephyrus_duo_16_2022_gx650rxz_ls228ws
+Asus ZenBook Pro Duo 15 OLED 2022 UX582ZM-H701WS,12th Gen Intel Core i7 12700H,32?GB DDR4 RAM,1?TB SSD,Windows 11 OS,15.6?inches,"1,99,990",asus_zenbook_pro_duo_15_oled_2022_ux582zm_h701ws
+Asus ROG Flow X13 GV301QH-K5459TS,5th Gen AMD Ryzen 9 5980HS,32?GB LPDDR4X RAM,1?TB SSD,Windows 11 OS,13.4?inches,"1,99,991",asus_rog_flow_x13_gv301qh_k5459ts
+Asus UX581LV-H2035T,10th Gen Intel Core i9 10980HK,32?GB DDR4 RAM,1?TB SSD,Windows 10 OS,15.6?inches,"1,61,990",asus_ux581lv_h2035t
+Asus UX581LV-H2035T,10th Gen Intel Core i9 10980HK,32?GB DDR4 RAM,1?TB SSD,Windows 10 OS,15.6?inches,"1,61,990",asus_ux581lv_h2035t
+Asus ROG Zephyrus G14 2023 GA402XV-N2034WS,7th Gen AMD Ryzen 9 7940HS,32?GB DDR5 RAM,1?TB SSD,Windows 11 OS,14?inches,"1,99,990",asus_rog_zephyrus_g14_2023_ga402xv_n2034ws
+Asus ROG Zephyrus G14 2023 GA402XZ-N2020WS,7th Gen AMD Ryzen 9 7940HS,32?GB DDR5 RAM,1?TB SSD,Windows 11 OS,14?inches,"2,66,990",asus_rog_zephyrus_g14_2023_ga402xz_n2020ws
+Asus ROG Strix SCAR 16 2023 G634JY-NM054WS,13th Gen Intel Core i9 13980HX,32?GB DDR5 RAM,1?TB SSD,Windows 11 OS,16?inches,"3,39,990",asus_rog_strix_scar_16_2023_g634jy_nm054ws
+Asus Vivobook Pro 16X OLED N7601ZM-MQ931WS,12th Gen Intel Core i9 12900H,32?GB DDR5 RAM,1?TB SSD,Windows 11 OS,16?inches,"1,85,000",asus_vivobook_pro_16x_oled_n7601zm_mq931ws
+Dell XPS 9720,12th Gen Intel Core i9 12900HK,32?GB DDR5 RAM,1?TB SSD,Windows 11 OS,17?inches,"3,81,216",dell_xps_9720
+MSI Creator Z16P B12UKST-210IN,12th Gen Intel Core i7 12700H,32?GB DDR5 RAM,1?TB SSD,Windows 11 OS,16?inches,"3,35,990",msi_creator_z16p_b12ukst_210in
+Asus ROG Strix Scar 15 G533ZXZ-LN116WS,12th Gen Intel Core i9 12900H,32?GB DDR5 RAM,1?TB SSD,Windows 11 OS,15.6?inches,"2,74,990",asus_rog_strix_scar_15_g533zxz_ln116ws
+Asus ROG Zephyrus G14 2022 GA402RK-L8148WS,6th Gen AMD Ryzen 9 6900HS?,32?GB DDR5 RAM,1?TB SSD,Windows 11 OS,14?inches,"1,76,990",asus_rog_zephyrus_g14_2022_ga402rk_l8148ws
+Acer Predator Triton 500 SE PT516-52s NH.QFQSI.001,12th Gen Intel Core i7 12700H,32?GB DDR5 RAM,2?TB SSD,Windows 11 OS,16?inches,"2,24,990",acer_predator_triton_500_se_pt516_52s_nh.qfqsi.001
+Asus ROG Zephyrus S15 GX502LXS-HF081T,10th Gen Intel Core i7 10875H,32?GB DDR4 RAM,1?TB SSD,Windows 10 OS,15.6?inches,"2,34,990",asus_rog_zephyrus_s15_gx502lxs_hf081t
+Asus ROG Strix G17 2023 G713PU-LL060WS,7th Gen AMD Ryzen 9 7845HX,16?GB DDR5 RAM,1?TB SSD,Windows 11 OS,17.3?inches,"1,59,990",asus_rog_strix_g17_2023_g713pu_ll060ws
+Asus ROG Zephyrus G16 2023 GU603VV-N4044WS,13th Gen Intel Core i9 13900H,16?GB DDR4 RAM,1?TB SSD,Windows 11 OS,16?inches,"1,79,990",asus_rog_zephyrus_g16_2023_gu603vv_n4044ws
+Asus ROG Strix Scar 17 2023 G733PZ-LL046WS,7th Gen AMD Ryzen 9 7945HX,16?GB DDR4 RAM,1?TB SSD,Windows 11 OS,17.3?inches,"2,69,990",asus_rog_strix_scar_17_2023_g733pz_ll046ws
+MSI Raider GE77HX 12UHS-205IN,12th Gen Intel Core i9 12900HX,32?GB DDR5 RAM,2?TB SSD,Windows 11 OS,17.3?inches,"2,99,990",msi_raider_ge77hx_12uhs_205in
+Razer Blade 15 Advanced Gaming Laptop,10th Gen Intel Core i7-10875H,32?GB DDR5 RAM,2?TB SSD,Windows 11 OS,15.6 inches,"4,16,442",razer_blade_15_advanced_gaming_laptop
+HP Victus 16-d0333TX,11th Gen Intel Core i5 11400H,16?GB DDR4 RAM,512?GB SSD,Windows 11 OS,16.1?inches,"58,990",hp_victus_16_d0333tx
+Asus Vivobook 16X 2022 M1603QA-MB502WS,5th Gen AMD Ryzen 5 5600H,8?GB DDR4 RAM,512?GB SSD,Windows 11 OS,16.1?inches,"49,490",asus_vivobook_16x_2022_m1603qa_mb502ws
+Asus Vivobook 16X 2023 K3605VC-MB951WS,13th Gen Intel Core i9 13900H,16?GB DDR4 RAM,1?TB SSD,Windows 11 OS,16?inches,"1,09,990",asus_vivobook_16x_2023_k3605vc_mb951ws
+HP Victus 15-fb0106AX,5th Gen AMD Ryzen 5 5600H,16?GB DDR4 RAM,512?GB SSD,Windows 11 OS,15.6?inches,"64,990",hp_victus_15_fb0106ax
+Asus TUF Gaming A15 FA506IHRZ-HN111W ,4th Gen AMD Ryzen 5 4600H,8?GB DDR4 RAM,512?GB SSD,Windows 11 OS,15.6?inches,"49,990",asus_tuf_gaming_a15_fa506ihrz_hn111w
+HP Victus 15-fb0121AX,5th Gen AMD Ryzen 5 5600H,8?GB DDR4 RAM,512?GB SSD,Windows 11 OS,15.6?inches,"54,990",hp_victus_15_fb0121ax
+Lenovo IdeaPad Gaming 3 15IHU6 82K101B6IN,11th Gen Intel Core i5 11320H,8?GB DDR4 RAM,512?GB SSD,Windows 11 OS,15.6?inches,"49,990",lenovo_ideapad_gaming_3_15ihu6_82k101b6in
+Asus TUF Gaming A15 2022 FA577RE-HN055WS,6th Gen AMD Ryzen 7 6800H,16?GB DDR5 RAM,512?GB SSD,Windows 11 OS,15.6?inches,"81,990",asus_tuf_gaming_a15_2022_fa577re_hn055ws
+Asus ROG Flow Z13-ACRNM RMT02 GZ301VIC-MU004WS,13th Gen Intel Core i9 13900H,32?GB LPDDR5 RAM,1?TB SSD,Windows 11 OS,13.4?inches,"2,84,990",asus_rog_flow_z13_acrnm_rmt02_gz301vic_mu004ws
+Lenovo V15 G3 IAP,12th Gen Intel Core i3 1215U,8?GB DDR4 RAM,512?GB SSD,Windows 11 OS,15.6?inches,"39,999",lenovo_v15_g3_iap
+HP Victus 16-d0302TX,11th Gen Intel Core i5 11400H,8?GB DDR4 RAM,512?GB SSD,Windows 11 OS,16.1?inches,"64,899",hp_victus_16_d0302tx
+HP Victus 15-fa1066TX,13th Gen Intel Core i7 13700H,16?GB DDR4 RAM,512?GB SSD,Windows 11 OS,15.6?inches,"1,12,990",hp_victus_15_fa1066tx
+Lenovo Legion 5 82RB00K8IN,12th Gen Intel Core i7 12700H,16?GB DDR5 RAM,512?GB SSD,Windows 11 OS,15.6?inches,"1,19,990",lenovo_legion_5_82rb00k8in

@@ -1,0 +1,38 @@
+{
+    "reddit_params": {
+        "limit_posts_per_keyword": 1000,
+        "subreddits": "all",
+        "search_groups": {
+            
+            "performance": ["fps drop", "stuttering", "bottleneck", "benchmarks", "low performance",
+                            "lag", "frame drop", "frame rate", "low fps", "poor performance",
+                            "slow", "sluggish", "choppy", "stutter", "underperform",
+                            "power limit", "tdp", "wattage", "clock speed", "utilization"],
+
+            "thermal": ["overheating", "thermal throttling", "undervolt", "repaste", "fan noise",
+                        "hot", "temperature", "throttle", "thermal", "heat", "cooling",
+                        "fan", "loud", "high temp", "thermal paste", "cpu temp", "gpu temp",
+                        "degrees", "celsius", "fahrenheit", "hotspot", "prochot"],
+
+            "energy": ["battery drain", "battery health", "not charging", "cycle count",
+                    "battery life", "poor battery", "battery issue", "power adapter",
+                    "charger", "power brick", "battery problem", "battery wear",
+                    "battery", "charge", "discharge", "power draw", "watt"],
+
+            "display": ["backlight bleed", "flickering", "ips glow", "dead pixels",
+                    "screen issue", "display problem", "pixel", "bleed", "backlight",
+                    "screen flicker", "monitor issue", "panel", "screen tear",
+                    "screen", "display", "monitor", "color accuracy", "brightness"],
+
+            "stability": ["bsod", "system freeze", "driver crash", "blue screen", "bootloop",
+                    "crash", "freeze", "freezing", "hang", "unstable", "lock up",
+                    "reboot", "restart", "shutdown", "black screen", "no post",
+                    "bios", "boot", "startup", "wake", "sleep", "hibernate"]
+        },
+        "user_agent": "LaptopSentimentBot/1.0"
+    },
+    "paths": {
+        "input_csv": "../00_datasets_referencia/dataset_final_csv/dataset_laptops_GAMER_ONLY.csv",
+        "output_bruto": "data/bruto/"
+    }
+}

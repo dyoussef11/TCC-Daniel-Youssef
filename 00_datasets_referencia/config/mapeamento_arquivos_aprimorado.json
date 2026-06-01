@@ -15,7 +15,7 @@
       "arquivo": "Brand-Wise Laptop Price Dataset.csv",
       "colunas": {
         "Company": "marca",
-        "Product": "modelo_completo",
+        "modelo_completo": ["Company", "Product", "TypeName"],
         "CPU_model": "cpu",
         "Ram": "ram",
         "PrimaryStorage": "storage",
@@ -25,15 +25,14 @@
     {
       "arquivo": "Gamming Laptop - Flipkart.csv",
       "colunas": {
-        "Laptop Name": "modelo_completo",
-        "sizes": "tela"
+        "Laptop Name": "modelo_completo"
       }
     },
-    {
+    { 
       "arquivo": "Laptop Price Estimation Using Feature Scaling.csv",
       "colunas": {
         "Company": "marca",
-        "Product": "modelo_completo",
+        "modelo_completo": ["Company", "Product"],
         "Cpu": "cpu",
         "Ram": "ram",
         "Gpu": "gpu",
@@ -44,7 +43,7 @@
       "arquivo": "Laptop Prices and Specifications Dataset.csv",
       "colunas": {
         "Brand:": "marca",
-        "Product name": "modelo_completo",
+        "modelo_completo": ["Brand:", "Product name"],
         "Processor": "cpu",
         "Video graphics": "gpu",
         "RAM": "ram",
@@ -68,7 +67,7 @@
       "arquivo": "Laptops Dataset - Predicting laptop prices based on specifications.csv",
       "colunas": {
         "brand": "marca",
-        "model_name": "modelo_completo",
+        "modelo_completo": ["brand", "model_name"],
         "processor_name": "cpu",
         "ram(GB)": "ram",
         "ssd(GB)": "storage",
@@ -91,7 +90,7 @@
       "arquivo": "Modern Laptop Prices and Specifications.csv",
       "colunas": {
         "Brand": "marca",
-        "Model": "modelo_completo",
+        "modelo_completo": ["Brand", "Model", "Category"],
         "CPU": "cpu",
         "RAM_GB": "ram",
         "Storage_GB": "storage",

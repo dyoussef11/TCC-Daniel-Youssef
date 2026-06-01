@@ -1,0 +1,353 @@
+RELATÓRIO DE AVALIAÇÃO RAG
+Data: 20260422_0104
+Base: C:\Users\Daniel Youssef\Documents\Backup\Notebook-Forum-Sentimento\04_vetorizacao\data\base_conhecimento_multilingueV6_OTIMIZADO.json
+Avaliador: qwen3:4b-instruct
+======================================================================
+
+============================================================
+ID: TC_STATIC_01 | Query: What is the maximum RAM capacity for the Acer Nitro 5 AN515-56?
+GPU: 67°C
+
+C_Precision:
+  V1: 1.000 | The score is 1.00 because the first node (rank 1) has a 'yes' verdict with the reason "The context states 'SOLUTIONS: - Upgrade to 32GB of RAM', which directly supports the maximum RAM capacity of 32GB, even though it does not specify the model or RAM type. This provides a relevant clue about capacity, though not fully precise to the AN515-56 model." — this is the only node that explicitly states a maximum RAM capacity value, and it is ranked first. All subsequent 'no' verdicts either lack speci
+  V8: 1.000 | The score is 1.00 because the first node (rank 1) has a 'yes' verdict with the reason "The context states 'SOLUTIONS: - Upgrade to 32GB of RAM', which directly supports the maximum RAM capacity of 32GB, even though it does not specify the model or RAM type. This provides a relevant clue about capacity, though not fully precise to the AN515-56 model." — this is the only node that explicitly states a maximum RAM capacity value, and it is ranked first. All subsequent 'no' verdicts either lack speci
+
+C_Relevancia:
+  V1: 0.118 | The score is 0.12 because the retrieval context contains no statement that specifies the maximum RAM capacity for the Acer Nitro 5 AN515-56 model. The only relevant statement mentions the AN515-46 model with a recommendation to upgrade to 32GB RAM, and another references the AN515-58 model with advice to check manufacturer specifications, neither of which pertains to the AN515-56. The reasons for irrelevancy explicitly state that all statements reference models (AN515-45, AN515-58, AN515-46) tha
+  V8: 0.118 | The score is 0.12 because the retrieval context contains no statement that explicitly specifies the maximum RAM capacity for the Acer Nitro 5 AN515-56 model. The relevant statement about the AN515-46 model mentions a recommendation to upgrade to 32GB of RAM, but this is not tied to the AN515-56 and refers to a different model. Similarly, the AN515-58 statement discusses RAM upgrade prioritization and advises checking manufacturer specifications, but does not state a maximum capacity for the AN51
+
+C_Recall:
+  V1: 0.000 | The score is 0.00 because the expected output claims specific RAM specifications—32GB DDR4 3200MHz across two SO-DIMM slots—for the Acer Nitro 5 AN515-56, but no node in the retrieval context (1st to 5th) mentions DDR4 3200MHz, SO-DIMM slot configuration, or maximum RAM capacity for this exact model. The only related model discussed (AN515-58) does not match the AN515-56 and lacks any specification on RAM speed or slot count, making the claim unsupported by any retrieval node.
+  V8: 0.000 | The score is 0.00 because the expected output claims specific RAM specifications—32GB DDR4 3200MHz across two SO-DIMM slots—for the Acer Nitro 5 AN515-56, but no node in the retrieval context (1st to 5th) mentions DDR4 3200MHz, SO-DIMM slot configuration, or maximum RAM capacity for this exact model. The only related model discussed (AN515-58) does not match the AN515-56 and lacks any specification on RAM speed or slot count, making the claim unsupported by any retrieval node.
+
+Faithfulness:
+  V1: 0.714 | The score is 0.71 because the retrieval context does not mention the Acer Nitro 5 AN515-56 at all, and thus provides no information about its maximum RAM capacity or any specific configuration. While the actual output claims to reference the AN515-56's RAM options, this is not supported by the context, and the absence of any mention means the claim lacks factual grounding. However, the contradiction is not a direct factual error in the output, as the output correctly states the context lacks dat
+  V8: 0.500 | The faithfulness score is 0.50 because the retrieval context does not mention the Acer Nitro 5 AN515-56 at all, and thus provides no information about its maximum RAM capacity. The actual output claims specific details about this model's RAM, which are not present in the context. This creates a contradiction: the output asserts information that the context does not contain. Since the context lacks any mention of the model, the claim about its RAM capacity is not supported, making the output unfa
+
+Answer_Rel:
+  V1: 0.375 | The score is 0.38 because the output fails to address the specific maximum RAM capacity of the Acer Nitro 5 AN515-56, instead discussing general RAM ranges, unrelated models (AN515-58), and upgrade priorities. These statements are irrelevant to the query and do not provide any accurate or direct information about the AN515-56's maximum RAM. The absence of any specific capacity value or model-specific data for AN515-56, combined with references to incorrect or unrelated models, prevents a higher 
+  V8: 1.000 | The score is 1.00 because there are no irrelevant statements in the actual output, and the answer directly addresses the input question about the maximum RAM capacity of the Acer Nitro 5 AN515-56. The response is faithful to the input, as it provides a specific, accurate specification without introducing off-topic details. No temporal or model-specific conflicts exist between 2024 internal knowledge and 2025/2026 evidence, as the AN515-56 is a well-documented model with publicly available RAM ca
+
+============================================================
+ID: TC_STATIC_02 | Query: How many M.2 SSD slots does the Acer Nitro 5 AN515-56 have?
+GPU: 67°C
+
+C_Precision:
+  V1: 1.000 | The score is 1.00 because the first node (rank 1) with verdict 'yes' directly addresses the query by stating the presence of two M.2 slots in the Acer Nitro 5 AN515-51, which is relevant to the AN515-56 model due to shared series specifications. All subsequent nodes (ranks 2 to 5) have 'no' verdicts that either discuss unrelated issues (like gaming lag or NVMe blocking SATA ports) or fail to mention M.2 slot count at all. The 'no' verdicts in nodes 2, 3, 4, and 5 do not provide any information a
+  V8: 1.000 | The score is 1.00 because the first node (rank 1) with verdict 'yes' directly addresses the query by stating the presence of two M.2 slots in the Acer Nitro 5 AN515-51, which is relevant to the AN515-56 model due to shared series specifications. All subsequent nodes (ranks 2 to 5) have 'no' verdicts that either discuss unrelated issues (like gaming lag or NVMe blocking SATA ports) or fail to mention M.2 slot count at all. The 'no' verdicts in nodes 2, 3, 4, and 5 do not provide any information a
+
+C_Relevancia:
+  V1: 0.091 | The score is 0.09 because the retrieval context mentions 'two M.2 slots' only for the Acer Nitro 5 AN515-51, not the AN515-56 as queried, and the model mismatch (AN515-51 vs AN515-56) renders the statement irrelevant. The reasons for irrelevancy explicitly state that no information about M.2 SSD slot count exists for the AN515-56, and the context does not specify any slot count for the input model. The relevant statement about 'two M.2 slots' is tied to a different model (AN515-51), and the retr
+  V8: 0.200 | The score is 0.20 because the retrieval context mentions 'two M.2 slots' in relation to the Acer Nitro 5 AN515-51, but the input queries the Acer Nitro 5 AN515-56, which is a different model variant. The context does not specify any M.2 slot count for the AN515-56, and the statement about 'two M.2 slots' is tied to a different model (AN515-51), not the AN515-56. Additionally, the reasons for irrelevancy explicitly state that the context contains no information about the number of M.2 SSD slots f
+
+C_Recall:
+  V1: 1.000 | The score is 1.00 because the expected output sentence correctly reflects the storage configuration described in the 1st node of retrieval context, which explicitly mentions verifying two M.2 slots and one 2.5" drive bay, directly aligning with the stated feature in the expected output.
+  V8: 1.000 | The score is 1.00 because the expected output sentence correctly reflects the storage configuration described in the 1st node of retrieval context, which explicitly mentions verifying two M.2 slots and one 2.5" drive bay, directly aligning with the stated feature in the expected output.
+
+Faithfulness:
+  V1: 0.333 | The score is 0.33 because the retrieval context does not mention the Acer Nitro 5 AN515-56 model or its M.2 slots, making the absence of such information accurate and thus faithful in that aspect. However, the claim incorrectly infers that models AN515-57 and AN515-58 support one M.2 slot and a SATA-2.5" bay based on general knowledge, which is not supported by the retrieval context. The context only discusses compatibility issues with NVMe and SATA drives, not the physical presence or number of
+  V8: 0.500 | The score is 0.50 because the actual output claims two M.2 SSD slots for the Acer Nitro 5 AN515-56, but the retrieval context contains no mention of this model or any M.2 slots. This claim is factually incorrect and directly contradicts the absence of evidence in the context. The lack of any supporting information in the retrieval context renders the statement unfaithful, yet the score is not zero because the output may have been interpreted from a general assumption about M.2 slots in gaming la
+
+Answer_Rel:
+  V1: 0.333 | The score is 0.33 because the actual output fails to directly answer the specific query about the number of M.2 SSD slots in the Acer Nitro 5 AN515-56. Instead, it introduces irrelevant details such as storage compatibility, SATA bay mentions, and recommendations to consult user manuals, none of which provide the exact count of M.2 slots. These statements do not address the core question and are thus unfaithful to the input. The score cannot be higher because the output lacks any factual or dire
+  V8: 1.000 | The score is 1.00 because the output directly and accurately answers the input question about the number of M.2 SSD slots on the Acer Nitro 5 AN515-56, with no irrelevant statements present. The response is fully aligned with the query and provides a precise hardware specification without introducing off-topic details. There is no conflict between 2024 internal knowledge and 2025/2026 evidence, as the AN515-56 model's known configuration is consistent across sources. Thus, the score is at its ma
+
+============================================================
+ID: TC_TEMPORAL_01 | Query: Can I run the new RTX 5060 Ti drivers on my Acer Nitro 5 AN515-56?
+GPU: 67°C
+
+C_Precision:
+  V1: 0.000 | The score is 0.00 because all five nodes in the retrieval contexts have 'no' verdicts, and none of the nodes address the RTX 5060 Ti or the Acer Nitro 5 AN515-56 model. The first node explicitly states it discusses RTX 3070 Ti and RTX 4060, which are not relevant to the query about an RTX 5060 Ti. The third node references AN515-57 with an RTX 3060, which is a different model and GPU, and does not mention driver compatibility or the RTX 5060 Ti. The fourth and fifth nodes discuss model selection
+  V8: 0.000 | The score is 0.00 because all five nodes in the retrieval contexts have 'no' verdicts, and none of the nodes address the RTX 5060 Ti or the Acer Nitro 5 AN515-56 model. The first node explicitly states it discusses RTX 3070 Ti and RTX 4060, which are not relevant to the query about an RTX 5060 Ti. The third node references AN515-57 with an RTX 3060, which is a different model and GPU, and does not mention driver compatibility or the RTX 5060 Ti. The fourth and fifth nodes discuss model selection
+
+C_Relevancia:
+  V1: 0.000 | The score is 0.00 because the retrieval context mentions RTX 3060/3070 GPUs and Acer Nitro 5 AN515-58 models, which are unrelated to the RTX 5060 Ti—a future GPU not available as of 2024—and the input specifically queries about running RTX 5060 Ti drivers on the Acer Nitro 5 AN515-56. The context contains no information about RTX 5060 Ti drivers, driver compatibility, or support for such a non-existent GPU, and the model SKU (AN515-58 vs AN515-56) is mismatched. As all reasons for irrelevancy ex
+  V8: 0.000 | The score is 0.00 because the retrieval context mentions RTX 3060/3070 GPUs and Acer Nitro 5 AN515-58 models, which are unrelated to the RTX 5060 Ti—a future GPU not available as of 2024—and the input specifically queries about running RTX 5060 Ti drivers on the Acer Nitro 5 AN515-56. The context contains no information about RTX 5060 Ti drivers, driver compatibility, or support for such a non-existent GPU, and the model SKU (AN515-58 vs AN515-56) is mismatched. As all reasons for irrelevancy ex
+
+C_Recall:
+  V1: 0.000 | The score is 0.00 because no node in retrieval context addresses the RTX 5060 Ti's availability in late 2023, nor does any node reference the AN515-56 model or its GPU specification. All nodes (1st to 5th) discuss GPUs like RTX 3060, 3070 Ti, and 4060, which are out of scope for the RTX 5060 Ti or the AN515-56, making the expected output's claims entirely unsupported by the retrieval context.
+  V8: 0.000 | The score is 0.00 because no node in retrieval context addresses the RTX 5060 Ti's availability in late 2023, nor does any node reference the AN515-56 model or its GPU specification. All nodes (1st to 5th) discuss GPUs like RTX 3060, 3070 Ti, and 4060, which are out of scope for the RTX 5060 Ti or the AN515-56, making the expected output's claims entirely unsupported by the retrieval context.
+
+Faithfulness:
+  V1: 0.889 | The faithfulness score is 0.89 because there are no contradictions between the actual output and the retrieval context, indicating that the output aligns fully with the provided information without any factual or technical misalignments.
+  V8: 0.250 | The faithfulness score is 0.25 because the retrieval context does not mention the AN515-56 model or any RTX 5060 Ti driver support, and it only covers models ending in -57 and -58. The claim asserts that the context does not extend to AN515-56 or RTX 5060 Ti, which is factually accurate given the absence of such information in the context. However, the contradictions in the provided list show that multiple entries incorrectly label the claim as a contradiction when, in fact, it is a correct stat
+
+Answer_Rel:
+  V1: 0.000 | Erro: 1 validation error for AnswerRelevancyVerdict
+verdict
+  Field required [type=missing, input_value={'
+  V8: 0.800 | The score is 0.80 because the output includes an irrelevant discussion about RTX 3070 Ti and RTX 4060 performance, which has no connection to the RTX 5060 Ti or the Acer Nitro 5 AN515-56. This off-topic content reduces faithfulness to the input question about driver compatibility. The score cannot be higher because the response introduces factual inaccuracy and drifts into unrelated GPU models, violating the scope of the query. The core question remains addressed—driver compatibility for RTX 506
+
+============================================================
+ID: TC_CONFLICT_01 | Query: Is there a firmware fix for the Nitro 5 AN515-56 screen flickering issue?
+GPU: 67°C
+
+C_Precision:
+  V1: 0.000 | The contextual precision score is 0.00 because all retrieval contexts, including the first ranked node (RANK 1), have a 'no' verdict and fail to mention a firmware fix for the Nitro 5 AN515-56 screen flickering issue. The first node (RANK 1) references a screen flickering issue on AN515-57 with driver updates but explicitly states it does not involve firmware, and the expected output specifically cites a 2024 firmware update (v1.12), which is absent. The second node (RANK 2) discusses screen fli
+  V8: 0.000 | The contextual precision score is 0.00 because all retrieval contexts, including the first ranked node (RANK 1), have a 'no' verdict and fail to mention a firmware fix for the Nitro 5 AN515-56 screen flickering issue. The first node (RANK 1) references a screen flickering issue on AN515-57 with driver updates but explicitly states it does not involve firmware, and the expected output specifically cites a 2024 firmware update (v1.12), which is absent. The second node (RANK 2) discusses screen fli
+
+C_Relevancia:
+  V1: 0.273 | The score is 0.27 because the retrieval context mentions screen flickering on the Acer Nitro 5 AN515-57, but fails to address a firmware fix for the issue, as explicitly stated in the irrelevancy reasons: 'The model specified in the context is AN515-57, not AN515-56, and there is no mention of firmware fixes at all.' Additionally, the context attributes the issue to driver-related causes, not firmware, and provides no solutions involving firmware updates, as stated: 'The statement "FAULT: Flicke
+  V8: 0.273 | The score is 0.27 because the retrieval context mentions screen flickering on the Acer Nitro 5 AN515-57, but fails to address a firmware fix for the issue, as explicitly stated in the irrelevancy reasons: 'The model specified in the context is AN515-57, not AN515-56, and there is no mention of firmware fixes at all.' Additionally, the context attributes the issue to driver-related causes, not firmware, and provides no solutions involving firmware updates, as stated: 'The statement "FAULT: Flicke
+
+C_Recall:
+  V1: 0.000 | The score is 0.00 because the expected output claims a 2024 firmware update (v1.12) and a requirement to ensure BIOS v1.12 or later, but none of the nodes in retrieval context—specifically node 1 (2025), node 2 (2023), node 3 (2023), node 4 (2024), and node 5 (2025)—mention firmware updates, BIOS versions, or any timeline from early 2021. The absence of such references in any node directly invalidates the claims in the expected output, resulting in no contextual alignment.
+  V8: 0.000 | The score is 0.00 because the expected output claims a 2024 firmware update (v1.12) and a requirement to ensure BIOS v1.12 or later, but none of the nodes in retrieval context—specifically node 1 (2025), node 2 (2023), node 3 (2023), node 4 (2024), and node 5 (2025)—mention firmware updates, BIOS versions, or any timeline from early 2021. The absence of such references in any node directly invalidates the claims in the expected output, resulting in no contextual alignment.
+
+Faithfulness:
+  V1: 0.750 | The faithfulness score is 0.75 because there are no contradictions reported in the retrieval context, indicating the actual output aligns fully with the provided information. Since no discrepancies exist, the output is faithful to the context without deviation.
+  V8: 0.000 | The faithfulness score is 0.00 because the actual output contains a factual error regarding the temporal scope of the retrieval context: it references 'internal knowledge up to 2024 training' while the retrieval context explicitly includes data from 2025 (e.g., a June 1, 2025 reference), creating a direct contradiction. Additionally, the output falsely claims that the context 'does not mention firmware updates' for AN515-56, when the context only discusses AN515-57 and does not mention any firmw
+
+Answer_Rel:
+  V1: 1.000 | The score is 1.00 because there are no irrelevant statements in the actual output, and the response directly addresses the input question about a firmware fix for the Nitro 5 AN515-56 screen flickering issue. The answer is faithful and focused, with no tangential or off-topic content. Given that the input specifically asks about firmware, and the output responds to that without introducing unrelated hardware or software details, the score is at its maximum. No higher score is possible because th
+  V8: 0.667 | The score is 0.67 because the output fails to address the specific query about firmware fixes for the Nitro 5 AN515-56 screen flickering issue, instead discussing a similar model (AN515-57) and unrelated firmware topics. This deviation makes the response irrelevant to the core question. The score is not higher because the output explicitly misses the requested firmware fix for the AN515-56 model, and no evidence exists in the provided data to support a firmware solution for this specific variant
+
+============================================================
+ID: TC_SKU_01 | Query: Does my Acer Nitro 5 AN515-56 support Thunderbolt 4?
+GPU: 68°C
+
+C_Precision:
+  V1: 0.000 | The contextual precision score is 0.00 because all retrieval contexts, starting from the first node, have a 'no' verdict and none of the nodes provide any direct information about Thunderbolt 4 support on the Acer Nitro 5 AN515-56. The first node references ANV15-51 and does not address AN515-56 or Thunderbolt 4 support. The second node mentions AN515-58 and Thunderbolt 4 in a power bank context, but does not confirm support on AN515-56 or provide hardware specifications. The third and fourth no
+  V8: 0.000 | The contextual precision score is 0.00 because all retrieval contexts, starting from the first node, have a 'no' verdict and none of the nodes provide any direct information about Thunderbolt 4 support on the Acer Nitro 5 AN515-56. The first node references ANV15-51 and does not address AN515-56 or Thunderbolt 4 support. The second node mentions AN515-58 and Thunderbolt 4 in a power bank context, but does not confirm support on AN515-56 or provide hardware specifications. The third and fourth no
+
+C_Relevancia:
+  V1: 0.300 | The score is 0.30 because the retrieval context mentions the Acer Nitro 5 AN515-58, not the AN515-56 as queried, and the statement 'Laptop won't charge with decent power bank despite Thunderbolt 4 port' refers to a compatibility issue with power banks and cables, not direct hardware support for Thunderbolt 4. The phrase 'Thunderbolt 4 port' is present but used in a troubleshooting context, not as a confirmation of feature support. The retrieval context does not confirm or deny Thunderbolt 4 supp
+  V8: 0.300 | The score is 0.30 because the retrieval context mentions the Acer Nitro 5 AN515-58, not the AN515-56 as queried, and the statement 'Laptop won't charge with decent power bank despite Thunderbolt 4 port' refers to a compatibility issue with power banks and cables, not direct hardware support for Thunderbolt 4. The phrase 'Thunderbolt 4 port' is present but used in a troubleshooting context, not as a confirmation of feature support. The retrieval context does not confirm or deny Thunderbolt 4 supp
+
+C_Recall:
+  V1: 0.500 | The score is 0.50 because the retrieval context fails to support the claim about USB 3.2 Gen 2 (Type-C) on AN515-56, as no node mentions this feature or the AN515-56 model specifically (the 1st node references ANV15-51, 2nd–4th nodes reference AN515-58, and 5th node references AN515-57 with undervolting), while the Thunderbolt 4 claim is partially supported by nodes 2–5 describing AN515-57 and AN515-58, but this does not validate the AN515-56-specific assertion. Thus, the attribution to the 5th 
+  V8: 0.500 | The score is 0.50 because the retrieval context fails to support the claim about USB 3.2 Gen 2 (Type-C) on AN515-56, as no node mentions this feature or the AN515-56 model specifically (the 1st node references ANV15-51, 2nd–4th nodes reference AN515-58, and 5th node references AN515-57 with undervolting), while the Thunderbolt 4 claim is partially supported by nodes 2–5 describing AN515-57 and AN515-58, but this does not validate the AN515-56-specific assertion. Thus, the attribution to the 5th 
+
+Faithfulness:
+  V1: 0.714 | The score is 0.71 because the retrieval context explicitly states that charging issues are due to incompatible or faulty cables/power banks, not Thunderbolt support, and that BIOS settings for turbo boost apply only to Acer Nitro V models, not AN515-56. The claim that Thunderbolt ports cause charging issues is directly contradicted by the context, and the suggestion to check BIOS for Thunderbolt is not applicable to AN515-56 as no such reference exists. These contradictions reduce faithfulness, 
+  V8: 1.000 | The faithfulness score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment with the provided evidence.
+
+Answer_Rel:
+  V1: 0.571 | The score is 0.57 because the output includes irrelevant details about charging via Thunderbolt ports, BIOS settings for Acer Nitro V models, and power bank compatibility, none of which address the specific query about Thunderbolt 4 support on the AN515-56. These statements diverge from the core question and introduce tangential technical topics. The score is not higher because the input explicitly asks only about Thunderbolt 4 capability, and the output fails to confirm or deny that feature on 
+  V8: 0.000 | Erro: 1 validation error for AnswerRelevancyVerdict
+verdict
+  Field required [type=missing, input_value={'
+
+============================================================
+ID: TC_HYBRID_01 | Query: What is the benefit of the dual-fan design in the Nitro 5 AN515-56?
+GPU: 70°C
+
+C_Precision:
+  V1: 0.200 | The score is 0.20 because the only relevant node is the fifth node, which is ranked last among the retrieval contexts. This node provides a remote connection between cooling and performance stability by linking inadequate cooling to thermal throttling, implying that improved airflow (such as from dual fans) is necessary. However, the first four nodes are all 'no' verdicts that either repeat content or discuss fan behavior without addressing the benefit of a dual-fan design. The reason field of t
+  V8: 0.200 | The score is 0.20 because the only relevant node is the fifth node, which is ranked last among the retrieval contexts. This node provides a remote connection between cooling and performance stability by linking inadequate cooling to thermal throttling, implying that improved airflow (such as from dual fans) is necessary. However, the first four nodes are all 'no' verdicts that either repeat content or discuss fan behavior without addressing the benefit of a dual-fan design. The reason field of t
+
+C_Relevancia:
+  V1: 0.000 | The score is 0.00 because none of the retrieval context statements address the benefit of the dual-fan design in the Nitro 5 AN515-56. The statement 'Comparison of Lenovo Ideapad Gaming 3 and Acer Nitro V - Better battery life, quieter fans under load' references 'quieter fans' but does not specify benefits of a dual-fan design, nor does it pertain to the AN515-56 model. The statement mentioning 'fan speed boost' and 'thermal throttling' in the AN515-57 discusses fan issues, not benefits of dual
+  V8: 0.000 | The score is 0.00 because none of the retrieval context statements address the benefit of a dual-fan design in the Nitro 5 AN515-56. The statement 'Comparison of Lenovo Ideapad Gaming 3 and Acer Nitro V - Better battery life, quieter fans under load, different power consumption' references 'quieter fans under load' but does not specify benefits of a dual-fan design, nor does it relate to the AN515-56 model. The statement 'mentions issues with BSODs, fan speed boost, and driver updates' discusses
+
+C_Recall:
+  V1: 0.167 | The score is 0.17 because the expected output claims specific design features—'dual fans' and 'quad exhaust ports'—which are not present in any node of the retrieval context. Node 1 discusses comparing cooling systems generally but does not specify fan count or exhaust port configuration. Nodes 2 through 5 mention fan performance, thermal issues, or fan speed under load, but none reference physical design elements like dual fans or quad exhaust ports. The absence of explicit or implied mention o
+  V8: 0.167 | The score is 0.17 because the expected output claims specific design features—'dual fans' and 'quad exhaust ports'—which are not present in any node of the retrieval context. Node 1 discusses comparing cooling systems generally but does not specify fan count or exhaust port configuration. Nodes 2 through 5 mention fan performance, thermal issues, or fan speed under load, but none reference physical design elements like dual fans or quad exhaust ports. The absence of explicit or implied mention o
+
+Faithfulness:
+  V1: 0.375 | The score is 0.38 because the actual output makes multiple unsupported claims about a dual-fan design in the Acer Nitro 5 AN515-56, including benefits like improved heat dissipation, quieter operation, and prevention of CPU/GPU throttling during gaming. The retrieval context does not mention dual-fan design at all, nor does it reference the AN515-56 model. All assertions about fan design, airflow efficiency, or performance under load are either inferred from general knowledge or linked to models
+  V8: 0.333 | The score is 0.33 because the actual output introduces the Acer Nitro 5 AN515-56 model and a dual-fan design, both of which are not mentioned in the retrieval context. The retrieval context only references the AN515-57 with thermal throttling due to inadequate cooling, and provides no evidence of a dual-fan design or its role in temperature management. The claim falsely attributes temperature regulation to a dual-fan configuration, which is not supported by the context. These contradictions dire
+
+Answer_Rel:
+  V1: 1.000 | The score is 1.00 because there are no irrelevant statements in the actual output, and the response directly addresses the input by explaining the benefit of the dual-fan design in the Nitro 5 AN515-56. The answer is faithful and focused on the specific hardware feature queried, with no tangential or off-topic content. Given that the input asks about a specific design feature and the output responds with relevant technical justification, the score is at its maximum because no deviation from the 
+  V8: 0.000 | Erro: 1 validation error for AnswerRelevancyVerdict
+verdict
+  Field required [type=missing, input_value={'
+
+============================================================
+ID: TC_TIME_01 | Query: What is the latest stable BIOS version for the Helios Neo 16 as of 2026?
+GPU: 67°C
+
+C_Precision:
+  V1: 0.000 | The contextual precision score is 0.00 because all retrieval contexts, including the first node (rank 1), explicitly state that none of the provided contexts contain the latest stable BIOS version for the Helios Neo 16 as of 2026. The first node's reason states that a BIOS update issue occurred in 2025 but does not specify a version or date, and the third node only suggests checking for updates without naming any version. The fourth node describes accessing a more complete BIOS but does not conf
+  V8: 0.000 | The contextual precision score is 0.00 because all retrieval contexts, including the first node (rank 1), explicitly state that none of the provided contexts contain the latest stable BIOS version for the Helios Neo 16 as of 2026. The first node's reason states that a BIOS update issue occurred in 2025 but does not specify a version or date, and the third node only suggests checking for updates without naming any version. The fourth node describes accessing a more complete BIOS but does not conf
+
+C_Relevancia:
+  V1: 0.000 | The score is 0.00 because none of the retrieval context statements provide the latest stable BIOS version for the Helios Neo 16 as of 2026. The statement 'Updating to Bios 1.17 in 2025-06-29' only references a BIOS update in 2025 and does not confirm or specify the latest stable version as of 2026, and the claim about the latest stable version as of 2026 is not addressed or supported. Additionally, all other statements either discuss system crashes, driver updates, BIOS access limitations, or fu
+  V8: 0.000 | The score is 0.00 because none of the retrieval context statements provide the latest stable BIOS version for the Helios Neo 16 as of 2026. The statement 'Updating to Bios 1.17 in 2025-06-29' only references a BIOS update in 2025 and does not confirm or specify the latest stable version as of 2026, and the claim about the latest stable version as of 2026 is not addressed or supported. Additionally, all other statements either discuss system crashes, driver updates, BIOS access limitations, or fu
+
+C_Recall:
+  V1: 0.000 | The score is 0.00 because the expected output claims a specific version v2.10 from Feb 2026 with a fix for freezing issues in 2024, but no node in retrieval context (1st to 5th) mentions version v2.10, freezing issues, or any update addressing such problems. All referenced nodes discuss BIOS updates, crashes, or graphics issues, with no alignment to the version timeline or fix claims in the expected output.
+  V8: 0.000 | The score is 0.00 because the expected output claims a specific version v2.10 from Feb 2026 with a fix for freezing issues in 2024, but no node in retrieval context (1st to 5th) mentions version v2.10, freezing issues, or any update addressing such problems. All referenced nodes discuss BIOS updates, crashes, or graphics issues, with no alignment to the version timeline or fix claims in the expected output.
+
+Faithfulness:
+  V1: 0.500 | The score is 0.50 because the retrieval context does not specify any 'latest stable BIOS version' for the Acer Predator Helios Neo 16, making the claim about its existence unfaithful, yet the context does mention BIOS updates and user-accessible features like Fn+Tab and F2, which supports partial fidelity. However, the claim that ThrottleStop is used to undervolt by -50mV is entirely unsupported by the retrieval context, which explicitly does not mention ThrottleStop or CPU undervolting at all. 
+  V8: 0.333 | The faithfulness score is 0.33 because two contradictions in the actual output introduce false timelines and misrepresent the retrieval context: first, the claim asserts an AI knowledge update as of March 12, 2026, which is a future date not supported by the context that only confirms an update in early 2024 and does not state any post-2024 updates; this implies a false timeline and contradicts the context's implied stability of knowledge post-2024. Second, while the claim correctly states the c
+
+Answer_Rel:
+  V1: 0.667 | The score is 0.67 because the output includes irrelevant statements about software-level CPU undervolting and user access issues in BIOS, neither of which address the specific query about the latest stable BIOS version for the Helios Neo 16 as of 2026. These statements are tangential and do not contribute to the factual answer requested. The score is not higher because the response fails to focus on the version details as required by the input, and the inclusion of off-topic technical actions (l
+  V8: 1.000 | The score is 1.00 because there are no irrelevant statements in the output, and the response directly addresses the input by identifying the latest stable BIOS version for the Helios Neo 16 as of 2026. The answer is faithful and specific to the query, with no extraneous or off-topic content. Given that the input asks for a specific hardware firmware version as of 2026, and no evidence or official data exists in the provided context to support a definitive version number, the response remains wit
+
+============================================================
+ID: TC_TIME_SENS_01_ACTIVE | Query: My Nitro 5 was purchased in Jan 2024. Is the standard 12-month warranty still active?
+GPU: 69°C
+
+C_Precision:
+  V1: 0.333 | The score is 0.33 because the first node (rank 1) has a 'no' verdict and its reason states that the document does not directly address the 12-month warranty validity from purchase date, only indirectly mentioning battery coverage, which is insufficient to confirm active status. The second node (rank 2) is also 'no' and explicitly states it provides no information about warranty duration or expiration, making it irrelevant. The third node (rank 3) is 'yes' and directly references warranty coverag
+  V8: 0.333 | The score is 0.33 because the first node (rank 1) has a 'no' verdict and its reason states that the document does not directly address the 12-month warranty validity from purchase date, only indirectly mentioning battery coverage, which is insufficient to confirm active status. The second node (rank 2) is also 'no' and explicitly states it provides no information about warranty duration or expiration, making it irrelevant. The third node (rank 3) is 'yes' and directly references warranty coverag
+
+C_Relevancia:
+  V1: 0.222 | The score is 0.22 because the retrieval context does not address the standard 12-month warranty status for a Nitro 5 purchased in January 2024. The reasons for irrelevancy explicitly state that no information about warranty validity or timelines post-purchase is provided, and that statements mentioning 'warranty' refer only to battery replacement, not the standard 12-month product warranty. The relevant statement about 'Warranty' in the context is limited to technical specifications and troubles
+  V8: 0.222 | The score is 0.22 because the retrieval context does not address the standard 12-month warranty status for a Nitro 5 purchased in January 2024. The reasons for irrelevancy explicitly state that no information about warranty validity or timelines post-purchase is provided, and that statements mentioning 'warranty' refer only to battery replacement, not the standard 12-month product warranty. The relevant statement about 'Warranty' in the context is limited to technical specifications and troubles
+
+C_Recall:
+  V1: 0.000 | The score is 0.00 because the expected output claims a specific warranty expiration date and a standard duration of 12 months from invoice, neither of which is explicitly stated or implied in any of the retrieval context nodes. The 1st node discusses battery issues, the 2nd addresses a faulty sound card, the 3rd references battery health and warranty options without specifying duration or end dates, and the 4th mentions warranty in intent but provides no timeline or standard duration. Thus, no n
+  V8: 0.000 | The score is 0.00 because the expected output claims a specific warranty expiration date and a standard duration of 12 months from invoice, neither of which is explicitly stated or implied in any of the retrieval context nodes. The 1st node discusses battery issues, the 2nd addresses a faulty sound card, the 3rd references battery health and warranty options without specifying duration or end dates, and the 4th mentions warranty in intent but provides no timeline or standard duration. Thus, no n
+
+Faithfulness:
+  V1: 0.750 | The faithfulness score is 0.75 because two contradictions in the actual output involve claims that introduce logical inferences (e.g., warranty coverage implied by no reported faults) not supported by the retrieval context. The retrieval context confirms stable performance of the AN515-58 model with no reported issues but does not mention warranty coverage, start date, or duration. Therefore, any inference linking no faults to warranty coverage is unsupported and not contradicted—only 'idk' is j
+  V8: 1.000 | The faithfulness score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment with the provided evidence.
+
+Answer_Rel:
+  V1: 1.000 | The score is 1.00 because there are no irrelevant statements in the actual output, and the input specifically asks about the status of the standard 12-month warranty on a Nitro 5 purchased in January 2024. The response directly addresses this query without introducing off-topic information. The absence of irrelevant content ensures full faithfulness to the input, and no evidence contradicts the warranty status based on available product lifecycle data for the Nitro 5 in 2024. There is no tempora
+  V8: 1.000 | The score is 1.00 because there are no irrelevant statements in the actual output, and the input specifically asks about the status of the standard 12-month warranty on a Nitro 5 purchased in January 2024. The response directly addresses this query without introducing off-topic information. The absence of irrelevant content ensures full faithfulness to the input, and no evidence contradicts the warranty status based on available product lifecycle data for the Nitro 5 in 2024. There is no tempora
+
+============================================================
+ID: TC_TIME_SENS_01_EXPIRED | Query: My Nitro 5 was purchased in Jan 2024. Is the standard 12-month warranty still active?
+GPU: 67°C
+
+C_Precision:
+  V1: 0.333 | The contextual precision score is 0.33 because only the third node (rank 3) has a 'yes' verdict that directly addresses the query about warranty status, explicitly mentioning 'warranty' in the intent and suggesting to check if the battery is still under warranty, which is relevant to the user's question about the standard 12-month warranty. The first node (rank 1) discusses battery drain and power management without any warranty timeline, making it irrelevant. The second node (rank 2) addresses 
+  V8: 0.333 | The contextual precision score is 0.33 because only the third node (rank 3) has a 'yes' verdict that directly addresses the query about warranty status, explicitly mentioning 'warranty' in the intent and suggesting to check if the battery is still under warranty, which is relevant to the user's question about the standard 12-month warranty. The first node (rank 1) discusses battery drain and power management without any warranty timeline, making it irrelevant. The second node (rank 2) addresses 
+
+C_Relevancia:
+  V1: 0.222 | The score is 0.22 because the retrieval context does not address the standard 12-month warranty status for a Nitro 5 purchased in January 2024. The reasons for irrelevancy explicitly state that no information about warranty validity or timelines post-purchase is provided, and that statements mentioning 'warranty' refer only to battery replacement, not the standard 12-month product warranty. The relevant statement about 'Warranty' in the context is limited to technical specifications and troubles
+  V8: 0.222 | The score is 0.22 because the retrieval context does not address the standard 12-month warranty status for a Nitro 5 purchased in January 2024. The reasons for irrelevancy explicitly state that no information about warranty validity or timelines post-purchase is provided, and that statements mentioning 'warranty' refer only to battery replacement, not the standard 12-month product warranty. The relevant statement about 'Warranty' in the context is limited to technical specifications and troubles
+
+C_Recall:
+  V1: 0.500 | The score is 0.50 because the expected output claims a warranty expiration in January 2025, which is not supported by any node in retrieval context—node 4 only mentions warranty implicitly without specifying dates or expiration timelines. While node 3 references checking warranty options, it does not validate the specific expiration date or the 'standard warranty' concept in the expected output. Thus, the claim in sentence 1 of the expected output lacks direct evidence in any node, resulting in 
+  V8: 0.500 | The score is 0.50 because the expected output claims a warranty expiration in January 2025, which is not supported by any node in retrieval context—node 4 only mentions warranty implicitly without specifying dates or expiration timelines. While node 3 references checking warranty options, it does not validate the specific expiration date or the 'standard warranty' concept in the expected output. Thus, the claim in sentence 1 of the expected output lacks direct evidence in any node, resulting in 
+
+Faithfulness:
+  V1: 0.875 | The faithfulness score is 0.88 because there are no contradictions between the actual output and the retrieval context, indicating full alignment across all provided information.
+  V8: 0.667 | The faithfulness score is 0.67 because the retrieval context does not mention any warranty period, standard coverage duration, or terms of service agreements. The claim about a warranty being under standard coverage for a Nitro 5 purchased within a year of February 2024 is not supported by the context, and since the context ends in early 2023, it cannot confirm or deny warranty status as of March 2024 or beyond. The contradiction in the actual output arises when it asserts warranty validity with
+
+Answer_Rel:
+  V1: 0.000 | Erro: 1 validation error for AnswerRelevancyVerdict
+verdict
+  Input should be 'yes', 'no' or 'idk' [type=l
+  V8: 1.000 | The score is 1.00 because there are no irrelevant statements in the actual output, and the input specifically asks about the status of the standard 12-month warranty on a Nitro 5 purchased in January 2024. The response directly addresses this query without introducing off-topic information. The absence of irrelevant content ensures full faithfulness to the input, and no evidence contradicts the warranty status based on available product lifecycle data for the Nitro 5 in 2024. There is no tempora
+
+============================================================
+ID: TC_RECENCY_CONFLICT_01 | Query: What is the maximum RAM for the Nitro 5 AN515-56?
+GPU: 63°C
+
+C_Precision:
+  V1: 1.000 | The score is 1.00 because the first two nodes are relevant and ranked higher than the irrelevant nodes: node 1 provides a RAM capacity reference for the AN515-46 model, which indirectly supports RAM upgrade potential; node 2 explicitly mentions DDR4 and recommends adding an 8GB RAM stick, directly relating to RAM capacity and type. These 'yes' verdicts are ranked before the 'no' verdicts, and the 'no' verdicts in nodes 3, 4, and 5 fail to mention the AN515-56 model or any maximum RAM capacity, D
+  V8: 1.000 | The score is 1.00 because the first two nodes are relevant and ranked higher than the irrelevant nodes: node 1 provides a RAM capacity reference for the AN515-46 model, which indirectly supports RAM upgrade potential; node 2 explicitly mentions DDR4 and recommends adding an 8GB RAM stick, directly relating to RAM capacity and type. These 'yes' verdicts are ranked before the 'no' verdicts, and the 'no' verdicts in nodes 3, 4, and 5 fail to mention the AN515-56 model or any maximum RAM capacity, D
+
+C_Relevancia:
+  V1: 0.067 | The score is 0.07 because the only relevant statement in the retrieval context mentions the model 'Acer Nitro 5 AN515-46', which differs from the input's query about the 'Nitro 5 AN515-56'. The statement references a RAM upgrade to 32GB but does not specify the maximum RAM capacity for the AN515-56 model. Furthermore, the context lacks any explicit data on the maximum RAM capacity for the AN515-56, and the model mismatch, combined with the absence of a direct specification, renders the statement
+  V8: 0.067 | The score is 0.07 because the only relevant statement in the retrieval context mentions the model 'Acer Nitro 5 AN515-46', which differs from the input's query about the 'Nitro 5 AN515-56'. The statement references a RAM upgrade to 32GB but does not specify the maximum RAM capacity for the AN515-56 model. Furthermore, the context lacks any explicit data on the maximum RAM capacity for the AN515-56, and the model mismatch, combined with the absence of a direct specification, renders the statement
+
+C_Recall:
+  V1: 0.500 | The score is 0.50 because the expected output claims specific model (Nitro 5 AN515-56), capacity (64GB), and a precise BIOS update (v2.04), none of which are covered by any node in retrieval context. While node 2 and 3 mention DDR4 support, they do not reference the AN515-56 model, nor do they specify 64GB or BIOS version v2.04. The absence of model-specific or version-specific details in any node (1st to 5th) renders the claim unsupported, resulting in a contextual recall score of 0.50.
+  V8: 0.500 | The score is 0.50 because the expected output claims specific model (Nitro 5 AN515-56), capacity (64GB), and a precise BIOS update (v2.04), none of which are covered by any node in retrieval context. While node 2 and 3 mention DDR4 support, they do not reference the AN515-56 model, nor do they specify 64GB or BIOS version v2.04. The absence of model-specific or version-specific details in any node (1st to 5th) renders the claim unsupported, resulting in a contextual recall score of 0.50.
+
+Faithfulness:
+  V1: 0.667 | The score is 0.67 because the contradiction list states that the retrieval context does not mention the Acer Nitro 5 AN515-56 model at all, and no information about its maximum RAM capacity is provided. This means the actual output's claim about the model's RAM capacity is not supported by the context, creating a contradiction. However, the statement in the contradiction list itself is faithful to the context, as it correctly identifies the absence of information. The faithfulness score of 0.67 
+  V8: 0.667 | The score is 0.67 because the retrieval context does not mention the AN515-56 model or specify its maximum RAM capacity, making the claim that the maximum RAM is not explicitly stated a faithful reflection of the context. However, the actual output implies a discussion of RAM capacity for the AN515-56, which is absent in the retrieval context, creating a contradiction. This absence is not a contradiction in the context itself, but the actual output's assertion of RAM details for a model not cove
+
+Answer_Rel:
+  V1: 1.000 | The score is 1.00 because there are no irrelevant statements in the actual output, and the input specifically asks for the maximum RAM capacity of the Nitro 5 AN515-56, which is directly addressed in the response. The answer is faithful to the input as it provides a precise technical specification without introducing off-topic details. No temporal or model-specific conflicts exist between 2024 internal knowledge and 2025/2026 evidence, as the Nitro 5 AN515-56's RAM capacity is consistently docum
+  V8: 1.000 | The score is 1.00 because there are no irrelevant statements in the actual output, and the input specifically asks for the maximum RAM capacity of the Nitro 5 AN515-56, which is directly addressed in the response. The answer is faithful to the input as it provides a precise technical specification without introducing off-topic details. No temporal or model-specific conflicts exist between 2024 internal knowledge and 2025/2026 evidence, as the Nitro 5 AN515-56's RAM capacity is consistently docum
+
+============================================================
+ID: TC_FUTURE_ANOMALY_01 | Query: Should I upgrade my Nitro 5 to the new NVIDIA RTX 6080 GPU?
+GPU: 68°C
+
+C_Precision:
+  V1: 0.887 | The score is 0.89 because the first node (rank 1) provides direct support for GPU upgrade advice in the context of Acer Nitro 5 performance, explicitly stating that upgrading to a more powerful GPU like the 2060 improves performance, which aligns with the input's intent. The second node (rank 2) is relevant as it confirms GPU underperformance in Fortnite, though it recommends driver updates rather than hardware upgrades, limiting its utility. The third node (rank 3) is irrelevant because it conf
+  V8: 0.887 | The score is 0.89 because the first node (rank 1) provides direct support for GPU upgrade advice in the context of Acer Nitro 5 performance, explicitly stating that upgrading to a more powerful GPU like the 2060 improves performance, which aligns with the input's intent. The second node (rank 2) is relevant as it confirms GPU underperformance in Fortnite, though it recommends driver updates rather than hardware upgrades, limiting its utility. The third node (rank 3) is irrelevant because it conf
+
+C_Relevancia:
+  V1: 0.429 | The score is 0.43 because the retrieval context mentions GPU bottlenecking and performance issues on Acer Nitro 5 with existing models like GTX 1650 and RTX 3050/3060, and provides upgrade advice for more powerful GPUs like RTX 2060, but contains no information about the non-existent RTX 6080 GPU. The statement 'RTX 6080' is not present in the context and is identified as a fictional model as of 2025, making the input's hypothetical upgrade irrelevant to the available evidence. The context's rel
+  V8: 0.429 | The score is 0.43 because the retrieval context mentions GPU bottlenecking and performance issues on Acer Nitro 5 with existing models like GTX 1650 and RTX 3050/3060, and provides upgrade advice for more powerful GPUs like RTX 2060, but contains no information about the non-existent RTX 6080 GPU. The statement 'RTX 6080' is not present in the context and is identified as a fictional model as of 2025, making the input's hypothetical upgrade irrelevant to the available evidence. The context's rel
+
+C_Recall:
+  V1: 0.333 | The score is 0.33 because the expected output claims the non-existent RTX 6080 and the RTX 50-series as current high-end models, neither of which are mentioned in any node of the retrieval context—specifically, no node references RTX 6080 (absent in all nodes) or RTX 50-series (only RTX 3060 is cited). While the 4th node implies GPU upgrades can improve performance, it does not support the claim that laptop GPU upgrades are generally possible due to BGA soldering, which is not addressed in any n
+  V8: 0.333 | The score is 0.33 because the expected output claims the non-existent RTX 6080 and the RTX 50-series as current high-end models, neither of which are mentioned in any node of the retrieval context—specifically, no node references RTX 6080 (absent in all nodes) or RTX 50-series (only RTX 3060 is cited). While the 4th node implies GPU upgrades can improve performance, it does not support the claim that laptop GPU upgrades are generally possible due to BGA soldering, which is not addressed in any n
+
+Faithfulness:
+  V1: 0.222 | The score is 0.22 because the actual output contains multiple contradictions to the retrieval context: it falsely claims the existence of a 'GeForce RTX 6080' and a 'RTX 60 series', which are not mentioned in the retrieval context and have no evidence up to 2023; it introduces a specific performance comparison between upgrading from RTX 2060 to a more powerful GPU in a GTX 1650 and i7-12700H setup, which is not supported by the context that only states the GTX 1650 is insufficient and recommends
+  V8: 0.200 | The faithfulness score is 0.20 because there are no contradictions provided in the list, so no deviations from the retrieval context are present to justify a lower score. Thus, the output aligns with the context, and the score reflects a minimal deviation due to absence of any reported inconsistencies.
+
+Answer_Rel:
+  V1: 1.000 | The score is 1.00 because there are no irrelevant statements in the actual output, and the response directly addresses the input question about upgrading the Nitro 5 to an NVIDIA RTX 6080 GPU. The absence of off-topic content ensures full relevance. However, the score cannot be higher because the input specifically asks about a hypothetical GPU (RTX 6080), which does not exist as of 2024, and no evidence supports its existence in current hardware. Thus, the response must acknowledge this factual
+  V8: 0.286 | The score is 0.29 because the output contains no relevant statements about upgrading the Nitro 5 to an NVIDIA RTX 6080 GPU, which does not exist as of 2024. The input queries a specific hardware upgrade, but the output fails to address this directly or provide any factual or technical basis for such a change. There is no evidence of any known GPU model named RTX 6080 in official NVIDIA product lines, and the response does not acknowledge this factual inaccuracy or provide a plausible alternative
+
+============================================================
+ID: TC_SKU_MISMATCH_01 | Query: Does the AN515-56 have the same Thunderbolt port as the AN515-57?
+GPU: 68°C
+
+C_Precision:
+  V1: 0.000 | The score is 0.00 because all retrieval contexts, including the first node (rank 1), explicitly state that the document discusses the AN515-58 model and fails to mention either the AN515-56 or AN515-57 variants or their Thunderbolt port specifications. The reason for node 1 states that the context does not address the AN515-56 or AN515-57, and this pattern repeats across nodes 2 through 5. Since no node contains any information about the AN515-56 or AN515-57 models or their Thunderbolt ports, th
+  V8: 0.000 | The score is 0.00 because all retrieval contexts, including the first node (rank 1), explicitly state that the document discusses the AN515-58 model and fails to mention either the AN515-56 or AN515-57 variants or their Thunderbolt port specifications. The reason for node 1 states that the context does not address the AN515-56 or AN515-57, and this pattern repeats across nodes 2 through 5. Since no node contains any information about the AN515-56 or AN515-57 models or their Thunderbolt ports, th
+
+C_Relevancia:
+  V1: 0.000 | The score is 0.00 because the retrieval context does not mention the AN515-56 or AN515-57 models at all, nor does it compare Thunderbolt ports between these models. The statement discusses the AN515-58 model and its Thunderbolt 4 port, but this is irrelevant to the query about AN515-56 and AN515-57. The retrieval context contains no information about Thunderbolt port specifications for either AN515-56 or AN515-57, and there are no statements that compare the Thunderbolt ports of these two models
+  V8: 0.000 | The score is 0.00 because the retrieval context does not mention the AN515-56 or AN515-57 models at all, nor does it compare Thunderbolt ports between these models. The statement discusses the AN515-58 model and its Thunderbolt 4 port, but this is irrelevant to the query about AN515-56 and AN515-57. The retrieval context contains no information about Thunderbolt port specifications for either AN515-56 or AN515-57, and there are no statements that compare the Thunderbolt ports of these two models
+
+C_Recall:
+  V1: 0.000 | The score is 0.00 because the expected output claims a specific difference in USB-C port capabilities between AN515-56 and AN515-57 variants, but no node in the retrieval context mentions either model or compares their port types. The first node references ANV15-51, the second references AN515-58, and none address the AN515-56/57 distinction or Thunderbolt 4 support. Thus, the statement is entirely unsupported by any retrieval context node.
+  V8: 0.000 | The score is 0.00 because the expected output claims a specific difference in USB-C port capabilities between AN515-56 and AN515-57 variants, but no node in the retrieval context mentions either model or compares their port types. The first node references ANV15-51, the second references AN515-58, and none address the AN515-56/57 distinction or Thunderbolt 4 support. Thus, the statement is entirely unsupported by any retrieval context node.
+
+Faithfulness:
+  V1: 0.833 | The score is 0.83 because the retrieval context explicitly does not mention AN515-53, AN515-54, or AN515-57 having Thunderbolt ports or compatibility issues with power banks. The context only addresses AN515-58's charging issues, which are attributed to cable or power bank incompatibility, not model-specific Thunderbolt functionality. Therefore, any claim about these models having Thunderbolt compatibility problems is unsupported and contradicts the absence of evidence in the retrieval context. 
+  V8: 1.000 | The faithfulness score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment with the provided evidence.
+
+Answer_Rel:
+  V1: 0.429 | The score is 0.43 because the output fails to directly address the specific hardware comparison between the AN515-56 and AN515-57 regarding Thunderbolt ports, instead introducing irrelevant technical details about RAM and storage configurations that are not asked in the input. The input specifically queries only about Thunderbolt port presence in both models, and the response does not provide a clear, factual comparison on that point. While the output may contain some accurate hardware facts, th
+  V8: 1.000 | The score is 1.00 because there are no irrelevant statements in the actual output, and the answer directly addresses the input question by comparing the Thunderbolt port availability between the AN515-56 and AN515-57 models. The response is faithful to the input, as it accurately evaluates the hardware specification difference without introducing extraneous details. No temporal or model-specific discrepancies exist between 2024 internal knowledge and 2025/2026 evidence, as both models are within
+
+============================================================
+ID: TC_HYBRID_KNOWLEDGE_01 | Query: Why is my Nitro 5 reaching 95°C and how can I fix it according to the 2025 guide?
+GPU: 64°C
+
+C_Precision:
+  V1: 0.917 | The score is 0.92 because the first node (rank 1) directly matches the symptom of 95°C and provides a relevant troubleshooting solution, the second node (rank 2) addresses thermal paste issues and offers a product recommendation, the fourth node (rank 4) includes 'undervolt the gpu' which aligns with expected solutions, while the third and fifth nodes (ranks 3 and 5) are irrelevant because they lack specific thermal management solutions like undervolting or liquid metal and are either from 2024 
+  V8: 0.917 | The score is 0.92 because the first node (rank 1) directly matches the symptom of 95°C and provides a relevant troubleshooting solution, the second node (rank 2) addresses thermal paste issues and offers a product recommendation, the fourth node (rank 4) includes 'undervolt the gpu' which aligns with expected solutions, while the third and fifth nodes (ranks 3 and 5) are irrelevant because they lack specific thermal management solutions like undervolting or liquid metal and are either from 2024 
+
+C_Relevancia:
+  V1: 0.706 | The score is 0.71 because the retrieval context includes relevant statements about the Nitro 5 reaching high temperatures (e.g., 'CPU reaches 92°C and GPU goes above 80°C', 'CPU easily hits 90 degrees'), fault identification (e.g., 'inadequate cooling', 'overheating due to inadequate cooling'), and actionable solutions (e.g., 'clean fans and heatsink', 'repaste CPU', 'adjust fan curves'), which directly address the input's query about temperature behavior and fixes. However, several statements a
+  V8: 0.706 | The score is 0.71 because the retrieval context includes relevant statements about the Nitro 5 reaching high temperatures (e.g., 'CPU reaches 92°C and GPU goes above 80°C', 'CPU easily hits 90 degrees'), fault identification (e.g., 'inadequate cooling', 'overheating due to inadequate cooling'), and actionable solutions (e.g., 'clean fans and heatsink', 'repaste CPU', 'adjust fan curves'), which directly address the input's query about temperature behavior and fixes. However, several statements a
+
+C_Recall:
+  V1: 0.500 | The score is 0.50 because the expected output sentence references undervolting and repasting with liquid metal, which is not explicitly supported by any node in retrieval context. Node 4 mentions undervolting (GPU) and reapplying thermal paste, but does not specify liquid metal or undervolting as a recommended practice for a 2025 Maintenance Guide. Node 3 references PTM7950, a specific thermal paste, not liquid metal. No node references a 2025 Maintenance Guide or combines undervolting with liqu
+  V8: 0.500 | The score is 0.50 because the expected output sentence references undervolting and repasting with liquid metal, which is not explicitly supported by any node in retrieval context. Node 4 mentions undervolting (GPU) and reapplying thermal paste, but does not specify liquid metal or undervolting as a recommended practice for a 2025 Maintenance Guide. Node 3 references PTM7950, a specific thermal paste, not liquid metal. No node references a 2025 Maintenance Guide or combines undervolting with liqu
+
+Faithfulness:
+  V1: 1.000 | The faithfulness score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment with the provided evidence.
+  V8: 0.571 | The faithfulness score is 0.57 because there are no contradictions provided in the retrieval context, so no deviations from the retrieval context are present to justify a lower score. Thus, the output aligns with the context as expected, and the score reflects a moderate level of faithfulness due to the absence of any explicit contradictions.
+
+Answer_Rel:
+  V1: 1.000 | The score is 1.00 because there are no irrelevant statements in the actual output, and the response directly addresses the input by explaining the thermal behavior of the Nitro 5 and providing solutions aligned with the 2025 guide. The answer is faithful to the query, as it specifically tackles the temperature issue and offers actionable fixes without introducing off-topic content. No temporal conflict exists between 2024 internal knowledge and 2025 evidence, as the guide referenced is consisten
+  V8: 0.875 | The score is 0.88 because the output correctly addresses the thermal issue of the Nitro 5 reaching 95°C and provides relevant troubleshooting steps aligned with the 2025 guide. However, it includes an irrelevant statement asserting that solutions are only valid until the 2024 knowledge cutoff, which contradicts the input's explicit reference to the 2025 guide. This temporal limitation undermines the relevance of the advice to the 2025 context and introduces a factual inaccuracy that invalidates 
+
+============================================================
+ID: TC_BIAS_CHECK_01 | Query: Which is better for gaming: Acer Nitro 5 or Lenovo Legion 5?
+GPU: 69°C
+
+C_Precision:
+  V1: 0.000 | The contextual precision score is 0.00 because all retrieval contexts, including the first node which ranks first, have 'no' verdicts and none of them provide a direct, relevant comparison of gaming performance between Acer Nitro 5 and Lenovo Legion 5 in terms of GPU, display refresh rate, or overall gaming capabilities. The first node mentions outdated GPU specs and lacks any comparison, the second node discusses CPU performance and build quality without GPU or display data, the third node inco
+  V8: 0.000 | The contextual precision score is 0.00 because all retrieval contexts, including the first node which ranks first, have 'no' verdicts and none of them provide a direct, relevant comparison of gaming performance between Acer Nitro 5 and Lenovo Legion 5 in terms of GPU, display refresh rate, or overall gaming capabilities. The first node mentions outdated GPU specs and lacks any comparison, the second node discusses CPU performance and build quality without GPU or display data, the third node inco
+
+C_Relevancia:
+  V1: 0.000 | Erro: 1 validation error for ContextualRelevancyVerdicts
+verdicts.2.verdict
+  Field required [type=missing
+  V8: 0.000 | Erro: 1 validation error for ContextualRelevancyVerdicts
+verdicts.2.verdict
+  Field required [type=missing
+
+C_Recall:
+  V1: 0.600 | The score is 0.60 because the expected output's second sentence attributes an RTX 3050 and 144Hz display to Acer Nitro 5 AN515-56, but no node in retrieval context matches this model or specification—only AN515-58 is referenced, which is a mismatch—while the third sentence claims Lenovo Legion 5 offers RTX 3060 and better cooling, yet no node discusses GPU specs or cooling performance, only screen clarity and fan noise. The first sentence about market segments is not supported by any node. Thus,
+  V8: 0.600 | The score is 0.60 because the expected output claims specific GPU and display specifications for Acer Nitro 5 AN515-56 and Lenovo Legion 5 that are not supported by any node in retrieval context—node 1 references AN515-57 and AN515-58 with GTX 1650 and no RTX 3050 or 144Hz display, and node 3 discusses screen clarity and fan noise without mentioning RTX 3060 or cooling performance—thus failing to validate key claims in sentences 2 and 3. While some general use-case and performance trade-offs are
+
+Faithfulness:
+  V1: 0.600 | The score is 0.60 because the actual output contains four contradictions: (1) it falsely claims the i7-12700H CPU has high performance, while the context only notes a performance gain on battery and does not state high performance; (2) it asserts the Lenovo Legion 5 Pro has better screen clarity than the Acer Nitro 5 AN515-58, but the context only compares Legion 5's clarity to other brands, not specifically to AN515-58; (3) it claims low latency for gaming, which is not mentioned or implied in 
+  V8: 0.333 | The score is 0.33 because the actual output falsely attributes 'better gaming due to superior build quality' and recommends a 'budget laptop option' between the Lenovo Legion 5 and Acer Nitro 5 for users prioritizing build quality and performance in tasks like CS coursework and Valorant. The retrieval context explicitly states that the Lenovo Legion 5 is noted for better screen clarity, not build quality or gaming performance, and does not compare build quality or performance between the models.
+
+Answer_Rel:
+  V1: 0.846 | The score is 0.85 because the answer directly compares the Acer Nitro 5 and Lenovo Legion 5 in the context of gaming performance, focusing on relevant hardware specifications and user experience factors. There are no irrelevant statements in the output, so the score is not higher due to absence of factual or contextual drift. The comparison remains grounded in actual gaming hardware benchmarks and market positioning, which aligns with the input's intent. The score is at its current level because
+  V8: 1.000 | The score is 1.00 because there are no irrelevant statements in the output, and the response directly addresses the comparison between the Acer Nitro 5 and Lenovo Legion 5 in the context of gaming performance. The answer remains focused and relevant to the input query without introducing off-topic details. Since no irrelevant content is present, the score is at its maximum, and it cannot be higher.

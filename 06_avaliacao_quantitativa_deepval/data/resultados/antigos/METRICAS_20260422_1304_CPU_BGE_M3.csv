@@ -1,0 +1,15 @@
+ID,Query,GPU_Temp,GPU_VRAM_GB,V1_Docs_Retrieved,V8_Docs_Retrieved,V1_C_Precision,V8_C_Precision,V1_C_Relevancia,V8_C_Relevancia,V1_C_Recall,V8_C_Recall,V1_Faithfulness,V8_Faithfulness,V1_Answer_Rel,V8_Answer_Rel
+TC_STATIC_01,What is the maximum RAM capacity for the Acer Nitro 5 AN515-56?,72,2.11,5,5,1.0,1.0,0.07692307692307693,0.07692307692307693,0.0,0.0,1.0,1.0,1.0,1.0
+TC_STATIC_02,How many M.2 SSD slots does the Acer Nitro 5 AN515-56 have?,72,2.11,5,5,1.0,1.0,0.2,0.2,1.0,1.0,0.6666666666666666,0.5,1.0,1.0
+TC_TEMPORAL_01,Can I run the new RTX 5060 Ti drivers on my Acer Nitro 5 AN515-56?,73,2.11,5,5,0.0,0.0,0.2,0.2,0.5,0.5,0.6153846153846154,0.5,0.7857142857142857,1.0
+TC_CONFLICT_01,Is there a firmware fix for the Nitro 5 AN515-56 screen flickering issue?,77,2.11,5,5,0.0,0.0,0.6,0.6,0.0,0.0,1.0,0.75,0.75,1.0
+TC_SKU_01,Does my Acer Nitro 5 AN515-56 support Thunderbolt 4?,73,2.11,5,5,0.0,0.0,0.0,0.0,0.0,0.0,0.8333333333333334,0.75,0.5714285714285714,1.0
+TC_HYBRID_01,What is the benefit of the dual-fan design in the Nitro 5 AN515-56?,75,2.11,5,5,0.2,0.2,0.07692307692307693,0.07692307692307693,0.5,0.5,0.8333333333333334,0.5,1.0,1.0
+TC_TIME_01,What is the latest stable BIOS version for the Helios Neo 16 as of 2026?,73,2.11,5,5,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.6666666666666666,1.0
+TC_TIME_SENS_01_ACTIVE,My Nitro 5 was purchased in Jan 2024. Is the standard 12-month warranty still active?,72,2.11,5,5,0.0,0.0,0.0,0.0,0.0,0.0,0.875,1.0,0.7857142857142857,0.0
+TC_TIME_SENS_01_EXPIRED,My Nitro 5 was purchased in Jan 2024. Is the standard 12-month warranty still active?,71,2.11,5,5,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.6666666666666666
+TC_RECENCY_CONFLICT_01,What is the maximum RAM for the Nitro 5 AN515-56?,71,2.11,5,5,0.0,0.0,0.3333333333333333,0.3333333333333333,0.5,0.5,0.6666666666666666,1.0,1.0,1.0
+TC_FUTURE_ANOMALY_01,Should I upgrade my Nitro 5 to the new NVIDIA RTX 6080 GPU?,71,2.11,5,5,1.0,1.0,0.75,0.75,0.0,0.0,0.5,0.5384615384615384,0.9090909090909091,0.9285714285714286
+TC_SKU_MISMATCH_01,Does the AN515-56 have the same Thunderbolt port as the AN515-57?,72,2.11,5,5,0.0,0.0,0.0,0.0,0.0,0.0,0.75,0.75,0.6,0.0
+TC_HYBRID_KNOWLEDGE_01,Why is my Nitro 5 reaching 95°C and how can I fix it according to the 2025 guide?,73,2.12,5,5,1.0,1.0,1.0,1.0,0.5,0.5,0.5555555555555556,0.5,0.8888888888888888,0.9
+TC_BIAS_CHECK_01,Which is better for gaming: Acer Nitro 5 or Lenovo Legion 5?,72,2.11,5,5,1.0,1.0,0.24,0.24,0.5,0.5,0.5,0.4,0.8888888888888888,0.4

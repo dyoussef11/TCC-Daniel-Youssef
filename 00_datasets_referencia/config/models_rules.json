@@ -3,7 +3,8 @@
     "\\blaptop\\b",
     "\\bnotebook\\b",
     "\\bultrabook\\b",
-    "\\bbrand new\\b"
+    "\\bbrand new\\b",
+    "\\bgaming\\b"
   ],
   "padroes_corte": [
     "\\s*\\(",
@@ -16,11 +17,11 @@
     "\\bgeforce\\b",
     "\\brtx\\b",
     "\\bgtx\\b",
-    "core\\s+i\\d",
-    "ryzen\\s+\\d",
+    "\\bcore\\s+i\\d[\\s-]?\\d*[a-z]*\\b",
+    "\\bryzen\\s+\\d[\\s-]?\\d*[a-z]*\\b",
     "\\b\\d+\\s?gb\\b",
     "\\b\\d+\\s?tb\\b",
-    "win(?:dows)?\\s?\\d+",
+    "\\bwin(?:dows)?\\s?\\d+\\b",
     "\\bwith\\b",
     "\\bbattery\\b",
     "\\b\\d+\\.?\\d*[\"\\s-]*inch\\b",
@@ -31,6 +32,9 @@
     "\\bocta\\b",
     "\\bquad\\b",
     "\\bcore\\b",
-    "\\s+-\\s+"
+    "\\s+-\\s+",
+    "\\bssd\\b",
+    "\\bhdd\\b",
+    "\\bnvme\\b"
   ]
 }

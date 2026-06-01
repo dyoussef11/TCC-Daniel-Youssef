@@ -8,7 +8,7 @@ ROOT = ensure_project_root_in_path()
 # ==========================================================
 # PASTAS PRINCIPAIS DO PIPELINE
 # ==========================================================
-
+MODELS = ROOT / "models"
 DATASET_GAMER = ROOT / "00_datasets_referencia"
 EXTRACAO = ROOT / "01_extracao_conversas"
 PREPROCESSAMENTO = ROOT / "02_preprocessamento"
@@ -16,6 +16,7 @@ NER = ROOT / "03_ner_e_resumo"
 VETORIZATION = ROOT / "04_vetorizacao"
 VALIDACAO = ROOT / "05_definicao_sistemas_rags"
 # VALIDACAO = ROOT / "05_validacao_time_aware"
+AVALIACAO = ROOT / "06_avaliacao_quantitativa_deepval"
 
 
 # 05_validacao_time_aware
@@ -73,7 +74,7 @@ VALIDACAO_UTILS = VALIDACAO / "utils"
 
 # --- AVALIAÇÃO DE METRICAS RAG TEMPORAL ---
 
-AVALIACAO = ROOT / "06_avaliacao_quantitativa_deepval"
+
 AVALIACAO_DATA = AVALIACAO / "data"
 AVALIACAO_SCRIPT = AVALIACAO / "script"
 

@@ -1,0 +1,76 @@
+{
+    "reddit_params": {
+        "limit_posts_per_keyword": 1000,
+        "subreddits": "all",
+        "negative_terms": [
+            "sale", "deal", "price", "discount", "buy", "store", 
+            "ebay", "shipping", "worth it", "comparison", "vs",
+            "benchmark", "score", "review"
+        ],
+        "search_groups": {
+            
+            "performance_issues": [
+                "fps drop", "stuttering", "bottleneck", "low performance",
+                "lag", "frame drop", "slow", "sluggish", "choppy", "stutter", 
+                "underperform", "gpu usage", "cpu usage", "cpu bottleneck"
+            ],
+
+            "thermal_failure": [
+                "overheating", "thermal throttling", "repaste", "fan noise",
+                "hot", "temperature", "throttle", "thermal", "heat", "cooling",
+                "fan", "loud", "high temp", "thermal paste", "cpu temp", "gpu temp",
+                "hotspot", "prochot", "fan curve", "fan speed", "rpm", "vrm temp",
+                "clean fan", "dusty", "airflow"
+            ],
+
+            "power_and_battery": [
+                "battery drain", "battery health", "not charging", "cycle count",
+                "battery life", "poor battery", "battery issue", "power adapter",
+                "charger", "power brick", "battery problem", "battery wear",
+                "discharge", "power draw", "usb-c charging", "pd charging", 
+                "dc jack", "charging port", "loose charger", "drain while gaming", 
+                "plugged in", "on battery", "battery bypass"
+            ],
+
+            "display_defects": [
+                "backlight bleed", "flickering", "ips glow", "dead pixels",
+                "screen issue", "display problem", "pixel", "bleed", "backlight",
+                "screen flicker", "monitor issue", "panel", "screen tear",
+                "ghosting", "oled burn", "image retention", "dead pixel", 
+                "stuck pixel", "bright pixel", "dark spot", "mura", "clouding",
+                "hinge issue", "screen wobble", "flex"
+            ],
+
+            "system_stability": [
+                "bsod", "system freeze", "driver crash", "blue screen", "bootloop",
+                "crash", "freeze", "freezing", "hang", "unstable", "lock up",
+                "reboot", "restart", "shutdown", "black screen", "no post",
+                "bios", "boot", "startup", "whea error", "kernel power", 
+                "event id 41", "bugcheck", "memory dump", "artifacting", 
+                "graphical glitch", "visual bug", "memory error", "memtest"
+            ],
+
+            "hardware_faults": [
+                "coil whine", "buzzing", "electrical noise", "keyboard issue", 
+                "key stuck", "trackpad", "touchpad", "click issue",
+                "wifi issue", "wifi card", "connection drop", "network drop",
+                "speaker", "audio issue", "sound crackling", "audio driver",
+                "headphone jack", "3.5mm", "mic issue", "usb port", "hdmi", 
+                "motherboard", "mobo", "vrm", "power delivery issue",
+                "build quality", "creaking", "warranty", "rma", "customer service"
+            ],
+
+            "critical_software": [
+                "driver update", "nvidia driver", "amd driver", "ddu",
+                "clean install", "fresh install", "armoury crate", 
+                "omen gaming hub", "msi center", "lenovo vantage",
+                "alienware command", "bios update", "vbios", "firmware"
+            ]
+        },
+        "user_agent": "LaptopSentimentBot/1.0"
+    },
+    "paths": {
+        "input_csv": "../00_datasets_referencia/dataset_final_csv/dataset_laptops_GAMER_ONLY.csv",
+        "output_bruto": "data/bruto/"
+    }
+}

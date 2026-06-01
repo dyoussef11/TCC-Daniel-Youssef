@@ -1,0 +1,118 @@
+{
+    "reddit_params": {
+        "limit_posts_per_keyword": 1000,
+        "subreddits": "all",
+        "negative_terms": [
+            "sale", "deal", "price", "discount", "buy", "store", 
+            "ebay", "shipping", "worth it", "comparison", "vs"
+        ],
+        "search_groups": {
+            
+            "performance": [
+                "fps drop", "stuttering", "bottleneck", "benchmarks", "low performance",
+                "lag", "frame drop", "frame rate", "low fps", "poor performance",
+                "slow", "sluggish", "choppy", "stutter", "underperform",
+                "power limit", "tdp", "wattage", "clock speed", "utilization",
+                "micro stutter", "frametime", "frame pacing", "1% lows",
+                "gpu usage", "cpu usage", "cpu bottleneck", "gpu bottleneck",
+                "underclock", "overclock fail", "boost clock", "base clock",
+                "performance mode", "turbo mode", "silent mode", "balanced mode",
+                "rtx", "dlss", "fsr", "ray tracing", "dx12", "vulkan",
+                "unigine", "3dmark", "timespy", "firestrike", "cinebench",
+                "geekbench", "passmark", "userbenchmark", "pcmark"
+            ],
+
+            "thermal": [
+                "overheating", "thermal throttling", "undervolt", "repaste", "fan noise",
+                "hot", "temperature", "throttle", "thermal", "heat", "cooling",
+                "fan", "loud", "high temp", "thermal paste", "cpu temp", "gpu temp",
+                "degrees", "celsius", "fahrenheit", "hotspot", "prochot",
+                "liquid metal", "ptm7950", "honeywell", "thermal pad", "thermal putty",
+                "vapor chamber", "heatpipe", "heatsink", "cooling pad", "laptop stand",
+                "intake", "exhaust", "airflow", "dust", "dusty", "clean fan",
+                "fan curve", "fan speed", "rpm", "noctua", "arctic mx",
+                "thermal grizzly", "kryonaut", "conductonaut", "tg-7",
+                "idle temp", "load temp", "ambient temp", "room temperature",
+                "vrms", "vrm temp", "ssd temp", "nvme temp", "chipset temp"
+            ],
+
+            "energy": [
+                "battery drain", "battery health", "not charging", "cycle count",
+                "battery life", "poor battery", "battery issue", "power adapter",
+                "charger", "power brick", "battery problem", "battery wear",
+                "battery", "charge", "discharge", "power draw", "watt",
+                "battery report", "battery capacity", "design capacity", "full charge",
+                "battery calibration", "battery saver", "power plan", "power profile",
+                "usb-c charging", "pd charging", "power delivery", "type c charge",
+                "barrel charger", "dc jack", "charging port", "loose charger",
+                "power limit throttling", "pl1", "pl2", "pl4", "cross loading",
+                "drain while gaming", "plugged in", "on battery", "battery boost",
+                "nvidia whisper mode", "battery bypass", "direct power"
+            ],
+
+            "display": [
+                "backlight bleed", "flickering", "ips glow", "dead pixels",
+                "screen issue", "display problem", "pixel", "bleed", "backlight",
+                "screen flicker", "monitor issue", "panel", "screen tear",
+                "screen", "display", "monitor", "color accuracy", "brightness",
+                "ghosting", "response time", "motion blur", "overdrive",
+                "gsync", "freesync", "vrr", "adaptive sync", "screen tearing",
+                "color banding", "gradient", "color accuracy", "delta e",
+                "srgb", "dci-p3", "adobe rgb", "ntsc", "color gamut",
+                "hdr", "dolby vision", "brightness nits", "contrast ratio",
+                "oled burn", "oled burn in", "image retention", "pwm flicker",
+                "mini led", "blooming", "local dimming", "backlight zones",
+                "dead pixel", "stuck pixel", "bright pixel", "dark spot",
+                "mura", "clouding", "dse", "dirty screen effect",
+                "screen bezel", "hinge issue", "screen wobble", "flex"
+            ],
+
+            "stability": [
+                "bsod", "system freeze", "driver crash", "blue screen", "bootloop",
+                "crash", "freeze", "freezing", "hang", "unstable", "lock up",
+                "reboot", "restart", "shutdown", "black screen", "no post",
+                "bios", "boot", "startup", "wake", "sleep", "hibernate",
+                "whea error", "kernel power", "event id 41", "bugcheck",
+                "memory dump", "minidump", "crash dump", "bsod viewer",
+                "irql", "dpc watchdog", "page fault", "driver irql",
+                "dxgmms2", "nvlddmkm", "amdkmdag", "atikmpag",
+                "ctd", "crash to desktop", "hard lock", "soft lock",
+                "artifact", "artifacting", "graphical glitch", "visual bug",
+                "memory error", "memtest", "ram test", "xmp", "expo",
+                "secure boot", "tpm", "bitlocker", "windows update issue"
+            ],
+
+            "hardware_specific": [
+                "coil whine", "buzzing", "electrical noise", "humming",
+                "keyboard issue", "key stuck", "keyboard ghosting", "keyboard backlight",
+                "trackpad", "touchpad", "mouse pad", "click issue",
+                "wifi issue", "wifi card", "mediatek", "intel ax", "realtek",
+                "bluetooth", "bt issue", "connection drop", "network drop",
+                "speaker", "audio issue", "sound crackling", "audio driver",
+                "headphone jack", "3.5mm", "mic issue", "microphone",
+                "usb port", "usb c", "thunderbolt", "hdmi", "displayport",
+                "ram upgrade", "ssd upgrade", "nvme slot", "sodimm",
+                "motherboard", "mobo", "vrm", "power delivery issue",
+                "bent", "warped", "build quality", "creaking", "flex",
+                "screw stripped", "warranty", "rma", "customer service"
+            ],
+
+            "software_issues": [
+                "driver update", "nvidia driver", "amd driver", "intel driver",
+                "geforce experience", "adrenalin", "command center", "ddu",
+                "clean install", "fresh install", "windows 11", "windows 10",
+                "optimize", "debloat", "bloatware", "preinstalled",
+                "armoury crate", "omen gaming hub", "msi center", "lenovo vantage",
+                "alienware command", "predator sense", "nitro sense",
+                "throttlestop", "msi afterburner", "rtss", "hwinfo",
+                "gpu-z", "cpu-z", "ryzen master", "xtu", "intel xtu",
+                "bios update", "vbios", "firmware", "chipset driver"
+            ]
+        },
+        "user_agent": "LaptopSentimentBot/1.0"
+    },
+    "paths": {
+        "input_csv": "../00_datasets_referencia/dataset_final_csv/dataset_laptops_GAMER_ONLY.csv",
+        "output_bruto": "data/bruto/"
+    }
+}

@@ -1,0 +1,35 @@
+RELATÓRIO COMPARATIVO V1 vs V9
+Data: 20260514_1331
+Base: C:\Users\Daniel Youssef\Documents\Backup\Notebook-Forum-Sentimento\04_vetorizacao\data\base_conhecimento_multilingueV8.json
+================================================================================
+
+
+================================================================================
+ID: TC_STATIC_01
+Query: What is the maximum RAM capacity for the Acer Nitro 5 AN515-56?
+Reference Date: 2026-03-12
+
+--- V1 (VANILLA) ---
+RESPONSE:
+The provided context does not specify the exact RAM capacity for the Acer Nitro 5 AN515-47 model. However, it discusses upgrading to various capacities such as 8GB (doubled), 16GB, and up to a maximum of 32GB based on different sources' suggestions. For precise information regarding your specific laptop model Acer Nitro 5 AN515-47, I recommend checking the user manual or contacting Acer support directly as they would have accurate details about its RAM capacity capabilities.
+
+--- V9 (TEMPORAL) ---
+RESPONSE:
+I'm sorry, but there is currently no specific information about RAM capacity for Acer Nitro 5 model AN515-56. For accurate and detailed specs on this particular SKU, please refer to the official product documentation or contact customer support directly as my knowledge cutoff date in early 2024 does not include such details.
+
+--- MÉTRICAS (DeepEval) ---
+Faithfulness:
+  V1: 1.000
+  V9: 1.000
+Answer_Rel:
+  V1: 0.667
+  V9: 1.000
+C_Relevancia:
+  V1: 0.083
+  V9: 0.000
+C_Precision:
+  V1: 1.000
+  V9: 1.000
+C_Recall:
+  V1: 0.000
+  V9: 0.000

@@ -1,0 +1,31 @@
+Brand,Model,CPU,RAM_GB,Storage_GB,GPU,Price_USD,Category,modelo_completo_limpo
+Apple,MacBook Air,M4,16,512,Integrated,1299,Premium,macbook_air
+ASUS,Vivobook 16,Core Ultra 5,16,512,Integrated,649,Budget,vivobook_16
+Lenovo,IdeaPad Slim 3,Ryzen 5,8,256,Integrated,429,Budget,ideapad_slim_3
+Acer,Aspire Go 15,Intel N100,8,128,Integrated,299,Ultra-Budget,aspire_go_15
+HP,Victus 15,Ryzen 5,16,512,RTX 5050,799,Budget Gaming,victus_15
+Dell,Inspiron 14,Core Ultra 7,16,1024,Integrated,899,Mid-Range,inspiron_14
+ASUS,TUF Gaming A16,Ryzen 7,16,1024,RTX 5060,949,Budget Gaming,tuf_gaming_a16
+Lenovo,Yoga 7i,Core Ultra 5,16,512,Integrated,749,2-in-1,yoga_7i
+Apple,MacBook Pro 14,M4 Pro,24,512,Integrated,1999,Professional,macbook_pro_14
+Acer,Nitro V 16,Ryzen 7,16,512,RTX 5050,629,Budget Gaming,nitro_v_16
+MSI,Cyborg 15,Core i7-13th,16,512,RTX 4050,699,Budget Gaming,cyborg_15
+Samsung,Galaxy Book4,Snapdragon X,16,512,Integrated,999,Ultraportable,galaxy_book4
+ASUS,ExpertBook P5,Core Ultra 7,32,1024,Integrated,1250,Business,expertbook_p5
+Lenovo,ThinkPad E14,Core Ultra 5,16,512,Integrated,670,Budget Business,thinkpad_e14
+HP,OmniBook X,Ryzen AI 7,16,512,Integrated,679,Budget,omnibook_x
+Dell,Vostro 3520,Core i5-12th,8,256,Integrated,399,Budget,vostro_3520
+Acer,Swift Go 14,Core Ultra 7,16,512,Integrated,849,Mid-Range,swift_go_14
+Microsoft,Surface Laptop 7,Snapdragon X,16,512,Integrated,1299,Premium,surface_laptop_7
+ASUS,ROG Zephyrus G14,Ryzen 9,32,1024,RTX 5070,1899,Gaming,rog_zephyrus_g14
+Lenovo,LOQ 15,Core i5-13th,12,512,RTX 4050,749,Budget Gaming,loq_15
+ASUS,Zenbook S 14,Core Ultra 7,32,1024,Integrated,1499,Premium,zenbook_s_14
+HP,Pavilion 15,Ryzen 5,16,512,Integrated,549,Budget,pavilion_15
+Lenovo,Legion Slim 5,Ryzen 7,16,1024,RTX 5060,1199,Gaming,legion_slim_5
+Dell,XPS 13,Core Ultra 5,16,512,Integrated,1099,Premium,xps_13
+Apple,MacBook Pro 16,M4 Max,48,1024,Integrated,3499,Professional,macbook_pro_16
+Gigabyte,G5,Core i5-12th,16,512,RTX 4060,799,Budget Gaming,g5
+Acer,Chromebook Spin,MediaTek,4,64,Integrated,249,Ultra-Budget,chromebook_spin
+ASUS,ProArt P16,Ryzen AI 9,64,2048,RTX 5080,3299,Professional,proart_p16
+Lenovo,ThinkBook 16,Core Ultra 5,16,512,Integrated,799,Business,thinkbook_16
+HP,Envy x360,Core Ultra 7,16,1024,Integrated,949,2-in-1,envy_x360

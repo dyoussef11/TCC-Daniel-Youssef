@@ -1,0 +1,33 @@
+model,temperature,top_k,similarity_threshold,query,answer_relevancy,faithfulness,contextual_relevancy,combined_score,test_case_id
+phi3.5:latest,0.3,5,1.2,How many M.2 SSD slots does the Acer Nitro 5 AN515,1.0,1.0,0.2,0.8400000000000001,TC_STATIC_02
+phi3.5:latest,0.0,5,1.2,How many M.2 SSD slots does the Acer Nitro 5 AN515,1.0,1.0,0.2,0.8400000000000001,TC_STATIC_02
+phi3.5:latest,0.0,5,1.0,How many M.2 SSD slots does the Acer Nitro 5 AN515,1.0,1.0,0.2,0.8400000000000001,TC_STATIC_02
+phi3.5:latest,0.0,10,1.0,How many M.2 SSD slots does the Acer Nitro 5 AN515,1.0,1.0,0.2,0.8400000000000001,TC_STATIC_02
+phi3.5:latest,0.0,10,1.2,How many M.2 SSD slots does the Acer Nitro 5 AN515,1.0,1.0,0.2,0.8400000000000001,TC_STATIC_02
+phi3.5:latest,0.3,10,1.2,What is the maximum RAM capacity for the Acer Nitr,1.0,1.0,0.08333333333333333,0.8166666666666668,TC_STATIC_01
+phi3.5:latest,0.3,5,1.0,How many M.2 SSD slots does the Acer Nitro 5 AN515,0.75,1.0,0.2,0.765,TC_STATIC_02
+phi3.5:latest,0.0,5,1.2,What is the maximum RAM capacity for the Acer Nitr,0.75,1.0,0.07692307692307693,0.7403846153846154,TC_STATIC_01
+phi3.5:latest,0.0,10,1.2,What is the maximum RAM capacity for the Acer Nitr,0.75,1.0,0.07692307692307693,0.7403846153846154,TC_STATIC_01
+phi3.5:latest,0.3,10,1.0,How many M.2 SSD slots does the Acer Nitro 5 AN515,0.6666666666666666,1.0,0.2,0.74,TC_STATIC_02
+phi3.5:latest,0.0,5,1.0,What is the maximum RAM capacity for the Acer Nitr,0.6666666666666666,1.0,0.07692307692307693,0.7153846153846153,TC_STATIC_01
+phi3.5:latest,0.0,10,1.0,What is the maximum RAM capacity for the Acer Nitr,0.6666666666666666,1.0,0.07692307692307693,0.7153846153846153,TC_STATIC_01
+phi3.5:latest,0.3,5,1.2,What is the maximum RAM capacity for the Acer Nitr,0.5,1.0,0.07692307692307693,0.6653846153846155,TC_STATIC_01
+qwen3:4b-instruct,0.3,5,1.2,What is the maximum RAM capacity for the Acer Nitr,0.5,1.0,0.07692307692307693,0.6653846153846155,TC_STATIC_01
+phi3.5:latest,0.3,5,1.0,What is the maximum RAM capacity for the Acer Nitr,1.0,0.5,0.08333333333333333,0.5666666666666668,TC_STATIC_01
+phi3.5:latest,0.3,10,1.0,What is the maximum RAM capacity for the Acer Nitr,1.0,0.5,0.07692307692307693,0.5653846153846154,TC_STATIC_01
+qwen3:4b-instruct,0.3,5,1.0,How many M.2 SSD slots does the Acer Nitro 5 AN515,0.5,0.75,0.2,0.5650000000000001,TC_STATIC_02
+qwen3:4b-instruct,0.3,10,1.0,How many M.2 SSD slots does the Acer Nitro 5 AN515,0.5,0.75,0.2,0.5650000000000001,TC_STATIC_02
+qwen3:4b-instruct,0.3,10,1.2,How many M.2 SSD slots does the Acer Nitro 5 AN515,0.5,0.75,0.2,0.5650000000000001,TC_STATIC_02
+qwen3:4b-instruct,0.3,10,1.0,What is the maximum RAM capacity for the Acer Nitr,0.5,0.75,0.07692307692307693,0.5403846153846155,TC_STATIC_01
+qwen3:4b-instruct,0.0,5,1.2,How many M.2 SSD slots does the Acer Nitro 5 AN515,0.5,0.5,0.2,0.44000000000000006,TC_STATIC_02
+qwen3:4b-instruct,0.0,10,1.0,How many M.2 SSD slots does the Acer Nitro 5 AN515,0.5,0.5,0.2,0.44000000000000006,TC_STATIC_02
+qwen3:4b-instruct,0.0,10,1.2,How many M.2 SSD slots does the Acer Nitro 5 AN515,0.5,0.5,0.2,0.44000000000000006,TC_STATIC_02
+qwen3:4b-instruct,0.0,5,1.0,How many M.2 SSD slots does the Acer Nitro 5 AN515,0.5,0.5,0.2,0.44000000000000006,TC_STATIC_02
+qwen3:4b-instruct,0.0,10,1.0,What is the maximum RAM capacity for the Acer Nitr,0.0,0.75,0.08333333333333333,0.39166666666666666,TC_STATIC_01
+qwen3:4b-instruct,0.3,10,1.2,What is the maximum RAM capacity for the Acer Nitr,0.0,0.75,0.08333333333333333,0.39166666666666666,TC_STATIC_01
+qwen3:4b-instruct,0.0,10,1.2,What is the maximum RAM capacity for the Acer Nitr,0.0,0.75,0.07692307692307693,0.3903846153846154,TC_STATIC_01
+qwen3:4b-instruct,0.3,5,1.0,What is the maximum RAM capacity for the Acer Nitr,0.0,0.75,0.07692307692307693,0.3903846153846154,TC_STATIC_01
+qwen3:4b-instruct,0.0,5,1.2,What is the maximum RAM capacity for the Acer Nitr,0.0,0.75,0.07692307692307693,0.3903846153846154,TC_STATIC_01
+qwen3:4b-instruct,0.0,5,1.0,What is the maximum RAM capacity for the Acer Nitr,0.0,0.75,0.07692307692307693,0.3903846153846154,TC_STATIC_01
+phi3.5:latest,0.3,10,1.2,How many M.2 SSD slots does the Acer Nitro 5 AN515,0.6666666666666666,0.25,0.2,0.365,TC_STATIC_02
+qwen3:4b-instruct,0.3,5,1.2,How many M.2 SSD slots does the Acer Nitro 5 AN515,0.5,0.25,0.2,0.31500000000000006,TC_STATIC_02

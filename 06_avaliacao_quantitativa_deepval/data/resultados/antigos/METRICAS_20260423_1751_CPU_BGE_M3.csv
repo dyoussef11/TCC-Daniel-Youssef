@@ -1,0 +1,8 @@
+ID,Query,GPU_Temp,GPU_VRAM_GB,V1_Docs_Retrieved,V8_Docs_Retrieved,V1_C_Precision,V8_C_Precision,V1_C_Relevancia,V8_C_Relevancia,V1_C_Recall,V8_C_Recall,V1_Faithfulness,V8_Faithfulness,V1_Answer_Rel,V8_Answer_Rel
+TC_STATIC_01,What is the maximum RAM capacity for the Acer Nitro 5 AN515-56?,69,2.02,5,5,1.0,1.0,0.07692307692307693,0.07692307692307693,0.0,0.0,0.8,0.5,0.6,1.0
+TC_STATIC_02,How many M.2 SSD slots does the Acer Nitro 5 AN515-56 have?,74,2.08,5,5,1.0,1.0,0.2,0.2,1.0,1.0,1.0,1.0,0.8,1.0
+TC_TEMPORAL_01,Can I run the new RTX 5060 Ti drivers on my Acer Nitro 5 AN515-56?,75,2.11,5,5,0.0,0.0,0.2,0.2,0.5,0.5,0.7777777777777778,0.2,0.9090909090909091,1.0
+TC_CONFLICT_01,Is there a firmware fix for the Nitro 5 AN515-56 screen flickering issue?,74,2.11,5,5,0.0,0.0,0.6,0.6,0.0,0.0,0.8666666666666667,0.2,0.0,1.0
+TC_SKU_01,Does my Acer Nitro 5 AN515-56 support Thunderbolt 4?,72,2.11,5,5,0.0,0.0,0.0,0.0,0.0,0.0,0.7142857142857143,1.0,0.42857142857142855,0.6666666666666666
+TC_HYBRID_01,What is the benefit of the dual-fan design in the Nitro 5 AN515-56?,71,2.13,5,5,0.2,0.2,0.07692307692307693,0.07692307692307693,0.5,0.5,0.8333333333333334,1.0,1.0,1.0
+TC_TIME_01,What is the latest stable BIOS version for the Helios Neo 16 as of 2026?,72,2.01,5,5,0.0,0.0,0.0,0.0,0.0,0.0,0.7142857142857143,0.4,0.36363636363636365,1.0

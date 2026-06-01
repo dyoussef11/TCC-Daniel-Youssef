@@ -1,0 +1,25 @@
+RELATÓRIO DE AUDITORIA RAG - VERSÃO FINAL
+Data: 20260414_0938
+Config: Top 3 Context | NumCtx 8192 | Local Judge: Phi-3.5
+================================================================================
+
+ID: TC_STATIC_01 | Query: What is the maximum RAM capacity for the Acer Nitro 5 AN515-56?
+FONTES V8: Tight budget, Bought an AN515-45-R6XD for my son, anything I need to know to get it running at its best?, 🎉 Happy New Year: Best Laptop Recommendations for January 🎮✂️📚 (Gaming, Editing, Student & More!), When life throws a Nitro at you, you just accept and upgrade it!, Need recommendations on RAM upgrade, Rate my purchase, [EU - Slovakia]: Laptop for web developer, gamer, Is my acer nitro 5 underperforming? My games are not working properly. Screenshot of the benchmark, Need help with RAM upgrade. Never upgraded laptop RAM before, Battery capacity dropped 10,000mWh in 2 months? Nitro 5
+AUDIT TRAIL V8: [ID_0, ID_1, ID_2, ID_3, ID_4, ID_5, ID_6, ID_7, ID_8, ID_9]  
+Internal knowledge as of my 2024 training. The provided context does not contain any technical document specifically addressing the Acer Nitro 5 AN515-56 model. While several documents discuss RAM capacity and thermal performance for other AN515 variants (e.g., AN515-45, AN515-46, AN515-58), none reference the AN515-56 model. Therefore, no valid, SKU-specific data exists in the provided context for the AN515-56. The absence of direct information renders any extrapolation or inference from related models invalid under strict SKU validation.
+Métrica: C_Precision
+  [V1] Score: 0.00 | Reason: The score of 0.00 because the provided context does not contain any relevant nodes to directly answer about RAM capacity for Acer Nitro 5 AN515-56, instead it only mentions that this model was released before April 2023 and suggests using RAG sources which are ignored as per instructions.
+  [V8] Score: 0.00 | Reason: Falha na extração de justificativa: Evaluation LLM outputted an invalid JSON. Please use a better evaluation model.
+Métrica: C_Relevancy
+  [V1] Score: 0.00 | Reason: The score is 0.00 because there are no reasons provided and statements given, making it impossible to determine contextual relevancy or relevance of any data.
+  [V8] Score: 0.29 | Reason: The score is 0.29 because the provided context discusses different models and general information not specific to Acer Nitro 5 AN515-56, such as other RAM capacities for a model released after knowledge cutoff (Acer Nitro V AN515-58-781P) or unrelated performance settings like processor state adjustments which do not directly answer about maximum RAM capacity of specified model.
+Métrica: C_Recall
+  [V1] Score: 0.00 | Reason: The score is 0.00 because there are no supportive reasons to attribute the information about Acer Nitro 5 AN515-56's maximum RAM capacity and specifications from node(s) in retrieval context.
+  [V8] Score: 0.40 | Reason: The score is 0.40 because while '[RAG] The Acer Nitro 5 AN515-56 supports a maximum of 32GB DDR4 3200MHz RAM across its two SO-DIMM slots.' can be directly attributed to the node in retrieval context, there are unsupportive reasons such as [INTERNAL] 'Acer Nitro V AN515-58-781P is mentioned in the 3rd node but not specifically about RAM' and '[RAG] Consider upgrading to a higher-end GPU or CPU if budget allows.' which do not support this specific claim. Additionally, there are internal tags like '[INTERNAL] Corsair or G.Skill', that while related to memory upgrades generallyliby don't directly confirm the 32GB DDR4 specification for Acer Nitro 5 AN515-56.
+Métrica: Faithfulness
+  [V1] Score: 0.00 | Reason: The score is 0.00 because the contradiction refers to Albert Einstein and his achievements in physics that have no relation with hardware like RAM specifications for an Acer Nitro 5 laptop.
+  [V8] Score: 0.00 | Reason: The score is 0 because mentioning '32GB' implies knowledge of current or future hardware specifications which cannot be confirmed without RAG evidence and contradicts the rule against using [INTERNAL] memory to invent specific SKU specs.
+Métrica: Answer_Rel
+  [V1] Score: 0.00 | Reason: Falha na extração de justificativa: Evaluation LLM outputted an invalid JSON. Please use a better evaluation model.
+  [V8] Score: 0.00 | Reason: The score is 0 because it did not address or mention anything related to 'maximum RAM capacity' which directly answers the question, and instead provided an irrelevant statement about a different model.
+----------------------------------------
