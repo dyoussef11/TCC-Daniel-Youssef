@@ -4,8 +4,7 @@
         "subreddits": "all",
         "negative_terms": [
             "sale", "deal", "price", "discount", "buy", "store", 
-            "ebay", "shipping", "worth it", "comparison", "vs",
-            "benchmark", "score", "review"
+            "ebay", "shipping", "marketplace", "used", "refurbished"
         ],
         "search_groups": {
             

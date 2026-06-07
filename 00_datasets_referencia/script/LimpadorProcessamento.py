@@ -25,64 +25,60 @@ class LimpadorModelos:
             return "modelo_nao_identificado"
         
         nome = texto.strip().lower()
+
+        # ========== ABORDAGEM 1 ==========
+        # Converte underscore em espaço para as regex funcionarem
+        nome = nome.replace('_', ' ')
+        # =================================
         
-        # APLICA O REGEX_CORTE PRIMEIRO (se existir)
+        # Aplica regex_corte (remove partes indesejadas)
         if hasattr(self, 'regex_corte') and self.regex_corte:
             nome = self.regex_corte.sub('', nome)
         
-        # 1. PRESERVA MARCA (vai ser adicionada depois separadamente)
+        # Identifica e remove a marca (será recolocada no final)
         marcas_conhecidas = ['acer', 'apple', 'asus', 'dell', 'hp', 'lenovo', 'msi', 
                             'samsung', 'infinix', 'avita', 'ultimus', 'walker', 'wings', 'tecno']
-        
         marca_encontrada = None
         for marca in marcas_conhecidas:
             if nome.startswith(marca):
                 marca_encontrada = marca
-                nome = nome[len(marca):].lstrip('_')
+                nome = nome[len(marca):].lstrip(' ')
                 break
         
-        # 2. Remove termos genéricos do JSON
+        # Remove termos genéricos do JSON
         if hasattr(self, 'termos_genericos') and self.termos_genericos:
             for termo in self.termos_genericos:
-                # termo pode ser string ou pattern
                 if isinstance(termo, str):
                     nome = re.sub(termo, '', nome, flags=re.IGNORECASE)
         
-        # 3. Remove palavras lixo ESPECÍFICAS
+        # Remove palavras lixo específicas (com espaços)
         palavras_lixo = r'\b(laptop|notebook|computer|windows|win|home|touch|convertible|dos|graph|graphics|edition|series|gen|th|nd|rd|st)\b'
         nome = re.sub(palavras_lixo, '', nome, flags=re.IGNORECASE)
         
-        # 4. Remove especificações de hardware
-        # Remove "8gb", "16gb", "512gb", "1tb", "256gb"
+        # Remove especificações de hardware (agora com espaços)
         nome = re.sub(r'\b\d{1,4}\s*(gb|tb)\b', '', nome, flags=re.IGNORECASE)
-        
-        # Remove palavras de CPU
         nome = re.sub(r'\b(core\s*i[3579]|amd|ryzen\s*[3579]|celeron|pentium|athlon)\s*[\d-]*[a-z]*\b', '', nome, flags=re.IGNORECASE)
-        
-        # Remove "11th_gen", "12th_gen", "13th_gen", etc
         nome = re.sub(r'\b\d{1,2}th_gen\b', '', nome, flags=re.IGNORECASE)
-        
-        # Remove "win11", "win10", "win11_home", etc
         nome = re.sub(r'\bwin\d{1,2}[_\s]?(home|pro)?\b', '', nome, flags=re.IGNORECASE)
-        
-        # Remove "ssd", "hdd", "nvme", "pcie"
         nome = re.sub(r'\b(ssd|hdd|nvme|pcie)\b', '', nome, flags=re.IGNORECASE)
         
-        # 5. Limpa caracteres especiais e normaliza
+        # Limpeza de caracteres especiais e normalização
         nome = re.sub(r'[^\w\s\-]', '', nome)
+        # ========== ABORDAGEM 1 (continuação) ==========
+        # Converte espaços de volta para underscore
         nome = re.sub(r'\s+', '_', nome.strip())
+        # ===============================================
         nome = re.sub(r'_{2,}', '_', nome)
         nome = nome.strip('_')
         
-        # 6. Re-adiciona a marca no início (se encontrada)
+        # Recoloca a marca no início
         if marca_encontrada and nome:
             nome = f"{marca_encontrada}_{nome}"
         elif marca_encontrada:
             nome = marca_encontrada
         
-        # 7. Fallback: se ficou vazio, usa o original simplificado
+        # Fallback caso ainda esteja vazio
         if not nome or len(nome) < 3:
-            # Tenta extrair apenas marca + modelo base
             partes = texto.strip().lower().split('_')
             if len(partes) >= 2 and partes[0] in marcas_conhecidas:
                 nome = f"{partes[0]}_{partes[1]}"

@@ -1,3 +1,4 @@
+import hashlib
 import re
 import logging
 import pandas as pd
@@ -21,12 +22,32 @@ class TransformadorLaptops:
     def extrair_regex(self, texto: str, chave: str) -> str:
         if pd.isna(texto) or texto == 'nan' or texto == '':
             return "não identificado"
+        texto_temp = str(texto).replace('_', ' ')
         padrao = self.config.PADROES_HARDWARE.get(chave)
-        if not padrao: 
+        if not padrao:
             return "não identificado"
-        match = re.search(padrao, str(texto), re.IGNORECASE)
-        return match.group(0).strip().lower() if match else "não identificado"
-
+        
+        if chave == "storage":
+            # Encontra todos os valores de tamanho (ex: 8gb, 512gb, 1tb, 16gb)
+            matches = re.findall(r'\b(\d+)\s*(gb|tb)\b', texto_temp, re.IGNORECASE)
+            if not matches:
+                return "não identificado"
+            
+            melhor_valor = None
+            melhor_tamanho_gb = -1
+            for valor, unidade in matches:
+                num = int(valor)
+                if unidade.lower() == 'tb':
+                    num *= 1024  # converte TB para GB
+                if num > melhor_tamanho_gb:
+                    melhor_tamanho_gb = num
+                    melhor_valor = f"{valor}{unidade}"
+            return melhor_valor.lower().replace(" ", "")
+        
+        else:
+            match = re.search(padrao, texto_temp, re.IGNORECASE)
+            return match.group(0).strip().lower() if match else "não identificado"
+        
     def classificar_categoria(self, row: pd.Series) -> str:
         modelo = str(row.get('modelo_completo', ''))
         gpu = str(row.get('gpu', ''))
@@ -41,16 +62,15 @@ class TransformadorLaptops:
 
 
     def gerar_id_unico(self, row: pd.Series) -> str:
-        """Gera ID único baseado no modelo limpo + especificações chave"""
-        def fix(x): 
-            return str(x).replace(' ', '').lower() if x != "não identificado" else "na"
+        def fix(x):
+            val = str(x).replace(' ', '').lower()
+            return val if val not in ("nãoidentificado", "na", "nan", "none") else "na"
         
-        # Usa o modelo_limpo que já inclui a marca
         modelo = fix(row.get('modelo_limpo', 'gen'))
         cpu = fix(row.get('cpu', 'na'))
         ram = fix(row.get('ram', 'na'))
         storage = fix(row.get('storage', 'na'))
-        
+
         return f"{modelo}_{cpu}_{ram}_{storage}"
 
     def processar_arquivo(self, caminho: Path, mapeamento: Dict[str, any]) -> Optional[pd.DataFrame]:

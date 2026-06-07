@@ -81,42 +81,6 @@ class TextProcessor:
             query_parts.append(p)
         
         return " ".join(query_parts) if query_parts else modelo
-
-    @classmethod
-    def extrair_identificadores(cls, modelo_limpo):
-        """
-        Extrai múltiplos identificadores do modelo_limpo para validação.
-        Retorna uma lista com diferentes níveis de especificidade.
-        """
-        modelo = cls.normalizar(str(modelo_limpo)).lower().replace('_', ' ')
-        
-        identificadores = []
-        
-        # 1. SKU completo (padrões de 4-8 caracteres)
-        sku_match = re.search(r'\b([a-z0-9]{4,8})\b', modelo)
-        if sku_match:
-            sku = sku_match.group(1)
-            # Evita falsos positivos muito genéricos
-            skus_falsos = {"v15", "f15", "tuf", "acer", "dell", "asus", "pro", "air", "book"}
-            if sku not in skus_falsos and not sku.isdigit():
-                identificadores.append(('sku_completo', sku))
-        
-        # 2. Padrão de modelo + número (ex: "a40", "a50", "x1", "z40")
-        modelo_num_match = re.search(r'\b([a-z]+[0-9]{2,3})\b', modelo)
-        if modelo_num_match:
-            identificadores.append(('modelo_numero', modelo_num_match.group(1)))
-        
-        # 3. Código de série (ex: "1zv", "1df", "1kf", "1e5" - padrão Toshiba)
-        serie_match = re.search(r'\b([a-z0-9]{3,4})\b(?=\s|$)', modelo)
-        if serie_match and len(serie_match.group(1)) >= 3:
-            identificadores.append(('codigo_serie', serie_match.group(1)))
-        
-        # 4. Número de geração/sufixo (ex: "g4", "g3", "v2")
-        geracao_match = re.search(r'\b([a-z][0-9])\b', modelo)
-        if geracao_match:
-            identificadores.append(('geracao', geracao_match.group(1)))
-        
-        return identificadores
     
     @classmethod
     def validar_presenca_modelo(cls, tarefa, posts):
