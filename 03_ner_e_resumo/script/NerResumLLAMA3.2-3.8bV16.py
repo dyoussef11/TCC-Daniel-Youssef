@@ -46,7 +46,7 @@ Content: {corpo}
 Comments: {comentarios}
 
 Analyze the conversation and extract:
-1. summary: Start with device name, then describe the actual problem, symptoms, and affected components
+1. summary: Start with device name, then describe the actual problem, symptoms, and affected components. 
 2. intent: Choose from "Technical Specifications", "Troubleshooting", "Upgrade Advice", "Compatibility", "Warranty", "Performance"
 3. detected_fault: Describe the specific technical fault found, or "None" if no fault
 4. suggested_solution: Array of actionable steps (max 4). Extract from comments if present.

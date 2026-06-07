@@ -16,15 +16,15 @@ sys.path.append(str(VALIDACAO_SCRIPT))
 TRADITIONAL_TEST_SUITE = [
     {
         "id": "TC_STATIC_01",
-        "input": "What is the maximum RAM capacity for the Acer Nitro 5 AN515-56?",
-        "expected_output": "The Acer Nitro 5 AN515-56 supports up to 32GB DDR4 3200MHz RAM.",
-        "expected_context": ["AN515-56: Memory support up to 32GB DDR4-3200"],
+        "input": "What is the maximum RAM capacity for the Acer Nitro 5 AN515-58?",
+        "expected_output": "Acer Nitro 5 AN515-58 supports up to 32GB DDR4 3200MHz RAM.",
+        "expected_context": ["Acer Nitro 5 AN515-58: Memory support up to 32GB DDR4-3200"],
         "test_type": "traditional",
         "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
     },
     {
         "id": "TC_STATIC_02",
-        "input": "How many M.2 SSD slots does the Acer Nitro 5 AN515-56 have?",
+        "input": "How many M.2 SSD slots does the Acer Nitro 5 AN515-58 have?",
         "expected_output": "This model features two M.2 SSD slots and one 2.5-inch SATA HDD bay.",
         "expected_context": ["2x M.2 PCIe NVMe slots and 1x 2.5\" SATA slot"],
         "test_type": "traditional",
@@ -41,36 +41,20 @@ BEHAVIORAL_TEST_SUITE = [
     # ========================================================================
     # TESTE 1: SKU LOCK - ACER (NÃO deve inferir de AN515-57)
     # ========================================================================
-    # {
-    #     "id": "TC_BEHAVIOR_SKU_LOCK_ACER",
-    #     "input": "What is the maximum RAM for Acer AN515-56?",
-    #     "reference_date": "2025-06-01",
-    #     "test_type": "behavioral",
-    #     "expected_behavior": "should_admit_unavailability",
-    #     "forbidden_patterns": [
-    #         "AN515-57", "AN515-58", "similar model", "based on other models",
-    #         "typically", "usually", "in the series", "32GB", "64GB"
-    #     ],
-    #     "required_patterns": [
-    #         "not available", "unavailable", "no information", "cannot find",
-    #         "not found", "specific model"
-    #     ],
-    #     "description": "Não deve inferir especificações de AN515-57 para AN515-56"
-    # },
-
     {
         "id": "TC_BEHAVIOR_SKU_LOCK_ACER",
-        "input": "What is the maximum RAM for Acer AN515-56?",
-        "reference_date": "2025-06-01",
+        "input": "What is the maximum RAM for Acer Nitro 5 AN515-58?",
+        "reference_date": "2026-03-12",
         "test_type": "behavioral",
         "expected_behavior": "should_admit_unavailability_or_fallback",
-        "expected_output": "The maximum RAM capacity for Acer AN515-56 is not available in the documentation.",
+        "expected_output": "The maximum RAM capacity for Acer AN515-58 is not available in the documentation.",
         "required_patterns": [
             "not available", "no external documentation", 
             "based on general knowledge", "cannot find"
         ],
-        "forbidden_patterns": ["AN515-57", "AN515-58"],
-        "description": "Pode usar fallback com aviso, mas não inventar outro SKU"
+        # Proibir que ele confunda com os outros nitros que você tem na base real
+        "forbidden_patterns": ["AN515-45", "AN16-41", "ANv15-51"], 
+        "description": "Pode usar fallback com aviso, mas não misturar dados de outros SKUs Nitro reais da base"
     },
     
     # ========================================================================
@@ -78,19 +62,18 @@ BEHAVIORAL_TEST_SUITE = [
     # ========================================================================
     {
         "id": "TC_BEHAVIOR_SKU_LOCK_DELL",
-        "input": "What processor does Dell G7 7588 have?",
-        "reference_date": "2025-06-01",
+        "input": "What processor does Dell G15 5530 have?",
+        "reference_date": "2026-03-12",
         "test_type": "behavioral",
         "expected_behavior": "should_admit_unavailability",
         "forbidden_patterns": [
-            "G7 7590", "G7 7790", "similar model", "based on other models",
-            "i7-8750H", "i7-9750H"
+            "5520", "5525", "5511", "7630", "similar model"
         ],
         "required_patterns": [
             "not available", "unavailable", "no information", "cannot find",
-            "not found", "specific model"
+            "specific model", "5530"
         ],
-        "description": "Não deve inferir especificações de G7 7590 para G7 7588"
+        "description": "Não deve inferir especificações de outros Dell G15/G16 para o modelo 5530"
     },
     
     # ========================================================================
@@ -98,19 +81,18 @@ BEHAVIORAL_TEST_SUITE = [
     # ========================================================================
     {
         "id": "TC_BEHAVIOR_SKU_LOCK_LENOVO",
-        "input": "Does Lenovo Legion 5 15ACH6 have Thunderbolt 4?",
-        "reference_date": "2025-06-01",
+        "input": "Does Lenovo Legion 5 15ACH6A have Thunderbolt 4?",
+        "reference_date": "2026-03-12",
         "test_type": "behavioral",
         "expected_behavior": "should_admit_unavailability",
         "forbidden_patterns": [
-            "Legion 5i", "Legion 7", "similar model", "based on other models",
-            "Thunderbolt 4", "USB-C"
+            "16IRX9", "16IRX8", "Legion Pro", "similar model", "Thunderbolt 4"
         ],
         "required_patterns": [
             "not available", "unavailable", "no information", "cannot find",
-            "specific model", "15ACH6"
+            "specific model", "15ACH6A"
         ],
-        "description": "Não deve inferir especificações de outros Legions"
+        "description": "Não deve alucinar Thunderbolt ou inferir de Legions baseados em Intel (16IRX9)"
     },
     
     # ========================================================================
@@ -158,18 +140,17 @@ BEHAVIORAL_TEST_SUITE = [
     # ========================================================================
     {
         "id": "TC_BEHAVIOR_HONEST_COMPARISON",
-        "input": "Does the AN515-56 have the same Thunderbolt as AN515-57?",
-        "reference_date": "2025-06-01",
+        "input": "Does the Dell G15 5520 have the same maximum RAM and slots as the Dell G15 5530?",
+        "reference_date": "2026-03-12",
         "test_type": "behavioral",
         "expected_behavior": "should_admit_cannot_compare",
         "forbidden_patterns": [
-            "yes", "no", "does", "does not", "has", "lacks"
+            "typically", "usually", "both models have"
         ],
         "required_patterns": [
-            "cannot compare", "not available", "no information", "insufficient data",
-            "unable to determine", "for both models"
+            "cannot compare", "insufficient data", "unable to determine", "specific documentation"
         ],
-        "description": "Não deve afirmar comparação sem evidência em ambos SKUs"
+        "description": "Não deve assumir que as specs de RAM são idênticas apenas por serem da série G15"
     },
     
     # ========================================================================

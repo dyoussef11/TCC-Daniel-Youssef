@@ -15,7 +15,8 @@ class EvalConfig:
     # Dados
     # base_path: Path = VETORIZATION_DATA / 'base_conhecimento_multilingueV7.json'
     # base_path: Path = VETORIZATION_DATA / 'base_conhecimento_multilingueV7.json'
-    base_path: Path = VETORIZATION_DATA / 'base_conhecimento_multilingueV8.json'
+    #base_path: Path = VETORIZATION_DATA / 'base_conhecimento_multilingueV8.json'
+    base_path: Path = VETORIZATION_DATA / 'base_conhecimento_multilingueV9.json'
     evaluator_model: str = "qwen3:4b-instruct"
     
     # Cache

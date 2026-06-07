@@ -18,7 +18,8 @@ import unicodedata
 from core.paths import DATASET_FINAL_CSV, VALIDACAO_CONFIG
 
 # CSV_PATH = DATASET_FINAL_CSV / 'dataset_laptops_GAMER_ONLY_V2.csv'
-CSV_PATH = DATASET_FINAL_CSV / 'dataset_laptops_UNICOS_V7.csv'
+# CSV_PATH = DATASET_FINAL_CSV / 'dataset_laptops_UNICOS_V7.csv'
+CSV_PATH = DATASET_FINAL_CSV / 'dataset_laptops_UNICOS_V10.csv'
 OUTPUT_HIERARCHICAL = VALIDACAO_CONFIG / 'dictionary_synonyms_hierarchical_v4.json'
 OUTPUT_FLAT_V9 = VALIDACAO_CONFIG / 'dictionary_synonyms_flat_v9.json'  # Para V9 (genérico)
 OUTPUT_FLAT_V1 = VALIDACAO_CONFIG / 'dictionary_synonyms_flat_v3.json'   # Para V1 (completo)

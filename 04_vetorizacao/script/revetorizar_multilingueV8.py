@@ -24,8 +24,8 @@ from tqdm.asyncio import tqdm
 
 try:
     from core.paths import NER_DATA, VETORIZATION_DATA
-    DIR_ENTRADA = NER_DATA / 'Base_Conhecimento_ResumidaV8_VERIFICADA'
-    CAMINHO_SAIDA = VETORIZATION_DATA / 'base_conhecimento_multilingueV8.json'
+    DIR_ENTRADA = NER_DATA / 'Base_Conhecimento_ResumidaV12_VERIFICADA'
+    CAMINHO_SAIDA = VETORIZATION_DATA / 'base_conhecimento_multilingueV9.json'
 except ImportError:
     DIR_ENTRADA = Path("./data/Base_Conhecimento_ResumidaV5_VERIFICADA")
     CAMINHO_SAIDA = Path("./data/base_conhecimento_multilingueV7.json")
@@ -34,7 +34,7 @@ except ImportError:
 # CONFIGURAÇÕES DE VETORIZAÇÃO
 # ============================================================================
 
-CONCORRENCIA_MAXIMA = 3  # Reduzido para não sobrecarregar GPU
+CONCORRENCIA_MAXIMA = 8  # Reduzido para não sobrecarregar GPU
 MODELO_EMBEDDING = "bge-m3:latest"
 
 # ============================================================================
@@ -257,7 +257,7 @@ async def gerar_base_vetorial_otimizada():
                 continue
             
             ancora = analise.get('ancoragem_temporal', {})
-            data_str = ancora.get('data_post', '2024-01-01')
+            data_str = ancora.get('data_post') or ancora.get('data_post_original') or '2024-01-01'
             timeline = validar_timeline(
                 analise.get('discussion_timeline', ''),
                 data_str
