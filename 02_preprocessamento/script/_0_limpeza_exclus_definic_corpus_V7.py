@@ -8,21 +8,53 @@ from tqdm import tqdm
 from core.paths import EXTRACAO_CONFIG, EXTRACAO_DATA, PREPROCESSAMENTO, PREPROCESSAMENTO_DATA
 
 # --- CONFIGURAÇÕES DE CAMINHO ---
-# CAMINHO_ENTRADA = EXTRACAO_DATA / "brutoV6"
 CAMINHO_ENTRADA = EXTRACAO_DATA / "brutoV9"
-CAMINHO_SAIDA = PREPROCESSAMENTO_DATA / "Dados_Limpos_IniciaisV10"
-# CAMINHO_SAIDA = PREPROCESSAMENTO_DATA / "Dados_Limpos_IniciaisV7"
-CAMINHO_LOG = PREPROCESSAMENTO / "Logs"   # <-- NOVO
+CAMINHO_SAIDA = PREPROCESSAMENTO_DATA / "Dados_Limpos_IniciaisV11"
+CAMINHO_LOG = PREPROCESSAMENTO / "Logs2"
+
 
 def limpar_texto_suporte_tecnico(texto):
     """
-    Limpeza otimizada para manter o contexto de hardware e suporte.
+    Limpeza otimizada para manter contexto de hardware e suporte.
+    Preserva acentos, símbolos técnicos (×, μ, °, ², etc.) e placeholders de URL.
+    Remove apenas emojis e caracteres de controle não essenciais.
     """
     if not texto:
         return ""
 
+    # 1. Substitui URLs por placeholder
     texto = re.sub(r'http\S+|www\S+|https\S+', '[URL_EVIDENCIA]', texto)
-    texto = re.sub(r'[^\x00-\x7f]', r'', texto)
+
+    # 2. Remove emojis (blocos Unicode comuns)
+    emoji_pattern = re.compile(
+        "["
+        "\U0001F600-\U0001F64F"  # emoticons
+        "\U0001F300-\U0001F5FF"  # símbolos & pictogramas
+        "\U0001F680-\U0001F6FF"  # transporte & mapas
+        "\U0001F700-\U0001F77F"  # alquimia
+        "\U0001F780-\U0001F7FF"  # geometria
+        "\U0001F800-\U0001F8FF"  # setas suplementares
+        "\U0001F900-\U0001F9FF"  # símbolos suplementares
+        "\U0001FA00-\U0001FA6F"  # xadrez & símbolos
+        "\U0001FA70-\U0001FAFF"  # objetos & bandeiras
+        "\U00002702-\U000027B0"  # dingbats
+        "\U000024C2-\U0001F251"
+        "]+", flags=re.UNICODE
+    )
+    texto = emoji_pattern.sub(r'', texto)
+
+    # 3. Mantém caracteres úteis: ASCII imprimível + acentos + símbolos técnicos
+    # Símbolos técnicos comuns em hardware (pode ser expandido)
+    tech_symbols = r'×μΩ°²³¹€£¥©®™←→↑↓•·—–…'
+    # Padrão que permite:
+    # - ASCII imprimível (espaço a ~)
+    # - Quebras de linha, tab, retorno de carro
+    # - Letras acentuadas Latin-1 Supplement (À-ÿ)
+    # - Símbolos técnicos definidos
+    keep_pattern = r'[ -~\n\r\tÀ-ÿ' + re.escape(tech_symbols) + r']'
+    texto = re.sub(r'[^' + keep_pattern[1:-1] + r']', '', texto)
+
+    # 4. Normalização de espaços e quebras (mesmo comportamento anterior)
     texto = texto.replace('\t', ' ')
     texto = re.sub(r'\n+', '\n', texto)
     texto = re.sub(r' +', ' ', texto).strip()
@@ -139,7 +171,7 @@ def executar_limpeza_paralela():
         discard_log = manager.list()     # Lista compartilhada de descartes
 
         print(f"🧹 Iniciando limpeza técnica e deduplicação global em {len(arquivos)} arquivos...")
-        print(f"   (Preservando placeholders de URL e entidades de hardware)")
+        print(f"   (Preservando placeholders de URL, acentos e símbolos técnicos)")
 
         with ProcessPoolExecutor() as executor:
             futures = {
@@ -154,13 +186,11 @@ def executar_limpeza_paralela():
                     arquivos_vazios += 1
 
         # --- SALVA O LOG DE DESCARTES (mesmo que vazio) ---
-        # Inclui timestamp para não sobrescrever execuções anteriores (opcional)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         log_path = CAMINHO_LOG / f"discard_log_{timestamp}.json"
         with open(log_path, 'w', encoding='utf-8') as f:
             json.dump(list(discard_log), f, indent=2, ensure_ascii=False)
 
-        # Também salva uma cópia sempre com o mesmo nome (última execução)
         ultimo_log_path = CAMINHO_LOG / "discard_log_latest.json"
         with open(ultimo_log_path, 'w', encoding='utf-8') as f:
             json.dump(list(discard_log), f, indent=2, ensure_ascii=False)
