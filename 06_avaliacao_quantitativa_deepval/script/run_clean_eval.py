@@ -11,7 +11,7 @@ from deepeval.metrics import FaithfulnessMetric, AnswerRelevancyMetric
 # Importações dos seus módulos existentes
 from custom_evaluatorV2Backup import create_evaluator
 from dataset_avaliacaoV4 import TEST_SUITE
-from core.paths import VALIDACAO_SCRIPT, AVALIACAO_SCRIPT
+from core.paths import VALIDACAO_SCRIPT, AVALIACAO_SCRIPT, VETORIZATION_DATA
 import sys
 sys.path.append(str(VALIDACAO_SCRIPT))
 sys.path.append(str(AVALIACAO_SCRIPT))
@@ -35,16 +35,16 @@ async def generate_rag_responses(test_suite: list, base_path: Path) -> list:
         ref_date = case.get("reference_date", "2026-03-12")
         
         # Chamadas concorrentes por caso de teste
-        v1_task = asyncio.to_thread(v1_rag.search, query)
-        v9_task = asyncio.to_thread(v9_rag.search, query, ref_date)
+        v1_task = v1_rag.search(query)           # já é async
+        v9_task = v9_rag.search(query, ref_date) # já é async
         res_v1, res_v9 = await asyncio.gather(v1_task, v9_task)
         
         generated_dataset.append({
             "meta": case,
             "v1_output": res_v1["answer"],
-            "v1_context": res_v1.get("sources", [])[:3],
+            "v1_context": res_v1.get("sources", [])[:5],
             "v9_output": res_v9["answer"],
-            "v9_context": res_v9.get("sources", [])[:3]
+            "v9_context": res_v9.get("sources", [])[:5]
         })
     return generated_dataset
 
@@ -75,7 +75,7 @@ def evaluate_behavioral_rules(output: str, meta: dict) -> dict:
 # 3. PIPELINE PRINCIPAL DE EXECUÇÃO
 # ============================================================================
 async def main():
-    base_path = Path("./base_conhecimento_multilingueV9.json")
+    base_path = Path( VETORIZATION_DATA / "base_conhecimento_multilingueV9.json")
     timestamp = datetime.now().strftime("%Y%m%d_%H%M")
     
     # Passo 1: Obter saídas dos modelos (Gargalo de IO de rede/Ollama)

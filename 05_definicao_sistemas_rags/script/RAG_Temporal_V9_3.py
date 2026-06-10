@@ -222,9 +222,20 @@ class EmbeddingManager:
             self.dimension = 1024
     
     def compute_embedding(self, text: str) -> np.ndarray:
-        """Computa embedding para um texto."""
-        result = self.client.embeddings(model=self.model, prompt=text)
-        return np.array(result['embedding'], dtype=np.float32)
+        if not text or not text.strip():
+            text = " "
+
+        try:
+            result = self.client.embeddings(model=self.model, prompt=text)
+            # Converte a lista retornada pelo Ollama em array NumPy
+            return np.array(result['embedding'], dtype=np.float32)
+        except ollama.ResponseError as e:
+            if "NaN" in str(e):
+                print(f"⚠️ Erro de NaN no embedding para texto: '{text[:50]}...'")
+                # Retorna array de zeros com a dimensão correta
+                dim = self.dimension if self.dimension else 1024
+                return np.zeros(dim, dtype=np.float32)
+            raise
     
     def compute_embeddings_batch(self, texts: List[str]) -> np.ndarray:
         """Computa embeddings para múltiplos textos."""

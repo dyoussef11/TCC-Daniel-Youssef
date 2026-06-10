@@ -1,5 +1,6 @@
 """core/behavioral_analyzer.py - Análise de testes comportamentais"""
 
+import re
 from typing import Dict, Tuple
 from core.paths import VALIDACAO_SCRIPT, AVALIACAO_SCRIPT
 import sys
@@ -41,10 +42,13 @@ class BehavioralTestAnalyzer:
             "should_ask_for_sku": lambda: (len(required_found) >= min_required) and not forbidden_found,
             "should_explain_concept": lambda: len(required_found) >= min_required,
             "should_admit_cannot_compare": lambda: (len(required_found) >= min_required) and not forbidden_found,
-            "should_acknowledge_future_or_unavailable": lambda: (len(required_found) >= min_required) and not forbidden_found
-            }
-
-
+            "should_acknowledge_future_or_unavailable": lambda: (len(required_found) >= min_required) and not forbidden_found,
+            "should_use_internal_fallback_honestly": lambda: (len(required_found) >= min_required and not forbidden_found),
+            "should_include_audit_with_tags": lambda: (re.search(r"AUDIT:", response, re.I) is not None and(re.search(r"\[RAG:", response, re.I) is not None or re.search(r"\[INTERNAL:", response, re.I) is not None)),
+            "should_compare_with_fallback": lambda: len(required_found) >= min_required,
+            "should_ask_for_sku_and_avoid_internal_specs": lambda: (len(required_found) >= min_required and not forbidden_found),
+            "should_combine_rag_and_internal": lambda: len(required_found) >= min_required}
+            
             passed = behaviors.get(expected, lambda: False)()
             reason = f"Required: {required_found[:3]}. Forbidden: {forbidden_found[:3] if forbidden_found else 'none'}"
             

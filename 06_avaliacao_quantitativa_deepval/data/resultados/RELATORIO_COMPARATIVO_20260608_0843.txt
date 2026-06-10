@@ -1,0 +1,5 @@
+RELATÓRIO COMPARATIVO V1 vs V9
+Data: 20260608_0843
+Base: /home/daniely/Documentos/Notebook-Forum-Sentimento/04_vetorizacao/data/base_conhecimento_multilingueV9.json
+================================================================================
+

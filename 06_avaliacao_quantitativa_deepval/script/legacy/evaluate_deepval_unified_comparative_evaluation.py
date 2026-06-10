@@ -30,7 +30,7 @@ from deepeval.metrics import (
 )
 from custom_evaluatorV2Backup import OllamaEvaluator
 from dataset_avaliacaoV4 import TEST_SUITE
-from core.paths import VALIDACAO_SCRIPT, AVALIACAO_SCRIPT
+from core.paths import VALIDACAO_SCRIPT, AVALIACAO_SCRIPT, VETORIZATION_DATA
 import sys
 sys.path.append(str(VALIDACAO_SCRIPT))
 sys.path.append(str(AVALIACAO_SCRIPT))
@@ -43,7 +43,7 @@ from RAG_Temporal_V9_3 import SpecialistTimeAwareRAG
 @dataclass
 class EvalConfig:
     """Configuração centralizada para avaliação comparativa"""
-    base_path: Path = Path(__file__).parent / "base_conhecimento_multilingueV9.json"
+    base_path: Path = VETORIZATION_DATA/  "base_conhecimento_multilingueV9.json"
     evaluator_model: str = "qwen3:4b-instruct"
     cache_dir: Path = Path("./cache")
     embedding_cache_size: int = 1000

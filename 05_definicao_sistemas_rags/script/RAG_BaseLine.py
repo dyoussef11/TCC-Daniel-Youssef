@@ -23,7 +23,7 @@ from ollama import Client
 # ----------------------------------------------------------------------
 # Configuration (adjust as needed)
 # ----------------------------------------------------------------------
-from core.paths import VALIDACAO_CONFIG
+from core.paths import VALIDACAO_CONFIG, VETORIZATION_DATA
 
 # ----------------------------------------------------------------------
 # CacheManager
@@ -40,12 +40,12 @@ class CacheManager:
         raise NotImplementedError("Subclasses devem implementar _compute_embedding")
 
     async def get_embedding(self, query: str, compute_func) -> np.ndarray:
-        """
-        Obtém embedding com prioridade para cache externo.
-        """
         if self.external_cache:
             cached = self.external_cache.get(query)
             if cached is not None:
+                # Garante que seja numpy array
+                if isinstance(cached, list):
+                    return np.array(cached, dtype=np.float32)
                 return cached
 
         embedding = await asyncio.to_thread(compute_func, query)
@@ -95,7 +95,7 @@ class DataLoader:
         }
 
     def load_documents(self, json_path: Union[str, Path]) -> List[Dict]:
-        path = Path(json_path)
+        path = VETORIZATION_DATA / "base_conhecimento_multilingueV9.json"
         if not path.exists():
             raise FileNotFoundError(f"Arquivo não encontrado: {json_path}")
 
@@ -181,23 +181,20 @@ class EmbeddingManager:
         self._init_client()
 
     def _init_client(self) -> None:
-        # Force CPU
-        self._original_cuda = os.environ.get('CUDA_VISIBLE_DEVICES')
-        self._original_num_gpu = os.environ.get('OLLAMA_NUM_GPU')
-        os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
-        os.environ['OLLAMA_NUM_GPU'] = '0'
+        # REMOVA ou COMENTE todo o bloco que força CPU:
+        # self._original_cuda = os.environ.get('CUDA_VISIBLE_DEVICES')
+        # self._original_num_gpu = os.environ.get('OLLAMA_NUM_GPU')
+        # os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+        # os.environ['OLLAMA_NUM_GPU'] = '0'
 
         self.client = Client(host=self.host)
 
-        # Restore
-        if self._original_cuda is not None:
-            os.environ['CUDA_VISIBLE_DEVICES'] = self._original_cuda
-        else:
-            os.environ.pop('CUDA_VISIBLE_DEVICES', None)
-        if self._original_num_gpu is not None:
-            os.environ['OLLAMA_NUM_GPU'] = self._original_num_gpu
-        else:
-            os.environ.pop('OLLAMA_NUM_GPU', None)
+        # Não precisa restaurar nada
+        # if self._original_cuda is not None:
+        #     os.environ['CUDA_VISIBLE_DEVICES'] = self._original_cuda
+        # else:
+        #     os.environ.pop('CUDA_VISIBLE_DEVICES', None)
+        # etc.
 
         self._test_connection()
 
@@ -206,14 +203,30 @@ class EmbeddingManager:
             test_result = self.client.embeddings(model=self.model, prompt="test")
             if 'embedding' in test_result:
                 self.dimension = len(test_result['embedding'])
-                print(f"✅ Conectado a {self.model} (CPU) - dimensão: {self.dimension}")
+                print(f"✅ Conectado a {self.model} (GPU) - dimensão: {self.dimension}")
         except Exception as e:
             print(f"⚠️ {self.model} não disponível: {e}")
             self.dimension = 1024
 
     def compute_embedding(self, text: str) -> np.ndarray:
-        result = self.client.embeddings(model=self.model, prompt=text)
-        return np.array(result['embedding'], dtype=np.float32)
+        if not text or not text.strip():
+            text = " "
+
+        try:
+            result = self.client.embeddings(model=self.model, prompt=text)
+            embedding = np.array(result['embedding'], dtype=np.float32)
+            # Verifica se há NaN no embedding
+            if np.isnan(embedding).any():
+                print(f"⚠️ NaN detectado no embedding para texto: '{text[:50]}...'")
+                # Retorna vetor de zeros da dimensão correta
+                dim = self.dimension if self.dimension else 1024
+                return np.zeros(dim, dtype=np.float32)
+            return embedding
+        except Exception as e:
+            # Captura qualquer erro do Ollama, incluindo ResponseError com NaN
+            print(f"⚠️ Erro ao gerar embedding: {e}. Usando vetor zero.")
+            dim = self.dimension if self.dimension else 1024
+            return np.zeros(dim, dtype=np.float32)
 
     def compute_embeddings_batch(self, texts: list) -> np.ndarray:
         embeddings = [self.compute_embedding(t) for t in texts]

@@ -209,6 +209,74 @@ BEHAVIORAL_TEST_SUITE = [
         "pattern_type": "regex",
         "description": "Não deve inventar um número de versão de BIOS"
     },
+
+    {
+    "id": "TC_BEHAVIOR_SKU_WITH_INTERNAL_FALLBACK",
+    "input": "What is the TGP of RTX 3060 in Acer Nitro AN515-45?",
+    "reference_date": "2025-06-01",
+    "test_type": "behavioral",
+    "expected_behavior": "should_use_internal_fallback_honestly",
+    "required_patterns": [
+        "no external documentation", "not found", "based on general knowledge",
+        "typically", "common configuration", "RTX 3060"
+    ],
+    "forbidden_patterns": [
+        "cannot answer", "unavailable", "no information"   # não pode simplesmente negar
+    ],
+    "description": "SKU específico sem documento → deve usar internal knowledge como fallback, não apenas dizer 'não sei'"
+    },
+    {
+        "id": "TC_BEHAVIOR_AUDIT_TAGS_PRESENT",
+        "input": "Does the Dell G15 5520 support PCIe 4.0?",
+        "reference_date": "2025-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_include_audit_with_tags",
+        "required_patterns": [
+            "AUDIT:", "\\[RAG:", "\\[INTERNAL:"
+        ],
+        "pattern_type": "regex",
+        "description": "A resposta deve conter seção AUDIT com tags RAG e INTERNAL"
+    },
+    {
+        "id": "TC_BEHAVIOR_COMPARISON_MIXED_SOURCES",
+        "input": "Compare battery life of Lenovo Legion 5 15ACH6 vs HP Victus 16-e0055dx",
+        "reference_date": "2025-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_compare_with_fallback",
+        "required_patterns": [
+            "Legion", "Victus", "based on", "general knowledge", "typical"
+        ],
+        "forbidden_patterns": [
+            "cannot compare", "insufficient data"
+        ],
+        "description": "Deve comparar mesmo que um dos SKUs não esteja no RAG, usando internal knowledge"
+    },
+    {
+        "id": "TC_BEHAVIOR_SERIES_NO_INTERNAL_SPECS",
+        "input": "What is the maximum RAM for Dell G15 series?",
+        "reference_date": "2025-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_ask_for_sku_and_avoid_internal_specs",
+        "required_patterns": [
+            "specific model", "SKU", "which model"
+        ],
+        "forbidden_patterns": [
+            "16GB", "32GB", "DDR4", "DDR5", "supports up to"
+        ],
+        "description": "Query de série → não pode dar specs mesmo que conhecimento interno as conheça"
+    },
+    {
+        "id": "TC_BEHAVIOR_RAG_PLUS_INTERNAL_ENRICHMENT",
+        "input": "Why does my Acer Nitro 5 AN515-58 throttle? Explain thermal design.",
+        "reference_date": "2025-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_combine_rag_and_internal",
+        "required_patterns": [
+            "thermal throttling", "cooling", "temperature"
+        ],
+        "min_required_matches": 2,
+        "description": "Pode usar RAG (se houver documento sobre AN515-58) e complementar com conhecimento interno de design térmico"
+    }
 ]
 
 

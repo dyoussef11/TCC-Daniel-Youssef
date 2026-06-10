@@ -5,7 +5,7 @@ import sys
 sys.path.append(str(AVALIACAO_DATA.parent / "05_definicao_sistemas_rags" / "script"))
 
 # from evaluate_rag_deepeval_TemporalVSNãoTemporalV7_CacheReady import EvalConfig, EmbeddingCache,RAGManager
-from evaluate_rag_deepval_unified_TemporalVS_NaoTemporal import EvalConfig, EmbeddingCache,RAGManager
+from evaluate_rag_deepval_unified_TemporalVS_NaoTemporalV4 import EvalConfig, EmbeddingCache,ComparativeRAGManager
 
 from core.paths import AVALIACAO_DATA, VALIDACAO_SCRIPT
 import sys
@@ -16,7 +16,7 @@ from dataset_avaliacaoV4 import TEST_SUITE
 async def warmup_cache():
     config = EvalConfig()
     cache = EmbeddingCache(config.cache_dir, config.embedding_cache_size)
-    rag_manager = RAGManager(config.base_path)
+    rag_manager = ComparativeRAGManager(config.base_path)
     
     print(f"🚀 Iniciando aquecimento de cache para {len(TEST_SUITE)} perguntas...")
     print(f"📍 Local do cache: {config.cache_dir}")
@@ -71,7 +71,7 @@ async def warmup_cache():
 async def warmup_cache_direct():
     """
     Versão alternativa que usa diretamente o cliente CPU do Ollama,
-    sem depender do RAGManager.
+    sem depender do ComparativeRAGManager.
     """
     import os
     from ollama import Client
@@ -167,7 +167,7 @@ if __name__ == "__main__":
     print("="*60)
     
     print("\nOpções:")
-    print("1 - Usar RAGManager (recomendado, após corrigir)")
+    print("1 - Usar ComparativeRAGManager (recomendado, após corrigir)")
     print("2 - Usar cliente direto (mais rápido, não carrega base)")
     print("3 - Verificar cache existente")
     
