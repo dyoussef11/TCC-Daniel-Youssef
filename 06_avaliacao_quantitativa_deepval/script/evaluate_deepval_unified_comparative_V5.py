@@ -29,7 +29,7 @@ from deepeval.metrics import (
     GEval
 )
 from deepeval.evaluate import AsyncConfig, ErrorConfig
-from deepeval.test_case import LLMTestCaseParams
+from deepeval.test_case import SingleTurnParams
 
 
 # Custom external modules
@@ -157,8 +157,8 @@ def create_native_metrics(evaluator: OllamaEvaluator) -> List[Any]:
 #             "Inspect formatting: V9 must have an AUDIT section; V1 must be completely bare of tags, labels, or audit structures."
 #         ],
 #         evaluation_params=[
-#         LLMTestCaseParams.INPUT,
-#         LLMTestCaseParams.ACTUAL_OUTPUT
+#         SingleTurnParams.INPUT,
+#         SingleTurnParams.ACTUAL_OUTPUT
 #     ],
 #         threshold=0.8
 #     )
@@ -182,7 +182,7 @@ def create_unified_behavioral_geval(evaluator: OllamaEvaluator) -> GEval:
             "Check compliance with the specific rule for that type.",
             "Verify no forbidden formatting (tags, audit blocks)."
         ],
-        evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
+        evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT],
         threshold=0.8
     )
 
@@ -207,7 +207,7 @@ class ComparativeRAGManager:
     @property
     def temporal(self) -> SpecialistTimeAwareRAG:
         if self._temporal is None:
-            self._temporal = SpecialistTimeAwareRAG(self.base_path, variant_name=self.config.temporal_variant, embedding_cache=self.embedding_cache, use_expansion=self.config.temporal_use_expansion)
+            self._temporal = SpecialistTimeAwareRAG(self.base_path, embedding_cache=self.embedding_cache, use_expansion=self.config.temporal_use_expansion)
             self._temporal.current_model = self.config.model_name
             self._temporal.temperature = self.config.temperature
             self._temporal.search_top_k = self.config.search_top_k
@@ -324,7 +324,7 @@ class NativeComparativePipeline:
 
         if d_v9_behav.test_cases:
             print("\n🏆 Avaliando V9 MIXED Comportamental (GEval)...")
-            geval_v9 = create_unified_behavioral_geval(self.evaluator_v9, "V9")
+            geval_v9 = create_unified_behavioral_geval(self.evaluator_v9)
             batch_res = evaluate(d_v9_behav.test_cases, [geval_v9], async_config=AsyncConfig(max_concurrent=1))
             res_v9_behav = batch_res.test_results
 

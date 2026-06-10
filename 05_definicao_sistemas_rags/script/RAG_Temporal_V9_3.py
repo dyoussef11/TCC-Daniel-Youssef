@@ -527,67 +527,57 @@ class QueryExpander:
 # ============================================================================
 
 class PromptManager:
-    """Gerencia prompts do sistema RAG."""
+    """Gerencia prompts do sistema RAG adaptados para avaliação justa."""
     
-    def __init__(self, variant_name: str = "V9_HYBRID_MIXED_AUDITOR", prompts_dir: Optional[Path] = None):
+    def __init__(self, variant_name: str = "V1_VANILLA_MIXED_EQUITABLE_EVAL", prompts_dir: Optional[Path] = None):
         self.variant_name = variant_name
-        self.system_role = ""
-        self.core_principles = []
-        self.constraints = []
-        self.examples = {}
-        self.output_format = {}
-    
+
     def build_system_prompt(self) -> str:
-        """Constrói o system prompt completo."""
-        return """Act as a Senior Hardware RAG Auditor with Temporal Awareness.
+        return """You are an expert technical support assistant specializing in PC hardware. You operate in a modern support desk environment and must combine provided documentation with your internal engineering knowledge to deliver the most accurate troubleshooting and specifications.
 
-CRITICAL RULES:
-1. If the user asks about a SPECIFIC SKU (e.g., AN515-56, 15ACH6) and it's NOT in the context, you MUST say information is unavailable.
-2. DO NOT infer specifications from different models, even from the same brand.
-3. For generic series queries (e.g., "Nitro 5" without SKU), ASK for the specific model number.
-4. Internal knowledge (pre-2024) can ONLY be used as fallback when explicitly stated.
+CHRONOLOGICAL ANCHOR: The current customer interaction takes place in the year 2026. Evaluate all facts under this reference timeline.
 
-OUTPUT FORMAT:
-AUDIT: [SKU: xxx] | [STATUS: found/not_found] | [SOURCES: ...] | [CROSS-CHECK: ...]
+QUERY CLASSIFICATION & KNOWLEDGE GATE:
+- SPECIFIC SKU: If the query mentions a specific model (e.g., 'AN515-56', 'G7 7588'), prioritize the provided EXTERNAL CONTEXT. If the external context is missing, incomplete, or contains obsolete specs for the 2026 horizon, you MAY fallback to your INTERNAL knowledge. However, you MUST explicitly state: 'No current official documentation was found for [SKU]. Based on general hardware architectures...' before providing specifications.
+- GENERAL TECH: For general hardware concepts or generic troubleshooting (e.g., thermal throttling, fan cleaning), freely combine external context and internal knowledge.
+- SERIES: If the query refers to a generic product line without a specific SKU (e.g., 'Acer Nitro 5', 'Dell G15'), DO NOT guess or generalize specifications. You MUST strictly ask the user: 'Could you please provide your specific model number (SKU)?'
 
-ANSWER: [Your response here]"""
-    
+HONESTY CONSTRAINT: Never present internal training knowledge as official external documentation. Always clearly demarcate verified source data from typical market patterns.
+
+STRICT FORMATTING RULE: Do NOT include any 'AUDIT:' blocks, internal processing tags (such as [RAG] or [INTERNAL]), metadata logs, or structural headers. Output a completely clean, direct, natural, and customer-ready paragraph."""
+
     def build_user_prompt(self, context: str, query: str, ref_date: str) -> str:
-        """Constrói o user prompt usando template."""
-        return f"""=== TECHNICAL CONTEXT ===
+        return f"""=== CURRENT HORIZON ===
+REFERENCE DATE: {ref_date}
+
+=== RETRIEVED TECHNICAL CONTEXT ===
 {context}
 
-=== USER QUERY ===
+=== USER INQUIRY ===
 {query}
 
-=== REFERENCE DATE ===
-{ref_date}
+=== EXECUTION INSTRUCTIONS ===
+Apply the knowledge gates defined above. Deliver a clean, seamless text answer without headers, labels, or tags.
 
-=== RESPONSE ===
-AUDIT:"""
-
+RESPONSE:"""
 
 # ============================================================================
 # RESPONSE AUDITOR
 # ============================================================================
 
 class ResponseAuditor:
-    """Extrai e valida a auditoria das respostas."""
+    """Extrai e valida a resposta limpa de forma direta para o pipeline de testes."""
     
     def __init__(self):
-        self.audit_pattern = re.compile(r"AUDIT:(.*?)(?=ANSWER:|$)", re.DOTALL | re.IGNORECASE)
-        self.answer_pattern = re.compile(r"ANSWER:(.*)", re.DOTALL | re.IGNORECASE)
+        pass
     
     def extract_audit(self, full_response: str) -> Dict[str, str]:
-        """Extrai auditoria e resposta limpa."""
-        audit_match = self.audit_pattern.search(full_response)
-        audit_log = audit_match.group(1).strip() if audit_match else "No audit log provided."
-        
-        answer_match = self.answer_pattern.search(full_response)
-        clean_answer = answer_match.group(1).strip() if answer_match else full_response.strip()
-        
-        return {"audit_log": audit_log, "clean_answer": clean_answer}
-
+        # Como o prompt foi limpo para fins de avaliação comparativa,
+        # toda a resposta gerada corresponde ao "clean_answer" esperado pelo DeepEval.
+        return {
+            "audit_log": "Audit section bypassed for uniform benchmark compatibility.",
+            "clean_answer": full_response.strip()
+        }
 
 # ============================================================================
 # CONTEXT BUILDER

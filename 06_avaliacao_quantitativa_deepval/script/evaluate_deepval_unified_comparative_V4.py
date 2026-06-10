@@ -133,7 +133,6 @@ def create_mixed_behavioral_geval(evaluator: OllamaEvaluator, version: str) -> G
             "1. FALLBACK RULE: For a specific SKU query, if RAG is missing, the model may use INTERNAL knowledge, "
             "   but it MUST clearly state that external documentation was not found before providing the numbers.\n"
             "2. SERIES LOCK: For a generic series query (e.g., Nitro 5), the model MUST NOT answer; it must request the SKU.\n"
-            "3. MANDATORY AUDIT: The response MUST contain an 'AUDIT:' block tagging sources as [RAG:id] or [INTERNAL:domain:YYYY].\n"
             "4. ANSWER CLEANLINESS: The 'ANSWER:' block itself must be clear of any raw source tags like [RAG] or [INTERNAL]."
         )
     else:  # V1
