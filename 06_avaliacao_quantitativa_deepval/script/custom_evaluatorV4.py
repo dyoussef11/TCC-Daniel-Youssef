@@ -30,60 +30,32 @@ class OllamaEvaluator(DeepEvalBaseLLM):
         "3. For a COMPARISON query with missing data on one or both SKUs, the response may use fallback but must indicate.\n"
         "4. The response MUST be clean and natural, without any tags like [RAG], [INTERNAL], without 'AUDIT:' or 'ANSWER:' blocks, "
         "   and without any special formatting.\n\n"
-        "OUTPUT INSTRUCTION: Return valid JSON with a 'verdict' of 'yes' (pass), 'no' (fail), or 'idk' (cannot determine)."
+        "OUTPUT INSTRUCTION: Return **valid JSON** using **exactly** the key names required by the evaluation. "
+        "For single verdict: use 'verdict'. For list of verdicts: use 'verdicts'. For truths: use 'truths'. "
+        "Do not invent keys like 'ver-than', 'veredict', 'veritect'. Use only the standard keys."
     )
 
     def load_model(self):
         return self.model_name
 
     def _clean_response(self, content: str) -> str:
-        """Limpa blocos de código markdown e corrige anomalias comuns do Pydantic."""
+        """Remove markdown e extrai o primeiro JSON válido. Nunca modifica as chaves."""
         content = content.strip()
+        # Remove blocos de código markdown
         content = re.sub(r'```json\s*|\s*```', '', content)
         
+        # Tenta encontrar o primeiro objeto JSON válido
         match = re.search(r'\{.*\}', content, re.DOTALL)
         if match:
             content = match.group(0)
-            
+        
+        # Valida se é um JSON (sem modificar)
         try:
-            # Força correção de sanidade sintática antes de enviar ao core do DeepEval
             parsed = json.loads(content)
-            
-            # 1. Corrige problemas de listagem de vereditos
-            # Dentro de _clean_response, após carregar o JSON em 'parsed'
-
-            if "verdicts" in parsed and isinstance(parsed["verdicts"], list):
-                for item in parsed["verdicts"]:
-                    if isinstance(item, dict):
-                        # Correção de várias grafias erradas da chave "verdict"
-                        wrong_keys = ["ver- dict", "verdicts", "veredict", "veritecture", "veredicto"]
-                        for wrong in wrong_keys:
-                            if wrong in item:
-                                item["verdict"] = item.pop(wrong)
-                                break   # usa a primeira que encontrar
-                        
-                        # Se ainda não tem "verdict", talvez o item seja o próprio veredicto
-                        if "verdict" not in item and len(item) == 1:
-                            # Pega a primeira chave/valor e assume que é o veredicto
-                            key, val = next(iter(item.items()))
-                            item["verdict"] = val
-                            del item[key]
-                        
-                        # Normalização do valor para yes/no/idk
-                        if "verdict" in item:
-                            val = str(item["verdict"]).strip().lower()
-                            if val not in ["yes", "no", "idk"]:
-                                item["verdict"] = "idk"
-                                
-            # 2. Garante compatibilidade retroativa para estruturas simples de veredito único
-            if "verdict" in parsed:
-                val = str(parsed["verdict"]).strip().lower()
-                if val not in ["yes", "no", "idk"]:
-                    parsed["verdict"] = "idk"
-                    
+            # Retorna o JSON original, com as mesmas chaves que o modelo gerou
             return json.dumps(parsed, ensure_ascii=False)
-        except Exception:
-            # Se o JSON estiver completamente quebrado, deixa o fluxo seguir para o fallback nativo
+        except json.JSONDecodeError:
+            # Se não for JSON válido, retorna o conteúdo bruto (o DeepEval tentará extrair)
             return content
 
     async def a_generate(self, prompt: str) -> str:

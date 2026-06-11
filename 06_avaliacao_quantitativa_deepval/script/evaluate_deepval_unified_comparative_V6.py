@@ -43,7 +43,7 @@ for path in [VALIDACAO_SCRIPT, AVALIACAO_SCRIPT]:
 from RAG_BaseLineV2 import VanillaRAG
 # Alterado para importar a versão EQUAL que remove os prefixos rígidos de blocos de auditoria
 from RAG_Temporal_V9_4 import SpecialistTimeAwareRAG
-from custom_evaluatorV3 import OllamaEvaluator
+from custom_evaluatorV4 import OllamaEvaluator
 
 
 # ============================================================================
@@ -59,9 +59,9 @@ class EvalConfig:
     vanilla_use_expansion: bool = False
     temporal_use_expansion: bool = True
     temporal_variant: str = "V9_HYBRID_MIXED_AUDITOR"
-    model_name: str = "mistral:7b-instruct"
+    model_name: str = "phi3.5:latest"
     temperature: float = 0.0
-    search_top_k: int = 20
+    search_top_k: int = 50
     
     @property
     def timestamp(self) -> str:
