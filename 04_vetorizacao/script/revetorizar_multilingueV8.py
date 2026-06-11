@@ -153,9 +153,6 @@ def construir_texto_embedding(post: Dict, modelo_ref: str) -> str:
         f"MODEL: {modelo_ref} {modelo_ref} {modelo_ref}. "
         f"PROBLEM: {summary}. "
         f"FAULT: {fault}. "
-        # f"SEVERITY: {severity}. "
-        # f"INTENT: {intent}. "
-        f"TIMELINE: {timeline}. "
         f"SOLUTIONS: {solucoes_str}."
     )
     
@@ -257,29 +254,32 @@ async def gerar_base_vetorial_otimizada():
                 continue
             
             ancora = analise.get('ancoragem_temporal', {})
-            data_str = ancora.get('data_post') or ancora.get('data_post_original') or '2024-01-01'
-            timeline = validar_timeline(
-                analise.get('discussion_timeline', ''),
-                data_str
-            )
+            data_post_original = ancora.get('data_post_original', '2024-01-01')
+            data_processamento = ancora.get('data_processamento', '2024-01-01')
+            priorizacao_recentes = ancora.get('priorizacao_recentes', False)
+
+            # Opcional: manter timeline original para auditoria, mas NÃO usar no embedding
+            timeline_raw = analise.get('discussion_timeline', '')
             
             solucoes = formatar_solucoes_estruturadas(analise.get('suggested_solution'))
             fault = extrair_fault_limpo(analise.get('detected_fault', 'None'))
             
             fila_trabalho.append({
                 'id': post.get('id', f"unknown_{len(fila_trabalho)}"),
-                'texto_final': texto_final,
-                'date_iso': data_str,
+                'texto_final': texto_final,                           # sem TIMELINE
+                'date_iso': data_processamento,                       # data mais recente
                 'metadata': {
                     'title': post.get('titulo', 'Untitled Post')[:100],
                     'model': modelo_ref,
-                    'summary':analise.get('summary', 'Medium'),
+                    'summary': analise.get('summary', 'Medium'),
                     'fault': fault,
-                    # 'severity': analise.get('technical_severity', 'Medium'),
-                    # 'intent': analise.get('intent', 'Technical Specifications'),
-                    'timeline': timeline,
                     'solutions': solucoes,
-                    'temas_cobertos': len(solucoes)
+                    'temas_cobertos': len(solucoes),
+                    # NOVOS CAMPOS TEMPORAIS
+                    'data_post_original': data_post_original,
+                    'data_processamento': data_processamento,
+                    'priorizacao_recentes': priorizacao_recentes,
+                    'discussion_timeline_raw': timeline_raw           # opcional
                 }
             })
     
