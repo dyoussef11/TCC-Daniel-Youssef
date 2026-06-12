@@ -1,48 +1,36 @@
 """
-custom_evaluatorV4.py - Evaluator compatível com DeepEval, utilizando instructor
-no modo JSON para evitar tool calls múltiplas.
+custom_evaluatorV4.py - Avaliador leve para DeepEval (sem instructor)
 """
 
 from deepeval.models.base_model import DeepEvalBaseLLM
 from ollama import AsyncClient, Client
-import instructor
 from pydantic import BaseModel, ValidationError
-from typing import Optional, Type, Any, Union
+from typing import Optional, Type, Any, Union, get_origin
 import asyncio
 import json
+import re
 
 class OllamaEvaluator(DeepEvalBaseLLM):
-    _global_semaphore = asyncio.Semaphore(1)
+    _semaphore = asyncio.Semaphore(1)
 
     def __init__(self, model_name: str = "qwen3:4b-instruct", prompt_version: Optional[str] = None):
         self.model_name = model_name
         self.prompt_version = prompt_version
-
-        # --- CRIA CLIENTES INSTRUCTOR COM MODO JSON EXPLÍCITO ---
-        # O modo JSON força o modelo a retornar apenas JSON válido, sem tool calls.
-        # Isso resolve o erro "multiple tool calls".
-        self.client = instructor.from_provider(
-            f"ollama/{self.model_name}",
-            mode=instructor.Mode.JSON
-        )
-        self.async_client = instructor.from_provider(
-            f"ollama/{self.model_name}",
-            async_client=True,
-            mode=instructor.Mode.JSON
-        )
+        # Clientes simples (sem instructor)
+        self.sync_client = Client(host="http://localhost:11434")
+        self.async_client = AsyncClient(host="http://localhost:11434")
 
         self.system_content = (
             "Act as a Senior Hardware RAG Auditor evaluating responses based on MIXED KNOWLEDGE guidelines.\n\n"
-            "CRITICAL RULES (apply equally to all responses):\n"
-            "1. For a SPECIFIC SKU query, if external documentation is missing, the response MUST explicitly state "
+            "CRITICAL RULES:\n"
+            "1. For a SPECIFIC SKU query with missing external documentation, the response MUST explicitly state "
             "   that no external documentation was found before providing fallback information.\n"
-            "2. For a SERIES query (product line without SKU, e.g., 'Nitro 5'), the response MUST NOT provide specifications. "
+            "2. For a SERIES query (product line without SKU), the response MUST NOT provide specifications. "
             "   It MUST ask for the specific SKU.\n"
             "3. For a COMPARISON query with missing data on one or both SKUs, the response may use fallback but must indicate.\n"
-            "4. The response MUST be clean and natural, without any tags like [RAG], [INTERNAL], without 'AUDIT:' or 'ANSWER:' blocks, "
-            "   and without any special formatting.\n\n"
+            "4. The response MUST be clean and natural, without any tags like [RAG], [INTERNAL], without 'AUDIT:' or 'ANSWER:' blocks.\n\n"
             "You will be asked to produce a structured JSON output that follows a specific schema. "
-            "Do not invent your own schema – you must comply exactly with the schema provided via the 'response_model' parameter."
+            "Return ONLY valid JSON with the required fields. Do not add extra text."
         )
 
     def load_model(self):
@@ -51,11 +39,30 @@ class OllamaEvaluator(DeepEvalBaseLLM):
     def get_model_name(self) -> str:
         return f"ollama/{self.model_name} ({self.prompt_version})"
 
+    def _clean_json(self, raw: str) -> dict:
+        raw = raw.strip()
+        # Remove code fences
+        raw = re.sub(r'```json\s*|\s*```', '', raw)
+        # Tenta encontrar o primeiro { e último }
+        start = raw.find('{')
+        end = raw.rfind('}')
+        if start != -1 and end != -1:
+            raw = raw[start:end+1]
+        try:
+            return json.loads(raw)
+        except json.JSONDecodeError:
+            try:
+                from json_repair import repair_json
+                repaired = repair_json(raw)
+                return json.loads(repaired)
+            except ImportError:
+                return {}
+            except:
+                return {}
+
     def generate(self, prompt: str, schema: Optional[Type[BaseModel]] = None) -> Union[BaseModel, str]:
         if schema is None:
-            # Resposta simples (string)
-            raw_client = Client(host="http://localhost:11434")
-            response = raw_client.chat(
+            response = self.sync_client.chat(
                 model=self.model_name,
                 messages=[
                     {"role": "system", "content": self.system_content},
@@ -65,44 +72,51 @@ class OllamaEvaluator(DeepEvalBaseLLM):
             )
             return response['message']['content']
 
-        # Tenta gerar com validação Pydantic
-        try:
-            resp = self.client.chat.completions.create(
+        for attempt in range(3):
+            response = self.sync_client.chat(
                 model=self.model_name,
                 messages=[
                     {"role": "system", "content": self.system_content},
-                    {"role": "user", "content": prompt}
+                    {"role": "user", "content": f"{prompt}\n\nRespond with a valid JSON object matching:\n{schema.model_json_schema()}"}
                 ],
-                response_model=schema,
-                temperature=0.0,
-                max_retries=2
+                options={"temperature": 0.0}
             )
-            return resp
-        except Exception as e:
-            print(f"⚠️ Erro ao gerar saída estruturada: {e}")
-            # --- FALLBACK ROBUSTO: cria uma instância com campos padrão ---
-            # Tenta obter os nomes dos campos obrigatórios e preencher com valores vazios
-            try:
-                # Se o schema tem fields, cria um dicionário com valores padrão
-                default_values = {}
-                for field_name, field_info in schema.model_fields.items():
-                    if field_info.annotation == list:
-                        default_values[field_name] = []
-                    elif field_info.annotation == str:
-                        default_values[field_name] = ""
-                    else:
-                        # Para outros tipos, usa None
-                        default_values[field_name] = None
-                return schema.model_validate(default_values)
-            except:
-                # Último recurso: retorna uma instância vazia (pode causar erro, mas evita quebra completa)
-                return schema.model_construct()
+            data = self._clean_json(response['message']['content'])
+            if data:
+                try:
+                    return schema.model_validate(data)
+                except ValidationError:
+                    continue
+        # Fallback: objeto com campos vazios
+        default = {}
+        for name, field in schema.model_fields.items():
+            annotation = field.annotation
+            origin = get_origin(annotation)
+            if origin is list or annotation is list:
+                # Se for List[...], cria lista vazia
+                default[name] = []
+            elif origin is dict or annotation is dict:
+                default[name] = {}
+            elif annotation is str:
+                default[name] = ""
+            elif annotation is int:
+                default[name] = 0
+            elif annotation is float:
+                default[name] = 0.0
+            elif annotation is bool:
+                default[name] = False
+            else:
+                # Para outros tipos complexos (ex.: nested models), tenta instanciar vazio
+                try:
+                    default[name] = field.default_factory() if field.default_factory else None
+                except:
+                    default[name] = None
+        return schema.model_validate(default)
 
     async def a_generate(self, prompt: str, schema: Optional[Type[BaseModel]] = None) -> Union[BaseModel, str]:
-        async with OllamaEvaluator._global_semaphore:
+        async with OllamaEvaluator._semaphore:
             if schema is None:
-                raw_client = AsyncClient(host="http://localhost:11434")
-                response = await raw_client.chat(
+                response = await self.async_client.chat(
                     model=self.model_name,
                     messages=[
                         {"role": "system", "content": self.system_content},
@@ -112,30 +126,42 @@ class OllamaEvaluator(DeepEvalBaseLLM):
                 )
                 return response['message']['content']
 
-            try:
-                resp = await self.async_client.chat.completions.create(
+            for attempt in range(3):
+                response = await self.async_client.chat(
                     model=self.model_name,
                     messages=[
                         {"role": "system", "content": self.system_content},
-                        {"role": "user", "content": prompt}
+                        {"role": "user", "content": f"{prompt}\n\nRespond with a valid JSON object matching:\n{schema.model_json_schema()}"}
                     ],
-                    response_model=schema,
-                    temperature=0.0,
-                    max_retries=2
+                    options={"temperature": 0.0}
                 )
-                return resp
-            except Exception as e:
-                print(f"⚠️ Erro async ao gerar saída estruturada: {e}")
-                # Mesmo fallback robusto
+                data = self._clean_json(response['message']['content'])
+                if data:
+                    try:
+                        return schema.model_validate(data)
+                    except ValidationError:
+                        continue
+            default = {}
+        for name, field in schema.model_fields.items():
+            annotation = field.annotation
+            origin = get_origin(annotation)
+            if origin is list or annotation is list:
+                # Se for List[...], cria lista vazia
+                default[name] = []
+            elif origin is dict or annotation is dict:
+                default[name] = {}
+            elif annotation is str:
+                default[name] = ""
+            elif annotation is int:
+                default[name] = 0
+            elif annotation is float:
+                default[name] = 0.0
+            elif annotation is bool:
+                default[name] = False
+            else:
+                # Para outros tipos complexos (ex.: nested models), tenta instanciar vazio
                 try:
-                    default_values = {}
-                    for field_name, field_info in schema.model_fields.items():
-                        if field_info.annotation == list:
-                            default_values[field_name] = []
-                        elif field_info.annotation == str:
-                            default_values[field_name] = ""
-                        else:
-                            default_values[field_name] = None
-                    return schema.model_validate(default_values)
+                    default[name] = field.default_factory() if field.default_factory else None
                 except:
-                    return schema.model_construct()
+                    default[name] = None
+        return schema.model_validate(default)

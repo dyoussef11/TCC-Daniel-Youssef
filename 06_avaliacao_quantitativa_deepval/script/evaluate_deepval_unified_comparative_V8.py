@@ -44,7 +44,7 @@ for path in [VALIDACAO_SCRIPT, AVALIACAO_SCRIPT]:
         sys.path.append(str(path))
 
 from RAG_BaseLineV2 import VanillaRAG
-from RAG_Temporal_V9_4 import SpecialistTimeAwareRAG
+from RAG_Temporal_V9_3 import SpecialistTimeAwareRAG
 from custom_evaluatorV4 import OllamaEvaluator
 
 
@@ -71,7 +71,7 @@ class EvalConfig:
 
     @property
     def output_dir(self) -> Path:
-        dir_path = AVALIACAO_DATA / "resultados"
+        dir_path = AVALIACAO_DATA / "testes_com_modelos_diferentes"
         dir_path.mkdir(parents=True, exist_ok=True)
         return dir_path
 
@@ -126,8 +126,8 @@ class EmbeddingCache:
 
 def create_native_metrics(evaluator: OllamaEvaluator) -> List[Any]:
     return [
-        FaithfulnessMetric(threshold=0.85, model=evaluator, include_reason=True),
-        AnswerRelevancyMetric(threshold=0.8, model=evaluator, include_reason=True),
+        FaithfulnessMetric(threshold=0.80, model=evaluator, include_reason=True),
+        AnswerRelevancyMetric(threshold=0.85, model=evaluator, include_reason=True),
         ContextualRelevancyMetric(threshold=0.8, model=evaluator, include_reason=True),
         ContextualPrecisionMetric(threshold=0.8, model=evaluator, include_reason=True),
         ContextualRecallMetric(threshold=0.8, model=evaluator, include_reason=True)
@@ -519,26 +519,34 @@ async def main_queue():
         print(f"🔁 Combinação {i}/{len(filtered_combinations)}: Juiz={judge} | Gerador={generator}")
         print(f"{'='*60}")
 
-        # Instancia e configura o pipeline para a iteração corrente
-        pipeline = NativeComparativePipeline()
-        pipeline.config = EvalConfig(evaluator_model=judge, model_name=generator)
-        pipeline.evaluator_v1 = OllamaEvaluator(model_name=pipeline.config.evaluator_model, prompt_version="V1")
-        pipeline.evaluator_v9 = OllamaEvaluator(model_name=pipeline.config.evaluator_model, prompt_version="V9")
-
+        pipeline = None
         try:
-            # Chame DIRETAMENTE com o await, aproveitando o loop persistente
+            pipeline = NativeComparativePipeline()
+            pipeline.config = EvalConfig(evaluator_model=judge, model_name=generator)
+            pipeline.evaluator_v1 = OllamaEvaluator(model_name=judge, prompt_version="V1")
+            pipeline.evaluator_v9 = OllamaEvaluator(model_name=judge, prompt_version="V9")
+
             await pipeline.run()
-            print(f"✅ Combinação concluída com sucesso: {judge} / {generator}")
+            print(f"✅ Combinação concluída: {judge} / {generator}")
         except Exception as e:
-            print(f"❌ Erro catastrófico na combinação {judge}/{generator}: {e}")
+            print(f"❌ Erro catastrófico: {e}")
+        finally:
+            # Fecha os clientes HTTP dos RAGs
+            if pipeline and hasattr(pipeline, 'rag_manager'):
+                try:
+                    if pipeline.rag_manager._vanilla:
+                        await pipeline.rag_manager.vanilla.close()
+                    if pipeline.rag_manager._temporal:
+                        await pipeline.rag_manager.temporal.close()
+                except:
+                    pass
+            # Força coleta de lixo
+            del pipeline
+            gc.collect()
 
         if i < len(filtered_combinations):
-            print("⏳ Aguardando 10 segundos para liberação de memória e sockets...")
-            await asyncio.sleep(10)  # Evita travar a thread principal com time.sleep()
-            
-        # Força coleta de lixo de instâncias pesadas do FAISS / RAG
-        del pipeline
-        gc.collect()
+            print("⏳ Aguardando 15 segundos para liberar recursos...")
+            await asyncio.sleep(15)
 
     print("\n🎉 Todas as combinações sem conflito de família foram executadas perfeitamente.")
 

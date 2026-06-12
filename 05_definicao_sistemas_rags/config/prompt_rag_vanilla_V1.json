@@ -73,7 +73,6 @@
     
     "prompt_template": "=== QUERY TYPE DETECTION ===\nClassify the query as SPECIFIC_SKU, GENERAL_TECH, COMPARISON, or SERIES.\n\n=== EXTERNAL CONTEXT (retrieved documents) ===\n{context}\n\n=== USER QUERY ===\n{query}\n\n=== REFERENCE DATE ===\n{ref_date}\n\n=== INSTRUCTIONS ===\n- Follow the rules above based on query type.\n- You may combine external context and internal knowledge (training cutoff 2024).\n- For SERIES queries: ask for SKU, do not answer.\n- Write a direct, clean answer without any tags or audit sections.\n\nRESPONSE:"
   }
-
 }
 
 

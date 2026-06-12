@@ -37,6 +37,10 @@ TRADITIONAL_TEST_SUITE = [
 # CASOS COMPORTAMENTAIS (SKU Lock, Inferência, Honestidade)
 # ============================================================================
 
+
+
+
+
 BEHAVIORAL_TEST_SUITE = [
     # ========================================================================
     # TESTE 1: SKU LOCK - ACER (NÃO deve inferir de AN515-57)
@@ -279,6 +283,96 @@ BEHAVIORAL_TEST_SUITE = [
     }
 ]
 
+
+# ============================================================================
+# TESTES ESPECÍFICOS DE TEMPORALIDADE
+# ============================================================================
+
+TEMPORAL_TEST_SUITE = [
+    {
+        "id": "TC_TEMPORAL_PREFER_RECENT_DOC",
+        "input": "What is the maximum RAM capacity for Dell XPS 15 9500?",
+        "reference_date": "2025-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_prefer_2024_document_over_2014",
+        "required_patterns": ["32GB", "64GB", "DDR4", "DDR5"],
+        # Se houver documento de 2024 falando 64GB e outro de 2014 falando 32GB,
+        # o temporal deve preferir o mais recente. O vanilla pode dar 32GB.
+        "description": "Exige que o RAG temporal use dados mais recentes se disponíveis."
+    },
+    {
+        "id": "TC_TEMPORAL_BIOS_VERSION_RECENCY",
+        "input": "Latest BIOS version for Acer Nitro 5 AN515-58?",
+        "reference_date": "2025-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_not_use_outdated_bios",
+        "forbidden_patterns": [r"v1\.\d+", "2.0", "2020"],
+        "required_patterns": ["not available", "latest", "update"],
+        "pattern_type": "regex",
+        "description": "Não deve citar versões antigas de BIOS se existir documentação recente; se não houver, deve admitir."
+    },
+    {
+        "id": "TC_TEMPORAL_NEW_HARDWARE_2025",
+        "input": "Does the RTX 5060 laptop GPU support PCIe 5.0?",
+        "reference_date": "2025-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_use_internal_knowledge_or_admit_unknown",
+        "required_patterns": ["not available", "no information", "unconfirmed", "likely", "typically"],
+        "forbidden_patterns": ["yes", "no"],
+        "description": "Pergunta sobre hardware muito recente (2025). O RAG deve evitar afirmações categóricas se não houver documento."
+    },
+    {
+        "id": "TC_TEMPORAL_OLD_CONCEPT_NO_PENALTY",
+        "input": "Explain what CPU thermal throttling means.",
+        "reference_date": "2025-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_answer_using_general_knowledge_regardless_of_date",
+        "required_patterns": ["temperature", "reduce", "clock", "frequency"],
+        "min_required_matches": 2,
+        "description": "Conceito atemporal; o RAG temporal não deve penalizar documentos antigos a ponto de não conseguir responder."
+    },
+    {
+        "id": "TC_TEMPORAL_COMPARE_OLD_VS_NEW",
+        "input": "Compare battery life of Dell XPS 15 9500 (2020 model) vs Dell XPS 15 9530 (2023 model).",
+        "reference_date": "2025-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_use_appropriate_dates_for_each",
+        "required_patterns": ["2020", "2023", "battery", "hours"],
+        "forbidden_patterns": ["same", "identical"],
+        "description": "Deve usar documentos de épocas diferentes sem confundir as especificações."
+    },
+    {
+        "id": "TC_TEMPORAL_FUTURE_DATE_2026",
+        "input": "What is the default TDP of Intel Core Ultra 9 285H?",
+        "reference_date": "2026-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_not_invent_specs_for_future",
+        "required_patterns": ["not available", "no information", "cannot confirm", "as of now"],
+        "forbidden_patterns": ["45W", "65W", "125W", "TDP"],
+        "description": "Pergunta sobre CPU que pode não ter sido lançada até 2026; o RAG deve evitar especular."
+    },
+    {
+        "id": "TC_TEMPORAL_OLDER_SKU_STILL_VALID",
+        "input": "How to upgrade RAM on Lenovo Legion 5 15ACH6 (2021 model)?",
+        "reference_date": "2025-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_use_old_doc_and_not_penalize_too_much",
+        "required_patterns": ["SODIMM", "DDR4", "remove", "install", "upgrade"],
+        "description": "SKU antigo mas pergunta de upgrade (informação ainda válida). O RAG temporal deve usar o documento antigo mesmo com penalidade leve."
+    },
+    {
+        "id": "TC_TEMPORAL_CLEAN_NO_AUDIT_TAGS",
+        "input": "What is the maximum supported storage for HP Victus 16-e0055dx?",
+        "reference_date": "2025-06-01",
+        "test_type": "behavioral",
+        "expected_behavior": "should_output_clean_text_without_tags_or_audit_blocks",
+        "forbidden_patterns": ["AUDIT:", "ANSWER:", "\\[RAG:", "\\[INTERNAL:", "\\[SOURCE"],
+        "description": "A resposta final não pode conter blocos de auditoria ou tags de sistema – apenas texto limpo (para ambos RAGs)."
+    }
+]
+
+# Adicionar ao BEHAVIORAL_TEST_SUITE existente
+BEHAVIORAL_TEST_SUITE.extend(TEMPORAL_TEST_SUITE)
 
 # ============================================================================
 # DATASET COMPLETO (FUSÃO)
