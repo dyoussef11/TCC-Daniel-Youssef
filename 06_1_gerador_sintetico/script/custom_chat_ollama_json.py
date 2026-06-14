@@ -46,24 +46,36 @@ class ChatOllamaJson(ChatOllama):
 
         # Call Ollama with **forced JSON format**
         response = await self._async_client.chat(
-            model=self.model,
-            messages=ollama_messages,
-            format='json',           # <-- CRITICAL: ensures JSON output
-            options=options
-        )
-
+        model=self.model,
+        messages=ollama_messages,
+        format='json',
+        options=options
+    )
         raw = response['message']['content']
 
-        # Safely parse JSON (even if extra text is present)
-        try:
-            parsed = json.loads(raw)
-        except json.JSONDecodeError:
-            match = re.search(r'\{.*\}', raw, re.DOTALL)
-            if match:
-                parsed = json.loads(match.group(0))
-            else:
-                raise ValueError(f"Could not parse JSON from: {raw[:200]}")
+        # Limpeza agressiva
+        raw = re.sub(r'[\x00-\x1f\x7f]', '', raw)          # remove controles
+        raw = re.sub(r',\s*}', '}', raw)                   # vírgula antes de }
+        raw = re.sub(r',\s*]', ']', raw)                   # vírgula antes de ]
+        raw = re.sub(r'([{,])\s*([a-zA-Z0-9_]+)\s*:', r'\1"\2":', raw)  # adiciona aspas em keys sem aspas
 
-        # Return as a string (Ragas expects a string)
+        # Tenta parsear com diferentes estratégias
+        parsed = None
+        for strategy in [
+            lambda: json.loads(raw),
+            lambda: json.loads(raw, strict=False),
+            lambda: json.loads(re.search(r'\{.*\}', raw, re.DOTALL).group(0)),
+            lambda: eval(raw)   # perigoso, mas pode funcionar em JSON simples
+        ]:
+            try:
+                parsed = strategy()
+                break
+            except:
+                continue
+
+        if parsed is None:
+            # Fallback: retorna um JSON vazio (RAGAS pode lidar mal, mas evita crash)
+            parsed = {"error": "failed_to_parse", "raw": raw[:200]}
+
         content_str = json.dumps(parsed, ensure_ascii=False)
         return ChatResult(generations=[ChatGeneration(message=AIMessage(content=content_str))])

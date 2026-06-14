@@ -17,13 +17,32 @@ from custom_chat_ollama_json import ChatOllamaJson
 
 from core.paths import NER_DATA  # only needed if you still want graph utilities
 
+
 # ========= CONFIG =========
 DIR_ENTRADA = NER_DATA / "Base_Conhecimento_ResumidaV12_VERIFICADA"
-SAMPLE_SIZE = 800
+SAMPLE_SIZE = 400
 TEST_SIZE = 100
 MODELO_LLM = "mistral:7b-instruct"
 MODELO_EMB = "bge-m3:latest"
 URL_OLLAMA = "http://localhost:11434"
+
+
+import re
+
+def clean_text(text: str) -> str:
+    """
+    Remove caracteres não imprimíveis e garante que o texto seja seguro para embedding.
+    Se após limpeza ficar muito curto, retorna um placeholder.
+    """
+    if not isinstance(text, str):
+        text = str(text)
+    # Remove caracteres de controle (exceto \n, \r, \t)
+    text = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]', '', text)
+    # Remove espaços e quebras excessivas
+    text = ' '.join(text.split())
+    if len(text.strip()) < 10:
+        return "[EMPTY CHUNK - PLACEHOLDER]"
+    return text
 
 
 def carregar_chunks(limit: int = 50) -> List[Document]:
@@ -33,13 +52,11 @@ def carregar_chunks(limit: int = 50) -> List[Document]:
     """
     chunks = []
     contador = 0
-
     for json_path in DIR_ENTRADA.glob("*.json"):
         if contador >= limit:
             break
         with open(json_path, 'r', encoding='utf-8') as f:
             dados = json.load(f)
-
         modelo = dados.get('modelo_original', 'unknown')
         for post in dados.get('posts', []):
             if contador >= limit:
@@ -47,16 +64,19 @@ def carregar_chunks(limit: int = 50) -> List[Document]:
             analise = post.get('analise_ia', {})
             if not analise:
                 continue
-
             titulo = post.get('titulo', '')
             resumo = analise.get('summary', '')
             solucoes = analise.get('suggested_solution', [])
             solucoes_str = " | ".join(solucoes[:3]) if solucoes else "No solution"
             texto = f"Modelo: {modelo}\nTópico: {titulo}\nResumo: {resumo}\nSoluções: {solucoes_str}"
+            
+            # --- LIMPEZA CRÍTICA ---
+            texto_limpo = clean_text(texto)
+            # ---
 
-            if len(texto.strip()) >= 50:
+            if len(texto_limpo.strip()) >= 10:
                 chunks.append(Document(
-                    page_content=texto,
+                    page_content=texto_limpo,
                     metadata={
                         "model": modelo,
                         "intent": analise.get('intent', 'unknown'),
@@ -65,8 +85,7 @@ def carregar_chunks(limit: int = 50) -> List[Document]:
                     }
                 ))
                 contador += 1
-
-    print(f"✅ {len(chunks)} chunks carregados a partir dos JSONs.")
+    print(f"✅ {len(chunks)} chunks carregados e limpos.")
     return chunks
 
 
