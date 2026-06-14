@@ -40,7 +40,7 @@ class ChatOllamaJson(ChatOllama):
             ollama_messages.append({"role": role, "content": msg.content})
 
         # Build options (temperature, stop, etc.)
-        options = {"temperature": self.temperature}
+        options = {"temperature": self.temperature, "num_ctx": 8192}
         if stop:
             options["stop"] = stop
 
