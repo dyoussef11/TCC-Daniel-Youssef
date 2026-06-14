@@ -107,8 +107,9 @@ class RedditServiceV11Async(BaseExtractor):
             posts_categoria = 0
             for lote in lotes:
                 termo_idx += len(lote)
-                query = f'"{termo_limpo}" ({" OR ".join([f'"{t}"' for t in lote])}) {string_negativa}'
-
+                # query = f'"{termo_limpo}" ({" OR ".join([f'"{t}"' for t in lote])}) {string_negativa}'
+                termos_lote = [f'"{t}"' for t in lote]
+                query = f'"{termo_limpo}" ({" OR ".join(termos_lote)}) {string_negativa}'
                 try:
                     # Mensagem única para o lote (sem fragmentação)
                     search_start = datetime.datetime.now()
@@ -184,7 +185,8 @@ class RedditServiceV11Async(BaseExtractor):
                         comentarios.append({
                             "id": comment.id,
                             "conteudo": corpo,
-                            "score": comment.score
+                            "score": comment.score, 
+                            "data_comentario": comment.created_utc
                         })
             return comentarios
         except Exception:

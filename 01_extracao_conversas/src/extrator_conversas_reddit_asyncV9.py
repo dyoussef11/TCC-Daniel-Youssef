@@ -17,7 +17,7 @@ from extractors.reddit_serviceV11Backup import RedditServiceV11Async
 # =================================================================
 DIRETORIO_BRUTO = EXTRACAO_DATA / 'brutoV10'
 DIRETORIO_LOGS = EXTRACAO_DATA / 'logs5'
-CAMINHO_ENTRADA_CSV = DATASET_FINAL_CSV / 'dataset_laptops_unicos_10.csv'
+CAMINHO_ENTRADA_CSV = DATASET_FINAL_CSV / 'dataset_laptops_UNICOS_V10.csv'
 
 class TextProcessor:
     @staticmethod
