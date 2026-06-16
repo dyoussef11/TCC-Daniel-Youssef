@@ -82,6 +82,12 @@ class EvalConfig:
             evaluator_model=args.judge_model,
             model_name=args.generator_model
         )
+    @property
+    def combination_id(self) -> str:
+        """Identificador curto da combinação avaliador+gerador."""
+        judge = self.evaluator_model.replace(":", "_")
+        gen = self.model_name.replace(":", "_")
+        return f"J_{judge}_G_{gen}"
 
 
 class EmbeddingCache:
@@ -164,6 +170,28 @@ def create_unified_behavioral_geval(evaluator: OllamaEvaluator) -> GEval:
         threshold=0.8
     )
 
+def create_temporal_geval(evaluator: OllamaEvaluator) -> GEval:
+    criteria = (
+        "Evaluate the response based on temporal reasoning rules:\n"
+        "1. For queries with a reference date, the response should prefer documents from that date or later.\n"
+        "2. For future dates (e.g., 2026+), the response must not invent specifications; it should say 'not available' or 'unconfirmed'.\n"
+        "3. For comparisons across models/generations, the response must correctly distinguish specifications (e.g., DDR4 vs DDR5).\n"
+        "4. For atemporal concepts (thermal throttling, memory types), the response may use general knowledge regardless of document date.\n"
+        "5. The response must not hallucinate BIOS versions, future hardware, or outdated specs."
+    )
+    return GEval(
+        name="Temporal Consistency",
+        model=evaluator,
+        criteria=criteria,
+        evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT],
+        evaluation_steps=[
+            "Check if the response uses the appropriate document recency based on the reference date.",
+            "Verify that future-dated queries are handled with caution (no speculation).",
+            "Ensure that comparisons respect chronological evolution of specifications.",
+            "Penalize hallucinated versions or specs that contradict the temporal context."
+        ],
+        threshold=0.8
+    )
 
 # ============================================================================
 # RAG MANAGER & ORCHESTRATION
@@ -263,9 +291,15 @@ class NativeComparativePipeline:
         d_v9_behav = EvaluationDataset()
         d_v9_behav.test_cases = [c for c in v9_cases if c.metadata["test_type"] == "behavioral"]
 
+        d_v1_temp = EvaluationDataset()
+        d_v1_temp.test_cases = [c for c in v1_cases if c.metadata["test_type"] == "temporal"]
+
+        d_v9_temp = EvaluationDataset()
+        d_v9_temp.test_cases = [c for c in v9_cases if c.metadata["test_type"] == "temporal"]
+
         res_v1_trad, res_v1_behav = [], []
         res_v9_trad, res_v9_behav = [], []
-
+        res_v1_temp, res_v9_temp = [], []
         # ====================================================================
         # AVALIAÇÃO RAG V1
         # ====================================================================
@@ -288,6 +322,12 @@ class NativeComparativePipeline:
             geval_v1 = create_unified_behavioral_geval(self.evaluator_v1)
             batch_res = evaluate(d_v1_behav.test_cases, [geval_v1], async_config=AsyncConfig(max_concurrent=1))
             res_v1_behav = batch_res.test_results
+
+        if d_v1_temp.test_cases:
+            print("\n⏳ Avaliando V1 MIXED Temporal (GEval Temporal)...")
+            geval_temp_v1 = create_temporal_geval(self.evaluator_v1)
+            batch_res = evaluate(d_v1_temp.test_cases, [geval_temp_v1], async_config=AsyncConfig(max_concurrent=1))
+            res_v1_temp = batch_res.test_results
 
         # ====================================================================
         # AVALIAÇÃO RAG V9
@@ -312,16 +352,24 @@ class NativeComparativePipeline:
             batch_res = evaluate(d_v9_behav.test_cases, [geval_v9], async_config=AsyncConfig(max_concurrent=1))
             res_v9_behav = batch_res.test_results
 
-        # Compila e grava todos os relatórios estruturados (CSV, TXT e MD)
-        self._build_and_save_reports(res_v1_trad, res_v1_behav, res_v9_trad, res_v9_behav)
+        if d_v9_temp.test_cases:
+            print("\n⏳ Avaliando V9 MIXED Temporal (GEval Temporal)...")
+            geval_temp_v9 = create_temporal_geval(self.evaluator_v9)
+            batch_res = evaluate(d_v9_temp.test_cases, [geval_temp_v9], async_config=AsyncConfig(max_concurrent=1))
+            res_v9_temp = batch_res.test_results
 
-    def _build_and_save_reports(self, r1_t, r1_b, r9_t, r9_b):
+        # Compila e grava todos os relatórios estruturados (CSV, TXT e MD)
+        self._build_and_save_reports(res_v1_trad, res_v1_behav, res_v9_trad, res_v9_behav, res_v1_temp, res_v9_temp)
+
+    def _build_and_save_reports(self, r1_t, r1_b, r1_temp, r9_t, r9_b, r9_temp):
         rows = []
         
         v1_t_ref = [c for c in self.v1_cases_backup if c.metadata["test_type"] == "traditional"]
         v1_b_ref = [c for c in self.v1_cases_backup if c.metadata["test_type"] == "behavioral"]
+        v1_temp_ref = [c for c in self.v1_cases_backup if c.metadata["test_type"] == "temporal"]
         v9_t_ref = [c for c in self.v9_cases_backup if c.metadata["test_type"] == "traditional"]
         v9_b_ref = [c for c in self.v9_cases_backup if c.metadata["test_type"] == "behavioral"]
+        v9_temp_ref = [c for c in self.v9_cases_backup if c.metadata["test_type"] == "temporal"]
 
         def process_results(results, version_prefix, source_cases_ref):
             for idx, test_result in enumerate(results):
@@ -352,21 +400,24 @@ class NativeComparativePipeline:
 
         process_results(r1_t, "V1", v1_t_ref)
         process_results(r1_b, "V1", v1_b_ref)
+        process_results(r1_temp, "V1", v1_temp_ref)
         process_results(r9_t, "V9", v9_t_ref)
         process_results(r9_b, "V9", v9_b_ref)
+        process_results(r9_temp, "V9", v9_temp_ref)
 
-        # 1. Exportação do CSV Principal
         df = pd.DataFrame(rows)
-        csv_out = self.config.output_dir / f"DEEPEVAL_MIXED_NATIVE_COMPARATIVE_{self.config.timestamp}.csv"
+        combo_id = self.config.combination_id
+        csv_out = self.config.output_dir / f"DEEPEVAL_MIXED_NATIVE_{combo_id}_{self.config.timestamp}.csv"
         df.to_csv(csv_out, index=False)
         
         # 2. Geração da Versão TXT Detalhada
-        txt_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_{self.config.timestamp}.txt"
+        txt_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_{combo_id}_{self.config.timestamp}.txt"
         self._write_txt_report(txt_out, rows, v1_t_ref, v1_b_ref)
 
         # 3. Geração da Versão Markdown (MD) para Visualização Limpa
-        md_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_{self.config.timestamp}.md"
+        md_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_{combo_id}_{self.config.timestamp}.md"
         self._write_md_report(md_out, rows, v1_t_ref, v1_b_ref)
+
 
         print(f"\n🚀 Pipeline adaptado para os Prompts MIXED concluído com sucesso.")
         print(f"📊 Planilha CSV:  {csv_out}")

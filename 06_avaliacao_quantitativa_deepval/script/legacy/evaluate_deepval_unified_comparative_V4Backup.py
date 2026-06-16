@@ -29,6 +29,7 @@ from deepeval.metrics import (
     GEval
 )
 from deepeval.evaluate import AsyncConfig, ErrorConfig
+from deepeval.test_case import LLMTestCaseParams
 
 
 # Custom external modules
@@ -51,7 +52,7 @@ from custom_evaluatorV3 import OllamaEvaluator
 @dataclass
 class EvalConfig:
     base_path: Path = VETORIZATION_DATA / 'base_conhecimento_multilingueV9.json'
-    evaluator_model: str = "qwen3.5:9b"
+    evaluator_model: str = "qwen3:4b-instruct"
     cache_dir: Path = AVALIACAO_DATA / "cache"
     embedding_cache_size: int = 1000
     vanilla_use_expansion: bool = False
@@ -155,6 +156,10 @@ def create_mixed_behavioral_geval(evaluator: OllamaEvaluator, version: str) -> G
             "If it is a SKU query with missing RAG, verify if the model stated that external docs were not found before providing fallback specs.",
             "Inspect formatting: V9 must have an AUDIT section; V1 must be completely bare of tags, labels, or audit structures."
         ],
+        evaluation_params=[
+        LLMTestCaseParams.INPUT,
+        LLMTestCaseParams.ACTUAL_OUTPUT
+    ],
         threshold=0.8
     )
 
@@ -228,8 +233,13 @@ class NativeComparativePipeline:
 
     async def run(self):
         v1_cases, v9_cases = await self.rag_manager.generate_test_cases()
+
+
+        # BACKUP DE SEGURANÇA: Salva a referência na classe para uso no gerador de relatórios
+        self.v1_cases_backup = v1_cases
+        self.v9_cases_backup = v9_cases
         
-        # Instanciação dos contêineres de dados
+        # Instanciação limpa estendendo a lista nativa diretamente
         d_v1_trad = EvaluationDataset()
         d_v1_trad.test_cases = [c for c in v1_cases if c.metadata["test_type"] == "traditional"]
         
@@ -242,85 +252,114 @@ class NativeComparativePipeline:
         d_v9_behav = EvaluationDataset()
         d_v9_behav.test_cases = [c for c in v9_cases if c.metadata["test_type"] == "behavioral"]
 
-        # Listas para consolidar os objetos de resultado finais
+        # Listas nativas puras para acumular os resultados individuais de teste
         res_v1_trad, res_v1_behav = [], []
         res_v9_trad, res_v9_behav = [], []
 
         # ====================================================================
-        # EXECUÇÃO DO RAG V1 (VANILLA)
+        # AVALIAÇÃO RAG V1
         # ====================================================================
         if d_v1_trad.test_cases:
             print("\n🏆 Avaliando V1 MIXED Tradicional (Métrica por Métrica)...")
-            # Força o isolamento total de hardware avaliando uma métrica de cada vez
             for metric in create_native_metrics(self.evaluator_v1):
                 print(f" 🎯 Rodando {metric.__class__.__name__} de forma linear...")
                 batch_res = evaluate(d_v1_trad.test_cases, [metric], async_config=AsyncConfig(max_concurrent=1))
+                
                 if not res_v1_trad:
-                    res_v1_trad = batch_res
+                    res_v1_trad = batch_res.test_results
                 else:
-                    # Faz o merge dos resultados das métricas no objeto correto
-                    for idx, single_res in enumerate(batch_res):
-                        res_v1_trad[idx].metrics_results.extend(single_res.metrics_results)
+                    for idx, single_res in enumerate(batch_res.test_results):
+                        # CORREÇÃO: .metrics_data é o atributo correto do objeto TestResult
+                        res_v1_trad[idx].metrics_data.extend(single_res.metrics_data)
+                        # Atualiza o status global do caso de teste (se uma falhar, o caso falha)
+                        if not single_res.success:
+                            res_v1_trad[idx].success = False
 
         if d_v1_behav.test_cases:
             print("\n🏆 Avaliando V1 MIXED Comportamental (GEval)...")
             geval_v1 = create_mixed_behavioral_geval(self.evaluator_v1, "V1")
-            res_v1_behav = evaluate(d_v1_behav.test_cases, [geval_v1], async_config=AsyncConfig(max_concurrent=1))
+            batch_res = evaluate(d_v1_behav.test_cases, [geval_v1], async_config=AsyncConfig(max_concurrent=1))
+            res_v1_behav = batch_res.test_results
 
         # ====================================================================
-        # EXECUÇÃO DO RAG V9 (TEMPORAL)
+        # AVALIAÇÃO RAG V9
         # ====================================================================
         if d_v9_trad.test_cases:
             print("\n🏆 Avaliando V9 MIXED Tradicional (Métrica por Métrica)...")
             for metric in create_native_metrics(self.evaluator_v9):
                 print(f" 🎯 Rodando {metric.__class__.__name__} de forma linear...")
                 batch_res = evaluate(d_v9_trad.test_cases, [metric], async_config=AsyncConfig(max_concurrent=1))
+                
                 if not res_v9_trad:
-                    res_v9_trad = batch_res
+                    res_v9_trad = batch_res.test_results
                 else:
-                    # Faz o merge dos resultados das métricas no objeto correto
-                    for idx, single_res in enumerate(batch_res):
-                        res_v9_trad[idx].metrics_results.extend(single_res.metrics_results)
+                    for idx, single_res in enumerate(batch_res.test_results):
+                        # CORREÇÃO: .metrics_data aqui também
+                        res_v9_trad[idx].metrics_data.extend(single_res.metrics_data)
+                        if not single_res.success:
+                            res_v9_trad[idx].success = False
 
         if d_v9_behav.test_cases:
             print("\n🏆 Avaliando V9 MIXED Comportamental (GEval)...")
             geval_v9 = create_mixed_behavioral_geval(self.evaluator_v9, "V9")
-            res_v9_behav = evaluate(d_v9_behav.test_cases, [geval_v9], async_config=AsyncConfig(max_concurrent=1))
+            batch_res = evaluate(d_v9_behav.test_cases, [geval_v9], async_config=AsyncConfig(max_concurrent=1))
+            res_v9_behav = batch_res.test_results
 
-        # Compila os relatórios unificados no DataFrame e exporta para CSV
+        # Compila os relatórios unificados e exporta para CSV
         self._build_and_save_reports(res_v1_trad, res_v1_behav, res_v9_trad, res_v9_behav)
 
     def _build_and_save_reports(self, r1_t, r1_b, r9_t, r9_b):
         rows = []
         
-        def process_results(results, version_prefix):
-            for test_result in results:
-                tc = test_result.test_case
-                row_id = tc.metadata["id"]  # Alterado aqui de additional_metadata para metadata
+        # 1. Recupera as listas originais de casos gerados para servir de ancoragem
+        # Usamos uma referência estática para garantir acesso aos metadados (id, test_type, input)
+        v1_cases_ref = [c for c in self.rag_manager.v1_generated_cases] if hasattr(self.rag_manager, 'v1_generated_cases') else []
+        v9_cases_ref = [c for c in self.rag_manager.v9_generated_cases] if hasattr(self.rag_manager, 'v9_generated_cases') else []
+
+        def process_results(results, version_prefix, source_cases_ref):
+            for idx, test_result in enumerate(results):
+                # Tenta obter o test_case de dentro do objeto ou usa a lista de ancoragem segura por índice
+                if hasattr(test_result, 'test_case') and test_result.test_case is not None:
+                    tc = test_result.test_case
+                elif idx < len(source_cases_ref):
+                    tc = source_cases_ref[idx]
+                else:
+                    # Fallback de segurança caso a lista de referência não esteja mapeada
+                    tc = getattr(test_result, 'test_case', None)
                 
+                # Se não conseguiu obter o caso de teste de nenhuma forma, extrai do próprio test_result
+                row_id = tc.metadata["id"] if (tc and hasattr(tc, 'metadata') and tc.metadata) else f"TC_{idx}"
+                query_text = tc.input if (tc and hasattr(tc, 'input')) else getattr(test_result, 'input', 'Unknown')
+                test_type = tc.metadata["test_type"] if (tc and hasattr(tc, 'metadata') and tc.metadata) else "traditional"
+                actual_output = tc.actual_output if (tc and hasattr(tc, 'actual_output')) else getattr(test_result, 'actual_output', '')
+
                 existing = next((r for r in rows if r["ID"] == row_id), None)
                 if not existing:
-                    existing = {"ID": row_id, "Query": tc.input, "Type": tc.metadata["test_type"]} # Alterado aqui
+                    existing = {"ID": row_id, "Query": query_text, "Type": test_type}
                     rows.append(existing)
                 
-                existing[f"{version_prefix}_Answer"] = tc.actual_output
-                for metric_obj in test_result.metrics_results:
+                existing[f"{version_prefix}_Answer"] = actual_output
+                
+                # Varre o contêiner correto de métricas (.metrics_data)
+                metrics_list = getattr(test_result, 'metrics_data', [])
+                for metric_obj in metrics_list:
                     name = metric_obj.name.replace(" ", "_")
                     existing[f"{version_prefix}_{name}_Score"] = metric_obj.score
                     existing[f"{version_prefix}_{name}_Reason"] = metric_obj.reason
 
-        process_results(r1_t, "V1")
-        process_results(r1_b, "V1")
-        process_results(r9_t, "V9")
-        process_results(r9_b, "V9")
+        # Para que as listas de referência funcionem, vamos capturar as listas direto no generate_test_cases
+        # Salvando-as no escopo do rag_manager durante a execução
+        process_results(r1_t, "V1", [c for c in self.v1_cases_backup if c.metadata["test_type"] == "traditional"])
+        process_results(r1_b, "V1", [c for c in self.v1_cases_backup if c.metadata["test_type"] == "behavioral"])
+        process_results(r9_t, "V9", [c for c in self.v9_cases_backup if c.metadata["test_type"] == "traditional"])
+        process_results(r9_b, "V9", [c for c in self.v9_cases_backup if c.metadata["test_type"] == "behavioral"])
 
         df = pd.DataFrame(rows)
         csv_out = self.config.output_dir / f"DEEPEVAL_MIXED_NATIVE_COMPARATIVE_{self.config.timestamp}.csv"
         df.to_csv(csv_out, index=False)
         
         print(f"\n🚀 Pipeline adaptado para os Prompts MIXED concluído.")
-        print(f"📊 Dados salvos em: {csv_out}")
-
+        print(f"📊 Dados salvos com sucesso em: {csv_out}")
 
 if __name__ == "__main__":
     asyncio.run(NativeComparativePipeline().run())

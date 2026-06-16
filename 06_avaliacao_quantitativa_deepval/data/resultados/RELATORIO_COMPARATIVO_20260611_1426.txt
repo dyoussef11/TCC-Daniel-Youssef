@@ -1,0 +1,413 @@
+==========================================================================================
+RELATÓRIO QUANTITATIVO COMPARATIVO DE CORRIDA NATIVA (DEEPEVAL) - 20260611_1426
+==========================================================================================
+Modelo Avaliador (Juiz): qwen3:4b-instruct
+Modelo Base RAG (Gerador): phi3:14b
+Total Casos Teste: 16 (Tradicionais: 2 | Comportamentais: 14)
+------------------------------------------------------------------------------------------
+
+▶️ ID: TC_STATIC_01 | Tipo: TRADITIONAL
+ 💬 Query: What is the maximum RAM capacity for the Acer Nitro 5 AN515-58?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   The Acer Nitro 5 AN515-58 supports up to 64GB of DDR4 RAM according to the external context provided from SOURCE_0. For upgrading, ensure you purchase compatible modules with a speed of at least 2400MHz and a capacity within this limit. This information is based on available external documentation as per your reference date in March 2026.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the claim that the Acer Nitro 5 AN515-58 NHQFSSI001 supports up to 64GB of DDR4 RAM is accurate, but it is based on an external source (SOURCE_0) that is not present in the retrieval context. Since no external documentation was found in the retrieval context, the claim cannot be verified as supported by the provided facts, and thus contradicts the requirement of being backed by the retrieval context. This gap in supporting evidence reduces faithfulness, resulting in a score of 0.67.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.50 because the response addresses the maximum RAM capacity question but includes irrelevant details about RAM speed and source context, which do not contribute to answering the specific query. These statements divert from the actual question and thus reduce relevance, preventing a higher score.
+      ├── Contextual_Relevancy: 0.50 | Reason: The score is 0.50 because the retrieval context contains relevant statements such as 'The Acer Nitro 5 AN515-58 supports up to 64GB of DDR4 RAM' and 'The laptop supports up to 32GB of RAM', which directly address the maximum RAM capacity, but also includes irrelevant details like SSD upgrades and current RAM usage, and lacks explicit confirmation of the maximum capacity for the specific SKU AN515-58, thus partially fulfilling the query with incomplete and conflicting information.
+      ├── Contextual_Precision: 0.70 | Reason: The score is 0.70 because the first node (rank 1) correctly identifies the maximum RAM capacity for the AN515-58 model with a clear, direct statement of 64GB, while the fifth node (rank 5) provides indirect evidence suggesting at least 16GB capacity. However, the second, third, and fourth nodes are irrelevant because they either discuss different models (like AN515-45) or general advice without specifying the AN515-58's maximum capacity. These irrelevant nodes are ranked higher than the relevant ones, reducing the precision. The presence of a 'yes' verdict at rank 5, though less direct, still contributes to the score, but the lack of a clear, relevant node at a lower rank and the presence of multiple irrelevant nodes at higher ranks prevent the score from being higher.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the expected output sentence 1 is fully supported by node 1 in retrieval context, which states that the Acer Nitro 5 AN515-58 supports up to 64GB of DDR4 RAM, aligning with the claim of up to 32GB DDR4 3200MHz RAM in the expected output, despite the higher capacity mentioned in the retrieval context.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: acer_nitro_5_an515_45_unqbmsi009_gaming_laptop] | [STATUS: found] | [SOURCES: ID_0, ID_1, ID_3]
+AUDIT RESPONSE: The Acer Nitro 5 AN515-58 supports a maximum RAM capacity of up to 64GB DDR4 SO-DIMM memory. Users have successfully upgraded their systems with configurations ranging from the original 8GB, as mentioned in ID_3, up to higher capacities such as 16GB and even proposals for 32GB or more, which are discussed in both IDs_0 and ID_1. The specific upgrade pathways include ensuring compatibility of RAM modules with a speed of at least 2400MHz and appropriate capacity (either 16GB or higher), as indicated by the solutions provided on these dates. Given that there is no fault reported in any of these sources, it can be concluded that for this particular model, upgrading to within its maximum supported RAM capacity should yield performance improvements without technical issues.
+
+Please note: The reference date (2026-03-12) does not directly impact the information provided as all relevant details regarding compatibility and upgrade options are current according to the sources listed above. However, it is always good practice for a RAG auditor to verify that hardware specifications have not changed since their last known update when conducting an assessment or providing recommendations based on such data.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.80 | Reason: The score is 0.80 because the retrieval context correctly states that the Acer Nitro 5 AN515-45 supports RAM modules with a speed of at least 2400MHz, but the actual output contains a contradiction by claiming 'at least -2400MHz', which is a factual error and misrepresentation. This typo invalidates the claim, reducing faithfulness despite the overall accuracy of the rest of the information.
+      ├── Answer_Relevancy: 0.86 | Reason: The score is 0.86 because the response accurately addresses the maximum RAM capacity for the Acer Nitro 5 AN515-58, providing a clear and relevant answer without any irrelevant statements. The response is precise and directly tied to the query, which justifies the high score, though it is not perfect due to the absence of external documentation verification for the specific SKU.
+      ├── Contextual_Relevancy: 0.50 | Reason: The score is 0.50 because the retrieval context contains relevant statements such as 'The Acer Nitro 5 AN515-58 supports up to 64GB of DDR4 RAM' and 'The laptop supports up to 32GB of RAM', which directly address the maximum RAM capacity, but also includes irrelevant details like SSD upgrades and current RAM usage, and lacks explicit confirmation of the maximum capacity for the specific SKU AN515-58, thus partially fulfilling the query with incomplete and conflicting information.
+      ├── Contextual_Precision: 0.70 | Reason: The score is 0.70 because the first node (rank 1) correctly identifies the maximum RAM capacity for the AN515-58 model with a clear, direct statement of 64GB, while the fifth node (rank 5) provides indirect evidence suggesting at least 16GB capacity. However, the second, third, and fourth nodes are irrelevant because they either discuss different models (like AN515-45) or general advice without specifying the AN515-58's maximum capacity. These irrelevant nodes are ranked higher than the relevant ones, reducing the precision. The presence of a 'yes' verdict at rank 5, though less direct, still contributes to the score, but the lack of a clear, relevant node at a lower rank and the presence of multiple irrelevant nodes at higher ranks prevent the score from being higher.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the expected output sentence 1 is fully supported by node 1 in retrieval context, which states that the Acer Nitro 5 AN515-58 supports up to 64GB of DDR4 RAM, aligning with the claim of up to 32GB DDR4 3200MHz RAM in the expected output, despite the higher capacity mentioned in the retrieval context.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_02 | Tipo: TRADITIONAL
+ 💬 Query: How many M.2 SSD slots does the Acer Nitro 5 AN515-58 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Acer Nitro 5 AN515-58? Based on similar models like nitro_5_an515_45, it typically has two M.2 SSD slots available for upgrades or additional storage solutions. However, to confirm the exact configuration and compatibility of your specific laptop model, checking its official specifications would be ideal.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the retrieval context explicitly states that the Acer Nitro 5 (AN515-58) only supports M.2 SATA SSDs and does not support NVMe SSDs, contradicting the claim that it has two M.2 SSD slots available for upgrades. While the context mentions two free M.2 slots, it does not confirm the presence of two M.2 slots as a general rule for the model line, and the generalization of two M.2 slots being available is factually incorrect due to the model's limited compatibility with M.2 SATA only. This contradiction reduces faithfulness, resulting in a score of 0.67.
+      ├── Answer_Relevancy: 1.00 | Reason: The score is 1.00 because the response accurately answers the query about the number of M.2 SSD slots in the Acer Nitro 5 AN515-58 without any irrelevant statements. There are no inaccuracies or off-topic information, and the answer is directly relevant to the input question.
+      ├── Contextual_Relevancy: 0.15 | Reason: The score is 0.15 because the retrieval context fails to directly state the number of M.2 SSD slots in the Acer Nitro 5 AN515-58, despite containing relevant statements like 'the laptop has 2 M.2 SSD slots' and 'two free M.2 slots available', these are only partially relevant and buried within broader compatibility discussions. The majority of the context focuses on compatibility issues or model mismatches (e.g., AN515-45 vs AN515-58), which do not address the specific query about the count of M.2 SSD slots in the AN515-58 model. Thus, the relevance is limited and the information is not clearly or directly provided.
+      ├── Contextual_Precision: 0.33 | Reason: The score is 0.33 because the only relevant node, which is the third node in the retrieval contexts, directly answers the query by confirming two M.2 SSD slots for the AN515-58, while the other nodes—especially the first, second, fourth, and fifth—are irrelevant and do not specify the number of M.2 SSD slots for the AN515-58. The first node incorrectly references NVMe incompatibility without stating the number of slots, the second node refers to a different model (AN515-45), the fourth and fifth nodes discuss general compatibility without any slot count. Thus, only one relevant node exists and is ranked third, meaning only one out of five nodes is relevant, resulting in a low contextual precision score.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because sentence 1 in the expected output is fully supported by the 2nd node in retrieval context, which explicitly mentions two M.2 SSD slots and one 2.5-inch HDD slot for storage expansion.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: acer_nitro_5_an515_45_unqbmsi009_gaming_laptop] | [STATUS: found] | [SOURCES: ID_1, DATE: 2026-06-04]
+The Acer Nitro 5 AN515-58 has two M.2 SSD slots available for upgrades or additional storage as mentioned in the context of Query Q on Ref Date 2026-03-12 from ID_1.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.00 | Reason: The score is 0.00 because the actual output contradicts the retrieval context by implying that the Acer Nitro 5 (AN515-58) has two M.2 SSD slots available for upgrades, when the context explicitly states it only supports M.2 SATA SSDs and does not support NVMe SSDs, making the claim of general M.2 SSD support factually incorrect.
+      ├── Answer_Relevancy: 1.00 | Reason: The score is 1.00 because the response accurately answers the query about the number of M.2 SSD slots in the Acer Nitro 5 AN515-58 without any irrelevant statements. There are no inaccuracies or off-topic information, and the answer is directly relevant to the input question.
+      ├── Contextual_Relevancy: 0.15 | Reason: The score is 0.15 because the retrieval context fails to directly state the number of M.2 SSD slots in the Acer Nitro 5 AN515-58, despite containing relevant statements like 'the laptop has 2 M.2 SSD slots' and 'two free M.2 slots available', these are only partially relevant and buried within broader compatibility discussions. The majority of the context focuses on compatibility issues or model mismatches (e.g., AN515-45 vs AN515-58), which do not address the specific query about the count of M.2 SSD slots in the AN515-58 model. Thus, the relevance is limited and the information is not clearly or directly provided.
+      ├── Contextual_Precision: 0.33 | Reason: The score is 0.33 because the only relevant node, which is the third node in the retrieval contexts, directly answers the query by confirming two M.2 SSD slots for the AN515-58, while the other nodes—especially the first, second, fourth, and fifth—are irrelevant and do not specify the number of M.2 SSD slots for the AN515-58. The first node incorrectly references NVMe incompatibility without stating the number of slots, the second node refers to a different model (AN515-45), the fourth and fifth nodes discuss general compatibility without any slot count. Thus, only one relevant node exists and is ranked third, meaning only one out of five nodes is relevant, resulting in a low contextual precision score.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because sentence 1 in the expected output is fully supported by the 2nd node in retrieval context, which explicitly mentions two M.2 SSD slots and one 2.5-inch HDD slot for storage expansion.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_SKU_LOCK_ACER | Tipo: BEHAVIORAL
+ 💬 Query: What is the maximum RAM for Acer Nitro 5 AN515-58?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the information from external sources regarding Acer Nitro 5 AN515-58 models and solutions provided therein, this gaming laptop supports up to 64GB of DDR4 RAM. Therefore, for your Acer Nitro 5 AN515-58 model, you can upgrade the memory up to a maximum capacity of 64GB following compatibility guidelines such as using compatible DDR4 RAM modules with appropriate speeds and capacities like 16 or 32GB.
+
+Please ensure that any purchased RAM is within these specifications for optimal performance in your system.
+   📊 Score Comportamental V1: 0.4
+   ℹ️ Motivo Auditoria: The query refers to a specific SKU (Acer Nitro 5 AN515-58), so the query type is SKU. According to the evaluation steps, for a SKU query, external documentation must be checked and explicitly stated if missing. The response cites 'external sources' without specifying which documentation was used or confirming its existence, violating the rule that external documentation must be explicitly mentioned if not found. This omission constitutes a failure to comply with the operational rule for SKU queries, resulting in a low score.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: acer_nitro_5_an515_45_unqbmsi009_gaming_laptop] | [STATUS: found] | [SOURCES: ID_0, DATE: 2026-06-03; ID_1, DATE: 2026-06-04; ID_3, DATE: 2026-06-03]
+AUDIT RESPONSE: The Acer Nitro 5 AN515-58 supports a maximum of up to 64GB of DDR4 RAM. To upgrade the laptop's memory beyond its current configuration, compatible DDR4 RAM modules with capacities ranging from 16GB to 32GB and speeds at least as fast as 2400MHz should be used. It is also recommended for users considering an SSD replacement due to potential performance improvements in loading times and system responsiveness when upgrading the storage component of their setup.
+
+Note: The reference date (Ref Date) provided does not directly impact this audit response, as information from recent discussions within a month prior was used instead. However, it serves as context for ensuring that recommendations are based on current knowledge and user experiences rather than outdated specifics or discontinued products which may no longer be relevant by the time of inquiry (March 2026).
+   📊 Score Comportamental V9: 0.2
+   ℹ️ Motivo Auditoria: The query is for a specific SKU (Acer Nitro 5 AN515-58), and the response correctly identifies it as a SKU-based query. However, the output contains forbidden raw tags such as '[SKU:]', '[STATUS:]', and '[SOURCES:]', which violate the rule against polluting text with system processing blocks. These tags are not allowed in the final output, even if they appear in the response context. The response also includes a note about reference dates, which is not part of the required output and adds unnecessary content. Thus, the response fails to comply with step 3 of the evaluation steps regarding forbidden raw tags.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_SKU_LOCK_DELL | Tipo: BEHAVIORAL
+ 💬 Query: What processor does Dell G15 5530 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   The Dell G15 5530 is equipped with an Intel Core i7 processor as mentioned in the external context provided from SOURCE_0 and SOURCE_3. These sources indicate that it has a "Core i7" CPU, which suggests a high-performance model suitable for gaming or educational purposes where processing power can be beneficial. However, to give you specific details such as the exact generation of the Core i7 processor in this laptop and its capabilities relative to other processors like those found on alternative laptops (e.g., Asus TUF F15), I would need the SKU or model number for a more precise comparison. Could you provide that information?
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query is for a specific SKU (Dell G15 5530), so the query type is SKU. The response correctly identifies the processor as an Intel Core i7 and references external sources, complying with the operational rule for SKU queries. It also appropriately acknowledges the need for more details to enable comparisons, which aligns with the MIXED KNOWLEDGE guidelines. No forbidden tags or system blocks are present. The response is accurate, relevant, and follows all evaluation steps.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: dell_g15_5530] | [STATUS: found] | [SOURCES: ID_1, ID_2, ID_3]
+The Dell G15 5530 is equipped with an Intel Core i7 processor as mentioned in the context of various discussions and queries. Specifically, it has a "13th gen Core i7" which indicates that it's from the latest generation at the time before March 2026. The exact model number or series within the 'i7 lineup is not provided but can be inferred to align with high-performance expectations for gaming laptops as discussed in various comparisons and advice given on laptop specifications.
+
+In discussions, users have pointed out that Dell G15 5530 has better build quality and performance compared to other models like the HP Victus Gaming 15-FB0091AX (ID_1), suggesting it likely contains a high-end processor suitable for gaming. Additionally, in comparison with another laptop option such as Asus TUF F15 (ID_3), users have noted that while both would be adequate for casual use and education due to their Intel Core i7 processors, the Dell G15's slightly more powerful CPU could offer better performance.
+
+Moreover, in a specific query about laptop specs advice on March 2026 (REF DATE), users were seeking information regarding processor capabilities of laptops like the Dell G15 to determine if it would run smoothly for heavy tasks and projects, with context suggesting that its Intel Core i7 is part of what makes up its robust performance.
+
+Thus, based on these sources from early 2026 (before my knowledge cutoff date), we can conclude the Dell G15 5530 laptop comes equipped with an Intel Core i7 processor suitable for gaming and heavy multitasking scenarios as discussed in various threads.
+   📊 Score Comportamental V9: 0.2
+   ℹ️ Motivo Auditoria: The query is a specific SKU query (Dell G15 5530), and the response correctly identifies the processor as an Intel Core i7. However, it violates the MIXED KNOWLEDGE guideline by including external documentation tags like [SKU: dell_g15_5530] and [STATUS: found] | [SOURCES: ID_1, ID_2, ID_3], which are forbidden raw tags per the evaluation steps. These tags pollute the output and violate rule 3. Thus, the response fails compliance with the operational rules for output formatting.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_SKU_LOCK_LENOVO | Tipo: BEHAVIORAL
+ 💬 Query: Does Lenovo Legion 5 15ACH6A have Thunderbolt 4?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I don't have specific external documentation available as of my last update in 2024, but based on the information provided and typical configurations for Lenovo laptops with similar models, it is unlikely that the Legion 5 15ACH6A has Thunderbolt 4 support. The sources indicate issues related to older USB-C technologies or outdated NVM firmware rather than newer features like Thunderbolt 4. Lenovo's hardware for certain models, such as those mentioned in the external context you provided, often lacked advanced connectivity options found on more recent laptops. For accurate and up-to-date information regarding your specific model (SKU), I recommend checking with official Lenovo documentation or contacting their support directly.
+
+If possible, please provide the exact SKU of your Legion 5 15ACH6A laptop for a more precise answer based on its technical specs and compatibility features as they may have evolved since my knowledge cutoff date.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query is a specific SKU inquiry (Legion 5 15ACH6A), and the response correctly identifies the lack of external documentation and avoids making definitive claims about Thunderbolt 4 support. It adheres to the operational rule that for SKU queries, external documentation must be acknowledged if missing, and it appropriately redirects to official sources. The output does not contain any forbidden raw tags or system blocks. The response is accurate in its compliance with the evaluation steps, particularly in handling the SKU type with appropriate caution and transparency.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: legion_5_15ach6a] | [STATUS: not_found] | [SOURCES: ID_0, ID_1, ID_2, ID_3, Query Reference Date: 2026-03-12]
+
+RESPONSE: Based on the provided context and query reference date, there is no specific information indicating that Lenovo Legion 5 15ACH6A has Thunderbolt 4 capability. The issues discussed in various sources relate to a lack of Thunderbolt controllers or outdated NVM firmware which prevent compatibility with Thunderbolt technology and its associated devices, not the presence of Thunderbolt 4 itself on any model. Therefore, without explicit evidence stating otherwise, it is concluded that Lenovo Legion 5 15ACH6A does not have Thunderbolt 4 functionality as per the available information up to March 2026. Users experiencing issues with USB-C ports and seeking compatibility should verify hardware specifications or update firmware where applicable, but there is no indication that Lenovo Legion 5 15ACH6A supports Thunderbolt 4 as of the last known data point in March 2026.
+   📊 Score Comportamental V9: 0.3
+   ℹ️ Motivo Auditoria: The query is a specific SKU inquiry (Lenovo Legion 5 15ACH6A), and the response correctly identifies the query type and adheres to the operational rule that for a specific SKU, external documentation must be checked. However, the actual output contains raw tags like [SKU: ...] and [STATUS: not_found], which violate the rule against forbidden raw tags or system processing blocks. These tags pollute the text output and should not appear in the final response. Thus, the response fails step 3 of the evaluation steps, resulting in a low score.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_NO_SERIES_INFERENCE | Tipo: BEHAVIORAL
+ 💬 Query: Does the Nitro 5 have Thunderbolt 4?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Nitro 5 laptop? Typically, Acer's Nitro series may include different types of ports; however, to confirm whether a Thunderbolt 4 port is present and its capabilities on your particular unit, I would need that information. Generally speaking, older models like the AN517-54 might not have Thunderbolt 4 as it's a newer standard introduced after initial hardware releases. Once you provide the SKU or specific model number, we can give more accurate advice based on available resources and general knowledge of Lenovo/Acer product line configurations up to my last update in early 2024.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query asks about a product series (Nitro 5) rather than a specific SKU, and the response correctly identifies this as a series query. It complies with the operational rule by asking for the specific SKU before providing any specifications, which aligns with the evaluation step requiring compliance for series queries. The output does not contain any forbidden raw tags or system processing blocks. The response is accurate, natural, and follows the required logic without overstepping or providing unverified details.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: acer_nitro_5_an515_45_unqbmsi009] | [STATUS: not_found] | [SOURCES: ID_3, DATE: 2026-06-04]
+
+RESPONSE: Based on the information provided in source ID_3 dated June 4, 2026, it is indicated that an Acer Nitro 5 AN517-54 laptop has a USB-C port mislabeled as Thunderbolt 4; however, this port is actually a standard USB 3.2 Gen 2 with limited functionality and does not support true Thunderbolt 4 capabilities or speeds. Therefore, the Nitro 5 model in question does not have an authentic Thunderbolt 4 port as of its reference date (June 1, 2025). To resolve any confusion about hardware features like this, it is recommended to consult official datasheets and manufacturer resources for accurate specifications.
+   📊 Score Comportamental V9: 0.2
+   ℹ️ Motivo Auditoria: The query is a series query (Nitro 5) rather than a SKU-specific one. The response should have asked for the specific SKU instead of providing a detailed technical analysis. The actual output contains raw tags like [SKU: ...] and [STATUS: not_found] which violate the rule against forbidden raw tags. These tags pollute the text output and indicate a failure to comply with step 3. Thus, the response fails to meet the evaluation steps.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_INTERNAL_KNOWLEDGE | Tipo: BEHAVIORAL
+ 💬 Query: Why does my laptop thermal throttle during gaming?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the general concepts from the external context provided and your query about thermal throttling during gaming, it seems like you're experiencing an issue common in laptops where internal temperatures rise excessively due to insufficient cooling. Thermal throttling is a mechanism that reduces performance to prevent overheating when components reach certain temperature thresholds. To address this without specific SKU information, consider the following general solutions:
+
+1. Monitor your laptop's internal temperatures while gaming using software tools designed for hardware monitoring. This can help you understand how close it gets to its thermal limits during gameplay.
+2. Ensure that all vents and fans are clear of dust which could impede airflow, as cleaning them might improve cooling efficiency. You may use a safe method like compressed air or isopropyl alcohol for this purpose if you're comfortable doing so yourself. If not, professional assistance can be sought to perform the task effectively and safely.
+3. Check your laptop’s power settings; some laptops have options that optimize cooling performance when in gaming mode by increasing fan speeds or adjusting other parameters for better heat dissipation.
+4. Consider using a dedicated external cooling pad designed to draw away excessive heat from the bottom of your laptop, which can help lower temperatures and reduce thermal throttling during intensive tasks like gaming.
+5. If you're comfortable with it, enable any performance-enhancing features that are specifically aimed at improving airflow or cooling within your device’s settings (similar to the 'Processor Performance Boost Mode' mentioned for some ASUS models).
+6. Ensure ambient temperatures where you use your laptop aren't too high; keeping it in a well-ventilated, cooler environment can aid with overall temperature management during gaming sessions.
+7. If these steps don’t help and the problem persists, there might be an issue with components like thermal paste or fans that may require professional servicing to clean or replace them if necessary. 
+
+Remember, for specific advice tailored directly to your laptop's make and model (SKU), please provide those details as they can offer more precise guidance based on the exact hardware configurations of your device.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query is a general question about thermal throttling during gaming, not related to a specific SKU, series, or comparison. The response correctly identifies the query type as general and provides accurate, general troubleshooting advice without referencing any specific SKU or hardware specifications. It also appropriately redirects to providing SKU details for more tailored advice, complying with the operational rule for general queries. No forbidden tags or system blocks are present. The response fully aligns with the evaluation steps.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: legion_5_15ach6a] | [STATUS: found] | [SOURCES: ID_1, ID_3, ID_4]
+
+RESPONSE: Based on the identified sources from recent discussions and reports related to your model (Legion 5 with specific components), thermal throttling during gaming can occur due to several potential faults such as insufficient airflow leading to inadequate cooling system performance, or issues with the heatsink/thermal paste causing poor heat dissipation. To address this:
+
+1. Ensure that 'Processor Performance Boost Mode' is enabled and adjusted if necessary on your laptop settings.
+2. Clean any dust inside fans and vents to improve airflow, which can help in better cooling of the components.
+3. Consider replacing thermal paste with a high-quality brand like Kryonaut or Thermal Grizzly 2.2 for improved heat transfer from CPU/GPU to heatsink.
+4. Use external laptop coolers equipped with fans if possible, and consider lifting the laptop off surfaces using raisers during gaming sessions to enhance air circulation underneath it.
+5. Monitor temperatures actively while playing games; adjust fan speeds or performance settings as needed based on real-time temperature readings.
+6. If issues persist, further investigation into potential hardware faults may be required after consulting with a professional technician.
+
+Please note that these solutions are relevant to the time frame up until June 2025 and newer advancements or changes in your laptop's components should also be considered for an accurate assessment of its current state.
+   📊 Score Comportamental V9: 0.4
+   ℹ️ Motivo Auditoria: The query is a general troubleshooting question, not a SKU, series, or comparison query. The response correctly addresses the thermal throttling issue with practical, relevant solutions without referencing any SKU or external documentation. However, the actual output contains raw tags like [SKU: legion_5_15ach6a] and [STATUS: found] which violate the rule against forbidden raw tags or system processing blocks. This contamination directly violates step 3 of the evaluation steps, reducing alignment with the guidelines.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_HONEST_COMPARISON | Tipo: BEHAVIORAL
+ 💬 Query: Does the Dell G15 5520 have the same maximum RAM and slots as the Dell G15 5530?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I'm sorry, but I don't have specific external documentation available regarding the Dell G15 models you mentioned. However, based on general knowledge of laptop series and configurations up to my last update in 2024, different model numbers within a similar line often share some common components like RAM slots and capacities. For accurate information about their maximum RAM and specifications differences, I recommend checking the official Dell website or product manuals for each model directly. Could you provide the specific SKU of one of these models to assist you further?
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query is a comparison between two Dell G15 models (5520 and 5530), which falls under a comparison query. The response correctly identifies the lack of external documentation for specific models and avoids providing speculative or unverified specifications. It adheres to the operational rule that no external documentation is available and redirects to official sources. The response does not contain any forbidden raw tags or system blocks. It also appropriately requests a specific SKU to assist further, which aligns with the evaluation steps. This demonstrates strong compliance with all evaluation criteria.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: microsoft_surface_laptop_7_138_zgq_00023] | [STATUS: not_found] | [SOURCES: query, Ref Date: 2026-03-12]
+
+RESPONSE: Based on the provided context and reference date, there is no direct information available regarding the RAM specifications of the Dell G15 series (G15 5520 vs. G15 5530) within the given sources. To determine if they have the same maximum RAM and slots, one would need to consult the official product documentation or technical specs for each model specifically from Dell's resources or a reliable tech database as of my knowledge cutoff in 2023. Since there is no explicit mention of these models within the provided context, I cannot generate an accurate audit response without additional data.
+
+For up-to-date and detailed specifications on different laptop models including Dell's G15 series, it would be best to refer directly to the manufacturer’s official website or a trusted tech review platform that provides comprehensive comparisons of laptops based on their technical specs.
+   📊 Score Comportamental V9: 0.4
+   ℹ️ Motivo Auditoria: The query is a comparison between two Dell G15 models (G15 5520 and G15 5530), which falls under a comparison query type. The response correctly identifies the lack of direct information in the provided context and avoids making unsupported claims. However, it fails to comply with the operational rule that for a comparison query, if data is missing on one or both SKUs, the response may use fallback but must indicate the absence of data. The actual output contains external tags like [SKU: microsoft_surface_laptop_7_138_zgq_00023] and [STATUS: not_found], which are forbidden raw tags and violate step 3 of the evaluation steps. These tags pollute the text output and should not appear in the response. Thus, the response does not meet the compliance requirement for forbidden tags, reducing its alignment with the evaluation steps.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_TEMPORAL_AWARENESS | Tipo: BEHAVIORAL
+ 💬 Query: What is the latest BIOS for Helios Neo 16 as of 2026?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the information available up to my knowledge cutoff in 2024 and considering that there is no specific external documentation provided for updates beyond that year, I cannot provide the latest BIOS version as of 2026. For accurate and updated details regarding your Acer Predator Helios Neo 16 laptop's BIOS, it would be best to check directly with official Acer resources or contact their customer support. They can offer you the most current information on compatible BIOS versions for overclocking and other hardware upgrades.
+
+Alternatively, if your system is still operational without issues after a recent update, this might indicate that it's using an outdated version of the BIOS which may no longer be supported or recommended by Acer as newer systems could have different requirements for optimal performance and stability. It’s always good practice to ensure you are running on up-to-date firmware provided by your hardware manufacturer, including the motherboard's chipset if applicable.
+
+Remember that BIOS updates can be critical not only for compatibility with newer components but also for security patches and system stability improvements; however, they should always be approached cautiously to avoid potential issues like those mentioned in some of the sources you provided earlier about lag or instability post-update.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query is for a specific product (Helios Neo 16), which falls under a SKU-type query. The response correctly identifies that no external documentation is available for updates beyond 2024 and thus cannot provide a BIOS version as of 2026. It adheres to the operational rule that external documentation is required for specific SKU queries and explicitly states the absence of such documentation. The response avoids any raw tags or system blocks and provides a clear, natural explanation grounded in available knowledge limits. This fully aligns with the evaluation steps.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: predator_helios_neo_16_nhqltsi002_laptop] | [STATUS: not_found] | [SOURCES: ID_2, ID_3, ID_4]
+
+RESPONSE: Based on the provided sources and as of the reference date (January 1, 2026), there is no documented information regarding a BIOS version update beyond v1.18 for the Predator Helios Neo 16 laptop. Users have reported issues with older versions such as v1.23 causing problems or lag but without clear solutions being provided in those discussions, and others are considering an upgrade to newer GPUs like RTX 3070 or 3060ti while also contemplating BIOS updates for overclocking purposes. However, no specific latest official release date is mentioned post-January 2026 within the sources provided. It's recommended that users check directly with Acer or consult updated hardware databases to confirm if there have been any new releases since then.
+   📊 Score Comportamental V9: 0.2
+   ℹ️ Motivo Auditoria: The query is for a specific product (Helios Neo 16), which falls under a SKU-type query. However, the actual output contains raw tags like [SKU: ...] and [STATUS: not_found] that violate the rule against forbidden raw tags or system processing blocks. Additionally, the response fabricates information about BIOS versions (e.g., v1.18, v1.23) and user-reported issues without any supporting evidence from the sources, contradicting the requirement to only use information from provided sources. This constitutes a failure in compliance with both step 3 (forbidden tags) and step 2 (misrepresentation of source data).
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_NONEXISTENT_MODEL | Tipo: BEHAVIORAL
+ 💬 Query: What GPU does HP Pavilion 15-ec9999 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   It appears there is no specific information available in the external context provided regarding the HP Pavilion 15-ec9999 model's GPU. To assist you accurately with this query, could you please provide the specific SKU of your laptop? Based on general knowledge and typical configurations for similar models within the HP Pavilion series that use an Intel CPU, it is likely to have either integrated graphics or a dedicated NVIDIA GPU if upgraded. However, without the exact model information, I'm unable to give precise details about its specifications.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query asks about a specific model (HP Pavilion 15-ec9999), which falls under a SKU-type query. The response correctly identifies the lack of external documentation for this specific SKU and asks for the exact model, complying with the operational rule that no external documentation was found. It avoids providing speculative specifications and instead redirects to a precise model identifier, aligning with the evaluation steps. The output does not contain any forbidden raw tags or system processing blocks. This demonstrates full compliance with the evaluation steps, particularly in handling a SKU query with missing external data.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: hp_pavilion_eg3018tu] | [STATUS: found] | [SOURCES: ID_0, ID_1, ID_2, ID_3, REF DATE: 2025-06-01]
+
+RESPONSE: Based on the information provided from various queries and discussions up to June 4th, 2025, it is not explicitly stated which specific GPU model HP Pavilion 15 (with SKU hp_pavilion_eg3018tu) has. However, there are suggestions that the laptop may come with an integrated graphics solution due to a Ryzen processor and potential issues when using high-performance settings or cloud gaming services for games as indicated in ID_1's problem statement. There is no direct mention of a dedicated NVIDIA GPU like GTX 1050, but there are discussions about considering an upgrade if the integrated graphics do not meet needs (ID_3). The HP Pavilion Power 15 with Intel i7 and NVIDIA GeForce GTX 1050 is suggested in ID_4 as a higher-end option. Given that no specific faults or solutions related to an incorrect GPU model are mentioned, it can be inferred the laptop likely has integrated graphics rather than dedicated ones like Radeon RX 560X or NVIDIA GTX series models discussed elsewhere. For precise information on HP Pavilion 15's GPU and its capabilities, one might need to refer directly to the device specifications provided by HP at the time of purchase or consult with their technical support team as per ID_4's suggestion for similar options.
+
+AUDIT: [SKU: hp_pavilion_eg3018tu] | [STATUS: not explicitly found] | [SOURCES: All referenced IDs and the ref date provided context, but no specific information on GPU model is directly stated in any of them.]
+   📊 Score Comportamental V9: 0.0
+   ℹ️ Motivo Auditoria: The query asks about the GPU in an HP Pavilion 15-ec9999, which is a specific SKU query. However, the actual output contains a SKU (hp_pavilion_eg3018tu) that does not match the input model (ec9999), violating the requirement to match the exact SKU. Additionally, the response fails to provide a direct answer about the GPU, instead offering speculative inferences based on external references without confirming any specific GPU model. This violates the operational rule for SKU queries, which requires accurate and directly sourced information. The presence of raw tags like [SKU:] and [STATUS:] in the output also violates step 3 of the evaluation steps, as these are system processing blocks that should not appear in the final response.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_NO_BIOS_HALLUCINATION | Tipo: BEHAVIORAL
+ 💬 Query: What is the BIOS version for Dell XPS 15 9500?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Dell XPS 15? The BIOS version can vary and checking the exact SKU will help me give accurate information regarding its current BIOS settings, including for the Dell XPS 15 9500. Typically, manufacturers like Dell release updates that address issues such as those you're experiencing with suspend or screen flickering after a BIOS update. Once I have the specific model number, I can refer to known information about common practices for updating and downgrading BIOS in similar systems from my internal knowledge base.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query is for a specific SKU (Dell XPS 15 9500), and the response correctly identifies that the BIOS version depends on the exact model number, aligning with the operational rule that specific SKU queries require precise model information. The output avoids raw tags or system blocks and remains within natural language, satisfying step 3. The response does not provide a direct BIOS version but instead requests the SKU, which is appropriate given the lack of external documentation for that specific SKU. This demonstrates strong adherence to the evaluation steps.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: dell_xps_15_notebook_windows_10_core_i5_6300hq_geforce_960m] | [STATUS: found] | [SOURCES: ID_1, DATE: 2026-06-04 | TITLE: Dell XPS 15 9500 BIOS 1.3.1 UNDERVOLT]
+The reported issue for the Dell XPS 15 9500 indicates that it requires a BIOS version of at least 1.4.0 to enable undervolting, as stock version 1.3.1 does not support this feature due to locked CPU and GPU voltage settings. The problem was identified on June 2nd, 2026, with the suggested solution being an update to a newer BIOS version that unlocks these critical settings for performance optimization.
+
+AUDIT:
+   📊 Score Comportamental V9: 0.2
+   ℹ️ Motivo Auditoria: The query is for a specific SKU (Dell XPS 15 9500), so the response should provide BIOS version details without introducing raw tags or system blocks. However, the output contains forbidden raw tags like [SKU:], [STATUS:], and [SOURCES:], which violate step 3 of the evaluation steps. These tags pollute the text output and are not allowed. Thus, the response fails compliance with the operational rules for a SKU query.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_SKU_WITH_INTERNAL_FALLBACK | Tipo: BEHAVIORAL
+ 💬 Query: What is the TGP of RTX 3060 in Acer Nitro AN515-45?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the information provided in SOURCE_1 and SOURCE_2, it seems there is an issue with power brick limitations causing RTX 3060 to be limited to a Thermal Design Power (TGP) of between 60-65W. However, no specific TGP value for the Acer Nitro AN515-45's integrated GPU was directly stated in these sources. To get accurate information on the typical TGP or any official documentation regarding this SKU would require external resources which are not available as of my knowledge cutoff date. Typically, RTX 3060 graphics cards can operate at higher wattages under proper cooling conditions and without thermal throttling issues. For precise specifications related to your Acer Nitro AN515-45 laptop's TGP for the integrated GPU or any other technical details, it would be best if you could provide more information about the model number (SKU) of your device as suggested in SERIES queries rule.
+
+If possible, I recommend checking official Acer support resources or directly contacting them with your specific laptop's SKU for accurate and up-to-date technical details regarding its TGP capability.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query asks about the TGP of an RTX 3060 in a specific laptop model (Acer Nitro AN515-45), which constitutes a SKU-level query. The response correctly identifies that no specific TGP value was found in the sources and explicitly states that external documentation was not available, complying with the MIXED KNOWLEDGE guideline. It also appropriately references the need for a SKU to clarify the device, aligning with the SERIES query rule. The output avoids any raw tags or system blocks and remains natural and informative. The reasoning is accurate and fully adheres to the evaluation steps.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: acer_nitro_5_an515_45_unqbmsi009_gaming_laptop] | [STATUS: found] | [SOURCES: ID_0, ID_2, ID_4]
+TGP (Total Graphics Power) of RTX 3060 in Acer Nitro AN515-45 is not explicitly mentioned. However, based on the discussions from various threads dated June 4, 2026:
+
+- In thread ID_0, there's a suggestion to check if the laptop has been limited to using only up to 95W for its RTX 3060 GPU despite it being capable of higher wattage. This implies that some users are experiencing power limitations which could affect performance but does not directly state the TGP value.
+- In thread ID_2, there's a mention of an integrated NVIDIA GeForce GTX 3050 with only 4GB VRAM in Acer Nitro AN515-45, indicating that this laptop variant has less powerful GPU compared to one equipped with RTX 3060.
+- In thread ID_4, there's a problem described where the user experiences low CPU and GPU usage on their system powered by an NVIDIA GeForce RTX 3060 (95W), suggesting that it might not be operating at its full potential or TGP under certain conditions.
+
+Given these discussions, while there is no direct mention of the exact TGP value for Acer Nitro AN515-45's RTX 3060 GPU and considering the ref date being June 1, 2025, it can be inferred that users are experiencing power limitations or suboptimal performance which could relate to how much of its TGP is actually in use. However, without explicit information on the laptop's specifications from these threads alone, a definitive answer cannot be provided based solely on this data.
+
+For an accurate assessment, one would need access to official documentation or direct testing under controlled conditions that measure power consumption and performance output of the GPU in question within Acer Nitro AN515-45's system configuration.
+   📊 Score Comportamental V9: 0.3
+   ℹ️ Motivo Auditoria: The query asks about the TGP of an RTX 3060 in a specific laptop model (Acer Nitro AN515-45), which constitutes a SKU-level query. The response correctly identifies the query type and applies the operational rule that for a specific SKU, external documentation must be checked. However, the output includes raw tags like [SKU: ...] and [STATUS: found] and [SOURCES: ...], which violate the rule against forbidden raw tags or system processing blocks. Additionally, the response fails to state explicitly that no external documentation was found before providing fallback reasoning, thus violating the MIXED KNOWLEDGE guideline. These shortcomings significantly reduce alignment with the evaluation steps.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_AUDIT_TAGS_PRESENT | Tipo: BEHAVIORAL
+ 💬 Query: Does the Dell G15 5520 support PCIe 4.0?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Dell G15 5520? Based on typical configurations for similar models up to my knowledge cutoff in 2024, if it's using a standard HP ProDesk motherboard which generally does not support PCIe Gen 4 lanes coming off the chipset like many business-oriented boards do, your system may not natively support PCIe Gen 4. However, for accurate and specific information regarding your Dell G15 5520's capabilities, I would need to know its exact SKU or model number as internal knowledge alone is insufficient without confirmation from the external context provided by official documentation or manufacturer resources.
+   📊 Score Comportamental V1: 0.6
+   ℹ️ Motivo Auditoria: The query is about a specific SKU (Dell G15 5520), so the query type is SKU. The response correctly identifies that it requires the exact SKU for accurate information, which aligns with the operational rule for SKU queries. However, it incorrectly states 'HP ProDesk motherboard' in the response, which is a factual error as the Dell G15 5520 is a Dell product and does not use an HP ProDesk motherboard. This factual inaccuracy undermines the reliability of the response despite correct procedural handling. The response also does not cite external documentation as required by the MIXED KNOWLEDGE guidelines, violating the rule that external documentation must be explicitly mentioned when missing. These shortcomings reduce alignment with the evaluation steps.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: g15_5521_se] | [STATUS: not_found] | [SOURCES: None provided for the specific SKU, but based on similar models and issues discussed in related queries from June 2026 regarding PCIe generation compatibility. Given that there is no direct information about Dell G15 5520's support for PCIe 4.0 within the context of provided data.]
+
+Response: Based on the available knowledge and similar issues with other laptops, it cannot be conclusively determined whether the specific model Dell G15 5520 supports PCIe 4.0 without explicit information or updates stating otherwise. Typically, if a laptop has USB 4 ports that meet Thunderbolt certification requirements (as mentioned in related queries), there is potential for it to support higher-generation PCIe standards like PCIe 4.0; however, this cannot be confirmed without specific details about the Dell G15 5520's hardware configuration and motherboard capabilities as of June 2026 or beyond that date.
+
+For an accurate assessment, one would need to consult the laptop's technical documentation for its PCIe lane count and generation support directly from the manufacturer or perform a hands-on benchmark test if possible before making any conclusions about hardware compatibility with newer technologies like PCIe 4.0 on older motherboards such as those found in some Dell G15 models prior to June 2026.
+   📊 Score Comportamental V9: 0.4
+   ℹ️ Motivo Auditoria: The query is a specific SKU query (Dell G15 5520), and the response fails to comply with the operational rule that for a specific SKU, if external documentation is missing, the response must explicitly state that no external documentation was found before providing fallback information. Instead, the response introduces speculative reasoning about similar models and Thunderbolt certification without acknowledging the absence of documentation for the specific SKU. This violates Step 2 of the evaluation steps, which requires compliance with specific operational rules for query types. The response also includes no raw tags or system processing blocks, satisfying Step 3, but the failure to meet the core rule for SKU queries significantly undermines its validity.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_COMPARISON_MIXED_SOURCES | Tipo: BEHAVIORAL
+ 💬 Query: Compare battery life of Lenovo Legion 5 15ACH6 vs HP Victus 16-e0055dx
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   To compare the battery life of Lenovo Legion 5 15ACH6 and HP Victus 16-e0055dx models accurately, I would need their specific SKUs to provide detailed information as external sources do not directly mention these exact models. However, based on general knowledge within this industry by the year 2026:
+
+Typically, gaming laptops like Lenovo Legion and HP Victus are equipped with high-performance components that can impact battery life due to their powerful CPUs and graphics cards. Generally speaking, a laptop's screen technology (like OLED or IPS), the efficiency of its cooling system, and overall design influence how long it lasts on a single charge while gaming.
+
+Lenovo Legion laptops are often praised for their build quality and effective thermal management systems which can help in maintaining battery life under load conditions; however, they might have larger components that could potentially reduce the space available for batteries or require more energy to operate efficiently compared to other models with different designs.
+
+The HP Victus series is known for incorporating Ryzen processors and sometimes NVIDIA graphics cards which can affect battery longevity depending on usage patterns—gaming, multitasking, etc., could drain the batteries faster than less intensive tasks like web browsing or video streaming.
+
+Since specific models are not provided in your query for direct comparison from external sources and I must adhere to my knowledge cutoff date of 2024 without speculating beyond it:
+- Lenovo Legion laptops often have a robust build with efficient cooling systems that can help maintain battery life, but this might vary based on the exact model.
+- HP Victus models may use Ryzen processors and NVIDIA GPUs which are known for high performance at the cost of increased power consumption; thus potentially shorter battery endurance compared to laptops with integrated graphics or less powerful components like Intel CPUs, assuming similar usage scenarios.
+  
+For precise specifications regarding these two models' batteries life comparison: Could you provide their exact SKUs? This would enable me to give a more accurate assessment based on available information up until my knowledge cutoff date and any relevant internal patterns or general industry standards I am aware of.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query is a comparison between two specific laptop models, which falls under a comparison query type. The response correctly identifies that external documentation does not provide specific battery life data for the given SKUs and adheres to the rule that no raw tags or system blocks are present. It also appropriately redirects the user to provide exact SKUs for a precise assessment, aligning with the operational rule for comparison queries when specific data is unavailable. The explanation is grounded in general industry knowledge without making unsupported claims, and it avoids speculation beyond its knowledge cutoff. This demonstrates full compliance with all evaluation steps.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: legion_5_15ach6a] | [STATUS: found] | [SOURCES: The context provided discusses Lenovo Legion 5 (specifically the model with specs LEGION-5i) and HP Victus models, focusing on their specifications including CPU type, RAM size, SSD capacity, and screen refresh rates. However, there is no direct comparison of battery life between these two SKUs provided in the context.]
+
+To provide a comprehensive answer to your query regarding the comparative battery life of Lenovo Legion 5 15ACH6 vs HP Victus 16-e0055dx:
+
+AUDIT:
+[SKU: legion_5_15ach6a] | [STATUS: found indirectly relevant information, but not direct comparison data on battery life. The context discusses the importance of checking specifications and user experiences for a better understanding.]
+[SOURCES: To infer potential differences in battery performance between Lenovo Legion 5i (LEGION-5i) and HP Victus models, one would need to consider several factors mentioned across different threads. These include CPU type, RAM size, SSD capacity, screen refresh rate, build quality, user experiences from forums or videos, as well as any known issues with cooling systems that might affect battery life (as hinted at in the query about heat generation concerns).]
+
+RESPONSE:
+Given the information available up to Ref Date 2025-06-01 and considering factors such as CPU efficiency, RAM size, SSD usage impact on power consumption, screen technology, and user reports of cooling issues potentially affecting battery life (as mentioned in one query), a detailed comparison cannot be conclusively provided. For an accurate assessment:
+
+1. Check the specifications for both models to understand their hardware capabilities related to energy use; Ryzen processors typically have different power profiles compared to Intel CPUs, which can influence battery longevity.
+2. Look up user experiences on platforms like Reddit or YouTube where Lenovo Legion 5 and HP Victus laptops are often discussed in the context of real-world usage scenarios including their performance under load conditions that affect battery life.
+3. Consider any known issues with cooling systems, as excessive heat can reduce battery efficiency due to increased power draw from CPUs trying to maintain optimal temperatures.
+4. If possible, consult recent reviews or comparisons made closer to the current date for updated information on these models' performance and longevity aspects since hardware specs may have evolved with newer generations of processors being released after Ref Date 2025-06-01.
+
+In summary, without direct battery life data in the provided context or up-to-date external sources:
+[SKU: legion_5_15ach6a] | [STATUS: not directly comparable based on current information] | [SOURCES: Indirectly inferred from discussions about specifications and user experiences, but a direct comparison cannot be established without further data. For an accurate assessment of battery life differences between Lenovo Legion 5i (LEGION-5i) and HP Victus models as of the current date.]
+
+For precise information on these two laptops' batteries performance relative to each other, it is recommended that you seek out recent reviews or user experiences specifically comparing them.
+   📊 Score Comportamental V9: 0.4
+   ℹ️ Motivo Auditoria: The query is a comparison between two specific SKUs, which falls under a comparison query type. The response correctly identifies the absence of direct battery life comparison data in the context and avoids making unsupported claims. However, it includes raw tags like '[SKU: legion_5_15ach6a]' and '[STATUS: found]' within the output, which violates Rule 3 of the evaluation steps that prohibit forbidden raw tags or system processing blocks. This contamination of the text output significantly undermines the response's compliance with the operational rules, reducing its overall alignment with the evaluation steps.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_SERIES_NO_INTERNAL_SPECS | Tipo: BEHAVIORAL
+ 💬 Query: What is the maximum RAM for Dell G15 series?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Dell G15 series laptop? The maximum RAM supported can vary between models and confirming this information requires knowledge about the exact SKU to give an accurate answer, as different configurations may have varying limits. Generally speaking, for some models within the Dell G15 lineup that use Intel processors like Core i5 or Core i7 with options such as DDR4 RAM up to 3200MHz and NVMe SSDs, you might be looking at a maximum capacity of around 16GB. However, this is not specific information for your device without its SKU details.
+
+Remember that the exact capabilities can differ based on individual laptop configurations and manufacturer updates or changes made after my knowledge cutoff date in early 2024.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query is a series query (Dell G15 series) and the response correctly identifies that it requires a specific SKU for accurate information, complying with the operational rule that series queries must not provide specifications. The output avoids providing concrete RAM limits, instead guiding the user to specify a SKU, which aligns with the evaluation steps. No forbidden tags or system blocks are present. The response is accurate, transparent, and follows the rules for series queries.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: dell_g15_intel_core_i5_13th_gen_13450hx_16_gb512_gb] | [STATUS: found] | [SOURCES: ID_2, ID_4]
+AUDIT RESPONSE: The Dell G15 series with an Intel Core i5 13th Gen and 13450HX processor supports up to 16GB of RAM as per the specifications. However, there are reports suggesting that some models may support a higher capacity, potentially up to 24GB or even more depending on individual configurations and hardware revisions; for instance, Dell G15 5530 is claimed by users to handle up to 40GB of RAM under certain conditions. It's essential to check the device specifications directly as these claims can vary between different models within the series due to potential variations in design or firmware updates that may affect memory and storage capacities.
+
+Please note, while some sources indicate higher support for additional RAM beyond standard configurations (like 16GB), there is no widely acknowledged fault with overclocking RAM on these systems as per ID_2's FAULT: None status; however, it’s always recommended to ensure compatibility and system capability before upgrading.
+
+For the maximum storage capacity of SSD in Dell G15 series models like the one mentioned in ID_4 (which supports up to 8GB for RAM), this typically refers to NVMe SSD specifications, which can vary between different laptop revisions and manufacturers' offerings. It is advisable to consult official documentation or directly contact Dell support for precise information on maximum storage capacities supported by the device in question as these figures are not universally standardized across all models within a series like the G15 lineup, especially when considering SSD upgrades and configurations that may affect compatibility.
+
+Lastly, it's important to remember that while some users have reported upgrading beyond official specifications (as in ID_4), such actions should be approached with caution as they can lead to system instability if not done correctly or without proper understanding of the hardware limitations and requirements outlined by Dell. Always refer back to manufacturer guidelines when considering upgrades for performance enhancements, especially concerning RAM capacity in laptops where overclocking is often limited due to thermal constraints and other factors affecting laptop design stability.
+
+[REMARK]: The ref date provided (2025-06-01) suggests that the information might be slightly outdated as newer models or updates could have been released since then, so it's always good practice to confirm with current specifications if you are dealing with a very recent product.
+   📊 Score Comportamental V9: 0.0
+   ℹ️ Motivo Auditoria: The query is a series query ('Dell G15 series'), yet the response provides specific RAM and storage specifications for individual models and even claims unsupported capacities like 40GB, which violates the rule that no specifications should be provided for a series query without a specific SKU. Additionally, the output contains raw tags like [SKU:], [STATUS:], [SOURCES:], and [REMARK:], which pollute the text and violate the rule against forbidden raw tags. These elements indicate a failure to comply with both query type handling and output pollution rules.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_RAG_PLUS_INTERNAL_ENRICHMENT | Tipo: BEHAVIORAL
+ 💬 Query: Why does my Acer Nitro 5 AN515-58 throttle? Explain thermal design.
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the information provided in external sources regarding similar models of Acer Nitro 5 laptops experiencing thermal throttling issues due to an inadequate cooling system and possibly worn-out thermal paste, it appears that your device may be facing a problem related to overheating. The typical faults associated with such symptoms include high temperatures leading the laptop's CPU or GPU to reduce performance as a protective measure against potential damage, which is known as thermal throttling.
+
+The cooling design in gaming laptops like your Acer Nitro 5 AN515-58 relies on several components working together: fans for air circulation, heat sinks to dissipate hot spots from the CPU and GPU, and a thermal paste that ensures efficient transfer of heat away from these critical areas. When any part of this system is compromised—such as if the cooling vents are blocked or dirty, leading to poor ventilation; or if the applied thermal paste has degraded over time reducing its effectiveness in conducting heat away from the CPU and GPU—the devices can reach high temperatures that trigger throttling mechanisms.
+
+To address this issue without official documentation at hand:
+1. Ensure your laptop's cooling vents are kept clean to maintain proper airflow, which is crucial for dissipating heat effectively.
+2. Consider applying new thermal paste if the current one has worn out or isn’t performing optimally; high-quality options like Thermal Grizzly Hydronaut can improve heat transfer from your CPU and GPU to their respective heatsinks.
+3. Monitor system temperatures using hardware monitoring tools, such as an app mentioned in Source 2 (Hwinfo64), which could help you determine if the temperature is within safe operating ranges or needs adjustment after applying new thermal paste.
+4. If your laptop has a performance mode setting like Acer Nitrosense's power saving mode that limits CPU usage, using it can also reduce temperatures and prevent throttling during intensive tasks such as gaming.
+5. Additionally, playing in environments with better airflow or reducing the overall load on your system by adjusting settings when not actively gaming could help maintain lower operating temperatures.
+
+For a more tailored solution specific to your laptop's SKU and detailed technical design information, it would be beneficial to consult Acer directly or seek out professional reviews that may have conducted thermal analysis of the AN515-58 model specifically. Remember not to apply any physical changes without guidance from official sources as this could void warranties or cause further issues if done incorrectly.
+
+Please note, my knowledge is based on information up until 2024 and should be used for general understanding rather than definitive solutions. Always refer to the latest resources available directly related to your specific device model when making hardware modifications.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The query is a series query (Acer Nitro 5) rather than a specific SKU, series, or comparison. The response correctly identifies this and avoids providing technical specifications for the series, instead directing the user to consult official sources or professional reviews for model-specific thermal design details. It adheres to the operational rule that no specifications should be provided for a series query. The output does not contain any forbidden raw tags or system processing blocks. The explanation is accurate, relevant, and follows the evaluation steps by correctly identifying the query type and complying with the rule for series queries.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   [SKU: acer_nitro_5_an515_45_unqbmsi009_gaming_laptop] | [STATUS: found] | [SOURCES: ID_0, ID_2, ID_3, ID_4]
+
+RESPONSE: 
+The Acer Nitro 5 AN515-58 is likely throttling due to inadequate cooling design and thermal management issues. The common faults identified across various sources include an insufficient cooling system that fails under load, leading to high CPU temperatures which trigger the laptop's built-in mechanisms (like Intel Core i5-9300H) to throttle down in order to prevent overheating and potential damage. This results in reduced performance during intensive tasks such as gaming or heavy computational workloads, where both the CPU and GPU are pushed to their limits.
+
+The laptop's cooling system may be compromised due to several factors: 
+1. The thermal paste between the heat spreader of the processor (if present) and its integrated heatsink could have degraded over time or might not provide optimal contact, leading to poor heat conduction from the CPU/GPU to their respective cooling devices. Replacing it with a high-quality paste like Thermal Grizzly Hydronaut can improve thermal transfer efficiency.
+2. The laptop's internal vents and fans might not be sufficient for adequate airflow, especially during heavy usage or in environments where the ambient temperature is higher than usual. Regular cleaning of these components to remove dust and debris that block ventilation paths could enhance cooling performance.
+3. The laptop's design may inherently limit effective heat dissipation due to its compact form factor, which can restrict airflow within the chassis or because it doesn't incorporate advanced cooling technologies like liquid cooling systems used in some high-end gaming rigs.
+4. Incorrect power settings that do not optimize for performance and thermal management could exacerbate heating issues; setting the system to Balanced mode can help by reducing CPU/GPU load, thus lowering temperatures. Additionally, undervolting (limiting voltage supplied to the processor) reduces heat generation at the cost of some processing speed but significantly improves cooling efficiency and longevity for high-performance parts like Intel Core i5 or NVIDIA RTX GPUs.
+
+To mitigate these issues:
+- Replace thermal paste with a higher quality option that offers better conductivity, such as Thermal Grizzly Hydronaut.
+- Ensure the laptop's internal cooling system (vents and fans) is clean to maintain optimal airflow within its case.
+- Use Balanced or Power Saver settings in both Windows and NitroSense power plans, which can reduce heat generation by limiting CPU/GPU load during intensive tasks.
+- Consider using a cooling pad under the laptop for additional thermal management if necessary when gaming at home with controlled ambient temperatures.
+- Monitor system temperature regularly to adjust settings proactively and prevent overheating before it leads to throttling or damage.
+
+It's important to note that while these solutions can help, they may not completely resolve issues stemming from the laptop’s fundamental design limitations if those are significant enough; for example, a highly compact form factor with limited airflow might still struggle under extreme conditions despite optimal maintenance and settings adjustments. Users should also be aware of their environment when using such devices to ensure it's within recommended operating temperatures (typically below 70°C).
+
+Given the reference date is from June 2025, these issues were already recognized in mid-to-late 2025 and solutions have been suggested accordingly. However, for a device with an older design like some Acer Nitro models (especially those built before newer cooling technologies became standard), users might experience persistent throttling problems even after applying these fixes if the hardware itself has limitations in thermal management capabilities due to its age or build quality.
+   📊 Score Comportamental V9: 0.2
+   ℹ️ Motivo Auditoria: The query is a series query (Acer Nitro 5) rather than a specific SKU query, and the evaluation step requires that for series queries, the response must not provide specifications. Instead, it must ask for the specific SKU. The response provides detailed technical explanations about thermal design and throttling, which violates the operational rule for series queries. Additionally, the output contains raw tags like [SKU: ...] and [STATUS: found] that pollute the text and violate step 3. These violations significantly reduce alignment with the evaluation steps.
+
+--------------------------------------------------------------------------------
+
+==========================================================================================
+📊 RESUMO CONSOLIDADO DAS MÉTRICAS
+==========================================================================================
+
+📈 MÉTRICAS TRADICIONAIS MÉDIAS (DeepEval):
+  ├── Faithfulness          : V1=0.667 ↓ V9=0.400 (Δ -0.267)
+  ├── Answer_Relevancy      : V1=0.750 ↑ V9=0.929 (Δ +0.179)
+  ├── Contextual_Relevancy  : V1=0.327 → V9=0.327 (Δ +0.000)
+  ├── Contextual_Precision  : V1=0.517 → V9=0.517 (Δ +0.000)
+  ├── Contextual_Recall     : V1=1.000 → V9=1.000 (Δ +0.000)
+
+📈 ACURÁCIA COMPORTAMENTAL (G-Eval Guardrails):
+  ├── Adesão Regras V1 (Vanilla) : 92.9%
+  └── Adesão Regras V9 (Temporal): 24.3%

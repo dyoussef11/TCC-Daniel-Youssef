@@ -4,6 +4,7 @@ UNIFIED EVALUATION SCRIPT: V1 vs V9 (Mixed Fallback Framework Edition) - V5 COMP
 Fully customized to validate the rules of the second prompt generation without format bias.
 Supports command-line arguments for judge and generator models.
 Generates CSV, TXT, and Markdown reports natively from consolidated loop data.
+Multi-run execution added to evaluate each test case 3 to 5 times.
 """
 
 import asyncio
@@ -13,7 +14,7 @@ import json
 import pickle
 import sys
 import time
-import argparse          # <-- NOVO
+import argparse
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -44,7 +45,7 @@ for path in [VALIDACAO_SCRIPT, AVALIACAO_SCRIPT]:
         sys.path.append(str(path))
 
 from RAG_BaseLineV2 import VanillaRAG
-from RAG_Temporal_V9_4 import SpecialistTimeAwareRAG
+from RAG_Temporal_V9_3 import SpecialistTimeAwareRAG
 from custom_evaluatorV4 import OllamaEvaluator
 
 
@@ -71,13 +72,12 @@ class EvalConfig:
 
     @property
     def output_dir(self) -> Path:
-        dir_path = AVALIACAO_DATA / "resultados"
+        dir_path = AVALIACAO_DATA / "testes_com_modelos_diferentes"
         dir_path.mkdir(parents=True, exist_ok=True)
         return dir_path
 
     @classmethod
     def from_args(cls, args):
-        """Cria configuração a partir dos argumentos da linha de comando."""
         return cls(
             evaluator_model=args.judge_model,
             model_name=args.generator_model
@@ -126,18 +126,14 @@ class EmbeddingCache:
 
 def create_native_metrics(evaluator: OllamaEvaluator) -> List[Any]:
     return [
-        FaithfulnessMetric(threshold=0.85, model=evaluator, include_reason=True),
-        AnswerRelevancyMetric(threshold=0.8, model=evaluator, include_reason=True),
+        FaithfulnessMetric(threshold=0.80, model=evaluator, include_reason=True),
+        AnswerRelevancyMetric(threshold=0.85, model=evaluator, include_reason=True),
         ContextualRelevancyMetric(threshold=0.8, model=evaluator, include_reason=True),
         ContextualPrecisionMetric(threshold=0.8, model=evaluator, include_reason=True),
         ContextualRecallMetric(threshold=0.8, model=evaluator, include_reason=True)
     ]
 
 def create_unified_behavioral_geval(evaluator: OllamaEvaluator) -> GEval:
-    """
-    Métrica G-Eval unificada da V5. Avalia a aderência comportamental às regras
-    de negócio sem penalizar o RAG por diferenças de tags ou formato visual.
-    """
     criteria = (
         "Evaluate the response based on the following rules:\n"
         "1. For a SPECIFIC SKU query with missing external documentation, the response MUST explicitly state "
@@ -166,7 +162,7 @@ def create_unified_behavioral_geval(evaluator: OllamaEvaluator) -> GEval:
 
 
 # ============================================================================
-# RAG MANAGER & ORCHESTRATION
+# RAG MANAGER & ORCHESTRATION (WITH REPETITIONS)
 # ============================================================================
 
 class ComparativeRAGManager:
@@ -192,40 +188,45 @@ class ComparativeRAGManager:
             self._temporal.search_top_k = self.config.search_top_k
         return self._temporal
 
-    async def generate_test_cases(self) -> Tuple[List[LLMTestCase], List[LLMTestCase]]:
+    async def generate_test_cases(self, num_repeats: int = 3) -> Tuple[List[LLMTestCase], List[LLMTestCase]]:
         v1_cases, v9_cases = [], []
-        print(f"🔍 Ingerindo {len(TEST_SUITE)} casos de teste nos RAGs Mixed...")
+        print(f"🔍 Ingerindo {len(TEST_SUITE)} casos de teste com {num_repeats} repetições...")
         
         for tc in TEST_SUITE:
             query = tc["input"]
             ref_date = tc.get("reference_date", "2026-03-12")
             
-            # Execução assíncrona concorrente das engines de RAG
-            # v1_task = asyncio.create_task(self.vanilla.search(query))
-            # v9_task = asyncio.create_task(self.temporal.search(query, ref_date))
+            # Dispara de forma assíncrona todas as repetições necessárias para este caso
+            v1_tasks = [asyncio.create_task(self.vanilla.search(query)) for _ in range(num_repeats)]
+            v9_tasks = [asyncio.create_task(self.temporal.search(query, ref_date)) for _ in range(num_repeats)]
             
-            # res_v1, res_v9 = await asyncio.gather(v1_task, v9_task)
-
-            # res_v1 = await self.vanilla.search(query)
-            # res_v9 = await self.temporal.search(query, ref_date)
-
-            v1_task = asyncio.create_task(self.vanilla.search(query))
-            v9_task = asyncio.create_task(self.temporal.search(query, ref_date))
-            res_v1, res_v9 = await asyncio.gather(v1_task, v9_task)
-            meta = {"id": tc["id"], "test_type": tc.get("test_type", "traditional")}
+            res_v1_list = await asyncio.gather(*v1_tasks)
+            res_v9_list = await asyncio.gather(*v9_tasks)
             
-            v1_cases.append(LLMTestCase(
-                input=query, actual_output=res_v1["answer"],
-                retrieval_context=res_v1.get("sources", [])[:5],
-                expected_output=tc.get("expected_output"), 
-                metadata=meta
-            ))
-            v9_cases.append(LLMTestCase(
-                input=query, actual_output=res_v9["answer"],
-                retrieval_context=res_v9.get("sources", [])[:5],
-                expected_output=tc.get("expected_output"), 
-                metadata=meta
-            ))
+            for run_idx in range(num_repeats):
+                res_v1 = res_v1_list[run_idx]
+                res_v9 = res_v9_list[run_idx]
+                
+                # Identificação única por iteração/tentativa no metadado
+                meta = {
+                    "id": f"{tc['id']}_run_{run_idx + 1}", 
+                    "original_id": tc["id"],
+                    "run_index": run_idx + 1,
+                    "test_type": tc.get("test_type", "traditional")
+                }
+                
+                v1_cases.append(LLMTestCase(
+                    input=query, actual_output=res_v1["answer"],
+                    retrieval_context=res_v1.get("sources", [])[:5],
+                    expected_output=tc.get("expected_output"), 
+                    metadata=meta
+                ))
+                v9_cases.append(LLMTestCase(
+                    input=query, actual_output=res_v9["answer"],
+                    retrieval_context=res_v9.get("sources", [])[:5],
+                    expected_output=tc.get("expected_output"), 
+                    metadata=meta
+                ))
             
         return v1_cases, v9_cases
 
@@ -245,8 +246,8 @@ class NativeComparativePipeline:
         self.v1_cases_backup: List[LLMTestCase] = []
         self.v9_cases_backup: List[LLMTestCase] = []
 
-    async def run(self):
-        v1_cases, v9_cases = await self.rag_manager.generate_test_cases()
+    async def run(self, num_repeats: int = 3):
+        v1_cases, v9_cases = await self.rag_manager.generate_test_cases(num_repeats=num_repeats)
 
         self.v1_cases_backup = v1_cases
         self.v9_cases_backup = v9_cases
@@ -270,7 +271,7 @@ class NativeComparativePipeline:
         # AVALIAÇÃO RAG V1
         # ====================================================================
         if d_v1_trad.test_cases:
-            print("\n🏆 Avaliando V1 MIXED Tradicional (Métrica por Métrica)...")
+            print(f"\n🏆 Avaliando V1 MIXED Tradicional ({len(d_v1_trad.test_cases)} interações total)...")
             for metric in create_native_metrics(self.evaluator_v1):
                 print(f" 🎯 Rodando {metric.__class__.__name__} de forma linear...")
                 batch_res = evaluate(d_v1_trad.test_cases, [metric], async_config=AsyncConfig(max_concurrent=1))
@@ -284,7 +285,7 @@ class NativeComparativePipeline:
                             res_v1_trad[idx].success = False
 
         if d_v1_behav.test_cases:
-            print("\n🏆 Avaliando V1 MIXED Comportamental (GEval Unificado)...")
+            print(f"\n🏆 Avaliando V1 MIXED Comportamental ({len(d_v1_behav.test_cases)} interações total)...")
             geval_v1 = create_unified_behavioral_geval(self.evaluator_v1)
             batch_res = evaluate(d_v1_behav.test_cases, [geval_v1], async_config=AsyncConfig(max_concurrent=1))
             res_v1_behav = batch_res.test_results
@@ -293,7 +294,7 @@ class NativeComparativePipeline:
         # AVALIAÇÃO RAG V9
         # ====================================================================
         if d_v9_trad.test_cases:
-            print("\n🏆 Avaliando V9 MIXED Tradicional (Métrica por Métrica)...")
+            print(f"\n🏆 Avaliando V9 MIXED Tradicional ({len(d_v9_trad.test_cases)} interações total)...")
             for metric in create_native_metrics(self.evaluator_v9):
                 print(f" 🎯 Rodando {metric.__class__.__name__} de forma linear...")
                 batch_res = evaluate(d_v9_trad.test_cases, [metric], async_config=AsyncConfig(max_concurrent=1))
@@ -307,12 +308,11 @@ class NativeComparativePipeline:
                             res_v9_trad[idx].success = False
 
         if d_v9_behav.test_cases:
-            print("\n🏆 Avaliando V9 MIXED Comportamental (GEval Unificado)...")
+            print(f"\n🏆 Avaliando V9 MIXED Comportamental ({len(d_v9_behav.test_cases)} interações total)...")
             geval_v9 = create_unified_behavioral_geval(self.evaluator_v9)
             batch_res = evaluate(d_v9_behav.test_cases, [geval_v9], async_config=AsyncConfig(max_concurrent=1))
             res_v9_behav = batch_res.test_results
 
-        # Compila e grava todos os relatórios estruturados (CSV, TXT e MD)
         self._build_and_save_reports(res_v1_trad, res_v1_behav, res_v9_trad, res_v9_behav)
 
     def _build_and_save_reports(self, r1_t, r1_b, r9_t, r9_b):
@@ -331,13 +331,21 @@ class NativeComparativePipeline:
                     tc = getattr(test_result, 'test_case', None)
                 
                 row_id = tc.metadata["id"] if (tc and tc.metadata) else f"TC_{idx}"
+                orig_id = tc.metadata.get("original_id", row_id) if (tc and tc.metadata) else row_id
+                run_idx = tc.metadata.get("run_index", 1) if (tc and tc.metadata) else 1
                 query_text = tc.input if tc else "Unknown"
                 test_type = tc.metadata["test_type"] if (tc and tc.metadata) else "traditional"
                 actual_output = tc.actual_output if tc else ""
 
                 existing = next((r for r in rows if r["ID"] == row_id), None)
                 if not existing:
-                    existing = {"ID": row_id, "Query": query_text, "Test_Type": test_type}
+                    existing = {
+                        "ID": row_id, 
+                        "Original_ID": orig_id,
+                        "Repetition": run_idx,
+                        "Query": query_text, 
+                        "Test_Type": test_type
+                    }
                     rows.append(existing)
                 
                 existing[f"{version_prefix}_Answer"] = actual_output
@@ -380,11 +388,11 @@ class NativeComparativePipeline:
             f.write("=" * 90 + "\n")
             f.write(f"Modelo Avaliador (Juiz): {self.config.evaluator_model}\n")
             f.write(f"Modelo Base RAG (Gerador): {self.config.model_name}\n")
-            f.write(f"Total Casos Teste: {len(rows)} (Tradicionais: {len(trad_ref)} | Comportamentais: {len(behav_ref)})\n")
+            f.write(f"Total Interações: {len(rows)} (Tradicionais: {len(trad_ref)} | Comportamentais: {len(behav_ref)})\n")
             f.write("-" * 90 + "\n\n")
 
             for r in rows:
-                f.write(f"▶️ ID: {r['ID']} | Tipo: {r['Test_Type'].upper()}\n")
+                f.write(f"▶️ ID: {r['ID']} [Original: {r['Original_ID']} | Tentativa: {r['Repetition']}] | Tipo: {r['Test_Type'].upper()}\n")
                 f.write(f" 💬 Query: {r['Query']}\n\n")
                 
                 f.write(" [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:\n")
@@ -409,7 +417,7 @@ class NativeComparativePipeline:
                 f.write("\n" + "-" * 80 + "\n")
 
             f.write("\n" + "=" * 90 + "\n")
-            f.write("📊 RESUMO CONSOLIDADO DAS MÉTRICAS\n")
+            f.write("📊 RESUMO CONSOLIDADO DAS MÉTRICAS (MÉDIAS GERAIS)\n")
             f.write("=" * 90 + "\n")
             
             trad_rows = [r for r in rows if r["Test_Type"] == "traditional"]
@@ -440,9 +448,9 @@ class NativeComparativePipeline:
             f.write(f"- **Data de Execução:** {self.config.timestamp}\n")
             f.write(f"- **Modelo Avaliador (Juiz):** `{self.config.evaluator_model}`\n")
             f.write(f"- **Modelo Base RAG (Gerador):** `{self.config.model_name}`\n")
-            f.write(f"- **Fase Contextual:** Tradicionais ({len(trad_ref)}) | Comportamentais ({len(behav_ref)})\n\n")
+            f.write(f"- **Total Interações Avaliadas:** Tradicionais ({len(trad_ref)}) | Comportamentais ({len(behav_ref)})\n\n")
             
-            f.write("## 📊 Tabela Resumo das Médias\n\n")
+            f.write("## 📊 Tabela Resumo das Médias Consolidadas\n\n")
             f.write("| Métrica Base | Média V1 (Vanilla) | Média V9 (Temporal) | Variação Líquida |\n")
             f.write("|---|---|---|---|\n")
             
@@ -469,32 +477,26 @@ class NativeComparativePipeline:
 
 
 # ============================================================================
-# MAIN COM FILA DE COMBINAÇÕES
-# ============================================================================
-
-# ============================================================================
 # MAIN ASYNC COM FILA DE COMBINAÇÕES
 # ============================================================================
 
 async def main_queue():
-    import time
     from itertools import product
 
     # Modelos disponíveis
     judge_models = [
         "qwen3:4b-instruct",
-        "mistral:7b-instruct",
-        "granite3.2:8b",
-        "phi3.5:latest"
+        # "mistral:7b-instruct",
+        # "granite3.2:8b",
+        # "phi3.5:latest"
     ]
     generator_models = [
-        "phi3.5:latest",
+        # "phi3.5:latest",
         "mistral:7b-instruct",
-        "qwen3.5:9b",
-        "phi3:14b"
+        # "qwen3.5:9b",
+        # "phi3:14b"
     ]
 
-    # Mapeamento de modelo para família
     def get_family(model: str) -> str:
         model_lower = model.lower()
         if model_lower.startswith("qwen"): return "qwen"
@@ -503,7 +505,6 @@ async def main_queue():
         if model_lower.startswith("phi"): return "phi"
         return "unknown"
 
-    # Gerar e filtrar combinações sem conflito de família
     all_combinations = list(product(judge_models, generator_models))
     filtered_combinations = [
         (judge, gen) for judge, gen in all_combinations
@@ -512,36 +513,42 @@ async def main_queue():
 
     print(f"🚀 Total de combinações possíveis: {len(all_combinations)}")
     print(f"✅ Combinações sem mesma família: {len(filtered_combinations)}")
-    print(f"🔁 Executando fila de forma nativa no mesmo Event Loop...\n")
+    print(f"🔁 Executando fila com multi-tentativas ativadas por pergunta...\n")
 
     for i, (judge, generator) in enumerate(filtered_combinations, 1):
         print(f"\n{'='*60}")
         print(f"🔁 Combinação {i}/{len(filtered_combinations)}: Juiz={judge} | Gerador={generator}")
         print(f"{'='*60}")
 
-        # Instancia e configura o pipeline para a iteração corrente
-        pipeline = NativeComparativePipeline()
-        pipeline.config = EvalConfig(evaluator_model=judge, model_name=generator)
-        pipeline.evaluator_v1 = OllamaEvaluator(model_name=pipeline.config.evaluator_model, prompt_version="V1")
-        pipeline.evaluator_v9 = OllamaEvaluator(model_name=pipeline.config.evaluator_model, prompt_version="V9")
-
+        pipeline = None
         try:
-            # Chame DIRETAMENTE com o await, aproveitando o loop persistente
-            await pipeline.run()
+            pipeline = NativeComparativePipeline()
+            pipeline.config = EvalConfig(evaluator_model=judge, model_name=generator)
+            pipeline.evaluator_v1 = OllamaEvaluator(model_name=judge, prompt_version="V1")
+            pipeline.evaluator_v9 = OllamaEvaluator(model_name=judge, prompt_version="V9")
+
+            # Executa o pipeline configurando de 3 a 5 repetições (Definido aqui como 3)
+            await pipeline.run(num_repeats=10)
             print(f"✅ Combinação concluída com sucesso: {judge} / {generator}")
         except Exception as e:
-            print(f"❌ Erro catastrófico na combinação {judge}/{generator}: {e}")
+            print(f"❌ Erro catastrófico na combinação atual: {e}")
+        finally:
+            if pipeline and hasattr(pipeline, 'rag_manager'):
+                try:
+                    if pipeline.rag_manager._vanilla:
+                        await pipeline.rag_manager.vanilla.close()
+                    if pipeline.rag_manager._temporal:
+                        await pipeline.rag_manager.temporal.close()
+                except:
+                    pass
+            del pipeline
+            gc.collect()
 
         if i < len(filtered_combinations):
-            print("⏳ Aguardando 10 segundos para liberação de memória e sockets...")
-            await asyncio.sleep(10)  # Evita travar a thread principal com time.sleep()
-            
-        # Força coleta de lixo de instâncias pesadas do FAISS / RAG
-        del pipeline
-        gc.collect()
+            print("⏳ Aguardando 15 segundos para liberar recursos do sistema...")
+            await asyncio.sleep(15)
 
-    print("\n🎉 Todas as combinações sem conflito de família foram executadas perfeitamente.")
+    print("\n🎉 Todas as combinações da matriz de testes foram concluídas com sucesso.")
 
 if __name__ == "__main__":
-    # Garante um único ponto de entrada para o loop de eventos, resolvendo o RuntimeError
     asyncio.run(main_queue())

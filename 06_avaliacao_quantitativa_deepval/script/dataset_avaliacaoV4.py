@@ -13,6 +13,257 @@ sys.path.append(str(VALIDACAO_SCRIPT))
 # CASOS TRADICIONAIS (DeepEval Metrics)
 # ============================================================================
 
+# ============================================================================
+# TESTES TEMPORAIS - CHRONOQA INSPIRED (para RAG Temporal)
+# ============================================================================
+
+CHRONOQA_TEMPORAL_SUITE = [
+    # ========================================================================
+    # CATEGORIA 1: PERGUNTAS ABSOLUTAS (Data específica)
+    # ========================================================================
+    {
+        "id": "TC_TEMP_ABS_001",
+        "input": "What was the maximum RAM capacity of the Dell G15 5530 in March 2024?",
+        "reference_date": "2024-03-15",
+        "test_type": "temporal",
+        "temporal_category": "absolute",
+        "expected_behavior": "should_use_doc_from_2024_or_later",
+        "required_patterns": ["32GB", "DDR5"],
+        "forbidden_patterns": ["16GB", "DDR4"],
+        "description": "Deve usar documento de 2024 (ou mais recente) para especificações do G15 5530"
+    },
+    {
+        "id": "TC_TEMP_ABS_002",
+        "input": "What was the default graphics card in the Lenovo LOQ 15IRX9 in January 2025?",
+        "reference_date": "2025-01-01",
+        "test_type": "temporal",
+        "temporal_category": "absolute",
+        "expected_behavior": "should_use_doc_from_2025_or_later",
+        "required_patterns": ["RTX 4060", "RTX 4070"],
+        "forbidden_patterns": ["RTX 3050", "RTX 3060"],
+        "description": "O LOQ 15IRX9 foi lançado em 2024/2025 - deve usar specs corretas da época"
+    },
+    {
+        "id": "TC_TEMP_ABS_003",
+        "input": "What processor did the Acer Nitro 5 AN515-58 have in Q4 2023?",
+        "reference_date": "2023-10-01",
+        "test_type": "temporal",
+        "temporal_category": "absolute",
+        "expected_behavior": "should_use_doc_from_2023",
+        "required_patterns": ["12th Gen", "i5", "i7"],
+        "forbidden_patterns": ["13th Gen", "14th Gen"],
+        "description": "AN515-58 é 12th Gen - não deve alucinar processadores de gerações futuras"
+    },
+    {
+        "id": "TC_TEMP_ABS_004",
+        "input": "What was the maximum storage configuration for the HP Victus 15-fa1066tx in August 2024?",
+        "reference_date": "2024-08-15",
+        "test_type": "temporal",
+        "temporal_category": "absolute",
+        "expected_behavior": "should_use_doc_from_2024",
+        "required_patterns": ["1TB", "2TB", "SSD"],
+        "forbidden_patterns": ["256GB", "512GB"],
+        "description": "Modelo 2024 deve ter opções de armazenamento maiores"
+    },
+    {
+        "id": "TC_TEMP_ABS_005",
+        "input": "What GPU was available in the ASUS TUF Gaming F15 FX507ZV in June 2023?",
+        "reference_date": "2023-06-01",
+        "test_type": "temporal",
+        "temporal_category": "absolute",
+        "expected_behavior": "should_use_doc_from_2023",
+        "required_patterns": ["RTX 4060", "RTX 4070"],
+        "forbidden_patterns": ["RTX 4050"],
+        "description": "FX507ZV é modelo 2023 - deve ter RTX 4060 ou superior"
+    },
+    {
+        "id": "TC_TEMP_ABS_006",
+        "input": "What was the refresh rate of the Lenovo Legion Pro 7 16IRX9 display in October 2024?",
+        "reference_date": "2024-10-01",
+        "test_type": "temporal",
+        "temporal_category": "absolute",
+        "expected_behavior": "should_use_doc_from_2024",
+        "required_patterns": ["240Hz", "165Hz"],
+        "forbidden_patterns": ["60Hz", "120Hz"],
+        "description": "Legion Pro 7 2024 deve ter tela de alta refresh rate"
+    },
+
+    # ========================================================================
+    # CATEGORIA 2: PERGUNTAS AGREGADAS (Contagem ou frequência temporal)
+    # ========================================================================
+    {
+        "id": "TC_TEMP_AGG_001",
+        "input": "How many M.2 SSD slots does the Dell G16 7630 have?",
+        "reference_date": "2024-01-01",
+        "test_type": "temporal",
+        "temporal_category": "aggregate",
+        "expected_behavior": "should_count_slots_correctly",
+        "required_patterns": ["2", "two"],
+        "forbidden_patterns": ["1", "3"],
+        "description": "G16 7630 tem 2 slots M.2 - deve contar corretamente"
+    },
+    {
+        "id": "TC_TEMP_AGG_002",
+        "input": "How many USB ports does the Acer Predator Helios Neo 16 PHN16-71 have?",
+        "reference_date": "2024-01-01",
+        "test_type": "temporal",
+        "temporal_category": "aggregate",
+        "expected_behavior": "should_count_ports_correctly",
+        "required_patterns": ["3", "4"],
+        "forbidden_patterns": ["1", "2"],
+        "description": "Deve contar corretamente as portas USB do PHN16-71"
+    },
+    {
+        "id": "TC_TEMP_AGG_003",
+        "input": "How many RAM slots are available in the ASUS ROG Zephyrus G14 GA402XV?",
+        "reference_date": "2024-01-01",
+        "test_type": "temporal",
+        "temporal_category": "aggregate",
+        "expected_behavior": "should_count_ram_slots_correctly",
+        "required_patterns": ["2", "soldered"],
+        "forbidden_patterns": ["4"],
+        "description": "GA402XV tem 2 slots (um soldado) - deve contar corretamente"
+    },
+
+    # ========================================================================
+    # CATEGORIA 3: PERGUNTAS RELATIVAS ("último", "mais recente", "anterior")
+    # ========================================================================
+    {
+        "id": "TC_TEMP_REL_001",
+        "input": "What is the latest BIOS version for the Dell XPS 15 9530?",
+        "reference_date": "2025-01-01",
+        "test_type": "temporal",
+        "temporal_category": "relative",
+        "expected_behavior": "should_return_latest_bios",
+        "required_patterns": ["not available", "latest", "update"],
+        "forbidden_patterns": ["v1.0", "2022"],
+        "description": "Deve mencionar a BIOS mais recente ou admitir que não tem informação"
+    },
+    {
+        "id": "TC_TEMP_REL_002",
+        "input": "What is the most recent processor generation used in the Lenovo Legion Slim 5?",
+        "reference_date": "2025-06-01",
+        "test_type": "temporal",
+        "temporal_category": "relative",
+        "expected_behavior": "should_use_most_recent_doc",
+        "required_patterns": ["Ryzen 7", "Ryzen 9", "HX"],
+        "forbidden_patterns": ["Ryzen 5", "2022"],
+        "description": "Deve usar a documentação mais recente do Legion Slim 5"
+    },
+    {
+        "id": "TC_TEMP_REL_003",
+        "input": "Which was the last Acer Nitro model to feature DDR4 RAM?",
+        "reference_date": "2024-06-01",
+        "test_type": "temporal",
+        "temporal_category": "relative",
+        "expected_behavior": "should_identify_correct_last_model",
+        "required_patterns": ["AN515-57", "AN515-58"],
+        "forbidden_patterns": ["AN515-45", "AN16-41"],
+        "description": "AN515-57 foi um dos últimos com DDR4 - AN515-58 já é DDR5"
+    },
+    {
+        "id": "TC_TEMP_REL_004",
+        "input": "What is the most recent HP Omen 16 model with an AMD processor?",
+        "reference_date": "2025-01-01",
+        "test_type": "temporal",
+        "temporal_category": "relative",
+        "expected_behavior": "should_use_most_recent_amd_omen",
+        "required_patterns": ["Ryzen 7", "Ryzen 9", "7840HS"],
+        "forbidden_patterns": ["Intel", "Core i7"],
+        "description": "Deve identificar o Omen 16 mais recente com AMD (ex: xd0007ax)"
+    },
+    {
+        "id": "TC_TEMP_REL_005",
+        "input": "What was the last Dell G15 model to support DDR4 memory?",
+        "reference_date": "2024-12-01",
+        "test_type": "temporal",
+        "temporal_category": "relative",
+        "expected_behavior": "should_identify_correct_model",
+        "required_patterns": ["G15 5520", "G15 5525"],
+        "forbidden_patterns": ["G15 5530"],
+        "description": "G15 5530 já usa DDR5 - os anteriores (5520/5525) usam DDR4"
+    },
+
+    # ========================================================================
+    # CATEGORIA 4: COMPARAÇÕES TEMPORAIS (evolução de specs)
+    # ========================================================================
+    {
+        "id": "TC_TEMP_CMP_001",
+        "input": "How did the maximum RAM capacity change from Dell G15 5520 to Dell G15 5530?",
+        "reference_date": "2024-06-01",
+        "test_type": "temporal",
+        "temporal_category": "comparison",
+        "expected_behavior": "should_compare_specs_correctly",
+        "required_patterns": ["32GB", "64GB", "DDR4", "DDR5"],
+        "forbidden_patterns": ["same", "identical"],
+        "description": "5520 tem DDR4, 5530 tem DDR5 - deve identificar a evolução"
+    },
+    {
+        "id": "TC_TEMP_CMP_002",
+        "input": "Compare the GPU options between Acer Nitro 5 AN515-57 and AN515-58.",
+        "reference_date": "2024-06-01",
+        "test_type": "temporal",
+        "temporal_category": "comparison",
+        "expected_behavior": "should_compare_gpus_correctly",
+        "required_patterns": ["RTX 3050", "RTX 4060"],
+        "forbidden_patterns": ["identical"],
+        "description": "AN515-57 tem RTX 30xx, AN515-58 tem RTX 40xx"
+    },
+
+    # ========================================================================
+    # CATEGORIA 5: DATA FUTURA (2026+ - deve recusar ou ser cauteloso)
+    # ========================================================================
+    {
+        "id": "TC_TEMP_FUT_001",
+        "input": "What will be the default RAM configuration for the 2026 Dell Alienware m18?",
+        "reference_date": "2026-06-01",
+        "test_type": "temporal",
+        "temporal_category": "future",
+        "expected_behavior": "should_admit_unknown_future",
+        "required_patterns": ["not available", "cannot predict", "as of now", "no information"],
+        "forbidden_patterns": ["32GB", "64GB", "DDR5"],
+        "description": "2026 é futuro - não deve especular sobre modelos não lançados"
+    },
+    {
+        "id": "TC_TEMP_FUT_002",
+        "input": "What processor will the ASUS ROG Strix Scar 18 2026 use?",
+        "reference_date": "2026-01-01",
+        "test_type": "temporal",
+        "temporal_category": "future",
+        "expected_behavior": "should_admit_unknown_future",
+        "required_patterns": ["not announced", "unconfirmed", "no information"],
+        "forbidden_patterns": ["Core Ultra 9", "285HX"],
+        "description": "Não deve especular sobre processadores de 2026"
+    },
+
+    # ========================================================================
+    # CATEGORIA 6: CONCEITOS ATEMPORAIS (não devem ser penalizados pela data)
+    # ========================================================================
+    {
+        "id": "TC_TEMP_ATEMP_001",
+        "input": "What is thermal throttling and why does it happen in gaming laptops?",
+        "reference_date": "2025-06-01",
+        "test_type": "temporal",
+        "temporal_category": "atemporal",
+        "expected_behavior": "should_explain_concept_regardless_of_date",
+        "required_patterns": ["temperature", "cooling", "reduce", "clock"],
+        "min_required_matches": 2,
+        "description": "Conceito atemporal - não deve ser penalizado por documentos antigos"
+    },
+    {
+        "id": "TC_TEMP_ATEMP_002",
+        "input": "Explain the difference between DDR4 and DDR5 memory.",
+        "reference_date": "2025-06-01",
+        "test_type": "temporal",
+        "temporal_category": "atemporal",
+        "expected_behavior": "should_explain_concept_regardless_of_date",
+        "required_patterns": ["bandwidth", "speed", "frequency"],
+        "min_required_matches": 2,
+        "description": "Conceito atemporal - documentos de 2020+ são aceitáveis"
+    },
+]
+
+
 TRADITIONAL_TEST_SUITE = [
     {
         "id": "TC_STATIC_01",
@@ -284,105 +535,20 @@ BEHAVIORAL_TEST_SUITE = [
 ]
 
 
-# ============================================================================
-# TESTES ESPECÍFICOS DE TEMPORALIDADE
-# ============================================================================
 
-TEMPORAL_TEST_SUITE = [
-    {
-        "id": "TC_TEMPORAL_PREFER_RECENT_DOC",
-        "input": "What is the maximum RAM capacity for Dell XPS 15 9500?",
-        "reference_date": "2025-06-01",
-        "test_type": "behavioral",
-        "expected_behavior": "should_prefer_2024_document_over_2014",
-        "required_patterns": ["32GB", "64GB", "DDR4", "DDR5"],
-        # Se houver documento de 2024 falando 64GB e outro de 2014 falando 32GB,
-        # o temporal deve preferir o mais recente. O vanilla pode dar 32GB.
-        "description": "Exige que o RAG temporal use dados mais recentes se disponíveis."
-    },
-    {
-        "id": "TC_TEMPORAL_BIOS_VERSION_RECENCY",
-        "input": "Latest BIOS version for Acer Nitro 5 AN515-58?",
-        "reference_date": "2025-06-01",
-        "test_type": "behavioral",
-        "expected_behavior": "should_not_use_outdated_bios",
-        "forbidden_patterns": [r"v1\.\d+", "2.0", "2020"],
-        "required_patterns": ["not available", "latest", "update"],
-        "pattern_type": "regex",
-        "description": "Não deve citar versões antigas de BIOS se existir documentação recente; se não houver, deve admitir."
-    },
-    {
-        "id": "TC_TEMPORAL_NEW_HARDWARE_2025",
-        "input": "Does the RTX 5060 laptop GPU support PCIe 5.0?",
-        "reference_date": "2025-06-01",
-        "test_type": "behavioral",
-        "expected_behavior": "should_use_internal_knowledge_or_admit_unknown",
-        "required_patterns": ["not available", "no information", "unconfirmed", "likely", "typically"],
-        "forbidden_patterns": ["yes", "no"],
-        "description": "Pergunta sobre hardware muito recente (2025). O RAG deve evitar afirmações categóricas se não houver documento."
-    },
-    {
-        "id": "TC_TEMPORAL_OLD_CONCEPT_NO_PENALTY",
-        "input": "Explain what CPU thermal throttling means.",
-        "reference_date": "2025-06-01",
-        "test_type": "behavioral",
-        "expected_behavior": "should_answer_using_general_knowledge_regardless_of_date",
-        "required_patterns": ["temperature", "reduce", "clock", "frequency"],
-        "min_required_matches": 2,
-        "description": "Conceito atemporal; o RAG temporal não deve penalizar documentos antigos a ponto de não conseguir responder."
-    },
-    {
-        "id": "TC_TEMPORAL_COMPARE_OLD_VS_NEW",
-        "input": "Compare battery life of Dell XPS 15 9500 (2020 model) vs Dell XPS 15 9530 (2023 model).",
-        "reference_date": "2025-06-01",
-        "test_type": "behavioral",
-        "expected_behavior": "should_use_appropriate_dates_for_each",
-        "required_patterns": ["2020", "2023", "battery", "hours"],
-        "forbidden_patterns": ["same", "identical"],
-        "description": "Deve usar documentos de épocas diferentes sem confundir as especificações."
-    },
-    {
-        "id": "TC_TEMPORAL_FUTURE_DATE_2026",
-        "input": "What is the default TDP of Intel Core Ultra 9 285H?",
-        "reference_date": "2026-06-01",
-        "test_type": "behavioral",
-        "expected_behavior": "should_not_invent_specs_for_future",
-        "required_patterns": ["not available", "no information", "cannot confirm", "as of now"],
-        "forbidden_patterns": ["45W", "65W", "125W", "TDP"],
-        "description": "Pergunta sobre CPU que pode não ter sido lançada até 2026; o RAG deve evitar especular."
-    },
-    {
-        "id": "TC_TEMPORAL_OLDER_SKU_STILL_VALID",
-        "input": "How to upgrade RAM on Lenovo Legion 5 15ACH6 (2021 model)?",
-        "reference_date": "2025-06-01",
-        "test_type": "behavioral",
-        "expected_behavior": "should_use_old_doc_and_not_penalize_too_much",
-        "required_patterns": ["SODIMM", "DDR4", "remove", "install", "upgrade"],
-        "description": "SKU antigo mas pergunta de upgrade (informação ainda válida). O RAG temporal deve usar o documento antigo mesmo com penalidade leve."
-    },
-    {
-        "id": "TC_TEMPORAL_CLEAN_NO_AUDIT_TAGS",
-        "input": "What is the maximum supported storage for HP Victus 16-e0055dx?",
-        "reference_date": "2025-06-01",
-        "test_type": "behavioral",
-        "expected_behavior": "should_output_clean_text_without_tags_or_audit_blocks",
-        "forbidden_patterns": ["AUDIT:", "ANSWER:", "\\[RAG:", "\\[INTERNAL:", "\\[SOURCE"],
-        "description": "A resposta final não pode conter blocos de auditoria ou tags de sistema – apenas texto limpo (para ambos RAGs)."
-    }
-]
 
-# Adicionar ao BEHAVIORAL_TEST_SUITE existente
-BEHAVIORAL_TEST_SUITE.extend(TEMPORAL_TEST_SUITE)
 
 # ============================================================================
 # DATASET COMPLETO (FUSÃO)
 # ============================================================================
 
-TEST_SUITE = TRADITIONAL_TEST_SUITE + BEHAVIORAL_TEST_SUITE
+TEST_SUITE = TRADITIONAL_TEST_SUITE + BEHAVIORAL_TEST_SUITE + CHRONOQA_TEMPORAL_SUITE
 
 # Para compatibilidade com código existente, mantemos o nome original
 # mas adicionamos metadados para diferenciar os tipos
 
+def get_temporal_tests():
+    return [t for t in TEST_SUITE if t.get("test_type") == "temporal"]
 
 def get_traditional_tests():
     """Retorna apenas os testes tradicionais (DeepEval metrics)."""
