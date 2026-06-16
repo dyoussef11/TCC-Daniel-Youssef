@@ -264,7 +264,29 @@ CHRONOQA_TEMPORAL_SUITE = [
 ]
 
 
+# TRADITIONAL_TEST_SUITE = [
+#     {
+#         "id": "TC_STATIC_01",
+#         "input": "What is the maximum RAM capacity for the Acer Nitro 5 AN515-58?",
+#         "expected_output": "Acer Nitro 5 AN515-58 supports up to 32GB DDR4 3200MHz RAM.",
+#         "expected_context": ["Acer Nitro 5 AN515-58: Memory support up to 32GB DDR4-3200"],
+#         "test_type": "traditional",
+#         "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+#     },
+#     {
+#         "id": "TC_STATIC_02",
+#         "input": "How many M.2 SSD slots does the Acer Nitro 5 AN515-58 have?",
+#         "expected_output": "This model features two M.2 SSD slots and one 2.5-inch SATA HDD bay.",
+#         "expected_context": ["2x M.2 PCIe NVMe slots and 1x 2.5\" SATA slot"],
+#         "test_type": "traditional",
+#         "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+#     },
+# ]
+
 TRADITIONAL_TEST_SUITE = [
+    # ========================================================================
+    # CASOS ORIGINAIS (mantidos)
+    # ========================================================================
     {
         "id": "TC_STATIC_01",
         "input": "What is the maximum RAM capacity for the Acer Nitro 5 AN515-58?",
@@ -278,6 +300,174 @@ TRADITIONAL_TEST_SUITE = [
         "input": "How many M.2 SSD slots does the Acer Nitro 5 AN515-58 have?",
         "expected_output": "This model features two M.2 SSD slots and one 2.5-inch SATA HDD bay.",
         "expected_context": ["2x M.2 PCIe NVMe slots and 1x 2.5\" SATA slot"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+
+    # ========================================================================
+    # NOVOS CASOS – DELL
+    # ========================================================================
+    {
+        "id": "TC_STATIC_03",
+        "input": "What is the maximum RAM capacity for the Dell G15 5530?",
+        "expected_output": "Dell G15 5530 supports up to 64GB DDR5 RAM.",
+        "expected_context": ["Dell G15 5530: Memory support up to 64GB DDR5"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_04",
+        "input": "What processor does the Dell G16 7630 have?",
+        "expected_output": "Dell G16 7630 is powered by a 13th Gen Intel Core i9 processor.",
+        "expected_context": ["Dell G16 7630: 13th Gen Intel Core i9"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_05",
+        "input": "What is the default graphics card in the Dell G15 5530?",
+        "expected_output": "Dell G15 5530 comes with NVIDIA GeForce RTX 4060 with 8GB GDDR6.",
+        "expected_context": ["Dell G15 5530: NVIDIA RTX 4060 8GB"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+
+    # ========================================================================
+    # NOVOS CASOS – LENOVO
+    # ========================================================================
+    {
+        "id": "TC_STATIC_06",
+        "input": "What is the maximum storage configuration for the Lenovo LOQ 15IRX9?",
+        "expected_output": "Lenovo LOQ 15IRX9 supports up to 2TB PCIe SSD storage.",
+        "expected_context": ["Lenovo LOQ 15IRX9: 2TB SSD storage"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_07",
+        "input": "How many RAM slots does the Lenovo Legion 5 15ACH6A have?",
+        "expected_output": "Lenovo Legion 5 15ACH6A has 2 DDR4 SO-DIMM slots (up to 64GB).",
+        "expected_context": ["Legion 5 15ACH6A: 2x DDR4 slots, max 64GB"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_08",
+        "input": "What processor does the Lenovo Legion Pro 7 16IRX9 have?",
+        "expected_output": "Lenovo Legion Pro 7 16IRX9 features an Intel Core i9-14900HX processor.",
+        "expected_context": ["Legion Pro 7 16IRX9: Intel Core i9-14900HX"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+
+    # ========================================================================
+    # NOVOS CASOS – HP
+    # ========================================================================
+    {
+        "id": "TC_STATIC_09",
+        "input": "What is the maximum RAM capacity for the HP Victus 15-fa1066tx?",
+        "expected_output": "HP Victus 15-fa1066tx supports up to 32GB DDR4-3200 RAM.",
+        "expected_context": ["HP Victus 15-fa1066tx: Memory up to 32GB DDR4"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_10",
+        "input": "What GPU is available in the HP Omen 16-k0370tx?",
+        "expected_output": "HP Omen 16-k0370tx is equipped with NVIDIA GeForce RTX 4060 (8GB).",
+        "expected_context": ["Omen 16-k0370tx: NVIDIA RTX 4060 8GB"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_11",
+        "input": "How many M.2 SSD slots does the HP Pavilion 15-eg3018tu have?",
+        "expected_output": "HP Pavilion 15-eg3018tu has two M.2 PCIe NVMe slots.",
+        "expected_context": ["Pavilion 15-eg3018tu: 2x M.2 PCIe slots"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+
+    # ========================================================================
+    # NOVOS CASOS – ASUS
+    # ========================================================================
+    {
+        "id": "TC_STATIC_12",
+        "input": "What processor does the ASUS TUF Gaming F15 FX507ZV have?",
+        "expected_output": "ASUS TUF Gaming F15 FX507ZV is powered by an Intel Core i7-12700H.",
+        "expected_context": ["FX507ZV: Intel Core i7-12700H"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_13",
+        "input": "What is the maximum RAM capacity for the ASUS ROG Zephyrus G14 GA402XV?",
+        "expected_output": "ASUS ROG Zephyrus G14 GA402XV supports up to 32GB DDR5 (soldered + slot).",
+        "expected_context": ["GA402XV: 32GB DDR5 memory (8GB soldered + slot)"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_14",
+        "input": "What GPU does the ASUS Vivobook 16X K3605ZF have?",
+        "expected_output": "ASUS Vivobook 16X K3605ZF features an NVIDIA GeForce RTX 2050.",
+        "expected_context": ["K3605ZF: NVIDIA RTX 2050"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+
+    # ========================================================================
+    # NOVOS CASOS – MSI
+    # ========================================================================
+    {
+        "id": "TC_STATIC_15",
+        "input": "What is the storage configuration for the MSI Katana 15 B13UDXK?",
+        "expected_output": "MSI Katana 15 B13UDXK supports up to 1TB NVMe SSD (dual M.2 slots).",
+        "expected_context": ["Katana 15 B13UDXK: 2x M.2 slots, supports 1TB SSD"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_16",
+        "input": "How many RAM slots does the MSI Sword 16 HX have?",
+        "expected_output": "MSI Sword 16 HX has two DDR5 SO-DIMM slots (up to 64GB).",
+        "expected_context": ["Sword 16 HX: 2x DDR5 slots, max 64GB"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_17",
+        "input": "What processor does the MSI Stealth 14 Studio AI have?",
+        "expected_output": "MSI Stealth 14 Studio AI is equipped with an Intel Core Ultra 7 155H.",
+        "expected_context": ["Stealth 14 Studio AI: Intel Core Ultra 7 155H"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+
+    # ========================================================================
+    # NOVOS CASOS – OUTROS (Acer, HP, etc.)
+    # ========================================================================
+    {
+        "id": "TC_STATIC_18",
+        "input": "What is the maximum RAM capacity for the Acer Predator Helios Neo 16 PHN16-71?",
+        "expected_output": "Acer Predator Helios Neo 16 PHN16-71 supports up to 32GB DDR5.",
+        "expected_context": ["PHN16-71: 32GB DDR5 memory"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_19",
+        "input": "What GPU does the Lenovo LOQ 15IRX9 have?",
+        "expected_output": "Lenovo LOQ 15IRX9 is equipped with NVIDIA GeForce RTX 4060 (8GB).",
+        "expected_context": ["LOQ 15IRX9: NVIDIA RTX 4060 8GB"],
+        "test_type": "traditional",
+        "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
+    },
+    {
+        "id": "TC_STATIC_20",
+        "input": "How many USB ports does the HP Spectre x360 14 have?",
+        "expected_output": "HP Spectre x360 14 features 2x Thunderbolt 4 and 1x USB-A 3.1 port.",
+        "expected_context": ["Spectre x360 14: 2x Thunderbolt 4, 1x USB-A"],
         "test_type": "traditional",
         "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
     },
@@ -543,7 +733,7 @@ BEHAVIORAL_TEST_SUITE = [
 # ============================================================================
 
 TEST_SUITE = TRADITIONAL_TEST_SUITE + BEHAVIORAL_TEST_SUITE + CHRONOQA_TEMPORAL_SUITE
-
+print(len(TEST_SUITE))
 # Para compatibilidade com código existente, mantemos o nome original
 # mas adicionamos metadados para diferenciar os tipos
 

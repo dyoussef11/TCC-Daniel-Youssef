@@ -59,7 +59,7 @@ class EvalConfig:
     cache_dir: Path = AVALIACAO_DATA / "cache"
     embedding_cache_size: int = 1000
     vanilla_use_expansion: bool = False
-    temporal_use_expansion: bool = True
+    temporal_use_expansion: bool = False
     temporal_variant: str = "V9_HYBRID_MIXED_AUDITOR"
     model_name: str = "phi3.5:latest"
     temperature: float = 0.0
@@ -225,6 +225,11 @@ class ComparativeRAGManager:
         print(f"🔍 Ingerindo {len(TEST_SUITE)} casos de teste nos RAGs Mixed...")
         
         for tc in TEST_SUITE:
+            if "input" not in tc or not tc["input"]:
+                print(f"⚠️ Caso sem 'input': {tc.get('id', 'SEM_ID')}")
+            if "id" not in tc or not tc["id"]:
+                print(f"⚠️ Caso sem 'id': {tc}")
+
             query = tc["input"]
             ref_date = tc.get("reference_date", "2026-03-12")
             
@@ -596,8 +601,9 @@ async def main_queue():
             gc.collect()
 
         if i < len(filtered_combinations):
-            print("⏳ Aguardando 15 segundos para liberar recursos...")
-            await asyncio.sleep(15)
+            temp: int = 60 
+            print("⏳ Aguardando", temp , "segundos para liberar recursos...")
+            await asyncio.sleep(temp)
 
     print("\n🎉 Todas as combinações sem conflito de família foram executadas perfeitamente.")
 

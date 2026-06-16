@@ -1,3 +1,0 @@
-ID,Query,Final_Temp,V1_C_Precision,V8_C_Precision,V1_C_Relevancia,V8_C_Relevancia,V1_C_Recall,V8_C_Recall,V1_Faithfulness,V8_Faithfulness,V1_Answer_Rel,V8_Answer_Rel
-TC_STATIC_01,What is the maximum RAM capacity for the Acer Nitro 5 AN515-56?,57,0.0,1.0,0.0,0.20588235294117646,0.0,1.0,0.5,1.0,0.5,0.0
-TC_STATIC_02,How many M.2 SSD slots does the Acer Nitro 5 AN515-56 have?,69,0.0,1.0,0.0,0.0,0.0,1.0,0.5,0.5,0.3333333333333333,0.5

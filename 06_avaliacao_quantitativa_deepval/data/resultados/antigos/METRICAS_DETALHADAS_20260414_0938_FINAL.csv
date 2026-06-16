@@ -1,2 +1,0 @@
-ID,Query,V1_C_Precision,V8_C_Precision,V1_C_Relevancy,V8_C_Relevancy,V1_C_Recall,V8_C_Recall,V1_Faithfulness,V8_Faithfulness,V1_Answer_Rel,V8_Answer_Rel
-TC_STATIC_01,What is the maximum RAM capacity for the Acer Nitro 5 AN515-56?,0.0,0.0,0.0,0.2857142857142857,0.0,0.4,0.0,0.0,0.0,0.0

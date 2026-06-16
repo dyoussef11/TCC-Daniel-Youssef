@@ -53,16 +53,36 @@ print(f"✅ Dataset carregado: {len(TEST_SUITE)} casos de teste.")
 # -----------------------------------------------------------------------------
 def _sanitize_query(q: str) -> str:
     """
-    Evita bugs de estouro matemático (NaN) no Ollama CPU quebrando sequências
-    numéricas que podem causar divisão por zero no backend.
+    Limpa a query para evitar NaN no BGE-M3.
+    Remove palavras problemáticas, isola SKUs e elimina números soltos.
     """
     import re
-    # Substitui padrões como "G15 5520" por "G15 model 5520"
-    q_clean = re.sub(r'(G15|Nitro 5|Legion 5|Dell G15|Dell G16)\s+(\d{4})', r'\1 model \2', q, flags=re.IGNORECASE)
-    # Substitui "AN515-58" por "AN515 model 58"
-    q_clean = re.sub(r'([A-Z]+\d+)-(\d+)', r'\1 model \2', q_clean)
-    # Substitui "RTX 3060" por "RTX model 3060" (se necessário)
-    q_clean = re.sub(r'(RTX|GTX|AMD|Intel)\s+(\d{4})', r'\1 model \2', q_clean)
+    
+    # 1. Remove palavras que podem causar ambiguidade (comparativos, superlativos, conectivos)
+    remove_words = r'\b(same|identical|equal|maximum|minimum|default|standard|typical|compare|comparison|versus|vs\.?|and slots as|slots as|have|has|does|did|what|which|when|where|why|how|is|are|was|were|for|with|without|from|to|of|the|a|an)\b'
+    q_clean = re.sub(remove_words, ' ', q, flags=re.IGNORECASE)
+    
+    # 2. Substitui padrões de SKU conhecidos (ex: G15 5520 → G15 model 5520)
+    # Inclui marcas comuns do seu dataset
+    sku_patterns = [
+        (r'(G15|Nitro 5|Legion 5|Dell G15|Dell G16|HP Victus|HP Omen|ASUS TUF|ROG Zephyrus|MSI Katana|MSI Sword|Lenovo LOQ|Acer Predator)\s+(\d{4})', r'\1 model \2'),
+        (r'([A-Z]+\d+)-(\d+)', r'\1 model \2'),  # AN515-58 → AN515 model 58
+        (r'(RTX|GTX|AMD|Intel)\s+(\d{4})', r'\1 model \2')
+    ]
+    for pattern, repl in sku_patterns:
+        q_clean = re.sub(pattern, repl, q_clean, flags=re.IGNORECASE)
+    
+    # 3. Remove números isolados (ex: 2024, 2025, 32GB, 512GB, etc.)
+    # Mas preserva números que fazem parte de modelos (já substituídos)
+    q_clean = re.sub(r'\b\d+\b', '', q_clean)
+    
+    # 4. Remove múltiplos espaços e espaços no início/fim
+    q_clean = re.sub(r'\s+', ' ', q_clean).strip()
+    
+    # 5. Se a string ficou vazia, usa fallback
+    if not q_clean:
+        q_clean = "hardware specification query"
+    
     return q_clean
 
 # -----------------------------------------------------------------------------
