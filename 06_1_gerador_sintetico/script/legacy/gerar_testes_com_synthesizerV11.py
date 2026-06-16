@@ -11,7 +11,8 @@ from langchain_core.documents import Document
 from langchain_ollama import OllamaLLM, OllamaEmbeddings
 
 # Importações oficiais do Ragas 0.4.3
-from ragas.testset.synthesizers.generate import TestsetGenerator
+# from ragas.testset.synthesizers.generate import TestsetGenerator
+from ragas.testset import TestsetGenerator
 from ragas.testset.synthesizers.single_hop.specific import SingleHopSpecificQuerySynthesizer
 from ragas.testset.synthesizers.multi_hop import (
     MultiHopAbstractQuerySynthesizer,
@@ -50,20 +51,17 @@ async def gerar_testset_ragas():
     
     # Meta de geração total
     TOTAL_TESTES_DESEJADO = 100
-    TAMANHO_LOTE = 10  # Quantos testes gerar antes de salvar o checkpoint
+    TAMANHO_LOTE = 10  
     
     # 1. Verificar progresso anterior (Checkpoint)
     testes_acumulados = await carregar_testes_existentes(caminho_final_json)
     testes_concluidos = len(testes_acumulados)
     
     if testes_concluidos >= TOTAL_TESTES_DESEJADO:
-        print(f"✅ Geração já concluída anteriormente! {testes_concluidos}/{TOTAL_TESTES_DESEJADO} testes encontrados em: {caminho_final_json}")
+        print(f"✅ Geração já concluída anteriormente! {testes_concluidos}/{TOTAL_TESTES_DESEJADO} testes encontrados.")
         return
 
-    if testes_concluidos > 0:
-        print(f"🔄 Checkpoint encontrado! Retomando a partir de {testes_concluidos} testes salvos.")
-    else:
-        print("🆕 Nenhum checkpoint encontrado. Iniciando geração do zero.")
+    print(f"🔄 Checkpoint: {testes_concluidos}/{TOTAL_TESTES_DESEJADO} concluídos.")
 
     if not dir_entrada.exists():
         raise FileNotFoundError(f"Diretório de entrada não encontrado: {dir_entrada}")
@@ -118,13 +116,14 @@ async def gerar_testset_ragas():
         print("⚠️ Nenhum documento válido extraído.")
         return
 
-    # Amostragem enxuta aleatória para evitar gargalo do grafo interno do Ragas
-    max_docs_para_ragas = min(len(raw_documents), 300)
+    # Amostragem enxuta aleatória para evitar sobrecarga no Grafo
+    max_docs_para_ragas = min(len(raw_documents), 100)
     documents = random.sample(raw_documents, max_docs_para_ragas)
-    print(f"✂️ Utilizando amostragem de {len(documents)} documentos para o grafo.")
+    print(f"✂️ Utilizando amostragem de {len(documents)} documentos.")
 
     # 3. Inicialização dos modelos do Ollama atualizados
-    generator_llm = OllamaLLM(model="granite4.1:8b-q4_K_M", base_url="http://localhost:11434")
+    # generator_llm = OllamaLLM(model="granite4.1:8b-q4_K_M", base_url="http://localhost:11434",temperature=0.1,format='json', )
+    generator_llm = OllamaLLM(model="granite4.1:8b-q4_K_M", base_url="http://localhost:11434",temperature=0.0, format='json')
     generator_embeddings = OllamaEmbeddings(model="bge-m3:latest", base_url="http://localhost:11434")
 
     # 4. Instanciar os Synthesizers com o LLM correto
@@ -138,50 +137,46 @@ async def gerar_testset_ragas():
         (multi_hop_specific, 0.30)
     ]
 
+    # Aproveitando a RTX 3090 com 8 workers paralelos
     config_execucao = RunConfig(
         timeout=240,      
-        max_workers=2     
+        max_workers=8  
     )
 
-    # 5. Inicializar o TestsetGenerator
+    # 5. Inicializar o TestsetGenerator padrão
     print("⚡ Inicializando o TestsetGenerator (Ollama local)...")
-    generator = TestsetGenerator.from_langchain(
-        llm=generator_llm,
-        embedding_model=generator_embeddings
+    
+    generator = TestsetGenerator(
+    llm=generator_llm,
+    embedding_model=generator_embeddings
     )
 
-    # 6. Loop de Geração Incremental (Mecanismo do Checkpoint)
+    # 6. Loop de Geração Incremental
     while testes_concluidos < TOTAL_TESTES_DESEJADO:
         restantes = TOTAL_TESTES_DESEJADO - testes_concluidos
         tamanho_lote_atual = min(TAMANHO_LOTE, restantes)
-        
-        print(f"\n🚀 [Progresso: {testes_concluidos}/{TOTAL_TESTES_DESEJADO}] Iniciando lote com {tamanho_lote_atual} testes...")
+        docs_do_lote = random.sample(raw_documents, min(len(raw_documents), tamanho_lote_atual * 2))
+        print(f"\n🚀 [Progresso: {testes_concluidos}/{TOTAL_TESTES_DESEJADO}] Gerando lote de {tamanho_lote_atual} perguntas...")
         
         try:
-            # Gera apenas a fração do lote atual
+            # SEM o argumento 'transforms' aqui
             testset_lote = generator.generate_with_langchain_docs(
-                documents=documents,
+                documents=docs_do_lote,
                 testset_size=tamanho_lote_atual,
                 query_distribution=query_dist,
                 run_config=config_execucao
             )
-            
-            # Converte a fatia gerada para DataFrame
             df_lote = testset_lote.to_pandas()
-            
-            # Salva o progresso imediatamente no arquivo
             salvar_checkpoint(caminho_final_json, df_lote, testes_acumulados)
             
-            # Atualiza o estado da memória do loop
             testes_acumulados = await carregar_testes_existentes(caminho_final_json)
             testes_concluidos = len(testes_acumulados)
             
         except Exception as e:
-            print(f"❌ Ocorreu um erro durante a execução do lote: {e}")
-            print("⚠️ O script foi interrompido, mas o progresso dos lotes anteriores está salvo com segurança!")
+            print(f"❌ Erro durante a execução do lote: {e}")
             return
 
-    print(f"\n🎉 Concluído com sucesso! O arquivo final completo está pronto em: {caminho_final_json}")
+    print(f"\n🎉 Concluído com sucesso! Arquivo final pronto em: {caminho_final_json}")
 
 if __name__ == "__main__":
     asyncio.run(gerar_testset_ragas())
