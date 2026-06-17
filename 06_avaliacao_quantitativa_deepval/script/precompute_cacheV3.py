@@ -16,7 +16,7 @@ from ollama import Client, ResponseError
 # -----------------------------------------------------------------------------
 # Carrega dinamicamente o módulo do avaliador (mesma pasta)
 # -----------------------------------------------------------------------------
-AVALIADOR_PATH = Path(__file__).parent / "evaluate_deepval_unified_comparative_V8.py"
+AVALIADOR_PATH = Path(__file__).parent / "evaluate_deepval_unified_comparative_Repete_N_Modelos_10Vezes.py"
 if not AVALIADOR_PATH.exists():
     # Tenta a versão V8.1 se existir
     AVALIADOR_PATH = Path(__file__).parent / "evaluate_deepval_unified_comparative_V8.1.py"
