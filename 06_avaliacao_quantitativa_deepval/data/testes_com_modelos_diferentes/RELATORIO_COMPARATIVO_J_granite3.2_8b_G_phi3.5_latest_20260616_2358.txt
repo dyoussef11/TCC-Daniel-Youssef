@@ -1,0 +1,1085 @@
+==========================================================================================
+RELATÓRIO QUANTITATIVO COMPARATIVO DE CORRIDA NATIVA (DEEPEVAL) - 20260616_2358
+==========================================================================================
+Modelo Avaliador (Juiz): granite3.2:8b
+Modelo Base RAG (Gerador): phi3.5:latest
+Total Casos Teste: 54 (Tradicionais: 20 | Comportamentais: 14 | Temporais: 20)
+------------------------------------------------------------------------------------------
+
+▶️ ID: TC_STATIC_01 | Tipo: TRADITIONAL
+ 💬 Query: What is the maximum RAM capacity for the Acer Nitro 5 AN515-58?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Acer Nitro 5 AN515-58? Once I have that information, I can give you accurate details about its maximum RAM capacity based on either external documentation or general knowledge. Typically, gaming laptops like yours often support up to 32GB of RAM for better performance in demanding tasks such as gaming and multitasking. However, the exact specification would require confirmation from the specific model details you provide.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the actual output refers to model AN515-58, which contradicts the retrieval context that discusses model AN515-45.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response does not provide specific information about the maximum RAM capacity for the Acer Nitro 5 AN515-58, instead it requests the model number.
+      ├── Contextual_Relevancy: 0.46 | Reason: The score is 0.46 because the retrieval context lacks direct and explicit information about the maximum RAM capacity for the Acer Nitro 5 AN515-58. While it mentions that the laptop supports up to 32GB of RAM, these statements are not presented as factual data but rather as general observations or recommendations. The context does not provide a clear, direct answer to the query about maximum capacity.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because all relevant nodes (1-5) are ranked higher than irrelevant nodes, if any. Each node provides clear and consistent information about the maximum RAM capacity of the Acer Nitro 5 AN515-58, ranging from direct statements to indirect implications based on upgrade discussions. No lower-ranked nodes with conflicting or missing data were found.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output directly states a specific RAM capacity for Acer Nitro 5 AN515-58, which aligns with information from the first node in the retrieval context. However, the score is not 1 due to the indirect inference required for understanding the full range of supported RAM upgrades, as hinted at in subsequent nodes.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for the specific model number (SKU) Acer Nitro 5 AN515-58's maximum RAM capacity. Generally speaking, many gaming laptops like yours can support up to 32GB of DDR4 SO-DIMM memory when dual channel is utilized effectively. However, for the most accurate information regarding your particular model and its capabilities, please provide your specific laptop SKU or consult the manufacturer's official resources directly.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output does not explicitly state that no external documentation was found for the specific SKU Acer Nitro 5 AN515-58, instead it assumes similar specifications based on a shared model name.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response does not provide information about the maximum RAM capacity for the specific model Acer Nitro 5 AN515-58, and explicitly mentions that no specific information was found for this model.
+      ├── Contextual_Relevancy: 0.46 | Reason: The score is 0.46 because the retrieval context lacks direct and explicit information about the maximum RAM capacity for the Acer Nitro 5 AN515-58. While it mentions that the laptop supports up to 32GB of RAM, these statements are not presented as factual data but rather as general observations or recommendations. The context does not provide a clear, direct answer to the query about maximum capacity.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because all relevant nodes (1-5) are ranked higher than irrelevant nodes, if any. Each node provides clear and consistent information about the maximum RAM capacity of the Acer Nitro 5 AN515-58, ranging from direct statements to indirect implications based on upgrade discussions. No lower-ranked nodes with conflicting or missing data were found.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output directly states a specific RAM capacity for Acer Nitro 5 AN515-58, which aligns with information from the first node in the retrieval context. However, the score is not 1 due to the indirect inference required for understanding the full range of supported RAM upgrades, as hinted at in subsequent nodes.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_02 | Tipo: TRADITIONAL
+ 💬 Query: How many M.2 SSD slots does the Acer Nitro 5 AN515-58 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Acer Nitro 5 AN515-58 laptop? Typically, models like these have multiple M.2 SSD slots for upgrades, but I need the exact details to give an accurate answer based on either external documentation or general knowledge about similar configurations in this series.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 1.00 | Reason: The score is 1.00 because there are no contradictions found between the actual output and the retrieval context.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.5 because the response lacks specific information about the number of M.2 SSD slots in the Acer Nitro 5 AN515-58 model, only mentioning 'multiple' without further detail.
+      ├── Contextual_Relevancy: 0.33 | Reason: The score is 0.33 because the retrieval context lacks specific information about the number of M.2 SSD slots in the Acer Nitro 5 AN515-58 model. While it mentions that some Acer Nitro 5 models have multiple M.2 slots, it does not provide details for the exact AN515-58 variant. Furthermore, one statement explicitly states that this specific model does not support NVMe SSDs in its M.2 slots, implying it has M.2 SATA SSD slots instead, but does not specify the quantity.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (with 'yes' verdicts) explicitly state that the Acer Nitro 5 AN515-45 and another model have two M.2 SSD slots each, ranking higher than irrelevant nodes. The irrelevant nodes lack specific information about the number of M.2 SSD slots or discuss different models.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the response accurately captures the essential details from the retrieval context, specifically mentioning the two M.2 SSD slots and one 2.5-inch SATA HDD bay as described in the nodes.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The Acer Nitro 5 AN515-58 has multiple M.2 slots; however, there seems to be an issue with the second slot only supporting up to a 3x4 configuration instead of full NVMe support. To resolve this, ensure that your Crucial P3 SSD is correctly initialized in Windows Disk Management and verify that the M.2 SSD is properly seated and securely attached in its designated slot. For specific model numbers or further detailed solutions not covered by these documents, please provide your exact laptop's SKU for more accurate information.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the actual output contradicts the retrieval context by stating that the Acer Nitro 5 (AN515-58) supports NVMe SSDs in its M.2 slots, while the context clearly mentions it only supports M.2 SATA SSDs and does not support NVMe.
+      ├── Answer_Relevancy: 0.60 | Reason: The score is 0.60 because the response provides specific information about the number of M.2 SSD slots, which is relevant to the query. However, it also includes a general instruction for proper SSD installation, making it less focused on the exact number of slots and thus slightly lowering the relevancy score.
+      ├── Contextual_Relevancy: 0.33 | Reason: The score is 0.33 because the retrieval context lacks specific information about the number of M.2 SSD slots in the Acer Nitro 5 AN515-58 model. While it mentions that some Acer Nitro 5 models have multiple M.2 slots, it does not provide details for the exact AN515-58 variant. Furthermore, one statement explicitly states that this specific model does not support NVMe SSDs in its M.2 slots, implying it has M.2 SATA SSD slots instead, but does not specify the quantity.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (with 'yes' verdicts) explicitly state that the Acer Nitro 5 AN515-45 and another model have two M.2 SSD slots each, ranking higher than irrelevant nodes. The irrelevant nodes lack specific information about the number of M.2 SSD slots or discuss different models.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the response accurately captures the essential details from the retrieval context, specifically mentioning the two M.2 SSD slots and one 2.5-inch SATA HDD bay as described in the nodes.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_03 | Tipo: TRADITIONAL
+ 💬 Query: What is the maximum RAM capacity for the Dell G15 5530?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I don't have specific information on the Dell G15 5530 in my external context as of your reference date. To provide accurate details regarding its maximum RAM capacity, could you please provide the specific model number (SKU) for this laptop? Based on general knowledge and typical configurations within similar models from Dell laptops with Intel processors, they often support up to 16GB or sometimes slightly more if using compatible high-speed DDR4 memory. However, without the exact SKU information or manufacturer's documentation, I cannot provide a precise answer for your query. Please verify this by checking the user manual of your Dell G15 5530 or contacting Dell directly to get accurate specifications.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the actual output lacks specific information about the Dell G15 5530 model, making it impossible to verify against the provided context.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.50 because the response does not provide specific information about the Dell G15 5530's maximum RAM capacity, adhering to the critical rule that requires specific SKU queries with missing external documentation to explicitly state this lack of information before providing fallback data.
+      ├── Contextual_Relevancy: 0.07 | Reason: The score is 0.07 because the retrieval context lacks direct information about the maximum RAM capacity for the Dell G15 5530. While it mentions a user's attempt to set RAM from 8GB to 96GB and system support for 96GB, it does not explicitly state or imply the maximum capacity. The relevant statement 'Users report improved performance with RAM upgrade from 8GB to 16GB in dual channel configuration.' discusses an upgrade scenario rather than specifying the maximum capacity.
+      ├── Contextual_Precision: 0.00 | Reason: The score is 0.00 because, although some nodes suggest the Dell G15 5530 supports more than 8GB (rank 2), none explicitly state the maximum RAM capacity. The first node (rank 1) even implies potential for more than 16GB due to dual-channel configuration, but it doesn't provide a definitive number. All 'no' verdicts lack clear boundaries on the laptop's maximum RAM, making it impossible to accurately compare or confirm the highest supported capacity.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the retrieval context does not explicitly mention support for 64GB DDR5 RAM, only implying support for at least 16GB.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Dell G15 5530 specifically regarding its maximum RAM capacity. Generally speaking, based on similar models and common laptop specifications around that time period, a high-end gaming laptop like the Dell G15 could support up to 64GB or even more with compatible DDR4 memory in dual-channel configuration for optimal performance. However, it's crucial to check the user manual or consult directly with Dell as specific models may vary. For your particular model and system requirements, verifying this information through official channels would provide accurate guidance.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.33 | Reason: The score is 0.33 because the actual output contradicts the retrieval context in two ways. Firstly, it claims that no official documentation was found for Dell G15 5530 regarding its maximum RAM capacity, but the retrieval context does not provide information about this specific model (G15 5530), making it impossible to confirm or deny this claim based on available data. Secondly, while the actual output suggests that a high-end gaming laptop like Dell G15 could support up to 64GB or more with compatible DDR4 memory in dual-channel configuration, the retrieval context does mention potential RAM upgrades improving performance but does not specify the maximum capacity for the Dell G15.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response explicitly mentions that no official documentation was found for Dell G15 5530 specifically regarding its maximum RAM capacity, emphasizing the importance of checking official channels for accurate information and indicating that no definitive answer is provided in this context.
+      ├── Contextual_Relevancy: 0.07 | Reason: The score is 0.07 because the retrieval context lacks direct information about the maximum RAM capacity for the Dell G15 5530. While it mentions a user's attempt to set RAM from 8GB to 96GB and system support for 96GB, it does not explicitly state or imply the maximum capacity. The relevant statement 'Users report improved performance with RAM upgrade from 8GB to 16GB in dual channel configuration.' discusses an upgrade scenario rather than specifying the maximum capacity.
+      ├── Contextual_Precision: 0.00 | Reason: The score is 0.00 because, although some nodes suggest the Dell G15 5530 supports more than 8GB (rank 2), none explicitly state the maximum RAM capacity. The first node (rank 1) even implies potential for more than 16GB due to dual-channel configuration, but it doesn't provide a definitive number. All 'no' verdicts lack clear boundaries on the laptop's maximum RAM, making it impossible to accurately compare or confirm the highest supported capacity.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the retrieval context does not explicitly mention support for 64GB DDR5 RAM, only implying support for at least 16GB.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_04 | Tipo: TRADITIONAL
+ 💬 Query: What processor does the Dell G16 7630 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of the Dell G16 laptop you are referring to? Based on general knowledge that it is likely similar in configuration within its series and considering typical configurations for gaming laptops, a common setup might include an Intel Core i7 or AMD Ryzen processor. However, I need the exact model details to give you precise information regarding your Dell G16's processor specifications.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output lacks specific model details for the Dell G16, leading to incomplete processor specifications.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response lacks specific information about the Dell G16's processor due to missing model details in the input.
+      ├── Contextual_Relevancy: 0.30 | Reason: The score is 0.30 because the retrieval context primarily focused on laptop comparisons and recommendations, lacking specific details about the processor of the Dell G16 7630. It mentioned 'Choose the Dell G16 for better CPU performance when plugged in and overall gaming performance (~20% better)', but did not provide the exact processor model. The context also discussed other laptops like Lenovo, ASUS ROG Zephyrus G16, and their respective processors, without any information about the Dell G16 7630's processor.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant node (verdict: yes) directly answers the query about the processor of Dell G16 7630 with specific information ('13th Gen Intel Core i9'). The irrelevant node (verdict: no) lacks external documentation for this specific SKU, relying on fallback information. Despite this, it's ranked lower due to its reliance on generalized data rather than precise specifications.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output mentions a specific SKU (Dell G16 7630) and its processor details, which are not explicitly provided in the retrieval context.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The Dell G16 7630 is equipped with an Intel Core i5-13th Generation processor model number 13450HX. This information was gathered from a discussion on March 2026, where users compared the technical specifications of various gaming laptops including the Dell G16 and Lenovo Legion Slim 5 Gen 9 models. For more detailed solutions or comparisons involving other SKUs not explicitly mentioned in this context, please provide your specific model number (SKU).
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.00 | Reason: The score is 0.00 because the actual output includes a specific processor model (Intel Core i5-13th Generation processor model number 13450HX) for Dell G16, which contradicts the retrieval context as it does not provide information about the specific processor model.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.50 because the response provides some relevant information about the Dell G16 7630's processor model, but it also includes irrelevant details about comparing different gaming laptops. This deviates from directly addressing the query for specific processor type.
+      ├── Contextual_Relevancy: 0.30 | Reason: The score is 0.30 because the retrieval context primarily focused on laptop comparisons and recommendations, lacking specific details about the processor of the Dell G16 7630. It mentioned 'Choose the Dell G16 for better CPU performance when plugged in and overall gaming performance (~20% better)', but did not provide the exact processor model. The context also discussed other laptops like Lenovo, ASUS ROG Zephyrus G16, and their respective processors, without any information about the Dell G16 7630's processor.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant node (verdict: yes) directly answers the query about the processor of Dell G16 7630 with specific information ('13th Gen Intel Core i9'). The irrelevant node (verdict: no) lacks external documentation for this specific SKU, relying on fallback information. Despite this, it's ranked lower due to its reliance on generalized data rather than precise specifications.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output mentions a specific SKU (Dell G16 7630) and its processor details, which are not explicitly provided in the retrieval context.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_05 | Tipo: TRADITIONAL
+ 💬 Query: What is the default graphics card in the Dell G15 5530?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   It seems you're asking about the default graphics card in your Dell G15 model (Dell G15 5530), but I don't have specific details from external documents for this exact SKU or series query. To provide accurate information, could you please confirm the specific model number of your laptop? Generally speaking, based on similar configurations in recent years, Dell laptops with Intel processors often come with integrated graphics unless they are specifically configured to include a discrete NVIDIA GPU for better gaming performance. However, without the exact SKU or internal knowledge about this particular series and model year of your laptop, I'm unable to provide precise details on its default setup. Typically, if you want enhanced graphical capabilities beyond what integrated graphics can offer, especially for games like Destiny 2 mentioned in Source_1, Dell might have included an NVIDIA discrete card such as the GeForce RTX series or AMD's Radeon lineup with sufficient storage and RAM. Please verify this by checking your laptop specifications directly through its documentation or system information tools for a definitive answer.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.75 | Reason: The score is 0.75 because the actual output lacks specific details about the Dell G15 model, only mentioning a 13th Gen Intel Core i5 and 16GB RAM. This contradicts the claim that without the exact SKU, it's impossible to provide precise details on its default setup.
+      ├── Answer_Relevancy: 0.75 | Reason: The score is 0.75 because the response explicitly states that specific details for the Dell G15 5530 model's default graphics card are not available from external documents, which aligns with the critical rule 1.
+      ├── Contextual_Relevancy: 0.36 | Reason: The score is 0.36 because the retrieval context lacks direct information about the default graphics card in the Dell G15 5530. While it mentions the NVIDIA GeForce RTX 3060, this is presented as a user-selected configuration rather than a default setting. The context primarily discusses issues and potential upgrades related to the graphics card, not its default state in the specified model.
+      ├── Contextual_Precision: 0.00 | Reason: The score is 0.00 because the relevant nodes (with 'yes' verdicts) are missing, and irrelevant nodes (with 'no' verdicts) are ranked higher due to lack of explicit default configuration statements in the provided contexts. The contexts discuss graphics card models but do not confirm if they're the default configurations for Dell G15 5530.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the retrieval context mentions a Dell G15 with an NVIDIA GeForce RTX graphics card, but it's not specified as the RTX 4060 model. Additionally, there's no explicit mention of 8GB GDDR6 memory.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for the specific model number (SKU) of Dell G15 5530's default graphics card. Based on general hardware architectures and similar configurations from retrieved context, it is likely that your Dell G15 may come with an integrated Intel UHD Graphics or a discrete NVIDIA GeForce graphics solution like the RTX series if upgraded. To confirm this for your specific model, please check the BIOS settings by pressing F2 key immediately after powering on the laptop or consult the user manual of Dell G15 5530.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output contradicts the retrieval context by stating no official documentation was found for the Dell G15 5530's default graphics card, while the context implies its existence and suggests an upgrade to a more powerful model.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.50 because the response explicitly mentions that no official documentation was found for the specific model number (SKU) of Dell G15 5530's default graphics card, and suggests consulting the user manual, implying no direct answer was found.
+      ├── Contextual_Relevancy: 0.36 | Reason: The score is 0.36 because the retrieval context lacks direct information about the default graphics card in the Dell G15 5530. While it mentions the NVIDIA GeForce RTX 3060, this is presented as a user-selected configuration rather than a default setting. The context primarily discusses issues and potential upgrades related to the graphics card, not its default state in the specified model.
+      ├── Contextual_Precision: 0.00 | Reason: The score is 0.00 because the relevant nodes (with 'yes' verdicts) are missing, and irrelevant nodes (with 'no' verdicts) are ranked higher due to lack of explicit default configuration statements in the provided contexts. The contexts discuss graphics card models but do not confirm if they're the default configurations for Dell G15 5530.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the retrieval context mentions a Dell G15 with an NVIDIA GeForce RTX graphics card, but it's not specified as the RTX 4060 model. Additionally, there's no explicit mention of 8GB GDDR6 memory.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_06 | Tipo: TRADITIONAL
+ 💬 Query: What is the maximum storage configuration for the Lenovo LOQ 15IRX9?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   To find out the maximum storage configuration for your Lenovo LOQ 15IRX9, please refer to the device manual as it should provide specific details on supported SSD sizes and configurations. If you do not have access to the manual or need further assistance, I can offer general guidance based on typical laptop standards:
+
+Many modern laptops support M.2 NVMe SSDs in their expansion slots for additional storage capacity. These often come in various capacities such as 256GB, 512GB, and up to several TB depending on the slot's specifications (e.g., dual-sided or single-ended). For high-capacity needs like yours, it is common for laptops with M.2 slots to support SSD configurations of around 2TB when using two compatible sized drives in both available slots.
+
+However, since I don't have the specific details from external sources or internal knowledge about this particular model and its exact capabilities post-manufacturer updates (as my training cutoff is in 2024), it would be best to consult Lenovo directly through their official support channels for precise information on your laptop. They can provide you with up-to-date specifications regarding the maximum storage configuration supported by your device, including any potential compatibility issues or requirements related to SSD expansion.
+
+Alternatively, if you have access to online resources such as user manuals from Lenovo's website for similar models like yours (Lenovo LOQ 15IRX9), those documents might contain the exact details needed:
+
+```
+Could you provide the specific model number (SKU) of your Lenovo laptop? This would help me give a more accurate answer regarding its maximum storage configuration.
+```
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the actual output lacks explicit information about the maximum storage configuration supported by Lenovo LOQ 15IRX9, despite mentioning available SSD expansion slots supporting dual-sided 2280 and 2242 SSDs.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.50 because the response correctly identifies that no specific storage configuration details for the Lenovo LOQ 15IRX9 are provided in the output, instead suggesting to consult external sources or Lenovo's official support channels. However, it does not fully address the query by providing the requested information directly.
+      ├── Contextual_Relevancy: 0.14 | Reason: The score is 0.14 because the retrieval context lacks specific details about the maximum storage configuration for Lenovo LOQ 15IRX9. While it mentions 'Device has 512 GB to 1 TB M.2 SSD Storage', this range does not provide a definitive maximum value. The context also discusses available SSD expansion slots but does not specify how much additional storage these can accommodate, nor does it detail any potential maximum configuration beyond the base model.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because all relevant nodes (with 'yes' verdicts) directly or implicitly provide the maximum storage configuration for the Lenovo LOQ 15IRX9. The first node explicitly states that it supports up to 2TB PCIe SSD storage, while the second node implies a supported 1TB TLC SSD configuration through contextual clues. In contrast, the only 'no' verdict node lacks explicit mention of maximum storage capacity, focusing instead on upgrade suggestions rather than definitive specifications.
+      ├── Contextual_Recall: 0.00 | Reason: The score is 0.00 because the retrieval context does not explicitly mention 2TB PCIe SSD storage for Lenovo LOQ 15IRX9, only up to 1TB M.2 SSD storage.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The Lenovo LOQ 15IRX9 supports up to 2TB of storage using M.2 SSDs in its expansion slots. To confirm the specific sizes and compatibility, please refer to your device manual as it typically details supported SSD dimensions for each slot type (M.2). If you're unsure about technical aspects like BIOS version or fan speed customization, tools such as Lenovo Vantage can be used if available on your system running Windows 11.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output lacks explicit confirmation about the Lenovo LOQ 15IRX9's support for up to 2TB M.2 SSDs in its expansion slots, despite the retrieval context mentioning sufficient storage capacity and potential upgrade to 2TB.
+      ├── Answer_Relevancy: 0.67 | Reason: The score is 0.67 because the response provides a relevant answer but includes additional, unnecessary information about accessing storage details in the device manual. This detracts from the direct relevance to the query about maximum storage configuration.
+      ├── Contextual_Relevancy: 0.14 | Reason: The score is 0.14 because the retrieval context lacks specific details about the maximum storage configuration for Lenovo LOQ 15IRX9. While it mentions 'Device has 512 GB to 1 TB M.2 SSD Storage', this range does not provide a definitive maximum value. The context also discusses available SSD expansion slots but does not specify how much additional storage these can accommodate, nor does it detail any potential maximum configuration beyond the base model.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because all relevant nodes (with 'yes' verdicts) directly or implicitly provide the maximum storage configuration for the Lenovo LOQ 15IRX9. The first node explicitly states that it supports up to 2TB PCIe SSD storage, while the second node implies a supported 1TB TLC SSD configuration through contextual clues. In contrast, the only 'no' verdict node lacks explicit mention of maximum storage capacity, focusing instead on upgrade suggestions rather than definitive specifications.
+      ├── Contextual_Recall: 0.00 | Reason: The score is 0.00 because the retrieval context does not explicitly mention 2TB PCIe SSD storage for Lenovo LOQ 15IRX9, only up to 1TB M.2 SSD storage.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_07 | Tipo: TRADITIONAL
+ 💬 Query: How many RAM slots does the Lenovo Legion 5 15ACH6A have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Lenovo Legion 5? Generally speaking, I can tell you that many modern laptops have two RAM slots for upgradability purposes, but to give accurate information about your particular device and its compatibility with a potential upgrade like Corsair's 32GB kit, the exact SKU is necessary.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output lacks specific information about the number of RAM slots in Lenovo Legion 5 models, only mentioning that there are two slots for upgradability purposes in general, which contradicts the retrieval context's requirement for precise details.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response does not provide information about the number of RAM slots on the specific Lenovo Legion 5 15ACH6A model, which was directly asked in the input.
+      ├── Contextual_Relevancy: 0.09 | Reason: The score is 0.09 because the retrieval context lacks explicit information about the number of RAM slots in the Lenovo Legion 5 15ACH6A. Although it mentions a RAM configuration (2x8 GB DDR5), it does not directly state how many slots are available for expansion.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (with 'yes' verdicts) explicitly state that the Lenovo Legion 5 15ACH6A has 2 DDR4 SO-DIMM slots and supports up to a certain capacity (64GB), aligning perfectly with the expected output. The irrelevant node (rank 3) does not provide specific information about the maximum RAM capacity, but since it's ranked lower than the relevant nodes, it doesn't impact the overall precision score.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the retrieval context provides information about the number of DDR4 SO-DIMM slots but lacks specific details on their maximum capacity, only mentioning 'up to 64GB' in a general sense.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The Lenovo Legion 5 15ACH6A typically has two RAM slots for upgrades. However, to ensure compatibility with your specific model and upgrade kit, it's recommended to check the motherboard manual or consult directly with Lenovo support as there might be variations in hardware configurations across different units.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output lacks explicit information about motherboard manual or direct support contact for compatibility confirmation, as mentioned in the contradiction.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.5 because the response provides specific information about the number of RAM slots, which is relevant to the query. However, it does not follow the critical rule #1, as there's no explicit mention that no external documentation was found before providing fallback information.
+      ├── Contextual_Relevancy: 0.09 | Reason: The score is 0.09 because the retrieval context lacks explicit information about the number of RAM slots in the Lenovo Legion 5 15ACH6A. Although it mentions a RAM configuration (2x8 GB DDR5), it does not directly state how many slots are available for expansion.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (with 'yes' verdicts) explicitly state that the Lenovo Legion 5 15ACH6A has 2 DDR4 SO-DIMM slots and supports up to a certain capacity (64GB), aligning perfectly with the expected output. The irrelevant node (rank 3) does not provide specific information about the maximum RAM capacity, but since it's ranked lower than the relevant nodes, it doesn't impact the overall precision score.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the retrieval context provides information about the number of DDR4 SO-DIMM slots but lacks specific details on their maximum capacity, only mentioning 'up to 64GB' in a general sense.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_08 | Tipo: TRADITIONAL
+ 💬 Query: What processor does the Lenovo Legion Pro 7 16IRX9 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Lenovo Legion Pro 7 to help determine the processor it has? The external context provided does not specify details for models beyond legion_pro_5_16irx8, and I need more information about the Lenovo Legion Pro 7 series to assist you accurately.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output lacks specific processor details for the Lenovo Legion Pro 7 series, which are crucial for a faithful representation of the product's specifications.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response explicitly states that no specific model number (SKU) was provided to determine the processor, making it irrelevant without this information.
+      ├── Contextual_Relevancy: 0.08 | Reason: The score is 0.08 because the retrieval context contains no direct information about the processor of the Lenovo Legion Pro 7 16IRX9. Most statements discuss issues or solutions related to other models (Legion Pro 5) or components like iGPU and RAM, not the specific processor details requested.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant node (first) explicitly states that the Lenovo Legion Pro 5 16IRX9 has an Intel Core i9-14900HX processor, directly answering the query. Irrelevant nodes (2nd to 5th) discuss different models or topics unrelated to the processor of the specific model in question.
+      ├── Contextual_Recall: 0.00 | Reason: The score is 0.00 because the retrieval context does not contain information about the Lenovo Legion Pro 7's processor.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Lenovo Legion Pro 7 16IRX9 specifically regarding its processor details in the provided context as of March 2026. Based on general hardware architectures and internal knowledge, it's likely that this model could have an Intel Core i9 or a similar high-performance CPU designed for gaming laptops. For accurate specifications, please provide your exact model number (SKU).
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output contradicts the retrieval context by stating a different processor for the Lenovo Legion Pro 5 16IRX9 than what's provided in the context.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.5 because the response explicitly mentions that no official documentation was found for the specific processor details of Lenovo Legion Pro 7 16IRX9, which directly addresses the query but with limited information due to lack of external documentation.
+      ├── Contextual_Relevancy: 0.08 | Reason: The score is 0.08 because the retrieval context contains no direct information about the processor of the Lenovo Legion Pro 7 16IRX9. Most statements discuss issues or solutions related to other models (Legion Pro 5) or components like iGPU and RAM, not the specific processor details requested.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant node (first) explicitly states that the Lenovo Legion Pro 5 16IRX9 has an Intel Core i9-14900HX processor, directly answering the query. Irrelevant nodes (2nd to 5th) discuss different models or topics unrelated to the processor of the specific model in question.
+      ├── Contextual_Recall: 0.00 | Reason: The score is 0.00 because the retrieval context does not contain information about the Lenovo Legion Pro 7's processor.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_09 | Tipo: TRADITIONAL
+ 💬 Query: What is the maximum RAM capacity for the HP Victus 15-fa1066tx?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I don't have specific external documentation available for the HP Victus 15-fa1066TX model as of my knowledge cutoff in 2024. To provide accurate information, could you please confirm the exact SKU or check the manufacturer’s official manual? Generally speaking, based on similar models within the same series and common configurations for gaming laptops around that time period, it's not uncommon to find a maximum RAM capacity ranging from 32GB upwards if designed with upgradeability in mind. However, this is an approximation and I advise checking official sources or documentation for precise specifications of your particular model.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the actual output incorrectly claims that no specific external documentation is available for a non-existent HP Victus 15-fa1066TX model.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response does not provide specific information about the HP Victus 15-fa1066tx model's maximum RAM capacity, instead offering a general range based on similar models. Additionally, it explicitly states that there's no specific external documentation available for this particular model.
+      ├── Contextual_Relevancy: 0.50 | Reason: The score is 0.50 because the retrieval context lacks direct information about the maximum RAM capacity for HP Victus 15-fa1066tx. While it mentions potential concerns and upgrade possibilities, none of the statements provide the specific maximum RAM capacity. The closest relevant statement is 'The laptop's maximum RAM capacity is limited to 32GB, not 64GB as some users may expect.', however, this does not explicitly confirm the 32GB limit for HP Victus 15-fa1066tx specifically.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (1st and 2nd) explicitly provide information about the maximum RAM capacity for similar HP Victus models, confirming up to 32GB DDR4-3200 RAM. The irrelevant nodes (3rd and 4th) do not affect this score as they either lack specificity for the 15-fa1066tx model or discuss unrelated topics like graphics memory issues and battery life.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the response accurately reflects the information from node(s) in the retrieval context, specifically mentioning the maximum RAM capacity and type supported by the HP Victus 15-fa1066tx.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for HP Victus 15-fa1066TX specifically detailing its maximum RAM capacity. Based on general hardware architectures and internal knowledge, it's advisable to check the laptop’s specifications or manufacturer guidelines as most modern laptops can support upwards of 32GB with compatible RAM modules. If you have already upgraded your system within these parameters without issues, then a maximum capacity might be around that level; however, for official advice and compatibility details regarding the HP Victus 15-fa1066TX model, please consult the manufacturer's documentation or contact their support directly to confirm.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the actual output contradicts the retrieval context by stating there's no external documentation available for the HP Victus 15 FA0666TX motherboard manual or manufacturer's documentation, despite the context explicitly mentioning these resources exist.
+      ├── Answer_Relevancy: 0.67 | Reason: The score is 0.67 because the response explicitly mentions that no official documentation was found for the specific HP Victus 15-fa1066tx model detailing its maximum RAM capacity, which is directly relevant to the query.
+      ├── Contextual_Relevancy: 0.50 | Reason: The score is 0.50 because the retrieval context lacks direct information about the maximum RAM capacity for HP Victus 15-fa1066tx. While it mentions potential concerns and upgrade possibilities, none of the statements provide the specific maximum RAM capacity. The closest relevant statement is 'The laptop's maximum RAM capacity is limited to 32GB, not 64GB as some users may expect.', however, this does not explicitly confirm the 32GB limit for HP Victus 15-fa1066tx specifically.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (1st and 2nd) explicitly provide information about the maximum RAM capacity for similar HP Victus models, confirming up to 32GB DDR4-3200 RAM. The irrelevant nodes (3rd and 4th) do not affect this score as they either lack specificity for the 15-fa1066tx model or discuss unrelated topics like graphics memory issues and battery life.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the response accurately reflects the information from node(s) in the retrieval context, specifically mentioning the maximum RAM capacity and type supported by the HP Victus 15-fa1066tx.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_10 | Tipo: TRADITIONAL
+ 💬 Query: What GPU is available in the HP Omen 16-k0370tx?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your HP Omen laptop? Typically, laptops like these have an RTX series GPU such as RTX 3060 or a higher tier option depending on configuration and release. Once I have the SKU, I can give more precise information about the available GPU in your specific model.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output lacks specific GPU information for a given model, contradicting the need to know the exact SKU for precise details.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response does not directly address the query by providing specific GPU information for the HP Omen 16-k0370tx model. Instead, it asks for the specific model number (SKU), which was already provided in the input.
+      ├── Contextual_Relevancy: 0.09 | Reason: The score is 0.09 because the retrieval context lacks specific GPU information for the HP Omen 16-k0370tx. It only mentions an RTX 3070ti without providing detailed specifications or model number. The context includes statements about alternative models, RAM specifications, user issues, and general advice, but none directly address the query about the specific GPU available in this particular HP Omen model.
+      ├── Contextual_Precision: 0.00 | Reason: The score is 0.00 because the relevant nodes (1st and 2nd) discuss GPU options for similar models or mention the HP Omen 16-k0370tx model without specifying the exact GPU for this SKU. Although they provide valuable context, they lack precision for this specific query. The irrelevant node (3rd) does not contribute to the answer, further lowering the score.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the expected output accurately reflects the GPU specification of the HP Omen 16-k0370tx model, which was derived from the retrieval context despite missing external documentation.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The HP Omen 16-k0370tx comes with an RTX 3070 GPU. This information is based on the context provided in a document dated June 4, 2026, which discusses various gaming laptops and their specifications including this model. For more detailed technical specs or further comparisons, it's recommended to consult directly with official product documentation or authorized sources for accurate information.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.00 | Reason: The score is 0.00 because the actual output incorrectly states that the HP Omen 16 K0370TX Gaming Laptop comes with an RTX 3070 GPU, whereas it actually has an RTX 3060 GPU.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.5 because the response directly provides the GPU model for the specified HP Omen 16-k0370tx, which is relevant to the query. However, it lacks additional context or supporting details that could enhance its relevance.
+      ├── Contextual_Relevancy: 0.09 | Reason: The score is 0.09 because the retrieval context lacks specific GPU information for the HP Omen 16-k0370tx. It only mentions an RTX 3070ti without providing detailed specifications or model number. The context includes statements about alternative models, RAM specifications, user issues, and general advice, but none directly address the query about the specific GPU available in this particular HP Omen model.
+      ├── Contextual_Precision: 0.00 | Reason: The score is 0.00 because the relevant nodes (1st and 2nd) discuss GPU options for similar models or mention the HP Omen 16-k0370tx model without specifying the exact GPU for this SKU. Although they provide valuable context, they lack precision for this specific query. The irrelevant node (3rd) does not contribute to the answer, further lowering the score.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the expected output accurately reflects the GPU specification of the HP Omen 16-k0370tx model, which was derived from the retrieval context despite missing external documentation.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_11 | Tipo: TRADITIONAL
+ 💬 Query: How many M.2 SSD slots does the HP Pavilion 15-eg3018tu have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the information provided in Source_3 and considering your query about the HP Pavilion 15-eg3018tu laptop having an i5 quad-core CPU, 16GB of RAM, and a 1TB SSD storage system running Windows 11 Home, it typically has one M.2 NVMe SSD slot located below the memory on the right side as mentioned in Source_0. However, to confirm this with certainty or for official specifications, could you provide the specific model number (SKU)?
+
+If no SKU information is available and considering general knowledge up until my cutoff date in 2024: most laptops of similar configuration tend to have one M.2 NVMe SSD slot as per industry standards for such configurations, but please verify this with the official documentation or a more detailed source when possible.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the actual output does not provide specific official specifications or confirmation as requested, instead suggesting to check HP's website for supported cards/SSDs by searching the model number.
+      ├── Answer_Relevancy: 0.67 | Reason: The score is 0.67 because the response does not directly provide the number of M.2 SSD slots for the specific HP Pavilion model (15-eg3018tu). It only mentions that no external documentation was found, which is a fallback measure. The response should ideally include the requested information even if it's based on fallback data.
+      ├── Contextual_Relevancy: 0.36 | Reason: The score is 0.36 because the retrieval context lacks explicit information about the number of M.2 SSD slots in the HP Pavilion 15-eg3018tu. Although it mentions that there's an M.2 SSD slot, it does not specify whether there's more than one. The closest relevant statement is 'The HP Pavilion 15 EG3018TU laptop has an M2 NVMe SSD slot located below the memory on the right side of the laptop.' However, this does not provide a count.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (with 'yes' verdicts) provide clear and specific information about the M.2 SSD slots in the HP Pavilion 15-eg3018tu, while the irrelevant node (ranked third) does not offer any direct or contradictory data on the exact number of slots.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output mentions the number of M.2 PCIe NVMe slots for a specific HP Pavilion model, but this detail is not explicitly provided in the retrieval context.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for this specific SKU regarding the number of M.2 SSD slots in the HP Pavilion 15-eg3018tu laptop model as per the provided context. However, based on general hardware architectures and internal knowledge, many modern laptops including those from HP have at least one M.2 NVMe SSD slot for upgrades. For precise information about your specific model, please refer to the official user manual or contact HP support directly as they would be able to provide accurate details based on their technical schematics and design of that particular laptop.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output contradicts the retrieval context by stating there's no official documentation for the number of M.2 SSD slots in the HP Pavilion 15 EG3018TU laptop, while the context explicitly mentions it has an M2 NVMe SSD slot.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.50 because the response explicitly states that no official documentation was found for this specific SKU regarding the number of M.2 SSD slots in the HP Pavilion 15-eg3018tu laptop model.
+      ├── Contextual_Relevancy: 0.36 | Reason: The score is 0.36 because the retrieval context lacks explicit information about the number of M.2 SSD slots in the HP Pavilion 15-eg3018tu. Although it mentions that there's an M.2 SSD slot, it does not specify whether there's more than one. The closest relevant statement is 'The HP Pavilion 15 EG3018TU laptop has an M2 NVMe SSD slot located below the memory on the right side of the laptop.' However, this does not provide a count.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (with 'yes' verdicts) provide clear and specific information about the M.2 SSD slots in the HP Pavilion 15-eg3018tu, while the irrelevant node (ranked third) does not offer any direct or contradictory data on the exact number of slots.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output mentions the number of M.2 PCIe NVMe slots for a specific HP Pavilion model, but this detail is not explicitly provided in the retrieval context.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_12 | Tipo: TRADITIONAL
+ 💬 Query: What processor does the ASUS TUF Gaming F15 FX507ZV have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the information provided in your external context and my internal knowledge up to 2024, it seems that ASUS TUF Gaming F15 laptops typically feature Intel Core processors such as i7-13620H. However, since there is no specific SKU mentioned for the model you're inquiring about (FX507ZV), I would ask you to provide the exact model number or confirm if it aligns with one of the models listed in your sources. Once I have that information, I can give a more accurate response regarding its processor specs.
+
+For instance:
+
+Could you please specify which ASUS TUF Gaming F15 laptop model (SKU) you are referring to? This will help me provide precise details about the Intel Core processors it may have onboard, such as i7-13620H or another variant if there's been a newer release after my knowledge cutoff.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the specific model FX507ZV is not mentioned in the context, and no external documentation is available for this particular SKU.
+      ├── Answer_Relevancy: 0.40 | Reason: The score is 0.40 because the response does not directly address the query about the specific processor of the ASUS TUF Gaming F15 FX507ZV model. Instead, it provides general information about typical processors for this laptop series and asks for confirmation or specification of the model number.
+      ├── Contextual_Relevancy: 0.57 | Reason: The score is 0.57 because the retrieval context lacks direct and explicit information about the processor of the ASUS TUF Gaming F15 FX507ZV. While it mentions an Intel Core i7-13620H processor, this information is not clearly associated with the specific model queried (FX507ZV). The context also includes details about RAM and graphics card, which are not relevant to the query.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant node (first context) explicitly states that the ASUS TUF Gaming F15 FX507ZI4-LP34W model features an Intel Core i7-13620H processor, which matches the expected output. This node is ranked higher than irrelevant nodes (second to fifth contexts), which either do not provide information about the specific processor or discuss different models. The irrelevancy of these lower-ranked nodes is evident as they fail to address the query directly.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the retrieval context provides information about the processor of ASUS TUF Gaming F15 laptops, including the FX507ZI4 model with Intel Core i7-12700H. However, it does not specifically mention the FX507ZV model.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The ASUS TUF Gaming F15 FX507ZV comes with an Intel Core i7 processor; however, the exact model number is not specified in the retrieved context as of March 2026. For detailed specifications and compatibility information such as a Qualified Vendors List (QVL), it's recommended to consult directly with Asus or check reliable retailer resources since official documentation may vary over time, especially for models released after your knowledge cutoff date. Based on general hardware architectures in 2026 and common practices at the time, Intel Core i7 processors are typically multi-core CPUs suitable for gaming laptops with high performance requirements like those of a TUF Gaming F15 model.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.75 | Reason: The score is 0.75 because the actual output lacks specific details about the model number of the Intel Core i7 processor in the ASUS TUF Gaming F15 FX507ZV, as indicated by the contradiction.
+      ├── Answer_Relevancy: 0.60 | Reason: The score is 0.60 because the response does not provide the exact model number of the Intel Core i7 processor, which was specifically asked for in the input.
+      ├── Contextual_Relevancy: 0.57 | Reason: The score is 0.57 because the retrieval context lacks direct and explicit information about the processor of the ASUS TUF Gaming F15 FX507ZV. While it mentions an Intel Core i7-13620H processor, this information is not clearly associated with the specific model queried (FX507ZV). The context also includes details about RAM and graphics card, which are not relevant to the query.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant node (first context) explicitly states that the ASUS TUF Gaming F15 FX507ZI4-LP34W model features an Intel Core i7-13620H processor, which matches the expected output. This node is ranked higher than irrelevant nodes (second to fifth contexts), which either do not provide information about the specific processor or discuss different models. The irrelevancy of these lower-ranked nodes is evident as they fail to address the query directly.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the retrieval context provides information about the processor of ASUS TUF Gaming F15 laptops, including the FX507ZI4 model with Intel Core i7-12700H. However, it does not specifically mention the FX507ZV model.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_13 | Tipo: TRADITIONAL
+ 💬 Query: What is the maximum RAM capacity for the ASUS ROG Zephyrus G14 GA402XV?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I don't have specific external documentation available regarding the ASUS ROG Zephyrus G14 with that particular RAM model number (GA402XV). Based on general knowledge of similar high-performance gaming laptops, non-upgradeable systems typically max out at around 32 GB or sometimes up to 64 GB for certain models. However, since the ASUS ROG Zephyrus G14 is known as a premium product with limited upgrade options and considering it's part of an elite gaming series that often includes configurations like dual-channel memory setups, I would recommend checking official Asus resources or directly contacting their support for accurate information on the maximum RAM capacity.
+
+For more precise details about your specific model (GA402XV), please provide the exact SKU number as it will help in finding detailed and up-to-date technical specs from reliable sources.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the provided model number GA402XV does not match any of the given ASUS ROG Zephyrus G14 model numbers (rog_zephyrus_g14_ga402rj_gry07w or GZ302EA-0004/GZ302EA-XS99) in the context.
+      ├── Answer_Relevancy: 0.40 | Reason: The score is 0.40 because the response does not provide specific information about the maximum RAM capacity for the ASUS ROG Zephyrus G14 GA402XV, instead offering a general range for non-upgradeable systems and recommending to check official resources or contact support for accurate information.
+      ├── Contextual_Relevancy: 0.33 | Reason: The score is 0.33 because the retrieval context lacks direct information about the maximum RAM capacity for the ASUS ROG Zephyrus G14 GA402XV model. While it mentions an upgrade to 48GB RAM, this does not specify the maximum capacity. Instead, it focuses on upgrades and performance issues, which are not relevant to the query.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (with 'yes' verdicts) directly provide information about the maximum RAM capacity of the ASUS ROG Zephyrus G14 GA402XV, stating it supports more than 32GB and even specifying an upgraded capacity of 48GB. In contrast, the irrelevant node (ranked third) does not offer any specifics on the maximum RAM capacity, discussing upgrades and performance issues instead.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the expected output accurately reflects the information provided in the 2nd node of the retrieval context, which mentions the laptop's RAM configuration as up to 32GB DDR5 (soldered + slot). The indirect inference from the 3rd node further supports this detail.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for ASUS ROG Zephyrus G14 with specifications including "GA402XV." Based on general hardware architectures and internal knowledge, the original Asus ROG Zephyrus G14 typically supports up to a maximum of around 64 GB RAM in most configurations. However, it's recommended to check the exact model number or consult official sources for precise information as specifications can vary between models and revisions.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the actual output contradicts the retrieval context by stating that the specific model (rog_zephyrus_g14_ga402rj_gry07w) supports up to a maximum of around 64 GB RAM, while our context indicates this model has been upgraded to 48 GB RAM.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.5 because no official documentation was found for the ASUS ROG Zephyrus G14 with specifications including 'GA402XV'. The response had to rely on fallback information, which led to a lower relevancy score.
+      ├── Contextual_Relevancy: 0.33 | Reason: The score is 0.33 because the retrieval context lacks direct information about the maximum RAM capacity for the ASUS ROG Zephyrus G14 GA402XV model. While it mentions an upgrade to 48GB RAM, this does not specify the maximum capacity. Instead, it focuses on upgrades and performance issues, which are not relevant to the query.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (with 'yes' verdicts) directly provide information about the maximum RAM capacity of the ASUS ROG Zephyrus G14 GA402XV, stating it supports more than 32GB and even specifying an upgraded capacity of 48GB. In contrast, the irrelevant node (ranked third) does not offer any specifics on the maximum RAM capacity, discussing upgrades and performance issues instead.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the expected output accurately reflects the information provided in the 2nd node of the retrieval context, which mentions the laptop's RAM configuration as up to 32GB DDR5 (soldered + slot). The indirect inference from the 3rd node further supports this detail.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_14 | Tipo: TRADITIONAL
+ 💬 Query: What GPU does the ASUS Vivobook 16X K3605ZF have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your ASUS Vivobook 16X K3605ZF? Based on similar models and general knowledge within my training data, it likely has an NVIDIA GPU; however, for accurate information regarding its exact make or series, I need the SKU. Once you provide that, I can give a more precise answer using external context if available or rely on internal knowledge as necessary.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output lacks specific model information (SKU) to provide accurate details about the GPU, aligning with the contradiction that emphasizes the need for such details.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.5 because the response does not provide specific information about the GPU of the ASUS Vivobook 16X K3605ZF, instead asking for the model number (SKU).
+      ├── Contextual_Relevancy: 0.20 | Reason: The score is 0.20 because the retrieval context does not explicitly mention the GPU model for the ASUS Vivobook 16X K3605ZF. It primarily discusses another model's performance with RTX3050 and Ryzen 7 5800H, focusing on issues like graphics switching problems rather than providing specific GPU details for the queried model.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because all relevant nodes (with 'yes' verdicts) are ranked higher than irrelevant nodes (with 'no' verdicts). The first node explicitly states the GPU model, followed by another node implying knowledge of the laptop's GPU without directly mentioning the model number. In contrast, irrelevant nodes discuss different models or unrelated topics like performance issues with a specific game, which do not provide information about the ASUS Vivobook 16X K3605ZF's GPU.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the retrieval context explicitly mentions the ASUS Vivobook 16X K3605ZF model, including its GPU details under the 'MODEL: vivobook_16x_k3605zf_rp005w' node.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for the specific GPU model of ASUS Vivobook 16X K3605ZF. Based on general hardware architectures and internal knowledge, it's common for laptops like yours to use integrated graphics (iGPU) or dedicated NVIDIA Graphics Processing Units (dGPU). The MSI Vector 18 HX is a high-end GPU mentioned in the context of similar products. For precise information about your laptop’se GPU, please refer to its specifications on manufacturer websites like Asus' official support page or consult with their customer service for detailed technical details.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the actual output does not explicitly mention that no external documentation was found for a specific SKU query, instead it provides fallback information about the GPU of ASUS Vivobook 16X K3605ZF.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.50 because the response explicitly mentions that no official documentation was found for the specific GPU model of ASUS Vivobook 16X K3605ZF, which directly addresses the query. However, it also discusses a different product model (MSI Vector 18 HX) and does not provide any relevant information about the ASUS Vivobook 16X K3605ZF's GPU.
+      ├── Contextual_Relevancy: 0.20 | Reason: The score is 0.20 because the retrieval context does not explicitly mention the GPU model for the ASUS Vivobook 16X K3605ZF. It primarily discusses another model's performance with RTX3050 and Ryzen 7 5800H, focusing on issues like graphics switching problems rather than providing specific GPU details for the queried model.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because all relevant nodes (with 'yes' verdicts) are ranked higher than irrelevant nodes (with 'no' verdicts). The first node explicitly states the GPU model, followed by another node implying knowledge of the laptop's GPU without directly mentioning the model number. In contrast, irrelevant nodes discuss different models or unrelated topics like performance issues with a specific game, which do not provide information about the ASUS Vivobook 16X K3605ZF's GPU.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the retrieval context explicitly mentions the ASUS Vivobook 16X K3605ZF model, including its GPU details under the 'MODEL: vivobook_16x_k3605zf_rp005w' node.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_15 | Tipo: TRADITIONAL
+ 💬 Query: What is the storage configuration for the MSI Katana 15 B13UDXK?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   The MSI Katana 15 B13UDXK has a storage configuration that includes a 1TB NVMe SSD as part of its setup. This information is based on the common configurations found in similar models within your provided context, but for official specifications or any updates beyond my knowledge cutoff, I recommend checking directly with MSI's resources or contacting their support team.
+
+Remember that this answer relies on general patterns and available external documents up to 2024; always refer to the latest information from manufacturers when possible for technical inquiries about specific products like your laptop.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 1.00 | Reason: The score is 1.00 because there are no contradictions found between the actual output and the retrieval context.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.5 because the response does not directly provide the storage configuration for the MSI Katana 15 B13UDXK, instead it asks for specific SKU information which was not requested in the input.
+      ├── Contextual_Relevancy: 0.23 | Reason: The score is 0.23 because the retrieval context lacks specific storage configuration details for the MSI Katana 15 B13UDXK model. Although it mentions an NVMe SSD, it does not provide crucial information such as the storage capacity or type (e.g., PCIe Gen3x4). Moreover, most statements in the context discuss issues like tight clearance and missing screws rather than the actual storage configuration.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (1st and 2nd) explicitly or inferentially provide accurate storage configuration details for the MSI Katana 15 B13UDXK, mentioning dual M.2 slots and a 1TB NVMe SSD. In contrast, irrelevant nodes (3rd to 5th) either lack specific storage information or discuss non-storage related issues like missing screws and product page checks.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output's sentence about MSI Katana 15 B13UDXK supporting up to 1TB NVMe SSD (dual M.2 slots) is only partially reflected in the retrieval context, specifically in the 1st node.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The MSI Katana 15 B13UDXK gaming laptop comes with a configuration of a 1TB NVMe SSD and has an Intel Core i5-13th Gen processor along with 32GB of RAM. There is no specific information on additional storage beyond the built-in components mentioned, but for further upgrades or details regarding M.2 slots compatibility, it's recommended to check directly on the product page provided by MSI or contact their support as there are two available M.2 slots with one currently occupied by a Micron NVMe drive.
+
+Note: There is no official documentation detailing additional storage options beyond what has been described here; this information relies partly on general knowledge of laptop configurations and the typical setup for such high-end gaming machines.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.33 | Reason: The score is 0.33 because the actual output lacks crucial information about the processor configuration for the MSI Katana 15 B13UDXK gaming laptop, as indicated by the retrieval context. Furthermore, it incorrectly states that there are two M.2 slots occupied by NVMe drives, while the retrieval context confirms only one slot is used.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.5 because the response does not provide specific storage configuration details for the MSI Katana 15 B13UDXK, focusing instead on processor and RAM information.
+      ├── Contextual_Relevancy: 0.23 | Reason: The score is 0.23 because the retrieval context lacks specific storage configuration details for the MSI Katana 15 B13UDXK model. Although it mentions an NVMe SSD, it does not provide crucial information such as the storage capacity or type (e.g., PCIe Gen3x4). Moreover, most statements in the context discuss issues like tight clearance and missing screws rather than the actual storage configuration.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (1st and 2nd) explicitly or inferentially provide accurate storage configuration details for the MSI Katana 15 B13UDXK, mentioning dual M.2 slots and a 1TB NVMe SSD. In contrast, irrelevant nodes (3rd to 5th) either lack specific storage information or discuss non-storage related issues like missing screws and product page checks.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output's sentence about MSI Katana 15 B13UDXK supporting up to 1TB NVMe SSD (dual M.2 slots) is only partially reflected in the retrieval context, specifically in the 1st node.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_16 | Tipo: TRADITIONAL
+ 💬 Query: How many RAM slots does the MSI Sword 16 HX have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   The MSI Sword 16 HX has two SODIMM RAM slots as mentioned in Source_2. However, to provide the most accurate and detailed information regarding its specifications, could you please confirm the exact model number (SKU) of your laptop? This will help me give you precise details about the memory configuration and other aspects related to it.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output lacks explicit information about the number of SODIMM RAM slots in the MSI Sword 16 HX, aligning with the contradiction that points out this omission.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.5 because the response correctly identifies the need for a specific SKU but does not provide the requested information about RAM slots.
+      ├── Contextual_Relevancy: 0.25 | Reason: The score is 0.25 because the provided context does not contain specific information about the number of RAM slots on the MSI Sword 16 HX. While it mentions the number of RAM slots for a similar model (MSI VECTOR 16 HX), there are no direct references to the MSI Sword 16 HX itself. The context primarily discusses troubleshooting tips, compatibility checks, and battery life, none of which provide the requested detail about RAM slots.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (with 'yes' verdicts) directly provide specific information about the number of RAM slots in the MSI Sword 16 HX, aligning with the expected output. These nodes are ranked higher than irrelevant nodes (with 'no' verdicts), which either lack specific details or discuss different aspects of the laptop's hardware.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the expected output accurately reflects the information provided in the retrieval context, specifically detailing the number of DDR5 SO-DIMM slots and their capacity for the MSI Sword 16 HX model.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The MSI Sword 16 HX typically has two RAM slots for upgrades and dual channel operation when installed correctly in slots A2/B2 (or equivalently slot 2 and 4). For specific details, please provide your exact model number.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the actual output lacks specific information about the number of RAM slots, despite the retrieval context suggesting at least two slots due to dual-channel operation in slots A2/B2 (or 2 and 4).
+      ├── Answer_Relevancy: 0.67 | Reason: The score is 0.67 because the response correctly identifies that the MSI Sword 16 HX has two RAM slots, but it includes irrelevant information about the type of RAM and maximum capacity, which were not asked for in the input.
+      ├── Contextual_Relevancy: 0.25 | Reason: The score is 0.25 because the provided context does not contain specific information about the number of RAM slots on the MSI Sword 16 HX. While it mentions the number of RAM slots for a similar model (MSI VECTOR 16 HX), there are no direct references to the MSI Sword 16 HX itself. The context primarily discusses troubleshooting tips, compatibility checks, and battery life, none of which provide the requested detail about RAM slots.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant nodes (with 'yes' verdicts) directly provide specific information about the number of RAM slots in the MSI Sword 16 HX, aligning with the expected output. These nodes are ranked higher than irrelevant nodes (with 'no' verdicts), which either lack specific details or discuss different aspects of the laptop's hardware.
+      ├── Contextual_Recall: 1.00 | Reason: The score is 1.00 because the expected output accurately reflects the information provided in the retrieval context, specifically detailing the number of DDR5 SO-DIMM slots and their capacity for the MSI Sword 16 HX model.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_17 | Tipo: TRADITIONAL
+ 💬 Query: What processor does the MSI Stealth 14 Studio AI have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your MSI Stealth 14 Studio AI laptop? Once I have that information, I can give more accurate details regarding its processor configuration for you. Generally speaking, laptops in this series often use Intel Core processors as their main CPUs and NVIDIA GPUs like the RTX series for graphics processing. However, without the exact SKU or model number, I cannot provide precise specifications.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.33 | Reason: The score is 0.33 because the actual output lacks specific information about the GPU used in MSI Stealth 14 Studio AI laptops, as indicated by the contradictions. It fails to mention the exact model or SKU, leading to an incomplete and less accurate description of the laptop's hardware.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.5 because the response does not directly provide the processor information for the MSI Stealth 14 Studio AI, instead asking for the model number.
+      ├── Contextual_Relevancy: 0.23 | Reason: The score is 0.23 because the retrieval context lacks specific information about the processor of the MSI Stealth 14 Studio AI. It contains irrelevant data such as issues with GPU BIOS flash and fan control problems in different models (Stealth 16 AI). The only relevant statement, 'MSI Stealth 14 Studio AI PC with Intel Core i7-155H', is not directly related to the query for the processor model. The context should ideally provide direct specifications or clear references to the processor model of the MSI Stealth 14 Studio AI.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant node (with a 'yes' verdict) explicitly states that the MSI Stealth 14 Studio AI is equipped with an Intel Core i7-155H processor, providing accurate and specific information. The irrelevant node (with a 'no' verdict) lacks external documentation for this SKU query, relying on fallback information instead. This irrelevant node is ranked lower due to its reliance on general or less precise data.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output directly states a specific SKU and processor model, which are not explicitly mentioned in the retrieval context.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The MSI Stealth 14 Studio AI is equipped with an Intel Core i7-155H processor. For specific solutions related to this model, it might be helpful to check if the USB format is set correctly in the BIOS or try using a different USB port.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 1.00 | Reason: The score is 1.00 because there are no contradictions found between the actual output and the retrieval context.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response discusses BIOS settings and USB port usage, which are not relevant to identifying the processor of a specific model.
+      ├── Contextual_Relevancy: 0.23 | Reason: The score is 0.23 because the retrieval context lacks specific information about the processor of the MSI Stealth 14 Studio AI. It contains irrelevant data such as issues with GPU BIOS flash and fan control problems in different models (Stealth 16 AI). The only relevant statement, 'MSI Stealth 14 Studio AI PC with Intel Core i7-155H', is not directly related to the query for the processor model. The context should ideally provide direct specifications or clear references to the processor model of the MSI Stealth 14 Studio AI.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant node (with a 'yes' verdict) explicitly states that the MSI Stealth 14 Studio AI is equipped with an Intel Core i7-155H processor, providing accurate and specific information. The irrelevant node (with a 'no' verdict) lacks external documentation for this SKU query, relying on fallback information instead. This irrelevant node is ranked lower due to its reliance on general or less precise data.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output directly states a specific SKU and processor model, which are not explicitly mentioned in the retrieval context.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_18 | Tipo: TRADITIONAL
+ 💬 Query: What is the maximum RAM capacity for the Acer Predator Helios Neo 16 PHN16-71?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Acer Predator Helios Neo 16 PHN16-71? Once I have that information, I can better assist with details on its maximum RAM capacity based on available external documentation or general knowledge.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.00 | Reason: The score is 0.00 because the actual output lacks specific information about the Predator Helios Neo 16's maximum RAM capacity for any particular model or SKU, despite claiming it could provide such details once an SKU is given.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.5 because the response does not provide the maximum RAM capacity for the Acer Predator Helios Neo 16 PHN16-71, which is irrelevant to the user's query.
+      ├── Contextual_Relevancy: 0.31 | Reason: The score is 0.31 because the retrieval context lacks specific information about the maximum RAM capacity for the Acer Predator Helios Neo 16 PHN16-71. While it mentions potential RAM upgradeability and compatibility, none of the statements directly provide the maximum supported RAM capacity. The closest relevant statement is 'Predator Helios Neo 16 laptop may not support up to 64 GB RAM, despite newer models supporting DDR5 64 GB.', but this does not confirm the exact maximum for the specific model in question.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because all relevant nodes are ranked higher than irrelevant ones. The first node directly states the laptop supports 32GB DDR5, aligning with the expected output. Subsequent nodes provide additional evidence supporting this claim, such as discussing compatibility with different types of RAM and a user's experience upgrading to 32GB without issues. In contrast, there are no lower-ranked nodes providing contradictory or less accurate information about the maximum RAM capacity.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output accurately reflects that the Acer Predator Helios Neo 16 PHN16-71 supports up to 32GB DDR5, which aligns with information from the retrieval context (1st node). However, the score is not a perfect 1 due to the absence of detail about the specific RAM configuration in the context.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   Could you please provide your specific model number (SKU) for accurate information regarding the maximum RAM capacity of the Acer Predator Helios Neo 16 PHN16-71? Generally speaking, without official documentation or a clear specification from the manufacturer's website, it is challenging to give an exact figure. However, if you have details about your laptop’s motherboard and chipset, I can offer some general guidance based on common configurations used in similar models during that time period. It would be best to consult directly with Acer or check the official manual for precise specifications related to RAM capacity support of your particular model.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.67 | Reason: The score is 0.67 because the actual output suggests uncertainty about the specific model's maximum RAM capacity due to lack of motherboard and chipset details, which contradicts the retrieval context. The context does not indicate such uncertainty but rather points out a known issue with RAM speed limitation.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.50 because the response correctly identifies that no specific RAM capacity was found in external documentation for the Acer Predator Helios Neo 16 PHN16-71, but it falls short by not providing a fallback or estimated value based on available information.
+      ├── Contextual_Relevancy: 0.31 | Reason: The score is 0.31 because the retrieval context lacks specific information about the maximum RAM capacity for the Acer Predator Helios Neo 16 PHN16-71. While it mentions potential RAM upgradeability and compatibility, none of the statements directly provide the maximum supported RAM capacity. The closest relevant statement is 'Predator Helios Neo 16 laptop may not support up to 64 GB RAM, despite newer models supporting DDR5 64 GB.', but this does not confirm the exact maximum for the specific model in question.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because all relevant nodes are ranked higher than irrelevant ones. The first node directly states the laptop supports 32GB DDR5, aligning with the expected output. Subsequent nodes provide additional evidence supporting this claim, such as discussing compatibility with different types of RAM and a user's experience upgrading to 32GB without issues. In contrast, there are no lower-ranked nodes providing contradictory or less accurate information about the maximum RAM capacity.
+      ├── Contextual_Recall: 0.50 | Reason: The score is 0.50 because the expected output accurately reflects that the Acer Predator Helios Neo 16 PHN16-71 supports up to 32GB DDR5, which aligns with information from the retrieval context (1st node). However, the score is not a perfect 1 due to the absence of detail about the specific RAM configuration in the context.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_19 | Tipo: TRADITIONAL
+ 💬 Query: What GPU does the Lenovo LOQ 15IRX9 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Lenovo LOQ 15IRX9 laptop? Based on typical configurations for similar models in its series and general knowledge about GPUs used in gaming laptops, it might have an Nvidia GeForce or RTX-based graphics card. However, to give you accurate information regarding the exact GPU model installed in your Lenovo LOQ 15IRX9 laptop, I need the specific SKU details which can be confirmed by checking the device's specifications directly from a reliable source like Lenovo support or an authorized retailer.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output lacks specific SKU details required to accurately provide information about the GPU model, as indicated by the contradiction.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response does not directly provide the specific GPU model for Lenovo LOQ 15IRX9, instead it mentions that the exact information can be found from a reliable source. This statement is irrelevant as it does not provide immediate information about the GPU of Lenovo LOQ 15IRX9.
+      ├── Contextual_Relevancy: 0.18 | Reason: The score is 0.18 because the retrieval context lacks specific information about the GPU model of Lenovo LOQ 15IRX9. While it mentions a related model (RTX 4060) for another variant (LOQ 15IRH8), there's no explicit data linking this to the LOQ 15IRX9. Most statements discuss issues or comparisons, not the GPU specifications of the queried model.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant node (with a verdict of 'yes') directly states that the Lenovo LOQ 15IRX9 has an NVIDIA GeForce RTX 4060 (8GB) GPU, matching the expected output. The irrelevant node (ranked second) refers to similar models but does not provide specific information about the Lenovo LOQ 15IRX9's GPU. This ranking ensures that the precise and accurate information is prioritized over more general or ambiguous data.
+      ├── Contextual_Recall: 0.00 | Reason: The score is 0.00 because the retrieval context lacks information about the GPU model and memory size of Lenovo LOQ 15IRX9.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Lenovo LOQ 15IRX9's specific GPU model in your inquiry as of March 2026. Based on general hardware architectures and the information provided about similar models like Lenovo LOQ 15IAX9, it is possible that Lenovo used a high-end Nvidia or AMD graphics card capable of overheating under load due to its power consumption. However, for accurate details regarding your specific model's GPU, please contact Lenovo support directly as suggested in the context related to similar issues with other models. They can provide official and up-to-date information on installed components like RTX 4050 or any subsequent replacements due to discontinuation of certain products.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.60 | Reason: The score is 0.60 because the actual output lacks specific details about the hardware configurations causing high temperatures in Lenovo LOQ 15IRX9, as directly stated in the retrieval context. Additionally, it does not mention the suggestion to contact Lenovo support for accurate GPU information, implying potential missing or outdated official documentation.
+      ├── Answer_Relevancy: 0.50 | Reason: The score is 0.50 because the response explicitly states that no official documentation was found for the specific GPU model of Lenovo LOQ 15IRX9, suggesting contacting Lenovo support for accurate details. This indicates a lack of specific information available in the provided context.
+      ├── Contextual_Relevancy: 0.18 | Reason: The score is 0.18 because the retrieval context lacks specific information about the GPU model of Lenovo LOQ 15IRX9. While it mentions a related model (RTX 4060) for another variant (LOQ 15IRH8), there's no explicit data linking this to the LOQ 15IRX9. Most statements discuss issues or comparisons, not the GPU specifications of the queried model.
+      ├── Contextual_Precision: 1.00 | Reason: The score is 1.00 because the relevant node (with a verdict of 'yes') directly states that the Lenovo LOQ 15IRX9 has an NVIDIA GeForce RTX 4060 (8GB) GPU, matching the expected output. The irrelevant node (ranked second) refers to similar models but does not provide specific information about the Lenovo LOQ 15IRX9's GPU. This ranking ensures that the precise and accurate information is prioritized over more general or ambiguous data.
+      ├── Contextual_Recall: 0.00 | Reason: The score is 0.00 because the retrieval context lacks information about the GPU model and memory size of Lenovo LOQ 15IRX9.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_STATIC_20 | Tipo: TRADITIONAL
+ 💬 Query: How many USB ports does the HP Spectre x360 14 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   It seems you're asking about the specifications of the HP Spectre x360 14 laptop series. To provide accurate information regarding USB ports and their count, I would need the Specific SKU number for this model as there isn't enough detail in your query to refer directly to external documents or my internal knowledge base from before 2024. Could you please provide the specific model number (SKU) of the HP Spectre x360 14 laptop?
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output lacks specific USB port information for the HP Spectre x360, aligning with the contradiction that highlights the absence of such details in the retrieval context without a SKU number.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response does not directly address the number of USB ports on the HP Spectre x360 14, instead it requests for specific SKU information which was not provided in the input.
+      ├── Contextual_Relevancy: 0.00 | Reason: The score is 0.00 because none of the provided statements in the retrieval context directly address or even indirectly infer the number of USB ports on the HP Spectre x360 14. All statements discuss various aspects such as connectivity issues, troubleshooting solutions, RAM options, and charging problems, but none provide information about the count of USB ports.
+      ├── Contextual_Precision: 0.00 | Reason: The score is 0.00 because none of the relevant nodes in the retrieval contexts specify the exact number of USB ports on the HP Spectre x360 14. While some nodes mention USB-C ports, they do not provide the count. Irrelevant nodes, discussing charging issues or different models, are ranked lower but still present in the context.
+      ├── Contextual_Recall: 0.00 | Reason: The score is 0.00 because the retrieval context lacks information about the ports of HP Spectre x360 14, specifically the Thunderbolt 4 and USB-A 3.1 ports.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for HP Spectre x360 14 specifically regarding its USB ports count. Generally speaking, many laptops from that era typically have one to three USB ports on the sides and a smaller number on the back near the keyboard. However, without specific details about your model or an official manual, I recommend checking inside the laptop for labeling or consulting with HP directly for accurate information.
+   📊 Métricas Detalhadas:
+      ├── Faithfulness: 0.50 | Reason: The score is 0.5 because the actual output lacks specific details and context, making it difficult to accurately assess its faithfulness to the retrieval context.
+      ├── Answer_Relevancy: 0.33 | Reason: The score is 0.33 because the response does not provide specific information about the number of USB ports on the HP Spectre x360 14, focusing instead on general hardware aspects.
+      ├── Contextual_Relevancy: 0.00 | Reason: The score is 0.00 because none of the provided statements in the retrieval context directly address or even indirectly infer the number of USB ports on the HP Spectre x360 14. All statements discuss various aspects such as connectivity issues, troubleshooting solutions, RAM options, and charging problems, but none provide information about the count of USB ports.
+      ├── Contextual_Precision: 0.00 | Reason: The score is 0.00 because none of the relevant nodes in the retrieval contexts specify the exact number of USB ports on the HP Spectre x360 14. While some nodes mention USB-C ports, they do not provide the count. Irrelevant nodes, discussing charging issues or different models, are ranked lower but still present in the context.
+      ├── Contextual_Recall: 0.00 | Reason: The score is 0.00 because the retrieval context lacks information about the ports of HP Spectre x360 14, specifically the Thunderbolt 4 and USB-A 3.1 ports.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_SKU_LOCK_ACER | Tipo: BEHAVIORAL
+ 💬 Query: What is the maximum RAM for Acer Nitro 5 AN515-58?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Acer Nitro 5 AN515-58 laptop? Once I have that information, I can give accurate details on its maximum RAM capacity and guide you through any necessary upgrades. Typically for this series, laptops support a significant amount of DDR4 memory, but the exact figure varies by model and motherboard design.
+
+Without the specific SKU or further details from external sources beyond my knowledge cutoff date, I can suggest that upgrading an Acer Nitro 5 laptop often involves checking for compatibility with high-capacity RAM modules such as DDR4 options up to a certain frequency (like those mentioned at frequencies of 3200MHz and 2666MHz in your query). However, I recommend consulting the official documentation or reaching out directly to Acer customer support for precise specifications related to your particular model.
+
+Remember that while RAM upgrades can improve performance by allowing more efficient multitasking and handling of demanding applications like gaming, it's essential not to exceed the manufacturer-recommended limits as this could potentially harm system stability or warranty coverage.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The response correctly identifies the need for a specific SKU and provides fallback information, mentioning that exact RAM capacity varies by model. It adheres to the rule of not providing specifications without the SKU. The response is also clear, concise, and avoids forbidden raw tags or system processing blocks.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Acer Nitro 5 AN515-58 specifically detailing its maximum RAM capacity. However, based on general hardware architectures and the information available from discussions about similar models like your Acer Nitro 5 laptops typically support up to 32GB of DDR4 memory for upgrade purposes. To ensure compatibility with your specific model, it is recommended that you check the laptop's manual or manufacturer’s website for precise guidelines on RAM capacity and installation procedures. If this information isn't available, purchasing a compatible RAM module from a reputable vendor would be advisable.
+
+Remember to verify whether your Acer Nitro 5 supports dual channel configuration as it can affect performance when adding more memory. The suggested upgrade options often include installing additional modules of the same capacity and frequency (e.g., two sticks of 16GB RAM) or a combination that fits within budget constraints while meeting system requirements, such as potentially opting for two 8GB RAM modules if dual channel support is not available on your model.
+
+Always ensure to downclock higher-frequency memory modules (like the ones you've found at 3200MHz) to match what your laptop can handle optimally according to its BIOS specifications, as some systems may throttle high-speed RAM for stability reasons or due to limitations in their motherboard design.
+   📊 Score Comportamental V9: 0.7
+   ℹ️ Motivo Auditoria: The response correctly identifies the lack of specific documentation for Acer Nitro 5 AN515-58 and provides a reasonable estimate based on similar models. It also offers valuable advice on checking manuals, manufacturer websites, and considering dual channel configurations. However, it deviates from the guidelines by including detailed instructions on downclocking RAM modules and selecting compatible memory options, which are not directly related to the query about maximum RAM capacity.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_SKU_LOCK_DELL | Tipo: BEHAVIORAL
+ 💬 Query: What processor does Dell G15 5530 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the information provided in SOURCE_0 and similar sources regarding Dell G15 models with Intel Core i5 processors, it appears that your Dell G15 likely has an Intel Core i5 processor from the 13th generation. However, to give you precise details about the specific SKU or model number of the CPU in your particular device (Dell G15 5530), I would need more information as external documentation is not directly available for this exact model number. Typically, Dell laptops with Intel Core i5 processors use a similar configuration to what's mentioned: an Intel Core i5-13th Gen processor paired with options like 16 GB of RAM and up to a 512 GB SSD as seen in the sources provided. For official specifications, I recommend checking the user manual or Dell’s official support resources for your device model number.
+   📊 Score Comportamental V1: 0.9
+   ℹ️ Motivo Auditoria: The response correctly identifies the query type as a SKU and provides relevant information about the likely processor for Dell G15 5530. It adheres to the rule of stating no external documentation was found when specific details are unavailable. The response is clear, concise, and maintains a natural language flow without forbidden tags or system processing blocks.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The Dell G15 5530 is equipped with an Intel Core i5 from the 13th Generation and has a processor model number of 13450HX. For more detailed specifications, please refer to your Service Manual or contact Dell Support directly as there's no official documentation available online for this exact SKU at my knowledge cutoff date in early 2023. Based on general hardware architectures and internal training, Intel Core i5 processors typically offer robust performance suitable for both programming tasks and gaming with appropriate system configurations.
+   📊 Score Comportamental V9: 0.8
+   ℹ️ Motivo Auditoria: The response correctly identifies the processor model (Intel Core i5 from the 13th Generation, 13450HX) for the specific SKU Dell G15 5530. However, it fails to adhere strictly to Rule 1 as there is no explicit mention that no external documentation was found before providing fallback information.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_SKU_LOCK_LENOVO | Tipo: BEHAVIORAL
+ 💬 Query: Does Lenovo Legion 5 15ACH6A have Thunderbolt 4?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I don't have specific information on the Lenovo Legion 5 15ACH6A model number regarding Thunderbolt 4 support as of my knowledge cutoff in 2024, and there is no external documentation provided. To give you accurate details, could you please provide the exact SKU or confirm if it's a specific component within this series? Typically, Lenovo laptops that use USB-C ports may not have Thunderbolt 4 capabilities unless explicitly stated by manufacturer updates post my knowledge cutoff date. For detailed and up-to-date information, I recommend checking the latest user manual or official product support resources for your specific model.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The response correctly identifies the query as a specific SKU and adheres to the rule of not providing fallback information without acknowledging the lack of external documentation. It also advises on how to obtain accurate details, recommending checking the latest user manual or official product support resources.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Thunderbolt 4 specifically on Lenovo Legion 5 15ACH6A as of the latest information available in March 2026. Generally speaking, older models like your laptop may not support newer standards such as Thunderbolt 4 if they were released before its widespread adoption or lack specific hardware components required for it to function with those technologies. Lenovo's Legion series typically includes ports that cater more towards general connectivity and charging rather than high-end, specialized features like Thunderbolt 4 which requires newer technology not present in older models. For the most accurate information regarding your specific model or potential upgrades compatible with it, please consult Lenovo's official support resources directly or check for any available technical documentation on authoritative hardware review sites that may have tested and detailed such features.
+   📊 Score Comportamental V9: 1.0
+   ℹ️ Motivo Auditoria: The response correctly identifies the query type as a specific SKU and adheres to the operational rule by stating no external documentation was found for Thunderbolt 4 on Lenovo Legion 5 15ACH6A. It provides fallback information based on general knowledge about the model's typical features, without using forbidden tags or system processing blocks in the text output.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_NO_SERIES_INFERENCE | Tipo: BEHAVIORAL
+ 💬 Query: Does the Nitro 5 have Thunderbolt 4?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I don't have specific information on the Nitro 5 model regarding Thunderbolt 4 support from external documents as of my knowledge cutoff in 2024. To provide an accurate answer, could you please provide the exact SKU or model number for the Acer Nitro 5 laptop in question? Based on general industry trends and configurations up to that time, laptops with Thunderbolt ports typically included high-end components like USB 4 (which supports Thunderbolt) but not necessarily a dedicated Thunderbolt 4 port. Once I have the specific model number, I can look into it further or provide general advice based on common configurations for similar models in that series.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The response correctly identifies the query as a specific SKU request and asks for the exact model number to provide accurate information. It also mentions that it doesn't have specific data on Thunderbolt 4 support for the Nitro 5 series, adhering to the rule of not providing fallback information without acknowledging its limitations.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Thunderbolt 4 on your Acer Nitro 5 model as of June 2026. The provided context only mentions USB-C ports and does not specify whether they support Thunderbolt technology, which typically includes versions up to Thunderbolt 3/4 standards in many devices. For accurate information regarding specific features like Thunderbolt on your Acer Nitro 5 laptop, please provide the exact model number or consult the manufacturer's technical documentation directly. Based on general knowledge and similar technology implementations by other companies, it is possible that newer models may have USB-C ports with Thunderbolt support if they are designed for high-end connectivity needs; however, this cannot be confirmed without specific details about your laptop model or official sources.
+   📊 Score Comportamental V9: 1.0
+   ℹ️ Motivo Auditoria: The response correctly identifies the lack of specific documentation for Thunderbolt 4 on the Acer Nitro 5 model, adhering to the rule for SKU queries without external documentation. It also provides a reasonable fallback explanation based on general knowledge and similar technology implementations by other companies.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_INTERNAL_KNOWLEDGE | Tipo: BEHAVIORAL
+ 💬 Query: Why does my laptop thermal throttle during gaming?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the general information provided in your query and external context from retrieved documents, it seems you are experiencing thermal throttling during gaming due to potential issues with your laptop's cooling system not functioning efficiently enough under load or possibly having a build-up of dust that restricts airflow. To address this issue:
+
+1. Check if the fans and airways inside your laptop have any dust accumulation, which can be common in laptops used for gaming due to high internal temperatures generated by powerful components like CPUs and GPUs. You may need a screwdriver and compressed air or seek professional cleaning services to remove this buildup if necessary.
+2. Ensure that the laptop's cooling system, including thermal paste (if applicable), is in good condition; consider reapplying new high-quality thermal paste like Thermal Grizzly Kryonaut Extreme for better heat conduction away from your CPU and GPU.
+3. If you have access to it, disable features such as Turbo Boost temporarily while gaming if they significantly increase the system's temperature without a clear performance benefit during intensive tasks like games. This can reduce power consumption and consequently lower temperatures but may impact overall performance slightly.
+4. Monitor your laptop’s CPU and GPU temperatures to ensure that it does not exceed safe operating limits, which are typically around 95°C for the CPU and about 85-90°C for most modern GPUs during heavy usage like gaming.
+
+Since you haven't specified a particular model or SKU of your laptop, I cannot provide specific solutions tailored to that device nor its exact specs from external documents as my knowledge is up until early 2024 and no further updates are available beyond this point. If possible, please share the make and model (SKU) for more precise advice:
+
+Could you provide the specific laptop SKU or brand? This would help in offering a detailed solution based on known information about that particular product line's cooling system design and performance characteristics.
+   📊 Score Comportamental V1: 0.8
+   ℹ️ Motivo Auditoria: The response correctly identifies the issue as thermal throttling during gaming, likely due to inefficient cooling or dust buildup. It provides detailed and actionable advice on how to address this problem, including cleaning fans, checking thermal paste condition, and monitoring temperatures. However, it fails to adhere strictly to the evaluation steps by not explicitly stating that no external documentation was found for a specific SKU query.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   Your laptop may be thermal throttling during gaming due to inadequate cooling leading to high temperatures that trigger performance reductions for protection. To address this issue, ensure your laptop's airflow is not obstructed by dust or debris and consider using a cooling pad or external fan. If you suspect the thermal paste has worn out, it might be beneficial to clean off any old one and reapply new high-quality thermal compound like Thermal Grizzly Kryonaut Extreme. Disabling Turbo Boost can also reduce heat generation but may impact performance; thus, check your cooling system's effectiveness before making this change. Monitor temperatures during gaming to ensure they stay within safe operating ranges and adjust accordingly with these steps for better laptop longevity.
+   📊 Score Comportamental V9: 0.0
+   ℹ️ Motivo Auditoria: The response does not align with the evaluation steps as it does not determine the query type (SKU, series, comparison, or general). It also does not address any specific hardware model or provide a direct comparison between models. Instead, it offers general advice on laptop thermal throttling during gaming.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_HONEST_COMPARISON | Tipo: BEHAVIORAL
+ 💬 Query: Does the Dell G15 5520 have the same maximum RAM and slots as the Dell G15 5530?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I don't have specific information on the Dell G15 5520 compared to the Dell G15 5530 in my current knowledge base as of 2024. Could you provide the specific model number (SKU) for a more accurate comparison? Once I have that, I'll be able to assist you better with your query regarding RAM and slots compatibility between these models.
+   📊 Score Comportamental V1: 0.6
+   ℹ️ Motivo Auditoria: The response correctly identifies the query as a comparison type and requests specific SKUs for accurate information. However, it does not provide any fallback or estimated data based on available knowledge.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found comparing specific RAM capacities and configurations between the Dell G15 5520 and Dell G15 5530 models directly in your provided context as of March 2026. However, generally speaking, both models are based on similar Intel platforms with DDR4 or potentially newer memory standards if they have been updated post-Intel's transition to 10th Gen processors and beyond. For accurate specifications regarding RAM compatibility and capacity for these Dell G15 laptops, it is recommended that you consult the laptop user manual or contact a Dell representative directly as both models may share similar hardware components but could have slight variations in their design due to different model numbers within the same lineup.
+   📊 Score Comportamental V9: 0.6
+   ℹ️ Motivo Auditoria: The response correctly identifies the query type as a comparison and provides relevant information about potential similarities in RAM standards between the two models. However, it fails to adhere strictly to the operational rule for comparison queries by not indicating when specific data is missing or using fallback information. The response also does not explicitly state that no direct comparison data was found before providing general information.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_TEMPORAL_AWARENESS | Tipo: BEHAVIORAL
+ 💬 Query: What is the latest BIOS for Helios Neo 16 as of 2026?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the available external context up to my knowledge cutoff in 2024 and since there is no specific information regarding the BIOS version for Acer Predator Helios Neo 16 as of 2laus, I am unable to provide an exact answer. For accurate and updated details, could you please provide the specific model number (SKU) of your laptop? Typically, manufacturers release updates periodically which can be found on their official support or download sections online. If this information is not available, it's recommended to contact Acer directly for assistance with BIOS versions and firmware upgrades related to the Predator Helios Neo 16 series.
+
+Remember that my knowledge only includes general concepts and typical configurations based on industry standards as of early 2024; I cannot provide official documentation or specific updates beyond this timeframe.
+   📊 Score Comportamental V1: 0.7
+   ℹ️ Motivo Auditoria: The response correctly identifies the query as a specific SKU request and explains that no exact BIOS version information is available due to knowledge cutoff. It also provides a clear instruction to specify the model number (SKU) for accurate details, adhering to rule 1 about missing external documentation. However, it inadvertently includes the model name ('Acer Predator Helios Neo 16') which should have been avoided according to rule 3.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for your specific model number (SKU). Based on general hardware architectures and available information up to early 2026, the latest BIOS version typically involves keeping your system's firmware updated with manufacturer-released updates. For Acer Predator Helios Neo 16 laptops, it is recommended that you check for any official announcements or support resources provided by Acer directly as they may release specific versions compatible with newer hardware like the NVIDIA GeForce RTX series GPUs mentioned in some reports. If no such information can be found and your laptop prompts a BIOS update, it is often advisable to back up important data before proceeding due to potential risks associated with updating system firmware.
+
+Remember that without official documentation or specific guidance for the SKU you are inquiring about (predator_helios_neo_16), any detailed instructions should be approached cautiously, and when in doubt, seeking professional assistance is advisable.
+   📊 Score Comportamental V9: 0.5
+   ℹ️ Motivo Auditoria: The response correctly identifies the query as an SKU-specific request and accurately states that no official documentation was found for the specific model (Helios Neo 16). It provides a general guideline on how to proceed with BIOS updates, emphasizing the importance of checking manufacturer resources. However, it lacks precision in addressing the 'as of 2026' aspect and does not provide any fallback information based on available data up to that point.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_NONEXISTENT_MODEL | Tipo: BEHAVIORAL
+ 💬 Query: What GPU does HP Pavilion 15-ec9999 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   It seems you're asking about the GPU in an HP Pavilion model with the specific identifier "15-ec9999," but this SKU does not match any of the provided external contexts, and I don't have internal knowledge regarding that exact model. Could you provide the specific model number (SKU) for a more accurate response?
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The response correctly identifies the query as an SKU-specific request and accurately states that no external documentation was found for this particular model. It also politely asks for the specific model number (SKU) to provide a more accurate response.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   Could you please provide your specific model number (SKU) for HP Pavilion 15-ec9999? The information on the GPU is not directly available in the provided context. However, based on general knowledge of similar systems and typical configurations around that time, many entry-level gaming laptops like yours might have integrated graphics or a budget discrete GPU such as an NVIDIA GeForce 3050Ti or GTX 1050 series. For the most accurate information regarding your specific model's hardware capabilities and potential upgrades, checking the user manual or directly contacting HP support would be advisable.
+   📊 Score Comportamental V9: 0.6
+   ℹ️ Motivo Auditoria: The response correctly identifies the query as a SKU-specific request and asks for the specific model number, adhering to rule 3. However, it fails to explicitly state that no external documentation was found before providing fallback information, violating rule 1.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_NO_BIOS_HALLUCINATION | Tipo: BEHAVIORAL
+ 💬 Query: What is the BIOS version for Dell XPS 15 9500?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Dell XPS 15 9500? Once I have that information, I can guide you on how to find out the BIOS version for it or what solutions are available if there's an issue with updating. Typically, checking the official Dell website or using system utilities like msinfo32 (in Windows) would give accurate and up-to-date details regarding your laptop’s BIOS version.
+   📊 Score Comportamental V1: 0.2
+   ℹ️ Motivo Auditoria: The response correctly identifies the need for a specific model number (SKU) but fails to provide any fallback information or guidance on how to find the BIOS version. It does not mention typical methods like checking the official Dell website or using system utilities.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Dell XPS 15 9500 regarding its BIOS version as of June 2026. For the most accurate and up-to-date information on specific models like your Dell XPS 15, please check directly with Dell's support or visit their official website for updates and downloads. Based on general hardware architectures, it is recommended to keep BIOS firmware updated through official channels provided by the manufacturer when possible.
+   📊 Score Comportamental V9: 1.0
+   ℹ️ Motivo Auditoria: The response correctly identifies the query as an SKU-specific request and accurately states that no official documentation was found for the BIOS version of Dell XPS 15 9500. It provides a fallback recommendation to check with Dell's support or visit their official website for updates, adhering to the guidelines.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_SKU_WITH_INTERNAL_FALLBACK | Tipo: BEHAVIORAL
+ 💬 Query: What is the TGP of RTX 3060 in Acer Nitro AN515-45?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I don't have specific external documentation available regarding the TGP (Total Graphics Power) of RTX 3060 in Acer Nitro AN515-45 as per my last update was in 2024. However, generally speaking, an RTX 3060 graphics card typically has a high TGP due to its powerful GPU architecture and can easily exceed the requirements of many gaming laptops like Acer Nitro AN515-45 when connected via DisplayPort or HDMI 2.0/a connection. For precise specifications, I would need the exact model number (SKU) as it may vary between different configurations and manufacturers' implementations. Could you provide the SKU for a more accurate answer?
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The response correctly identifies the query type as SKU and adheres to the operational rule by stating that no specific external documentation was found for the TGP of RTX 3060 in Acer Nitro AN515-45. It provides a fallback explanation without forbidden raw tags or system processing blocks, maintaining a natural language flow.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for RTX 3060 in Acer Nitro AN515-45 specifically detailing its Total Graphics Power (TGP). However, based on general hardware architectures and the performance of similar GPUs like those used in other gaming laptops around that time, a high-end laptop with an RTX 3060 typically has a TGP ranging from approximately 150 watts to over 200 watts. It's important to note that the actual power draw can vary depending on specific software and thermal management of your system. For precise information, it would be best to consult technical resources or contact Acer directly for their official specs regarding this model.
+   📊 Score Comportamental V9: 0.8
+   ℹ️ Motivo Auditoria: The response correctly identifies the lack of specific documentation for TGP in the given Acer Nitro AN515-45 model and provides a reasonable estimate based on general hardware knowledge. However, it does not explicitly state that no external documentation was found before providing fallback information as per the critical rule 1.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_AUDIT_TAGS_PRESENT | Tipo: BEHAVIORAL
+ 💬 Query: Does the Dell G15 5520 support PCIe 4.0?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Dell G15 5520? Without this information, I can only offer general knowledge that as per my last update in 2024, many modern laptops support PCIe Gen 4.0 if they have newer hardware components or motherboards designed for such technology. However, to give you accurate advice specific to your Dell G15 model, the SKU would be necessary to determine its exact configuration and compatibility features. Typically, older models like certain XPS series may not support PCIe Gen 4.0 due to their hardware limitations or design choices made by manufacturers at the time of production. Once you provide the specific details, I can give a more precise answer based on available information up until my knowledge cutoff date and general industry standards for such technology in laptops.
+   📊 Score Comportamental V1: 0.6
+   ℹ️ Motivo Auditoria: The response correctly identifies the need for a specific model number (SKU) to provide accurate information, adhering to rule 3. It also provides general knowledge about PCIe 4.0 support in modern laptops, demonstrating an understanding of the topic. However, it falls short on scoring high due to not explicitly stating 'no external documentation was found' as per rule 1 for a SPECIFIC SKU query.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Dell G15 5520 specifically addressing PCIe Gen 4 support in detail as of my knowledge cutoff date. Generally speaking, the Intel Core i5 processors used in many laptops up to and including early 2026 typically do not have native PCIe Gen 4 capabilities due to their design constraints focusing on power efficiency over high-speed data transfer rates like those offered by newer NVIDIA GPUs. The Dell G15 models, especially older ones or using Intel CPUs from the i5 series with a 13th generation core and beyond, are unlikely to support PCIe Gen 4 without specific hardware upgrades that would not be standard in laptop configurations. For accurate information on your particular model's capabilities, please refer directly to Dell’s official technical documentation or contact their customer service for the most precise details regarding supported features like PCIe lanes and bandwidth capacities.
+   📊 Score Comportamental V9: 0.8
+   ℹ️ Motivo Auditoria: The response correctly identifies the lack of specific documentation for Dell G15 5520's PCIe 4.0 support and provides a general explanation based on typical Intel CPU capabilities in similar models. However, it does not explicitly state that no external documentation was found before providing fallback information as per rule 1.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_COMPARISON_MIXED_SOURCES | Tipo: BEHAVIORAL
+ 💬 Query: Compare battery life of Lenovo Legion 5 15ACH6 vs HP Victus 16-e0055dx
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I don't have specific external documentation available to provide exact comparisons between Lenovo Legion 5 15ACH6 and HP Victus 16-e0055dx models, but I can offer some general insights based on the information provided. Generally speaking:
+
+Lenovo Legion laptops are known for their robust build quality and performance capabilities which may come at a cost to battery life due to high power consumption by components like dedicated GPUs (as seen in Lenov 5 Pro with NVIDIA GeForce RTX 3060). Adjusting settings such as brightness, Wi-Fi, Bluetooth usage, or disabling the discrete graphics can help improve battery longegy.
+
+HP Victus laptops are designed to balance performance and power efficiency; however, they may still experience reduced battery life when performing tasks like light office work due to their hardware configuration (as with HP's 64Wh battery lasting about 5-7 hours). Enabling Adaptive Battery Optimizer in the BIOS settings can also help manage power consumption and extend battery runtime.
+
+For a more accurate comparison, it would be beneficial to know their specific SKUs or model numbers as I cannot provide precise details without them. Could you please provide these for an informed analysis?
+   📊 Score Comportamental V1: 0.6
+   ℹ️ Motivo Auditoria: The response correctly identifies the query type as a comparison and provides general insights about battery life for both models, mentioning their respective strengths and potential areas of improvement. However, it fails to adhere strictly to the operational rule for comparison queries by not providing specific data points or side-by-side comparisons due to lack of external documentation.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No specific official documentation was found for both models directly comparing their battery life side by side. However, based on general hardware architectures and user experiences from the provided context, we can infer that Lenovo Legion 5 (15ACH6) is equipped with a high-performance CPU and dedicated GPU which may impact its battery longevity negatively due to increased power consumption. The HP Victus 16 has been reported consuming around 7-10W for light office tasks, resulting in approximately 5-7 hours of battery life on an average 64Wh battery. It's suggested that adjusting laptop settings and using a power bank could help extend the usage time for both models when necessary. For more precise comparisons, please provide specific model numbers (SKUs).
+   📊 Score Comportamental V9: 0.7
+   ℹ️ Motivo Auditoria: The response correctly identifies the query type as a comparison and provides relevant information about each model's battery life, acknowledging the lack of direct side-by-side comparison data. However, it fails to explicitly state that no external documentation was found for a direct comparison before providing fallback information.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_SERIES_NO_INTERNAL_SPECS | Tipo: BEHAVIORAL
+ 💬 Query: What is the maximum RAM for Dell G15 series?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Dell G15 series laptop? The maximum RAM capacity can vary depending on the exact configuration and motherboard support. Generally speaking, for many configurations in the Dell G15 lineup that use DDR4 memory, it's not uncommon to see up to 32GB being supported; however, this information is specific to each model and should be verified with accurate documentation or a reliable source regarding your particular system.
+
+If you are experiencing issues related to RAM capacity on your Dell G15 series laptop, checking the motherboard's compatibility for higher capacities would provide more precise guidance tailored to your device.
+   📊 Score Comportamental V1: 1.0
+   ℹ️ Motivo Auditoria: The response correctly identified the query as a SERIES type and requested the specific SKU, adhering to rule 3. It also provided fallback information without claiming it as definitive, aligning with rule 2.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for the specific maximum RAM capacity of Dell G15 series as per your inquiry dated June 3, 2026. However, based on general hardware architectures and internal knowledge up to early 2026, high-end laptops like certain models in the Dell G15 line can support configurations exceeding 16GB of RAM with compatible DDR4 or later memory modules. For precise specifications tailored to your particular model (SKU), please provide your exact laptop's model number for a more accurate response. It is recommended to consult official resources such as the user manual, Dell’s website, or contact their support directly for detailed information on RAM upgrades and compatibility with your device.
+   📊 Score Comportamental V9: 1.0
+   ℹ️ Motivo Auditoria: The response correctly identifies the query as a SERIES type and advises for a specific SKU, adhering to rule 3. It also accurately states that no external documentation was found for the exact maximum RAM capacity of Dell G15 series, following rule 1.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_BEHAVIOR_RAG_PLUS_INTERNAL_ENRICHMENT | Tipo: BEHAVIORAL
+ 💬 Query: Why does my Acer Nitro 5 AN515-58 throttle? Explain thermal design.
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Your query pertains to the COMPARISON and SPECIFIC_SKU categories as you're asking about your specific Acer Nitro 5 AN515-58 model, which involves comparing its thermal design with other models. Based on the external context provided:
+
+The issues of overheating and throttling in various reports for different SKUs (specific models) suggest that an adequate cooling system is crucial to prevent such problems. The fault seems related to either insufficient airflow, outdated or worn-out thermal paste, or incorrect power plan settings leading to high temperatures which trigger the laptop's built-in throttling mechanisms as a protective measure for its components like CPU and GPU.
+
+For your Acer Nitro 5 AN515-58:
+
+1. The cooling system, including fans and heat sinks (possibly with thermal paste), may not be effectively dissipating the generated heat during intensive tasks such as gaming or heavy computational workloads. High temperatures can cause both hardware components to throttle their performance for safety reasons.
+2. Power plan settings might also contribute if they're set too aggressively, forcing higher CPU usage and generating more heat than necessary under load conditions. Adjusting these plans could help manage the system temperature better.
+3. The thermal design of your laptop should ideally allow sufficient airflow to cool down critical components like the Intel Core i7-12650H processor efficiently while also managing GPU temperatures, especially when using high-end graphics cards such as RTX 3070ti.
+4. Ensuring that all vents are clear of dust and debris can improve air circulation within your laptop's chassis. Additionally, if the thermal paste has deteriorated over time or was not applied correctly initially, replacing it with a high-quality solution like Thermal Grizzly Hydronaut could enhance heat transfer from components to heatsink and subsequently aid in cooling.
+5. Consider creating a custom power plan that limits the processor's maximum state closer to 90%, as suggested for another model, or using Intel XTU benchmark tools to fine-tune your system settings specifically tailored around maintaining lower temperatures during high loads like gaming sessions with RTX graphics cards and powerful CPUs.
+6. Regular maintenance of the cooling fan by cleaning it can also prevent dust buildup, which might impede airflow or cause fans to work harder than necessary, leading to increased heat generation within your laptop's chassis.
+
+Since these solutions are based on patterns observed in similar models and general knowledge up until my cutoff date of 2024, for the most accurate advice tailored specifically to your Acer Nitro 5 AN515-58 model, it would be beneficial if you could provide more detailed specifications or consult with official support.
+
+Remember that these are general guidelines and may not fully address all potential issues unique to your device's configuration. Always ensure any physical maintenance is done carefully following the manufacturer’s instructions to avoid damage.
+   📊 Score Comportamental V1: 0.8
+   ℹ️ Motivo Auditoria: The response correctly identifies the query as SPECIFIC_SKU and provides detailed information about potential thermal design issues in the Acer Nitro 5 AN515-58 model. It explains various factors contributing to overheating, such as cooling system efficiency, power plan settings, and thermal paste quality. The response also offers practical solutions like cleaning vents, replacing thermal paste, and adjusting power plans. However, it fails to explicitly state that no external documentation was found for the specific model before providing fallback information.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found specifically for your Acer Nitro 5 AN515-58 model number regarding its thermal design details. However, based on general hardware architectures and the issues mentioned in similar cases from June 2026, it's likely that overheating is caused by an inadequate cooling system or worn-out thermal paste leading to thermal throttling. To mitigate this issue, you might consider cleaning the laptop’s cooling vents regularly and applying new high-quality thermal paste like Thermal Grizzly Hydronaut if necessary. Additionally, ensuring proper airflow by lifting the laptop when in use or using a cooling pad can help manage temperatures more effectively. Adjusting fan settings with custom cooling options may also be beneficial for your specific model to maintain optimal operating conditions and prevent throttling during gaming sessions.
+
+For precise solutions tailored to your Acer Nitro 5 AN515-58, it's recommended that you consult the laptop manufacturer’s guidelines or seek advice from a professional technician who can provide hands-on assistance based on its specific hardware configuration and design.
+   📊 Score Comportamental V9: 1.0
+   ℹ️ Motivo Auditoria: The response correctly identifies the query type as a specific SKU (Acer Nitro 5 AN515-58) and acknowledges the lack of official documentation for its thermal design. It then provides a detailed explanation based on general hardware knowledge, suggesting potential causes and solutions related to overheating and thermal throttling. The response is informative and helpful, adhering to the guidelines by not including forbidden raw tags or system processing blocks in the text output.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_ABS_001 | Tipo: TEMPORAL
+ 💬 Query: What was the maximum RAM capacity of the Dell G15 5530 in March 2024?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Dell G15 5530? I can then assist you with information regarding its maximum RAM capacity based on available data up to my knowledge cutoff in 2024. For accurate and updated details, it's best to consult the official documentation or a professional technician as well.
+   📊 Score Temporal V1: 0.2
+   ℹ️ Motivo: The response correctly acknowledges the need for a specific model number (SKU) and mentions the knowledge cutoff date, but it does not provide any information about the maximum RAM capacity of the Dell G15 5530 in March 2024. It fails to address the query directly.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Dell G15 5530 as of March 2024. Based on general hardware architectures and the information provided in similar models like the Dell G15 with Intel Core i5 processors, it's common for such systems to support up to around 64GB or even more RAM depending on the motherboard compatibility and BIOS settings. However, without specific documentation, this is an estimate rather than a confirmed fact. For precise information, please check your system manual or consult with Dell directly.
+   📊 Score Temporal V9: 0.6
+   ℹ️ Motivo: The response correctly acknowledges the lack of specific documentation for Dell G15 5530 in March 2024 and provides a reasonable estimate based on similar models. However, it does not adhere to the temporal context strictly as it speculates about potential RAM capacity beyond what is known or confirmed.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_ABS_002 | Tipo: TEMPORAL
+ 💬 Query: What was the default graphics card in the Lenovo LOQ 15IRX9 in January 2025?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   For the information regarding the default graphics card in Lenovo LOQ 15IRX9 as of January 2025, I don't have specific external documentation available since my knowledge cutoff is in 2024. However, based on general industry standards and common configurations for similar models around that time, it can be inferred that the Lenovo LOQ 15IRX9 likely came with a GeForce RTX series GPU as indicated by previous sources. Typically, mid-range laptops like this would use NVIDIA's more powerful offerings within their price range for better gaming performance and graphics capabilities. For precise specifications or if the situation has changed since my last update, I recommend checking with Lenovo directly or consulting a current source.
+
+Please note that these details are not official documentation but rather an educated guess based on known patterns in laptop configurations up to early 2026.
+   📊 Score Temporal V1: 0.6
+   ℹ️ Motivo: The response correctly acknowledges the lack of specific external documentation for January 2025, adhering to Rule 1. It also refrains from speculating about future hardware specifications, respecting Rule 2. However, it does provide an educated guess based on industry standards and previous configurations, which may not align with actual specifications from January 2025, violating Rule 3 (chronological evolution of specifications).
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for the specific graphics card model in Lenovo LOQ 15IRX9 as of January 2025. Generally speaking, based on internal knowledge and common configurations at that time, it is likely that a laptop like this would have come with an integrated Intel GPU or possibly a dedicated NVIDIA GeForce GTX series graphics card if upgraded options were available within the budget range mentioned (around $60k). For precise specifications, please provide your Lenovo LOQ 15IRX9 model number.
+   📊 Score Temporal V9: 0.7
+   ℹ️ Motivo: The response correctly acknowledges the lack of official documentation for the specific graphics card model in Lenovo LOQ 15IRX9 as of January 2025. It appropriately uses fallback information based on internal knowledge and common configurations at that time, emphasizing the need for precise specifications with a model number. However, it does not respect chronological evolution of specifications as there's no indication of how graphics card technology evolved between now and then.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_ABS_003 | Tipo: TEMPORAL
+ 💬 Query: What processor did the Acer Nitro 5 AN515-58 have in Q4 2023?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of the Acer Nitro 5 AN515-58 laptop? Without the exact SKU and considering my knowledge cutoff is in 2024, I'm unable to give a precise answer regarding its processor configuration as of Q4 2023. Typically, laptops from that era might have Intel Core or AMD Ryzen processors with various core counts based on their generation and specific model. For the most accurate information, please refer to the latest documentation for your particular laptop's specs or check a reliable tech review site where they may provide updates up to recent times.
+   📊 Score Temporal V1: 0.3
+   ℹ️ Motivo: The response correctly acknowledges the lack of specific SKU and temporal context, but it does not provide a fallback based on typical specifications for that era. It also fails to respect chronological evolution of specifications by not offering an educated guess or range of possible processors.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   Could you please provide your specific model number (SKU) for more accurate information? Based on general hardware architectures and considering that no official documentation was found specifically mentioning the Acer Nitro 5 AN515-58's processor in Q4 2023, it is likely to have been based on Intel or possibly an AMD Ryzen series. For precise details, checking the laptop specifications at the time of purchase would be necessary. If upgrading for better performance, especially considering gaming requirements, options like a more recent generation CPU with higher core counts and efficiency could offer significant improvements in both gaming and system development tasks such as machine learning or AI workloads.
+   📊 Score Temporal V9: 0.5
+   ℹ️ Motivo: The response correctly identifies the need for a specific SKU and acknowledges the lack of external documentation for Q4 2023. However, it speculates on potential processor types without clear temporal context, which contradicts the evaluation steps' caution against hallucinated versions or specs that contradict the temporal context.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_ABS_004 | Tipo: TEMPORAL
+ 💬 Query: What was the maximum storage configuration for the HP Victus 15-fa1066tx in August 2024?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I'm sorry, but I don't have the specific external documentation available to provide the exact details on the HP Victus 15-fa1066tx model as of August 2024. Based on general knowledge and typical configurations for gaming laptops with similar specs around that time period, these devices often come with high capacity SSD options ranging from 1TB to 2TB or more. However, I recommend checking the latest resources or directly contacting HP for the most accurate information regarding your specific model's storage configuration. Could you provide the specific SKU (model number) of your laptop?
+   📊 Score Temporal V1: 0.9
+   ℹ️ Motivo: The response correctly acknowledges the lack of specific external documentation for the HP Victus 15-fa1066tx in August 2024, providing a fallback based on general knowledge. It adheres to the critical rule 1 by explicitly stating that no external documentation was found before offering an educated guess.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for the specific storage configuration of HP Victus 15-fa1066TX as of August 2024. Based on general hardware architectures and trends at that time, high-end gaming laptops like the HP Victus series often come with configurations ranging from a few hundred gigabytes to several terabytes in SSD storage for ample space required by games. The provided context suggests concerns about insufficient storage capacity around similar models and potential upgrades, indicating that larger capacities such as 1TB or more were recommended for better performance and future-proofing against game installations. However, without specific details on the HP Victus 15-fa1066TX model from August 2024, an exact figure cannot be provided. It is advisable to check with official sources directly for precise information or consider current market options that align with your needs if upgrading storage capacity is a priority.
+   📊 Score Temporal V9: 0.7
+   ℹ️ Motivo: The response correctly acknowledges the lack of specific documentation for the HP Victus 15-fa1066tx in August 2024, providing a fallback explanation based on general trends and hardware architectures. However, it does not explicitly mention the recency of the information or handle future-dated queries with caution as required by the evaluation steps.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_ABS_005 | Tipo: TEMPORAL
+ 💬 Query: What GPU was available in the ASUS TUF Gaming F15 FX507ZV in June 2023?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of the ASUS TUF Gaming F15 FX507ZV laptop for me to give accurate information about its GPU? Without the SKU, I can only offer general knowledge that high-end gaming laptops like yours often come with powerful NVIDIA or AMD graphics cards. For detailed and up-to-date specifications, checking the exact model number would be necessary as solutions may vary based on different configurations within a series.
+   📊 Score Temporal V1: 0.4
+   ℹ️ Motivo: The response correctly identifies the need for a specific SKU to provide accurate GPU information, acknowledging that high-end gaming laptops like the ASUS TUF Gaming F15 FX507ZV often come with powerful NVIDIA or AMD graphics cards. However, it does not address the temporal context of the query (June 2023) and instead provides general knowledge.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for ASUS TUF Gaming F15 FX507ZV specifically regarding its GPU in June 2023. However, based on general knowledge and the information provided from similar models around that time period, it is likely that your laptop featured an NVIDIA GeForce RTX series graphics card as indicated by other entries for ASUS TUF Gaming F15 laptops with such components in June 2023. For precise specifications and to ensure compatibility of any upgrades or replacements, it is recommended to consult the laptop's user manual or contact Asus directly.
+   📊 Score Temporal V9: 0.8
+   ℹ️ Motivo: The response correctly acknowledges the lack of specific documentation for the ASUS TUF Gaming F15 FX507ZV GPU in June 2023. It then provides a reasonable fallback based on general knowledge and similar models from around that time period, suggesting an NVIDIA GeForce RTX series graphics card. The response also advises consulting the user manual or contacting Asus for precise specifications.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_ABS_006 | Tipo: TEMPORAL
+ 💬 Query: What was the refresh rate of the Lenovo Legion Pro 7 16IRX9 display in October 2024?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Lenovo Legion Pro 7 16IRX9 laptop? I'm unable to give detailed information about its refresh rate without that detail, as my knowledge is based on available external sources up until September 2024 and series queries require a specific SKU for accurate response.
+   📊 Score Temporal V1: 1.0
+   ℹ️ Motivo: The response correctly identifies the need for a specific model number (SKU) and acknowledges the limitations of available data up to September 2024. It also appropriately cautions against providing detailed information without this crucial detail.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Lenovo Legion Pro 7's refresh rate in October 2024. Based on general hardware architectures and the information available from similar models like the Legion 5 series, it is common that such devices support high refresh rates up to or beyond their advertised specifications when using compatible cables (like USB-C to DisplayPort) and settings are correctly configured in display drivers. However, for precise details regarding your Lenovo Legion Pro 7's refresh rate as of October 2024, you may need to consult the device manual or check through official support channels provided by Lenovo.
+   📊 Score Temporal V9: 1.0
+   ℹ️ Motivo: The response correctly identifies the lack of official documentation for the Lenovo Legion Pro 7's refresh rate in October 2024. It appropriately suggests fallback information based on similar models and general hardware architectures, while emphasizing the need to consult device manuals or official support channels for precise details.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_AGG_001 | Tipo: TEMPORAL
+ 💬 Query: How many M.2 SSD slots does the Dell G16 7630 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Dell G16 7630 laptop? Typically, for such queries about product series and their configurations, having the exact SKU would enable me to give precise information based on available external documentation or general knowledge. However, I can tell you that many gaming laptops in this range often have one M.2 NVMe SSD slot as a standard configuration; some models may offer additional slots if they are designed for upgradability and expansion purposes. Once the SKU is provided, we could look into specific details about your model'softhe Dell G16 7630'.
+   📊 Score Temporal V1: 0.6
+   ℹ️ Motivo: The response correctly identifies the need for a specific SKU and provides general information about typical configurations in this product range. However, it does not adhere to the critical rule of explicitly stating no external documentation was found before providing fallback information.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Dell G16 7630 specifically mentioning M.2 SSD slots. Generally speaking, many laptops in this category have one to two M.2 slots depending on the motherboard design. For accurate information specific to your model, please consult the laptop's manual or contact Dell directly for technical details regarding its hardware capabilities and configurations.
+   📊 Score Temporal V9: 0.5
+   ℹ️ Motivo: The response correctly identifies the lack of specific documentation for the Dell G16 7630 regarding M.2 SSD slots, adhering to rule 1 about missing external documentation. However, it fails to provide a definitive answer based on the temporal context or respect chronological evolution of specifications as per rules 2 and 3.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_AGG_002 | Tipo: TEMPORAL
+ 💬 Query: How many USB ports does the Acer Predator Helios Neo 16 PHN16-71 have?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I don't have specific external documentation available for the Acer Predator Helios Neo 16 model number PHN16-71 regarding its USB port count. However, based on typical configurations of high-end gaming laptops around that time period and industry standards, these types of machines often feature multiple USB ports to accommodate peripherals such as keyboards, mice, storage devices like thumb drives or external SSDs, and additional accessories for enhanced connectivity. It's common for premium gaming laptops from Acer in that era to have at least two Thunderbolt 3 (or equivalent) ports along with several USB 3.1 Gen 2 Type-A/Type-B ports on the right side of the chassis and one or more USB-C ports for power delivery and data transfer, which can also support additional adapters if needed. For an exact count, I would recommend checking the user manual specific to your model or contacting Acer directly as this information is not universally standardized across all models within a series without direct reference.
+
+If you need assistance with something more general about laptops like typical configurations for RAM and storage in high-end gaming systems, feel free to ask!
+   📊 Score Temporal V1: 0.9
+   ℹ️ Motivo: The response correctly acknowledges the lack of specific external documentation for the Acer Predator Helios Neo 16-71 model. It provides a reasonable estimate based on typical configurations of high-end gaming laptops from that period, respecting the temporal context without speculating or contradicting known standards.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Acer Predator Helios Neo 16 PHN16-71 specifically detailing the number of USB ports it has. Based on general hardware architectures and considering its high-end status, most premium laptops in a similar category tend to have multiple USB options including Thunderbolt or USB-C variants for versatile connectivity needs; however, without specific details from Acer's documentation or updates provided up to 2026, I cannot provide an exact count. For the precise information, please refer directly to official product resources or contact Acer support.
+   📊 Score Temporal V9: 0.2
+   ℹ️ Motivo: The response correctly identifies the lack of specific documentation for the Acer Predator Helios Neo 16 PHN16-71, adhering to rule 1. However, it fails to respect chronological evolution of specifications (rule 3) and does not provide a clear score based on the given evaluation steps.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_AGG_003 | Tipo: TEMPORAL
+ 💬 Query: How many RAM slots are available in the ASUS ROG Zephyrus G14 GA402XV?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I don't have specific information on the ASUS ROG Zephyrus G14 with its exact model number (GA402XV) regarding RAM slots from external documentation as of my knowledge cutoff in 2024. However, based on common configurations for similar gaming laptops within the same series by Asus and general laptop hardware standards, many high-end models typically have two RAM slots with options to upgrade them using compatible memory modules. For precise details about your specific model, I recommend checking the user manual or contacting ASUS support directly as they would provide official information tailored for your device.
+   📊 Score Temporal V1: 0.8
+   ℹ️ Motivo: The response correctly acknowledges the lack of specific external documentation for the exact model (GA402XV) and provides a generalized answer based on common configurations for similar models. It also advises checking official sources for precise details, adhering to the guidelines.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for ASUS ROG Zephyrus G14 with SKU GA402XV specifically detailing the number of RAM slots available on your device as of my knowledge cutoff in 2023. Generally, laptops like these often have one or two DDR4/DDR5 SO-DIMM slots for memory upgrades; however, to get accurate and current information specific to your model, please verify the exact SKU number on the laptop or contact Asus support directly.
+   📊 Score Temporal V9: 0.7
+   ℹ️ Motivo: The response correctly identifies the lack of specific documentation for the given SKU and reference date, adhering to rule 1. It provides a reasonable fallback based on typical configurations for similar models. However, it does not explicitly mention the temporal context or handle future-dated queries with caution as per rules 2 and 4.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_REL_001 | Tipo: TEMPORAL
+ 💬 Query: What is the latest BIOS version for the Dell XPS 15 9530?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   For the Dell XPS 15 9530, I recommend checking directly on Dell's official website to find the latest BIOS version as external sources do not provide this information for specific models beyond what you have shared. Could you please verify the SKU or model number so that I can assist you further with accurate details?
+   📊 Score Temporal V1: 0.6
+   ℹ️ Motivo: The response correctly identifies the need for direct verification on Dell's official website due to lack of external information. However, it does not provide any fallback or estimated version based on temporal context, which is a shortcoming.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for Dell XPS 15 9530 as of my last update in early 2026. Based on general hardware architectures and practices, BIOS updates are typically provided by the manufacturer directly or through specific support channels like a product's official website. For accurate and up-to-date information regarding your Dell XPS 15 9530, please visit Dell's official support page or contact their customer service for guidance on BIOS updates.
+   📊 Score Temporal V9: 1.0
+   ℹ️ Motivo: The response correctly acknowledges the lack of external documentation for the specific SKU (Dell XPS 15 9530) and provides a fallback solution, advising to visit Dell's official support page or contact customer service. It does not speculate on future BIOS versions or contradict temporal context.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_REL_002 | Tipo: TEMPORAL
+ 💬 Query: What is the most recent processor generation used in the Lenovo Legion Slim 5?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the information provided in Source_3 and considering that your query is about the most recent processor generation used in the Lenovo Legion Slim 5 as of March 2026, it seems you are referring to a model with an AMD Ryzen 7 processor. Specifically, this would be the Ryzen 7 7840HS mentioned therein. However, for the most up-to-date and detailed information regarding generations or any potential updates beyond my knowledge cutoff in 2024, I recommend checking Lenovo's official specifications directly as they will have the latest data on their products.
+   📊 Score Temporal V1: 1.0
+   ℹ️ Motivo: The response correctly identifies the processor generation as of March 2026, acknowledges the limitations due to knowledge cutoff in 2024, and advises checking Lenovo's official specifications for the most recent data. It adheres to the temporal context and does not speculate beyond its known information.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The most recent processor generation used in your Lenovo Legion Slim 5 is based on AMD Ryzen technology and specifically identified as the Ryzen 7 7840HS within the context provided from June 2026, 2025. This information comes directly from a user inquiry seeking advice about their device's performance issues related to processor efficiency and heat management in comparison with newer generations like Intel's 13th generation processors.
+   📊 Score Temporal V9: 0.0
+   ℹ️ Motivo: The response does not adhere to the temporal context of the query, providing information from June 2026, 2025 which is in the future relative to the current date. It also includes speculative comparison with Intel's 13th generation processors that have not been released yet.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_REL_003 | Tipo: TEMPORAL
+ 💬 Query: Which was the last Acer Nitro model to feature DDR4 RAM?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the information provided in the external context and my internal knowledge up to 2024, it seems that older models of Acer Nitro laptops may have supported DDR4 RAM before newer ones transitioned to DDR5 or other types. However, I do not have specific details about each model's memory configuration directly from your query. To give you the most accurate information regarding which was the last Acer Nitro model featuring DDR4 RAM, could you please provide a specific SKU (model number) of the laptop in question? This would enable me to look up or infer more precise details for you.
+   📊 Score Temporal V1: 0.3
+   ℹ️ Motivo: The response correctly acknowledges the lack of specific information and requests a SKU for more accurate details. However, it does not provide any temporal context or recency of data, which is crucial for this evaluation.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   The last Acer Nitro model to feature DDR4 RAM was likely the Aceropt_nitro_5_an515_45_unqbmsi009_gaming_laptop based on the retrieved context. However, for confirmation and specific details regarding BIOS updates or any changes post-2026, it would be best to check directly with Acer's official resources as there is no explicit documentation available in the provided context. Generally speaking, many modern laptops have transitioned towards DDR5 RAM due to its advancements over DDR4, but specific models may vary.
+   📊 Score Temporal V9: 0.3
+   ℹ️ Motivo: The response correctly identifies the last Acer Nitro model with DDR4 RAM, but it lacks specific details and relies on assumptions due to missing external documentation. It also mentions future-dated information (transition to DDR5) without clear temporal context.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_REL_004 | Tipo: TEMPORAL
+ 💬 Query: What is the most recent HP Omen 16 model with an AMD processor?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of the most recent HP Omen laptop featuring an AMD processor? This will help me give accurate information regarding its release date and technical specifications, especially concerning features like HDMI 2.1 support or a high refresh rate display which are relevant to your query as of March 2026.
+   📊 Score Temporal V1: 1.0
+   ℹ️ Motivo: The response correctly asks for the specific model number (SKU) to provide accurate information, acknowledging the importance of release date and technical specifications. It also mentions relevant features like HDMI 2.1 support or a high refresh rate display as they pertain to the query's context (March 2026).
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for the most recent HP Omen model with an AMD processor as of my last update in 2023. However, based on general hardware architectures and industry trends at that time, it's possible such a laptop could have been equipped with components like an AMD Ryzen CPU (e.g., Ryzen 9 or similar), DDR4 RAM, and possibly NVIDIA Radeon graphics if the system was aimed towards gaming while maintaining budget considerations. For specific models and their specs within HP's lineup that included AMD processors around mid-2026, it would be advisable to check directly with official sources or authorized retailers for accurate information as of 2026.
+   📊 Score Temporal V9: 0.0
+   ℹ️ Motivo: The response does not adhere to the evaluation steps by providing speculative information about a future model. It lacks precision in addressing the specific query for the most recent HP Omen 16 model with an AMD processor as of 2023.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_REL_005 | Tipo: TEMPORAL
+ 💬 Query: What was the last Dell G15 model to support DDR4 memory?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Could you provide the specific model number (SKU) of your Dell G15 laptop? Generally speaking, based on common patterns for product lines and considering that DDR4 has been largely phased out in favor of faster DDR5 memory, it's likely an older generation of the Intel Core i5 processor within the Dell G15 series would support DDR4. However, to give you accurate information tailored to your specific model, I need the SKU or precise model number.
+   📊 Score Temporal V1: 0.5
+   ℹ️ Motivo: The response correctly identifies the need for a specific model number (SKU) and acknowledges that DDR4 support is likely in older generations. However, it does not provide definitive information due to the lack of exact model details. It also does not address the recency of documentation or respect chronological evolution of specifications as required.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for this specific model number (SKU). Based on general hardware architectures and understanding of Dell's product lineup evolution, it is likely that the last Dell G15 models to support DDR4 memory were those released before the transition towards newer RAM technologies like DDR5. However, without exact documentation or a clear reference date for when this change occurred in your inquiry context (2026), I recommend checking with official Dell resources directly for precise information on supported RAM types by specific models of interest.
+   📊 Score Temporal V9: 0.3
+   ℹ️ Motivo: The response correctly identifies the lack of specific documentation for the requested model and suggests a fallback approach. However, it fails to adhere to the temporal context provided in the test case (2026). The response speculates about the transition to DDR5 without clear reference to this date, which is crucial for accurate evaluation.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_CMP_001 | Tipo: TEMPORAL
+ 💬 Query: How did the maximum RAM capacity change from Dell G15 5520 to Dell G15 5530?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   It appears that there is no specific information available in the provided external context regarding the RAM capacity changes between Dell G15 5520 and Dell G15 5530 models as neither model number has been mentioned explicitly. To accurately answer your question, could you please provide the specific SKU for one of these models? Based on general knowledge or once I have that information, I can offer more insight into any changes in RAM capacity between those particular Dell G15 laptops.
+   📊 Score Temporal V1: 0.4
+   ℹ️ Motivo: The response correctly identifies the lack of specific information in the provided context and requests clarification on the model SKUs. However, it does not provide any insight into how RAM capacity might have changed between the Dell G15 5520 and 5530 models based on general knowledge or temporal context.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for the specific change in maximum RAM capacity between Dell G15 5520 and Dell G15 5530 models as per the provided context. Generally speaking, both models are equipped with Intel Core i5 processors from the 13th generation and come with up to 16GB of DDR4 RAM configured in a dual-channel setup for improved performance. It's important to verify your system specifications or contact Dell directly to get accurate information on any differences between these models, especially regarding memory support and potential storage capacity discrepancies as hinted at by user reports. If you are considering an upgrade within budget constraints, adding a second NVMe SSD could be beneficial without altering your current RAM setup for now. Always ensure to back up important data before proceeding with any hardware modifications.
+   📊 Score Temporal V9: 0.4
+   ℹ️ Motivo: The response does not provide a direct comparison of the maximum RAM capacity between Dell G15 5520 and Dell G15 5530, instead offering general information about both models. It correctly states that no official documentation was found for this specific change.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_CMP_002 | Tipo: TEMPORAL
+ 💬 Query: Compare the GPU options between Acer Nitro 5 AN515-57 and AN515-58.
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Since I don't have specific external documentation on the Acer Nitro 5 AN515-57 and AN515-58 models due to my knowledge cutoff in 2024, I can provide a general comparison based on typical configurations within gaming laptops. Usually, GPUs like Radeon or GeForce series are used for their strong performance capabilities. The AMD Radeon and NVIDIA GeForce cards often differ slightly between models with minor variations in memory (VRAM) and processing power which can affect FPS and overall gaming experience.
+
+Typically, higher-end GPUs like the ones found on some Dell or ASUS laptops may offer better performance due to more VRAM and advanced architecture compared to midrange options such as GTX1050Ti used in certain Acer models. For a detailed comparison of these specific SKUs (AN515-57 vs AN515-58), I would need the exact model numbers or further details, which could be found on official product pages or from reliable tech forums and reviews.
+
+If you're considering upgrades to improve performance in demanding games like Valo and Genshin Impact, it is often beneficial to opt for a laptop with at least an RTX 3060 GPU due to its higher VRAM capacity (if applicable) or the latest AMD equivalent. However, without specific details on these SKUs from external sources, I can only suggest that you compare their listed specs directly if available online and consider factors such as price, brand reputation for reliability in gaming hardware, and potential upgrade paths based on your budget constraints.
+
+For precise information regarding the GPU options between Acer Nitro 5 AN515-57 and AN515-58 models: Could you provide their specific SKUs or model numbers? This would enable a more accurate comparison of their technical specs for an informed decision on which might offer better gaming performance.
+   📊 Score Temporal V1: 1.0
+   ℹ️ Motivo: The response correctly acknowledges the lack of specific external documentation for the given Acer Nitro 5 models due to its knowledge cutoff in 2024. It provides a general comparison based on typical configurations within gaming laptops, respecting chronological evolution of specifications without speculating about future or unknown details.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found specifically comparing Acer Nitro 5 AN515-57 and AN515-58 GPUs as they appear to be variants of the same model with slight differences in SKU numbers, which typically indicate batches or regional versions rather than different specifications. However, based on general hardware architectures for gaming laptops around that time period, it's common knowledge that NVIDIA and AMD GPUs are key components affecting FPS performance. If the AN515-57 has a GTX series model like its predecessor (GTX 1650), while AN515-58 might have an RX series, such as Radeon RX 8500 or newer versions with more VRAM and higher performance capabilities. For accurate specifications, you would need to check the exact model numbers of both GPUs in question for detailed specs comparison. Generally speaking, a laptop equipped with AMD's latest Radeon series should offer competitive gaming experiences due to improvements like larger textures cache or more VRAM compared to older NVIDIA models if they are within similar price ranges and power consumption limits suitable for your system requirements.
+
+To make an informed decision, it would be best to directly compare the exact GPUs in question by obtaining their specifications from a reliable source such as manufacturer documentation or verified tech review sites that specialize in gaming hardware performance analysis. Keep in mind factors like clock speed, core count, and VRAM when comparing different graphics cards for your needs.
+
+Remember to also consider the rest of your system' extraneous components (like CPU), RAM size, cooling efficiency, and overall build quality as these can all contribute significantly to gaming performance alongside GPU capabilities.
+   📊 Score Temporal V9: 0.5
+   ℹ️ Motivo: The response correctly identifies the lack of specific comparison data and advises on how to find accurate specifications. However, it speculates about potential GPU differences between the two models without clear evidence or reference to a reliable source.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_FUT_001 | Tipo: TEMPORAL
+ 💬 Query: What will be the default RAM configuration for the 2026 Dell Alienware m18?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Based on the available external context and my internal knowledge up to early 2024, I don't have specific information regarding the default RAM configuration for the Dell Alienware M18 in 2026 as it falls under a SERIES query. Could you provide the specific model number (SKU) of your interest? This will help me give you accurate and relevant information about its RAM setup or configurations if available.
+   📊 Score Temporal V1: 1.0
+   ℹ️ Motivo: The response correctly identifies the query as a SERIES type, acknowledging that specific information for the 2026 Dell Alienware m18 is not available due to its future-dated nature. It appropriately requests clarification on the model number (SKU) to provide accurate details. The response does not speculate or hallucinate specifications beyond current knowledge.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for the specific RAM configuration of the 2026 Dell Alienware m18 as of June 2026. Based on general hardware architectures and past practices with similar systems like previous models, it's common that high-end gaming laptops such as these use DDR4 or DDR5 memory modules for their RAM configurations due to the performance benefits they offer over older generations. However, without official specs from Dell itself or specific details about your model year configuration, this is a general assumption and not an exact specification. For accurate information regarding default RAM settings of your particular laptop, it's best to consult the user manual for your device or contact Dell directly.
+   📊 Score Temporal V9: 0.8
+   ℹ️ Motivo: The response correctly identifies the lack of official documentation for the 2026 Dell Alienware m18, adhering to rule 1. It also provides a reasonable assumption based on past practices and hardware evolution, respecting rule 3 by acknowledging the chronological progression of specifications. However, it does not explicitly mention the temporal context in its explanation, which slightly detracts from the evaluation.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_FUT_002 | Tipo: TEMPORAL
+ 💬 Query: What processor will the ASUS ROG Strix Scar 18 2026 use?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   I'm sorry, but the external context provided does not include information about an ASUS ROG Strix Scar 18 model for 2026. Based on typical industry standards and common patterns up to my knowledge cutoff in 2024, I recommend researching or checking with official sources regarding this specific SKU as it falls outside the provided data. Could you provide the specific model number (SKU) of your ASUS ROG Strix Scar 18 for accurate information?
+   📊 Score Temporal V1: 1.0
+   ℹ️ Motivo: The response correctly acknowledges the lack of information for a future model (2026) and recommends verifying with official sources. It adheres to the critical rule 2, which states that future-dated queries should be handled cautiously without speculation.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   No official documentation was found for ASUS ROG Strix Scar 18's specific processor in the context provided as of January 2026. Generally speaking, if you are looking to build a gaming PC and considering an upgrade from models like your Asus ROG Strix Scar 17 SE G733C-XS97, AMD Ryzen processors such as the Ryzen 9 9600X, 9700X, or 7900X are recommended for gaming and programming needs. However, to ensure compatibility with your specific model, it would be best to consult directly with ASUS or check any official documentation you may have received at the time of purchase or from a reputable retailer that can provide accurate information on compatible components for your particular system in 2026.
+   📊 Score Temporal V9: 0.3
+   ℹ️ Motivo: The response correctly identifies the lack of official documentation for the specific processor in the ASUS ROG Strix Scar 18 as of January 2026. However, it provides speculative information about potential processors based on previous models and general recommendations, which contradicts the temporal context specified in the query.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_ATEMP_001 | Tipo: TEMPORAL
+ 💬 Query: What is thermal throttling and why does it happen in gaming laptops?
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   Thermal throttling is a process where the cooling system of a gaming laptop reduces its performance to prevent overheating when it reaches certain temperature thresholds during intensive tasks like gaming. This happens because laptops have limited space for heat dissipation, and their components generate significant amounts of heat under load. When internal temperatures rise too high due to prolonged use or inadequate cooling (like blocked air vents or old thermal paste), the system automatically slows down certain operations to lower temperature levels, which can result in reduced frame rates and performance issues like stuttering during gameplay.
+
+Based on external context from various sources regarding different models experiencing similar problems:
+
+1. Inadequate cooling systems or built-up dust can lead to higher temperatures as seen with the HP blade_15, where cleaning fans and airways helped improve heat dissipation (Source 0).
+2. The Razer Blade Pro gaming laptop's issue was addressed by checking for proper ventilation and considering reapplying thermal paste if it had worn out or been replaced previously (Source 1), which suggests that maintaining optimal contact between the CPU/GPU and their respective heat sinks is crucial to prevent overheating.
+3. The Asus TUF Gaming A17 laptop's problem was also attributed to dust buildup, suggesting regular cleanings are essential for effective cooling (Source 2).
+4. For the HP Omen gaming laptop, ensuring proper ventilation and considering thermal paste replacement if necessary were recommended solutions when experiencing high temperatures without significant performance drops (Source 3).
+5. The Asus TUF Gaming A17 also faced stuttering after extended use of a powerful GPU like the NVIDIA GeForce RTX 3060, indicating that even advanced cooling solutions can be overwhelmed if internal temperatures are not managed properly (Source 4).
+
+In summary, thermal throttling in gaming laptops typically occurs due to excessive heat generation from the CPU and GPU under load which is exacerbated by poor ventilation or outdated cooling solutions. Regular maintenance like cleaning dust buildup and ensuring proper contact with thermal paste can help mitigate this issue, as suggested in various external sources for different models.
+
+Since you're asking about the concept rather than a specific SKU: General knowledge indicates that maintaining optimal airflow within your laptop’s cooling system is essential to prevent overheating and subsequent throttling during gaming sessions. If unsure of which model or seeking more detailed solutions, please provide its specific model number for targeted advice based on the information available up until my last update in 2024.
+   📊 Score Temporal V1: 1.0
+   ℹ️ Motivo: The response accurately explains the concept of thermal throttling in gaming laptops, providing a clear definition and reasons for its occurrence. It also references various external sources to support the explanation with real-world examples from different laptop models. The response is well-structured, informative, and respects the temporal context by not speculating about future developments or contradicting known information.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   Thermal throttling in gaming laptops occurs when internal components like CPUs and GPUs overheat due to excessive workload during intense tasks such as gaming. To prevent damage and maintain performance, these components automatically reduce their speed or frequency of operation once a certain temperature threshold is reached. This helps manage the heat but can lead to decreased frame rates (FPS) in games where high processing power is required for smooth gameplay.
+
+The reasons behind thermal throttling include:
+
+1. Inadequate cooling systems that fail to dissipate enough heat generated by powerful hardware components, especially during prolonged gaming sessions or resource-intensive tasks like video rendering and 3D model processing in software applications beyond just games.
+2. Dust buildup inside the laptop can obstruct air vents and fans from circulating cooler air effectively throughout the system. This blockage impedes proper ventilation, leading to higher temperatures as components struggle for adequate heat dissipation.
+3. Worn-out or degraded thermal paste between CPU/GPU and their respective heatsinks can reduce efficiency in transferring generated heat away from these critical parts of the laptop's hardware. Thermal paste is crucial because it ensures optimal contact for cooling, but over time its effectiveness diminishes as it dries out or becomes less adhesive.
+4. Insufficient airflow within a closed gaming environment can exacerbate heat buildup since the system relies on external fans and vents to draw in cooler ambient temperatures for dissipation purposes, which may not be adequately provided if laptops are used indoors without proper ventilation.
+5. High-performance components like NVIDIA RTX GPUs or AMD Ryzen processors generate significant heat under load; thus they require efficient cooling solutions to maintain optimal operating temperatures and prevent throttling, especially when pushed beyond their standard usage parameters in gaming scenarios where sustained high performance is demanded.
+6. External factors such as ambient temperature can also play a role—higher room temperatures or direct sunlight on the laptop surface may contribute additional heat stress to internal components already working hard during intense tasks like gameplay, further increasing their operating temperatures and risk of throttling.
+
+To mitigate thermal throttling:
+- Regularly clean dust from air vents using compressed air or a soft brush with the help of tools such as screwdrivers to maintain clear pathways for cooling fans, if applicable (as some laptops may require disassembly).
+- Reapply high-quality thermal paste periodically following manufacturer guidelines. Brands like Arctic MX-6 or Honeywell PTM7950 are often recommended due to their superior heat conduction properties and durability under temperature fluctuations.
+- Use cooling accessories such as laptop stands, external fans, or dedicated cooling pads designed for gaming laptops that can enhance air circulation around the device's chassis.
+- Ensure your workspace is well ventilated and consider using a stand to elevate the laptop slightly if possible, promoting better heat dissipation through convection currents in still air above it.
+- Monitor system temperatures with hardware monitoring software when gaming or performing demanding tasks; this can help you understand how your specific setup behaves under load and whether additional cooling measures are necessary.
+
+Remember, while these solutions may alleviate thermal throttling issues to some extent, it's also important for manufacturers of high-performance gaming laptops like the Asus TUF F15 or Razer Blade series models (mentioned in your inquiry) to design their systems with robust cooling solutions that can handle prolonged and intense usage without significant performance drops due to heat.
+   📊 Score Temporal V9: 1.0
+   ℹ️ Motivo: The response accurately explains thermal throttling in gaming laptops, covering its causes and effects. It provides detailed information on why it happens, including factors like inadequate cooling systems, dust buildup, degraded thermal paste, insufficient airflow, high-performance components, and external temperature influences. The response also offers practical mitigation strategies such as regular cleaning, reapplying thermal paste, using cooling accessories, ensuring proper ventilation, and monitoring system temperatures.
+
+--------------------------------------------------------------------------------
+▶️ ID: TC_TEMP_ATEMP_002 | Tipo: TEMPORAL
+ 💬 Query: Explain the difference between DDR4 and DDR5 memory.
+
+ [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:
+   The difference between DDR4 (fourth generation) and DDR5 (fifth generation) RAM primarily lies in their architecture, performance capabilities, power consumption, and voltage requirements. Here are the key points of distinction based on general knowledge up to my training cutoff date in early 2024:
+
+1. **Architecture**: DDR5 uses a more advanced design with additional channels for data transfer (up to eight channels), which allows higher bandwidth compared to DDR4's four or six, depending on the generation and configuration. This results in faster memory speeds under optimal conditions.
+
+2. **Performance**: Generally speaking, DDR5 RAM offers significantly improved performance over its predecessor due to increased data transfer rates and efficiency improvements through technologies like Chip-to-Chip Link (C4) that reduce latency between the CPU and memory controller. This can lead to better overall system responsiveness, especially in multitasking scenarios or when running demanding applications such as games with high graphical requirements.
+
+3. **Power Consumption**: DDR5 RAM is designed to be more power-efficient than DDR4, which helps reduce the energy consumption of systems that use it and can contribute to longer battery life for laptops equipped with these memory modules. This efficiency comes from lowered voltage usage (typically 1.09V or below) compared to DDR4's standard around 1.2V.
+
+4. **Voltage Requirements**: As mentioned in your external context, DDR5 RAM typically operates at a lower voltage than the traditional DDR4 modules which require about 1.2V for operation. This reduction can lead to less stress on power supplies and potentially longer-lasting components due to decreased heat generation from electrical usage within the memory module itself.
+
+5. **Capacity & Speed**: While both types of RAM offer high capacities, DDR5 modules are often built with higher speed capabilities in mind (e.g., 3200MHz or faster), although actual speeds can vary based on specific products and configurations used within a system. The increased bandwidth afforded by the newer architecture allows for these potentials to be realized when paired correctly with compatible motherboards, CPUs, and other components in your PC build.
+
+6. **Compatibility**: DDR5 RAM is not backwardly compatible with systems using only DDR4; they require a different memory controller present on modern motherboards designed specifically for the latest standard of RAM technology. This means that if you're building or upgrading an existing system, it may be necessary to upgrade other components like your CPU and/or motherboard as well in order to take full advantage of DDR5’s capabilities.
+
+7. **Cost**: As newer technologies tend to come with a higher price tag due at least initially because they are often more expensive for manufacturers, the cost per gigabyte is usually lower than that of equivalent-capacity DDR4 modules; however, prices can fluctuate based on market demand and supply.
+
+8. **Applications**: While both types have broad applications in computing environments from desktops to laptops, newer systems are more likely designed with DDR5 RAM compatibility due to its performance benefits for modern software demands, especially those that leverage multi-threading or require high data throughput like gaming and video editing.
+
+For specific details on a particular SKU of Intel Core i5 13600K (which seems unmentioned in your external context), I would recommend checking the latest documentation from either an official source such as AMD's website or directly contacting their support for accurate, up-to-date information.
+
+Remember that while these points provide a general understanding of DDR4 vs DDR5 differences based on industry knowledge and trends leading to 2026, actual specifications can vary between manufacturers and models due to continuous advancements in technology:
+
+*For more detailed SKU-specific information or for your particular Intel Core i5 model (if you have a number), please provide the exact part name.*
+   📊 Score Temporal V1: 0.9
+   ℹ️ Motivo: The response provides a comprehensive comparison between DDR4 and DDR5, covering architecture, performance, power consumption, voltage requirements, capacity & speed, compatibility, cost, and applications. It respects the chronological evolution of specifications and acknowledges potential variations based on manufacturers and models. However, it does not explicitly mention the reference date or recency of information, which is a minor shortcoming.
+
+ [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:
+   DDR4 (Double Data Rate 4) and DDR5 (Double Data Rate 5) are both types of RAM used in computers but they represent different generations with distinct features. DDR4 is an older technology that has been widely used for many years, offering good performance at a lower cost compared to newer standards like DDR5. It typically operates at speeds up to around 2400 MT/s (Mega Transfers per Second) and uses less power but also provides slower data transfer rates when compared with its successor.
+
+DDR5, on the other hand, is a more recent development that offers higher speed operation due to improvements in technology such as TSV (Through-Silicon Vias), which allows for faster communication between memory chips and the CPU by reducing physical distance electrical signals need to travel. DDR5 RAM can operate at much higher speeds with reduced latency, potentially upwards of 6400 MT/s or more depending on specific implementations. It also supports larger capacities per module than its predecessor and is designed for better power efficiency which could be beneficial in reducing overall energy consumption when multiple modules are used together.
+
+In terms of compatibility with your Intel Core i5 13600K, DDR4 RAM should generally work as it was commonly supported by older generation CPUs like the one you have; however, if considering an upgrade to a newer system or components that support higher standards (like some AMD Ryzen processors), switching over might be beneficial.
+
+DDR5 typically requires more advanced and energy-efficient power supplies due to its increased performance demands but can provide significant speed improvements for tasks like gaming, which could enhance your experience with the RTX 3060 Ti in a system built around an Intel processor. It's important though that you ensure any new components are compatible based on voltage and physical specifications as well since these have evolved alongside RAM technology advancements.
+
+For more detailed information, especially regarding compatibility or performance with your particular setup, it would be best to consult the device documentation for precise details about what is supported by both your CPU and power supply unit (PSU). If this isn't available in external sources as of my knowledge cutoff date, I recommend checking directly from Intel’s official resources.
+   📊 Score Temporal V9: 1.0
+   ℹ️ Motivo: The response accurately explains the differences between DDR4 and DDR5 memory, including their speeds, power efficiency, and compatibility considerations. It respects chronological evolution of specifications without speculating about future developments beyond its knowledge cutoff date.
+
+--------------------------------------------------------------------------------
+
+==========================================================================================
+📊 RESUMO CONSOLIDADO DAS MÉTRICAS
+==========================================================================================
+
+📈 MÉTRICAS TRADICIONAIS MÉDIAS (DeepEval):
+  ├── Faithfulness          : V1=0.579 ↓ V9=0.526 (Δ -0.053)
+  ├── Answer_Relevancy      : V1=0.444 ↑ V9=0.502 (Δ +0.057)
+  ├── Contextual_Relevancy  : V1=0.255 → V9=0.255 (Δ +0.000)
+  ├── Contextual_Precision  : V1=0.800 → V9=0.800 (Δ +0.000)
+  ├── Contextual_Recall     : V1=0.550 → V9=0.550 (Δ +0.000)
+
+📈 ACURÁCIA COMPORTAMENTAL (G-Eval Guardrails):
+  ├── Adesão Regras V1 (Vanilla) : 80.0%
+  └── Adesão Regras V9 (Temporal): 75.0%
+
+⏳ ACURÁCIA TEMPORAL (G-Eval Temporal):
+  ├── Consistência Temporal V1 (Vanilla) : 72.0%
+  └── Consistência Temporal V9 (Temporal): 56.5%

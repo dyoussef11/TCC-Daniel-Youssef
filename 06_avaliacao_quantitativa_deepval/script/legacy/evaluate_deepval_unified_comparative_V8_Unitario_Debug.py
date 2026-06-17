@@ -139,11 +139,11 @@ class EmbeddingCache:
 
 def create_native_metrics(evaluator: OllamaEvaluator) -> List[Any]:
     return [
-        FaithfulnessMetric(threshold=0.80, model=evaluator, include_reason=True),
-        AnswerRelevancyMetric(threshold=0.85, model=evaluator, include_reason=True),
-        ContextualRelevancyMetric(threshold=0.8, model=evaluator, include_reason=True),
-        ContextualPrecisionMetric(threshold=0.8, model=evaluator, include_reason=True),
-        ContextualRecallMetric(threshold=0.8, model=evaluator, include_reason=True)
+        FaithfulnessMetric(threshold=0.80, model=evaluator, include_reason=True, verbose_mode=True),
+        AnswerRelevancyMetric(threshold=0.85, model=evaluator, include_reason=True, verbose_mode=True),
+        ContextualRelevancyMetric(threshold=0.8, model=evaluator, include_reason=True, verbose_mode=True),
+        ContextualPrecisionMetric(threshold=0.8, model=evaluator, include_reason=True, verbose_mode=True),
+        ContextualRecallMetric(threshold=0.8, model=evaluator, include_reason=True, verbose_mode=True)
     ]
 
 def create_unified_behavioral_geval(evaluator: OllamaEvaluator) -> GEval:
@@ -446,6 +446,43 @@ class NativeComparativePipeline:
         process_results(r9_t, "V9", v9_t_ref)
         process_results(r9_b, "V9", v9_b_ref)
         process_results(r9_temp, "V9", v9_temp_ref)
+
+        # ====================================================================
+        # 🆕 BLOCO DE IMPRESSÃO DETALHADA NO CONSOLE
+        # ====================================================================
+        print("\n" + "=" * 90)
+        print("📊 DETALHES POR CASO (CONSOLE)")
+        print("=" * 90)
+        for r in rows:
+            print(f"\n🔹 [{r['ID']}] - Tipo: {r['Test_Type']}")
+            # Mostra a pergunta (truncada se muito longa)
+            q = r.get('Query', '')
+            if len(q) > 150:
+                print(f"   Pergunta: {q[:150]}...")
+            else:
+                print(f"   Pergunta: {q}")
+            # Mostra as respostas (truncadas)
+            v1_ans = str(r.get('V1_Answer', 'N/A'))
+            v9_ans = str(r.get('V9_Answer', 'N/A'))
+            print(f"   V1 Resposta: {v1_ans[:200]}{'...' if len(v1_ans) > 200 else ''}")
+            print(f"   V9 Resposta: {v9_ans[:200]}{'...' if len(v9_ans) > 200 else ''}")
+            # Para cada versão e métrica, imprime score e razão
+            for version in ['V1', 'V9']:
+                print(f"  {version}:")
+                for metric in ['Faithfulness', 'Answer_Relevancy', 'Contextual_Relevancy',
+                               'Contextual_Precision', 'Contextual_Recall',
+                               'Behavioral_Guardrails', 'Temporal_Consistency']:
+                    score = r.get(f'{version}_{metric}_Score', 'N/A')
+                    reason = r.get(f'{version}_{metric}_Reason', '')
+                    if score != 'N/A':
+                        print(f"    {metric}: {score:.3f}")
+                        if reason:
+                            # Exibe até 300 caracteres da justificativa
+                            if len(reason) > 300:
+                                print(f"      Razão: {reason[:300]}...")
+                            else:
+                                print(f"      Razão: {reason}")
+            print("-" * 80)
 
         # Cria DataFrame e salva
         df = pd.DataFrame(rows)
