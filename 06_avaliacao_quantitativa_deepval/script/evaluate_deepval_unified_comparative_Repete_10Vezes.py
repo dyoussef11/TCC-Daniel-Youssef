@@ -113,7 +113,7 @@ class EvalConfig:
 
     @property
     def output_dir(self) -> Path:
-        dir_path = AVALIACAO_DATA / "testes_com_modelos_diferentes"
+        dir_path = AVALIACAO_DATA / "testes_com_modelos_diferentes" / "com_repeticao"
         dir_path.mkdir(parents=True, exist_ok=True)
         return dir_path
 
