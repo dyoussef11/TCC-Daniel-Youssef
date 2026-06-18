@@ -13,7 +13,7 @@ from tqdm import tqdm
 from core.paths import PREPROCESSAMENTO_DATA
 
 # ============ CONFIGURAÇÕES ============
-CAMINHO_JSON = PREPROCESSAMENTO_DATA / "Dados_Limpos_IniciaisV3"
+CAMINHO_JSON = PREPROCESSAMENTO_DATA / "Dados_Limpos_IniciaisV12"
 CAMINHO_SAIDA = PREPROCESSAMENTO_DATA / "Analise_Caracteres"
 CAMINHO_SAIDA.mkdir(parents=True, exist_ok=True)
 
@@ -38,7 +38,7 @@ def processar_arquivo(arquivo):
         with open(CAMINHO_JSON / arquivo, 'r', encoding='utf-8') as f:
             dados = json.load(f)
         
-        modelo = dados.get('modelo_busca_utilizado', 'desconhecido')
+        modelo = dados.get('modelo_original', 'desconhecido')
         posts = dados.get('posts', [])
         
         # Inicializa estrutura de resultados

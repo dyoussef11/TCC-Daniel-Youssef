@@ -106,7 +106,7 @@ class EvalConfig:
     model_name: str = "phi3.5:latest"
     temperature: float = 0.0
     search_top_k: int = 50
-    mode: str = "sem_repeticao"  # Identificador para pasta
+    mode: str = "sem_repeticaoV2"  # Identificador para pasta
 
     @property
     def timestamp(self) -> str:

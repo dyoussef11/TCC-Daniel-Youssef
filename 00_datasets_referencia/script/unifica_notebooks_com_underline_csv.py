@@ -54,7 +54,8 @@ def main():
 
     for item in mapeamentos_json:
         arquivo_original = item["arquivo"]
-        nome_arquivo_limpo = f"limpo_{arquivo_original.replace('/', '_').replace('\\', '_')}"
+        nome_arquivo_base = arquivo_original.replace('/', '_').replace('\\', '_')
+        nome_arquivo_limpo = f"limpo_{nome_arquivo_base}"
         caminho_arquivo = INPUT_DIR / nome_arquivo_limpo
         
         if not caminho_arquivo.exists():

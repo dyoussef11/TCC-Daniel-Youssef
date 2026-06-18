@@ -13,10 +13,10 @@ import torch
 try:
     from core.paths import PREPROCESSAMENTO_DATA, NER_DATA
     # DIR_ENTRADA = PREPROCESSAMENTO_DATA / 'Dados_Limpos_IniciaisV10'
-    DIR_ENTRADA = PREPROCESSAMENTO_DATA / 'Dados_Limpos_IniciaisV11'
+    DIR_ENTRADA = PREPROCESSAMENTO_DATA / 'Dados_Limpos_IniciaisV12'
 
     DIR_SAIDA_FINAL = NER_DATA / 'Base_Conhecimento_ResumidaV12_VERIFICADA'
-    DIR_CHECKPOINTS = NER_DATA / "checkpoints_ia_v20_verificado"
+    DIR_CHECKPOINTS = NER_DATA / "checkpoints_ia_v21_verificado"
 except ImportError:
     DIR_ENTRADA = Path("./data/Dados_Limpos_IniciaisV10")
     DIR_SAIDA_FINAL = Path("./data/Base_Conhecimento_ResumidaV9_VERIFICADA")
