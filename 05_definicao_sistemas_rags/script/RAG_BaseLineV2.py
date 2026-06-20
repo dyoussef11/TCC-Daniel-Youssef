@@ -47,6 +47,7 @@ class DataLoader:
         self.documents: List[Dict] = []
         self.stats = {"total_loaded": 0, "with_vectors": 0, "with_metadata": 0, "with_dates": 0, "errors": 0}
 
+
     def load_documents(self, json_path: Union[str, Path]) -> List[Dict]:
         path = VETORIZATION_DATA / "base_conhecimento_multilingueV9.json"
         if not path.exists():
@@ -93,6 +94,19 @@ class DataLoader:
         except Exception:
             self.stats["errors"] += 1
             return None
+        
+    def load_from_precomputed(self, base_path: Path) -> List[Dict]:
+        """Carrega metadados do .meta.json (ignora o JSON gigante)."""
+        meta_path = base_path.with_suffix('.meta.json')
+        if not meta_path.exists():
+            raise FileNotFoundError(f"Arquivo .meta.json não encontrado: {meta_path}")
+        
+        with open(meta_path, 'r', encoding='utf-8') as f:
+            self.documents = json.load(f)
+        
+        self.stats["total_loaded"] = len(self.documents)
+        print(f"✅ Metadados carregados: {len(self.documents)} documentos (via .meta.json)")
+        return self.documents
 
 
 class EmbeddingManager:
@@ -123,6 +137,7 @@ class FAISSManager:
     def __init__(self, dimension: int = 1024):
         self.dimension = dimension
         self.index: Optional[faiss.IndexFlatL2] = None
+        self.stats = {"total_vectors": 0} 
 
     def build_index(self, documents: List[Dict]) -> None:
         if not documents: return
@@ -138,10 +153,19 @@ class FAISSManager:
             self.index.add(np.array(vectors).astype('float32'))
             print(f"✅ Índice FAISS criado com {self.index.ntotal} vetores.")
 
+    def load_index(self, index_path: Path) -> bool:
+        if index_path.exists():
+            self.index = faiss.read_index(str(index_path))
+            self.stats["total_vectors"] = self.index.ntotal
+            print(f"✅ Índice FAISS carregado de {index_path} ({self.index.ntotal} vetores)")
+            return True
+        return False
+
 
 class VanillaRAG:
     """Versão Baseline Otimizada com chamadas 100% Async."""
     _semaphore = asyncio.Semaphore(1) 
+
     def __init__(self, json_path: Union[str, Path],
                  variant_name: str = "V1_VANILLA_MIXED_EQUITABLE",
                  embedding_cache=None, use_expansion: bool = False):
@@ -149,18 +173,28 @@ class VanillaRAG:
         self.embedding_cache = embedding_cache
         self.cache_manager = CacheManager(external_cache=embedding_cache)
         self.embedding_manager = EmbeddingManager()
-        
-        self.data_loader = DataLoader()
-        self.data_loader.load_documents(json_path)
-        self.base_dados = self.data_loader.documents
-
-        self.faiss_manager = FAISSManager(dimension=1024)
-        self.faiss_manager.build_index(self.base_dados)
-        self.index = self.faiss_manager.index
-
         self.caminho_prompts = VALIDACAO_CONFIG / 'prompt_rag_vanilla_V1.json'
         self.prompts = self._load_prompts()
         self.variant_name = variant_name
+
+        self.data_loader = DataLoader()
+        self.faiss_manager = FAISSManager(dimension=1024)
+        base_path = Path(json_path)
+
+        # Tenta carregar pelo índice FAISS + metadados (rápido)
+        index_path = base_path.with_suffix('.faiss')
+        if index_path.exists() and self.faiss_manager.load_index(index_path):
+            # Carrega só os metadados (leves)
+            self.base_dados = self.data_loader.load_from_precomputed(base_path)
+        else:
+            # Fallback: carrega o JSON completo e reconstrói o índice
+            print("⚠️ Índice FAISS não encontrado. Recriando a partir do JSON...")
+            self.data_loader.load_documents(json_path)
+            self.base_dados = self.data_loader.documents
+            self.faiss_manager.build_index(self.base_dados)
+
+        self.index = self.faiss_manager.index
+
 
     def _load_prompts(self) -> Dict:
         try:
@@ -176,11 +210,14 @@ class VanillaRAG:
         )
         query_vector = query_vector_1d.reshape(1, -1)
 
-        distances, indices = self.index.search(query_vector, k=20)
+        distances, indices = self.index.search(query_vector, k=50)
         scored_results = []
         for i, idx in enumerate(indices[0]):
-            if idx != -1 and distances[0][i] < 1.2:
-                scored_results.append({'doc': self.base_dados[idx], 'score': distances[0][i]})
+            
+            scored_results.append({'doc': self.base_dados[idx], 'score': distances[0][i]})
+
+            # if idx != -1 and distances[0][i] < 1.2:
+            #                 scored_results.append({'doc': self.base_dados[idx], 'score': distances[0][i]})
 
         if not scored_results:
             distances, indices = self.index.search(query_vector, k=5)

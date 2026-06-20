@@ -30,7 +30,7 @@ class RAGConfig:
         self.embedding_model: str = "bge-m3:latest"
         
         # Busca
-        self.search_top_k: int = 20
+        self.search_top_k: int = 50
         self.similarity_threshold: float = 1.2
         self.max_context_chars: int = 2000
         
@@ -40,8 +40,8 @@ class RAGConfig:
         self.recency_threshold: int = 3
         self.low_coverage_penalty_multiplier: float = 0.3
         self.fallback_semantic_threshold: float = 1.15
-        self.max_fallback_docs: int = 3
-        self.max_results_returned: int = 8
+        self.max_fallback_docs: int = 5
+        self.max_results_returned: int = 5
         
         # Expansão de query
         self.use_expansion: bool = True
@@ -57,6 +57,8 @@ class RAGConfig:
         
         # Logging
         self.verbose: bool = True
+
+        
 
     def log(self, message: str) -> None:
         if self.verbose:
@@ -176,6 +178,19 @@ class DataLoader:
                 return doc
         return None
 
+    def load_from_precomputed(self, base_path: Path) -> List[Dict]:
+        """Carrega metadados do .meta.json (ignora o JSON gigante)."""
+        meta_path = base_path.with_suffix('.meta.json')
+        if not meta_path.exists():
+            raise FileNotFoundError(f"Arquivo .meta.json não encontrado: {meta_path}")
+        
+        with open(meta_path, 'r', encoding='utf-8') as f:
+            self.documents = json.load(f)
+        
+        self.stats["total_loaded"] = len(self.documents)
+        print(f"✅ Metadados carregados: {len(self.documents)} documentos (via .meta.json)")
+        return self.documents
+
 
 # ============================================================================
 # EMBEDDING MANAGER
@@ -271,6 +286,14 @@ class FAISSManager:
         if self.index:
             stats.update({"index_size": self.index.ntotal, "dimension": self.index.d})
         return stats
+
+    def load_index(self, index_path: Path) -> bool:
+        if index_path.exists():
+            self.index = faiss.read_index(str(index_path))
+            self.stats["total_vectors"] = self.index.ntotal
+            print(f"✅ Índice FAISS carregado de {index_path} ({self.index.ntotal} vetores)")
+            return True
+        return False
 
 
 # ============================================================================
@@ -609,6 +632,67 @@ class SpecialistTimeAwareRAG:
     SAÍDA LIMPA: sem tags, sem blocos AUDIT:, sem ANSWER:.
     """
     _semaphore = asyncio.Semaphore(1) 
+
+    # def __init__(self, json_path: Union[str, Path], variant_name: str = "V9_HYBRID_MIXED_AUDITOR",
+    #             embedding_cache=None, use_expansion: bool = True):
+        
+    #     print(f"--- 🧠 RAG ENGINE ATIVADA (Variante: {variant_name}) ---")
+    #     self.config = RAGConfig(variant_name)
+    #     self.config.use_expansion = use_expansion
+    #     print(f"   Temporal config: 4.0%/year penalty, fallback after 2.0y")
+        
+    #     self.cache_manager = embedding_cache
+    #     self.embedding_manager = EmbeddingManager(model=self.config.embedding_model)
+        
+    #     self.data_loader = DataLoader()
+        
+    #     self.faiss_manager = FAISSManager(dimension=self.config.embedding_dimension)
+    #     if self.data_loader.documents:
+    #         self.faiss_manager.build_index(self.data_loader.documents)
+        
+    #     self.temporal_scorer = TemporalScorer(
+    #         yearly_penalty_rate=self.config.yearly_penalty_rate,
+    #         recency_threshold=self.config.recency_threshold,
+    #         low_coverage_multiplier=self.config.low_coverage_penalty_multiplier
+    #     )
+    #     self.fallback_searcher = FallbackSearcher(
+    #         similarity_threshold=self.config.similarity_threshold,
+    #         max_fallback_docs=self.config.max_fallback_docs,
+    #         old_doc_threshold_years=self.config.old_doc_threshold_years
+    #     )
+    #     self.query_expander = QueryExpander(variant="temporal", max_terms=self.config.max_synonym_terms)
+        
+    #     # PromptManager agora carrega do JSON e garante saída limpa
+    #     self.prompt_manager = PromptManager(variant_name=variant_name)
+        
+    #     self.context_builder = ContextBuilder(max_chars=self.config.max_context_chars)
+        
+    #     self.search_pipeline = SearchPipeline(
+    #         faiss_manager=self.faiss_manager,
+    #         data_loader=self.data_loader,
+    #         temporal_scorer=self.temporal_scorer,
+    #         fallback_searcher=self.fallback_searcher,
+    #         config=self.config
+    #     )
+        
+    #     print(f"✅ Sistema inicializado com {len(self.data_loader.documents)} documentos")
+
+    #     self.data_loader = DataLoader()
+    #     base_path = Path(json_path)
+        
+    #     # Tenta carregar pelo índice FAISS + metadados (rápido)
+    #     index_path = base_path.with_suffix('.faiss')
+    #     if index_path.exists() and self.faiss_manager.load_index(index_path):
+    #         # Carrega só os metadados (leves)
+    #         self.base_dados = self.data_loader.load_from_precomputed(base_path)
+    #     else:
+    #         # Fallback: carrega o JSON completo e reconstrói o índice
+    #         print("⚠️ Índice FAISS não encontrado. Recriando a partir do JSON...")
+    #         self.data_loader.load_documents(json_path)
+    #         self.base_dados = self.data_loader.documents
+    #         self.faiss_manager.build_index(self.base_dados)
+
+
     def __init__(self, json_path: Union[str, Path], variant_name: str = "V9_HYBRID_MIXED_AUDITOR",
                  embedding_cache=None, use_expansion: bool = True):
         
@@ -620,13 +704,22 @@ class SpecialistTimeAwareRAG:
         self.cache_manager = embedding_cache
         self.embedding_manager = EmbeddingManager(model=self.config.embedding_model)
         
+        # DataLoader e FAISSManager (ainda sem dados)
         self.data_loader = DataLoader()
-        self.data_loader.load_documents(json_path)
-        
         self.faiss_manager = FAISSManager(dimension=self.config.embedding_dimension)
-        if self.data_loader.documents:
-            self.faiss_manager.build_index(self.data_loader.documents)
         
+        base_path = Path(json_path)
+        index_path = base_path.with_suffix('.faiss')
+        if index_path.exists() and self.faiss_manager.load_index(index_path):
+            # Carrega metadados (popula self.data_loader.documents)
+            self.base_dados = self.data_loader.load_from_precomputed(base_path)
+        else:
+            print("⚠️ Índice FAISS não encontrado. Recriando a partir do JSON...")
+            self.data_loader.load_documents(json_path)
+            self.base_dados = self.data_loader.documents
+            self.faiss_manager.build_index(self.base_dados)
+        
+        # Agora self.data_loader.documents está populado
         self.temporal_scorer = TemporalScorer(
             yearly_penalty_rate=self.config.yearly_penalty_rate,
             recency_threshold=self.config.recency_threshold,
@@ -638,22 +731,21 @@ class SpecialistTimeAwareRAG:
             old_doc_threshold_years=self.config.old_doc_threshold_years
         )
         self.query_expander = QueryExpander(variant="temporal", max_terms=self.config.max_synonym_terms)
-        
-        # PromptManager agora carrega do JSON e garante saída limpa
         self.prompt_manager = PromptManager(variant_name=variant_name)
-        
         self.context_builder = ContextBuilder(max_chars=self.config.max_context_chars)
         
         self.search_pipeline = SearchPipeline(
             faiss_manager=self.faiss_manager,
-            data_loader=self.data_loader,
+            data_loader=self.data_loader,      # agora com documentos
             temporal_scorer=self.temporal_scorer,
             fallback_searcher=self.fallback_searcher,
             config=self.config
         )
         
         print(f"✅ Sistema inicializado com {len(self.data_loader.documents)} documentos")
-    
+
+        # Os demais componentes (temporal_scorer, fallback, etc.) não dependem do carregamento,
+        # mas o search_pipeline precisa do data_loader e faiss_manager – já estão prontos.
     async def _get_embedding(self, query: str) -> np.ndarray:
         if self.cache_manager:
             cached = self.cache_manager.get(query)
