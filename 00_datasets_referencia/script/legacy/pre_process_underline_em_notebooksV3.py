@@ -11,8 +11,7 @@ logger = logging.getLogger(__name__)
 from core.paths import (
     DATASET_CONFIG,
     DATASET_GAMER,
-    DATASET_KAGGLE,
-    DATASET_FINAL_CSV
+    DATASET_KAGGLE
 )
 
 def limpar_modelo_completo(texto: str) -> str:

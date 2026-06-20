@@ -4,8 +4,8 @@ import logging
 import pandas as pd
 from pathlib import Path
 from typing import Dict, Optional
-from ConfiguracaoProcessamento import ConfiguracaoModelos
-from LimpadorProcessamento import LimpadorModelos
+from configuracao_processamento import ConfiguracaoModelos
+from limpador_processamento import LimpadorModelos
 
 logger = logging.getLogger(__name__)
 

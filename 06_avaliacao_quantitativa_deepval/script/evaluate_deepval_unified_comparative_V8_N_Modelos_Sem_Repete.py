@@ -8,6 +8,14 @@ Execução única: cada caso é testado 1 vez (sem repetições).
 COM PLANILHA DE CÁLCULOS PASSO A PASSO (Total, Positivos, Fórmula, Operação)
 E VERBOSE LOGS COMPLETOS NO TXT E MD
 """
+import os
+
+# Configura o timeout por caso de teste para 10 minutos (1200 segundos)
+os.environ["DEEPEVAL_PER_TASK_TIMEOUT_SECONDS_OVERRIDE"] = "1200"
+
+# Configura o timeout de cada tentativa individual ao Ollama para 5 minutos (300 segundos)
+os.environ["DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE"] = "300"
+
 
 import asyncio
 import gc
@@ -200,7 +208,7 @@ def create_unified_behavioral_geval(evaluator: OllamaEvaluator) -> GEval:
             "Check compliance with the specific operational rule for that type.",
             "Verify no forbidden raw tags or system processing blocks pollute the text output."
         ],
-        threshold=0.8
+        threshold=0.8, verbose_mode=True
     )
 
 def create_temporal_geval(evaluator: OllamaEvaluator) -> GEval:
@@ -223,7 +231,7 @@ def create_temporal_geval(evaluator: OllamaEvaluator) -> GEval:
             "Ensure that comparisons respect chronological evolution of specifications.",
             "Penalize hallucinated versions or specs that contradict the temporal context."
         ],
-        threshold=0.8
+        threshold=0.8, verbose_mode=True
     )
 
 
@@ -727,15 +735,15 @@ async def main_queue():
     # Modelos disponíveis
     judge_models = [
         "qwen3:4b-instruct",
-        "mistral:7b-instruct",
         "granite3.2:8b",
-        "phi3.5:latest"
+        "phi3.5:latest",
+        "mistral:7b-instruct"
     ]
     generator_models = [
+        "qwen3:4b-instruct",
+        "granite3.2:8b",
         "phi3.5:latest",
-        "mistral:7b-instruct",
-        "qwen3.5:9b",
-        "phi3:14b"
+        "mistral:7b-instruct"
     ]
 
     # Mapeamento de modelo para família
@@ -774,7 +782,9 @@ async def main_queue():
             await pipeline.run()
             print(f"✅ Combinação concluída: {judge} / {generator}")
         except Exception as e:
+            import traceback
             print(f"❌ Erro catastrófico: {e}")
+            traceback.print_exc()
         finally:
             if pipeline and hasattr(pipeline, 'rag_manager'):
                 try:

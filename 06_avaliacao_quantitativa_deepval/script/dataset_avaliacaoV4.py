@@ -264,25 +264,6 @@ CHRONOQA_TEMPORAL_SUITE = [
 ]
 
 
-# TRADITIONAL_TEST_SUITE = [
-#     {
-#         "id": "TC_STATIC_01",
-#         "input": "What is the maximum RAM capacity for the Acer Nitro 5 AN515-58?",
-#         "expected_output": "Acer Nitro 5 AN515-58 supports up to 32GB DDR4 3200MHz RAM.",
-#         "expected_context": ["Acer Nitro 5 AN515-58: Memory support up to 32GB DDR4-3200"],
-#         "test_type": "traditional",
-#         "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
-#     },
-#     {
-#         "id": "TC_STATIC_02",
-#         "input": "How many M.2 SSD slots does the Acer Nitro 5 AN515-58 have?",
-#         "expected_output": "This model features two M.2 SSD slots and one 2.5-inch SATA HDD bay.",
-#         "expected_context": ["2x M.2 PCIe NVMe slots and 1x 2.5\" SATA slot"],
-#         "test_type": "traditional",
-#         "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
-#     },
-# ]
-
 TRADITIONAL_TEST_SUITE = [
     # ========================================================================
     # CASOS ORIGINAIS (mantidos)

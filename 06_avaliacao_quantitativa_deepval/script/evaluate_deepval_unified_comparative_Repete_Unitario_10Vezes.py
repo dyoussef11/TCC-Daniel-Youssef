@@ -9,6 +9,15 @@ COM PLANILHA DE CÁLCULOS PASSO A PASSO (Total, Positivos, Fórmula, Operação)
 E VERBOSE LOGS COMPLETOS NO TXT E MD
 """
 
+import os
+
+# Configura o timeout por caso de teste para 10 minutos (1200 segundos)
+os.environ["DEEPEVAL_PER_TASK_TIMEOUT_SECONDS_OVERRIDE"] = "1200"
+
+# Configura o timeout de cada tentativa individual ao Ollama para 5 minutos (300 segundos)
+os.environ["DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE"] = "300"
+
+
 import asyncio
 import gc
 import hashlib
@@ -198,7 +207,7 @@ def create_unified_behavioral_geval(evaluator: OllamaEvaluator) -> GEval:
             "Check compliance with the specific operational rule for that type.",
             "Verify no forbidden raw tags or system processing blocks pollute the text output."
         ],
-        threshold=0.8
+        threshold=0.8, verbose_mode=True
     )
 
 def create_temporal_geval(evaluator: OllamaEvaluator) -> GEval:
@@ -221,7 +230,7 @@ def create_temporal_geval(evaluator: OllamaEvaluator) -> GEval:
             "Ensure that comparisons respect chronological evolution of specifications.",
             "Penalize hallucinated versions or specs that contradict the temporal context."
         ],
-        threshold=0.8
+        threshold=0.8, verbose_mode=True
     )
 
 

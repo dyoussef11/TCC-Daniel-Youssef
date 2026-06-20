@@ -1,9 +1,9 @@
 import json
 import logging
 import pandas as pd
-from ConfiguracaoProcessamento import ConfiguracaoModelos
-from LimpadorProcessamento import LimpadorModelos
-from MotorProcessamento import TransformadorLaptops
+from configuracao_processamento import ConfiguracaoModelos
+from limpador_processamento import LimpadorModelos
+from motor_processamento import TransformadorLaptops
 
 from core.paths import ( 
     DATASET_CONFIG,
