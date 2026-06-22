@@ -12,12 +12,11 @@ E VERBOSE LOGS COMPLETOS NO TXT
 
 import os
 
-# Configura o timeout por caso de teste para 10 minutos (1200 segundos)
-os.environ["DEEPEVAL_PER_TASK_TIMEOUT_SECONDS_OVERRIDE"] = "1200"
+# Configura o timeout por caso de teste para 20 minutos (2400 segundos)
+os.environ["DEEPEVAL_PER_TASK_TIMEOUT_SECONDS_OVERRIDE"] = "2400"
 
-# Configura o timeout de cada tentativa individual ao Ollama para 5 minutos (300 segundos)
-os.environ["DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE"] = "300"
-
+# Configura o timeout de cada tentativa individual ao Ollama para 10 minutos (300 segundos)
+os.environ["DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE"] = "600"
 
 import asyncio
 import gc
