@@ -12,10 +12,10 @@ E VERBOSE LOGS COMPLETOS NO TXT E MD
 import os
 
 # Configura o timeout por caso de teste para 20 minutos (2400 segundos)
-os.environ["DEEPEVAL_PER_TASK_TIMEOUT_SECONDS_OVERRIDE"] = "2400"
+os.environ["DEEPEVAL_PER_TASK_TIMEOUT_SECONDS_OVERRIDE"] = "6000"
 
 # Configura o timeout de cada tentativa individual ao Ollama para 10 minutos (300 segundos)
-os.environ["DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE"] = "600"
+os.environ["DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE"] = "6000"
 
 
 import asyncio
@@ -126,6 +126,13 @@ class EvalConfig:
         dir_path = AVALIACAO_DATA / "testes_com_modelos_diferentes" / self.mode
         dir_path.mkdir(parents=True, exist_ok=True)
         return dir_path
+
+    @property
+    def combination_id(self) -> str:
+        """Identificador curto da combinação avaliador+gerador."""
+        judge = self.evaluator_model.replace(":", "_")
+        gen = self.model_name.replace(":", "_")
+        return f"J_{judge}_G_{gen}"
 
 
 class EmbeddingCache:
@@ -780,7 +787,7 @@ async def main_queue():
             pipeline.evaluator_v9 = OllamaEvaluator(model_name=judge, prompt_version="V9")
 
             # Executa com 10 repetições
-            await pipeline.run(num_repeats=10)
+            await pipeline.run(num_repeats=5)
             print(f"✅ Combinação concluída: {judge} / {generator}")
         except Exception as e:
             import traceback

@@ -132,6 +132,14 @@ class EvalConfig:
             model_name=args.generator_model
         )
 
+    @property
+    def combination_id(self) -> str:
+        """Identificador curto da combinação avaliador+gerador."""
+        judge = self.evaluator_model.replace(":", "_")
+        gen = self.model_name.replace(":", "_")
+        return f"J_{judge}_G_{gen}"
+    
+
 
 class EmbeddingCache:
     def __init__(self, cache_dir: Path, max_size: int = 1000):
@@ -801,8 +809,8 @@ async def main_queue():
             gc.collect()
 
         if i < len(filtered_combinations):
-            print("⏳ Aguardando 15 segundos para liberar recursos do sistema...")
-            await asyncio.sleep(15)
+            print("⏳ Aguardando 60 segundos para liberar recursos do sistema...")
+            await asyncio.sleep(60)
 
     print("\n🎉 Todas as combinações da matriz de testes foram concluídas com sucesso.")
 
