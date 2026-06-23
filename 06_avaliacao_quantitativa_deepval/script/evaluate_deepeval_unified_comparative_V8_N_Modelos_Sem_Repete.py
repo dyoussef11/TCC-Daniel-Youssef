@@ -223,7 +223,7 @@ def create_temporal_geval(evaluator: OllamaEvaluator) -> GEval:
         name="Temporal Consistency",
         model=evaluator,
         criteria=criteria,
-        evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT],
+        evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT, SingleTurnParams.RETRIEVAL_CONTEXT],
         evaluation_steps=[
             "Check if the response uses the appropriate document recency based on the reference date.",
             "Verify that future-dated queries are handled with caution (no speculation).",
@@ -232,6 +232,56 @@ def create_temporal_geval(evaluator: OllamaEvaluator) -> GEval:
         ],
         threshold=0.8, verbose_mode=True
     )
+
+def create_strict_temporal_reranking_geval(evaluator: OllamaEvaluator) -> GEval:
+    criteria = (
+        "Analyze if the response suffered from temporal obsolescence. "
+        "The evaluation must strictly check if the response favored an outdated specification "
+        "or continuous history over the exact timeline requested in the input.\n"
+        "Rules:\n"
+        "1. If the input specifies a timeline or reference date, the response MUST NOT use "
+        "outdated technical specifications from previous years present in the context.\n"
+        "2. Score 1.0 ONLY if the response shows clear chronological alignment with the reference date.\n"
+        "3. Score 0.0 or penalize heavily if the response incorporates features, components, or BIOS "
+        "versions that were replaced or are obsolete by the time of the reference date."
+    )
+    return GEval(
+        name="Temporal Reranking Enforcement",
+        model=evaluator,
+        criteria=criteria,
+        evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT, SingleTurnParams.RETRIEVAL_CONTEXT],
+        evaluation_steps=[
+            "Identify the reference date or chronological anchor in the user input.",
+            "Check if the actual output used specifications that are accurate only for past contexts.",
+            "Determine if the system failed to deprioritize obsolete technical documentation."
+        ],
+        threshold=0.8, verbose_mode=True
+    )
+
+def create_intelligent_fallback_geval(evaluator: OllamaEvaluator) -> GEval:
+    criteria = (
+        "Evaluate the response's defensive behavior and fallback triggering.\n"
+        "Rules:\n"
+        "1. For a SERIES query (e.g., 'Acer Nitro 5') or an unconfirmed future SKU, the response "
+        "MUST NOT provide precise hardware specifications. It must refuse to invent specs and ask for the exact SKU.\n"
+        "2. If the external documentation for a specific SKU is missing, the response MUST explicitly state "
+        "that no official documentation was found before attempting to provide any generic internal knowledge.\n"
+        "3. Give a score of 0.0 if the response hallucinated or mapped specs from a different product "
+        "just because it appeared in the retrieval context."
+    )
+    return GEval(
+        name="Smart Fallback Triggering",
+        model=evaluator,
+        criteria=criteria,
+        evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT, SingleTurnParams.RETRIEVAL_CONTEXT],
+        evaluation_steps=[
+            "Identify if the query is a Series query, an unknown SKU, or a future-dated product.",
+            "Verify if the response successfully triggered a fallback/disclaimer or a request for clarification.",
+            "Penalize with 0.0 if the response boldly states specifications that belong to a generic or different model."
+        ],
+        threshold=0.8, verbose_mode=True
+    )
+
 
 
 # ============================================================================

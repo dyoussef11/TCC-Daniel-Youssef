@@ -4,7 +4,7 @@ UNIFIED EVALUATION SCRIPT: V1 vs V9 (Mixed Fallback Framework Edition) - V5 COMP
 Fully customized to validate the rules of the second prompt generation without format bias.
 Supports command-line arguments for judge and generator models.
 Generates CSV, TXT, and Markdown reports natively from consolidated loop data.
-Multi-run execution added to evaluate each test case 3 to 5 times.
+Multi-run execution: cada caso é testado 10 vezes (repetições).
 COM PLANILHA DE CÁLCULOS PASSO A PASSO (Total, Positivos, Fórmula, Operação)
 E VERBOSE LOGS COMPLETOS NO TXT E MD
 """
@@ -12,10 +12,11 @@ E VERBOSE LOGS COMPLETOS NO TXT E MD
 import os
 
 # Configura o timeout por caso de teste para 20 minutos (2400 segundos)
-os.environ["DEEPEVAL_PER_TASK_TIMEOUT_SECONDS_OVERRIDE"] = "2400"
+os.environ["DEEPEVAL_PER_TASK_TIMEOUT_SECONDS_OVERRIDE"] = "6000"
 
 # Configura o timeout de cada tentativa individual ao Ollama para 10 minutos (300 segundos)
-os.environ["DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE"] = "600"
+os.environ["DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE"] = "6000"
+
 
 import asyncio
 import gc
@@ -109,11 +110,12 @@ class EvalConfig:
     cache_dir: Path = AVALIACAO_DATA / "cache"
     embedding_cache_size: int = 1000
     vanilla_use_expansion: bool = False
-    temporal_use_expansion: bool = True
+    temporal_use_expansion: bool = False
     temporal_variant: str = "V9_HYBRID_MIXED_AUDITOR"
     model_name: str = "phi3.5:latest"
     temperature: float = 0.0
     search_top_k: int = 50
+    mode: str = "com_repeticaoV2"  # Identificador para pasta
 
     @property
     def timestamp(self) -> str:
@@ -121,16 +123,9 @@ class EvalConfig:
 
     @property
     def output_dir(self) -> Path:
-        dir_path = AVALIACAO_DATA / "testes_com_modelos_diferentes" / "com_repeticao"
+        dir_path = AVALIACAO_DATA / "testes_com_modelos_diferentes" / self.mode
         dir_path.mkdir(parents=True, exist_ok=True)
         return dir_path
-
-    @classmethod
-    def from_args(cls, args):
-        return cls(
-            evaluator_model=args.judge_model,
-            model_name=args.generator_model
-        )
 
     @property
     def combination_id(self) -> str:
@@ -138,7 +133,6 @@ class EvalConfig:
         judge = self.evaluator_model.replace(":", "_")
         gen = self.model_name.replace(":", "_")
         return f"J_{judge}_G_{gen}"
-    
 
 
 class EmbeddingCache:
@@ -230,12 +224,61 @@ def create_temporal_geval(evaluator: OllamaEvaluator) -> GEval:
         name="Temporal Consistency",
         model=evaluator,
         criteria=criteria,
-        evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT],
+        evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT, SingleTurnParams.RETRIEVAL_CONTEXT],
         evaluation_steps=[
             "Check if the response uses the appropriate document recency based on the reference date.",
             "Verify that future-dated queries are handled with caution (no speculation).",
             "Ensure that comparisons respect chronological evolution of specifications.",
             "Penalize hallucinated versions or specs that contradict the temporal context."
+        ],
+        threshold=0.8, verbose_mode=True
+    )
+
+def create_strict_temporal_reranking_geval(evaluator: OllamaEvaluator) -> GEval:
+    criteria = (
+        "Analyze if the response suffered from temporal obsolescence. "
+        "The evaluation must strictly check if the response favored an outdated specification "
+        "or continuous history over the exact timeline requested in the input.\n"
+        "Rules:\n"
+        "1. If the input specifies a timeline or reference date, the response MUST NOT use "
+        "outdated technical specifications from previous years present in the context.\n"
+        "2. Score 1.0 ONLY if the response shows clear chronological alignment with the reference date.\n"
+        "3. Score 0.0 or penalize heavily if the response incorporates features, components, or BIOS "
+        "versions that were replaced or are obsolete by the time of the reference date."
+    )
+    return GEval(
+        name="Temporal Reranking Enforcement",
+        model=evaluator,
+        criteria=criteria,
+        evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT, SingleTurnParams.RETRIEVAL_CONTEXT],
+        evaluation_steps=[
+            "Identify the reference date or chronological anchor in the user input.",
+            "Check if the actual output used specifications that are accurate only for past contexts.",
+            "Determine if the system failed to deprioritize obsolete technical documentation."
+        ],
+        threshold=0.8, verbose_mode=True
+    )
+
+def create_intelligent_fallback_geval(evaluator: OllamaEvaluator) -> GEval:
+    criteria = (
+        "Evaluate the response's defensive behavior and fallback triggering.\n"
+        "Rules:\n"
+        "1. For a SERIES query (e.g., 'Acer Nitro 5') or an unconfirmed future SKU, the response "
+        "MUST NOT provide precise hardware specifications. It must refuse to invent specs and ask for the exact SKU.\n"
+        "2. If the external documentation for a specific SKU is missing, the response MUST explicitly state "
+        "that no official documentation was found before attempting to provide any generic internal knowledge.\n"
+        "3. Give a score of 0.0 if the response hallucinated or mapped specs from a different product "
+        "just because it appeared in the retrieval context."
+    )
+    return GEval(
+        name="Smart Fallback Triggering",
+        model=evaluator,
+        criteria=criteria,
+        evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT, SingleTurnParams.RETRIEVAL_CONTEXT],
+        evaluation_steps=[
+            "Identify if the query is a Series query, an unknown SKU, or a future-dated product.",
+            "Verify if the response successfully triggered a fallback/disclaimer or a request for clarification.",
+            "Penalize with 0.0 if the response boldly states specifications that belong to a generic or different model."
         ],
         threshold=0.8, verbose_mode=True
     )
@@ -268,7 +311,7 @@ class ComparativeRAGManager:
             self._temporal.search_top_k = self.config.search_top_k
         return self._temporal
 
-    async def generate_test_cases(self, num_repeats: int = 3) -> Tuple[List[LLMTestCase], List[LLMTestCase]]:
+    async def generate_test_cases(self, num_repeats: int = 10) -> Tuple[List[LLMTestCase], List[LLMTestCase]]:
         v1_cases, v9_cases = [], []
         print(f"🔍 Ingerindo {len(TEST_SUITE)} casos de teste com {num_repeats} repetições...")
         
@@ -326,7 +369,7 @@ class NativeComparativePipeline:
         self.v1_cases_backup: List[LLMTestCase] = []
         self.v9_cases_backup: List[LLMTestCase] = []
 
-    async def run(self, num_repeats: int = 3):
+    async def run(self, num_repeats: int = 10):
         v1_cases, v9_cases = await self.rag_manager.generate_test_cases(num_repeats=num_repeats)
 
         self.v1_cases_backup = v1_cases
@@ -519,20 +562,20 @@ class NativeComparativePipeline:
                             df[col] = 0
                         else:
                             df[col] = ""
-
+        combo_id = self.config.combination_id
         # 1. Exportação do CSV Principal
-        csv_out = self.config.output_dir / f"DEEPEVAL_MIXED_NATIVE_COMPARATIVE_{self.config.timestamp}.csv"
+        csv_out = self.config.output_dir / f"DEEPEVAL_MIXED_NATIVE_COMPARATIVE_COM_REPETICAO_{combo_id}_{self.config.timestamp}.csv"
         df.to_csv(csv_out, index=False)
         
         # 2. Relatório TXT com cálculos e verbose logs completos
-        txt_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_{self.config.timestamp}.txt"
+        txt_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_COM_REPETICAO_{combo_id}_{self.config.timestamp}.txt"
         self._write_txt_report(txt_out, rows)
 
         # 3. Relatório Markdown com cálculos e verbose logs
-        md_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_{self.config.timestamp}.md"
+        md_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_COM_REPETICAO_{combo_id}_{self.config.timestamp}.md"
         self._write_md_report(md_out, rows)
 
-        print(f"\n🚀 Pipeline concluído com sucesso.")
+        print(f"\n🚀 Pipeline com repetição concluído com sucesso.")
         print(f"📊 Planilha CSV:  {csv_out}")
         print(f"📝 Relatório TXT: {txt_out}")
         print(f"📝 Relatório MD:  {md_out}")
@@ -652,7 +695,7 @@ class NativeComparativePipeline:
     # ========================================================================
     def _write_md_report(self, path: Path, rows: List[Dict]):
         with open(path, 'w', encoding='utf-8') as f:
-            f.write(f"# Relatório de Auditoria Comparativa Nativa (DeepEval)\n\n")
+            f.write(f"# Relatório de Auditoria Comparativa Nativa (DeepEval) - COM REPETIÇÃO (10x)\n\n")
             f.write(f"- **Data de Execução:** {self.config.timestamp}\n")
             f.write(f"- **Modelo Avaliador (Juiz):** `{self.config.evaluator_model}`\n")
             f.write(f"- **Modelo Base RAG (Gerador):** `{self.config.model_name}`\n")
@@ -739,26 +782,28 @@ class NativeComparativePipeline:
 
 
 # ============================================================================
-# MAIN ASYNC COM FILA DE COMBINAÇÕES
+# MAIN ASYNC COM FILA DE COMBINAÇÕES (COM REPETIÇÃO - 10 VEZES)
 # ============================================================================
 
 async def main_queue():
+    import time
     from itertools import product
 
     # Modelos disponíveis
     judge_models = [
         "qwen3:4b-instruct",
-        # "mistral:7b-instruct",
-        # "granite3.2:8b",
-        # "phi3.5:latest"
+        "mistral:7b-instruct",
+        "granite3.2:8b",
+        "phi3.5:latest"
     ]
     generator_models = [
-        # "phi3.5:latest",
+        "phi3.5:latest",
         "mistral:7b-instruct",
-        # "qwen3.5:9b",
-        # "phi3:14b"
+        "qwen3.5:9b",
+        "phi3:14b"
     ]
 
+    # Mapeamento de modelo para família
     def get_family(model: str) -> str:
         model_lower = model.lower()
         if model_lower.startswith("qwen"): return "qwen"
@@ -767,6 +812,7 @@ async def main_queue():
         if model_lower.startswith("phi"): return "phi"
         return "unknown"
 
+    # Gerar e filtrar combinações sem conflito de família
     all_combinations = list(product(judge_models, generator_models))
     filtered_combinations = [
         (judge, gen) for judge, gen in all_combinations
@@ -775,7 +821,7 @@ async def main_queue():
 
     print(f"🚀 Total de combinações possíveis: {len(all_combinations)}")
     print(f"✅ Combinações sem mesma família: {len(filtered_combinations)}")
-    print(f"🔁 Executando fila com multi-tentativas ativadas por pergunta...\n")
+    print(f"🔁 Executando fila com repetição (10x por caso)...\n")
 
     for i, (judge, generator) in enumerate(filtered_combinations, 1):
         print(f"\n{'='*60}")
@@ -789,12 +835,12 @@ async def main_queue():
             pipeline.evaluator_v1 = OllamaEvaluator(model_name=judge, prompt_version="V1")
             pipeline.evaluator_v9 = OllamaEvaluator(model_name=judge, prompt_version="V9")
 
-            # Executa o pipeline configurando o número de repetições (aqui 10, ajustável)
-            await pipeline.run(num_repeats=10)
-            print(f"✅ Combinação concluída com sucesso: {judge} / {generator}")
+            # Executa com 10 repetições
+            await pipeline.run(num_repeats=5)
+            print(f"✅ Combinação concluída: {judge} / {generator}")
         except Exception as e:
-            print(f"❌ Erro catastrófico na combinação atual: {e}")
             import traceback
+            print(f"❌ Erro catastrófico: {e}")
             traceback.print_exc()
         finally:
             if pipeline and hasattr(pipeline, 'rag_manager'):
@@ -809,10 +855,11 @@ async def main_queue():
             gc.collect()
 
         if i < len(filtered_combinations):
-            print("⏳ Aguardando 60 segundos para liberar recursos do sistema...")
-            await asyncio.sleep(60)
+            temp: int = 60 
+            print("⏳ Aguardando", temp, "segundos para liberar recursos...")
+            await asyncio.sleep(temp)
 
-    print("\n🎉 Todas as combinações da matriz de testes foram concluídas com sucesso.")
+    print("\n🎉 Todas as combinações com repetição foram executadas com sucesso.")
 
 if __name__ == "__main__":
     asyncio.run(main_queue())
