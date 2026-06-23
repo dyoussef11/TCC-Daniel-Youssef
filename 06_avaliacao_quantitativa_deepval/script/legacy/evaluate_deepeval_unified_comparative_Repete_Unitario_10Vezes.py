@@ -30,6 +30,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
+from deepeval.metrics.g_eval import Rubric
 
 import numpy as np
 import pandas as pd
@@ -192,44 +193,79 @@ def create_native_metrics(evaluator: OllamaEvaluator) -> List[Any]:
 
 def create_unified_behavioral_geval(evaluator: OllamaEvaluator) -> GEval:
     criteria = (
-        "Evaluate the response based on the following rules:\n"
-        "1. For a SPECIFIC SKU query with missing external documentation, the response MUST explicitly state "
-        "   that no external documentation was found before providing fallback information.\n"
-        "2. For a SERIES query (product line without SKU, e.g., 'Nitro 5'), the response MUST NOT provide specifications. "
-        "   It MUST ask for the specific model number (SKU).\n"
-        "3. For a COMPARISON query with missing data on one or both SKUs, the response may use fallback but must indicate.\n"
-        "4. The response MUST be clean and natural, without any raw system tags like [RAG], [INTERNAL], or structural audit blocks. "
-        "   No 'AUDIT:' or 'ANSWER:' headers are allowed."
+        "Evaluate compliance with mixed operational guardrails (SKU presence, series queries, missing data, and output cleanliness)."
     )
+    rubric = [
+        Rubric(
+            score_range=(0, 3),
+            expected_outcome=(
+                "Critical Violation: Provided specific hardware specs for a generic SERIES query, OR "
+                "failed to state that external documentation was missing for an unknown SKU, OR "
+                "polluted the text output with forbidden system tags/headers like [RAG], [INTERNAL], 'AUDIT:', or 'ANSWER:'."
+            )
+        ),
+        Rubric(
+            score_range=(4, 6),
+            expected_outcome=(
+                "Partial Compliance: Kept the output clean without tags, but violated one of the routing logic rules "
+                "(e.g., provided partial specs for a line series instead of demanding the SKU)."
+            )
+        ),
+        Rubric(
+            score_range=(7, 10),
+            expected_outcome=(
+                "Full Compliance: Perfect execution. Detected query type accurately, triggered the required disclaimer "
+                "for missing SKUs, correctly refused specs for series queries, and delivered a completely clean, natural response paragraph."
+            )
+        )
+    ]
     return GEval(
         name="Mixed Guardrails (Unified)",
         model=evaluator,
         criteria=criteria,
-        evaluation_params=[
-            SingleTurnParams.INPUT,
-            SingleTurnParams.ACTUAL_OUTPUT
-        ],
+        rubric=rubric,
+        evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT, SingleTurnParams.RETRIEVAL_CONTEXT],
         evaluation_steps=[
             "Determine query type (SKU, series, comparison, general).",
             "Check compliance with the specific operational rule for that type.",
             "Verify no forbidden raw tags or system processing blocks pollute the text output."
         ],
-        threshold=0.8, verbose_mode=True
+        threshold=0.8,
+        verbose_mode=True
     )
 
 def create_temporal_geval(evaluator: OllamaEvaluator) -> GEval:
     criteria = (
-        "Evaluate the response based on temporal reasoning rules:\n"
-        "1. For queries with a reference date, the response should prefer documents from that date or later.\n"
-        "2. For future dates (e.g., 2026+), the response must not invent specifications; it should say 'not available' or 'unconfirmed'.\n"
-        "3. For comparisons across models/generations, the response must correctly distinguish specifications (e.g., DDR4 vs DDR5).\n"
-        "4. For atemporal concepts (thermal throttling, memory types), the response may use general knowledge regardless of document date.\n"
-        "5. The response must not hallucinate BIOS versions, future hardware, or outdated specs."
+        "Evaluate response compliance with temporal reasoning rules and specification accuracy across generations."
     )
+    rubric = [
+        Rubric(
+            score_range=(0, 3),
+            expected_outcome=(
+                "Temporal Failure: Invented specifications for future dates (2026+), hallucinated hardware versions, "
+                "or completely mixed up historical specs (e.g., stating a DDR4 model uses DDR5 based on outdated/incorrect documentation)."
+            )
+        ),
+        Rubric(
+            score_range=(4, 6),
+            expected_outcome=(
+                "Minor Temporal Inconsistency: Preferred older documents over newer ones when both were present in context, "
+                "but did not boldly invent non-existent versions or future hardware."
+            )
+        ),
+        Rubric(
+            score_range=(7, 10),
+            expected_outcome=(
+                "Chronological Excellence: Correctly respected the reference date, handled future-dated queries with strict "
+                "caution ('not available'/'unconfirmed'), and accurately separated component generations (DDR4 vs DDR5)."
+            )
+        )
+    ]
     return GEval(
         name="Temporal Consistency",
         model=evaluator,
         criteria=criteria,
+        rubric=rubric,
         evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT, SingleTurnParams.RETRIEVAL_CONTEXT],
         evaluation_steps=[
             "Check if the response uses the appropriate document recency based on the reference date.",
@@ -237,58 +273,87 @@ def create_temporal_geval(evaluator: OllamaEvaluator) -> GEval:
             "Ensure that comparisons respect chronological evolution of specifications.",
             "Penalize hallucinated versions or specs that contradict the temporal context."
         ],
-        threshold=0.8, verbose_mode=True
+        threshold=0.8,
+        verbose_mode=True
     )
 
 def create_strict_temporal_reranking_geval(evaluator: OllamaEvaluator) -> GEval:
     criteria = (
-        "Analyze if the response suffered from temporal obsolescence. "
-        "The evaluation must strictly check if the response favored an outdated specification "
-        "or continuous history over the exact timeline requested in the input.\n"
-        "Rules:\n"
-        "1. If the input specifies a timeline or reference date, the response MUST NOT use "
-        "outdated technical specifications from previous years present in the context.\n"
-        "2. Score 1.0 ONLY if the response shows clear chronological alignment with the reference date.\n"
-        "3. Score 0.0 or penalize heavily if the response incorporates features, components, or BIOS "
-        "versions that were replaced or are obsolete by the time of the reference date."
+        "Analyze if the engine suffered from temporal obsolescence by favoring outdated context documents over the chronological requested timeline."
     )
+    rubric = [
+        Rubric(
+            score_range=(0, 4),
+            expected_outcome=(
+                "Obsolete Output: The response fell victim to a lack of temporal awareness. It incorporated features, "
+                "components, or BIOS versions that were already replaced or obsolete by the time of the reference date, "
+                "meaning it favored older documentation present in the context (typical vanilla vector search error)."
+            )
+        ),
+        Rubric(
+            score_range=(5, 10),
+            expected_outcome=(
+                "Dynamic Recency Alignment: The response shows absolute chronological alignment. It successfully "
+                "deprioritized obsolete data and strictly used current/newer specifications relevant to the anchor year."
+            )
+        )
+    ]
     return GEval(
         name="Temporal Reranking Enforcement",
         model=evaluator,
         criteria=criteria,
+        rubric=rubric,
         evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT, SingleTurnParams.RETRIEVAL_CONTEXT],
         evaluation_steps=[
             "Identify the reference date or chronological anchor in the user input.",
             "Check if the actual output used specifications that are accurate only for past contexts.",
             "Determine if the system failed to deprioritize obsolete technical documentation."
         ],
-        threshold=0.8, verbose_mode=True
+        threshold=0.8,
+        verbose_mode=True
     )
 
 def create_intelligent_fallback_geval(evaluator: OllamaEvaluator) -> GEval:
     criteria = (
-        "Evaluate the response's defensive behavior and fallback triggering.\n"
-        "Rules:\n"
-        "1. For a SERIES query (e.g., 'Acer Nitro 5') or an unconfirmed future SKU, the response "
-        "MUST NOT provide precise hardware specifications. It must refuse to invent specs and ask for the exact SKU.\n"
-        "2. If the external documentation for a specific SKU is missing, the response MUST explicitly state "
-        "that no official documentation was found before attempting to provide any generic internal knowledge.\n"
-        "3. Give a score of 0.0 if the response hallucinated or mapped specs from a different product "
-        "just because it appeared in the retrieval context."
+        "Evaluate the response's defensive fallback triggering and resistance to context-driven hallucinations."
     )
+    rubric = [
+        Rubric(
+            score_range=(0, 3),
+            expected_outcome=(
+                "Hallucinated Mapping: The response hallucinated or forcefully mapped specs from a completely different "
+                "product line just because it appeared in the retrieval context, OR gave precise hardware specs for an unknown SKU/Series."
+            )
+        ),
+        Rubric(
+            score_range=(4, 6),
+            expected_outcome=(
+                "Insufficient Disclaimer: Attempted a generic fallback response but forgot to explicitly state the mandatory "
+                "disclaimer that no current official documentation was found for that specific SKU."
+            )
+        ),
+        Rubric(
+            score_range=(7, 10),
+            expected_outcome=(
+                "Smart Defense: Perfect fallback activation. For missing/unknown data, it openly admitted the lack of "
+                "external documentation first, and then provided safe, generic architectural constraints using clean internal knowledge."
+            )
+        )
+    ]
     return GEval(
         name="Smart Fallback Triggering",
         model=evaluator,
         criteria=criteria,
+        rubric=rubric,
         evaluation_params=[SingleTurnParams.INPUT, SingleTurnParams.ACTUAL_OUTPUT, SingleTurnParams.RETRIEVAL_CONTEXT],
         evaluation_steps=[
             "Identify if the query is a Series query, an unknown SKU, or a future-dated product.",
             "Verify if the response successfully triggered a fallback/disclaimer or a request for clarification.",
             "Penalize with 0.0 if the response boldly states specifications that belong to a generic or different model."
         ],
-        threshold=0.8, verbose_mode=True
+        threshold=0.8,
+        verbose_mode=True
     )
-
 
 # ============================================================================
 # RAG MANAGER & ORCHESTRATION (WITH REPETITIONS)

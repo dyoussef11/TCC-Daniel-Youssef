@@ -109,28 +109,6 @@ def extrair_fault_limpo(fault: str) -> str:
         fault = fault[:97] + "..."
     return fault
 
-# def construir_texto_embedding(post: Dict, nome_modelo: str) -> str:
-#     """
-#     Constrói texto semanticamente rico para BGE-M3.
-#     Inclui o nome do modelo (já com marca), sumário, fault, soluções.
-#     """
-#     analise = post.get('analise_ia', {})
-#     if not analise:
-#         return ""
-    
-#     summary = analise.get('summary', f"{nome_modelo}, no details available")
-#     fault = extrair_fault_limpo(analise.get('detected_fault', 'None'))
-#     solucoes = formatar_solucoes_estruturadas(analise.get('suggested_solution'))
-#     solucoes_str = " | ".join(solucoes[:3])
-    
-#     texto = (
-#         f"MODEL: {nome_modelo} {nome_modelo} {nome_modelo}. "
-#         f"PROBLEM: {summary}. "
-#         f"FAULT: {fault}. "
-#         f"SOLUTIONS: {solucoes_str}."
-#     )
-#     return ' '.join(texto.split())
-
 # ============================================================================
 # PROCESSAMENTO DE POSTS (ASSÍNCRONO)
 # ============================================================================
