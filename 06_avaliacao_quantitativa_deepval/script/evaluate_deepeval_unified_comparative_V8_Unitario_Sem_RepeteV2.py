@@ -570,50 +570,66 @@ class NativeComparativePipeline:
         v9_b_ref = [c for c in self.v9_cases_backup if c.metadata["test_type"] == "behavioral"]
         v9_temp_ref = [c for c in self.v9_cases_backup if c.metadata["test_type"] == "temporal"]
 
-        print("\n📋 REFERÊNCIAS PARA PROCESSAMENTO:")
-        print(f"   v1_t_ref: {len(v1_t_ref)} | v1_b_ref: {len(v1_b_ref)} | v1_temp_ref: {len(v1_temp_ref)}")
-        print(f"   v9_t_ref: {len(v9_t_ref)} | v9_b_ref: {len(v9_b_ref)} | v9_temp_ref: {len(v9_temp_ref)}")
-
+        # ------------------------------------------------------------
+        # Função interna com mapeamento melhorado
+        # ------------------------------------------------------------
         def process_results(results, version_prefix, source_cases_ref):
-            print(f"\n🔧 process_results({version_prefix}) - results={len(results)}, source_cases={len(source_cases_ref)}")
+            # Dicionário de mapeamento: substring -> nome padronizado
+            name_mapping = {
+                "Mixed Guardrails": "Behavioral_Guardrails",
+                "Behavioral": "Behavioral_Guardrails",
+                "Temporal Consistency": "Temporal_Consistency",   # <-- agora captura mesmo com sufixo
+                "Temporal Reranking": "Temporal_Reranking",
+                "Reranking": "Temporal_Reranking",
+                "Smart Fallback": "Intelligent_Fallback",
+                "Fallback": "Intelligent_Fallback"
+            }
+
             for idx, test_result in enumerate(results):
-                print(f"   Processando resultado {idx} para {version_prefix}")
                 if idx < len(source_cases_ref):
                     tc = source_cases_ref[idx]
                 else:
                     tc = getattr(test_result, 'test_case', None)
-                    if tc is None:
-                        print(f"      ⚠️ Sem caso de referência para índice {idx}, pulando...")
-                        continue
+                
+                if tc is None:
+                    continue
                 
                 row_id = tc.metadata["id"] if (tc and tc.metadata) else f"TC_{idx}"
+                orig_id = tc.metadata.get("original_id", row_id) if (tc and tc.metadata) else row_id
+                run_idx = tc.metadata.get("run_index", 1) if (tc and tc.metadata) else 1
                 query_text = tc.input if tc else "Unknown"
                 test_type = tc.metadata["test_type"] if (tc and tc.metadata) else "traditional"
                 actual_output = tc.actual_output if tc else ""
 
                 existing = next((r for r in rows if r["ID"] == row_id), None)
                 if not existing:
-                    existing = {"ID": row_id, "Query": query_text, "Test_Type": test_type}
+                    existing = {
+                        "ID": row_id, 
+                        "Original_ID": orig_id,
+                        "Repetition": run_idx,
+                        "Query": query_text, 
+                        "Test_Type": test_type
+                    }
                     rows.append(existing)
                 
                 existing[f"{version_prefix}_Answer"] = actual_output
                 
                 metrics_list = getattr(test_result, 'metrics_data', [])
-                print(f"      Métricas encontradas: {len(metrics_list)}")
                 for metric_obj in metrics_list:
-                    # Mapeamento de nomes
                     original_name = metric_obj.name
-                    if "Mixed_Guardrails" in original_name or "Behavioral" in original_name:
-                        name = "Behavioral_Guardrails"
-                    elif "Temporal_Consistency" in original_name:
-                        name = "Temporal_Consistency"
-                    elif "Temporal Reranking" in original_name or "Reranking" in original_name:
-                        name = "Temporal_Reranking"
-                    elif "Smart Fallback" in original_name or "Fallback" in original_name:
-                        name = "Intelligent_Fallback"
-                    else:
-                        name = original_name.replace(" ", "_")
-                    
+
+                    # Aplica o mapeamento por substring
+                    mapped_name = None
+                    for key, mapped in name_mapping.items():
+                        if key in original_name:
+                            mapped_name = mapped
+                            break
+                    if mapped_name is None:
+                        # Fallback: substitui espaços por underscore
+                        mapped_name = original_name.replace(" ", "_")
+
+                    name = mapped_name  # nome padronizado
+
                     score_key = f"{version_prefix}_{name}_Score"
                     reason_key = f"{version_prefix}_{name}_Reason"
                     verbose_key = f"{version_prefix}_{name}_Verbose"
@@ -636,9 +652,8 @@ class NativeComparativePipeline:
                     else:
                         existing[total_key] = 0
                         existing[positive_key] = 0
-                    
-                    print(f"         ✅ {score_key} = {metric_obj.score} (Total={existing[total_key]}, Pos={existing[positive_key]})")
 
+        # Aplica o processamento para cada grupo
         process_results(r1_t, "V1", v1_t_ref)
         process_results(r1_b, "V1", v1_b_ref)
         process_results(r1_temp, "V1", v1_temp_ref)
@@ -646,67 +661,17 @@ class NativeComparativePipeline:
         process_results(r9_b, "V9", v9_b_ref)
         process_results(r9_temp, "V9", v9_temp_ref)
 
-        # ====================================================================
-        # IMPRESSÃO DETALHADA NO CONSOLE
-        # ====================================================================
-        print("\n" + "=" * 90)
-        print("📊 DETALHES POR CASO (CONSOLE) - COM CÁLCULO PASSO A PASSO")
-        print("=" * 90)
-        for r in rows:
-            print(f"\n🔹 [{r['ID']}] - Tipo: {r['Test_Type']}")
-            q = r.get('Query', '')
-            if len(q) > 150:
-                print(f"   Pergunta: {q[:150]}...")
-            else:
-                print(f"   Pergunta: {q}")
-            
-            v1_ans = str(r.get('V1_Answer', 'N/A'))
-            v9_ans = str(r.get('V9_Answer', 'N/A'))
-            print(f"   V1 Resposta: {v1_ans[:200]}{'...' if len(v1_ans) > 200 else ''}")
-            print(f"   V9 Resposta: {v9_ans[:200]}{'...' if len(v9_ans) > 200 else ''}")
-            
-            for version in ['V1', 'V9']:
-                print(f"  {version}:")
-                all_metrics = ['Faithfulness', 'Answer_Relevancy', 'Contextual_Relevancy',
-                               'Contextual_Precision', 'Contextual_Recall',
-                               'Behavioral_Guardrails', 'Temporal_Consistency',
-                               'Temporal_Reranking', 'Intelligent_Fallback']
-                for metric in all_metrics:
-                    score = r.get(f'{version}_{metric}_Score', 'N/A')
-                    reason = r.get(f'{version}_{metric}_Reason', '')
-                    verbose = r.get(f'{version}_{metric}_Verbose', '')
-                    total = r.get(f'{version}_{metric}_Total', 0)
-                    positive = r.get(f'{version}_{metric}_Positive', 0)
-                    
-                    if score != 'N/A':
-                        print(f"    {metric}: {score:.3f}")
-                        print(f"      Total de itens analisados: {total}")
-                        print(f"      Itens positivos (veredito yes): {positive}")
-                        if total > 0:
-                            calc = positive / total
-                            print(f"      Fórmula: {positive} / {total} = {calc:.3f} (Score reportado: {score:.3f})")
-                            if abs(calc - score) > 0.01:
-                                print(f"      ⚠️ Diferença entre cálculo ({calc:.3f}) e score reportado ({score:.3f})")
-                        if reason:
-                            print(f"      Razão: {reason[:300]}{'...' if len(reason) > 300 else ''}")
-                        if verbose:
-                            print(f"      Verbose Logs:")
-                            if len(verbose) > 800:
-                                print(f"        {verbose[:800]}...")
-                            else:
-                                for line in verbose.split('\n'):
-                                    print(f"        {line}")
-            print("-" * 80)
-
-        # ====================================================================
-        # CRIA DATAFRAME
-        # ====================================================================
+        # ------------------------------------------------------------
+        # Criação do DataFrame e exportação (sem alterações)
+        # ------------------------------------------------------------
         df = pd.DataFrame(rows)
+        
         ALL_METRICS = [
             'Faithfulness', 'Answer_Relevancy', 'Contextual_Relevancy',
             'Contextual_Precision', 'Contextual_Recall', 'Behavioral_Guardrails',
             'Temporal_Consistency', 'Temporal_Reranking', 'Intelligent_Fallback'
         ]
+        
         for version in ['V1', 'V9']:
             for metric in ALL_METRICS:
                 col_score = f"{version}_{metric}_Score"
@@ -724,78 +689,75 @@ class NativeComparativePipeline:
                             df[col] = ""
 
         combo_id = self.config.combination_id
-        csv_out = self.config.output_dir / f"DEEPEVAL_MIXED_NATIVE_DEBUG_{combo_id}_{self.config.timestamp}.csv"
+        csv_out = self.config.output_dir / f"DEEPEVAL_MIXED_NATIVE_COMPARATIVE_COM_REPETICAO_{combo_id}_{self.config.timestamp}.csv"
         df.to_csv(csv_out, index=False)
-
-        # ====================================================================
-        # RELATÓRIOS TXT E MD COM FÓRMULA, OPERAÇÃO E VERBOSE LOGS COMPLETOS
-        # ====================================================================
-        txt_out = self.config.output_dir / f"RELATORIO_DEBUG_{combo_id}_{self.config.timestamp}.txt"
+        
+        txt_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_COM_REPETICAO_{combo_id}_{self.config.timestamp}.txt"
         self._write_txt_report(txt_out, rows)
 
-        md_out = self.config.output_dir / f"RELATORIO_DEBUG_{combo_id}_{self.config.timestamp}.md"
+        md_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_COM_REPETICAO_{combo_id}_{self.config.timestamp}.md"
         self._write_md_report(md_out, rows)
 
-        print(f"\n🚀 Pipeline de debug concluído.")
+        print(f"\n🚀 Pipeline com repetição concluído com sucesso.")
         print(f"📊 Planilha CSV:  {csv_out}")
         print(f"📝 Relatório TXT: {txt_out}")
         print(f"📝 Relatório MD:  {md_out}")
 
-    # ========================================================================
-    # RELATÓRIO TXT COM FÓRMULA, OPERAÇÃO E VERBOSE LOGS COMPLETOS
-    # ========================================================================
-    def _write_txt_report(self, path: Path, rows: List[Dict]):
-        with open(path, 'w', encoding='utf-8') as f:
-            f.write("=" * 90 + "\n")
-            f.write(f"RELATÓRIO DEBUG - {self.config.timestamp}\n")
-            f.write("=" * 90 + "\n")
-            f.write(f"Modelo Avaliador: {self.config.evaluator_model}\n")
-            f.write(f"Modelo Gerador: {self.config.model_name}\n")
-            f.write(f"Total Casos: {len(rows)}\n")
-            f.write("-" * 90 + "\n\n")
-            
-            for r in rows:
-                f.write(f"▶️ ID: {r['ID']} | Tipo: {r['Test_Type'].upper()}\n")
-                f.write(f" 💬 Query: {r['Query']}\n\n")
-                f.write(" [V1 Answer]:\n")
-                f.write(f"   {str(r.get('V1_Answer', 'N/A')).strip()}\n")
-                f.write("\n [V9 Answer]:\n")
-                f.write(f"   {str(r.get('V9_Answer', 'N/A')).strip()}\n")
+        # ========================================================================
+        # RELATÓRIO TXT COM FÓRMULA, OPERAÇÃO E VERBOSE LOGS COMPLETOS
+        # ========================================================================
+        def _write_txt_report(self, path: Path, rows: List[Dict]):
+            with open(path, 'w', encoding='utf-8') as f:
+                f.write("=" * 90 + "\n")
+                f.write(f"RELATÓRIO DEBUG - {self.config.timestamp}\n")
+                f.write("=" * 90 + "\n")
+                f.write(f"Modelo Avaliador: {self.config.evaluator_model}\n")
+                f.write(f"Modelo Gerador: {self.config.model_name}\n")
+                f.write(f"Total Casos: {len(rows)}\n")
+                f.write("-" * 90 + "\n\n")
                 
-                for version in ['V1', 'V9']:
-                    f.write(f"\n Métricas {version} (com cálculo passo a passo e verbose logs):\n")
-                    for key in sorted(r.keys()):
-                        if key.startswith(f'{version}_') and key.endswith('_Score'):
-                            metric_name = key.replace(f'{version}_', '').replace('_Score', '')
-                            total_key = f"{version}_{metric_name}_Total"
-                            positive_key = f"{version}_{metric_name}_Positive"
-                            reason_key = f"{version}_{metric_name}_Reason"
-                            verbose_key = f"{version}_{metric_name}_Verbose"
-                            
-                            score = r.get(key, 'N/A')
-                            total = r.get(total_key, 0)
-                            positive = r.get(positive_key, 0)
-                            reason = r.get(reason_key, '')
-                            verbose = r.get(verbose_key, '')
-                            
-                            f.write(f"   {key}: {score}\n")
-                            f.write(f"      Total de itens: {total}\n")
-                            f.write(f"      Positivos (yes): {positive}\n")
-                            if total > 0:
-                                calc = positive / total
-                                f.write(f"      Fórmula: Pontuação = Positivos / Total = {positive} / {total} = {calc:.3f}\n")
-                                if abs(calc - float(score)) > 0.01:
-                                    f.write(f"      ⚠️ Diferença: {calc:.3f} vs score reportado {score}\n")
-                            else:
-                                f.write(f"      Fórmula: Não disponível (Total = 0)\n")
-                            if reason:
-                                f.write(f"      Razão: {reason}\n")  # sem truncamento no TXT
-                            if verbose:
-                                f.write(f"      Verbose Logs (completo, incluindo Statements/Truths/Verdicts):\n")
-                                # Escreve cada linha do verbose log com indentação
-                                for line in verbose.split('\n'):
-                                    f.write(f"        {line}\n")
-                f.write("\n" + "-" * 80 + "\n")
+                for r in rows:
+                    f.write(f"▶️ ID: {r['ID']} | Tipo: {r['Test_Type'].upper()}\n")
+                    f.write(f" 💬 Query: {r['Query']}\n\n")
+                    f.write(" [V1 Answer]:\n")
+                    f.write(f"   {str(r.get('V1_Answer', 'N/A')).strip()}\n")
+                    f.write("\n [V9 Answer]:\n")
+                    f.write(f"   {str(r.get('V9_Answer', 'N/A')).strip()}\n")
+                    
+                    for version in ['V1', 'V9']:
+                        f.write(f"\n Métricas {version} (com cálculo passo a passo e verbose logs):\n")
+                        for key in sorted(r.keys()):
+                            if key.startswith(f'{version}_') and key.endswith('_Score'):
+                                metric_name = key.replace(f'{version}_', '').replace('_Score', '')
+                                total_key = f"{version}_{metric_name}_Total"
+                                positive_key = f"{version}_{metric_name}_Positive"
+                                reason_key = f"{version}_{metric_name}_Reason"
+                                verbose_key = f"{version}_{metric_name}_Verbose"
+                                
+                                score = r.get(key, 'N/A')
+                                total = r.get(total_key, 0)
+                                positive = r.get(positive_key, 0)
+                                reason = r.get(reason_key, '')
+                                verbose = r.get(verbose_key, '')
+                                
+                                f.write(f"   {key}: {score}\n")
+                                f.write(f"      Total de itens: {total}\n")
+                                f.write(f"      Positivos (yes): {positive}\n")
+                                if total > 0:
+                                    calc = positive / total
+                                    f.write(f"      Fórmula: Pontuação = Positivos / Total = {positive} / {total} = {calc:.3f}\n")
+                                    if abs(calc - float(score)) > 0.01:
+                                        f.write(f"      ⚠️ Diferença: {calc:.3f} vs score reportado {score}\n")
+                                else:
+                                    f.write(f"      Fórmula: Não disponível (Total = 0)\n")
+                                if reason:
+                                    f.write(f"      Razão: {reason}\n")  # sem truncamento no TXT
+                                if verbose:
+                                    f.write(f"      Verbose Logs (completo, incluindo Statements/Truths/Verdicts):\n")
+                                    # Escreve cada linha do verbose log com indentação
+                                    for line in verbose.split('\n'):
+                                        f.write(f"        {line}\n")
+                    f.write("\n" + "-" * 80 + "\n")
 
     # ========================================================================
     # RELATÓRIO MD COM FÓRMULA, OPERAÇÃO E VERBOSE LOGS

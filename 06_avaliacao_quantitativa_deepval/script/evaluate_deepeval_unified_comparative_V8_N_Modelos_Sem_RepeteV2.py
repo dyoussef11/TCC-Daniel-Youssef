@@ -463,7 +463,21 @@ class NativeComparativePipeline:
         v9_b_ref = [c for c in self.v9_cases_backup if c.metadata["test_type"] == "behavioral"]
         v9_temp_ref = [c for c in self.v9_cases_backup if c.metadata["test_type"] == "temporal"]
 
+        # ------------------------------------------------------------
+        # Função interna com mapeamento melhorado
+        # ------------------------------------------------------------
         def process_results(results, version_prefix, source_cases_ref):
+            # Dicionário de mapeamento: substring -> nome padronizado
+            name_mapping = {
+                "Mixed Guardrails": "Behavioral_Guardrails",
+                "Behavioral": "Behavioral_Guardrails",
+                "Temporal Consistency": "Temporal_Consistency",   # <-- agora captura mesmo com sufixo
+                "Temporal Reranking": "Temporal_Reranking",
+                "Reranking": "Temporal_Reranking",
+                "Smart Fallback": "Intelligent_Fallback",
+                "Fallback": "Intelligent_Fallback"
+            }
+
             for idx, test_result in enumerate(results):
                 if idx < len(source_cases_ref):
                     tc = source_cases_ref[idx]
@@ -495,12 +509,20 @@ class NativeComparativePipeline:
                 
                 metrics_list = getattr(test_result, 'metrics_data', [])
                 for metric_obj in metrics_list:
-                    name = metric_obj.name.replace(" ", "_")
-                    if "Mixed_Guardrails" in name or "Behavioral" in name:
-                        name = "Behavioral_Guardrails"
-                    if "Temporal_Consistency" in name:
-                        name = "Temporal_Consistency"
-                    
+                    original_name = metric_obj.name
+
+                    # Aplica o mapeamento por substring
+                    mapped_name = None
+                    for key, mapped in name_mapping.items():
+                        if key in original_name:
+                            mapped_name = mapped
+                            break
+                    if mapped_name is None:
+                        # Fallback: substitui espaços por underscore
+                        mapped_name = original_name.replace(" ", "_")
+
+                    name = mapped_name  # nome padronizado
+
                     score_key = f"{version_prefix}_{name}_Score"
                     reason_key = f"{version_prefix}_{name}_Reason"
                     verbose_key = f"{version_prefix}_{name}_Verbose"
@@ -524,6 +546,7 @@ class NativeComparativePipeline:
                         existing[total_key] = 0
                         existing[positive_key] = 0
 
+        # Aplica o processamento para cada grupo
         process_results(r1_t, "V1", v1_t_ref)
         process_results(r1_b, "V1", v1_b_ref)
         process_results(r1_temp, "V1", v1_temp_ref)
@@ -531,15 +554,17 @@ class NativeComparativePipeline:
         process_results(r9_b, "V9", v9_b_ref)
         process_results(r9_temp, "V9", v9_temp_ref)
 
-        # ====================================================================
-        # CRIA DATAFRAME COM TODAS AS COLUNAS (incluindo Total e Positive)
-        # ====================================================================
+        # ------------------------------------------------------------
+        # Criação do DataFrame e exportação (sem alterações)
+        # ------------------------------------------------------------
         df = pd.DataFrame(rows)
+        
         ALL_METRICS = [
             'Faithfulness', 'Answer_Relevancy', 'Contextual_Relevancy',
             'Contextual_Precision', 'Contextual_Recall', 'Behavioral_Guardrails',
-            'Temporal_Consistency'
+            'Temporal_Consistency', 'Temporal_Reranking', 'Intelligent_Fallback'
         ]
+        
         for version in ['V1', 'V9']:
             for metric in ALL_METRICS:
                 col_score = f"{version}_{metric}_Score"
@@ -555,223 +580,221 @@ class NativeComparativePipeline:
                             df[col] = 0
                         else:
                             df[col] = ""
+
         combo_id = self.config.combination_id
-        # 1. Exportação do CSV Principal
-        csv_out = self.config.output_dir / f"DEEPEVAL_MIXED_NATIVE_COMPARATIVE_SEM_REPETICAO_{combo_id}_{self.config.timestamp}.csv"
+        csv_out = self.config.output_dir / f"DEEPEVAL_MIXED_NATIVE_COMPARATIVE_COM_REPETICAO_{combo_id}_{self.config.timestamp}.csv"
         df.to_csv(csv_out, index=False)
         
-        # 2. Relatório TXT com cálculos e verbose logs completos
-        txt_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_SEM_REPETICAO_{combo_id}_{self.config.timestamp}.txt"
+        txt_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_COM_REPETICAO_{combo_id}_{self.config.timestamp}.txt"
         self._write_txt_report(txt_out, rows)
 
-        # 3. Relatório Markdown com cálculos e verbose logs
-        md_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_SEM_REPETICAO_{combo_id}_{self.config.timestamp}.md"
+        md_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_COM_REPETICAO_{combo_id}_{self.config.timestamp}.md"
         self._write_md_report(md_out, rows)
 
-        print(f"\n🚀 Pipeline sem repetição concluído com sucesso.")
+        print(f"\n🚀 Pipeline com repetição concluído com sucesso.")
         print(f"📊 Planilha CSV:  {csv_out}")
         print(f"📝 Relatório TXT: {txt_out}")
         print(f"📝 Relatório MD:  {md_out}")
 
-    # ========================================================================
-    # RELATÓRIO TXT COM FÓRMULA, OPERAÇÃO E VERBOSE LOGS COMPLETOS
-    # ========================================================================
-    def _write_txt_report(self, path: Path, rows: List[Dict]):
-        with open(path, 'w', encoding='utf-8') as f:
-            f.write("=" * 90 + "\n")
-            f.write(f"RELATÓRIO QUANTITATIVO COMPARATIVO DE CORRIDA NATIVA (DEEPEVAL) - {self.config.timestamp}\n")
-            f.write("=" * 90 + "\n")
-            f.write(f"Modelo Avaliador (Juiz): {self.config.evaluator_model}\n")
-            f.write(f"Modelo Base RAG (Gerador): {self.config.model_name}\n")
-            f.write(f"Total Interações: {len(rows)}\n")
-            f.write("-" * 90 + "\n\n")
+        # ========================================================================
+        # RELATÓRIO TXT COM FÓRMULA, OPERAÇÃO E VERBOSE LOGS COMPLETOS
+        # ========================================================================
+        def _write_txt_report(self, path: Path, rows: List[Dict]):
+            with open(path, 'w', encoding='utf-8') as f:
+                f.write("=" * 90 + "\n")
+                f.write(f"RELATÓRIO QUANTITATIVO COMPARATIVO DE CORRIDA NATIVA (DEEPEVAL) - {self.config.timestamp}\n")
+                f.write("=" * 90 + "\n")
+                f.write(f"Modelo Avaliador (Juiz): {self.config.evaluator_model}\n")
+                f.write(f"Modelo Base RAG (Gerador): {self.config.model_name}\n")
+                f.write(f"Total Interações: {len(rows)}\n")
+                f.write("-" * 90 + "\n\n")
 
-            for r in rows:
-                f.write(f"▶️ ID: {r['ID']} [Original: {r['Original_ID']} | Tentativa: {r['Repetition']}] | Tipo: {r['Test_Type'].upper()}\n")
-                f.write(f" 💬 Query: {r['Query']}\n\n")
-                
-                f.write(" [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:\n")
-                f.write(f"   {str(r.get('V1_Answer', 'N/A')).strip()}\n")
-                
-                f.write("\n [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:\n")
-                f.write(f"   {str(r.get('V9_Answer', 'N/A')).strip()}\n")
-                
-                # Exibe métricas com cálculos para cada versão
-                for version in ['V1', 'V9']:
-                    f.write(f"\n 📊 Métricas {version} (com cálculo passo a passo e verbose logs):\n")
-                    for key in sorted(r.keys()):
-                        if key.startswith(f'{version}_') and key.endswith('_Score'):
-                            metric_name = key.replace(f'{version}_', '').replace('_Score', '')
-                            total_key = f"{version}_{metric_name}_Total"
-                            positive_key = f"{version}_{metric_name}_Positive"
-                            reason_key = f"{version}_{metric_name}_Reason"
-                            verbose_key = f"{version}_{metric_name}_Verbose"
-                            
-                            score = r.get(key, 'N/A')
-                            total = r.get(total_key, 0)
-                            positive = r.get(positive_key, 0)
-                            reason = r.get(reason_key, '')
-                            verbose = r.get(verbose_key, '')
-                            
-                            f.write(f"   {metric_name}: {score}\n")
-                            f.write(f"      Total de itens: {total}\n")
-                            f.write(f"      Positivos (yes): {positive}\n")
-                            if total > 0:
-                                calc = positive / total
-                                f.write(f"      Fórmula: Pontuação = Positivos / Total = {positive} / {total} = {calc:.3f}\n")
-                                if abs(calc - float(score)) > 0.01:
-                                    f.write(f"      ⚠️ Diferença: {calc:.3f} vs score reportado {score}\n")
-                            else:
-                                f.write(f"      Fórmula: Não disponível (Total = 0)\n")
-                            if reason:
-                                f.write(f"      Razão: {reason}\n")
-                            if verbose:
-                                f.write(f"      Verbose Logs (completo):\n")
-                                for line in verbose.split('\n'):
-                                    f.write(f"        {line}\n")
-                
-                # Resumo comparativo
-                f.write("\n 📈 COMPARAÇÃO RÁPIDA ENTRE V1 E V9:\n")
-                for metric in ['Faithfulness', 'Answer_Relevancy', 'Contextual_Relevancy', 
-                               'Contextual_Precision', 'Contextual_Recall', 'Behavioral_Guardrails', 'Temporal_Consistency']:
-                    v1_score = r.get(f'V1_{metric}_Score', None)
-                    v9_score = r.get(f'V9_{metric}_Score', None)
-                    if v1_score is not None and v9_score is not None:
-                        diff = v9_score - v1_score
-                        arrow = "↑" if diff > 0.02 else "↓" if diff < -0.02 else "→"
-                        f.write(f"   {metric:<22}: V1={v1_score:.3f} {arrow} V9={v9_score:.3f} (Δ {diff:+.3f})\n")
-                f.write("\n" + "-" * 80 + "\n")
-
-            # Resumo consolidado das médias
-            f.write("\n" + "=" * 90 + "\n")
-            f.write("📊 RESUMO CONSOLIDADO DAS MÉTRICAS (MÉDIAS GERAIS)\n")
-            f.write("=" * 90 + "\n")
-            
-            trad_rows = [r for r in rows if r["Test_Type"] == "traditional"]
-            if trad_rows:
-                f.write("\n📈 MÉTRICAS TRADICIONAIS MÉDIAS (DeepEval):\n")
-                for m in ["Faithfulness", "Answer_Relevancy", "Contextual_Relevancy", "Contextual_Precision", "Contextual_Recall"]:
-                    v1_scores = [r[f"V1_{m}_Score"] for r in trad_rows if f"V1_{m}_Score" in r and not pd.isna(r[f"V1_{m}_Score"])]
-                    v9_scores = [r[f"V9_{m}_Score"] for r in trad_rows if f"V9_{m}_Score" in r and not pd.isna(r[f"V9_{m}_Score"])]
-                    v1_avg = np.mean(v1_scores) if v1_scores else 0.0
-                    v9_avg = np.mean(v9_scores) if v9_scores else 0.0
-                    diff = v9_avg - v1_avg
-                    arrow = "↑" if diff > 0 else "↓" if diff < 0 else "→"
-                    f.write(f"  ├── {m:<22}: V1={v1_avg:.3f} {arrow} V9={v9_avg:.3f} (Δ {diff:+.3f})\n")
-            
-            behav_rows = [r for r in rows if r["Test_Type"] == "behavioral"]
-            if behav_rows:
-                f.write("\n📈 ACURÁCIA COMPORTAMENTAL (G-Eval Guardrails):\n")
-                v1_b_scores = [r["V1_Behavioral_Guardrails_Score"] for r in behav_rows if "V1_Behavioral_Guardrails_Score" in r and not pd.isna(r["V1_Behavioral_Guardrails_Score"])]
-                v9_b_scores = [r["V9_Behavioral_Guardrails_Score"] for r in behav_rows if "V9_Behavioral_Guardrails_Score" in r and not pd.isna(r["V9_Behavioral_Guardrails_Score"])]
-                v1_b_avg = np.mean(v1_b_scores) if v1_b_scores else 0.0
-                v9_b_avg = np.mean(v9_b_scores) if v9_b_scores else 0.0
-                diff_b = v9_b_avg - v1_b_avg
-                arrow_b = "↑" if diff_b > 0 else "↓" if diff_b < 0 else "→"
-                f.write(f"  ├── Adesão Regras V1 (Vanilla) : {v1_b_avg*100:.1f}%\n")
-                f.write(f"  └── Adesão Regras V9 (Temporal): {v9_b_avg*100:.1f}% (Δ {diff_b:+.3f})\n")
-
-            temp_rows = [r for r in rows if r["Test_Type"] == "temporal"]
-            if temp_rows:
-                f.write("\n📈 ACURÁCIA TEMPORAL (Temporal Consistency):\n")
-                v1_t_scores = [r["V1_Temporal_Consistency_Score"] for r in temp_rows if "V1_Temporal_Consistency_Score" in r and not pd.isna(r["V1_Temporal_Consistency_Score"])]
-                v9_t_scores = [r["V9_Temporal_Consistency_Score"] for r in temp_rows if "V9_Temporal_Consistency_Score" in r and not pd.isna(r["V9_Temporal_Consistency_Score"])]
-                v1_t_avg = np.mean(v1_t_scores) if v1_t_scores else 0.0
-                v9_t_avg = np.mean(v9_t_scores) if v9_t_scores else 0.0
-                diff_t = v9_t_avg - v1_t_avg
-                arrow_t = "↑" if diff_t > 0 else "↓" if diff_t < 0 else "→"
-                f.write(f"  ├── Consistência Temporal V1 : {v1_t_avg:.3f}\n")
-                f.write(f"  └── Consistência Temporal V9 : {v9_t_avg:.3f} (Δ {diff_t:+.3f})\n")
-
-    # ========================================================================
-    # RELATÓRIO MD COM FÓRMULA, OPERAÇÃO E VERBOSE LOGS
-    # ========================================================================
-    def _write_md_report(self, path: Path, rows: List[Dict]):
-        with open(path, 'w', encoding='utf-8') as f:
-            f.write(f"# Relatório de Auditoria Comparativa Nativa (DeepEval) - SEM REPETIÇÃO (1x)\n\n")
-            f.write(f"- **Data de Execução:** {self.config.timestamp}\n")
-            f.write(f"- **Modelo Avaliador (Juiz):** `{self.config.evaluator_model}`\n")
-            f.write(f"- **Modelo Base RAG (Gerador):** `{self.config.model_name}`\n")
-            f.write(f"- **Total Interações Avaliadas:** {len(rows)}\n\n")
-            
-            f.write("## 📊 Tabela Resumo das Médias Consolidadas\n\n")
-            f.write("| Métrica Base | Média V1 (Vanilla) | Média V9 (Temporal) | Variação Líquida |\n")
-            f.write("|---|---|---|---|\n")
-            
-            # Médias tradicionais
-            trad_rows = [r for r in rows if r["Test_Type"] == "traditional"]
-            if trad_rows:
-                for m in ["Faithfulness", "Answer_Relevancy", "Contextual_Relevancy", "Contextual_Precision", "Contextual_Recall"]:
-                    v1_scores = [r[f"V1_{m}_Score"] for r in trad_rows if f"V1_{m}_Score" in r and not pd.isna(r[f"V1_{m}_Score"])]
-                    v9_scores = [r[f"V9_{m}_Score"] for r in trad_rows if f"V9_{m}_Score" in r and not pd.isna(r[f"V9_{m}_Score"])]
-                    v1_avg = np.mean(v1_scores) if v1_scores else 0.0
-                    v9_avg = np.mean(v9_scores) if v9_scores else 0.0
-                    diff = v9_avg - v1_avg
-                    emoji = "🟢" if diff > 0.02 else "🔴" if diff < -0.02 else "⚪"
-                    f.write(f"| {m} | {v1_avg:.3f} | {v9_avg:.3f} | {emoji} {diff:+.3f} |\n")
-            
-            # Médias comportamentais
-            behav_rows = [r for r in rows if r["Test_Type"] == "behavioral"]
-            if behav_rows:
-                v1_b_scores = [r["V1_Behavioral_Guardrails_Score"] for r in behav_rows if "V1_Behavioral_Guardrails_Score" in r and not pd.isna(r["V1_Behavioral_Guardrails_Score"])]
-                v9_b_scores = [r["V9_Behavioral_Guardrails_Score"] for r in behav_rows if "V9_Behavioral_Guardrails_Score" in r and not pd.isna(r["V9_Behavioral_Guardrails_Score"])]
-                v1_b_avg = np.mean(v1_b_scores) if v1_b_scores else 0.0
-                v9_b_avg = np.mean(v9_b_scores) if v9_b_scores else 0.0
-                diff_b = v9_b_avg - v1_b_avg
-                emoji_b = "🟢" if diff_b > 0.02 else "🔴" if diff_b < -0.02 else "⚪"
-                f.write(f"| **Behavioral Guardrails (G-Eval)** | {v1_b_avg:.3f} | {v9_b_avg:.3f} | {emoji_b} {diff_b:+.3f} |\n")
-            
-            # Médias temporais
-            temp_rows = [r for r in rows if r["Test_Type"] == "temporal"]
-            if temp_rows:
-                v1_t_scores = [r["V1_Temporal_Consistency_Score"] for r in temp_rows if "V1_Temporal_Consistency_Score" in r and not pd.isna(r["V1_Temporal_Consistency_Score"])]
-                v9_t_scores = [r["V9_Temporal_Consistency_Score"] for r in temp_rows if "V9_Temporal_Consistency_Score" in r and not pd.isna(r["V9_Temporal_Consistency_Score"])]
-                v1_t_avg = np.mean(v1_t_scores) if v1_t_scores else 0.0
-                v9_t_avg = np.mean(v9_t_scores) if v9_t_scores else 0.0
-                diff_t = v9_t_avg - v1_t_avg
-                emoji_t = "🟢" if diff_t > 0.02 else "🔴" if diff_t < -0.02 else "⚪"
-                f.write(f"| **Temporal Consistency** | {v1_t_avg:.3f} | {v9_t_avg:.3f} | {emoji_t} {diff_t:+.3f} |\n")
-            
-            f.write("\n## 📋 Detalhamento por Caso (com Cálculo Passo a Passo)\n\n")
-            for r in rows:
-                f.write(f"### {r['ID']} (Original: {r['Original_ID']}, Tentativa: {r['Repetition']})\n")
-                f.write(f"**Tipo:** {r['Test_Type'].upper()}\n\n")
-                f.write(f"**Query:** {r['Query']}\n\n")
-                
-                f.write("**V1 Answer:**\n```\n" + str(r.get('V1_Answer', 'N/A')) + "\n```\n")
-                f.write("**V9 Answer:**\n```\n" + str(r.get('V9_Answer', 'N/A')) + "\n```\n")
-                
-                f.write("**Métricas e Cálculos:**\n\n")
-                f.write("| Métrica | Versão | Score | Total | Positivos | Fórmula | Operação |\n")
-                f.write("|---------|--------|-------|-------|-----------|---------|----------|\n")
-                
-                for metric in ['Faithfulness', 'Answer_Relevancy', 'Contextual_Relevancy', 
-                               'Contextual_Precision', 'Contextual_Recall', 'Behavioral_Guardrails', 'Temporal_Consistency']:
+                for r in rows:
+                    f.write(f"▶️ ID: {r['ID']} [Original: {r['Original_ID']} | Tentativa: {r['Repetition']}] | Tipo: {r['Test_Type'].upper()}\n")
+                    f.write(f" 💬 Query: {r['Query']}\n\n")
+                    
+                    f.write(" [🤖 RESPOSTA - RAG V1 VANILLA Mixed]:\n")
+                    f.write(f"   {str(r.get('V1_Answer', 'N/A')).strip()}\n")
+                    
+                    f.write("\n [🧠 RESPOSTA - RAG V9 TEMPORAL Mixed]:\n")
+                    f.write(f"   {str(r.get('V9_Answer', 'N/A')).strip()}\n")
+                    
+                    # Exibe métricas com cálculos para cada versão
                     for version in ['V1', 'V9']:
-                        score = r.get(f'{version}_{metric}_Score', '')
-                        total = r.get(f'{version}_{metric}_Total', 0)
-                        positive = r.get(f'{version}_{metric}_Positive', 0)
-                        if score != '':
-                            if total > 0:
-                                calc = positive / total
-                                formula = f"{positive} / {total}"
-                                operacao = f"{positive} ÷ {total} = {calc:.3f}"
-                            else:
-                                formula = "N/A"
-                                operacao = "N/A"
-                            f.write(f"| {metric} | {version} | {score:.3f} | {total} | {positive} | {formula} | {operacao} |\n")
-                
-                f.write("\n**Verbose Logs (detalhados):**\n\n")
-                for version in ['V1', 'V9']:
+                        f.write(f"\n 📊 Métricas {version} (com cálculo passo a passo e verbose logs):\n")
+                        for key in sorted(r.keys()):
+                            if key.startswith(f'{version}_') and key.endswith('_Score'):
+                                metric_name = key.replace(f'{version}_', '').replace('_Score', '')
+                                total_key = f"{version}_{metric_name}_Total"
+                                positive_key = f"{version}_{metric_name}_Positive"
+                                reason_key = f"{version}_{metric_name}_Reason"
+                                verbose_key = f"{version}_{metric_name}_Verbose"
+                                
+                                score = r.get(key, 'N/A')
+                                total = r.get(total_key, 0)
+                                positive = r.get(positive_key, 0)
+                                reason = r.get(reason_key, '')
+                                verbose = r.get(verbose_key, '')
+                                
+                                f.write(f"   {metric_name}: {score}\n")
+                                f.write(f"      Total de itens: {total}\n")
+                                f.write(f"      Positivos (yes): {positive}\n")
+                                if total > 0:
+                                    calc = positive / total
+                                    f.write(f"      Fórmula: Pontuação = Positivos / Total = {positive} / {total} = {calc:.3f}\n")
+                                    if abs(calc - float(score)) > 0.01:
+                                        f.write(f"      ⚠️ Diferença: {calc:.3f} vs score reportado {score}\n")
+                                else:
+                                    f.write(f"      Fórmula: Não disponível (Total = 0)\n")
+                                if reason:
+                                    f.write(f"      Razão: {reason}\n")
+                                if verbose:
+                                    f.write(f"      Verbose Logs (completo):\n")
+                                    for line in verbose.split('\n'):
+                                        f.write(f"        {line}\n")
+                    
+                    # Resumo comparativo
+                    f.write("\n 📈 COMPARAÇÃO RÁPIDA ENTRE V1 E V9:\n")
                     for metric in ['Faithfulness', 'Answer_Relevancy', 'Contextual_Relevancy', 
-                                   'Contextual_Precision', 'Contextual_Recall', 'Behavioral_Guardrails', 'Temporal_Consistency']:
-                        verbose = r.get(f'{version}_{metric}_Verbose', '')
-                        if verbose:
-                            f.write(f"**{version} - {metric}:**\n\n")
-                            f.write("```\n")
-                            f.write(str(verbose))
-                            f.write("\n```\n\n")
-                f.write("\n---\n")
+                                'Contextual_Precision', 'Contextual_Recall', 'Behavioral_Guardrails', 'Temporal_Consistency']:
+                        v1_score = r.get(f'V1_{metric}_Score', None)
+                        v9_score = r.get(f'V9_{metric}_Score', None)
+                        if v1_score is not None and v9_score is not None:
+                            diff = v9_score - v1_score
+                            arrow = "↑" if diff > 0.02 else "↓" if diff < -0.02 else "→"
+                            f.write(f"   {metric:<22}: V1={v1_score:.3f} {arrow} V9={v9_score:.3f} (Δ {diff:+.3f})\n")
+                    f.write("\n" + "-" * 80 + "\n")
+
+                # Resumo consolidado das médias
+                f.write("\n" + "=" * 90 + "\n")
+                f.write("📊 RESUMO CONSOLIDADO DAS MÉTRICAS (MÉDIAS GERAIS)\n")
+                f.write("=" * 90 + "\n")
+                
+                trad_rows = [r for r in rows if r["Test_Type"] == "traditional"]
+                if trad_rows:
+                    f.write("\n📈 MÉTRICAS TRADICIONAIS MÉDIAS (DeepEval):\n")
+                    for m in ["Faithfulness", "Answer_Relevancy", "Contextual_Relevancy", "Contextual_Precision", "Contextual_Recall"]:
+                        v1_scores = [r[f"V1_{m}_Score"] for r in trad_rows if f"V1_{m}_Score" in r and not pd.isna(r[f"V1_{m}_Score"])]
+                        v9_scores = [r[f"V9_{m}_Score"] for r in trad_rows if f"V9_{m}_Score" in r and not pd.isna(r[f"V9_{m}_Score"])]
+                        v1_avg = np.mean(v1_scores) if v1_scores else 0.0
+                        v9_avg = np.mean(v9_scores) if v9_scores else 0.0
+                        diff = v9_avg - v1_avg
+                        arrow = "↑" if diff > 0 else "↓" if diff < 0 else "→"
+                        f.write(f"  ├── {m:<22}: V1={v1_avg:.3f} {arrow} V9={v9_avg:.3f} (Δ {diff:+.3f})\n")
+                
+                behav_rows = [r for r in rows if r["Test_Type"] == "behavioral"]
+                if behav_rows:
+                    f.write("\n📈 ACURÁCIA COMPORTAMENTAL (G-Eval Guardrails):\n")
+                    v1_b_scores = [r["V1_Behavioral_Guardrails_Score"] for r in behav_rows if "V1_Behavioral_Guardrails_Score" in r and not pd.isna(r["V1_Behavioral_Guardrails_Score"])]
+                    v9_b_scores = [r["V9_Behavioral_Guardrails_Score"] for r in behav_rows if "V9_Behavioral_Guardrails_Score" in r and not pd.isna(r["V9_Behavioral_Guardrails_Score"])]
+                    v1_b_avg = np.mean(v1_b_scores) if v1_b_scores else 0.0
+                    v9_b_avg = np.mean(v9_b_scores) if v9_b_scores else 0.0
+                    diff_b = v9_b_avg - v1_b_avg
+                    arrow_b = "↑" if diff_b > 0 else "↓" if diff_b < 0 else "→"
+                    f.write(f"  ├── Adesão Regras V1 (Vanilla) : {v1_b_avg*100:.1f}%\n")
+                    f.write(f"  └── Adesão Regras V9 (Temporal): {v9_b_avg*100:.1f}% (Δ {diff_b:+.3f})\n")
+
+                temp_rows = [r for r in rows if r["Test_Type"] == "temporal"]
+                if temp_rows:
+                    f.write("\n📈 ACURÁCIA TEMPORAL (Temporal Consistency):\n")
+                    v1_t_scores = [r["V1_Temporal_Consistency_Score"] for r in temp_rows if "V1_Temporal_Consistency_Score" in r and not pd.isna(r["V1_Temporal_Consistency_Score"])]
+                    v9_t_scores = [r["V9_Temporal_Consistency_Score"] for r in temp_rows if "V9_Temporal_Consistency_Score" in r and not pd.isna(r["V9_Temporal_Consistency_Score"])]
+                    v1_t_avg = np.mean(v1_t_scores) if v1_t_scores else 0.0
+                    v9_t_avg = np.mean(v9_t_scores) if v9_t_scores else 0.0
+                    diff_t = v9_t_avg - v1_t_avg
+                    arrow_t = "↑" if diff_t > 0 else "↓" if diff_t < 0 else "→"
+                    f.write(f"  ├── Consistência Temporal V1 : {v1_t_avg:.3f}\n")
+                    f.write(f"  └── Consistência Temporal V9 : {v9_t_avg:.3f} (Δ {diff_t:+.3f})\n")
+
+        # ========================================================================
+        # RELATÓRIO MD COM FÓRMULA, OPERAÇÃO E VERBOSE LOGS
+        # ========================================================================
+        def _write_md_report(self, path: Path, rows: List[Dict]):
+            with open(path, 'w', encoding='utf-8') as f:
+                f.write(f"# Relatório de Auditoria Comparativa Nativa (DeepEval) - SEM REPETIÇÃO (1x)\n\n")
+                f.write(f"- **Data de Execução:** {self.config.timestamp}\n")
+                f.write(f"- **Modelo Avaliador (Juiz):** `{self.config.evaluator_model}`\n")
+                f.write(f"- **Modelo Base RAG (Gerador):** `{self.config.model_name}`\n")
+                f.write(f"- **Total Interações Avaliadas:** {len(rows)}\n\n")
+                
+                f.write("## 📊 Tabela Resumo das Médias Consolidadas\n\n")
+                f.write("| Métrica Base | Média V1 (Vanilla) | Média V9 (Temporal) | Variação Líquida |\n")
+                f.write("|---|---|---|---|\n")
+                
+                # Médias tradicionais
+                trad_rows = [r for r in rows if r["Test_Type"] == "traditional"]
+                if trad_rows:
+                    for m in ["Faithfulness", "Answer_Relevancy", "Contextual_Relevancy", "Contextual_Precision", "Contextual_Recall"]:
+                        v1_scores = [r[f"V1_{m}_Score"] for r in trad_rows if f"V1_{m}_Score" in r and not pd.isna(r[f"V1_{m}_Score"])]
+                        v9_scores = [r[f"V9_{m}_Score"] for r in trad_rows if f"V9_{m}_Score" in r and not pd.isna(r[f"V9_{m}_Score"])]
+                        v1_avg = np.mean(v1_scores) if v1_scores else 0.0
+                        v9_avg = np.mean(v9_scores) if v9_scores else 0.0
+                        diff = v9_avg - v1_avg
+                        emoji = "🟢" if diff > 0.02 else "🔴" if diff < -0.02 else "⚪"
+                        f.write(f"| {m} | {v1_avg:.3f} | {v9_avg:.3f} | {emoji} {diff:+.3f} |\n")
+                
+                # Médias comportamentais
+                behav_rows = [r for r in rows if r["Test_Type"] == "behavioral"]
+                if behav_rows:
+                    v1_b_scores = [r["V1_Behavioral_Guardrails_Score"] for r in behav_rows if "V1_Behavioral_Guardrails_Score" in r and not pd.isna(r["V1_Behavioral_Guardrails_Score"])]
+                    v9_b_scores = [r["V9_Behavioral_Guardrails_Score"] for r in behav_rows if "V9_Behavioral_Guardrails_Score" in r and not pd.isna(r["V9_Behavioral_Guardrails_Score"])]
+                    v1_b_avg = np.mean(v1_b_scores) if v1_b_scores else 0.0
+                    v9_b_avg = np.mean(v9_b_scores) if v9_b_scores else 0.0
+                    diff_b = v9_b_avg - v1_b_avg
+                    emoji_b = "🟢" if diff_b > 0.02 else "🔴" if diff_b < -0.02 else "⚪"
+                    f.write(f"| **Behavioral Guardrails (G-Eval)** | {v1_b_avg:.3f} | {v9_b_avg:.3f} | {emoji_b} {diff_b:+.3f} |\n")
+                
+                # Médias temporais
+                temp_rows = [r for r in rows if r["Test_Type"] == "temporal"]
+                if temp_rows:
+                    v1_t_scores = [r["V1_Temporal_Consistency_Score"] for r in temp_rows if "V1_Temporal_Consistency_Score" in r and not pd.isna(r["V1_Temporal_Consistency_Score"])]
+                    v9_t_scores = [r["V9_Temporal_Consistency_Score"] for r in temp_rows if "V9_Temporal_Consistency_Score" in r and not pd.isna(r["V9_Temporal_Consistency_Score"])]
+                    v1_t_avg = np.mean(v1_t_scores) if v1_t_scores else 0.0
+                    v9_t_avg = np.mean(v9_t_scores) if v9_t_scores else 0.0
+                    diff_t = v9_t_avg - v1_t_avg
+                    emoji_t = "🟢" if diff_t > 0.02 else "🔴" if diff_t < -0.02 else "⚪"
+                    f.write(f"| **Temporal Consistency** | {v1_t_avg:.3f} | {v9_t_avg:.3f} | {emoji_t} {diff_t:+.3f} |\n")
+                
+                f.write("\n## 📋 Detalhamento por Caso (com Cálculo Passo a Passo)\n\n")
+                for r in rows:
+                    f.write(f"### {r['ID']} (Original: {r['Original_ID']}, Tentativa: {r['Repetition']})\n")
+                    f.write(f"**Tipo:** {r['Test_Type'].upper()}\n\n")
+                    f.write(f"**Query:** {r['Query']}\n\n")
+                    
+                    f.write("**V1 Answer:**\n```\n" + str(r.get('V1_Answer', 'N/A')) + "\n```\n")
+                    f.write("**V9 Answer:**\n```\n" + str(r.get('V9_Answer', 'N/A')) + "\n```\n")
+                    
+                    f.write("**Métricas e Cálculos:**\n\n")
+                    f.write("| Métrica | Versão | Score | Total | Positivos | Fórmula | Operação |\n")
+                    f.write("|---------|--------|-------|-------|-----------|---------|----------|\n")
+                    
+                    for metric in ['Faithfulness', 'Answer_Relevancy', 'Contextual_Relevancy', 
+                                'Contextual_Precision', 'Contextual_Recall', 'Behavioral_Guardrails', 'Temporal_Consistency']:
+                        for version in ['V1', 'V9']:
+                            score = r.get(f'{version}_{metric}_Score', '')
+                            total = r.get(f'{version}_{metric}_Total', 0)
+                            positive = r.get(f'{version}_{metric}_Positive', 0)
+                            if score != '':
+                                if total > 0:
+                                    calc = positive / total
+                                    formula = f"{positive} / {total}"
+                                    operacao = f"{positive} ÷ {total} = {calc:.3f}"
+                                else:
+                                    formula = "N/A"
+                                    operacao = "N/A"
+                                f.write(f"| {metric} | {version} | {score:.3f} | {total} | {positive} | {formula} | {operacao} |\n")
+                    
+                    f.write("\n**Verbose Logs (detalhados):**\n\n")
+                    for version in ['V1', 'V9']:
+                        for metric in ['Faithfulness', 'Answer_Relevancy', 'Contextual_Relevancy', 
+                                    'Contextual_Precision', 'Contextual_Recall', 'Behavioral_Guardrails', 'Temporal_Consistency']:
+                            verbose = r.get(f'{version}_{metric}_Verbose', '')
+                            if verbose:
+                                f.write(f"**{version} - {metric}:**\n\n")
+                                f.write("```\n")
+                                f.write(str(verbose))
+                                f.write("\n```\n\n")
+                    f.write("\n---\n")
 
 
 # ============================================================================

@@ -542,7 +542,21 @@ class NativeComparativePipeline:
         v9_b_ref = [c for c in self.v9_cases_backup if c.metadata["test_type"] == "behavioral"]
         v9_temp_ref = [c for c in self.v9_cases_backup if c.metadata["test_type"] == "temporal"]
 
+        # ------------------------------------------------------------
+        # Função interna com mapeamento melhorado
+        # ------------------------------------------------------------
         def process_results(results, version_prefix, source_cases_ref):
+            # Dicionário de mapeamento: substring -> nome padronizado
+            name_mapping = {
+                "Mixed Guardrails": "Behavioral_Guardrails",
+                "Behavioral": "Behavioral_Guardrails",
+                "Temporal Consistency": "Temporal_Consistency",   # <-- agora captura mesmo com sufixo
+                "Temporal Reranking": "Temporal_Reranking",
+                "Reranking": "Temporal_Reranking",
+                "Smart Fallback": "Intelligent_Fallback",
+                "Fallback": "Intelligent_Fallback"
+            }
+
             for idx, test_result in enumerate(results):
                 if idx < len(source_cases_ref):
                     tc = source_cases_ref[idx]
@@ -574,20 +588,20 @@ class NativeComparativePipeline:
                 
                 metrics_list = getattr(test_result, 'metrics_data', [])
                 for metric_obj in metrics_list:
-                    # Mapeamento de nomes
                     original_name = metric_obj.name
-                    if "Mixed_Guardrails" in original_name or "Behavioral" in original_name:
-                        name = "Behavioral_Guardrails"
-                    elif "Temporal_Consistency" in original_name:
-                        name = "Temporal_Consistency"
-                    elif "Temporal Reranking" in original_name or "Reranking" in original_name:
-                        name = "Temporal_Reranking"
-                    elif "Smart Fallback" in original_name or "Fallback" in original_name:
-                        name = "Intelligent_Fallback"
-                    else:
-                        # Fallback: usa o nome original com underscores
-                        name = original_name.replace(" ", "_")
-                    
+
+                    # Aplica o mapeamento por substring
+                    mapped_name = None
+                    for key, mapped in name_mapping.items():
+                        if key in original_name:
+                            mapped_name = mapped
+                            break
+                    if mapped_name is None:
+                        # Fallback: substitui espaços por underscore
+                        mapped_name = original_name.replace(" ", "_")
+
+                    name = mapped_name  # nome padronizado
+
                     score_key = f"{version_prefix}_{name}_Score"
                     reason_key = f"{version_prefix}_{name}_Reason"
                     verbose_key = f"{version_prefix}_{name}_Verbose"
@@ -611,6 +625,7 @@ class NativeComparativePipeline:
                         existing[total_key] = 0
                         existing[positive_key] = 0
 
+        # Aplica o processamento para cada grupo
         process_results(r1_t, "V1", v1_t_ref)
         process_results(r1_b, "V1", v1_b_ref)
         process_results(r1_temp, "V1", v1_temp_ref)
@@ -618,15 +633,17 @@ class NativeComparativePipeline:
         process_results(r9_b, "V9", v9_b_ref)
         process_results(r9_temp, "V9", v9_temp_ref)
 
-        # ====================================================================
-        # CRIA DATAFRAME COM TODAS AS COLUNAS (incluindo Total e Positive)
-        # ====================================================================
+        # ------------------------------------------------------------
+        # Criação do DataFrame e exportação (sem alterações)
+        # ------------------------------------------------------------
         df = pd.DataFrame(rows)
+        
         ALL_METRICS = [
             'Faithfulness', 'Answer_Relevancy', 'Contextual_Relevancy',
             'Contextual_Precision', 'Contextual_Recall', 'Behavioral_Guardrails',
             'Temporal_Consistency', 'Temporal_Reranking', 'Intelligent_Fallback'
         ]
+        
         for version in ['V1', 'V9']:
             for metric in ALL_METRICS:
                 col_score = f"{version}_{metric}_Score"
@@ -642,23 +659,22 @@ class NativeComparativePipeline:
                             df[col] = 0
                         else:
                             df[col] = ""
+
         combo_id = self.config.combination_id
-        # 1. Exportação do CSV Principal
-        csv_out = self.config.output_dir / f"DEEPEVAL_MIXED_NATIVE_COMPARATIVE_SEM_REPETICAO_{combo_id}_{self.config.timestamp}.csv"
+        csv_out = self.config.output_dir / f"DEEPEVAL_MIXED_NATIVE_COMPARATIVE_COM_REPETICAO_{combo_id}_{self.config.timestamp}.csv"
         df.to_csv(csv_out, index=False)
         
-        # 2. Relatório TXT com cálculos e verbose logs completos
-        txt_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_SEM_REPETICAO_{combo_id}_{self.config.timestamp}.txt"
+        txt_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_COM_REPETICAO_{combo_id}_{self.config.timestamp}.txt"
         self._write_txt_report(txt_out, rows)
 
-        # 3. Relatório Markdown com cálculos e verbose logs
-        md_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_SEM_REPETICAO_{combo_id}_{self.config.timestamp}.md"
+        md_out = self.config.output_dir / f"RELATORIO_COMPARATIVO_COM_REPETICAO_{combo_id}_{self.config.timestamp}.md"
         self._write_md_report(md_out, rows)
 
-        print(f"\n🚀 Pipeline sem repetição concluído com sucesso.")
+        print(f"\n🚀 Pipeline com repetição concluído com sucesso.")
         print(f"📊 Planilha CSV:  {csv_out}")
         print(f"📝 Relatório TXT: {txt_out}")
         print(f"📝 Relatório MD:  {md_out}")
+
 
     # ========================================================================
     # RELATÓRIO TXT COM FÓRMULA, OPERAÇÃO E VERBOSE LOGS COMPLETOS
