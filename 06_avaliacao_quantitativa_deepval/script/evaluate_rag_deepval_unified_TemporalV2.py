@@ -24,7 +24,6 @@ sys.path.append(str(VALIDACAO_SCRIPT))
 
 # Importa do V4 (comportamental + tradicional)
 from dataset_avaliacaoV4 import TEST_SUITE, get_traditional_tests, get_behavioral_tests
-# from RAG_Temporal_V8_CPUMode_CacheReady import SpecialistTimeAwareRAG
 from RAG_Temporal_V9 import SpecialistTimeAwareRAG
 from custom_evaluatorV2Backup import OllamaEvaluator
 from deepeval.test_case import LLMTestCase
