@@ -756,7 +756,7 @@ class SpecialistTimeAwareRAG:
             return embedding
         return await asyncio.to_thread(self.embedding_manager.compute_embedding, query)
     
-    async def search(self, query: str, ref_date: str = "2026-03-23") -> Dict:
+    async def search(self, query: str, ref_date: str = "2026-06-23") -> Dict:
         print(f"🔍 Processando: {query[:60]}...")
         ref_dt = datetime.strptime(ref_date, "%Y-%m-%d")
         

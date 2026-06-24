@@ -38,7 +38,7 @@ async def simulate_load_with_resources(rag_manager, query_list, concurrency):
     tasks = []
     for i in range(concurrency):
         query = query_list[i % len(query_list)]
-        tasks.append(rag_manager.temporal.search(query, "2026-03-12"))
+        tasks.append(rag_manager.temporal.search(query, "2026-06-23"))
     
     start_time = time.perf_counter()
     
@@ -81,7 +81,7 @@ async def run_performance_test():
         
         # Warm-up
         if level == 1:
-            await rag_manager.temporal.search(TEST_QUERIES[0], "2026-03-12")
+            await rag_manager.temporal.search(TEST_QUERIES[0], "2026-06-23")
 
         metrics = await simulate_load_with_resources(rag_manager, TEST_QUERIES, level)
         

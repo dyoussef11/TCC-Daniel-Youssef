@@ -383,7 +383,7 @@ class ComparativeRAGManager:
         
         for tc in TEST_SUITE:
             query = tc["input"]
-            ref_date = tc.get("reference_date", "2026-03-12")
+            ref_date = tc.get("reference_date", "2026-06-23")
             
             # Dispara de forma assíncrona todas as repetições necessárias para este caso
             v1_tasks = [asyncio.create_task(self.vanilla.search(query)) for _ in range(num_repeats)]

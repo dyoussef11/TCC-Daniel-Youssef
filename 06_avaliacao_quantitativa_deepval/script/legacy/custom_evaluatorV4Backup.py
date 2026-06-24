@@ -85,15 +85,26 @@ class OllamaEvaluator(DeepEvalBaseLLM):
             if data:
                 try:
                     return schema.model_validate(data)
-                except ValidationError:
+                except ValidationError as e:
+                    print(f"⚠️ ValidationError (attempt {attempt+1}): {e}")
                     continue
-        # Fallback: objeto com campos vazios
+
+        # Fallback seguro
+        print("⚠️ Todas as tentativas de JSON falharam. Usando fallback.")
+        try:
+            # Tenta validar o default
+            return schema.model_validate(self._build_default(schema))
+        except ValidationError:
+            # Se ainda falhar, cria uma instância com valores padrão (None ou vazios)
+            return self._build_empty_instance(schema)
+
+    def _build_default(self, schema: Type[BaseModel]) -> dict:
+        """Constrói um dicionário com valores padrão para cada campo."""
         default = {}
         for name, field in schema.model_fields.items():
             annotation = field.annotation
             origin = get_origin(annotation)
             if origin is list or annotation is list:
-                # Se for List[...], cria lista vazia
                 default[name] = []
             elif origin is dict or annotation is dict:
                 default[name] = {}
@@ -106,13 +117,23 @@ class OllamaEvaluator(DeepEvalBaseLLM):
             elif annotation is bool:
                 default[name] = False
             else:
-                # Para outros tipos complexos (ex.: nested models), tenta instanciar vazio
+                # Para outros tipos, tenta usar default_factory ou None
                 try:
                     default[name] = field.default_factory() if field.default_factory else None
                 except:
                     default[name] = None
-        return schema.model_validate(default)
+        return default
 
+    def _build_empty_instance(self, schema: Type[BaseModel]) -> BaseModel:
+        """Cria uma instância vazia do schema, ignorando validações."""
+        try:
+            return schema()
+        except Exception:
+            # Se o modelo não tem __init__ sem argumentos, usa **kwargs com None
+            empty = {name: None for name in schema.model_fields}
+            return schema(**empty)
+
+        
     async def a_generate(self, prompt: str, schema: Optional[Type[BaseModel]] = None) -> Union[BaseModel, str]:
         async with OllamaEvaluator._semaphore:
             if schema is None:

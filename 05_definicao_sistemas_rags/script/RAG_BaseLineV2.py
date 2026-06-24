@@ -203,7 +203,7 @@ class VanillaRAG:
         except FileNotFoundError:
             return {}
 
-    async def search(self, query: str, ref_date: str = "2026-03-23") -> Dict:
+    async def search(self, query: str, ref_date: str = "2026-06-23") -> Dict:
         # Busca o embedding utilizando a esteira assíncrona
         query_vector_1d = await self.cache_manager.get_embedding(
             query, self.embedding_manager.compute_embedding

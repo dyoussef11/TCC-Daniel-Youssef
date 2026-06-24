@@ -399,7 +399,7 @@ class ComparativeRAGManager:
         
         for tc in test_suite_iter:
             query = tc["input"]
-            ref_date = tc.get("reference_date", "2026-03-12")
+            ref_date = tc.get("reference_date", "2026-06-23")
             
             print(f"   ➤ Query: {query[:60]}...")
             v1_task = asyncio.create_task(self.vanilla.search(query))

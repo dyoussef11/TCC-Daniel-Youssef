@@ -326,7 +326,7 @@ class EvaluationPipeline:
     
     async def _process_case(self, test_case: Dict, f_report, pbar) -> Dict:
         query = test_case["input"]
-        ref_date = test_case.get("reference_date", "2026-03-12")
+        ref_date = test_case.get("reference_date", "2026-06-23")
         test_type = test_case.get("test_type", "traditional")
         
         pbar.write(f"\n📝 {test_case['id']}: {query[:60]}...")

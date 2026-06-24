@@ -470,7 +470,7 @@ BEHAVIORAL_TEST_SUITE = [
     {
         "id": "TC_BEHAVIOR_SKU_LOCK_ACER",
         "input": "What is the maximum RAM for Acer Nitro 5 AN515-58?",
-        "reference_date": "2026-03-12",
+        "reference_date": "2026-06-23",
         "test_type": "behavioral",
         "expected_behavior": "should_admit_unavailability_or_fallback",
         "expected_output": "The maximum RAM capacity for Acer AN515-58 is not available in the documentation.",
@@ -489,7 +489,7 @@ BEHAVIORAL_TEST_SUITE = [
     {
         "id": "TC_BEHAVIOR_SKU_LOCK_DELL",
         "input": "What processor does Dell G15 5530 have?",
-        "reference_date": "2026-03-12",
+        "reference_date": "2026-06-23",
         "test_type": "behavioral",
         "expected_behavior": "should_admit_unavailability",
         "forbidden_patterns": [
@@ -508,7 +508,7 @@ BEHAVIORAL_TEST_SUITE = [
     {
         "id": "TC_BEHAVIOR_SKU_LOCK_LENOVO",
         "input": "Does Lenovo Legion 5 15ACH6A have Thunderbolt 4?",
-        "reference_date": "2026-03-12",
+        "reference_date": "2026-06-23",
         "test_type": "behavioral",
         "expected_behavior": "should_admit_unavailability",
         "forbidden_patterns": [
@@ -567,7 +567,7 @@ BEHAVIORAL_TEST_SUITE = [
     {
         "id": "TC_BEHAVIOR_HONEST_COMPARISON",
         "input": "Does the Dell G15 5520 have the same maximum RAM and slots as the Dell G15 5530?",
-        "reference_date": "2026-03-12",
+        "reference_date": "2026-06-23",
         "test_type": "behavioral",
         "expected_behavior": "should_admit_cannot_compare",
         "forbidden_patterns": [
