@@ -30,6 +30,7 @@ class OllamaEvaluator(DeepEvalBaseLLM):
             "3. For a COMPARISON query with missing data on one or both SKUs, the response may use fallback but must indicate.\n"
             "4. The response MUST be clean and natural, without any tags like [RAG], [INTERNAL], without 'AUDIT:' or 'ANSWER:' blocks.\n\n"
             "You will be asked to produce a structured JSON output that follows a specific schema. "
+            "- CHRONOLOGICAL ANCHOR: The current year is 2026. The response must not invent dates or future specs unless present in the retrieved context."
             "Return ONLY valid JSON with the required fields. Do not add extra text."
         )
 

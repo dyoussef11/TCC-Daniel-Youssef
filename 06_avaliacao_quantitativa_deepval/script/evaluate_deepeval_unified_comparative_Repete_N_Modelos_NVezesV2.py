@@ -12,10 +12,10 @@ E VERBOSE LOGS COMPLETOS NO TXT E MD
 import os
 
 # Configura o timeout por caso de teste para 60 minutos (2400 segundos)
-os.environ["DEEPEVAL_PER_TASK_TIMEOUT_SECONDS_OVERRIDE"] = "6000"
+os.environ["DEEPEVAL_PER_TASK_TIMEOUT_SECONDS_OVERRIDE"] = "36000"
 
 # Configura o timeout de cada tentativa individual ao Ollama para 10 minutos (300 segundos)
-os.environ["DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE"] = "6000"
+os.environ["DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE"] = "36000"
 
 
 import asyncio
@@ -116,7 +116,7 @@ class EvalConfig:
     model_name: str = "phi3.5:latest"
     temperature: float = 0.0
     search_top_k: int = 50
-    mode: str = "com_repeticaoV2"  # Identificador para pasta
+    mode: str = "com_repeticaoV4"  # Identificador para pasta
     
 
     @property
