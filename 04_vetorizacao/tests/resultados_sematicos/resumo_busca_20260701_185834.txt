@@ -1,0 +1,9 @@
+================================================================================
+RESUMO DA BUSCA SEMÂNTICA - 20260701_185834
+================================================================================
+Total de perguntas: 54
+Total de registros (incluindo vazios): 266
+Perguntas com pelo menos 1 documento recuperado: 53
+
+Perguntas sem nenhum documento recuperado:
+  - TC_BEHAVIOR_HONEST_COMPARISON: Does the Dell G15 5520 have the same maximum RAM and slots as the Dell G15 5530?
