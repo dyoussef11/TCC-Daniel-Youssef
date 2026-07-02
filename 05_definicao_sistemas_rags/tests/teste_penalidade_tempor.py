@@ -54,10 +54,10 @@ OUTPUT_CSV = Path("05_definicao_sistemas_rags/tests/resultados_temporais_penalid
 
 # Parâmetros a testar (produto cartesiano)
 PENALTY_RATES = [0.01,0.02,0.03, 0.04, 0.05, 0.06,0.07,0.08,0.09,0.10]
-OLD_THRESHOLDS = [1.0, 2.0, 3.0,4.0, 5.0]
+OLD_THRESHOLDS = [3.0,4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 12.0,13.0]
 
 # Seleção de testes
-TEST_SELECTION = "temporal"  # "temporal", "behavioral", "all"
+TEST_SELECTION = "all"  # "temporal", "behavioral", "all"
 TEST_IDS_FILTER = None       # ex: ["TC_TEMP_ABS_001"]
 
 
