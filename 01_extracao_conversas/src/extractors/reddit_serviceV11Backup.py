@@ -20,6 +20,13 @@ class RedditServiceV11Async(BaseExtractor):
         self.cache_subreddits = {}
 
     async def __aenter__(self):
+        # Verifica se as chaves existem
+        if not self.config_pra.has_section('DEFAULT'):
+            raise KeyError("Seção [DEFAULT] não encontrada no praw.ini")
+        for key in ['client_id', 'client_secret', 'user_agent']:
+            if not self.config_pra.has_option('DEFAULT', key):
+                raise KeyError(f"Chave '{key}' não encontrada na seção [DEFAULT] do praw.ini")
+        
         self.reddit = asyncpraw.Reddit(
             client_id=self.config_pra['DEFAULT']['client_id'],
             client_secret=self.config_pra['DEFAULT']['client_secret'],
