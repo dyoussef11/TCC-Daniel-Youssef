@@ -7,7 +7,8 @@ from core.paths import EXTRACAO_DATA, DATASET_FINAL_CSV
 from extractors.reddit_serviceV12 import RedditServiceV12Async
 
 # Configurações
-DIRETORIO_BRUTO = EXTRACAO_DATA / 'brutoV11'
+# DIRETORIO_BRUTO = EXTRACAO_DATA / 'brutoV11'
+DIRETORIO_BRUTO = EXTRACAO_DATA / 'brutoV12'
 LIMITE_COMENTARIOS_POR_POST = 100   # quantos comentários baixar por post
 CONCORRENCIA = 5                    # número de requisições simultâneas
 
@@ -41,6 +42,7 @@ class CommentLoader:
                     continue
 
                 print(f"  Carregando comentários do post {post_id}...")
+                # comentarios = await service.carregar_comentarios_por_id(post_id, limit=self.comment_limit)
                 comentarios = await service.carregar_comentarios_por_id(post_id, limit=self.comment_limit)
                 post['comentarios'] = comentarios
                 post['comentarios_carregados'] = True

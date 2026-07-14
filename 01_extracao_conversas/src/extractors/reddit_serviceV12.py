@@ -314,22 +314,48 @@ class RedditServiceV12Async(BaseExtractor):
     # -------------------------------------------------------------------------
     # CARREGAR COMENTÁRIOS SOB DEMANDA (com controle de limite)
     # -------------------------------------------------------------------------
-    async def carregar_comentarios_por_id(self, post_id, limit=100):
-        """
-        Carrega comentários de um post específico usando o ID.
-        O parâmetro 'limit' controla quantos comentários serão baixados.
-        Retorna lista de dicionários com os comentários.
-        """
-        try:
-            # Cria objeto lazy (sem requisição inicial)
-            submission = await self.reddit.submission(id=post_id, lazy=True)
-            # Carrega dados com limite de comentários
-            await submission.load(comment_limit=limit)
-            # Expande MoreComments (cuidado – pode disparar muitas requisições)
-            await submission.comments.replace_more(limit=0)
+    # async def carregar_comentarios_por_id(self, post_id, limit=100):
+    #     """
+    #     Carrega comentários de um post específico usando o ID.
+    #     O parâmetro 'limit' controla quantos comentários serão baixados.
+    #     Retorna lista de dicionários com os comentários.
+    #     """
+    #     try:
+    #         # Cria objeto lazy (sem requisição inicial)
+    #         submission = await self.reddit.submission(id=post_id, lazy=True)
+    #         # Carrega dados com limite de comentários
+    #         await submission.load(comment_limit=limit)
+    #         # Expande MoreComments (cuidado – pode disparar muitas requisições)
+    #         await submission.comments.replace_more(limit=0)
 
+    #         comentarios = []
+    #         for comment in submission.comments.list():
+    #             corpo = getattr(comment, 'body', "") or ""
+    #             if len(corpo) > 10 and "I am a bot" not in corpo:
+    #                 comentarios.append({
+    #                     "id": comment.id,
+    #                     "conteudo": corpo,
+    #                     "score": comment.score,
+    #                     "data_comentario": comment.created_utc
+    #                 })
+    #         return comentarios
+    #     except Exception as e:
+    #         print(f"Erro ao carregar comentários para {post_id}: {e}")
+    #         return []
+
+    async def carregar_comentarios_por_id(self, post_id, limit=100):
+        try:
+            submission = await self.reddit.submission(id=post_id)
+            # Expande todos os MoreComments
+            await submission.comments.replace_more(limit=None)
+            # list() é síncrono - NÃO use await
+            all_comments = submission.comments.list()
+            
+            # Ordena por data (mais recentes primeiro)
+            all_comments.sort(key=lambda c: c.created_utc, reverse=True)
+            
             comentarios = []
-            for comment in submission.comments.list():
+            for comment in all_comments[:limit]:
                 corpo = getattr(comment, 'body', "") or ""
                 if len(corpo) > 10 and "I am a bot" not in corpo:
                     comentarios.append({
