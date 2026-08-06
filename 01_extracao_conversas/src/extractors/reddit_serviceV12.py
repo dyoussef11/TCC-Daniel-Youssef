@@ -52,7 +52,8 @@ class RedditServiceV12Async(BaseExtractor):
         self.reddit = asyncpraw.Reddit(
             client_id=self.client_id,
             client_secret=self.client_secret,
-            user_agent=self.user_agent
+            user_agent=self.user_agent,
+            ratelimit_seconds=600   # <-- NOVO
         )
         return self
 
