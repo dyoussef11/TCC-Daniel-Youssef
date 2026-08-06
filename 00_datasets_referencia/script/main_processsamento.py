@@ -1,5 +1,6 @@
 import json
 import logging
+from pathlib import Path
 import pandas as pd
 from configuracao_processamento import ConfiguracaoModelos
 from limpador_processamento import LimpadorModelos
@@ -16,13 +17,13 @@ logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 
 def main():
-    PATH_CONFIG = DATASET_CONFIG
+    PATH_CONFIG: Path = DATASET_CONFIG
     PATH_DADOS = DATASET_KAGGLE
     
-    PATH_OUTPUT = DATASET_FINAL_CSV / "dataset_laptops_UNICOS_V10.csv"
-    PASTA_SAIDA = DATASET_GAMER /"em_tratamento"/ "unificados"
+    PATH_OUTPUT: Path  = DATASET_FINAL_CSV / "dataset_laptops_UNICOS_V10.csv"
+    PASTA_SAIDA: Path  = DATASET_GAMER /"em_tratamento"/ "unificados"
     # Caminho para o arquivo centralizado
-    ARQUIVO_CENTRALIZADO = PASTA_SAIDA / "laptops_centralizado_modelos.csv"
+    ARQUIVO_CENTRALIZADO: Path  = PASTA_SAIDA / "laptops_centralizado_modelos.csv"
 
     try:
         # Inicializa os módulos modulares

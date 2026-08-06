@@ -2,6 +2,7 @@ import hashlib
 import re
 import logging
 import pandas as pd
+from pandas import DataFrame
 from pathlib import Path
 from typing import Dict, Optional
 from configuracao_processamento import ConfiguracaoModelos

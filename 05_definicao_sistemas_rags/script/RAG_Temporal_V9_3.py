@@ -44,7 +44,7 @@ class RAGConfig:
         self.max_results_returned: int = 5
         
         # Expansão de query
-        self.use_expansion: bool = True
+        self.use_expansion: bool = False
         self.max_synonym_terms: int = 5
         
         # Modelo
@@ -358,7 +358,8 @@ class TemporalScorer:
 # ============================================================================
 
 class FallbackSearcher:
-    def __init__(self, similarity_threshold: float = 1.2, max_fallback_docs: int = 3, old_doc_threshold_years: float = 2.0):
+    
+    def __init__(self, similarity_threshold: float = 1.2, max_fallback_docs: int = 3, old_doc_threshold_years: float = 100.0):
         self.similarity_threshold = similarity_threshold
         self.max_fallback_docs = max_fallback_docs
         self.old_doc_threshold_years = old_doc_threshold_years
@@ -632,66 +633,6 @@ class SpecialistTimeAwareRAG:
     SAÍDA LIMPA: sem tags, sem blocos AUDIT:, sem ANSWER:.
     """
     _semaphore = asyncio.Semaphore(1) 
-
-    # def __init__(self, json_path: Union[str, Path], variant_name: str = "V9_HYBRID_MIXED_AUDITOR",
-    #             embedding_cache=None, use_expansion: bool = True):
-        
-    #     print(f"--- 🧠 RAG ENGINE ATIVADA (Variante: {variant_name}) ---")
-    #     self.config = RAGConfig(variant_name)
-    #     self.config.use_expansion = use_expansion
-    #     print(f"   Temporal config: 4.0%/year penalty, fallback after 2.0y")
-        
-    #     self.cache_manager = embedding_cache
-    #     self.embedding_manager = EmbeddingManager(model=self.config.embedding_model)
-        
-    #     self.data_loader = DataLoader()
-        
-    #     self.faiss_manager = FAISSManager(dimension=self.config.embedding_dimension)
-    #     if self.data_loader.documents:
-    #         self.faiss_manager.build_index(self.data_loader.documents)
-        
-    #     self.temporal_scorer = TemporalScorer(
-    #         yearly_penalty_rate=self.config.yearly_penalty_rate,
-    #         recency_threshold=self.config.recency_threshold,
-    #         low_coverage_multiplier=self.config.low_coverage_penalty_multiplier
-    #     )
-    #     self.fallback_searcher = FallbackSearcher(
-    #         similarity_threshold=self.config.similarity_threshold,
-    #         max_fallback_docs=self.config.max_fallback_docs,
-    #         old_doc_threshold_years=self.config.old_doc_threshold_years
-    #     )
-    #     self.query_expander = QueryExpander(variant="temporal", max_terms=self.config.max_synonym_terms)
-        
-    #     # PromptManager agora carrega do JSON e garante saída limpa
-    #     self.prompt_manager = PromptManager(variant_name=variant_name)
-        
-    #     self.context_builder = ContextBuilder(max_chars=self.config.max_context_chars)
-        
-    #     self.search_pipeline = SearchPipeline(
-    #         faiss_manager=self.faiss_manager,
-    #         data_loader=self.data_loader,
-    #         temporal_scorer=self.temporal_scorer,
-    #         fallback_searcher=self.fallback_searcher,
-    #         config=self.config
-    #     )
-        
-    #     print(f"✅ Sistema inicializado com {len(self.data_loader.documents)} documentos")
-
-    #     self.data_loader = DataLoader()
-    #     base_path = Path(json_path)
-        
-    #     # Tenta carregar pelo índice FAISS + metadados (rápido)
-    #     index_path = base_path.with_suffix('.faiss')
-    #     if index_path.exists() and self.faiss_manager.load_index(index_path):
-    #         # Carrega só os metadados (leves)
-    #         self.base_dados = self.data_loader.load_from_precomputed(base_path)
-    #     else:
-    #         # Fallback: carrega o JSON completo e reconstrói o índice
-    #         print("⚠️ Índice FAISS não encontrado. Recriando a partir do JSON...")
-    #         self.data_loader.load_documents(json_path)
-    #         self.base_dados = self.data_loader.documents
-    #         self.faiss_manager.build_index(self.base_dados)
-
 
     def __init__(self, json_path: Union[str, Path], variant_name: str = "V9_HYBRID_MIXED_AUDITOR",
                  embedding_cache=None, use_expansion: bool = True):

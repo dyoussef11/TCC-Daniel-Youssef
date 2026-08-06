@@ -2,8 +2,9 @@ import json
 from core.paths import NER_DATA
 
 # Configurações de Caminho
-CAMINHO_JSON = NER_DATA / 'Base_Conhecimento_ResumidaV2' / 'NER_acer_16_predator_neo.json'
+CAMINHO_JSON = NER_DATA / 'Base_Conhecimento_ResumidaV13_VERIFICADA' / 'NER_15_fc0028au_na_na_na.json'
 ARQUIVO_SAIDA = NER_DATA / 'struct_json' / "ESTRUTURA_RESUMO_TECNICO_NER_V5.md"
+ARQUIVO_SAIDA.mkdir(parents=True, exist_ok= True)
 
 def extrair_arvore(dados, indent="", prefixo="└── "):
     """Gera a representação visual em árvore recursivamente."""

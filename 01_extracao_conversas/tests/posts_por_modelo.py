@@ -3,7 +3,8 @@ import sys
 from pathlib import Path
 from core.paths import EXTRACAO_DATA, DATASET_FINAL_CSV
 
-DIRETORIO_BRUTO = EXTRACAO_DATA / 'brutoV10'
+# DIRETORIO_BRUTO = EXTRACAO_DATA / 'brutoV10'
+DIRETORIO_BRUTO = EXTRACAO_DATA / 'brutoV11'
 
 def extrair_total_posts_ijson(caminho_arquivo):
     """Extrai 'total_posts' usando ijson (leitura incremental, ideal para arquivos grandes)."""
@@ -52,7 +53,7 @@ def main(usar_ijson=True):
         print(f"{nome}: total_posts = {valor}")
 
     # Opcional: salvar ordenado em um arquivo
-    with open(DATASET_FINAL_CSV.parent / 'extraido_total_posts_ordenado.txt', 'w') as f:
+    with open(EXTRACAO_DATA/ 'extraido_total_posts_ordenado.txt', 'w') as f:
         for nome, valor in resultados_ordenados:
             f.write(f"{nome},{valor}\n")
 
