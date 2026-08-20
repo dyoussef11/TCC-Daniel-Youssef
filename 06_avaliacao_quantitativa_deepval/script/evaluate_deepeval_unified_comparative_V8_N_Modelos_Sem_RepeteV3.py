@@ -106,7 +106,7 @@ def parse_verbose_log(verbose_text: str) -> Dict[str, int]:
 
 @dataclass
 class EvalConfig:
-    base_path: Path = VETORIZATION_DATA / 'base_conhecimento_multilingueV9.json'
+    base_path: Path = VETORIZATION_DATA / 'base_vetorizada' / 'base_conhecimento_multilingueV9.json'
     evaluator_model: str = "qwen3:4b-instruct"
     cache_dir: Path = AVALIACAO_DATA / "cache"
     embedding_cache_size: int = 1000

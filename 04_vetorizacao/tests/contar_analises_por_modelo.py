@@ -8,12 +8,11 @@ Baseia-se no campo 'model' extraído dos metadados.
 import json
 from pathlib import Path
 from collections import Counter
-
+from core.paths import VETORIZATION_DATA
 # ============================================================================
 # CONFIGURAÇÃO
 # ============================================================================
-BASE_DIR = Path("04_vetorizacao/data")
-META_PATH = BASE_DIR / "base_conhecimento_multilingueV9.meta.json"
+META_PATH = VETORIZATION_DATA / "base_conhecimento_multilingueV9.meta.json"
 
 # ============================================================================
 # CARREGAMENTO

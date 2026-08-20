@@ -22,7 +22,7 @@ MODELOS_TESTE = [
 NUM_POSTS_TESTE = 10  # Número de posts para testar por modelo
 
 # Diretórios
-DIR_ENTRADA = Path(PREPROCESSAMENTO_DATA/"Dados_Limpos_IniciaisV10")
+DIR_ENTRADA = PREPROCESSAMENTO_DATA / 'dados_limpos' / "dados_limpos_iniciaisV13"
 DIR_RESULTADOS = Path(NER_DATA / "test_results")
 DIR_RESULTADOS.mkdir(exist_ok=True)
 

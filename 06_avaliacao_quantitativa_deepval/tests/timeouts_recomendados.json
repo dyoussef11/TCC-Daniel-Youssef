@@ -1,0 +1,8 @@
+{
+  "phi3.5:latest": 120,
+  "qwen3:4b-instruct": 120,
+  "mistral:7b-instruct": 120,
+  "granite3.2:8b": 120,
+  "qwen3.5:9b": 241,
+  "phi3:14b": 120
+}

@@ -49,7 +49,7 @@ class DataLoader:
 
 
     def load_documents(self, json_path: Union[str, Path]) -> List[Dict]:
-        path = VETORIZATION_DATA / "base_conhecimento_multilingueV9.json"
+        path = VETORIZATION_DATA / "base_vetorizada" / "base_conhecimento_multilingueV9.json"
         if not path.exists():
             raise FileNotFoundError(f"Arquivo não encontrado: {json_path}")
 

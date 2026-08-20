@@ -1,0 +1,30 @@
+\begin{table}
+\caption{Análise de Robustez por Juiz (Média $\pm$ Desvio Padrão entre Geradores)}
+\label{tab:robustez_por_juiz}
+\begin{tabular}{llccc}
+\toprule
+Judge & Metric & V1_Display & V9_Display & Delta_Display \\
+\midrule
+granite3.2:8b & Behavioral_Guardrails & 0.936 $\pm$ 0.012 & 0.926 $\pm$ 0.003 & -0.010 \\
+granite3.2:8b & Intelligent_Fallback & 0.885 $\pm$ 0.006 & 0.871 $\pm$ 0.008 & -0.014 \\
+granite3.2:8b & Temporal_Consistency & 0.838 $\pm$ 0.005 & 0.789 $\pm$ 0.005 & -0.049 \\
+granite3.2:8b & Temporal_Reranking & 0.946 $\pm$ 0.006 & 0.888 $\pm$ 0.012 & -0.058 \\
+mistral:7b-instruct & Behavioral_Guardrails & 0.172 $\pm$ 0.011 & 0.181 $\pm$ 0.000 & +0.009 \\
+mistral:7b-instruct & Intelligent_Fallback & 0.442 $\pm$ 0.008 & 0.450 $\pm$ 0.006 & +0.008 \\
+mistral:7b-instruct & Temporal_Consistency & 0.331 $\pm$ 0.010 & 0.342 $\pm$ 0.001 & +0.011 \\
+mistral:7b-instruct & Temporal_Reranking & 0.109 $\pm$ 0.020 & 0.120 $\pm$ 0.022 & +0.010 \\
+phi3.5:latest & Behavioral_Guardrails & 0.000 $\pm$ 0.000 & 0.026 $\pm$ 0.000 & +0.026 \\
+phi3.5:latest & Intelligent_Fallback & 0.104 $\pm$ 0.005 & 0.045 $\pm$ 0.019 & -0.059 \\
+phi3.5:latest & Temporal_Consistency & 0.015 $\pm$ 0.007 & 0.072 $\pm$ 0.000 & +0.057 \\
+phi3.5:latest & Temporal_Reranking & 0.038 $\pm$ 0.000 & 0.036 $\pm$ 0.012 & -0.002 \\
+phi3:14b & Behavioral_Guardrails & 0.670 $\pm$ 0.004 & 0.551 $\pm$ 0.007 & -0.119 \\
+phi3:14b & Intelligent_Fallback & 0.498 $\pm$ 0.007 & 0.482 $\pm$ 0.010 & -0.016 \\
+phi3:14b & Temporal_Consistency & 0.504 $\pm$ 0.016 & 0.689 $\pm$ 0.007 & +0.185 \\
+phi3:14b & Temporal_Reranking & 0.458 $\pm$ 0.013 & 0.505 $\pm$ 0.004 & +0.048 \\
+qwen3:4b-instruct & Behavioral_Guardrails & 0.899 $\pm$ 0.018 & 0.874 $\pm$ 0.022 & -0.025 \\
+qwen3:4b-instruct & Intelligent_Fallback & 0.885 $\pm$ 0.010 & 0.928 $\pm$ 0.004 & +0.043 \\
+qwen3:4b-instruct & Temporal_Consistency & 0.797 $\pm$ 0.010 & 0.820 $\pm$ 0.000 & +0.023 \\
+qwen3:4b-instruct & Temporal_Reranking & 0.854 $\pm$ 0.029 & 0.815 $\pm$ 0.019 & -0.039 \\
+\bottomrule
+\end{tabular}
+\end{table}

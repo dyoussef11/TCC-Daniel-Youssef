@@ -1,0 +1,54 @@
+pergunta_id,top1_mudou,overlap_top5,dist_media_trad,dist_media_temp,delta_distancia,gap_medio_trad,gap_medio_temp,delta_gap,impacto
+TC_BEHAVIOR_AUDIT_TAGS_PRESENT,True,2,537.96,541.08,3.12,6.05,2.22,-3.83,"PREJUDICOU (recentes, mas perdeu contexto)"
+TC_BEHAVIOR_COMPARISON_MIXED_SOURCES,False,5,398.31,397.33,-0.98,1.12,0.06,-1.06,"MELHOROU (recentes, mesmo contexto)"
+TC_BEHAVIOR_INTERNAL_KNOWLEDGE,False,3,399.41,405.13,5.72,2.73,0.09,-2.64,"MELHOROU (recentes, mesmo contexto)"
+TC_BEHAVIOR_NONEXISTENT_MODEL,True,2,505.05,509.33,4.28,7.64,2.82,-4.82,"PREJUDICOU (recentes, mas perdeu contexto)"
+TC_BEHAVIOR_NO_BIOS_HALLUCINATION,False,3,418.65,421.7,3.06,7.5,4.84,-2.66,"MELHOROU (recentes, mesmo contexto)"
+TC_BEHAVIOR_NO_SERIES_INFERENCE,True,5,477.64,477.65,0.01,1.9,0.84,-1.06,"MELHOROU (recentes, mesmo contexto)"
+TC_BEHAVIOR_RAG_PLUS_INTERNAL_ENRICHMENT,True,3,329.02,331.82,2.8,2.2,0.23,-1.97,"MELHOROU (recentes, mesmo contexto)"
+TC_BEHAVIOR_SERIES_NO_INTERNAL_SPECS,True,2,462.89,468.86,5.97,2.72,0.37,-2.36,"PREJUDICOU (recentes, mas perdeu contexto)"
+TC_BEHAVIOR_SKU_LOCK_ACER,True,4,290.64,297.31,6.67,2.65,2.01,-0.65,"MELHOROU (recentes, mesmo contexto)"
+TC_BEHAVIOR_SKU_LOCK_DELL,True,2,489.75,499.05,9.3,8.25,5.36,-2.9,"PREJUDICOU (recentes, mas perdeu contexto)"
+TC_BEHAVIOR_SKU_LOCK_LENOVO,False,5,449.48,449.45,-0.03,2.62,2.62,0.0,NEUTRO (sem mudança significativa)
+TC_BEHAVIOR_SKU_WITH_INTERNAL_FALLBACK,True,3,430.72,432.85,2.13,4.05,1.85,-2.2,"MELHOROU (recentes, mesmo contexto)"
+TC_BEHAVIOR_TEMPORAL_AWARENESS,False,3,428.44,431.6,3.16,1.54,-0.13,-1.66,"MELHOROU (recentes, mesmo contexto)"
+TC_STATIC_01,True,4,297.67,303.62,5.95,2.65,2.01,-0.65,"MELHOROU (recentes, mesmo contexto)"
+TC_STATIC_02,False,3,324.12,336.39,12.27,2.56,1.19,-1.37,"MELHOROU (recentes, mesmo contexto)"
+TC_STATIC_03,True,4,479.4,488.1,8.69,3.94,1.31,-2.63,"MELHOROU (recentes, mesmo contexto)"
+TC_STATIC_04,False,4,406.66,408.96,2.3,1.44,1.29,-0.15,NEUTRO (sem mudança significativa)
+TC_STATIC_05,True,2,504.2,516.86,12.66,6.77,3.71,-3.06,"PREJUDICOU (recentes, mas perdeu contexto)"
+TC_STATIC_06,False,5,385.15,383.8,-1.34,1.29,1.28,-0.0,NEUTRO (sem mudança significativa)
+TC_STATIC_07,True,4,417.02,421.2,4.18,1.97,1.38,-0.59,"MELHOROU (recentes, mesmo contexto)"
+TC_STATIC_08,True,4,383.4,383.74,0.35,1.32,0.96,-0.35,NEUTRO (sem mudança significativa)
+TC_STATIC_09,True,3,493.6,498.96,5.36,1.73,1.08,-0.65,"MELHOROU (recentes, mesmo contexto)"
+TC_STATIC_10,False,3,449.72,450.98,1.26,1.77,0.42,-1.35,"MELHOROU (recentes, mesmo contexto)"
+TC_STATIC_11,False,3,520.02,524.88,4.86,6.49,3.74,-2.75,"MELHOROU (recentes, mesmo contexto)"
+TC_STATIC_12,True,2,449.48,452.78,3.3,3.42,0.27,-3.15,"PREJUDICOU (recentes, mas perdeu contexto)"
+TC_STATIC_13,True,3,515.84,521.42,5.58,2.19,1.07,-1.12,"MELHOROU (recentes, mesmo contexto)"
+TC_STATIC_14,False,3,370.89,375.35,4.45,2.05,1.4,-0.65,"MELHOROU (recentes, mesmo contexto)"
+TC_STATIC_15,False,5,396.08,395.44,-0.64,0.64,0.64,-0.0,NEUTRO (sem mudança significativa)
+TC_STATIC_16,False,5,445.84,445.92,0.08,1.11,1.11,0.0,NEUTRO (sem mudança significativa)
+TC_STATIC_17,True,4,455.18,458.19,3.01,1.04,0.66,-0.38,NEUTRO (sem mudança significativa)
+TC_STATIC_18,True,4,364.5,364.02,-0.48,0.98,0.67,-0.3,NEUTRO (sem mudança significativa)
+TC_STATIC_19,False,4,372.05,374.04,1.98,1.46,1.14,-0.32,NEUTRO (sem mudança significativa)
+TC_STATIC_20,True,3,498.64,505.55,6.92,5.88,3.76,-2.12,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_ABS_001,True,3,532.5,541.56,9.05,3.92,-1.21,-5.13,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_ABS_002,False,4,451.71,449.6,-2.1,1.16,-0.63,-1.79,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_ABS_003,False,4,417.66,416.58,-1.08,2.1,-1.34,-3.44,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_ABS_004,False,3,597.26,596.77,-0.49,2.19,-0.61,-2.8,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_ABS_005,True,4,496.18,495.61,-0.57,2.66,-0.58,-3.23,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_ABS_006,False,4,381.47,382.95,1.49,1.86,-0.29,-2.15,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_AGG_001,False,5,453.95,453.37,-0.58,2.03,-0.44,-2.47,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_AGG_002,False,4,362.24,359.08,-3.16,3.08,-0.15,-3.23,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_AGG_003,False,4,521.02,521.22,0.2,2.04,-0.62,-2.66,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_ATEMP_001,False,1,399.16,408.25,9.08,4.89,-0.16,-5.05,"PREJUDICOU (recentes, mas perdeu contexto)"
+TC_TEMP_ATEMP_002,False,3,545.91,548.54,2.63,2.62,-0.04,-2.66,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_CMP_001,True,3,473.27,488.45,15.18,4.9,-0.75,-5.65,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_CMP_002,False,4,322.49,324.04,1.56,3.71,0.28,-3.44,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_FUT_001,False,4,523.49,527.22,3.72,2.31,1.52,-0.79,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_FUT_002,True,3,434.92,438.73,3.81,2.18,0.27,-1.91,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_REL_001,True,4,376.74,385.18,8.44,4.78,1.81,-2.97,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_REL_002,True,3,376.38,380.34,3.96,2.66,0.25,-2.41,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_REL_003,True,3,495.98,506.41,10.43,3.23,-0.71,-3.94,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_REL_004,False,4,450.79,451.87,1.08,0.71,-1.06,-1.76,"MELHOROU (recentes, mesmo contexto)"
+TC_TEMP_REL_005,True,2,562.06,581.45,19.39,5.54,1.6,-3.95,"PREJUDICOU (recentes, mas perdeu contexto)"

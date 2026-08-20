@@ -3,7 +3,7 @@ from pathlib import Path
 from core.paths import EXTRACAO_DATA
 
 # 1. Define o caminho da pasta
-pasta_csv = EXTRACAO_DATA / "logs5"
+pasta_csv = EXTRACAO_DATA / "logs" / "logs5"
 
 # 2. Lista todos os arquivos .csv dentro da pasta
 arquivos = list(pasta_csv.glob("*.csv"))

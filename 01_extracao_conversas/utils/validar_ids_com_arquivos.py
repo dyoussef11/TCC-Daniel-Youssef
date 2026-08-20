@@ -17,7 +17,7 @@ def main():
     caminho_csv = DATASET_FINAL_CSV / "dataset_laptops_UNICOS_V10.csv"
     
     # Diretório com os arquivos originais
-    diretorio_bruto = EXTRACAO_DATA / "brutoV10"
+    diretorio_bruto = EXTRACAO_DATA /  "dados_brutos" / "brutoV10"
     
     if not caminho_csv.exists():
         logger.error(f"Arquivo CSV não encontrado: {caminho_csv}")

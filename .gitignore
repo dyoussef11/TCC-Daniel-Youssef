@@ -8,7 +8,37 @@ __pycache__/
 # C extensions
 *.so
 
+
+# Pastas para ignorar POR COMPLETO
 notebook_forum_sentimento.egg-info
+
+# Pastas para ignorar OS CONTEÚDOS
+
+## Extração Reddit
+01_extracao_conversas/data/dados_brutos/brutoV10/*.json
+01_extracao_conversas/data/dados_brutos/bruto/*.json
+01_extracao_conversas/data/dados_brutos/brutoV12/*.json
+01_extracao_conversas/data/dados_brutos/removidos_sem_id/*.json
+
+02_preprocessamento/data/dados_limpos/dados_limpos_iniciaisV10/*.json
+02_preprocessamento/data/dados_limpos/dados_limpos_iniciaisV11/*.json
+02_preprocessamento/data/dados_limpos/dados_limpos_iniciaisV12/*.json
+
+03_ner_e_resumo/data/bases_de_conhecimento_resumos/base_conhecimento_resumidaV11/*.json
+03_ner_e_resumo/data/bases_de_conhecimento_resumos/base_conhecimento_resumidaV12/*.json
+03_ner_e_resumo/data/bases_de_conhecimento_resumos/base_conhecimento_resumidaV13/*.json
+03_ner_e_resumo/data/checkpoints_resumos_ia/checkpoints_ia_v19_verificado/*.json
+03_ner_e_resumo/data/checkpoints_resumos_ia/checkpoints_ia_v20_verificado/*.json
+03_ner_e_resumo/data/checkpoints_resumos_ia/checkpoints_ia_v21_verificado/*.json
+03_ner_e_resumo/data/test_results/*.json
+
+04_vetorizacao/data/base_vetorizada/*.faiss
+04_vetorizacao/data/base_vetorizada/*.json
+04_vetorizacao/data/base_vetorizada/*.meta.json
+04_vetorizacao/data/base_vetorizada/*.npy
+
+**/data/**/*.7z
+
 
 # Distribution / packaging
 .Python

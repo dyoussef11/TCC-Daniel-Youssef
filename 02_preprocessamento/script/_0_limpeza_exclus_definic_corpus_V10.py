@@ -9,16 +9,16 @@ from tqdm import tqdm
 from core.paths import EXTRACAO_CONFIG, EXTRACAO_DATA, PREPROCESSAMENTO, PREPROCESSAMENTO_DATA
 
 # --- CONFIGURAÇÕES DE CAMINHO ---
-CAMINHO_ENTRADA = EXTRACAO_DATA / "brutoV10"
-CAMINHO_SAIDA = PREPROCESSAMENTO_DATA / "Dados_Limpos_IniciaisV12"
-CAMINHO_LOG = PREPROCESSAMENTO / "Logs"
+CAMINHO_ENTRADA = EXTRACAO_DATA / "dados_brutos" / "brutoV12"
+CAMINHO_SAIDA = PREPROCESSAMENTO_DATA / "dados_limpos" / "dados_limpos_iniciaisV12"
+CAMINHO_LOG = PREPROCESSAMENTO / "logs"
 
 # --- CONFIGURAÇÃO DE COMPORTAMENTO ---
 DESCARTAR_SEM_COMENTARIOS = True   # Altere para False se preferir manter os que têm título crítico
 
 
 def limpar_texto_suporte_tecnico(texto):
-    # (mesma função anterior, mantida)
+    
     if not texto:
         return ""
     texto = re.sub(r'http\S+|www\S+|https\S+', '[URL_EVIDENCIA]', texto)
@@ -286,25 +286,29 @@ def executar_limpeza_paralela():
 
         # Salva o CSV
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        csv_path = CAMINHO_LOG / f"resumo_descartes_{timestamp}.csv"
+        csv_path = CAMINHO_LOG / 'csvs' /f"resumo_descartes_{timestamp}.csv"
+        os.makedirs(csv_path, exist_ok=True)
         with open(csv_path, 'w', encoding='utf-8', newline='') as f:
             writer = csv.writer(f, delimiter=';')
             writer.writerow(cabecalho)
             writer.writerows(linhas)
 
         # Cópia com nome fixo
-        csv_latest_path = CAMINHO_LOG / "resumo_descartes_latest.csv"
+        csv_latest_path = CAMINHO_LOG / 'csvs' / "resumo_descartes_latest.csv"
+        os.makedirs(csv_latest_path, exist_ok=True)
         with open(csv_latest_path, 'w', encoding='utf-8', newline='') as f:
             writer = csv.writer(f, delimiter=';')
             writer.writerow(cabecalho)
             writer.writerows(linhas)
 
         # --- SALVA O LOG DETALHADO (JSON) ---
-        log_path = CAMINHO_LOG / f"discard_log_{timestamp}.json"
+        log_path = CAMINHO_LOG  / 'jsons' / f"discard_log_{timestamp}.json"
+        os.makedirs(log_path, exist_ok=True)
         with open(log_path, 'w', encoding='utf-8') as f:
             json.dump(discard_list, f, indent=2, ensure_ascii=False)
 
-        ultimo_log_path = CAMINHO_LOG / "discard_log_latest.json"
+        ultimo_log_path = CAMINHO_LOG  / 'jsons' / "discard_log_latest.json"
+        os.makedirs(ultimo_log_path, exist_ok=True)
         with open(ultimo_log_path, 'w', encoding='utf-8') as f:
             json.dump(discard_list, f, indent=2, ensure_ascii=False)
 

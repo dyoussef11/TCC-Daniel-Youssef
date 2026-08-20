@@ -262,7 +262,7 @@ CHRONOQA_TEMPORAL_SUITE = [
         "description": "Conceito atemporal - documentos de 2020+ são aceitáveis"
     },
 ]
-
+print("Total Temporal: ",len(CHRONOQA_TEMPORAL_SUITE))
 
 TRADITIONAL_TEST_SUITE = [
     # ========================================================================
@@ -453,7 +453,7 @@ TRADITIONAL_TEST_SUITE = [
         "metrics": ["answer_relevancy", "faithfulness", "contextual_relevancy"]
     },
 ]
-
+print("Total Tradicional: ",len(TRADITIONAL_TEST_SUITE))
 
 # ============================================================================
 # CASOS COMPORTAMENTAIS (SKU Lock, Inferência, Honestidade)
@@ -704,7 +704,7 @@ BEHAVIORAL_TEST_SUITE = [
         "description": "Pode usar RAG (se houver documento sobre AN515-58) e complementar com conhecimento interno de design térmico"
     }
 ]
-
+print("Total Comportamental: ",len(BEHAVIORAL_TEST_SUITE))
 
 
 

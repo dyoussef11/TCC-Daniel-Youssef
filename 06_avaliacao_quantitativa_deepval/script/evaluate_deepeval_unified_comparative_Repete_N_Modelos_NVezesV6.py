@@ -108,7 +108,7 @@ def parse_verbose_log(verbose_text: str) -> Dict[str, int]:
 
 @dataclass
 class EvalConfig:
-    base_path: Path = VETORIZATION_DATA / 'base_conhecimento_multilingueV9.json'
+    base_path: Path = VETORIZATION_DATA / 'base_vetorizada' / 'base_conhecimento_multilingueV9.json'
     evaluator_model: str = "qwen3:4b-instruct"
     cache_dir: Path = AVALIACAO_DATA / "cache"
     embedding_cache_size: int = 1000
@@ -1025,78 +1025,6 @@ class NativeComparativePipeline:
 # MAIN ASYNC COM FILA DE COMBINAÇÕES (COM REPETIÇÃO)
 # ============================================================================
 
-# async def main_queue():
-#     from itertools import product
-#     repeticao: int = 3   # ajuste conforme necessário
-
-#     modelos_unicos = [
-#         "phi3.5:latest",
-#         "qwen3:4b-instruct",
-#         "mistral:7b-instruct",
-#         "granite3.2:8b",
-#         "qwen3.5:9b",
-#         "phi3:14b"
-#     ]
-    
-#     judge_models = modelos_unicos
-#     generator_models = modelos_unicos
-
-#     def get_family(model: str) -> str:
-#         model_lower = model.lower()
-#         if model_lower.startswith("qwen"): return "qwen"
-#         if model_lower.startswith("mistral"): return "mistral"
-#         if model_lower.startswith("granite"): return "granite"
-#         if model_lower.startswith("phi"): return "phi"
-#         return "unknown"
-
-#     all_combinations = list(product(judge_models, generator_models))
-#     filtered_combinations = [
-#         (judge, gen) for judge, gen in all_combinations
-#         if get_family(judge) != get_family(gen)
-#     ]
-
-#     logger.info(f"🚀 Total de combinações possíveis: {len(all_combinations)}")
-#     logger.info(f"✅ Combinações sem mesma família: {len(filtered_combinations)}")
-#     logger.info(f"🔁 Executando fila com repetição ({repeticao} por caso)...\n")
-
-#     for i, (judge, generator) in enumerate(filtered_combinations, 1):
-#         logger.info(f"\n{'='*60}")
-#         logger.info(f"🔁 Combinação {i}/{len(filtered_combinations)}: Juiz={judge} | Gerador={generator}")
-#         logger.info(f"{'='*60}")
-
-#         pipeline = None
-#         try:
-#             pipeline = NativeComparativePipeline()
-#             pipeline.config = EvalConfig(evaluator_model=judge, model_name=generator)
-#             pipeline.evaluator_v1 = OllamaEvaluator(model_name=judge, prompt_version="V1", timeout=pipeline.config.evaluator_timeout)
-#             pipeline.evaluator_v9 = OllamaEvaluator(model_name=judge, prompt_version="V9", timeout=pipeline.config.evaluator_timeout)
-
-#             await pipeline.run(num_repeats=repeticao)
-#             logger.info(f"✅ Combinação concluída: {judge} / {generator}")
-#         except Exception as e:
-#             import traceback
-#             logger.error(f"❌ Erro catastrófico: {e}")
-#             traceback.print_exc()
-#         finally:
-#             if pipeline and hasattr(pipeline, 'rag_manager'):
-#                 try:
-#                     if pipeline.rag_manager._vanilla:
-#                         await pipeline.rag_manager.vanilla.close()
-#                     if pipeline.rag_manager._temporal:
-#                         await pipeline.rag_manager.temporal.close()
-#                 except:
-#                     pass
-#             del pipeline
-#             gc.collect()
-
-#         if i < len(filtered_combinations):
-#             temp: int = 60 
-#             logger.info(f"⏳ Aguardando {temp} segundos para liberar recursos...")
-#             await asyncio.sleep(temp)
-
-#     logger.info("\n🎉 Todas as combinações com repetição foram executadas com sucesso.")
-
-
 async def main_queue():
     from itertools import product
     import re
@@ -1139,7 +1067,8 @@ async def main_queue():
     # ========================================================================
     # 2. ESCANEIA A PASTA PARA IDENTIFICAR AS JÁ FINALIZADAS
     # ========================================================================
-    output_dir = AVALIACAO_DATA / "testes_com_modelos_diferentes" / "com_repeticaoV7"
+    # output_dir = AVALIACAO_DATA / "testes_com_modelos_diferentes" / "com_repeticaoV7"
+    output_dir = AVALIACAO_DATA / "testes_com_modelos_diferentes" / "com_repeticaoV8"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Conjunto para armazenar as combinações já salvas no formato (judge, generator)

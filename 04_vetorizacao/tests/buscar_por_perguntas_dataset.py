@@ -19,18 +19,17 @@ import requests
 import pandas as pd
 
 # Importa o dataset de perguntas
-from core.paths import AVALIACAO_SCRIPT
+from core.paths import AVALIACAO_SCRIPT, VETORIZATION_DATA, VETORIZATION_TESTS
 sys.path.append(str(AVALIACAO_SCRIPT))
 from dataset_avaliacaoV4 import TEST_SUITE
 
 # ============================================================================
 # CONFIGURAÇÃO
 # ============================================================================
-BASE_DIR = Path("04_vetorizacao/data")
-META_PATH = BASE_DIR / "base_conhecimento_multilingueV9.meta.json"
-FAISS_PATH = BASE_DIR / "base_conhecimento_multilingueV9.faiss"
+META_PATH = VETORIZATION_DATA /'base_vetorizada' / "base_conhecimento_multilingueV9.meta.json"
+FAISS_PATH = VETORIZATION_DATA /'base_vetorizada' / "base_conhecimento_multilingueV9.faiss"
 
-OUTPUT_DIR = Path("04_vetorizacao/tests/resultados_sematicos")
+OUTPUT_DIR = Path(VETORIZATION_TESTS / "resultados_sematicos")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 OLLAMA_URL = "http://localhost:11434/api/embeddings"
