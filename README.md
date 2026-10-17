@@ -31,7 +31,7 @@ A validação é feita por **LLM-as-a-Judge** com DeepEval, comparando a engine 
 A pontuação final de um documento recuperado é:
 
 $$
-S_{final} = S_{vetorial} \times \left(1 + \left(1 - e^{-\lambda \cdot \Delta t}\right) \cdot \alpha\right)
+S_{final} = S_{vetorial} \times \left(1 + \Delta t \cdot \alpha\right)
 $$
 
 Implementado com uma taxa parametrizada em **4% ao ano** (`yearly_penalty_rate = 0.04`). Em caso de empate vetorial, o documento mais recente vence.
@@ -108,11 +108,18 @@ Sem isso, o pipeline de extração não funciona, mas as etapas seguintes podem 
 
 ### 5. Descompactação da Base Vetorial
 
-A base vetorizada é grande e está compactada:
+A base vetorizada é grande e, por conta da limitação do plano gratuito do GitHub, ela não foi incluída diretamente no repositório:
+
+
+1. **Baixe** o arquivo base_conhecimento_multilingueV9.zip pelo link do Drive: https://drive.google.com/drive/folders/1d9bTCJVXm7cWPmv3kYQuZazmnps2JfJx?usp=sharing.
+
+2. **Coloque** o arquivo baixado na pasta **04_vetorizacao/data/**.
+
+3. **Descompacte** o arquivo antes de executar os próximos passos:
 
 ```bash
 cd 04_vetorizacao/data/
-bunzip2 base_conhecimento_multilingueV2.json.bz2
+unzip base_conhecimento_multilingueV9.zip
 ```
 
 ---
